@@ -4,6 +4,7 @@
  */
 
 import React from "react";
+import { config } from "../../config";
 import { Body } from "../Body";
 import { Footer } from "../Footer";
 import { Header } from "../Header";
@@ -17,7 +18,7 @@ export const Page = ({ children }: PageProps) => {
     //FIXME: Styling will change when we decide about the approach we want to
     //   follow for this project
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <Header>Header</Header>
+      <Header {...config().layout.header} />
       <Body>{children}</Body>
       <Footer>Footer</Footer>
     </div>
