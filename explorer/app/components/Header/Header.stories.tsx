@@ -12,7 +12,6 @@ export default {
     logo: { control: "object" },
     navAlignment: { control: "select", options: ["left", "center"] },
     navLinks: { control: "array" },
-    slogan: { control: "text" },
     socialLinks: { control: "array" },
   },
 } as ComponentMeta<typeof Header>;
@@ -24,26 +23,30 @@ Primary.args = {
   authenticationEnabled: true,
   searchEnabled: true,
   logo: {
+    slogan: "NHGRI Analysis Visualization and Informatics Lab-space",
     url: "https://www.webhostingsecretrevealed.net/wp-content/uploads/logo-nightwatch-300x300.jpg",
     width: 30,
     height: 30,
   },
-  slogan: "NHGRI Analysis Visualization and Informatics Lab-space",
   navAlignment: "center",
-  navLinks: [
-    {
-      label: "Google",
-      url: "https://google.com",
-    },
-    {
-      label: "Github",
-      url: "https://github.com",
-    },
-  ],
-  socialLinks: [
-    {
-      type: "github",
-      url: "https://github.com/BruceRodrigues",
-    },
-  ],
+  navLinks: {
+    links: [
+      {
+        label: "Google",
+        url: "https://google.com",
+      },
+      {
+        label: "Github",
+        url: "https://github.com",
+      },
+    ],
+  },
+  socialLinks: {
+    links: [
+      {
+        type: "github",
+        url: "https://github.com/BruceRodrigues",
+      },
+    ],
+  },
 };

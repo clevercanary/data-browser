@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-interface LogoProps {
+export interface LogoProps {
   url: string;
   slogan?: string;
   width: number;

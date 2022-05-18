@@ -3,11 +3,13 @@ import React from "react";
 
 export type SocialType = "twitter" | "github" | "youtube" | "slack";
 
-interface SocialLinksProps {
-  links: {
-    type: SocialType;
-    url: string;
-  }[];
+interface SocialLinkItem {
+  type: SocialType;
+  url: string;
+}
+
+export interface SocialLinksProps {
+  links: SocialLinkItem[];
 }
 
 const ICONS: { [K in SocialType]: string } = {

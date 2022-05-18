@@ -1,25 +1,14 @@
 import React from "react";
-import { Logo } from "../Logo";
-import { NavLinks } from "../NavLinks";
+import { Logo, LogoProps } from "../Logo";
+import { NavLinks, NavLinksProps } from "../NavLinks";
 import { ProfileComponent } from "../ProfileComponent";
 import { Search } from "../Search";
-import { SocialLinks, SocialType } from "../SocialLinks";
+import { SocialLinks, SocialLinksProps } from "../SocialLinks";
 
-interface HeaderProps {
-  logo: {
-    url: string;
-    height: number;
-    width: number;
-  };
-  slogan?: string;
-  navLinks: {
-    label: string;
-    url: string;
-  }[];
-  socialLinks: {
-    type: SocialType;
-    url: string;
-  }[];
+export interface HeaderProps {
+  logo: LogoProps;
+  navLinks: NavLinksProps;
+  socialLinks: SocialLinksProps;
   navAlignment: "left" | "center";
   searchEnabled?: boolean;
   authenticationEnabled?: boolean;
@@ -31,15 +20,14 @@ export const Header: React.FC<HeaderProps> = ({
   navLinks,
   authenticationEnabled,
   searchEnabled,
-  slogan,
   socialLinks,
 }: HeaderProps) => {
   return (
     //FIXME: these styles will change after we start using @Emotion
     <header style={{ display: "flex", alignItems: "center" }}>
-      <Logo {...logo} slogan={slogan} />
-      <NavLinks links={navLinks} />
-      <SocialLinks links={socialLinks} />
+      <Logo {...logo} />
+      <NavLinks {...navLinks} />
+      <SocialLinks {...socialLinks} />
       {searchEnabled && <Search />}
       {authenticationEnabled && <ProfileComponent />}
     </header>

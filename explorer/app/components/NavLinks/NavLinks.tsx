@@ -1,11 +1,13 @@
 import Link from "next/link";
 import React from "react";
 
-interface NavLinksProps {
-  links: {
-    label: string;
-    url: string;
-  }[];
+export interface NavLinkItem {
+  label: string;
+  url: string;
+}
+
+export interface NavLinksProps {
+  links: NavLinkItem[];
 }
 
 export const NavLinks: React.FC<NavLinksProps> = ({ links }: NavLinksProps) => {
