@@ -1,4 +1,4 @@
-import { SiteConfig } from "../../../app/config/type";
+import { SiteConfig } from "../../../app/config/model";
 
 const config: SiteConfig = {
   datasources: {

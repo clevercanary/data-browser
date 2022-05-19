@@ -1,6 +1,6 @@
 import hcaDcpDev from "../../site-config/hca-dcp/dev/config";
 import hcaDcpProd from "../../site-config/hca-dcp/prod/config";
-import { SiteConfig } from "./type";
+import { SiteConfig } from "./model";
 
 const CONFIGS: { [k: string]: SiteConfig } = {
   "hca-dcp-dev": hcaDcpDev,
@@ -21,6 +21,12 @@ export const config = (): SiteConfig => {
   }
 
   appConfig = CONFIGS[config as string];
+
+  if (!appConfig) {
+    console.error(`No app config was found for the config: ${config}`);
+  } else {
+    console.log(`Using app config ${config}`);
+  }
 
   return appConfig;
 };
