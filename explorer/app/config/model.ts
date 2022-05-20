@@ -2,7 +2,7 @@ import { HeaderProps } from "../components/Header/Header";
 
 export interface SiteConfig {
   datasources: {
-    catalog: "dcp2";
+    catalog: string;
     url: string;
   };
   layout: {
