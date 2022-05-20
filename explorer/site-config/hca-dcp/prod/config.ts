@@ -2,6 +2,7 @@ import { SiteConfig } from "../../../app/config/model";
 import HcaLogo from "images/hca-logo.png";
 
 const config: SiteConfig = {
+  redirectRootToPath: "/explore/projects",
   datasources: {
     catalog: "dcp15",
     url: "https://service.azul.data.humancellatlas.org/",

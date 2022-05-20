@@ -2,6 +2,7 @@ import { SiteConfig } from "../../../app/config/model";
 import LungMapLogo from "images/lungmap-logo.png";
 
 const config: SiteConfig = {
+  redirectRootToPath: "/explore/projects",
   datasources: {
     catalog: "lm2",
     url: "https://service.azul.data.humancellatlas.org/",
