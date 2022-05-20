@@ -13,7 +13,7 @@
     "lint": "next lint",
     "check-format": "prettier --check .",
     "prepare": "cd .. && husky install explore/.husky",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -s images,.next  -p 6006",
     "build-storybook": "build-storybook"
   },
   "dependencies": {

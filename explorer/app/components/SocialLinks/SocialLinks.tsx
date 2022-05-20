@@ -1,7 +1,12 @@
 import Link from "next/link";
 import React from "react";
 
-export type SocialType = "twitter" | "github" | "youtube" | "slack" | "help";
+export type SocialType =
+  | "twitter"
+  | "github"
+  | "youtube"
+  | "slack"
+  | "discourse";
 
 interface SocialLinkItem {
   type: SocialType;
@@ -17,7 +22,7 @@ const ICONS: { [K in SocialType]: string } = {
   slack: "S",
   twitter: "T",
   youtube: "Y",
-  help: "H",
+  discourse: "D",
 };
 
 export const SocialLinks: React.FC<SocialLinksProps> = ({

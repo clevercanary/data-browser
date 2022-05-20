@@ -1,8 +1,9 @@
+import { StaticImageData } from "next/image";
 import React from "react";
 import { StaticImage } from "../StaticImage";
 
 export interface LogoProps {
-  url: string;
+  url: StaticImageData;
   slogan?: string;
   width?: number;
   height?: number;

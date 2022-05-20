@@ -1,4 +1,5 @@
 import { SiteConfig } from "../../../app/config/model";
+import AnvilLogo from "images/anvil-logo.png";
 
 const config: SiteConfig = {
   datasources: {
@@ -9,7 +10,7 @@ const config: SiteConfig = {
     header: {
       logo: {
         slogan: "NHGRI Analysis Visualization and Informatics Lab-space",
-        url: "anvil-logo.png",
+        url: AnvilLogo,
         alt: "NHGRI Analysis Visualization and Informatics Lab-space",
       },
       navLinks: {
@@ -59,7 +60,7 @@ const config: SiteConfig = {
             url: "https://www.youtube.com/channel/UCBbHCj7kUogAMFyBAzzzfUw",
           },
           {
-            type: "help",
+            type: "discourse",
             url: "https://help.anvilproject.org/",
           },
           {

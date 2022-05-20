@@ -1,4 +1,5 @@
 import { SiteConfig } from "../../../app/config/model";
+import HcaLogo from "images/hca-logo.png";
 
 const config: SiteConfig = {
   datasources: {
@@ -8,7 +9,7 @@ const config: SiteConfig = {
   layout: {
     header: {
       logo: {
-        url: "hca-logo.png",
+        url: HcaLogo,
         alt: "Human Cell Atlas Data Coordination Platform",
       },
       navLinks: {

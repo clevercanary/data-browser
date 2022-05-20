@@ -1,4 +1,5 @@
 import { SiteConfig } from "../../../app/config/model";
+import LungMapLogo from "images/lungmap-logo.png";
 
 const config: SiteConfig = {
   datasources: {
@@ -8,7 +9,7 @@ const config: SiteConfig = {
   layout: {
     header: {
       logo: {
-        url: "lungmap-logo.png",
+        url: LungMapLogo,
         alt: "LungMAP Data Browser",
       },
       navLinks: {
