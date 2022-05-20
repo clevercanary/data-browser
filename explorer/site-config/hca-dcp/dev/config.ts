@@ -63,7 +63,7 @@ const config: SiteConfig = {
           },
         ],
       },
-      navAlignment: "center",
+      navAlignment: "left",
       searchEnabled: false,
       authenticationEnabled: false,
     },
