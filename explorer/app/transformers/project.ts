@@ -3,11 +3,10 @@
  * single view model expected by container components.
  */
 import {
-  ProjectItemViewModel,
   ProjectResponse,
   ProjectViewModel,
   ProjectListResponse,
-  ProjectListViewModel,
+  ListViewModel,
 } from "../models";
 
 /**
@@ -23,11 +22,11 @@ export const detailToView = (value: ProjectResponse): ProjectViewModel => ({
 
 /**
  * Transforms a set of different response types (at the moment we only have ProjectListResponse) to a viewModel, that will be used by
- * @see ProjectListContainer
+ * @see ListContainer
  * @param list API's response type
- * @returns @see ProjectListViewModel
+ * @returns @see ListViewModel
  */
-export const listToView = (list: ProjectListResponse): ProjectListViewModel => {
+export const hcaListToView = (list: ProjectListResponse): ListViewModel => {
   return {
     items: list.hits.map((hit) => ({
       projectName: hit.projects[0].projectTitle,

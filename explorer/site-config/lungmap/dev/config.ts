@@ -1,5 +1,6 @@
 import { SiteConfig } from "../../../app/config/model";
 import LungMapLogo from "images/lungmap-logo.png";
+import { hcaListToView } from "app/transformers/project";
 
 const config: SiteConfig = {
   redirectRootToPath: "/explore/projects",
@@ -7,6 +8,16 @@ const config: SiteConfig = {
     catalog: "lm2",
     url: "https://service.dev.singlecell.gi.ucsc.edu/",
   },
+  entities: [
+    {
+      label: "Projects",
+      apiPath: "index/projects",
+      route: "projects",
+      listTransformer: hcaListToView,
+      loadStaticallyList: true,
+      loadStaticallyDetail: true,
+    },
+  ],
   layout: {
     header: {
       logo: {

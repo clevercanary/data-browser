@@ -4,11 +4,11 @@ export interface ProjectViewModel {
   projectName: string;
 }
 
-export interface ProjectItemViewModel {
+export interface ItemViewModel {
   uuid: string;
   projectName: string;
 }
 
-export interface ProjectListViewModel {
-  items: ProjectItemViewModel[];
+export interface ListViewModel {
+  items: ItemViewModel[];
 }

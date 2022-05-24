@@ -9,8 +9,8 @@ interface PaginatedResponse {
     next?: string;
     previous?: string;
     pages: number;
-    sort: string;
-    order: "asc" | "desc";
+    sort?: string;
+    order?: "asc" | "desc";
   };
 }
 
@@ -26,3 +26,5 @@ export interface ProjectResponse {
 export interface ProjectListResponse extends PaginatedResponse {
   hits: ProjectResponse[];
 }
+
+export type ListResponseType = ProjectListResponse;

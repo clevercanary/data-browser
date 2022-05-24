@@ -1,21 +1,21 @@
 import {
   ProjectListResponse,
-  ProjectListViewModel,
+  ListViewModel,
   ProjectResponse,
   ProjectViewModel,
 } from "../models";
-import { detailToView, listToView } from "./project";
+import { detailToView, hcaListToView } from "./project";
 
 interface TransformerConfig {
   project: {
     detail: (value: ProjectResponse) => ProjectViewModel;
-    list: (value: ProjectListResponse) => ProjectListViewModel;
+    list: (value: ProjectListResponse) => ListViewModel;
   };
 }
 
 export const TRANSFORMERS: TransformerConfig = {
   project: {
     detail: detailToView,
-    list: listToView,
+    list: hcaListToView,
   },
 };

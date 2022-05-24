@@ -1,11 +1,12 @@
 /**
  * Container component that will wrap all presentational components used by the project's list page.
  */
+import { useEntityData } from "app/hooks";
 import Link from "next/link";
 import React from "react";
 import { Column } from "react-table";
 import { Table } from "../../components";
-import { ProjectListViewModel } from "../../models";
+import { ListViewModel } from "../../models";
 
 interface TableItem {
   label: string;
@@ -24,8 +25,14 @@ const columnsConfig: Column<TableItem>[] = [
   },
 ];
 
-export const ProjectListContainer = ({ items }: ProjectListViewModel) => {
-  const tableItems: TableItem[] = items.map((item) => ({
+export const ListContainer = (props: ListViewModel) => {
+  const { data, isLoading } = useEntityData(props);
+
+  if (isLoading || !data) {
+    return <span>LOADING...</span>; //TODO: return the loading UI component
+  }
+
+  const tableItems: TableItem[] = data.items.map((item) => ({
     label: item.projectName,
     url: `/explore/projects/${item.uuid}`,
   }));
