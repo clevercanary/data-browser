@@ -21,6 +21,13 @@ export interface ProjectResponse {
     projectShortname: string;
     projectTitle: string;
   }[];
+  files?: {
+    name: string;
+    uuid: string;
+  }[];
+  samples?: {
+    id: string;
+  }[];
 }
 
 export interface ProjectListResponse extends PaginatedResponse {

@@ -1,6 +1,6 @@
 import { SiteConfig } from "../../../app/config/model";
 import LungMapLogo from "images/lungmap-logo.png";
-import { hcaListToView } from "app/transformers/project";
+import { hcaProjectListToView } from "app/transformers/hca";
 
 const config: SiteConfig = {
   redirectRootToPath: "/explore/projects",
@@ -13,7 +13,7 @@ const config: SiteConfig = {
       label: "Projects",
       apiPath: "index/projects",
       route: "projects",
-      listTransformer: hcaListToView,
+      listTransformer: hcaProjectListToView,
       loadStaticallyList: true,
       loadStaticallyDetail: true,
     },

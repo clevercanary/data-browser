@@ -1,6 +1,10 @@
 import { SiteConfig } from "../../../app/config/model";
 import HcaLogo from "images/hca-logo.png";
-import { hcaListToView } from "app/transformers/project";
+import {
+  hcaProjectListToView,
+  hcaFilesListToView,
+  hcaSamplesListToView,
+} from "app/transformers/hca";
 
 const config: SiteConfig = {
   redirectRootToPath: "/explore/projects",
@@ -13,9 +17,21 @@ const config: SiteConfig = {
       label: "Projects",
       apiPath: "index/projects",
       route: "projects",
-      listTransformer: hcaListToView,
+      listTransformer: hcaProjectListToView,
       loadStaticallyList: true,
       loadStaticallyDetail: true,
+    },
+    {
+      label: "Files",
+      apiPath: "index/files",
+      route: "files",
+      listTransformer: hcaFilesListToView,
+    },
+    {
+      label: "Samples",
+      apiPath: "index/samples",
+      route: "samples",
+      listTransformer: hcaSamplesListToView,
     },
   ],
   layout: {

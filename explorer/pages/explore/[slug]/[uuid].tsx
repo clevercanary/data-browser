@@ -1,4 +1,5 @@
 import { config } from "app/config";
+import { detailToView } from "app/transformers/hca";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
@@ -6,7 +7,6 @@ import { Page } from "../../../app/components";
 import { ProjectViewModel } from "../../../app/models";
 import { detail as projectDetail, listAll } from "../../../app/project/api";
 import { ProjectDetailContainer } from "../../../app/project/detail";
-import { TRANSFORMERS } from "../../../app/transformers";
 
 interface PageUrl extends ParsedUrlQuery {
   uuid: string;
@@ -57,7 +57,7 @@ export const getStaticProps: GetStaticProps = async ({
 }: GetStaticPropsContext) => {
   const data = await projectDetail((params as PageUrl).uuid);
   return {
-    props: TRANSFORMERS.project.detail(data),
+    props: detailToView(data),
   };
 };
 
