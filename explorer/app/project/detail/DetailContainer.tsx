@@ -3,16 +3,13 @@
  */
 import React from "react";
 import { PrettyJSON } from "../../components";
-import { ProjectViewModel } from "../../models";
+import { DetailViewModel } from "../../models";
 
-export const ProjectDetailContainer = ({
-  json,
-  projectName,
-}: ProjectViewModel) => {
+export const DetailContainer = ({ json, detailName }: DetailViewModel) => {
   return (
     <>
-      <h1>{projectName}</h1>
-      <PrettyJSON value={json} />
+      <h1>{detailName}</h1>
+      {json && <PrettyJSON value={json} />}
     </>
   );
 };

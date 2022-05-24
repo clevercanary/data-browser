@@ -1,7 +1,7 @@
 //Project
-export interface ProjectViewModel {
-  json: string;
-  projectName: string;
+export interface DetailViewModel {
+  json?: string;
+  detailName?: string;
 }
 
 export interface ItemViewModel {

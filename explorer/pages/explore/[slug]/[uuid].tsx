@@ -1,24 +1,24 @@
 import { config } from "app/config";
-import { detailToView } from "app/transformers/hca";
+import { getCurrentEntity } from "app/hooks/useCurrentEntity";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
 import { Page } from "../../../app/components";
-import { ProjectViewModel } from "../../../app/models";
-import { detail as projectDetail, listAll } from "../../../app/project/api";
-import { ProjectDetailContainer } from "../../../app/project/detail";
+import { DetailViewModel } from "../../../app/models";
+import { detail, listAll } from "../../../app/project/api";
+import { DetailContainer } from "../../../app/project/detail";
 
 interface PageUrl extends ParsedUrlQuery {
   uuid: string;
   slug: string;
 }
 
-const ProjectDetailPage: React.FC<ProjectViewModel> = (
-  props: ProjectViewModel
+const ProjectDetailPage: React.FC<DetailViewModel> = (
+  props: DetailViewModel
 ) => {
   return (
     <Page>
-      <ProjectDetailContainer {...props} />
+      <DetailContainer {...props} />
     </Page>
   );
 };
@@ -32,7 +32,7 @@ export const getStaticPaths: GetStaticPaths<PageUrl> = async () => {
         const data = await listAll(entity.apiPath);
         return data.hits.map((hit) => ({
           params: {
-            uuid: hit.projects[0].projectId,
+            uuid: entity.getId(hit),
             slug: entity.route,
           },
         }));
@@ -52,12 +52,18 @@ export const getStaticPaths: GetStaticPaths<PageUrl> = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({
+export const getStaticProps: GetStaticProps<DetailViewModel> = async ({
   params,
 }: GetStaticPropsContext) => {
-  const data = await projectDetail((params as PageUrl).uuid);
+  const { slug } = params as PageUrl;
+  const entity = getCurrentEntity(slug);
+  let props: DetailViewModel = {};
+  if (entity?.loadStaticallyDetail) {
+    const data = await detail((params as PageUrl).uuid, entity.apiPath);
+    props = entity.detailTransformer(data);
+  }
   return {
-    props: detailToView(data),
+    props,
   };
 };
 

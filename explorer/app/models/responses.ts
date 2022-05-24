@@ -21,12 +21,19 @@ export interface ProjectResponse {
     projectShortname: string;
     projectTitle: string;
   }[];
-  files?: {
+}
+
+//Samples
+export interface SampleResponse {
+  samples: {
+    id: string;
+  }[];
+}
+
+export interface FileResponse {
+  files: {
     name: string;
     uuid: string;
-  }[];
-  samples?: {
-    id: string;
   }[];
 }
 
@@ -34,4 +41,20 @@ export interface ProjectListResponse extends PaginatedResponse {
   hits: ProjectResponse[];
 }
 
-export type ListResponseType = ProjectListResponse;
+export interface SampleListResponse extends PaginatedResponse {
+  hits: SampleResponse[];
+}
+
+export interface FileListResponse extends PaginatedResponse {
+  hits: FileResponse[];
+}
+
+export type DetailResponseType =
+  | ProjectResponse
+  | FileResponse
+  | SampleResponse;
+
+export type ListResponseType =
+  | ProjectListResponse
+  | SampleListResponse
+  | FileListResponse;

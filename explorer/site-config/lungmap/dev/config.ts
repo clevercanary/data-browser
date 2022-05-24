@@ -1,9 +1,15 @@
 import { SiteConfig } from "../../../app/config/model";
 import LungMapLogo from "images/lungmap-logo.png";
 import {
-  hcaFilesListToView,
-  hcaProjectListToView,
-  hcaSamplesListToView,
+  fileDetailToView,
+  filesListToView,
+  getFileId,
+  getProjectId,
+  getSampleId,
+  projectDetailToView,
+  projectListToView,
+  sampleDetailToView,
+  samplesListToView,
 } from "app/transformers/hca";
 
 const config: SiteConfig = {
@@ -17,21 +23,27 @@ const config: SiteConfig = {
       label: "Projects",
       apiPath: "index/projects",
       route: "projects",
-      listTransformer: hcaProjectListToView,
+      listTransformer: projectListToView,
+      detailTransformer: projectDetailToView,
       loadStaticallyList: true,
       loadStaticallyDetail: true,
+      getId: getProjectId,
     },
     {
       label: "Files",
       apiPath: "index/files",
       route: "files",
-      listTransformer: hcaFilesListToView,
+      listTransformer: filesListToView,
+      detailTransformer: fileDetailToView,
+      getId: getFileId,
     },
     {
       label: "Samples",
       apiPath: "index/samples",
       route: "samples",
-      listTransformer: hcaSamplesListToView,
+      listTransformer: samplesListToView,
+      detailTransformer: sampleDetailToView,
+      getId: getSampleId,
     },
   ],
   layout: {

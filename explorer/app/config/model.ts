@@ -1,11 +1,31 @@
-import { ListResponseType, ListViewModel } from "app/models";
+import {
+  DetailResponseType,
+  DetailViewModel,
+  ListResponseType,
+  ListViewModel,
+} from "app/models";
 import { HeaderProps } from "../components/Header/Header";
 
-export interface EntityConfig {
+type ListTransformerFunction<T extends ListResponseType> = (
+  response: T
+) => ListViewModel;
+
+type DetailTransformerFunction<T extends DetailResponseType> = (
+  response: T
+) => DetailViewModel;
+
+type GetIdFunction<T extends DetailResponseType> = (detail: T) => string;
+
+export interface EntityConfig<
+  L extends ListResponseType = any,
+  D extends DetailResponseType = any
+> {
   label: string;
   route: string;
   apiPath: string;
-  listTransformer: (response: ListResponseType) => ListViewModel;
+  listTransformer: ListTransformerFunction<L>;
+  detailTransformer: DetailTransformerFunction<D>;
+  getId: GetIdFunction<D>;
   loadStaticallyList?: boolean;
   loadStaticallyDetail?: boolean;
 }

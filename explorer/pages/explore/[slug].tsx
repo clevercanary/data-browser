@@ -6,6 +6,7 @@ import { ListContainer } from "../../app/project/list";
 import { config } from "app/config";
 import { ParsedUrlQuery } from "querystring";
 import { EMPTY_PAGE, listAll } from "app/project/api";
+import { getCurrentEntity } from "app/hooks/useCurrentEntity";
 
 interface PageUrl extends ParsedUrlQuery {
   slug: string;
@@ -36,7 +37,7 @@ export const getStaticProps: GetStaticProps<ListViewModel> = async (
   context: GetStaticPropsContext
 ) => {
   const { slug } = context.params as PageUrl;
-  const entity = config().entities.find((entity) => entity.route === slug);
+  const entity = getCurrentEntity(slug);
 
   if (!entity) {
     return {

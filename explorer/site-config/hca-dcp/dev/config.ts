@@ -1,9 +1,15 @@
 import { SiteConfig } from "../../../app/config/model";
 import HcaLogo from "images/hca-logo.png";
 import {
-  hcaProjectListToView,
-  hcaFilesListToView,
-  hcaSamplesListToView,
+  projectListToView,
+  filesListToView,
+  samplesListToView,
+  projectDetailToView,
+  fileDetailToView,
+  sampleDetailToView,
+  getProjectId,
+  getFileId,
+  getSampleId,
 } from "app/transformers/hca";
 
 const config: SiteConfig = {
@@ -17,7 +23,9 @@ const config: SiteConfig = {
       label: "Projects",
       apiPath: "index/projects",
       route: "projects",
-      listTransformer: hcaProjectListToView,
+      listTransformer: projectListToView,
+      detailTransformer: projectDetailToView,
+      getId: getProjectId,
       loadStaticallyList: true,
       loadStaticallyDetail: true,
     },
@@ -25,13 +33,17 @@ const config: SiteConfig = {
       label: "Files",
       apiPath: "index/files",
       route: "files",
-      listTransformer: hcaFilesListToView,
+      listTransformer: filesListToView,
+      detailTransformer: fileDetailToView,
+      getId: getFileId,
     },
     {
       label: "Samples",
       apiPath: "index/samples",
       route: "samples",
-      listTransformer: hcaSamplesListToView,
+      listTransformer: samplesListToView,
+      detailTransformer: sampleDetailToView,
+      getId: getSampleId,
     },
   ],
   layout: {

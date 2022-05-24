@@ -3,22 +3,72 @@
  * single view model expected by container components.
  */
 import {
-  ProjectResponse,
-  ProjectViewModel,
+  DetailViewModel,
   ListViewModel,
-  ListResponseType,
+  ProjectListResponse,
+  ProjectResponse,
+  FileResponse,
+  SampleResponse,
+  FileListResponse,
+  SampleListResponse,
 } from "../models";
 
 /**
- * Transforms a set of different response types (at the moment we only have ProjectResponse) to a viewModel, that will be used by
- * @see ProjectDetailContainer
+ * Transforms a response to the projects endpoint into a viewModel, that will be used by
+ * @see DetailContainer
  * @param value Api's response type
- * @returns @see ProjectViewModel
+ * @returns @see DetailViewModel
  */
-export const detailToView = (value: ProjectResponse): ProjectViewModel => ({
+export const projectDetailToView = (
+  value: ProjectResponse
+): DetailViewModel => ({
   json: JSON.stringify(value, null, 2),
-  projectName: value.projects[0].projectTitle,
+  detailName: value.projects[0].projectTitle,
 });
+
+/**
+ * Function to get the id of the given detail type
+ * @param value project detail response
+ * @returns project id
+ */
+export const getProjectId = (value: ProjectResponse) =>
+  value.projects[0].projectId;
+
+/**
+ * Transforms a response to the file endpoint into a viewModel, that will be used by
+ * @see DetailContainer
+ * @param value Api's response type
+ * @returns @see DetailViewModel
+ */
+export const fileDetailToView = (value: FileResponse): DetailViewModel => ({
+  json: JSON.stringify(value, null, 2),
+  detailName: value.files[0].name,
+});
+
+/**
+ * Function to get the id of the given detail type
+ * @param value file detail response
+ * @returns file id
+ */
+export const getFileId = (value: FileResponse) => value.files[0].uuid;
+
+/**
+ * Transforms a response to the samples endpoint into a viewModel, that will be used by
+ * @see DetailContainer
+ * @param value Api's response type
+ * @returns @see DetailViewModel
+ */
+export const sampleDetailToView = (value: SampleResponse): DetailViewModel => ({
+  json: JSON.stringify(value, null, 2),
+  detailName: value.samples[0].id,
+});
+
+/**
+ * Function to get the id of the given detail type
+ * @param value sample detail response
+ * @returns sample id
+ */
+export const getSampleId = (value: SampleResponse) => value.samples[0].id;
 
 /**
  * Transforms a list of project items to a viewModel for hca project
@@ -26,7 +76,7 @@ export const detailToView = (value: ProjectResponse): ProjectViewModel => ({
  * @param list API's response type
  * @returns @see ListViewModel
  */
-export const hcaProjectListToView = (list: ListResponseType): ListViewModel => {
+export const projectListToView = (list: ProjectListResponse): ListViewModel => {
   return {
     items: list.hits.map((hit) => ({
       projectName: hit.projects[0].projectTitle,
@@ -41,7 +91,7 @@ export const hcaProjectListToView = (list: ListResponseType): ListViewModel => {
  * @param list API's response type
  * @returns @see ListViewModel
  */
-export const hcaFilesListToView = (list: ListResponseType): ListViewModel => {
+export const filesListToView = (list: FileListResponse): ListViewModel => {
   return {
     items: list.hits.map((hit) => ({
       projectName: hit.files?.[0].name ?? "",
@@ -56,7 +106,7 @@ export const hcaFilesListToView = (list: ListResponseType): ListViewModel => {
  * @param list API's response type
  * @returns @see ListViewModel
  */
-export const hcaSamplesListToView = (list: ListResponseType): ListViewModel => {
+export const samplesListToView = (list: SampleListResponse): ListViewModel => {
   return {
     items: list.hits.map((hit) => ({
       projectName: hit.samples?.[0].id ?? "",

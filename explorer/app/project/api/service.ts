@@ -5,9 +5,9 @@
 import { convertUrlParams } from "./../../utils";
 import { CATALOG_VERSION, URL } from "../../shared";
 import {
+  DetailResponseType,
   ListParams,
   ListResponseType,
-  ProjectResponse,
   VersionParam,
 } from "../../models";
 
@@ -45,7 +45,7 @@ export const listAll = async (
   apiPath: string,
   listParams?: ListParams
 ): Promise<ListResponseType> => {
-  let hits: ProjectResponse[] = [];
+  let hits: DetailResponseType[] = [];
   const result = await list(apiPath, listParams);
   hits = result.hits;
   let nextPage = result.pagination.next;
@@ -55,7 +55,7 @@ export const listAll = async (
     nextPage = nextPageJson.pagination.next;
     hits = [...hits, ...nextPageJson.hits];
   }
-  return { ...result, hits };
+  return { ...result, hits } as ListResponseType;
 };
 
 /**
@@ -66,10 +66,11 @@ export const listAll = async (
  */
 export const detail = async (
   id: string,
+  apiPath: string,
   param: VersionParam = DEFAULT_VERSION
-): Promise<ProjectResponse> => {
+): Promise<DetailResponseType> => {
   const res = await fetch(
-    `${URL}index/projects/${id}?${convertUrlParams({ ...param })}`
+    `${URL}${apiPath}/${id}?${convertUrlParams({ ...param })}`
   );
   return await res.json();
 };
