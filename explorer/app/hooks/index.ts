@@ -1,3 +1,3 @@
 export { useAsync } from "./useAsync";
-export { useEntityData } from "./useEntityData";
+export { useEntityListData, useEntityDetailData } from "./useEntityData";
 export { useCurrentEntity } from "./useCurrentEntity";

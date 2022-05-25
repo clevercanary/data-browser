@@ -17,5 +17,6 @@ export const getCurrentEntity = (path: string) => {
  */
 export const useCurrentEntity = () => {
   const router = useRouter();
-  return getCurrentEntity(router.asPath);
+  const paths = router.asPath.split("/").filter((path) => !!path);
+  return getCurrentEntity(paths[1]);
 };
