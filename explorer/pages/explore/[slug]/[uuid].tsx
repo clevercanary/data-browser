@@ -13,9 +13,7 @@ interface PageUrl extends ParsedUrlQuery {
   slug: string;
 }
 
-const ProjectDetailPage: React.FC<DetailViewModel> = (
-  props: DetailViewModel
-) => {
+const DetailPage: React.FC<DetailViewModel> = (props: DetailViewModel) => {
   return (
     <Page>
       <DetailContainer {...props} />
@@ -28,16 +26,15 @@ export const getStaticPaths: GetStaticPaths<PageUrl> = async () => {
 
   const paths = await Promise.all(
     entities.map(async (entity) => {
-      if (entity.loadStaticallyDetail) {
+      if (entity.staticLoad && entity.getId) {
         const data = await listAll(entity.apiPath);
         return data.hits.map((hit) => ({
           params: {
-            uuid: entity.getId(hit),
+            uuid: entity.getId?.(hit) ?? "",
             slug: entity.route,
           },
         }));
       }
-
       return [];
     })
   );
@@ -58,7 +55,7 @@ export const getStaticProps: GetStaticProps<DetailViewModel> = async ({
   const { slug } = params as PageUrl;
   const entity = getCurrentEntity(slug);
   let props: DetailViewModel = {};
-  if (entity?.loadStaticallyDetail) {
+  if (entity?.staticLoad) {
     const data = await detail((params as PageUrl).uuid, entity.apiPath);
     props = entity.detailTransformer(data);
   }
@@ -67,4 +64,4 @@ export const getStaticProps: GetStaticProps<DetailViewModel> = async ({
   };
 };
 
-export default ProjectDetailPage;
+export default DetailPage;

@@ -3,9 +3,7 @@ import LungMapLogo from "images/lungmap-logo.png";
 import {
   fileDetailToView,
   filesListToView,
-  getFileId,
   getProjectId,
-  getSampleId,
   projectDetailToView,
   projectListToView,
   sampleDetailToView,
@@ -25,8 +23,7 @@ const config: SiteConfig = {
       route: "projects",
       listTransformer: projectListToView,
       detailTransformer: projectDetailToView,
-      loadStaticallyList: true,
-      loadStaticallyDetail: true,
+      staticLoad: true,
       getId: getProjectId,
     },
     {
@@ -35,7 +32,6 @@ const config: SiteConfig = {
       route: "files",
       listTransformer: filesListToView,
       detailTransformer: fileDetailToView,
-      getId: getFileId,
     },
     {
       label: "Samples",
@@ -43,7 +39,6 @@ const config: SiteConfig = {
       route: "samples",
       listTransformer: samplesListToView,
       detailTransformer: sampleDetailToView,
-      getId: getSampleId,
     },
   ],
   layout: {

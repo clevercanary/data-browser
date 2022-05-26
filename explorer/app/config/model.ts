@@ -25,9 +25,8 @@ export interface EntityConfig<
   apiPath: string;
   listTransformer: ListTransformerFunction<L>;
   detailTransformer: DetailTransformerFunction<D>;
-  getId: GetIdFunction<D>;
-  loadStaticallyList?: boolean;
-  loadStaticallyDetail?: boolean;
+  getId?: GetIdFunction<D>;
+  staticLoad?: boolean;
 }
 
 export interface SiteConfig {

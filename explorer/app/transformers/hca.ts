@@ -46,13 +46,6 @@ export const fileDetailToView = (value: FileResponse): DetailViewModel => ({
 });
 
 /**
- * Function to get the id of the given detail type
- * @param value file detail response
- * @returns file id
- */
-export const getFileId = (value: FileResponse) => value.files[0].uuid;
-
-/**
  * Transforms a response to the samples endpoint into a viewModel, that will be used by
  * @see DetailContainer
  * @param value Api's response type
@@ -62,13 +55,6 @@ export const sampleDetailToView = (value: SampleResponse): DetailViewModel => ({
   json: JSON.stringify(value, null, 2),
   detailName: value.samples[0].id,
 });
-
-/**
- * Function to get the id of the given detail type
- * @param value sample detail response
- * @returns sample id
- */
-export const getSampleId = (value: SampleResponse) => value.samples[0].id;
 
 /**
  * Transforms a list of project items to a viewModel for hca project

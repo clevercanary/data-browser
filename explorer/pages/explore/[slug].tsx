@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps<ListViewModel> = async (
     };
   }
 
-  const resultList = entity.loadStaticallyList
+  const resultList = entity.staticLoad
     ? await listAll(entity.apiPath)
     : EMPTY_PAGE;
 

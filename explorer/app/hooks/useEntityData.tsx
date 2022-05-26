@@ -38,7 +38,7 @@ export const useEntityListData = (
   } = useAsync<ListResponseType>();
 
   useEffect(() => {
-    if (entity && !entity.loadStaticallyList) {
+    if (entity && !entity.staticLoad) {
       run(list(entity.apiPath));
     }
   }, [entity, run]);
@@ -47,7 +47,7 @@ export const useEntityListData = (
     return { data: { items: [] }, isLoading: false };
   }
 
-  if (entity.loadStaticallyList) {
+  if (entity.staticLoad) {
     return { data: value, isLoading: false };
   }
 
@@ -77,7 +77,7 @@ export const useEntityDetailData = (
   } = useAsync<DetailResponseType>();
 
   useEffect(() => {
-    if (entity && !entity.loadStaticallyDetail) {
+    if (entity && !entity.staticLoad) {
       run(detail(uuid, entity.apiPath));
     }
   }, [entity, run, uuid]);
@@ -86,7 +86,7 @@ export const useEntityDetailData = (
     return { data: {}, isLoading: false };
   }
 
-  if (entity.loadStaticallyDetail) {
+  if (entity.staticLoad) {
     return { data: value, isLoading: false };
   }
 

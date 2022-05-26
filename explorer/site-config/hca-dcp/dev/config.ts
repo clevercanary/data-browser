@@ -8,8 +8,6 @@ import {
   fileDetailToView,
   sampleDetailToView,
   getProjectId,
-  getFileId,
-  getSampleId,
 } from "app/transformers/hca";
 
 const config: SiteConfig = {
@@ -26,8 +24,7 @@ const config: SiteConfig = {
       listTransformer: projectListToView,
       detailTransformer: projectDetailToView,
       getId: getProjectId,
-      loadStaticallyList: true,
-      loadStaticallyDetail: true,
+      staticLoad: true,
     },
     {
       label: "Files",
@@ -35,7 +32,6 @@ const config: SiteConfig = {
       route: "files",
       listTransformer: filesListToView,
       detailTransformer: fileDetailToView,
-      getId: getFileId,
     },
     {
       label: "Samples",
@@ -43,7 +39,6 @@ const config: SiteConfig = {
       route: "samples",
       listTransformer: samplesListToView,
       detailTransformer: sampleDetailToView,
-      getId: getSampleId,
     },
   ],
   layout: {
