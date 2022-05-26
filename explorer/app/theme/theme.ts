@@ -1,33 +1,13 @@
-import { createTheme, Theme as MuiTheme } from "@mui/material/styles";
-
-declare module "@mui/material/styles" {
-  interface Palette {
-    colorInk: string;
-    colorInkLight: string;
-    colorSmokeDark: string;
-    colorSmoke: string;
-    colorSmokeLight: string;
-    colorSmokeLightest: string;
-  }
-  interface PaletteOptions {
-    colorInk: string;
-    colorInkLight: string;
-    colorSmokeDark: string;
-    colorSmoke: string;
-    colorSmokeLight: string;
-    colorSmokeLightest: string;
-  }
-}
-
-declare module "@emotion/react" {
-  export interface Theme extends MuiTheme {
-    name: "EmotionTheme";
-  }
-}
+import { createTheme } from "@mui/material/styles";
 
 export const theme = createTheme({
   typography: {
     fontFamily: "Inter",
+    textBody500: {
+      fontSize: 14,
+      lineHeight: "20px",
+      fontWeight: 500,
+    },
     body1: {
       fontSize: 16,
       lineHeight: "24px",
