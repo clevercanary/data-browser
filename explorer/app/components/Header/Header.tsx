@@ -4,6 +4,14 @@ import { NavLinks, NavLinksProps } from "../NavLinks";
 import { ProfileComponent } from "../ProfileComponent";
 import { Search } from "../Search";
 import { SocialLinks, SocialLinksProps } from "../SocialLinks";
+import {
+  Container,
+  LinksContainer,
+  Header as StyledHeader,
+  LinksContent,
+  SocialLinksContainer,
+  SearchContainer,
+} from "./Header.styles";
 
 export interface HeaderProps {
   logo: LogoProps;
@@ -23,13 +31,24 @@ export const Header: React.FC<HeaderProps> = ({
   socialLinks,
 }: HeaderProps) => {
   return (
-    //FIXME: these styles will change after we start using @Emotion
-    <header style={{ display: "flex", alignItems: "center" }}>
-      <Logo {...logo} />
-      <NavLinks {...navLinks} />
-      <SocialLinks {...socialLinks} />
-      {searchEnabled && <Search />}
-      {authenticationEnabled && <ProfileComponent />}
-    </header>
+    <Container>
+      <StyledHeader>
+        <Logo {...logo} />
+        <LinksContainer center={navAlignment === "center"}>
+          <LinksContent>
+            <NavLinks {...navLinks} />
+          </LinksContent>
+        </LinksContainer>
+        <SocialLinksContainer>
+          <SocialLinks {...socialLinks} />
+        </SocialLinksContainer>
+        {searchEnabled && (
+          <SearchContainer>
+            <Search />
+          </SearchContainer>
+        )}
+        {authenticationEnabled && <ProfileComponent />}
+      </StyledHeader>
+    </Container>
   );
 };

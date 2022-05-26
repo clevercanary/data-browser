@@ -4,6 +4,7 @@ export const theme = createTheme({
   typography: {
     fontFamily: "Inter",
     textBody500: {
+      fontFamily: "Inter",
       fontSize: 14,
       lineHeight: "20px",
       fontWeight: 500,
