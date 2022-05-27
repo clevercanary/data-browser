@@ -16,7 +16,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({ links }: NavLinksProps) => {
   return (
     <Container>
       {links.map((link) => (
-        <Link key={link.url} href={link.url}>
+        <Link key={link.url} href={link.url} passHref>
           <Typography component="a" variant="textBody500">
             {link.label}
           </Typography>
