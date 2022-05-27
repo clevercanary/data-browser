@@ -1,4 +1,4 @@
-import { ListResponseType } from "app/models";
+import { ListResponseType } from "app/models/responses";
 
 export const EMPTY_PAGE: ListResponseType = {
   hits: [],

@@ -3,15 +3,14 @@
  * single view model expected by container components.
  */
 import {
-  DetailViewModel,
-  ListViewModel,
   ProjectListResponse,
   ProjectResponse,
   FileResponse,
   SampleResponse,
   FileListResponse,
   SampleListResponse,
-} from "../models";
+} from "../models/responses";
+import { DetailViewModel, ListViewModel } from "../models/viewModels";
 
 /**
  * Transforms a response to the projects endpoint into a viewModel, that will be used by

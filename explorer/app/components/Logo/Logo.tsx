@@ -1,6 +1,6 @@
 import { StaticImageData } from "next/image";
 import React from "react";
-import { StaticImage } from "../StaticImage";
+import { StaticImage } from "../StaticImage/StaticImage";
 
 export interface LogoProps {
   url: StaticImageData;

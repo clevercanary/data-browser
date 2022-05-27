@@ -1,9 +1,9 @@
 import React from "react";
-import { Logo, LogoProps } from "../Logo";
-import { NavLinks, NavLinksProps } from "../NavLinks";
-import { ProfileComponent } from "../ProfileComponent";
-import { Search } from "../Search";
-import { SocialLinks, SocialLinksProps } from "../SocialLinks";
+import { Logo, LogoProps } from "../Logo/Logo";
+import { NavLinks, NavLinksProps } from "../NavLinks/NavLinks";
+import { ProfileComponent } from "../ProfileComponent/ProfileComponent";
+import { Search } from "../Search/Search";
+import { SocialLinks, SocialLinksProps } from "../SocialLinks/SocialLinks";
 
 export interface HeaderProps {
   logo: LogoProps;

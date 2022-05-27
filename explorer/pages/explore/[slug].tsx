@@ -1,11 +1,12 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import React from "react";
-import { Page } from "../../app/components";
-import { ListViewModel } from "../../app/models";
-import { ListContainer } from "../../app/project/list";
-import { config } from "app/config";
+import { Page } from "../../app/components/Page/Page";
+import { ListViewModel } from "../../app/models/viewModels";
+import { ListContainer } from "../../app/project/list/ListContainer";
+import { config } from "app/config/config";
 import { ParsedUrlQuery } from "querystring";
-import { EMPTY_PAGE, listAll } from "app/project/api";
+import { listAll } from "app/project/api/service";
+import { EMPTY_PAGE } from "app/project/api/constants";
 import { getCurrentEntity } from "app/hooks/useCurrentEntity";
 
 interface PageUrl extends ParsedUrlQuery {

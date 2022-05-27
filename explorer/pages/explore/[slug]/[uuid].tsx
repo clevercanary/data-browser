@@ -1,12 +1,12 @@
-import { config } from "app/config";
+import { config } from "app/config/config";
 import { getCurrentEntity } from "app/hooks/useCurrentEntity";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
-import { Page } from "../../../app/components";
-import { DetailViewModel } from "../../../app/models";
-import { detail, listAll } from "../../../app/project/api";
-import { DetailContainer } from "../../../app/project/detail";
+import { Page } from "../../../app/components/Page/Page";
+import { DetailViewModel } from "../../../app/models/viewModels";
+import { detail, listAll } from "../../../app/project/api/service";
+import { DetailContainer } from "../../../app/project/detail/DetailContainer";
 
 interface PageUrl extends ParsedUrlQuery {
   uuid: string;

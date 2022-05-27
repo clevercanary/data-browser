@@ -1,10 +1,6 @@
-import {
-  DetailResponseType,
-  DetailViewModel,
-  ListResponseType,
-  ListViewModel,
-} from "app/models";
-import { detail, list } from "app/project/api";
+import { DetailViewModel, ListViewModel } from "app/models/viewModels";
+import { DetailResponseType, ListResponseType } from "app/models/responses";
+import { detail, list } from "app/project/api/service";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useAsync } from "./useAsync";

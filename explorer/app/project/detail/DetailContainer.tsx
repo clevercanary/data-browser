@@ -1,10 +1,10 @@
 /**
  * Container component that will wrap all presentational components used by the project's detail page
  */
-import { useEntityDetailData } from "app/hooks";
+import { useEntityDetailData } from "app/hooks/useEntityData";
 import React from "react";
-import { PrettyJSON } from "../../components";
-import { DetailViewModel } from "../../models";
+import { PrettyJSON } from "../../components/PrettyJSON/PrettyJSON";
+import { DetailViewModel } from "../../models/viewModels";
 
 export const DetailContainer = (props: DetailViewModel) => {
   const { data, isLoading } = useEntityDetailData(props);

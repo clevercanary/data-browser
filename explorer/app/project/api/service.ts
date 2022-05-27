@@ -2,14 +2,10 @@
  * Handles Project's API requests
  */
 
-import { convertUrlParams } from "./../../utils";
-import { CATALOG_VERSION, URL } from "../../shared";
-import {
-  DetailResponseType,
-  ListParams,
-  ListResponseType,
-  VersionParam,
-} from "../../models";
+import { convertUrlParams } from "./../../utils/url";
+import { CATALOG_VERSION, URL } from "../../shared/constants";
+import { ListParams, VersionParam } from "../../models/params";
+import { DetailResponseType, ListResponseType } from "../../models/responses";
 
 const DEFAULT_VERSION: VersionParam = {
   catalog: CATALOG_VERSION,

@@ -1,7 +1,7 @@
 import React from "react";
-import { Page } from "../../../app/components";
-import { DetailViewModel } from "../../../app/models";
-import { DetailContainer } from "../../../app/project/detail";
+import { Page } from "../../../app/components/Page/Page";
+import { DetailViewModel } from "../../../app/models/viewModels";
+import { DetailContainer } from "../../../app/project/detail/DetailContainer";
 
 const FilesDetailPage: React.FC<DetailViewModel> = (props: DetailViewModel) => {
   return (

@@ -1,1 +1,0 @@
-export { DetailContainer } from "./DetailContainer";

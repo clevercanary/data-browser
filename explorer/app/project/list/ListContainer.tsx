@@ -1,12 +1,13 @@
 /**
  * Container component that will wrap all presentational components used by the project's list page.
  */
-import { useCurrentEntity, useEntityListData } from "app/hooks";
+import { useCurrentEntity } from "app/hooks/useCurrentEntity";
+import { useEntityListData } from "app/hooks/useEntityData";
 import Link from "next/link";
 import React from "react";
 import { Column } from "react-table";
-import { Table } from "../../components";
-import { ListViewModel } from "../../models";
+import { Table } from "../../components/Table/Table";
+import { ListViewModel } from "../../models/viewModels";
 
 interface TableItem {
   label: string;
