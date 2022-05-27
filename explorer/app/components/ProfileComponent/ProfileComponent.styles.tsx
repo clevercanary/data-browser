@@ -7,6 +7,6 @@ export const StyledButton = styled(Button)`
   text-transform: none;
 
   .MuiButton-startIcon {
-    margin-right: ${({ theme }) => theme.spacing(0.5)};
+    margin-right: ${({ theme }) => theme.spacing(1)};
   }
 `;

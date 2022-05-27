@@ -2,9 +2,10 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   display: flex;
+  align-items: center;
 
   & > * {
-    margin: ${({ theme }) => theme.spacing(0, 1)};
+    margin-right: ${({ theme }) => theme.spacing(5)};
 
     &:first-child {
       margin-left: 0;
