@@ -30,6 +30,7 @@ export interface SampleResponse {
   }[];
 }
 
+//Files
 export interface FileResponse {
   files: {
     name: string;

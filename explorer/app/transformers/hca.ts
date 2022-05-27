@@ -1,5 +1,5 @@
 /**
- * Projects transformers. Used to have a configurable way to transform different response models into a
+ * Entity transformers. Used to have a configurable way to transform different response models into a
  * single view model expected by container components.
  */
 import {
@@ -64,7 +64,7 @@ export const sampleDetailToView = (value: SampleResponse): DetailViewModel => ({
 export const projectListToView = (list: ProjectListResponse): ListViewModel => {
   return {
     items: list.hits.map((hit) => ({
-      projectName: hit.projects[0].projectTitle,
+      name: hit.projects[0].projectTitle,
       uuid: hit.projects[0].projectId,
     })),
   };
@@ -79,7 +79,7 @@ export const projectListToView = (list: ProjectListResponse): ListViewModel => {
 export const filesListToView = (list: FileListResponse): ListViewModel => {
   return {
     items: list.hits.map((hit) => ({
-      projectName: hit.files?.[0].name ?? "",
+      name: hit.files?.[0].name ?? "",
       uuid: hit.files?.[0].uuid ?? "",
     })),
   };
@@ -94,7 +94,7 @@ export const filesListToView = (list: FileListResponse): ListViewModel => {
 export const samplesListToView = (list: SampleListResponse): ListViewModel => {
   return {
     items: list.hits.map((hit) => ({
-      projectName: hit.samples?.[0].id ?? "",
+      name: hit.samples?.[0].id ?? "",
       uuid: hit.samples?.[0].id ?? "",
     })),
   };

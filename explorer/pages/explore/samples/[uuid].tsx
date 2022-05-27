@@ -1,11 +1,9 @@
 import React from "react";
 import { Page } from "../../../app/components/Page/Page";
 import { DetailViewModel } from "../../../app/models/viewModels";
-import { DetailContainer } from "../../../app/project/detail/DetailContainer";
+import { DetailContainer } from "../../../app/entity/detail/DetailContainer";
 
-const SamplesDetailPage: React.FC<DetailViewModel> = (
-  props: DetailViewModel
-) => {
+const SamplesDetailPage = (props: DetailViewModel): JSX.Element => {
   return (
     <Page>
       <DetailContainer {...props} />

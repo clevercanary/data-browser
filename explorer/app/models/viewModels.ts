@@ -6,7 +6,7 @@ export interface DetailViewModel {
 
 export interface ItemViewModel {
   uuid: string;
-  projectName: string;
+  name: string;
 }
 
 export interface ListViewModel {

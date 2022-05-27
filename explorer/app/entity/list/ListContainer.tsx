@@ -1,5 +1,5 @@
 /**
- * Container component that will wrap all presentational components used by the project's list page.
+ * Container component that will wrap all presentational components used by and entity list page.
  */
 import { useCurrentEntity } from "app/hooks/useCurrentEntity";
 import { useEntityListData } from "app/hooks/useEntityData";
@@ -35,7 +35,7 @@ export const ListContainer = (props: ListViewModel) => {
   }
 
   const tableItems: TableItem[] = data.items.map((item) => ({
-    label: item.projectName,
+    label: item.name,
     url: `/explore/${encodeURIComponent(entity.route)}/${encodeURIComponent(
       item.uuid
     )}`,

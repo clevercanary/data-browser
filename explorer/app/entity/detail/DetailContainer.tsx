@@ -1,5 +1,5 @@
 /**
- * Container component that will wrap all presentational components used by the project's detail page
+ * Container component that will wrap all presentational components used by an entity detail page
  */
 import { useEntityDetailData } from "app/hooks/useEntityData";
 import React from "react";

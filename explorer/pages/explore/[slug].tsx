@@ -2,18 +2,18 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import React from "react";
 import { Page } from "../../app/components/Page/Page";
 import { ListViewModel } from "../../app/models/viewModels";
-import { ListContainer } from "../../app/project/list/ListContainer";
+import { ListContainer } from "../../app/entity/list/ListContainer";
 import { config } from "app/config/config";
 import { ParsedUrlQuery } from "querystring";
-import { listAll } from "app/project/api/service";
-import { EMPTY_PAGE } from "app/project/api/constants";
+import { listAll } from "app/entity/api/service";
+import { EMPTY_PAGE } from "app/entity/api/constants";
 import { getCurrentEntity } from "app/hooks/useCurrentEntity";
 
 interface PageUrl extends ParsedUrlQuery {
   slug: string;
 }
 
-const ListPage: React.FC<ListViewModel> = (props: ListViewModel) => {
+const ListPage = (props: ListViewModel): JSX.Element => {
   return (
     <Page>
       <ListContainer {...props} />

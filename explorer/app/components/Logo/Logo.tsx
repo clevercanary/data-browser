@@ -10,13 +10,13 @@ export interface LogoProps {
   alt: string;
 }
 
-export const Logo: React.FC<LogoProps> = ({
+export const Logo = ({
   url,
   slogan,
   width,
   height,
   alt,
-}: LogoProps) => {
+}: LogoProps): JSX.Element => {
   return (
     <div>
       <StaticImage src={url} alt={alt} width={width} height={height} />

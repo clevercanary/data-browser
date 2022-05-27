@@ -1,6 +1,6 @@
 import { DetailViewModel, ListViewModel } from "app/models/viewModels";
 import { DetailResponseType, ListResponseType } from "app/models/responses";
-import { detail, list } from "app/project/api/service";
+import { detail, list } from "app/entity/api/service";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useAsync } from "./useAsync";
@@ -21,7 +21,7 @@ interface UseEntityDetailResponse {
  * If the current entity loaded statically, this hook will return the already loaded data. Otherwise, it will make
  * a request for the entity's pathUrl
  * @param value statically loaded data, if any
- * @returns a object with the loaded data and a flag indicating is the data is loading
+ * @returns an object with the loaded data and a flag indicating is the data is loading
  */
 export const useEntityListData = (
   value?: ListViewModel
@@ -58,7 +58,7 @@ export const useEntityListData = (
  * If the current entity loaded statically, this hook will return the already loaded data. Otherwise, it will make
  * a request for the entity's pathUrl
  * @param value statically loaded data, if any
- * @returns a object with the loaded data and a flag indicating is the data is loading
+ * @returns an object with the loaded data and a flag indicating is the data is loading
  */
 export const useEntityDetailData = (
   value?: DetailViewModel

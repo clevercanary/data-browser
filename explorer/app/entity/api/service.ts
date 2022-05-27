@@ -2,7 +2,7 @@
  * Handles Project's API requests
  */
 
-import { convertUrlParams } from "./../../utils/url";
+import { convertUrlParams } from "../../utils/url";
 import { CATALOG_VERSION, URL } from "../../shared/constants";
 import { ListParams, VersionParam } from "../../models/params";
 import { DetailResponseType, ListResponseType } from "../../models/responses";
@@ -17,8 +17,8 @@ const DEFAULT_LIST_PARAMS: ListParams = {
 };
 
 /**
- * Request to get a list of projects.
- * @param apiPath, Path that will be used to compose the API url
+ * Request to get a list of entities.
+ * @param apiPath Path that will be used to compose the API url
  * @param listParams Params to be used on the request. If none passed, it will default to page's size 25 and the current catalog version
  * @returns @see ListResponseType
  */
@@ -32,8 +32,8 @@ export const list = async (
 };
 
 /**
- * Recursivally call the endpoint to get a list of project. This will iterate over the project list until the next property comes null
- * @param apiPath, Path that will be used to compose the API url
+ * Recursively call the endpoint to get a list of entities. This will iterate over the entity list until the next entity comes null
+ * @param apiPath Path that will be used to compose the API url
  * @param listParams Params to be used on the request. If none passed, it will default to page's size 25 and the current catalog version
  * @returns @see ListResponseType
  */

@@ -5,15 +5,15 @@ import { ParsedUrlQuery } from "querystring";
 import React from "react";
 import { Page } from "../../../app/components/Page/Page";
 import { DetailViewModel } from "../../../app/models/viewModels";
-import { detail, listAll } from "../../../app/project/api/service";
-import { DetailContainer } from "../../../app/project/detail/DetailContainer";
+import { detail, listAll } from "../../../app/entity/api/service";
+import { DetailContainer } from "../../../app/entity/detail/DetailContainer";
 
 interface PageUrl extends ParsedUrlQuery {
   uuid: string;
   slug: string;
 }
 
-const DetailPage: React.FC<DetailViewModel> = (props: DetailViewModel) => {
+const DetailPage = (props: DetailViewModel): JSX.Element => {
   return (
     <Page>
       <DetailContainer {...props} />

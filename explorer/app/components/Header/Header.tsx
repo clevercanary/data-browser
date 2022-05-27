@@ -14,14 +14,14 @@ export interface HeaderProps {
   authenticationEnabled?: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({
+export const Header = ({
   logo,
   navAlignment,
   navLinks,
   authenticationEnabled,
   searchEnabled,
   socialLinks,
-}: HeaderProps) => {
+}: HeaderProps): JSX.Element => {
   return (
     //FIXME: these styles will change after we start using @Emotion
     <header style={{ display: "flex", alignItems: "center" }}>
