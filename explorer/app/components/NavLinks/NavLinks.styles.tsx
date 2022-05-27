@@ -6,5 +6,6 @@ export const Container = styled.div`
   & > .MuiTypography-root {
     margin: ${({ theme }) => theme.spacing(0, 2)};
     color: ${({ theme }) => theme.palette.colorInk};
+    text-decoration: none;
   }
 `;
