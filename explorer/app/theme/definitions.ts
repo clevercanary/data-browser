@@ -20,12 +20,15 @@ declare module "@mui/material/styles" {
   }
   interface TypographyVariants {
     textBody500: TypographyStyleOptions;
+    textBody400: TypographyStyleOptions;
   }
   interface TypographyVariantsOptions {
     textBody500: TypographyStyleOptions;
+    textBody400: TypographyStyleOptions;
   }
   interface TypographyPropsVariantOverrides {
     textBody500: true;
+    textBody400: true;
   }
 }
 
@@ -33,6 +36,7 @@ declare module "@mui/material/styles" {
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     textBody500: true;
+    textBody400: true;
   }
 }
 

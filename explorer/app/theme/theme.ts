@@ -10,6 +10,12 @@ export const theme = createTheme({
       lineHeight: "20px",
       fontWeight: 500,
     },
+    textBody400: {
+      fontFamily: "Inter",
+      fontSize: 14,
+      lineHeight: "20px",
+      fontWeight: 400,
+    },
     body1: {
       fontSize: 16,
       lineHeight: "24px",

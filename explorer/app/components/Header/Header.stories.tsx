@@ -34,31 +34,31 @@ Anvil.args = {
     links: [
       {
         label: "Overview",
-        url: "https://google.com",
+        url: "https://google.com/overview",
       },
       {
         label: "Learn",
-        url: "https://github.com",
+        url: "https://github.com/learn",
       },
       {
         label: "Datasets",
-        url: "https://github.com",
+        url: "https://github.com/datasets",
       },
       {
         label: "News",
-        url: "https://github.com",
+        url: "https://github.com/news",
       },
       {
         label: "Events",
-        url: "https://github.com",
+        url: "https://github.com/events",
       },
       {
         label: "Team",
-        url: "https://github.com",
+        url: "https://github.com/team",
       },
       {
         label: "FAQ",
-        url: "https://github.com",
+        url: "https://github.com/faq",
       },
     ],
   },
@@ -66,23 +66,23 @@ Anvil.args = {
     links: [
       {
         type: "slack",
-        url: "https://github.com/BruceRodrigues",
+        url: "https://github.com/slack",
       },
       {
         type: "discourse",
-        url: "https://github.com/BruceRodrigues",
+        url: "https://github.com/discourse",
       },
       {
         type: "youtube",
-        url: "https://github.com/BruceRodrigues",
+        url: "https://github.com/youtube",
       },
       {
         type: "twitter",
-        url: "https://github.com/BruceRodrigues",
+        url: "https://github.com/twitter",
       },
       {
         type: "github",
-        url: "https://github.com/BruceRodrigues",
+        url: "https://github.com/",
       },
     ],
   },
@@ -121,15 +121,15 @@ HCA.args = {
       },
       {
         label: "Contribute",
-        url: "https://github.com",
+        url: "https://github.com/contribute",
       },
       {
         label: "APIs",
-        url: "https://github.com",
+        url: "https://github.com/apis",
       },
       {
         label: "Updates",
-        url: "https://github.com",
+        url: "https://github.com/updates",
       },
     ],
   },
@@ -137,15 +137,15 @@ HCA.args = {
     links: [
       {
         type: "twitter",
-        url: "https://github.com/BruceRodrigues",
+        url: "https://github.com/twitter",
       },
       {
         type: "slack",
-        url: "https://github.com/BruceRodrigues",
+        url: "https://github.com/slack",
       },
       {
         type: "github",
-        url: "https://github.com/BruceRodrigues",
+        url: "https://github.com/",
       },
     ],
   },
