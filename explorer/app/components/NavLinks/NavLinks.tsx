@@ -12,7 +12,7 @@ export interface NavLinksProps {
   links: NavLinkItem[];
 }
 
-export const NavLinks: React.FC<NavLinksProps> = ({ links }: NavLinksProps) => {
+export const NavLinks = ({ links }: NavLinksProps): JSX.Element => {
   return (
     <Container>
       {links.map((link) => (

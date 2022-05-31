@@ -4,10 +4,10 @@
  */
 
 import React, { useEffect, useRef, useState } from "react";
-import { config } from "../../config";
-import { Body } from "../Body";
-import { Footer } from "../Footer";
-import { Header } from "../Header";
+import { config } from "../../config/config";
+import { Body } from "../Body/Body";
+import { Footer } from "../Footer/Footer";
+import { Header } from "../Header/Header";
 import { Container, Content } from "./Page.styles";
 
 interface PageProps {

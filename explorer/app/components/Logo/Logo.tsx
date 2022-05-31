@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { StaticImageData } from "next/image";
 import React from "react";
-import { StaticImage } from "../StaticImage";
+import { StaticImage } from "../StaticImage/StaticImage";
 import { Container, SloganContainer } from "./Logo.styles";
 
 export interface LogoProps {
@@ -12,13 +12,13 @@ export interface LogoProps {
   alt: string;
 }
 
-export const Logo: React.FC<LogoProps> = ({
+export const Logo = ({
   url,
   slogan,
   width,
   height,
   alt,
-}: LogoProps) => {
+}: LogoProps): JSX.Element => {
   return (
     <Container>
       <StaticImage src={url} alt={alt} width={width} height={height} />

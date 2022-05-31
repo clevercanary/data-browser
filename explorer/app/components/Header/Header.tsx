@@ -1,10 +1,10 @@
 import { Drawer, IconButton } from "@mui/material";
 import React, { useState } from "react";
-import { Logo, LogoProps } from "../Logo";
-import { NavLinks, NavLinksProps } from "../NavLinks";
-import { ProfileComponent } from "../ProfileComponent";
-import { Search } from "../Search";
-import { SocialLinks, SocialLinksProps } from "../SocialLinks";
+import { Logo, LogoProps } from "../Logo/Logo";
+import { NavLinks, NavLinksProps } from "../NavLinks/NavLinks";
+import { ProfileComponent } from "../ProfileComponent/ProfileComponent";
+import { Search } from "../Search/Search";
+import { SocialLinks, SocialLinksProps } from "../SocialLinks/SocialLinks";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import {
@@ -30,7 +30,7 @@ export interface HeaderProps {
   drawerContainer?: Element | null;
 }
 
-export const Header: React.FC<HeaderProps> = ({
+export const Header = ({
   logo,
   navAlignment,
   navLinks,
@@ -38,7 +38,7 @@ export const Header: React.FC<HeaderProps> = ({
   searchEnabled,
   socialLinks,
   drawerContainer,
-}: HeaderProps) => {
+}: HeaderProps): JSX.Element => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleToggleDrawer = () => {
