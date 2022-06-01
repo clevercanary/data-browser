@@ -16,6 +16,12 @@ export const theme = createTheme({
       lineHeight: "20px",
       fontWeight: 400,
     },
+    textHeadingSmall: {
+      fontFamily: "Inter",
+      fontSize: 20,
+      lineHeight: "28px",
+      fontWeight: 500,
+    },
     body1: {
       fontSize: 16,
       lineHeight: "24px",
