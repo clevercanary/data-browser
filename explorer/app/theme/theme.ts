@@ -94,5 +94,6 @@ export const theme = createTheme({
     colorSmoke: "#E1E3E5",
     colorSmokeLight: "#F6F6F7",
     colorSmokeLightest: "#FAFBFB",
+    colorPrimartAnvil: "#035C94",
   },
 });

@@ -9,6 +9,7 @@ declare module "@mui/material/styles" {
     colorSmoke: string;
     colorSmokeLight: string;
     colorSmokeLightest: string;
+    colorPrimartAnvil: string;
   }
   interface PaletteOptions {
     colorInk: string;
@@ -17,6 +18,7 @@ declare module "@mui/material/styles" {
     colorSmoke: string;
     colorSmokeLight: string;
     colorSmokeLightest: string;
+    colorPrimartAnvil: string;
   }
   interface TypographyVariants {
     textBody500: TypographyStyleOptions;
