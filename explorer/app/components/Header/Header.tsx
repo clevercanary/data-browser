@@ -17,6 +17,7 @@ import {
   MobileContainer,
   DesktopContainer,
   MenuContainer,
+  HEADER_HEIGHT,
 } from "./Header.styles";
 import { DrawerContent } from "./DrawerContent";
 
@@ -27,7 +28,6 @@ export interface HeaderProps {
   navAlignment: "left" | "center";
   searchEnabled?: boolean;
   authenticationEnabled?: boolean;
-  drawerContainer?: Element | null;
 }
 
 export const Header = ({
@@ -37,7 +37,6 @@ export const Header = ({
   authenticationEnabled,
   searchEnabled,
   socialLinks,
-  drawerContainer,
 }: HeaderProps): JSX.Element => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -83,29 +82,30 @@ export const Header = ({
             {drawerOpen ? <CloseIcon /> : <MenuIcon />}
           </IconButton>
         </MenuButton>
-
-        <Drawer
-          variant="temporary"
-          container={drawerContainer}
-          ModalProps={{ keepMounted: true }}
-          open={drawerOpen}
-          style={{ position: "absolute" }}
-          onClose={handleToggleDrawer}
-          hideBackdrop
-          PaperProps={{
-            style: {
-              position: "absolute",
-              width: "100%",
-            },
-          }}
-        >
-          <DrawerContent
-            navLinks={navLinks}
-            logo={logo}
-            socialLinks={socialLinks}
-          />
-        </Drawer>
       </MobileContainer>
+      <Drawer
+        variant="temporary"
+        ModalProps={{ keepMounted: true }}
+        open={drawerOpen}
+        onClose={handleToggleDrawer}
+        BackdropProps={{ invisible: true }}
+        disableScrollLock
+        hideBackdrop
+        style={{ top: `${HEADER_HEIGHT}px` }}
+        PaperProps={{
+          style: {
+            width: "100%",
+            position: "absolute",
+            boxShadow: "none",
+          },
+        }}
+      >
+        <DrawerContent
+          navLinks={navLinks}
+          logo={logo}
+          socialLinks={socialLinks}
+        />
+      </Drawer>
     </Container>
   );
 };

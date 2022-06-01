@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { Theme } from "@mui/material";
 
+export const HEADER_HEIGHT = 56;
+
 const hideOnMobile = ({ theme }: { theme: Theme }) => css`
   ${theme.breakpoints.down("lg")} {
     ${css`
@@ -14,7 +16,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 56px;
+  height: ${HEADER_HEIGHT}px;
   padding: ${({ theme }) => theme.spacing(3, 0, 3, 4)};
   background-color: white;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.07);

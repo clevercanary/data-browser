@@ -34,55 +34,59 @@ Anvil.args = {
     links: [
       {
         label: "Overview",
-        url: "https://google.com/overview",
+        url: "https://anvilproject.org/overview",
       },
       {
         label: "Learn",
-        url: "https://github.com/learn",
+        url: "https://anvilproject.org/learn",
       },
       {
         label: "Datasets",
-        url: "https://github.com/datasets",
+        url: "https://anvilproject.org/data",
       },
       {
         label: "News",
-        url: "https://github.com/news",
+        url: "https://anvilproject.org/news",
       },
       {
         label: "Events",
-        url: "https://github.com/events",
+        url: "https://anvilproject.org/events",
       },
       {
         label: "Team",
-        url: "https://github.com/team",
+        url: "https://anvilproject.org/team",
       },
       {
         label: "FAQ",
-        url: "https://github.com/faq",
+        url: "https://anvilproject.org/faq",
+      },
+      {
+        label: "Help",
+        url: "https://anvilproject.org/help",
       },
     ],
   },
   socialLinks: {
     links: [
       {
-        type: "slack",
-        url: "https://github.com/slack",
-      },
-      {
-        type: "discourse",
-        url: "https://github.com/discourse",
+        type: "twitter",
+        url: "https://twitter.com/useAnVIL",
       },
       {
         type: "youtube",
-        url: "https://github.com/youtube",
+        url: "https://www.youtube.com/channel/UCBbHCj7kUogAMFyBAzzzfUw",
       },
       {
-        type: "twitter",
-        url: "https://github.com/twitter",
+        type: "discourse",
+        url: "https://help.anvilproject.org/",
       },
       {
         type: "github",
-        url: "https://github.com/",
+        url: "https://github.com/anvilproject",
+      },
+      {
+        type: "slack",
+        url: "https://join.slack.com/t/anvil-community/shared_invite/zt-hsyfam1w-LXlCv~3vNLSfDj~qNd5uBg",
       },
     ],
   },
@@ -101,35 +105,35 @@ HCA.args = {
     links: [
       {
         label: "Explore",
-        url: "https://google.com",
+        url: "https://data.humancellatlas.org/explore/projects",
       },
       {
         label: "Guides",
-        url: "https://github.com",
+        url: "https://data.humancellatlas.org/guides",
       },
       {
         label: "Metadata",
-        url: "https://github.com",
+        url: "https://data.humancellatlas.org/metadata",
       },
       {
         label: "Pipelines",
-        url: "https://github.com",
+        url: "https://data.humancellatlas.org/pipelines",
       },
       {
         label: "Analysis Tools",
-        url: "https://github.com",
+        url: "https://data.humancellatlas.org/analyze",
       },
       {
         label: "Contribute",
-        url: "https://github.com/contribute",
+        url: "https://data.humancellatlas.org/contribute",
       },
       {
         label: "APIs",
-        url: "https://github.com/apis",
+        url: "https://data.humancellatlas.org/apis",
       },
       {
         label: "Updates",
-        url: "https://github.com/updates",
+        url: "https://data.humancellatlas.org/dcp-updates",
       },
     ],
   },
@@ -137,15 +141,15 @@ HCA.args = {
     links: [
       {
         type: "twitter",
-        url: "https://github.com/twitter",
-      },
-      {
-        type: "slack",
-        url: "https://github.com/slack",
+        url: "https://twitter.com/humancellatlas",
       },
       {
         type: "github",
-        url: "https://github.com/",
+        url: "https://github.com/HumanCellAtlas",
+      },
+      {
+        type: "slack",
+        url: "https://humancellatlas.slack.com/archives/C02TM2SDVM2",
       },
     ],
   },
@@ -163,15 +167,15 @@ LungMap.args = {
     links: [
       {
         label: "Explore",
-        url: "https://google.com",
+        url: "https://data-browser.lungmap.net/explore/projects",
       },
       {
         label: "Metadata",
-        url: "https://github.com",
+        url: "https://data-browser.lungmap.net/metadata",
       },
       {
         label: "APIs",
-        url: "https://github.com",
+        url: "https://data-browser.lungmap.net/apis",
       },
     ],
   },
@@ -179,7 +183,7 @@ LungMap.args = {
     links: [
       {
         type: "twitter",
-        url: "https://github.com/BruceRodrigues",
+        url: "https://twitter.com/lungmapnet",
       },
     ],
   },

@@ -13,7 +13,6 @@ export const SloganContainer = styled.div`
   margin-left: ${({ theme }) => theme.spacing(4)};
   padding-left: ${({ theme }) => theme.spacing(4)};
   border-left: 1px solid ${({ theme }) => theme.palette.colorSmoke};
-  max-width: 180px;
   height: 100%;
 
   ${({ theme }) => `

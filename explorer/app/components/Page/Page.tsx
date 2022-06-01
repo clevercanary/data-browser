@@ -3,7 +3,7 @@
  * Header and Footer will be configurable through props.
  */
 
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { config } from "../../config/config";
 import { Body } from "../Body/Body";
 import { Footer } from "../Footer/Footer";
@@ -15,18 +15,10 @@ interface PageProps {
 }
 
 export const Page = ({ children }: PageProps) => {
-  const drawerRef = useRef<HTMLDivElement>(null);
-  const [drawerContainer, setDrawerContainer] =
-    useState<HTMLDivElement | null>();
-
-  useEffect(() => {
-    setDrawerContainer(drawerRef.current);
-  }, []);
-
   return (
     <Container>
-      <Header {...config().layout.header} drawerContainer={drawerContainer} />
-      <Content ref={drawerRef}>
+      <Header {...config().layout.header} />
+      <Content>
         <Body>{children}</Body>
         <Footer>Footer</Footer>
       </Content>
