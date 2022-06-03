@@ -1,16 +1,18 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Stats } from "./Stats";
+import { ValueBlock } from "./ValueBlock";
 
 export default {
-  title: "Components/Stats",
-  component: Stats,
+  title: "Components/ValueBlock",
+  component: ValueBlock,
   argTypes: {
     items: { control: "array" },
   },
-} as ComponentMeta<typeof Stats>;
+} as ComponentMeta<typeof ValueBlock>;
 
-const Template: ComponentStory<typeof Stats> = (args) => <Stats {...args} />;
+const Template: ComponentStory<typeof ValueBlock> = (args) => (
+  <ValueBlock {...args} />
+);
 
 export const Primary = Template.bind({});
 Primary.args = {

@@ -1,12 +1,12 @@
 import React from "react";
 import { Item, ItemProps } from "./Item";
-import { Container } from "./Stats.styles";
+import { Container } from "./ValueBlock.styles";
 
-interface StatsProps {
+interface ValueBlockProps {
   items: ItemProps[];
 }
 
-export const Stats = ({ items }: StatsProps): JSX.Element => {
+export const ValueBlock = ({ items }: ValueBlockProps): JSX.Element => {
   return (
     <Container>
       {items.map((item) => (

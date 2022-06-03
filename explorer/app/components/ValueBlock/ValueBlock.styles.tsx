@@ -1,13 +1,4 @@
 import styled from "@emotion/styled";
-import { Typography } from "@mui/material";
-
-export const Value = styled(Typography)`
-  color: ${({ theme }) => theme.palette.colorInk};
-`;
-
-export const Label = styled(Typography)`
-  color: ${({ theme }) => theme.palette.colorInkLight};
-`;
 
 export const ItemContainer = styled.div`
   display: flex;
