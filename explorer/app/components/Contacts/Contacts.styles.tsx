@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
-import { Typography, TypographyProps } from "@mui/material";
+import { Text } from "../Text/Text";
 
-export const Text = styled(Typography)<TypographyProps>`
-  color: ${({ theme }) => theme.palette.colorInk};
-  margin-top: ${({ theme }) => theme.spacing(1)};
+export const TextItem = styled(Text)`
+  margin-top: ${({ theme }) => theme.spacing(2)};
 `;
 
 export const ItemContainer = styled.div`

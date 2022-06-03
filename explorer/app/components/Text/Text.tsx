@@ -12,7 +12,9 @@ interface TextProps extends Omit<TypographyProps, "color"> {
   customColor?: keyof CustomColors;
 }
 
-export const Text = styled(Typography)<TextProps>`
+export const Text = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== "customColor",
+})<TextProps>`
   color: ${({ theme, customColor }) =>
     customColor ? theme.palette[customColor] : undefined};
 `;
