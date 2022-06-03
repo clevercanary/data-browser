@@ -11,16 +11,19 @@ declare module "@mui/material/styles" {
   interface TypographyVariants {
     textBody500: TypographyStyleOptions;
     textBody400: TypographyStyleOptions;
+    textBody4002Lines: TypographyStyleOptions;
     textHeadingSmall: TypographyStyleOptions;
   }
   interface TypographyVariantsOptions {
     textBody500: TypographyStyleOptions;
     textBody400: TypographyStyleOptions;
+    textBody4002Lines: TypographyStyleOptions;
     textHeadingSmall: TypographyStyleOptions;
   }
   interface TypographyPropsVariantOverrides {
     textBody500: true;
     textBody400: true;
+    textBody4002Lines: true;
     textHeadingSmall: true;
   }
 }
@@ -30,6 +33,7 @@ declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     textBody500: true;
     textBody400: true;
+    textBody4002Lines: true;
     textHeadingSmall: true;
   }
 }

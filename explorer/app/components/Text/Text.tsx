@@ -15,6 +15,7 @@ interface TextProps extends Omit<TypographyProps, "color"> {
 export const Text = styled(Typography, {
   shouldForwardProp: (prop) => prop !== "customColor",
 })<TextProps>`
+  text-decoration: none;
   color: ${({ theme, customColor }) =>
     customColor ? theme.palette[customColor] : undefined};
 `;
