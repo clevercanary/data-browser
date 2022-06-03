@@ -6,6 +6,4 @@ export const Citation = styled.sup`
   font-size: 10px;
 `;
 
-export const ItemContainer = styled.div`
-  margin-top: ${({ theme }) => theme.spacing(1)};
-`;
+export const ItemContainer = styled.div``;

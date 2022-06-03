@@ -1,5 +1,5 @@
-import { Typography } from "@mui/material";
 import React from "react";
+import { Text } from "../Text/Text";
 import { ItemContainer } from "./FileCounts.styles";
 
 export interface ItemProps {
@@ -10,18 +10,13 @@ export interface ItemProps {
 export const Item = ({ count, name }: ItemProps): JSX.Element => {
   return (
     <ItemContainer>
-      <Typography
-        variant="textBody400"
-        component="span"
-        color={(theme) => theme.palette.colorInk}
-      >
+      <Text variant="textBody4002Lines" customColor="colorInk">
         {name}
-      </Typography>
-      <Typography
-        variant="textBody400"
-        component="span"
-        color={(theme) => theme.palette.colorPrimartAnvil}
-      >{`${count} file(s)`}</Typography>
+      </Text>
+      <Text
+        variant="textBody4002Lines"
+        customColor="colorPrimartAnvil"
+      >{`${count} file(s)`}</Text>
     </ItemContainer>
   );
 };

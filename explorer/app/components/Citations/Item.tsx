@@ -12,7 +12,9 @@ export const Item = ({ value, citation, align }: ItemProps): JSX.Element => {
   return (
     <ItemContainer>
       {citation && align === "left" && <Citation>{citation}</Citation>}
-      <Text variant="textBody400">{value}</Text>
+      <Text variant="textBody4002Lines" customColor="colorInk">
+        {value}
+      </Text>
       {citation && align === "right" && <Citation>{citation}</Citation>}
     </ItemContainer>
   );

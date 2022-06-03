@@ -11,7 +11,9 @@ export interface ItemProps {
 export const Item = ({ text, link }: ItemProps): JSX.Element => {
   return (
     <ItemContainer>
-      <Text variant="textBody4002Lines">{text}</Text>
+      <Text variant="textBody4002Lines" customColor="colorInk">
+        {text}
+      </Text>
       {link && (
         <Link href={link.url} passHref>
           <Text

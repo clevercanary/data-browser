@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import { ItemContainer, TextItem as Text } from "./Contacts.styles";
+import { ItemContainer } from "./Contacts.styles";
+import { Text } from "../Text/Text";
 
 export interface ItemProps {
   name: string;
@@ -11,12 +12,19 @@ export interface ItemProps {
 export const Item = ({ name, institution, email }: ItemProps): JSX.Element => {
   return (
     <ItemContainer>
-      <Text variant="textBody400">{name}</Text>
-      {institution && <Text variant="textBody400">{` (${institution})`}</Text>}
+      <Text variant="textBody4002Lines" customColor="colorInk">
+        {name}
+      </Text>
+      {institution && (
+        <Text
+          variant="textBody4002Lines"
+          customColor="colorInk"
+        >{` (${institution})`}</Text>
+      )}
       {email && (
         <Link href={`mailto:${email}`} passHref>
           <Text
-            variant="textBody400"
+            variant="textBody4002Lines"
             component="a"
             customColor="colorPrimartAnvil"
           >
