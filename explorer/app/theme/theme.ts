@@ -1,5 +1,15 @@
 import { createTheme } from "@mui/material/styles";
 
+export interface CustomColors {
+  colorInk: string;
+  colorInkLight: string;
+  colorSmokeDark: string;
+  colorSmoke: string;
+  colorSmokeLight: string;
+  colorSmokeLightest: string;
+  colorPrimartAnvil: string;
+}
+
 export const theme = createTheme({
   spacing: 4,
   typography: {
