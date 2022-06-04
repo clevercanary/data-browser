@@ -1,4 +1,6 @@
-import { SiteConfig } from "../../../app/config/model";
+import { Contacts } from "./../../../app/components/Contacts/Contacts";
+import { ShowMore } from "./../../../app/components/ShowMore/ShowMore";
+import { ComponentObject, SiteConfig } from "../../../app/config/model";
 import HcaLogo from "images/hca-logo.png";
 import {
   projectListToView,
@@ -9,6 +11,9 @@ import {
   sampleDetailToView,
   getProjectId,
 } from "app/transformers/hca";
+import * as C from "../../../app/components";
+import { ComponentMeta } from "@storybook/react";
+import { ProjectResponse } from "app/models/responses";
 
 const config: SiteConfig = {
   redirectRootToPath: "/explore/projects",
@@ -24,7 +29,7 @@ const config: SiteConfig = {
       listTransformer: projectListToView,
       detailTransformer: projectDetailToView,
       getId: getProjectId,
-      staticLoad: true,
+      // staticLoad: true,
     },
     {
       label: "Files",
@@ -103,6 +108,54 @@ const config: SiteConfig = {
       searchEnabled: false,
       authenticationEnabled: false,
     },
+  },
+  detail: {
+    components: [
+      // {
+      //   component: "showMore",
+      //   props: {
+      //     args: {
+      //       children: "<p>testing</p>",
+      //     },
+      //   } as ComponentMeta<typeof C.ShowMore>,
+      // },
+      {
+        component: "citations",
+        props: {
+          args: {
+            citations: [
+              {
+                value: "tedasdads",
+                citation: "1",
+              },
+            ],
+            // contacts: [
+            //   {
+            //     name: "name",
+            //     email: "email",
+            //     institution: "institution",
+            //   },
+            // ],
+          },
+        },
+      } as ComponentObject<typeof C.Citations>,
+      {
+        component: "contacts",
+        transformer: (d) => {
+          const project = d as ProjectResponse;
+          return {
+            args: {
+              contacts: [
+                {
+                  name: project?.projects[0].projectShortname,
+                  email: project?.projects[0].projectTitle,
+                },
+              ],
+            },
+          };
+        },
+      } as ComponentObject<typeof C.Contacts>,
+    ],
   },
 };
 

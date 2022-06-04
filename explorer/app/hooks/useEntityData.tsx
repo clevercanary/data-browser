@@ -14,6 +14,7 @@ interface UseEntityListResponse {
 interface UseEntityDetailResponse {
   data?: DetailViewModel;
   isLoading: boolean;
+  apiData?: DetailResponseType;
 }
 
 /**
@@ -65,7 +66,7 @@ export const useEntityDetailData = (
 ): UseEntityDetailResponse => {
   const entity = useCurrentEntity();
   const router = useRouter();
-  const uuid = router.query.uuid as string;
+  const uuid = "60ea42e1-af49-42f5-8164-d641fdb696bc";
   const {
     data: apiData,
     isLoading: apiIsLoading,
@@ -88,6 +89,7 @@ export const useEntityDetailData = (
 
   return {
     data: apiData ? entity.detailTransformer(apiData) : {},
+    apiData,
     isLoading: apiIsLoading,
   };
 };

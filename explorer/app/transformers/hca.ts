@@ -22,7 +22,7 @@ export const projectDetailToView = (
   value: ProjectResponse
 ): DetailViewModel => ({
   json: JSON.stringify(value, null, 2),
-  detailName: value.projects[0].projectTitle,
+  detailName: value?.projects?.[0]?.projectTitle ?? "",
 });
 
 /**
