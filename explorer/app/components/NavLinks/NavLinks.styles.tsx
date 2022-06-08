@@ -24,7 +24,8 @@ export const Container = styled.nav`
           flex-direction: column;
 
           & > .MuiTypography-root {
-            padding: ${theme.spacing(4, 2)};
+            margin: 0;
+            padding: ${theme.spacing(4, 6)};
           }
         `.styles
       }

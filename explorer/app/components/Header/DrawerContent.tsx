@@ -20,7 +20,7 @@ export const DrawerContent = ({
     <DrawerContainer>
       {logo.slogan && (
         <Typography
-          variant="textBody400"
+          variant="text-body-400"
           component="div"
           color={(theme) => theme.palette.colorInk}
           pb={2}
@@ -34,7 +34,7 @@ export const DrawerContent = ({
         {...socialLinks}
         sx={(theme) => ({
           gap: theme.spacing(10),
-          px: theme.spacing(12),
+          px: theme.spacing(7),
           color: theme.palette.colorInkLight,
         })}
       />

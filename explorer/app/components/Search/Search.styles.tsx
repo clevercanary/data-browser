@@ -12,7 +12,7 @@ const hideButton = css`
 
 export const StyledButton = styled(Button)`
   color: ${({ theme }) => theme.palette.colorInk};
-  font-size: ${({ theme }) => theme.typography.textBody500.fontSize};
+  font-size: ${({ theme }) => theme.typography["text-body-500"].fontSize};
   text-transform: none;
 
   .MuiButton-startIcon {
