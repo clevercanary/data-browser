@@ -11,8 +11,8 @@ const hideButton = css`
 `;
 
 export const StyledButton = styled(Button)`
-  font-size: ${({ theme }) => theme.typography.textBody500.fontSize};
   color: ${({ theme }) => theme.palette.colorInk};
+  font-size: ${({ theme }) => theme.typography.textBody500.fontSize};
   text-transform: none;
 
   .MuiButton-startIcon {
@@ -31,8 +31,8 @@ export const StyledButton = styled(Button)`
 `;
 
 export const StyledIconButton = styled(IconButton)`
-  display: none;
   color: ${({ theme }) => theme.palette.colorInk};
+  display: none;
 
   &:hover {
     background-color: ${({ theme }) => theme.palette.colorSmokeLight};

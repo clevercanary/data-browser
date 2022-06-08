@@ -1,7 +1,8 @@
+import { Box, SxProps, Theme } from "@mui/material";
 import Link from "next/link";
 import React from "react";
 import { Discourse, GitHub, Slack, Twitter, YouTube } from "./icons";
-import { Container } from "./SocialLinks.styles";
+import { Hyperlink } from "./SocialLinks.styles";
 
 export type SocialType =
   | "twitter"
@@ -17,6 +18,7 @@ interface SocialLinkItem {
 
 export interface SocialLinksProps {
   links: SocialLinkItem[];
+  sx?: SxProps<Theme>;
 }
 
 const ICONS: { [K in SocialType]: React.ReactNode } = {
@@ -27,14 +29,19 @@ const ICONS: { [K in SocialType]: React.ReactNode } = {
   discourse: <Discourse />,
 };
 
-export const SocialLinks = ({ links }: SocialLinksProps): JSX.Element => {
+export const SocialLinks = ({ links, sx }: SocialLinksProps): JSX.Element => {
   return (
-    <Container>
+    <Box
+      sx={[
+        { display: "flex", alignItems: "center" },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       {links.map((link) => (
         <Link key={link.type} href={link.url}>
-          <a>{ICONS[link.type]}</a>
+          <Hyperlink>{ICONS[link.type]}</Hyperlink>
         </Link>
       ))}
-    </Container>
+    </Box>
   );
 };
