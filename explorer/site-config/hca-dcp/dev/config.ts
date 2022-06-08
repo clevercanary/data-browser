@@ -1,5 +1,3 @@
-import { Contacts } from "./../../../app/components/Contacts/Contacts";
-import { ShowMore } from "./../../../app/components/ShowMore/ShowMore";
 import { ComponentObject, SiteConfig } from "../../../app/config/model";
 import HcaLogo from "images/hca-logo.png";
 import {
@@ -12,7 +10,7 @@ import {
   getProjectId,
 } from "app/transformers/hca";
 import * as C from "../../../app/components";
-import { ComponentMeta } from "@storybook/react";
+import * as T from "./transformer";
 import { ProjectResponse } from "app/models/responses";
 
 const config: SiteConfig = {
@@ -111,50 +109,21 @@ const config: SiteConfig = {
   },
   detail: {
     components: [
-      // {
-      //   component: "showMore",
-      //   props: {
-      //     args: {
-      //       children: "<p>testing</p>",
-      //     },
-      //   } as ComponentMeta<typeof C.ShowMore>,
-      // },
       {
-        component: "citations",
+        component: C.Citations,
         props: {
-          args: {
-            citations: [
-              {
-                value: "tedasdads",
-                citation: "1",
-              },
-            ],
-            // contacts: [
-            //   {
-            //     name: "name",
-            //     email: "email",
-            //     institution: "institution",
-            //   },
-            // ],
-          },
+          citations: [
+            {
+              value: "tedasdads",
+              citation: "1",
+            },
+          ],
         },
       } as ComponentObject<typeof C.Citations>,
       {
-        component: "contacts",
-        transformer: (d) => {
-          const project = d as ProjectResponse;
-          return {
-            args: {
-              contacts: [
-                {
-                  name: project?.projects[0].projectShortname,
-                  email: project?.projects[0].projectTitle,
-                },
-              ],
-            },
-          };
-        },
-      } as ComponentObject<typeof C.Contacts>,
+        component: C.Contacts,
+        transformer: T.projectToContacts,
+      } as ComponentObject<typeof C.Contacts, ProjectResponse>,
     ],
   },
 };

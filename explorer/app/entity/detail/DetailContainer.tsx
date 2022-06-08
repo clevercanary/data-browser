@@ -1,7 +1,6 @@
 /**
  * Container component that will wrap all presentational components used by an entity detail page
  */
-import { MAP } from "app/components";
 import { config } from "app/config/config";
 import { useEntityDetailData } from "app/hooks/useEntityData";
 import { DetailResponseType } from "app/models/responses";
@@ -12,8 +11,8 @@ import { DetailViewModel } from "../../models/viewModels";
 const getComponents = (detail: DetailResponseType) => {
   const components = config().detail?.components;
   return components?.map((c) => {
-    const props = c.transformer ? c.transformer(detail).args : c.props?.args;
-    return React.createElement(MAP[c.component] as any, { ...props });
+    const props = c.transformer ? c.transformer(detail) : c.props;
+    return React.createElement(c.component as any, { ...props });
   });
 };
 

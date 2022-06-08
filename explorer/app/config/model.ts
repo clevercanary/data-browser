@@ -1,8 +1,6 @@
-import { ComponentMeta } from "@storybook/react";
 import { DetailResponseType, ListResponseType } from "app/models/responses";
 import { DetailViewModel, ListViewModel } from "app/models/viewModels";
 import { HeaderProps } from "../components/Header/Header";
-import { MAP } from "../components";
 import { JSXElementConstructor } from "react";
 
 type ListTransformerFunction<T extends ListResponseType> = (
@@ -28,15 +26,14 @@ export interface EntityConfig<
   staticLoad?: boolean;
 }
 
-type Component = keyof typeof MAP;
-
 export interface ComponentObject<
-  T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any> = any
+  T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any> = any,
+  D = any
 > {
-  component: Component;
-  props?: ComponentMeta<T>;
+  component: JSX.Element | React.FC<any>;
+  props?: React.ComponentProps<T>;
   children?: ComponentObject;
-  transformer?: (d: DetailResponseType) => ComponentMeta<T>;
+  transformer?: (model: D) => React.ComponentProps<T>;
 }
 
 export interface SiteConfig {
