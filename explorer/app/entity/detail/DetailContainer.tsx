@@ -5,14 +5,13 @@ import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreat
 import { config } from "app/config/config";
 import { useEntityDetailData } from "app/hooks/useEntityData";
 import React from "react";
-import { PrettyJSON } from "../../components/PrettyJSON/PrettyJSON";
 import { DetailViewModel } from "../../models/viewModels";
 
 export const DetailContainer = (props: DetailViewModel) => {
-  const { data, isLoading, apiData } = useEntityDetailData(props);
+  const { apiData, isLoading } = useEntityDetailData(props);
   const components = config().detail?.components;
 
-  if (isLoading || !data || !apiData) {
+  if (isLoading || !apiData) {
     return <span>LOADING...</span>; //TODO: return the loading UI component
   }
 
@@ -20,13 +19,5 @@ export const DetailContainer = (props: DetailViewModel) => {
     return null;
   }
 
-  const { detailName, json } = data;
-
-  return (
-    <>
-      <h1>{detailName}</h1>
-      <ComponentCreator components={components} detail={apiData!} />
-      {json && <PrettyJSON value={json} />}
-    </>
-  );
+  return <ComponentCreator components={components} detail={apiData} />;
 };

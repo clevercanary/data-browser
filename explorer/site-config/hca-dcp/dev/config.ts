@@ -27,7 +27,7 @@ const config: SiteConfig = {
       listTransformer: projectListToView,
       detailTransformer: projectDetailToView,
       getId: getProjectId,
-      // staticLoad: true,
+      staticLoad: true,
     },
     {
       label: "Files",

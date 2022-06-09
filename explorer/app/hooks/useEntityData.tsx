@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useAsync } from "./useAsync";
 import { useCurrentEntity } from "./useCurrentEntity";
+import { isSSR } from "app/utils/ssr";
+import { isDevelopment } from "app/shared/constants";
 
 interface UseEntityListResponse {
   data?: ListViewModel;
@@ -12,7 +14,7 @@ interface UseEntityListResponse {
 }
 
 interface UseEntityDetailResponse {
-  data?: DetailViewModel;
+  viewData?: DetailViewModel;
   isLoading: boolean;
   apiData?: DetailResponseType;
 }
@@ -66,7 +68,7 @@ export const useEntityDetailData = (
 ): UseEntityDetailResponse => {
   const entity = useCurrentEntity();
   const router = useRouter();
-  const uuid = "60ea42e1-af49-42f5-8164-d641fdb696bc";
+  const uuid = router.query.uuid as string;
   const {
     data: apiData,
     isLoading: apiIsLoading,
@@ -74,21 +76,21 @@ export const useEntityDetailData = (
   } = useAsync<DetailResponseType>();
 
   useEffect(() => {
-    if (entity && !entity.staticLoad) {
+    if (entity && (!entity.staticLoad || isDevelopment()) && !isSSR()) {
       run(detail(uuid, entity.apiPath));
     }
   }, [entity, run, uuid]);
 
   if (!entity) {
-    return { data: {}, isLoading: false };
+    return { viewData: {}, isLoading: false };
   }
 
-  if (entity.staticLoad) {
-    return { data: value, isLoading: false };
+  if (entity.staticLoad && !isDevelopment()) {
+    return { viewData: value, isLoading: false };
   }
 
   return {
-    data: apiData ? entity.detailTransformer(apiData) : {},
+    viewData: apiData ? entity.detailTransformer(apiData) : {},
     apiData,
     isLoading: apiIsLoading,
   };

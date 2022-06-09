@@ -13,12 +13,16 @@ export const ComponentCreator = ({
 }: ComponentCreatorProps): JSX.Element => {
   return (
     <>
-      {components.map((c) => {
+      {components.map((c, index) => {
         const children = c.children ? (
           <ComponentCreator components={c.children} detail={detail} />
         ) : null;
         const props = c.transformer ? c.transformer(detail) : c.props;
-        return React.createElement(c.component, { ...props }, children);
+        return React.createElement(
+          c.component,
+          { ...props, key: index },
+          children
+        );
       })}
     </>
   );
