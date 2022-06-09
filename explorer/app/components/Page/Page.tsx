@@ -3,8 +3,8 @@
  * Header and Footer will be configurable through props.
  */
 
+import { useConfig } from "app/hooks/useConfig";
 import React from "react";
-import { config } from "../../config/config";
 import { Body } from "../Body/Body";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
@@ -15,9 +15,11 @@ interface PageProps {
 }
 
 export const Page = ({ children }: PageProps): JSX.Element => {
+  const config = useConfig();
+
   return (
     <Container>
-      <Header {...config().layout.header} />
+      <Header {...config.layout.header} />
       <Content>
         <Body>{children}</Body>
         <Footer>Footer</Footer>

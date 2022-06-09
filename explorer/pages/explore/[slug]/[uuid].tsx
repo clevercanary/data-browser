@@ -53,7 +53,7 @@ export const getStaticProps: GetStaticProps<DetailViewModel> = async ({
   params,
 }: GetStaticPropsContext) => {
   const { slug } = params as PageUrl;
-  const entity = getCurrentEntity(slug);
+  const entity = getCurrentEntity(slug, config());
   let props: DetailViewModel = {};
   if (entity?.staticLoad) {
     const data = await detail((params as PageUrl).uuid, entity.apiPath);

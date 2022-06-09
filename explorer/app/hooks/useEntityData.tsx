@@ -86,7 +86,7 @@ export const useEntityDetailData = (
   }
 
   if (entity.staticLoad && !isDevelopment()) {
-    return { viewData: value, isLoading: false };
+    return { viewData: value, isLoading: false, apiData };
   }
 
   return {
