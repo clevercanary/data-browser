@@ -2,18 +2,18 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
 export const Container = styled.div`
-  display: flex;
   align-items: center;
+  display: flex;
   height: 100%;
 `;
 
 export const SloganContainer = styled.div`
-  display: flex;
   align-items: center;
+  border-left: 1px solid ${({ theme }) => theme.palette.colorSmoke};
+  display: flex;
+  height: 100%;
   margin-left: ${({ theme }) => theme.spacing(4)};
   padding-left: ${({ theme }) => theme.spacing(4)};
-  border-left: 1px solid ${({ theme }) => theme.palette.colorSmoke};
-  height: 100%;
 
   ${({ theme }) => `
     ${theme.breakpoints.down("lg")} {

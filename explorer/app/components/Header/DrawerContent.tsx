@@ -3,11 +3,7 @@ import React from "react";
 import { LogoProps } from "../Logo/Logo";
 import { NavLinksProps, NavLinks } from "../NavLinks/NavLinks";
 import { SocialLinksProps, SocialLinks } from "../SocialLinks/SocialLinks";
-import {
-  DrawerContainer,
-  SloganDrawerContainer,
-  SocialDrawerContainer,
-} from "./Header.styles";
+import { DrawerContainer } from "./Header.styles";
 
 interface DrawerContentProps {
   logo: LogoProps;
@@ -19,20 +15,29 @@ export const DrawerContent = ({
   logo,
   navLinks,
   socialLinks,
-}: DrawerContentProps) => {
+}: DrawerContentProps): JSX.Element => {
   return (
     <DrawerContainer>
       {logo.slogan && (
-        <SloganDrawerContainer>
-          <Typography variant="textBody400" component="span">
-            {logo.slogan}
-          </Typography>
-        </SloganDrawerContainer>
+        <Typography
+          variant="text-body-400"
+          component="div"
+          color={(theme) => theme.palette.colorInk}
+          pb={2}
+          px={6}
+        >
+          {logo.slogan}
+        </Typography>
       )}
       <NavLinks {...navLinks} />
-      <SocialDrawerContainer>
-        <SocialLinks {...socialLinks} />
-      </SocialDrawerContainer>
+      <SocialLinks
+        {...socialLinks}
+        sx={(theme) => ({
+          gap: theme.spacing(10),
+          px: theme.spacing(7),
+          color: theme.palette.colorInkLight,
+        })}
+      />
     </DrawerContainer>
   );
 };

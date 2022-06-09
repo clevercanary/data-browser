@@ -5,12 +5,12 @@ export const Container = styled.nav`
   display: flex;
 
   & > .MuiTypography-root {
-    margin: ${({ theme }) => theme.spacing(0, 2)};
-    color: ${({ theme }) => theme.palette.colorInk};
-    text-decoration: none;
-    padding: ${({ theme }) => theme.spacing(2, 2)};
-    box-sizing: border-box;
     border-radius: 4px;
+    box-sizing: border-box;
+    color: ${({ theme }) => theme.palette.colorInk};
+    margin: ${({ theme }) => theme.spacing(0, 2)};
+    padding: ${({ theme }) => theme.spacing(2, 2)};
+    text-decoration: none;
 
     &:hover {
       background-color: ${({ theme }) => theme.palette.colorSmokeLight};
@@ -24,7 +24,8 @@ export const Container = styled.nav`
           flex-direction: column;
 
           & > .MuiTypography-root {
-            padding: ${theme.spacing(4, 2)};
+            margin: 0;
+            padding: ${theme.spacing(4, 6)};
           }
         `.styles
       }
