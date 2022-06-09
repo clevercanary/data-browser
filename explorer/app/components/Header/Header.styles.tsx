@@ -13,21 +13,21 @@ const hideOnMobile = ({ theme }: { theme: Theme }) => css`
 `;
 
 export const Container = styled.div`
-  display: flex;
   align-items: center;
-  width: 100%;
-  height: ${HEADER_HEIGHT}px;
-  padding: ${({ theme }) => theme.spacing(3, 0, 3, 4)};
   background-color: white;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.07);
   box-sizing: border-box;
+  display: flex;
+  height: ${HEADER_HEIGHT}px;
+  padding: ${({ theme }) => theme.spacing(3, 0, 3, 4)};
+  width: 100%;
 `;
 
 export const Header = styled.header`
-  display: flex;
   align-items: center;
-  width: 100%;
+  display: flex;
   height: 100%;
+  width: 100%;
 `;
 
 interface LinksContainerProps {
@@ -35,18 +35,18 @@ interface LinksContainerProps {
 }
 
 export const LinksContainer = styled.div<LinksContainerProps>`
-  flex-grow: 1;
-  display: flex;
-  margin-left: ${({ theme, center }) => theme.spacing(center ? 0 : 9)};
-  justify-content: ${(props) => (props.center ? "center" : "flex-start")};
   ${hideOnMobile}
+  display: flex;
+  flex-grow: 1;
+  justify-content: ${(props) => (props.center ? "center" : "flex-start")};
+  margin-left: ${({ theme, center }) => theme.spacing(center ? 0 : 9)};
 `;
 
 export const LinksContent = styled.div``;
 
 export const SocialLinksContainer = styled.div`
-  margin-right: ${({ theme }) => theme.spacing(8)};
   ${hideOnMobile}
+  margin-right: ${({ theme }) => theme.spacing(8)};
 `;
 
 export const MenuButton = styled.div`
@@ -55,8 +55,8 @@ export const MenuButton = styled.div`
 `;
 
 export const MenuContainer = styled.div`
-  display: flex;
   ${hideOnMobile}
+  display: flex;
 `;
 
 export const DesktopContainer = styled.div`
@@ -81,13 +81,7 @@ export const MobileContainer = styled.div`
 `;
 
 export const DrawerContainer = styled.div`
-  padding: ${({ theme }) => theme.spacing(6, 2)};
-`;
-
-export const SocialDrawerContainer = styled.div`
-  margin: ${({ theme }) => theme.spacing(8)};
-`;
-
-export const SloganDrawerContainer = styled.div`
-  margin: ${({ theme }) => theme.spacing(0, 4, 3, 4)};
+  padding: ${({ theme }) => theme.spacing(6, 0)};
+  display: grid;
+  gap: ${({ theme }) => theme.spacing(2)};
 `;

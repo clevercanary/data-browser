@@ -70,7 +70,13 @@ export const Header = ({
             </LinksContent>
           </LinksContainer>
           <SocialLinksContainer>
-            <SocialLinks {...socialLinks} />
+            <SocialLinks
+              sx={(theme) => ({
+                gap: theme.spacing(6),
+                color: theme.palette.colorInkLight,
+              })}
+              {...socialLinks}
+            />
           </SocialLinksContainer>
           <MenuContainer>{renderMenuContent()}</MenuContainer>
         </DesktopContainer>

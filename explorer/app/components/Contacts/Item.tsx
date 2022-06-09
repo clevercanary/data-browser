@@ -12,19 +12,19 @@ export interface ItemProps {
 export const Item = ({ name, institution, email }: ItemProps): JSX.Element => {
   return (
     <ItemContainer>
-      <Text variant="textBody4002Lines" customColor="colorInk">
+      <Text variant="text-body-400-2lines" customColor="colorInk">
         {name}
       </Text>
       {institution && (
         <Text
-          variant="textBody4002Lines"
+          variant="text-body-400-2lines"
           customColor="colorInk"
         >{` (${institution})`}</Text>
       )}
       {email && (
         <Link href={`mailto:${email}`} passHref>
           <Text
-            variant="textBody4002Lines"
+            variant="text-body-400-2lines"
             component="a"
             customColor="colorPrimartAnvil"
           >

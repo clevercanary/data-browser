@@ -10,10 +10,10 @@ export interface ItemProps {
 export const Item = ({ label, value }: ItemProps): JSX.Element => {
   return (
     <ItemContainer>
-      <Text variant="textHeadingSmall" customColor="colorInk">
+      <Text variant="text-heading-small" customColor="colorInk">
         {value}
       </Text>
-      <Text variant="textBody400" customColor="colorInkLight">
+      <Text variant="text-body-400" customColor="colorInkLight">
         {label}
       </Text>
     </ItemContainer>

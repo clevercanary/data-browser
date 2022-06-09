@@ -12,7 +12,7 @@ export const Container = styled.div`
     padding-left: 0;
     color: ${({ theme }) => theme.palette.colorPrimartAnvil};
     font-weight: ${({ theme }) =>
-      theme.typography.textBody4002Lines.fontWeight};
+      theme.typography["text-body-400-2lines"].fontWeight};
   }
 `;
 

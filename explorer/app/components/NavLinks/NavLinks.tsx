@@ -17,7 +17,7 @@ export const NavLinks = ({ links }: NavLinksProps): JSX.Element => {
     <Container>
       {links.map((link) => (
         <Link key={link.url} href={link.url} passHref>
-          <Typography component="a" variant="textBody500">
+          <Typography component="a" variant="text-body-500">
             {link.label}
           </Typography>
         </Link>

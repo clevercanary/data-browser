@@ -10,11 +10,11 @@ export interface ItemProps {
 export const Item = ({ count, name }: ItemProps): JSX.Element => {
   return (
     <ItemContainer>
-      <Text variant="textBody4002Lines" customColor="colorInk">
+      <Text variant="text-body-400-2lines" customColor="colorInk">
         {name}
       </Text>
       <Text
-        variant="textBody4002Lines"
+        variant="text-body-400-2lines"
         customColor="colorPrimartAnvil"
       >{`${count} file(s)`}</Text>
     </ItemContainer>

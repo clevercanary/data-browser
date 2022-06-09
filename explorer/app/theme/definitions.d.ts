@@ -9,35 +9,70 @@ declare module "@mui/material/styles" {
   interface PaletteOptions extends CustomColors {}
 
   interface TypographyVariants {
-    textBody500: TypographyStyleOptions;
-    textBody400: TypographyStyleOptions;
-    textBody4002Lines: TypographyStyleOptions;
-    textHeadingSmall: TypographyStyleOptions;
+    "text-heading-xlarge": TypographyStyleOptions;
+    "text-heading-large": TypographyStyleOptions;
+    "text-heading": TypographyStyleOptions;
+    "text-heading-small": TypographyStyleOptions;
+    "text-body-large-500": TypographyStyleOptions;
+    "text-body-large-400": TypographyStyleOptions;
+    "text-body-large-400-2lines": TypographyStyleOptions;
+    "text-body-500": TypographyStyleOptions;
+    "text-body-400": TypographyStyleOptions;
+    "text-body-400-2lines": TypographyStyleOptions;
+    "text-body-small-500": TypographyStyleOptions;
+    "text-body-small-400": TypographyStyleOptions;
+    "TEXT-UPPERCASE-500": TypographyStyleOptions;
   }
   interface TypographyVariantsOptions {
-    textBody500: TypographyStyleOptions;
-    textBody400: TypographyStyleOptions;
-    textBody4002Lines: TypographyStyleOptions;
-    textHeadingSmall: TypographyStyleOptions;
+    "text-heading-xlarge": TypographyStyleOptions;
+    "text-heading-large": TypographyStyleOptions;
+    "text-heading": TypographyStyleOptions;
+    "text-heading-small": TypographyStyleOptions;
+    "text-body-large-500": TypographyStyleOptions;
+    "text-body-large-400": TypographyStyleOptions;
+    "text-body-large-400-2lines": TypographyStyleOptions;
+    "text-body-500": TypographyStyleOptions;
+    "text-body-400": TypographyStyleOptions;
+    "text-body-400-2lines": TypographyStyleOptions;
+    "text-body-small-500": TypographyStyleOptions;
+    "text-body-small-400": TypographyStyleOptions;
+    "TEXT-UPPERCASE-500": TypographyStyleOptions;
   }
   interface TypographyPropsVariantOverrides {
-    textBody500: true;
-    textBody400: true;
-    textBody4002Lines: true;
-    textHeadingSmall: true;
+    "text-heading-xlarge": true;
+    "text-heading-large": true;
+    "text-heading": true;
+    "text-heading-small": true;
+    "text-body-large-500": true;
+    "text-body-large-400": true;
+    "text-body-large-400-2lines": true;
+    "text-body-500": true;
+    "text-body-400": true;
+    "text-body-400-2lines": true;
+    "text-body-small-500": true;
+    "text-body-small-400": true;
+    "TEXT-UPPERCASE-500": true;
   }
 }
 
 // Update the Typography's variant prop options
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
-    textBody500: true;
-    textBody400: true;
-    textBody4002Lines: true;
-    textHeadingSmall: true;
+    "text-heading-xlarge": true;
+    "text-heading-large": true;
+    "text-heading": true;
+    "text-heading-small": true;
+    "text-body-large-500": true;
+    "text-body-large-400": true;
+    "text-body-large-400-2lines": true;
+    "text-body-500": true;
+    "text-body-400": true;
+    "text-body-400-2lines": true;
+    "text-body-small-500": true;
+    "text-body-small-400": true;
+    "TEXT-UPPERCASE-500": true;
   }
 }
-
 declare module "@emotion/react" {
   export interface Theme extends MuiTheme {
     name: "EmotionTheme";

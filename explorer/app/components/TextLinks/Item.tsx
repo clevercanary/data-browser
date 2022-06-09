@@ -11,13 +11,13 @@ export interface ItemProps {
 export const Item = ({ text, link }: ItemProps): JSX.Element => {
   return (
     <ItemContainer>
-      <Text variant="textBody4002Lines" customColor="colorInk">
+      <Text variant="text-body-400-2lines" customColor="colorInk">
         {text}
       </Text>
       {link && (
         <Link href={link.url} passHref>
           <Text
-            variant="textBody4002Lines"
+            variant="text-body-400-2lines"
             component="a"
             customColor="colorPrimartAnvil"
           >

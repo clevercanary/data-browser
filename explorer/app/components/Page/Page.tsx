@@ -14,7 +14,7 @@ interface PageProps {
   children: React.ReactNode | React.ReactNode[];
 }
 
-export const Page = ({ children }: PageProps) => {
+export const Page = ({ children }: PageProps): JSX.Element => {
   return (
     <Container>
       <Header {...config().layout.header} />
