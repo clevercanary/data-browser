@@ -74,7 +74,7 @@ export const theme = createTheme({
     },
     "text-body-400-2lines": {
       fontFamily: "Inter",
-      fontSize: 16,
+      fontSize: 14,
       lineHeight: "24px",
       fontWeight: 400,
     },
