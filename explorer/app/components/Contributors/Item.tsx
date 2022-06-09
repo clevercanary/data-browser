@@ -10,8 +10,8 @@ export interface ItemProps {
 export const Item = ({ name, citation, role }: ItemProps): JSX.Element => {
   return (
     <ItemContainer>
-      <Text variant="textBody400">{name}</Text>
-      {role && <Text variant="textBody400">{` (${role})`}</Text>}
+      <Text variant="text-body-400">{name}</Text>
+      {role && <Text variant="text-body-400">{` (${role})`}</Text>}
       {citation && <Citation>{citation}</Citation>}
     </ItemContainer>
   );

@@ -10,7 +10,7 @@ export const Item = ({ name, citation }: ItemProps): JSX.Element => {
   return (
     <ItemContainer>
       {citation && <Citation>{citation}</Citation>}
-      <Text variant="textBody400">{name}</Text>
+      <Text variant="text-body-400">{name}</Text>
     </ItemContainer>
   );
 };
