@@ -110,6 +110,58 @@ const config: SiteConfig = {
   detail: {
     components: [
       {
+        component: C.ShowMore,
+        props: {
+          maxLines: 3,
+        },
+        children: [
+          {
+            component: C.Citations,
+            props: {
+              citations: [
+                {
+                  value: "First citation",
+                  citation: "1",
+                },
+              ],
+            },
+          } as ComponentObject<typeof C.Citations>,
+          {
+            component: C.Citations,
+            props: {
+              citations: [
+                {
+                  value: "Second citation",
+                  citation: "2",
+                },
+              ],
+            },
+          } as ComponentObject<typeof C.Citations>,
+          {
+            component: C.Citations,
+            props: {
+              citations: [
+                {
+                  value: "Third citation",
+                  citation: "3",
+                },
+              ],
+            },
+          } as ComponentObject<typeof C.Citations>,
+          {
+            component: C.Citations,
+            props: {
+              citations: [
+                {
+                  value: "Fourth citation",
+                  citation: "4",
+                },
+              ],
+            },
+          } as ComponentObject<typeof C.Citations>,
+        ],
+      } as ComponentObject<typeof C.ShowMore, ProjectResponse>,
+      {
         component: C.Citations,
         props: {
           citations: [

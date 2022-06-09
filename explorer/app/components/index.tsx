@@ -1,3 +1,9 @@
 export { ShowMore } from "./ShowMore/ShowMore";
 export { Contacts } from "./Contacts/Contacts";
 export { Citations } from "./Citations/Citations";
+export { FileCounts } from "./FileCounts/FileCounts";
+export { IconList } from "./IconList/IconList";
+export { Logo } from "./Logo/Logo";
+export { StaticImage } from "./StaticImage/StaticImage";
+export { Text } from "./Text/Text";
+export { TextLinks } from "./TextLinks/TextLinks";

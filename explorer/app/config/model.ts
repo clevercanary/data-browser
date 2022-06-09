@@ -30,9 +30,9 @@ export interface ComponentObject<
   T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any> = any,
   D = any
 > {
-  component: JSX.Element | React.FC<any>;
+  component: React.FC<any>;
   props?: React.ComponentProps<T>;
-  children?: ComponentObject;
+  children?: ComponentObject[];
   transformer?: (model: D) => React.ComponentProps<T>;
 }
 

@@ -1,26 +1,23 @@
 /**
  * Container component that will wrap all presentational components used by an entity detail page
  */
+import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
 import { config } from "app/config/config";
 import { useEntityDetailData } from "app/hooks/useEntityData";
-import { DetailResponseType } from "app/models/responses";
 import React from "react";
 import { PrettyJSON } from "../../components/PrettyJSON/PrettyJSON";
 import { DetailViewModel } from "../../models/viewModels";
 
-const getComponents = (detail: DetailResponseType) => {
-  const components = config().detail?.components;
-  return components?.map((c) => {
-    const props = c.transformer ? c.transformer(detail) : c.props;
-    return React.createElement(c.component as any, { ...props });
-  });
-};
-
 export const DetailContainer = (props: DetailViewModel) => {
   const { data, isLoading, apiData } = useEntityDetailData(props);
+  const components = config().detail?.components;
 
   if (isLoading || !data || !apiData) {
     return <span>LOADING...</span>; //TODO: return the loading UI component
+  }
+
+  if (!components) {
+    return null;
   }
 
   const { detailName, json } = data;
@@ -28,7 +25,7 @@ export const DetailContainer = (props: DetailViewModel) => {
   return (
     <>
       <h1>{detailName}</h1>
-      {getComponents(apiData!)}
+      <ComponentCreator components={components} detail={apiData!} />
       {json && <PrettyJSON value={json} />}
     </>
   );
