@@ -1,4 +1,4 @@
-import { ComponentObject, SiteConfig } from "../../../app/config/model";
+import { SiteConfig } from "../../../app/config/model";
 import HcaLogo from "images/hca-logo.png";
 import {
   projectListToView,
@@ -9,9 +9,8 @@ import {
   sampleDetailToView,
   getProjectId,
 } from "app/transformers/hca";
-import * as C from "../../../app/components";
-import * as T from "./transformer";
-import { ProjectResponse } from "app/models/responses";
+import { sideColumn } from "./sideColumn";
+import { mainColumn } from "./mainColumn";
 
 const config: SiteConfig = {
   redirectRootToPath: "/explore/projects",
@@ -108,75 +107,8 @@ const config: SiteConfig = {
     },
   },
   detail: {
-    components: [
-      {
-        component: C.ShowMore,
-        props: {
-          maxLines: 3,
-        },
-        children: [
-          {
-            component: C.Citations,
-            props: {
-              citations: [
-                {
-                  value: "First citation",
-                  citation: "1",
-                },
-              ],
-            },
-          } as ComponentObject<typeof C.Citations>,
-          {
-            component: C.Citations,
-            props: {
-              citations: [
-                {
-                  value: "Second citation",
-                  citation: "2",
-                },
-              ],
-            },
-          } as ComponentObject<typeof C.Citations>,
-          {
-            component: C.Citations,
-            props: {
-              citations: [
-                {
-                  value: "Third citation",
-                  citation: "3",
-                },
-              ],
-            },
-          } as ComponentObject<typeof C.Citations>,
-          {
-            component: C.Citations,
-            props: {
-              citations: [
-                {
-                  value: "Fourth citation",
-                  citation: "4",
-                },
-              ],
-            },
-          } as ComponentObject<typeof C.Citations>,
-        ],
-      } as ComponentObject<typeof C.ShowMore, ProjectResponse>,
-      {
-        component: C.Citations,
-        props: {
-          citations: [
-            {
-              value: "tedasdads",
-              citation: "1",
-            },
-          ],
-        },
-      } as ComponentObject<typeof C.Citations>,
-      {
-        component: C.Contacts,
-        transformer: T.projectToContacts,
-      } as ComponentObject<typeof C.Contacts, ProjectResponse>,
-    ],
+    sideColumn: sideColumn,
+    mainColumn: mainColumn,
   },
 };
 

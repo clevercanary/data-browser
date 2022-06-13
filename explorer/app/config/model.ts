@@ -47,6 +47,7 @@ export interface SiteConfig {
   };
   entities: EntityConfig[];
   detail?: {
-    components: ComponentObject[];
+    mainColumn: ComponentObject[];
+    sideColumn: ComponentObject[];
   };
 }
