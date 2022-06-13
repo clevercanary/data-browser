@@ -13,7 +13,7 @@ import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/header";
 
 // Styles
-import { Container, Content } from "./Page.styles";
+import { Container, Content } from "./page.styles";
 
 interface PageProps {
   children: React.ReactNode | React.ReactNode[];

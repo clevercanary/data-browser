@@ -136,6 +136,7 @@ export const theme = createTheme(defaultTheme, {
             minWidth: 0,
             padding: "12px 24px",
             textTransform: "capitalize",
+            whiteSpace: "nowrap",
             "&:hover": {
               backgroundColor: defaultTheme.palette.smokeLight,
             },

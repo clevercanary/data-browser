@@ -12,15 +12,14 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 // App dependencies
 import { ELEMENT_ALIGNMENT } from "../../common/entities";
-import { DrawerContent } from "./drawerContent";
 import { Logo, LogoProps } from "../Logo/logo";
 import { NavAlignment, NavLinks, NavLinksProps } from "../NavLinks/navLinks";
-import { ProfileComponent } from "../ProfileComponent/ProfileComponent";
-import { Search } from "../Search/Search";
+import { ProfileComponent } from "../ProfileComponent/profileComponent";
+import { Search } from "../Search/search";
 import { SocialLinks, SocialLinksProps } from "../SocialLinks/socialLinks";
 
 // Template variables
@@ -46,55 +45,81 @@ export const Header = ({
   socialLinks,
 }: HeaderProps): JSX.Element => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const desktopOnly = useMediaQuery((theme: Theme) =>
-    theme.breakpoints.up("lg")
-  );
+  const desktop = useMediaQuery((theme: Theme) => theme.breakpoints.up("lg"));
+  const HeaderContent = desktop ? Fragment : Drawer;
+  const HeaderContentContainer = desktop ? Fragment : Box;
+  const contentProps = desktop
+    ? {}
+    : {
+        hideBackdrop: true,
+        ModalProps: { sx: { top: `${HEADER_HEIGHT}px` } },
+        onClose: () => setDrawerOpen(false),
+        open: drawerOpen,
+        PaperProps: {
+          elevation: 0,
+          sx: { marginTop: HEADER_HEIGHT / 4, width: "100%" },
+        },
+      };
+  const contentContainerProps = desktop
+    ? undefined
+    : { sx: { display: "grid", gap: 2, py: 4 } };
 
   // Set drawer open state to false on change of media breakpoint from mobile to desktop.
   useEffect(() => {
-    if (desktopOnly) {
+    if (desktop) {
       setDrawerOpen(false);
     }
-  }, [desktopOnly]);
+  }, [desktop]);
 
   return (
     <AppBar sx={{ borderBottom: 1, borderColor: "smoke" }}>
       <Toolbar sx={{ gap: 4, height: HEADER_HEIGHT }} variant="dense">
-        {/* TODO(cc) review props and corresponding interface */}
+        {/* Logo */}
         <Logo {...logo} />
-        {slogan && desktopOnly && (
-          <>
-            <Divider
-              orientation="vertical"
-              sx={{ borderColor: "smoke", maxHeight: 32 }}
-            />
-            <Typography
-              component="span"
-              color="ink"
-              fontSize={12}
-              letterSpacing="normal"
-              lineHeight="18px"
-              sx={{ maxWidth: 180 }}
-            >
-              {slogan}
-            </Typography>
-          </>
-        )}
-        {desktopOnly && (
-          <>
+        <HeaderContent {...contentProps}>
+          <HeaderContentContainer {...contentContainerProps}>
+            {/* Slogan divider */}
+            {slogan && desktop && (
+              <Divider
+                orientation="vertical"
+                sx={{ borderColor: "smoke", maxHeight: 32 }}
+              />
+            )}
+            {/* Slogan */}
+            {slogan && (
+              <Typography
+                component="div"
+                color="ink"
+                sx={
+                  desktop
+                    ? { fontSize: 12, lineHeight: "18px", maxWidth: 180 }
+                    : { px: 6, py: 2 }
+                }
+                variant={desktop ? undefined : "text-body-400"}
+              >
+                {slogan}
+              </Typography>
+            )}
+            {/* Nav links */}
             <NavLinks
               center={navAlignment === ELEMENT_ALIGNMENT.CENTER}
               links={navLinks.links}
             />
+            {/* Socials */}
             <SocialLinks
               buttonColor="inkLight"
-              buttonSize="small"
-              sx={{ gap: 2 }}
+              buttonSize={desktop ? "small" : "xlarge"}
+              sx={{
+                gap: desktop ? 2 : 4,
+                px: desktop ? undefined : 4,
+                py: desktop ? undefined : 2,
+              }}
               {...socialLinks}
             />
-          </>
-        )}
-        {(searchEnabled || authenticationEnabled || !desktopOnly) && (
+          </HeaderContentContainer>
+        </HeaderContent>
+        {/* Actions */}
+        {(searchEnabled || authenticationEnabled || !desktop) && (
           <Box
             sx={{
               alignItems: "center",
@@ -104,9 +129,12 @@ export const Header = ({
               justifyContent: "flex-end",
             }}
           >
+            {/* Search */}
             {searchEnabled && <Search />}
+            {/* Login */}
             {authenticationEnabled && <ProfileComponent />}
-            {!desktopOnly && (
+            {/* Menu */}
+            {!desktop && (
               <IconButton
                 aria-label="drawer"
                 color="ink"
@@ -118,23 +146,6 @@ export const Header = ({
           </Box>
         )}
       </Toolbar>
-      <Drawer
-        hideBackdrop
-        ModalProps={{ sx: { top: `${HEADER_HEIGHT}px` } }}
-        onClose={() => setDrawerOpen(false)}
-        open={drawerOpen}
-        PaperProps={{
-          elevation: 0,
-          sx: { marginTop: HEADER_HEIGHT / 4, width: "100%" },
-        }}
-        variant="temporary"
-      >
-        <DrawerContent
-          navLinks={navLinks}
-          slogan={slogan}
-          socialLinks={socialLinks}
-        />
-      </Drawer>
     </AppBar>
   );
 };
