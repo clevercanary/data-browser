@@ -1,6 +1,9 @@
+// Core dependencies
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { SocialLinks } from "./SocialLinks";
+
+// App dependencies
+import { SocialLinks } from "./socialLinks";
 
 export default {
   title: "Components/SocialLinks",

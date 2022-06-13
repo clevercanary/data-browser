@@ -6,21 +6,22 @@
  * a relative path from /images
  * These images will be optimized at the build time by next-optimized-images
  */
+// Core dependencies
 import { StaticImageData } from "next/image";
 import React from "react";
 
 export interface StaticImageProps {
+  alt: string;
+  height?: number;
   src: StaticImageData;
   width?: number;
-  height?: number;
-  alt: string;
 }
 
 export const StaticImage = ({
+  alt,
+  height,
   src,
   width,
-  height,
-  alt,
 }: StaticImageProps): JSX.Element => {
-  return <img src={src as any} alt={alt} width={width} height={height} />;
+  return <img alt={alt} height={height} src={src as any} width={width} />;
 };

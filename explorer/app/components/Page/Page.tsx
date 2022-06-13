@@ -3,11 +3,16 @@
  * Header and Footer will be configurable through props.
  */
 
+// Core dependencies
 import React from "react";
-import { config } from "../../config/config";
+
+// App dependencies
 import { Body } from "../Body/Body";
+import { config } from "../../config/config";
 import { Footer } from "../Footer/Footer";
-import { Header } from "../Header/Header";
+import { Header } from "../Header/header";
+
+// Styles
 import { Container, Content } from "./Page.styles";
 
 interface PageProps {

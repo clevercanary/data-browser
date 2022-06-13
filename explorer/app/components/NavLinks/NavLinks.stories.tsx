@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { NavLinks } from "./NavLinks";
+import { NavLinks } from "./navLinks";
 
 export default {
   title: "Components/NavLinks",

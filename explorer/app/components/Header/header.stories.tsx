@@ -1,9 +1,10 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Header } from "./Header";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Header } from "./header";
 import HcaLogo from "../../../images/hca-logo.png";
 import AnvilLogo from "../../../images/anvil-logo.png";
 import LungMapLogo from "../../../images/lungmap-logo.png";
+import { ELEMENT_ALIGNMENT } from "../../common/entities";
 
 export default {
   title: "Components/Header",
@@ -12,8 +13,12 @@ export default {
     authenticationEnabled: { control: "boolean" },
     searchEnabled: { control: "boolean" },
     logo: { control: "object" },
-    navAlignment: { control: "select", options: ["left", "center"] },
+    navAlignment: {
+      control: "select",
+      options: [ELEMENT_ALIGNMENT.LEFT, ELEMENT_ALIGNMENT.CENTER],
+    },
     navLinks: { control: "array" },
+    slogan: { control: "text" },
     socialLinks: { control: "array" },
   },
 } as ComponentMeta<typeof Header>;
@@ -25,11 +30,11 @@ Anvil.args = {
   authenticationEnabled: false,
   searchEnabled: true,
   logo: {
-    slogan: "NHGRI Analysis Visualization and Informatics Lab-space",
-    url: AnvilLogo,
     alt: "NHGRI Analysis Visualization and Informatics Lab-space",
+    height: 40,
+    url: AnvilLogo,
   },
-  navAlignment: "center",
+  navAlignment: ELEMENT_ALIGNMENT.CENTER,
   navLinks: {
     links: [
       {
@@ -66,6 +71,7 @@ Anvil.args = {
       },
     ],
   },
+  slogan: "NHGRI Analysis Visualization and Informatics Lab-space",
   socialLinks: {
     links: [
       {
@@ -93,10 +99,11 @@ HCA.args = {
   authenticationEnabled: true,
   searchEnabled: true,
   logo: {
-    url: HcaLogo,
     alt: "Anvil",
+    height: 40,
+    url: HcaLogo,
   },
-  navAlignment: "left",
+  navAlignment: ELEMENT_ALIGNMENT.LEFT,
   navLinks: {
     links: [
       {
@@ -133,6 +140,7 @@ HCA.args = {
       },
     ],
   },
+  slogan: undefined,
   socialLinks: {
     links: [
       {
@@ -155,10 +163,11 @@ LungMap.args = {
   authenticationEnabled: false,
   searchEnabled: true,
   logo: {
-    url: LungMapLogo,
     alt: "LungMap",
+    height: 40,
+    url: LungMapLogo,
   },
-  navAlignment: "left",
+  navAlignment: ELEMENT_ALIGNMENT.LEFT,
   navLinks: {
     links: [
       {
@@ -175,6 +184,7 @@ LungMap.args = {
       },
     ],
   },
+  slogan: undefined,
   socialLinks: {
     links: [
       {

@@ -20,6 +20,7 @@ const Template: ComponentStory<typeof StaticImage> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  src: HcaLogo,
   alt: "NHGRI Analysis Visualization and Informatics Lab-space",
+  height: 40,
+  src: HcaLogo,
 };

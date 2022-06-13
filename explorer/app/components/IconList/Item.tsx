@@ -19,7 +19,7 @@ export const Item = ({ label, icon }: ItemProps): JSX.Element => {
         <StaticImage src={icon.path} alt={icon.alt} />
       </IconContainer>
       {label && (
-        <Text variant="text-body-400" customColor="colorInk">
+        <Text variant="text-body-400" customColor="ink">
           {label}
         </Text>
       )}

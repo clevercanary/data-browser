@@ -1,16 +1,21 @@
-import React from "react";
-import { StyledButton, StyledIconButton } from "./Search.styles";
+// Core dependencies
 import SearchIcon from "@mui/icons-material/Search";
+import { Button, IconButton, Theme, useMediaQuery } from "@mui/material";
+import React from "react";
 
 export const Search = (): JSX.Element => {
+  const desktop = useMediaQuery((theme: Theme) => theme.breakpoints.up("lg"));
   return (
     <>
-      <StyledButton variant="text" startIcon={<SearchIcon />}>
-        Search
-      </StyledButton>
-      <StyledIconButton>
-        <SearchIcon fontSize="small" />
-      </StyledIconButton>
+      {desktop ? (
+        <Button startIcon={<SearchIcon />} variant="nav">
+          Search
+        </Button>
+      ) : (
+        <IconButton color="ink">
+          <SearchIcon />
+        </IconButton>
+      )}
     </>
   );
 };
