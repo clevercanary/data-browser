@@ -4,22 +4,28 @@ import Link from "next/link";
 import React from "react";
 
 // App dependencies
-import { StaticImage } from "../StaticImage/StaticImage";
+import { StaticImage } from "../../../StaticImage/StaticImage";
 
 export interface LogoProps {
   alt: string;
   height?: number;
-  url: StaticImageData;
+  imgSrc: StaticImageData;
+  link: string;
   width?: number;
 }
 
-export const Logo = ({ alt, height, url, width }: LogoProps): JSX.Element => {
+export const Logo = ({
+  alt,
+  height,
+  imgSrc,
+  link,
+  width,
+}: LogoProps): JSX.Element => {
   return (
     <>
-      {/* TODO(cc) configure logo href */}
-      <Link href="/" passHref>
+      <Link href={link} passHref>
         <a href="passHref">
-          <StaticImage alt={alt} height={height} src={url} width={width} />
+          <StaticImage alt={alt} height={height} src={imgSrc} width={width} />
         </a>
       </Link>
     </>

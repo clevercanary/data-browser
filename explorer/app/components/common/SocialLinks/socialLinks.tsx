@@ -10,8 +10,8 @@ import Link from "next/link";
 import React from "react";
 
 // App dependencies
-import { IconName } from "../common/CustomIcon/common/iconSvgPathShapes";
-import { CustomIcon } from "../common/CustomIcon/customIcon";
+import { IconName } from "../CustomIcon/common/iconSvgPathShapes";
+import { CustomIcon } from "../CustomIcon/customIcon";
 
 interface SocialLinkItem {
   type: IconName;

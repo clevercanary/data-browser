@@ -32,7 +32,8 @@ Anvil.args = {
   logo: {
     alt: "NHGRI Analysis Visualization and Informatics Lab-space",
     height: 40,
-    url: AnvilLogo,
+    imgSrc: AnvilLogo,
+    link: "/",
   },
   navAlignment: ELEMENT_ALIGNMENT.CENTER,
   navLinks: {
@@ -101,7 +102,8 @@ HCA.args = {
   logo: {
     alt: "Anvil",
     height: 40,
-    url: HcaLogo,
+    imgSrc: HcaLogo,
+    link: "/explore/projects",
   },
   navAlignment: ELEMENT_ALIGNMENT.LEFT,
   navLinks: {
@@ -165,7 +167,8 @@ LungMap.args = {
   logo: {
     alt: "LungMap",
     height: 40,
-    url: LungMapLogo,
+    imgSrc: LungMapLogo,
+    link: "/",
   },
   navAlignment: ELEMENT_ALIGNMENT.LEFT,
   navLinks: {

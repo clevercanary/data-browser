@@ -19,7 +19,8 @@ const config: SiteConfig = {
       logo: {
         alt: "Human Cell Atlas Data Coordination Platform",
         height: 40,
-        url: HcaLogo,
+        imgSrc: HcaLogo,
+        link: "/explore/projects",
       },
       navAlignment: ELEMENT_ALIGNMENT.LEFT,
       navLinks: {

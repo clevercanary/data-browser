@@ -16,11 +16,18 @@ import React, { Fragment, useEffect, useState } from "react";
 
 // App dependencies
 import { ELEMENT_ALIGNMENT } from "../../common/entities";
-import { Logo, LogoProps } from "../Logo/logo";
-import { NavAlignment, NavLinks, NavLinksProps } from "../NavLinks/navLinks";
-import { ProfileComponent } from "../ProfileComponent/profileComponent";
-import { Search } from "../Search/search";
-import { SocialLinks, SocialLinksProps } from "../SocialLinks/socialLinks";
+import { Logo, LogoProps } from "./components/Logo/logo";
+import {
+  NavAlignment,
+  NavLinks,
+  NavLinksProps,
+} from "./components/NavLinks/navLinks";
+import { ProfileComponent } from "./components/ProfileComponent/profileComponent";
+import { Search } from "./components/Search/search";
+import {
+  SocialLinks,
+  SocialLinksProps,
+} from "../common/SocialLinks/socialLinks";
 
 // Template variables
 export const HEADER_HEIGHT = 56;
@@ -61,7 +68,7 @@ export const Header = ({
         },
       };
   const contentContainerProps = desktop
-    ? undefined
+    ? {}
     : { sx: { display: "grid", gap: 2, py: 4 } };
 
   // Set drawer open state to false on change of media breakpoint from mobile to desktop.

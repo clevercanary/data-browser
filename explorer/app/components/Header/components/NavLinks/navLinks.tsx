@@ -4,9 +4,9 @@ import Link from "next/link";
 import React from "react";
 
 // App dependencies
-import { ELEMENT_ALIGNMENT } from "../../common/entities";
+import { ELEMENT_ALIGNMENT } from "../../../../common/entities";
 
-export type NavAlignment = Exclude<ELEMENT_ALIGNMENT, ELEMENT_ALIGNMENT.RIGHT>;
+export type NavAlignment = Omit<ELEMENT_ALIGNMENT, ELEMENT_ALIGNMENT.RIGHT>;
 
 export interface NavLinkItem {
   label: string;
