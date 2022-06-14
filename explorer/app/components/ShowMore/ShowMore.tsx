@@ -14,8 +14,8 @@ export const ShowMore = ({
   children,
   maxLines,
   lineHeight = 23,
-  buttonLabelShow = "Show More",
-  buttonLabelHide = "Show Less",
+  buttonLabelShow = "Read More",
+  buttonLabelHide = "Hide",
 }: ShowMoreProps): JSX.Element => {
   const [open, setOpen] = useState(false);
   return (
