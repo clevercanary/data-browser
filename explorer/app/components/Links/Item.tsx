@@ -3,6 +3,7 @@ import ContentCopy from "@mui/icons-material/ContentCopy";
 import Link from "next/link";
 import React, { useState } from "react";
 import copy from "copy-to-clipboard";
+import { Text } from "../Text/Text";
 
 interface ItemProps {
   link: { url: string; label: string };
@@ -29,7 +30,13 @@ export const Item = ({
   return (
     <Box display="flex">
       <Link href={link.url} passHref>
-        <a>{`${number !== undefined ? `${number}. ` : ""} ${link.label}`}</a>
+        <Text
+          variant="text-body-400-2lines"
+          component="a"
+          customColor="colorPrimartAnvil"
+        >
+          {`${number !== undefined ? `${number}. ` : ""} ${link.label}`}
+        </Text>
       </Link>
       {showCopyButton && (
         <ClickAwayListener onClickAway={handleCloseTooltip}>

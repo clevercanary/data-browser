@@ -46,6 +46,7 @@ export interface ProjectResponse {
     projectDescription: string;
     contributedAnalyses: object;
     estimatedCellCount: number;
+    supplementaryLinks: string[];
     contributors: {
       correspondingContributor?: boolean;
       contactName: string;

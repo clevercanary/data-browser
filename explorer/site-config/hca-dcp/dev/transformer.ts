@@ -3,6 +3,7 @@ import { ProjectResponse } from "app/models/responses";
 import * as C from "../../../app/components";
 import { ENTRIES } from "app/project-edits";
 import { concatStrings } from "app/utils/string";
+import { isSSR } from "app/utils/ssr";
 
 const getOrganizations = (project: ProjectResponse): string[] => {
   return Array.from(
@@ -327,6 +328,76 @@ export const projectsToProjDescription = (
     variant: "text-body-400-2lines",
     customColor: "colorInk",
     children: project.projects[0].projectDescription,
+  };
+};
+
+export const projectsToSupplementaryLinksLabel = (): React.ComponentProps<
+  typeof C.Text
+> => {
+  return {
+    variant: "text-body-400-2lines",
+    customColor: "colorInk",
+    children: `To reference this Supplementary links are provided by contributors and represent items
+     such as additional data which can’t be hosted here; code that was used to analyze this data; or
+     tools and visualizations associated with this specific dataset.project, please use the following link:`,
+  };
+};
+
+export const projectsToCitationsLabel = (): React.ComponentProps<
+  typeof C.Text
+> => {
+  return {
+    variant: "text-body-400-2lines",
+    customColor: "colorInk",
+    children: `To reference this project, please use the following link:`,
+  };
+};
+
+export const projectsToCitations = (
+  project: ProjectResponse
+): React.ComponentProps<typeof C.Links> => {
+  return {
+    links: [
+      {
+        label: `https://data.humancellatlas.org/explore/projects/${project.projects[0].projectId}`,
+        url: `https://data.humancellatlas.org/explore/projects/${project.projects[0].projectId}`,
+      },
+    ],
+  };
+};
+
+export const projectsToDataRlsPolicy = (): React.ComponentProps<
+  typeof C.TextLinks
+> => {
+  return {
+    values: [
+      {
+        text: "For information regarding data sharing and data use, please see our ",
+        link: {
+          label: "HCA Data Release Policy",
+          url: "https://www.humancellatlas.org/data-release-policy/",
+        },
+      },
+    ],
+  };
+};
+
+export const projectsToSupplementaryLinks = (
+  project: ProjectResponse
+): React.ComponentProps<typeof C.Links> => {
+  if (!project) {
+    return { links: [] };
+  }
+
+  return {
+    enumerate: true,
+    showCopyButton: true,
+    links: project.projects[0].supplementaryLinks
+      .filter((value) => !!value)
+      .map((link) => ({
+        label: link,
+        url: link,
+      })),
   };
 };
 

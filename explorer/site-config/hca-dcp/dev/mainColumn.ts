@@ -79,6 +79,73 @@ export const mainColumn = [
           } as ComponentObject<typeof C.TextLinks, ProjectResponse>,
         ],
       } as ComponentObject<typeof C.Section, ProjectResponse>,
+      {
+        component: C.Section,
+        props: {
+          title: "Citation",
+        },
+        children: [
+          {
+            component: C.Stack,
+            props: {
+              gap: 1,
+            },
+            children: [
+              {
+                component: C.Text,
+                transformer: T.projectsToCitationsLabel,
+              } as ComponentObject<typeof C.Text>,
+              {
+                component: C.Links,
+                props: {
+                  showCopyButton: true,
+                },
+                transformer: T.projectsToCitations,
+              } as ComponentObject<typeof C.Links>,
+            ],
+          } as ComponentObject<typeof C.Stack>,
+        ],
+      } as ComponentObject<typeof C.Section, ProjectResponse>,
+      {
+        component: C.Section,
+        props: {
+          title: "Supplementary Links",
+        },
+        children: [
+          {
+            component: C.Stack,
+            props: {
+              gap: 2,
+            },
+            children: [
+              {
+                component: C.Text,
+                transformer: T.projectsToSupplementaryLinksLabel,
+              } as ComponentObject<typeof C.Text>,
+              {
+                component: C.Links,
+                props: {
+                  showCopyButton: true,
+                  enumerate: true,
+                },
+                transformer: T.projectsToSupplementaryLinks,
+              } as ComponentObject<typeof C.Links>,
+            ],
+          } as ComponentObject<typeof C.Stack>,
+        ],
+      } as ComponentObject<typeof C.Section, ProjectResponse>,
+      {
+        component: C.Section,
+        props: {
+          title: "Data Release Policy",
+        },
+        children: [
+          {
+            component: C.TextLinks,
+            transformer: T.projectsToDataRlsPolicy,
+          } as ComponentObject<typeof C.TextLinks>,
+        ],
+      } as ComponentObject<typeof C.Section, ProjectResponse>,
     ],
   } as ComponentObject<typeof C.Stack, ProjectResponse>,
 ];
