@@ -1,16 +1,16 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { StaticImage } from "./StaticImage";
-import HcaLogo from "../../../images/hca-logo.png";
+import { StaticImage } from "./staticImage";
+import HcaLogo from "../../../../images/hca-logo.png";
 
 export default {
   title: "Components/StaticImage",
   component: StaticImage,
   argTypes: {
-    src: { control: "text" },
     alt: { control: "text" },
-    width: { control: "number" },
     height: { control: "number" },
+    src: { control: "text" },
+    width: { control: "number" },
   },
 } as ComponentMeta<typeof StaticImage>;
 

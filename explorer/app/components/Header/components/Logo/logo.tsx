@@ -1,31 +1,30 @@
 // Core dependencies
-import { StaticImageData } from "next/image";
 import Link from "next/link";
 import React from "react";
 
 // App dependencies
-import { StaticImage } from "../../../StaticImage/StaticImage";
+import { ImageSrc, StaticImage } from "../../../common/StaticImage/staticImage";
 
 export interface LogoProps {
   alt: string;
   height?: number;
-  imgSrc: StaticImageData;
   link: string;
+  src: ImageSrc;
   width?: number;
 }
 
 export const Logo = ({
   alt,
   height,
-  imgSrc,
   link,
+  src,
   width,
 }: LogoProps): JSX.Element => {
   return (
     <>
       <Link href={link} passHref>
         <a href="passHref">
-          <StaticImage alt={alt} height={height} src={imgSrc} width={width} />
+          <StaticImage alt={alt} height={height} src={src} width={width} />
         </a>
       </Link>
     </>

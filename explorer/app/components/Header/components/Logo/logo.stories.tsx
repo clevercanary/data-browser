@@ -11,8 +11,8 @@ export default {
   argTypes: {
     alt: { control: "text" },
     height: { control: "number" },
-    imgSrc: { control: "text" },
     link: { control: "text" },
+    src: { control: "text" },
     width: { control: "number" },
   },
 } as ComponentMeta<typeof Logo>;
@@ -23,8 +23,8 @@ export const Anvil = Template.bind({});
 Anvil.args = {
   alt: "NHGRI Analysis Visualization and Informatics Lab-space",
   height: 40,
-  imgSrc: AnvilLogo,
   link: "/",
+  src: AnvilLogo,
 };
 
 export const HCA = Template.bind({});
@@ -32,8 +32,8 @@ HCA.args = {
   ...Anvil.args,
   alt: "HCA",
   height: 40,
-  imgSrc: HcaLogo,
   link: "/explore/projects",
+  src: HcaLogo,
 };
 
 export const LungMap = Template.bind({});
@@ -41,6 +41,6 @@ LungMap.args = {
   ...Anvil.args,
   alt: "LungMap",
   height: 40,
-  imgSrc: LungMapLogo,
   link: "/explore/projects",
+  src: LungMapLogo,
 };

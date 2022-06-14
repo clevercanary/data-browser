@@ -1,13 +1,12 @@
-import { StaticImageData } from "next/image";
 import React from "react";
-import { StaticImage } from "../StaticImage/StaticImage";
+import { ImageSrc, StaticImage } from "../common/StaticImage/staticImage";
 import { Text } from "../Text/Text";
 import { IconContainer, ItemContainer } from "./IconList.styles";
 
 export interface ItemProps {
   label?: string;
   icon: {
-    path: StaticImageData;
+    path: ImageSrc;
     alt: string;
   };
 }

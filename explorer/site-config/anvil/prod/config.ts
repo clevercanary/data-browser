@@ -18,8 +18,8 @@ const config: SiteConfig = {
       logo: {
         alt: "NHGRI Analysis Visualization and Informatics Lab-space",
         height: 40,
-        imgSrc: AnvilLogo,
         link: "/",
+        src: AnvilLogo,
       },
       navAlignment: ELEMENT_ALIGNMENT.CENTER,
       navLinks: {

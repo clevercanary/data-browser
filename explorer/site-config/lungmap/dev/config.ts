@@ -51,8 +51,8 @@ const config: SiteConfig = {
       logo: {
         alt: "LungMAP Data Browser",
         height: 40,
-        imgSrc: LungMapLogo,
         link: "/explore/projects",
+        src: LungMapLogo,
       },
       navAlignment: ELEMENT_ALIGNMENT.LEFT,
       navLinks: {
