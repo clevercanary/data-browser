@@ -137,6 +137,18 @@ export const mainColumn = [
       {
         component: C.Section,
         props: {
+          title: "Accessions",
+        },
+        children: [
+          {
+            component: C.TextLinks,
+            transformer: T.projectsToAccessions,
+          } as ComponentObject<typeof C.TextLinks>,
+        ],
+      } as ComponentObject<typeof C.Section, ProjectResponse>,
+      {
+        component: C.Section,
+        props: {
           title: "Data Release Policy",
         },
         children: [

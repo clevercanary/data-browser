@@ -71,6 +71,7 @@ export const projectsToDataCurators = (
   };
 };
 
+// TODO: These values are hardcoded for now, but we should be able to get them from the API
 export const projectsToAccessions = (
   project: ProjectResponse
 ): React.ComponentProps<typeof C.TextLinks> => {
@@ -79,7 +80,15 @@ export const projectsToAccessions = (
   }
 
   return {
-    values: [],
+    values: [
+      {
+        text: "Array Express Accessions: ",
+        link: {
+          label: "E-MTAB-8581",
+          url: "https://www.ebi.ac.uk/arrayexpress/access/experiments/E-MTAB-8581",
+        },
+      },
+    ],
   };
 };
 
