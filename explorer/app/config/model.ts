@@ -1,5 +1,5 @@
 import { DetailResponseType, ListResponseType } from "app/models/responses";
-import { DetailViewModel, ListViewModel } from "app/models/viewModels";
+import { DetailModel, ListViewModel } from "app/models/viewModels";
 import { HeaderProps } from "../components/Header/header";
 import { JSXElementConstructor } from "react";
 
@@ -9,7 +9,7 @@ type ListTransformerFunction<T extends ListResponseType> = (
 
 type DetailTransformerFunction<T extends DetailResponseType> = (
   response: T
-) => DetailViewModel;
+) => DetailModel;
 
 type GetIdFunction<T extends DetailResponseType> = (detail: T) => string;
 

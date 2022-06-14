@@ -126,7 +126,7 @@ export const projectsToProjectLabel = (
 export const projectsToSpecies = (
   project: ProjectResponse
 ): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project) {
+  if (!project.donorOrganisms?.[0]?.genusSpecies) {
     return { label: "Species", value: "None" };
   }
 
@@ -152,7 +152,7 @@ export const projectsToSampleType = (
 export const projectsToAnatomicalEntity = (
   project: ProjectResponse
 ): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project) {
+  if (!project.samples?.[0]?.organ) {
     return { label: "Anatomical Entity", value: "None" };
   }
 
@@ -165,7 +165,7 @@ export const projectsToAnatomicalEntity = (
 export const projectsToOrganPart = (
   project: ProjectResponse
 ): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project) {
+  if (!project.samples?.[0]?.organPart) {
     return { label: "Organ Part", value: "None" };
   }
 
@@ -178,7 +178,7 @@ export const projectsToOrganPart = (
 export const projectsToDiseaseSpecimen = (
   project: ProjectResponse
 ): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project) {
+  if (!project.samples?.[0]?.disease) {
     return { label: "Disease Status (Specimen)", value: "None" };
   }
 
@@ -191,7 +191,7 @@ export const projectsToDiseaseSpecimen = (
 export const projectsToDiseaseDonor = (
   project: ProjectResponse
 ): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project) {
+  if (!project.donorOrganisms?.[0]?.disease) {
     return { label: "Disease Status (Donor)", value: "None" };
   }
 
@@ -204,7 +204,7 @@ export const projectsToDiseaseDonor = (
 export const projectsToDevelopmentStage = (
   project: ProjectResponse
 ): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project) {
+  if (!project.donorOrganisms?.[0]?.developmentStage) {
     return { label: "Development Stage", value: "None" };
   }
 
@@ -301,7 +301,7 @@ export const projectsToCellCount = (
 export const projectsToDonorCount = (
   project: ProjectResponse
 ): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project) {
+  if (!project.donorOrganisms?.[0]?.donorCount) {
     return { label: "Donor Count", value: "None" };
   }
 

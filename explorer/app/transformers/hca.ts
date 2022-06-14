@@ -10,17 +10,15 @@ import {
   FileListResponse,
   SampleListResponse,
 } from "../models/responses";
-import { DetailViewModel, ListViewModel } from "../models/viewModels";
+import { DetailModel, ListViewModel } from "../models/viewModels";
 
 /**
  * Transforms a response to the projects endpoint into a viewModel, that will be used by
  * @see DetailContainer
  * @param value Api's response type
- * @returns @see DetailViewModel
+ * @returns @see DetailModel
  */
-export const projectDetailToView = (
-  value: ProjectResponse
-): DetailViewModel => ({
+export const projectDetailToView = (value: ProjectResponse): DetailModel => ({
   json: JSON.stringify(value, null, 2),
   detailName: value?.projects?.[0]?.projectTitle ?? "",
 });
@@ -37,9 +35,9 @@ export const getProjectId = (value: ProjectResponse) =>
  * Transforms a response to the file endpoint into a viewModel, that will be used by
  * @see DetailContainer
  * @param value Api's response type
- * @returns @see DetailViewModel
+ * @returns @see DetailModel
  */
-export const fileDetailToView = (value: FileResponse): DetailViewModel => ({
+export const fileDetailToView = (value: FileResponse): DetailModel => ({
   json: JSON.stringify(value, null, 2),
   detailName: value.files[0].name,
 });
@@ -48,9 +46,9 @@ export const fileDetailToView = (value: FileResponse): DetailViewModel => ({
  * Transforms a response to the samples endpoint into a viewModel, that will be used by
  * @see DetailContainer
  * @param value Api's response type
- * @returns @see DetailViewModel
+ * @returns @see DetailModel
  */
-export const sampleDetailToView = (value: SampleResponse): DetailViewModel => ({
+export const sampleDetailToView = (value: SampleResponse): DetailModel => ({
   json: JSON.stringify(value, null, 2),
   detailName: value.samples[0].id,
 });

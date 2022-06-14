@@ -6,9 +6,9 @@ import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreat
 import { useConfig } from "app/hooks/useConfig";
 import { useEntityDetailData } from "app/hooks/useEntityData";
 import React from "react";
-import { DetailViewModel } from "../../models/viewModels";
+import { DetailModel } from "../../models/viewModels";
 
-export const DetailContainer = (props: DetailViewModel) => {
+export const DetailContainer = (props: DetailModel) => {
   const { apiData, isLoading } = useEntityDetailData(props);
   const config = useConfig();
   const mainColumn = config.detail?.mainColumn;
