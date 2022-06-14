@@ -95,7 +95,7 @@ const defaultTheme = createTheme({
       letterSpacing: "-1.4px",
       lineHeight: "56px",
     },
-    "TEXT-UPPERCASE-500": {
+    "text-uppercase-500": {
       fontSize: 12,
       fontWeight: 500,
       lineHeight: "16px",

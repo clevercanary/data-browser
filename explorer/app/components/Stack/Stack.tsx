@@ -15,9 +15,7 @@ export const Stack = ({ children, gap, border }: StackProps): JSX.Element => {
       gap={(theme) => (gap ? theme.spacing(gap) : 0)}
       sx={(theme) => ({
         "& > *:not(:last-child)": {
-          borderBottom: border
-            ? `1px solid ${theme.palette.colorSmoke}`
-            : "none",
+          borderBottom: border ? `1px solid ${theme.palette.smoke}` : "none",
         },
       })}
     >

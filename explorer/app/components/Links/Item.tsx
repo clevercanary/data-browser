@@ -33,7 +33,7 @@ export const Item = ({
         <Text
           variant="text-body-400-2lines"
           component="a"
-          customColor="colorPrimartAnvil"
+          customColor="primaryAnvil"
         >
           {`${number !== undefined ? `${number}. ` : ""} ${link.label}`}
         </Text>

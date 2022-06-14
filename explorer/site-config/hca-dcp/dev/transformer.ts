@@ -326,7 +326,7 @@ export const projectsToProjDescription = (
 
   return {
     variant: "text-body-400-2lines",
-    customColor: "colorInk",
+    customColor: "ink",
     children: project.projects[0].projectDescription,
   };
 };
@@ -336,7 +336,7 @@ export const projectsToSupplementaryLinksLabel = (): React.ComponentProps<
 > => {
   return {
     variant: "text-body-400-2lines",
-    customColor: "colorInk",
+    customColor: "ink",
     children: `To reference this Supplementary links are provided by contributors and represent items
      such as additional data which can’t be hosted here; code that was used to analyze this data; or
      tools and visualizations associated with this specific dataset.project, please use the following link:`,
@@ -348,7 +348,7 @@ export const projectsToCitationsLabel = (): React.ComponentProps<
 > => {
   return {
     variant: "text-body-400-2lines",
-    customColor: "colorInk",
+    customColor: "ink",
     children: `To reference this project, please use the following link:`,
   };
 };

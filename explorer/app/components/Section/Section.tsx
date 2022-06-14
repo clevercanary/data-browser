@@ -16,7 +16,7 @@ export const Section = ({ children, title }: SectionProps): JSX.Element => {
       padding={(theme) => theme.spacing(5)}
     >
       {title && (
-        <Text variant="text-body-large-500" customColor="colorInk">
+        <Text variant="text-body-large-500" customColor="ink">
           {title}
         </Text>
       )}
