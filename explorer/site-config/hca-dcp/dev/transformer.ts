@@ -345,7 +345,10 @@ export const projectsToAnalysisPortals = (
   return {
     icons: entry.analysisPortals.map((entry) => ({
       label: entry.label,
-      icon: entry.icon,
+      icon: {
+        path: entry.icon,
+        alt: entry.label ?? "",
+      },
     })),
   };
 };
