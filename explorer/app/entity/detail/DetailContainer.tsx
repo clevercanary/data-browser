@@ -4,17 +4,18 @@
 import { Layout } from "app/components";
 import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
 import { useConfig } from "app/hooks/useConfig";
-import { useEntityDetailData } from "app/hooks/useEntityData";
+import { useFetchEntity } from "app/hooks/useFetchEntity";
+import { DetailResponseType } from "app/models/responses";
 import React from "react";
 import { DetailModel } from "../../models/viewModels";
 
 export const DetailContainer = (props: DetailModel) => {
-  const { apiData, isLoading } = useEntityDetailData(props);
+  const { response, isLoading } = useFetchEntity(props);
   const config = useConfig();
   const mainColumn = config.detail?.mainColumn;
   const sideColumn = config.detail?.sideColumn;
 
-  if (isLoading || !apiData) {
+  if (isLoading || !response) {
     return <span>LOADING...</span>; //TODO: return the loading UI component
   }
 
@@ -24,8 +25,18 @@ export const DetailContainer = (props: DetailModel) => {
 
   return (
     <Layout
-      mainColumn={<ComponentCreator components={mainColumn} detail={apiData} />}
-      sideColumn={<ComponentCreator components={sideColumn} detail={apiData} />}
+      mainColumn={
+        <ComponentCreator<DetailResponseType>
+          components={mainColumn}
+          response={response}
+        />
+      }
+      sideColumn={
+        <ComponentCreator<DetailResponseType>
+          components={sideColumn}
+          response={response}
+        />
+      }
     />
   );
 };

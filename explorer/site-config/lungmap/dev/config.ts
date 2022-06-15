@@ -2,12 +2,9 @@
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
 import { SiteConfig } from "../../../app/config/model";
 import {
-  fileDetailToView,
   filesListToView,
   getProjectId,
-  projectDetailToView,
   projectListToView,
-  sampleDetailToView,
   samplesListToView,
 } from "app/transformers/hca";
 
@@ -27,7 +24,6 @@ const config: SiteConfig = {
       apiPath: "index/projects",
       route: "projects",
       listTransformer: projectListToView,
-      detailTransformer: projectDetailToView,
       staticLoad: true,
       getId: getProjectId,
     },
@@ -36,14 +32,12 @@ const config: SiteConfig = {
       apiPath: "index/files",
       route: "files",
       listTransformer: filesListToView,
-      detailTransformer: fileDetailToView,
     },
     {
       label: "Samples",
       apiPath: "index/samples",
       route: "samples",
       listTransformer: samplesListToView,
-      detailTransformer: sampleDetailToView,
     },
   ],
   layout: {

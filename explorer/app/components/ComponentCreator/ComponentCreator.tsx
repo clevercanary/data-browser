@@ -1,33 +1,36 @@
 import { ComponentConfig } from "app/config/model";
-import { DetailResponseType } from "app/models/responses";
 import React from "react";
+import { v4 as uuid4 } from "uuid";
 
-interface ComponentCreatorProps {
+interface ComponentCreatorProps<T> {
   components: ComponentConfig[];
-  detail: DetailResponseType;
-  deep?: number;
+  response: T;
 }
 
-export const ComponentCreator = ({
+/**
+ * ComponentCreator uses React API to create components based on the component configs, instead of using JSX.
+ * That way we can continue to create UI components without having to worry about if they should be able to transform model data into props.
+ * This component is also responsible to call any necessary transformers to generate the component's props based on the model T.
+ * @returns A set of react components
+ */
+export const ComponentCreator = <T,>({
   components,
-  detail,
-  deep = 0,
-}: ComponentCreatorProps): JSX.Element => {
+  response,
+}: ComponentCreatorProps<T>): JSX.Element => {
   return (
     <>
-      {components.map((c, index) => {
+      {components.map((c) => {
         const children = c.children ? (
           <ComponentCreator
-            key={`${deep}${index}`}
-            deep={deep + 1}
+            key={uuid4()}
             components={c.children}
-            detail={detail}
+            response={response}
           />
         ) : null;
-        const props = c.transformer ? c.transformer(detail) : {};
+        const props = c.transformer ? c.transformer(response) : {};
         return React.createElement(
           c.component,
-          { ...c.props, ...props, key: index },
+          { ...c.props, ...props, key: uuid4() },
           [children ?? props.children]
         );
       })}

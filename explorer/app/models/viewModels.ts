@@ -2,8 +2,6 @@ import { DetailResponseType } from "./responses";
 
 //Project
 export interface DetailModel {
-  json?: string;
-  detailName?: string;
   data?: DetailResponseType;
 }
 
