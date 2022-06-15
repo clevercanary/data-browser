@@ -1,6 +1,7 @@
 import { DetailResponseType, ListResponseType } from "app/models/responses";
-import { DetailViewModel, ListViewModel } from "app/models/viewModels";
+import { DetailModel, ListViewModel } from "app/models/viewModels";
 import { HeaderProps } from "../components/Header/header";
+import { JSXElementConstructor } from "react";
 
 type ListTransformerFunction<T extends ListResponseType> = (
   response: T
@@ -8,7 +9,7 @@ type ListTransformerFunction<T extends ListResponseType> = (
 
 type DetailTransformerFunction<T extends DetailResponseType> = (
   response: T
-) => DetailViewModel;
+) => DetailModel;
 
 type GetIdFunction<T extends DetailResponseType> = (detail: T) => string;
 
@@ -25,6 +26,16 @@ export interface EntityConfig<
   staticLoad?: boolean;
 }
 
+export interface ComponentObject<
+  T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any> = any,
+  D = any
+> {
+  component: React.FC<any>;
+  props?: React.ComponentProps<T>;
+  children?: ComponentObject[];
+  transformer?: (model: D) => React.ComponentProps<T>;
+}
+
 export interface SiteConfig {
   redirectRootToPath?: string;
   datasources: {
@@ -35,4 +46,8 @@ export interface SiteConfig {
     header: HeaderProps;
   };
   entities: EntityConfig[];
+  detail?: {
+    mainColumn: ComponentObject[];
+    sideColumn: ComponentObject[];
+  };
 }

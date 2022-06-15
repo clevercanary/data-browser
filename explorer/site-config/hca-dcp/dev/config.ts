@@ -10,6 +10,8 @@ import {
   sampleDetailToView,
   samplesListToView,
 } from "app/transformers/hca";
+import { sideColumn } from "./sideColumn";
+import { mainColumn } from "./mainColumn";
 
 // Images
 import HcaLogo from "images/hca-logo.png";
@@ -110,6 +112,10 @@ const config: SiteConfig = {
       slogan: undefined,
       authenticationEnabled: false,
     },
+  },
+  detail: {
+    sideColumn: sideColumn,
+    mainColumn: mainColumn,
   },
 };
 

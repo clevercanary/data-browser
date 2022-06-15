@@ -1,10 +1,12 @@
-import { DetailViewModel, ListViewModel } from "app/models/viewModels";
+import { DetailModel, ListViewModel } from "app/models/viewModels";
 import { DetailResponseType, ListResponseType } from "app/models/responses";
 import { detail, list } from "app/entity/api/service";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useAsync } from "./useAsync";
 import { useCurrentEntity } from "./useCurrentEntity";
+import { isSSR } from "app/utils/ssr";
+import { isDevelopment } from "app/shared/constants";
 
 interface UseEntityListResponse {
   data?: ListViewModel;
@@ -12,8 +14,8 @@ interface UseEntityListResponse {
 }
 
 interface UseEntityDetailResponse {
-  data?: DetailViewModel;
   isLoading: boolean;
+  apiData?: DetailResponseType;
 }
 
 /**
@@ -61,7 +63,7 @@ export const useEntityListData = (
  * @returns an object with the loaded data and a flag indicating is the data is loading
  */
 export const useEntityDetailData = (
-  value?: DetailViewModel
+  value?: DetailModel
 ): UseEntityDetailResponse => {
   const entity = useCurrentEntity();
   const router = useRouter();
@@ -73,21 +75,21 @@ export const useEntityDetailData = (
   } = useAsync<DetailResponseType>();
 
   useEffect(() => {
-    if (entity && !entity.staticLoad) {
+    if (entity && (!entity.staticLoad || isDevelopment()) && !isSSR() && uuid) {
       run(detail(uuid, entity.apiPath));
     }
   }, [entity, run, uuid]);
 
   if (!entity) {
-    return { data: {}, isLoading: false };
+    return { isLoading: false }; //TODO: return a error to make the user know that the entity doest exist
   }
 
-  if (entity.staticLoad) {
-    return { data: value, isLoading: false };
+  if (entity.staticLoad && !isDevelopment()) {
+    return { isLoading: false, apiData: value?.data };
   }
 
   return {
-    data: apiData ? entity.detailTransformer(apiData) : {},
+    apiData,
     isLoading: apiIsLoading,
   };
 };

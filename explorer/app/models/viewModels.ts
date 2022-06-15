@@ -1,7 +1,10 @@
+import { DetailResponseType } from "./responses";
+
 //Project
-export interface DetailViewModel {
+export interface DetailModel {
   json?: string;
   detailName?: string;
+  data?: DetailResponseType;
 }
 
 export interface ItemViewModel {
