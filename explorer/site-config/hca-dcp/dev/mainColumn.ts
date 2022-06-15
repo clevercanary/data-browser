@@ -1,4 +1,4 @@
-import { ComponentObject } from "app/config/model";
+import { ComponentConfig } from "app/config/model";
 import * as C from "../../../app/components";
 import * as T from "./transformer";
 import { ProjectResponse } from "app/models/responses";
@@ -26,11 +26,11 @@ export const mainColumn = [
               {
                 component: C.Text,
                 transformer: T.projectsToProjDescription,
-              } as ComponentObject<typeof C.Text, ProjectResponse>,
+              } as ComponentConfig<typeof C.Text, ProjectResponse>,
             ],
-          } as ComponentObject<typeof C.ShowMore, ProjectResponse>,
+          } as ComponentConfig<typeof C.ShowMore, ProjectResponse>,
         ],
-      } as ComponentObject<typeof C.Section, ProjectResponse>,
+      } as ComponentConfig<typeof C.Section, ProjectResponse>,
       {
         component: C.Section,
         props: {
@@ -40,9 +40,9 @@ export const mainColumn = [
           {
             component: C.Contacts,
             transformer: T.projectToContacts,
-          } as ComponentObject<typeof C.Contacts, ProjectResponse>,
+          } as ComponentConfig<typeof C.Contacts, ProjectResponse>,
         ],
-      } as ComponentObject<typeof C.Section, ProjectResponse>,
+      } as ComponentConfig<typeof C.Section, ProjectResponse>,
       {
         component: C.Section,
         props: {
@@ -52,9 +52,9 @@ export const mainColumn = [
           {
             component: C.Citations,
             transformer: T.projectsToContributors,
-          } as ComponentObject<typeof C.Citations, ProjectResponse>,
+          } as ComponentConfig<typeof C.Citations, ProjectResponse>,
         ],
-      } as ComponentObject<typeof C.Section, ProjectResponse>,
+      } as ComponentConfig<typeof C.Section, ProjectResponse>,
       {
         component: C.Section,
         props: {
@@ -64,9 +64,9 @@ export const mainColumn = [
           {
             component: C.Citations,
             transformer: T.projectsToOrganizations,
-          } as ComponentObject<typeof C.Citations, ProjectResponse>,
+          } as ComponentConfig<typeof C.Citations, ProjectResponse>,
         ],
-      } as ComponentObject<typeof C.Section, ProjectResponse>,
+      } as ComponentConfig<typeof C.Section, ProjectResponse>,
       {
         component: C.Section,
         props: {
@@ -76,9 +76,9 @@ export const mainColumn = [
           {
             component: C.TextLinks,
             transformer: T.projectsToDataCurators,
-          } as ComponentObject<typeof C.TextLinks, ProjectResponse>,
+          } as ComponentConfig<typeof C.TextLinks, ProjectResponse>,
         ],
-      } as ComponentObject<typeof C.Section, ProjectResponse>,
+      } as ComponentConfig<typeof C.Section, ProjectResponse>,
       {
         component: C.Section,
         props: {
@@ -94,18 +94,18 @@ export const mainColumn = [
               {
                 component: C.Text,
                 transformer: T.projectsToCitationsLabel,
-              } as ComponentObject<typeof C.Text>,
+              } as ComponentConfig<typeof C.Text>,
               {
                 component: C.Links,
                 props: {
                   showCopyButton: true,
                 },
                 transformer: T.projectsToCitations,
-              } as ComponentObject<typeof C.Links>,
+              } as ComponentConfig<typeof C.Links>,
             ],
-          } as ComponentObject<typeof C.Stack>,
+          } as ComponentConfig<typeof C.Stack>,
         ],
-      } as ComponentObject<typeof C.Section, ProjectResponse>,
+      } as ComponentConfig<typeof C.Section, ProjectResponse>,
       {
         component: C.Section,
         props: {
@@ -121,7 +121,7 @@ export const mainColumn = [
               {
                 component: C.Text,
                 transformer: T.projectsToSupplementaryLinksLabel,
-              } as ComponentObject<typeof C.Text>,
+              } as ComponentConfig<typeof C.Text>,
               {
                 component: C.Links,
                 props: {
@@ -129,11 +129,11 @@ export const mainColumn = [
                   enumerate: true,
                 },
                 transformer: T.projectsToSupplementaryLinks,
-              } as ComponentObject<typeof C.Links>,
+              } as ComponentConfig<typeof C.Links>,
             ],
-          } as ComponentObject<typeof C.Stack>,
+          } as ComponentConfig<typeof C.Stack>,
         ],
-      } as ComponentObject<typeof C.Section, ProjectResponse>,
+      } as ComponentConfig<typeof C.Section, ProjectResponse>,
       {
         component: C.Section,
         props: {
@@ -143,9 +143,9 @@ export const mainColumn = [
           {
             component: C.TextLinks,
             transformer: T.projectsToAccessions,
-          } as ComponentObject<typeof C.TextLinks>,
+          } as ComponentConfig<typeof C.TextLinks>,
         ],
-      } as ComponentObject<typeof C.Section, ProjectResponse>,
+      } as ComponentConfig<typeof C.Section, ProjectResponse>,
       {
         component: C.Section,
         props: {
@@ -155,9 +155,9 @@ export const mainColumn = [
           {
             component: C.TextLinks,
             transformer: T.projectsToDataRlsPolicy,
-          } as ComponentObject<typeof C.TextLinks>,
+          } as ComponentConfig<typeof C.TextLinks>,
         ],
-      } as ComponentObject<typeof C.Section, ProjectResponse>,
+      } as ComponentConfig<typeof C.Section, ProjectResponse>,
     ],
-  } as ComponentObject<typeof C.Stack, ProjectResponse>,
+  } as ComponentConfig<typeof C.Stack, ProjectResponse>,
 ];

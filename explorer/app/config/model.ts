@@ -26,13 +26,13 @@ export interface EntityConfig<
   staticLoad?: boolean;
 }
 
-export interface ComponentObject<
+export interface ComponentConfig<
   T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any> = any,
   D = any
 > {
   component: React.FC<any>;
   props?: React.ComponentProps<T>;
-  children?: ComponentObject[];
+  children?: ComponentConfig[];
   transformer?: (model: D) => React.ComponentProps<T>;
 }
 
@@ -47,7 +47,7 @@ export interface SiteConfig {
   };
   entities: EntityConfig[];
   detail?: {
-    mainColumn: ComponentObject[];
-    sideColumn: ComponentObject[];
+    mainColumn: ComponentConfig[];
+    sideColumn: ComponentConfig[];
   };
 }

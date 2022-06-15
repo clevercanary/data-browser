@@ -1,9 +1,9 @@
-import { ComponentObject } from "app/config/model";
+import { ComponentConfig } from "app/config/model";
 import { DetailResponseType } from "app/models/responses";
 import React from "react";
 
 interface ComponentCreatorProps {
-  components: ComponentObject[];
+  components: ComponentConfig[];
   detail: DetailResponseType;
   deep?: number;
 }
