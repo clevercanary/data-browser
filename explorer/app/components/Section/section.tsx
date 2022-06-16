@@ -38,9 +38,12 @@ export const Section = ({
   //  desktop to mobile.
   useEffect(() => {
     if (mobile) {
-      setTimeout(() => {
+      const duration = setTimeout(() => {
         setTransitionDuration("auto");
       }, 100);
+      return () => {
+        clearTimeout(duration);
+      };
     } else {
       setTransitionDuration(0);
     }
