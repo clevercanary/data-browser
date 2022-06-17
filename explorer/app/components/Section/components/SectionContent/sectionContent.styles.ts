@@ -1,8 +1,8 @@
 // Core dependencies
 import styled from "@emotion/styled";
-import { Box } from "@mui/material";
+import { Typography } from "@mui/material";
 
-export const SectionContent = styled(Box)`
+export const SectionContent = styled(Typography)`
   align-items: flex-start;
   color: ${({ theme }) => theme.palette.ink};
   display: flex;
@@ -14,5 +14,4 @@ export const SectionContentListItem = styled.div`
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  gap: 4px;
 `;

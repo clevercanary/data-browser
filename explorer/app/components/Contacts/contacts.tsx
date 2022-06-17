@@ -3,11 +3,12 @@ import { Link as EmailLink, Typography } from "@mui/material";
 import Link from "next/link";
 import React from "react";
 
+// App dependencies
+import { SectionContent } from "../Section/components/SectionContent/sectionContent";
+import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
+
 // Styles
-import {
-  SectionContent,
-  SectionContentListItem,
-} from "../Section/components/SectionContent/sectionContent.styles";
+import { SectionContentListItem } from "../Section/components/SectionContent/sectionContent.styles";
 
 interface Contact {
   email?: string;
@@ -22,19 +23,21 @@ interface Props {
 export const Contacts = ({ contacts }: Props): JSX.Element => {
   return (
     <SectionContent gap={4}>
-      {contacts.map(({ email, institution, name }, c) => (
-        <SectionContentListItem key={`${name}${c}`}>
-          <Typography variant="text-body-500">{name}</Typography>
-          {institution && (
-            <Typography variant="text-body-400">{institution}</Typography>
-          )}
-          {email && (
-            <Link href={`mailto:${email}`} passHref>
-              <EmailLink variant="text-body-400">{email}</EmailLink>
-            </Link>
-          )}
-        </SectionContentListItem>
-      ))}
+      {contacts.length > 0 ? (
+        contacts.map(({ email, institution, name }, c) => (
+          <SectionContentListItem key={`${name}${c}`}>
+            <Typography variant="text-body-500-2lines">{name}</Typography>
+            {institution && <span>{institution}</span>}
+            {email && (
+              <Link href={`mailto:${email}`} passHref>
+                <EmailLink>{email}</EmailLink>
+              </Link>
+            )}
+          </SectionContentListItem>
+        ))
+      ) : (
+        <SectionDetailsEmpty />
+      )}
     </SectionContent>
   );
 };
