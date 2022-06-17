@@ -219,6 +219,11 @@ export const theme = createTheme(defaultTheme, {
         },
       ],
     },
+    MuiLink: {
+      defaultProps: {
+        underline: "hover",
+      },
+    },
     MuiToolbar: {
       styleOverrides: {
         root: {
