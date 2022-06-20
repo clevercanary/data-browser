@@ -29,6 +29,8 @@ export const ListContainer = (props: ListModel) => {
     <TableCreator<DetailResponseType>
       columns={columnsConfig}
       items={response.hits}
+      pageSize={response.pagination.size}
+      total={response.pagination.total}
     />
   );
 };

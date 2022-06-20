@@ -7,6 +7,8 @@ import { Table } from "../Table/table";
 interface TableCreatorProps<T> {
   columns: ColumnConfig<T>[];
   items: T[];
+  pageSize: number;
+  total: number;
 }
 
 const createCell = <T extends object>(config: ColumnConfig<T>) =>
@@ -22,11 +24,20 @@ const createCell = <T extends object>(config: ColumnConfig<T>) =>
 export const TableCreator = <T extends object>({
   columns,
   items,
+  pageSize,
+  total,
 }: TableCreatorProps<T>): JSX.Element => {
   const reactColumns: Column<T>[] = columns.map((columnConfig) => ({
     Header: columnConfig.header,
     Cell: createCell(columnConfig),
   }));
 
-  return <Table<T> items={items} columns={reactColumns} pageSize={25} />;
+  return (
+    <Table<T>
+      items={items}
+      columns={reactColumns}
+      pageSize={pageSize}
+      total={total}
+    />
+  );
 };

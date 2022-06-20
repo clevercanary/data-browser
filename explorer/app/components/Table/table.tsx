@@ -13,12 +13,14 @@ interface TableProps<T extends object> {
   items: T[];
   pageSize: number;
   columns: Column<T>[];
+  total: number;
 }
 
 export const Table = <T extends object>({
   items,
   columns,
   pageSize,
+  total,
 }: TableProps<T>): JSX.Element => {
   const {
     nextPage,
@@ -30,12 +32,13 @@ export const Table = <T extends object>({
     prepareRow,
     canPreviousPage,
     canNextPage,
-    pageOptions,
     state: { pageIndex },
   } = useTable<T>(
     {
       columns,
       data: items,
+      manualPagination: true,
+      pageCount: total,
       initialState: {
         pageSize: pageSize,
       } as TableState,
@@ -78,7 +81,7 @@ export const Table = <T extends object>({
         onPreviousPage={previousPage}
         canNextPage={canNextPage}
         canPreviousPage={canPreviousPage}
-        totalPage={pageOptions.length}
+        totalPage={total}
       />
     </>
   );
