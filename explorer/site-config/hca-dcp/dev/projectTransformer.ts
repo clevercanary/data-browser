@@ -339,15 +339,13 @@ export const projectsToProjDescription = (
 
 export const projectsToProjTitle = (
   project: ProjectResponse
-): React.ComponentProps<typeof C.Text> => {
+): React.ComponentProps<typeof C.ProjectTitle> => {
   if (!project) {
-    return { children: "None" };
+    return { projectTitle: "" };
   }
 
   return {
-    variant: "text-body-400-2lines",
-    customColor: "ink",
-    children: project.projects[0].projectTitle,
+    projectTitle: project.projects[0].projectTitle,
   };
 };
 
