@@ -1,8 +1,8 @@
 import { isDevelopment } from "app/shared/constants";
 import { ListModel } from "app/models/viewModels";
 import { ListResponseType } from "app/models/responses";
-import { list } from "app/entity/api/service";
-import { useEffect } from "react";
+import { fetchList, list } from "app/entity/api/service";
+import { useCallback, useEffect, useState } from "react";
 import { useAsync } from "./useAsync";
 import { useCurrentEntity } from "./useCurrentEntity";
 import { isSSR } from "app/utils/ssr";
@@ -10,6 +10,11 @@ import { isSSR } from "app/utils/ssr";
 interface UseEntityListResponse {
   response?: ListResponseType;
   isLoading: boolean;
+  nextPage?: () => void;
+  previousPage?: () => void;
+  canNextPage?: boolean;
+  canPreviousPage?: boolean;
+  currentPage?: number;
 }
 
 /**
@@ -20,6 +25,7 @@ interface UseEntityListResponse {
  * @returns an object with the loaded data and a flag indicating is the data is loading
  */
 export const useFetchEntities = (value?: ListModel): UseEntityListResponse => {
+  const [currentPage, setCurrentPage] = useState(1);
   const entity = useCurrentEntity();
   const {
     data: apiData,
@@ -33,16 +39,45 @@ export const useFetchEntities = (value?: ListModel): UseEntityListResponse => {
     }
   }, [entity, run]);
 
+  const nextPage = useCallback(async () => {
+    if (apiData?.pagination.next) {
+      setCurrentPage((s) => s + 1);
+      run(fetchList(apiData?.pagination.next));
+    }
+  }, [apiData?.pagination.next, run]);
+
+  const previousPage = useCallback(async () => {
+    if (apiData?.pagination.previous) {
+      setCurrentPage((s) => s - 1);
+      run(fetchList(apiData?.pagination.previous));
+    }
+  }, [apiData?.pagination.previous, run]);
+
   if (!entity) {
-    return { isLoading: false }; //TODO: return a error to make the user know that the entity doest exist
+    return {
+      isLoading: false,
+      nextPage,
+      previousPage,
+      canNextPage: false,
+      canPreviousPage: false,
+      currentPage,
+    }; //TODO: return a error to make the user know that the entity doest exist
   }
 
   if (entity.staticLoad && !isDevelopment()) {
-    return { response: value?.data, isLoading: false };
+    return {
+      response: value?.data,
+      isLoading: false,
+    };
   }
 
   return {
     response: apiData,
     isLoading: apiIsLoading,
+    nextPage,
+    previousPage,
+    canNextPage: !!apiData?.pagination.next,
+    canPreviousPage: !!apiData?.pagination.previous,
+    currentPage,
   };
 };

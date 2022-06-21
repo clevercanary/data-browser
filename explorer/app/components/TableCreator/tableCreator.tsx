@@ -8,7 +8,12 @@ interface TableCreatorProps<T> {
   columns: ColumnConfig<T>[];
   items: T[];
   pageSize: number;
-  total: number;
+  total?: number;
+  onNextPageClicked?: () => void;
+  onPreviousPageClicked?: () => void;
+  canPreviousPage?: boolean;
+  canNextPage?: boolean;
+  currentPage?: number;
 }
 
 const createCell = <T extends object>(config: ColumnConfig<T>) =>
@@ -26,6 +31,11 @@ export const TableCreator = <T extends object>({
   items,
   pageSize,
   total,
+  onNextPageClicked,
+  onPreviousPageClicked,
+  canPreviousPage,
+  canNextPage,
+  currentPage,
 }: TableCreatorProps<T>): JSX.Element => {
   const reactColumns: Column<T>[] = columns.map((columnConfig) => ({
     Header: columnConfig.header,
@@ -38,6 +48,11 @@ export const TableCreator = <T extends object>({
       columns={reactColumns}
       pageSize={pageSize}
       total={total}
+      canNextPage={canNextPage}
+      canPreviousPage={canPreviousPage}
+      onNextPageClicked={onNextPageClicked}
+      onPreviousPageClicked={onPreviousPageClicked}
+      currentPage={currentPage}
     />
   );
 };

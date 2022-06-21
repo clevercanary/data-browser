@@ -13,34 +13,50 @@ interface TableProps<T extends object> {
   items: T[];
   pageSize: number;
   columns: Column<T>[];
-  total: number;
+  total?: number;
+  onNextPageClicked?: () => void;
+  onPreviousPageClicked?: () => void;
+  canPreviousPage?: boolean;
+  canNextPage?: boolean;
+  currentPage?: number;
 }
 
+/**
+ * This table can be Controlled or Uncrontrolled based on the set of props passed to it.
+ * Controlled table will receive the navigation functions and it will be used for dynamic loads.
+ * Uncrontrolled table will take advantage of react's table state and will be used for static loads.
+ */
 export const Table = <T extends object>({
   items,
   columns,
   pageSize,
   total,
+  onNextPageClicked,
+  onPreviousPageClicked,
+  canPreviousPage,
+  canNextPage,
+  currentPage,
 }: TableProps<T>): JSX.Element => {
   const {
-    nextPage,
-    previousPage,
     getTableProps,
     headers,
     getTableBodyProps,
     page,
     prepareRow,
-    canPreviousPage,
-    canNextPage,
+    canNextPage: tableCanNextPage,
+    canPreviousPage: tableCanPreviousPage,
+    nextPage: tableNextPage,
+    previousPage: tablePreviousPage,
+    pageOptions,
     state: { pageIndex },
   } = useTable<T>(
     {
       columns,
       data: items,
-      manualPagination: true,
+      manualPagination: !!currentPage,
       pageCount: total,
       initialState: {
-        pageSize: pageSize,
+        pageSize: pageSize ?? 25,
       } as TableState,
     },
     usePagination
@@ -76,12 +92,12 @@ export const Table = <T extends object>({
         </TableBody>
       </MuiTable>
       <Pagination
-        currentPage={pageIndex + 1}
-        onNextPage={nextPage}
-        onPreviousPage={previousPage}
-        canNextPage={canNextPage}
-        canPreviousPage={canPreviousPage}
-        totalPage={total}
+        currentPage={currentPage ?? pageIndex + 1}
+        onNextPage={onNextPageClicked ?? tableNextPage}
+        onPreviousPage={onPreviousPageClicked ?? tablePreviousPage}
+        canNextPage={canNextPage ?? tableCanNextPage}
+        canPreviousPage={canPreviousPage ?? tableCanPreviousPage}
+        totalPage={total ?? pageOptions.length}
       />
     </>
   );

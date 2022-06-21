@@ -10,7 +10,15 @@ import { ListModel } from "../../models/viewModels";
 
 export const ListContainer = (props: ListModel) => {
   const entity = useCurrentEntity();
-  const { response, isLoading } = useFetchEntities(props);
+  const {
+    response,
+    isLoading,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    currentPage,
+  } = useFetchEntities(props);
   const columnsConfig = entity?.list?.columns;
 
   if (!entity || isLoading || !response) {
@@ -30,7 +38,12 @@ export const ListContainer = (props: ListModel) => {
       columns={columnsConfig}
       items={response.hits}
       pageSize={response.pagination.size}
-      total={response.pagination.total}
+      total={response.pagination.pages}
+      canNextPage={canNextPage}
+      canPreviousPage={canPreviousPage}
+      onNextPageClicked={nextPage}
+      onPreviousPageClicked={previousPage}
+      currentPage={currentPage}
     />
   );
 };
