@@ -4,18 +4,15 @@ import React from "react";
 
 export enum STATUS {
   NEW = "NEW",
+  NONE = "NONE",
   UPDATED = "UPDATED",
 }
 
-const BADGE_COLOR = {
-  NEW: "info",
-  UPDATED: "warning",
+const statusConfig = {
+  [STATUS.NEW]: { color: "info", label: "New" },
+  [STATUS.NONE]: { color: "default", label: "None" },
+  [STATUS.UPDATED]: { color: "warning", label: "Updated" },
 } as const;
-
-const BADGE_LABEL = {
-  NEW: "New",
-  UPDATED: "Updated",
-};
 
 interface Props {
   status: STATUS;
@@ -23,10 +20,14 @@ interface Props {
 
 export const StatusBadge = ({ status }: Props): JSX.Element => {
   return (
-    <Chip
-      color={BADGE_COLOR[status]}
-      label={BADGE_LABEL[status]}
-      variant="status"
-    />
+    <>
+      {status !== STATUS.NONE && (
+        <Chip
+          color={statusConfig[status].color}
+          label={statusConfig[status].label}
+          variant="status"
+        />
+      )}
+    </>
   );
 };

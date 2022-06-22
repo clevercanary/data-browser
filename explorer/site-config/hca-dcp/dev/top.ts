@@ -1,6 +1,5 @@
 // App dependencies
 import * as C from "../../../app/components";
-import { STATUS } from "../../../app/components/StatusBadge/statusBadge";
 import { ComponentConfig } from "app/config/model";
 import { ProjectResponse } from "app/models/responses";
 import * as T from "./projectTransformer";
@@ -29,9 +28,7 @@ export const top = [
       // Insert select project
       {
         component: C.StatusBadge,
-        props: {
-          status: STATUS.UPDATED,
-        },
+        transformer: T.projectsToProjStatus,
       } as ComponentConfig<typeof C.StatusBadge, ProjectResponse>,
     ],
   } as ComponentConfig<typeof C.Stack, ProjectResponse>,

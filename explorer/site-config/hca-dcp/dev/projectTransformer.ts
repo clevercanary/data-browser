@@ -4,6 +4,7 @@ import React from "react";
 
 // App dependencies
 import * as C from "../../../app/components";
+import { STATUS } from "app/components/StatusBadge/statusBadge";
 import { ProjectResponse } from "app/models/responses";
 import { ENTRIES } from "app/project-edits";
 import { concatStrings } from "app/utils/string";
@@ -335,6 +336,16 @@ export const projectsToProjDescription = (
   return {
     children: project ? project.projects[0].projectDescription : "None",
   };
+};
+
+export const projectsToProjStatus = (
+  project: ProjectResponse
+): React.ComponentProps<typeof C.StatusBadge> => {
+  if (!project) {
+    return { status: STATUS.NONE };
+  }
+
+  return { status: STATUS.NONE };
 };
 
 export const projectsToProjTitle = (
