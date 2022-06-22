@@ -8,7 +8,7 @@ export enum STATUS {
   UPDATED = "UPDATED",
 }
 
-const statusConfig = {
+const STATUS_CONFIG = {
   [STATUS.NEW]: { color: "info", label: "New" },
   [STATUS.NONE]: { color: "default", label: "None" },
   [STATUS.UPDATED]: { color: "warning", label: "Updated" },
@@ -23,8 +23,8 @@ export const StatusBadge = ({ status }: Props): JSX.Element => {
     <>
       {status !== STATUS.NONE && (
         <Chip
-          color={statusConfig[status].color}
-          label={statusConfig[status].label}
+          color={STATUS_CONFIG[status].color}
+          label={STATUS_CONFIG[status].label}
           variant="status"
         />
       )}
