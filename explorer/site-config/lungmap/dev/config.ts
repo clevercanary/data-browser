@@ -9,7 +9,12 @@ import LungMapLogo from "images/lungmap-logo.png";
 const config: SiteConfig = {
   redirectRootToPath: "/explore/projects",
   datasources: {
-    catalog: "lm2",
+    defaultDetailParams: {
+      catalog: "lm2",
+    },
+    defaultListParams: {
+      catalog: "lm2",
+    },
     // url: "https://service.dev.singlecell.gi.ucsc.edu/",
     url: "https://service.azul.data.humancellatlas.org/",
   },

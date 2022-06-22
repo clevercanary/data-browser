@@ -13,7 +13,13 @@ import HcaLogo from "images/hca-logo.png";
 const config: SiteConfig = {
   redirectRootToPath: "/explore/projects",
   datasources: {
-    catalog: "dcp2",
+    defaultListParams: {
+      catalog: "dcp2",
+      size: "25",
+    },
+    defaultDetailParams: {
+      catalog: "dcp2",
+    },
     url: "https://service.dev.singlecell.gi.ucsc.edu/",
   },
   entities: [projectEntity, filesEntity, samplesEntity],

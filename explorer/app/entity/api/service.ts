@@ -3,18 +3,13 @@
  */
 
 import { convertUrlParams } from "../../utils/url";
-import { CATALOG_VERSION, URL } from "../../shared/constants";
-import { ListParams, VersionParam } from "../../models/params";
+import {
+  DEFAULT_LIST_PARAMS,
+  DEFAULT_DETAIL_PARAMS,
+  URL,
+} from "../../shared/constants";
+import { ListParams } from "../../models/params";
 import { DetailResponseType, ListResponseType } from "../../models/responses";
-
-const DEFAULT_VERSION: VersionParam = {
-  catalog: CATALOG_VERSION,
-};
-
-const DEFAULT_LIST_PARAMS: ListParams = {
-  ...DEFAULT_VERSION,
-  size: "25",
-};
 
 /**
  * Request to get a list of entities.
@@ -63,7 +58,7 @@ export const listAll = async (
 export const detail = async (
   id: string,
   apiPath: string,
-  param: VersionParam = DEFAULT_VERSION
+  param = DEFAULT_DETAIL_PARAMS
 ): Promise<DetailResponseType> => {
   const res = await fetch(
     `${URL}${apiPath}/${id}?${convertUrlParams({ ...param })}`

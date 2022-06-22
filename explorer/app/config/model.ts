@@ -38,7 +38,12 @@ export interface ComponentConfig<
  * Interface to defermine the api URL and version
  */
 export interface DataSourceConfig {
-  catalog: string;
+  defaultListParams?: {
+    [key: string]: string;
+  };
+  defaultDetailParams?: {
+    [key: string]: string;
+  };
   url: string;
 }
 

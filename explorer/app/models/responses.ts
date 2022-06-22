@@ -83,6 +83,34 @@ export interface FileResponse {
   }[];
 }
 
+export interface AnvilFileResponse {
+  activities: {
+    activity_type: string[];
+    data_modality: string[];
+  }[];
+  bundles: {
+    bundleUuid: string;
+    bundleVersion: string;
+  }[];
+  datasets: {
+    dataset_name: string;
+  }[];
+  entryId: string;
+  files: {
+    accessible: boolean;
+    data_modality: string[];
+    date_created: string;
+    document_id: string;
+    file_format: string;
+    file_id: string;
+    file_type: string;
+  }[];
+  sources: {
+    sourceId: string;
+    sourceSpec: string;
+  }[];
+}
+
 export interface ProjectListResponse extends PaginatedResponse {
   hits: ProjectResponse[];
 }
@@ -95,10 +123,15 @@ export interface FileListResponse extends PaginatedResponse {
   hits: FileResponse[];
 }
 
+export interface AnvilFileListResponse extends PaginatedResponse {
+  hits: AnvilFileResponse[];
+}
+
 export type DetailResponseType =
   | ProjectResponse
   | FileResponse
-  | SampleResponse;
+  | SampleResponse
+  | AnvilFileResponse;
 
 export type ListResponseType =
   | ProjectListResponse
