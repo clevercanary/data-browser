@@ -7,10 +7,8 @@ import {
   Divider,
   Drawer,
   IconButton,
-  Theme,
   Toolbar,
   Typography,
-  useMediaQuery,
 } from "@mui/material";
 import React, { Fragment, useEffect, useState } from "react";
 
@@ -28,6 +26,11 @@ import {
   SocialLinks,
   SocialLinksProps,
 } from "../common/SocialLinks/socialLinks";
+import {
+  BREAKPOINT,
+  BREAKPOINT_FN_NAME,
+  useBreakpointHelper,
+} from "../../hooks/useBreakpointHelper";
 
 // Template variables
 export const HEADER_HEIGHT = 56;
@@ -52,8 +55,9 @@ export const Header = ({
   socialLinks,
 }: HeaderProps): JSX.Element => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const desktop = useMediaQuery((theme: Theme) =>
-    theme.breakpoints.up("desktop")
+  const desktop = useBreakpointHelper(
+    BREAKPOINT_FN_NAME.UP,
+    BREAKPOINT.DESKTOP
   );
   const HeaderContent = desktop ? Fragment : Drawer;
   const HeaderContentContainer = desktop ? Fragment : Box;

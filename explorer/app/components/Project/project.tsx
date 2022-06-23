@@ -1,11 +1,15 @@
 // Core dependencies
-import { Theme, useMediaQuery } from "@mui/material";
 import React, { Fragment, ReactNode } from "react";
 
 // App dependencies
 import { FlatPaper } from "../common/Paper/paper.styles";
 
 // Styles
+import {
+  BREAKPOINT,
+  BREAKPOINT_FN_NAME,
+  useBreakpointHelper,
+} from "../../hooks/useBreakpointHelper";
 import {
   Project as ProjectLayout,
   ProjectOverview as Overview,
@@ -24,9 +28,7 @@ export const Project = ({
   sideColumn,
   top,
 }: Props): JSX.Element => {
-  const tablet = useMediaQuery((theme: Theme) =>
-    theme.breakpoints.up("tablet")
-  );
+  const tablet = useBreakpointHelper(BREAKPOINT_FN_NAME.UP, BREAKPOINT.TABLET);
   const ProjectOverview = tablet ? Overview : Overview.withComponent(FlatPaper);
   const ProjectOverviewMain = tablet ? Main : Fragment;
   const ProjectOverviewSide = tablet ? Side : Fragment;

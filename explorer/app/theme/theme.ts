@@ -1,6 +1,9 @@
 // Core dependencies
 import { createTheme } from "@mui/material/styles";
 
+// App dependencies
+import { BREAKPOINT } from "app/hooks/useBreakpointHelper";
+
 /**
  * Custom colors
  */
@@ -20,9 +23,9 @@ export interface CustomColors {
 const defaultTheme = createTheme({
   breakpoints: {
     values: {
-      desktop: 1440,
-      mobile: 0,
-      tablet: 768,
+      [BREAKPOINT.DESKTOP]: 1440,
+      [BREAKPOINT.MOBILE]: 0,
+      [BREAKPOINT.TABLET]: 768,
     },
   },
   palette: {
@@ -163,7 +166,7 @@ export const theme = createTheme(defaultTheme, {
             "&:hover": {
               backgroundColor: defaultTheme.palette.smokeLight,
             },
-            [defaultTheme.breakpoints.up("desktop")]: {
+            [defaultTheme.breakpoints.up(BREAKPOINT.DESKTOP)]: {
               padding: "6px 12px",
             },
           },
@@ -287,11 +290,11 @@ export const theme = createTheme(defaultTheme, {
     MuiToolbar: {
       styleOverrides: {
         root: {
-          [defaultTheme.breakpoints.up("mobile")]: {
+          [defaultTheme.breakpoints.up(BREAKPOINT.MOBILE)]: {
             paddingLeft: 12,
             paddingRight: 12,
           },
-          [defaultTheme.breakpoints.up("desktop")]: {
+          [defaultTheme.breakpoints.up(BREAKPOINT.DESKTOP)]: {
             paddingLeft: 16,
             paddingRight: 16,
           },

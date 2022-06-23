@@ -3,6 +3,7 @@ import { Theme as MuiTheme } from "@mui/material/styles";
 import { TypographyStyleOptions } from "@mui/material/styles/createTypography";
 
 // App dependencies
+import { BREAKPOINT } from "../hooks/useBreakpointHelper";
 import { CustomColors } from "./theme";
 
 /**
@@ -40,9 +41,9 @@ declare module "@mui/material/styles" {
     md: false;
     lg: false;
     xl: false;
-    mobile: true;
-    tablet: true;
-    desktop: true;
+    [BREAKPOINT.MOBILE]: true;
+    [BREAKPOINT.DESKTOP]: true;
+    [BREAKPOINT.TABLET]: true;
   }
 
   interface TypographyVariants {
