@@ -1,39 +1,35 @@
+import React from "react";
+
 import { Box, Tabs as MuiTabs, Tab } from "@mui/material";
-import React, { useState } from "react";
-import { TabPanel } from "./tabPanel";
 
 interface TabsProps {
   tabs: {
     label: string;
-    component: React.ReactNode;
-    selected?: boolean;
   }[];
+  children: React.ReactNode;
+  onTabChange: (newTab: number) => void;
+  selectedTab: number;
 }
 
-export const Tabs = ({ tabs }: TabsProps): JSX.Element => {
-  const defaultTabIndex = tabs.findIndex((tab) => !!tab.selected);
-  const [tabIndex, setTabIndex] = useState(defaultTabIndex ?? 0);
-
-  const handleChange = (_: React.SyntheticEvent, newIndex: number) => {
-    setTabIndex(newIndex);
-  };
-
+export const Tabs = ({
+  tabs,
+  children,
+  onTabChange,
+  selectedTab,
+}: TabsProps): JSX.Element => {
   return (
     <Box display="flex" flexDirection="column">
       <Box>
-        <MuiTabs onChange={handleChange} value={tabIndex}>
+        <MuiTabs
+          value={selectedTab}
+          onChange={(_, newIndex) => onTabChange(newIndex)}
+        >
           {tabs.map((tab, index) => (
             <Tab key={index} label={tab.label} />
           ))}
         </MuiTabs>
       </Box>
-      <Box>
-        {tabs.map((tab, index) => (
-          <TabPanel key={index} index={index} value={tabIndex}>
-            {tab.component}
-          </TabPanel>
-        ))}
-      </Box>
+      <Box>{children}</Box>
     </Box>
   );
 };
