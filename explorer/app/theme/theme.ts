@@ -19,6 +19,9 @@ export interface CustomColors {
  */
 const defaultTheme = createTheme({
   palette: {
+    background: {
+      default: "#F6F6F7", // smokeLight
+    },
     info: {
       contrastText: "#00729C",
       main: "#97D6EA",

@@ -8,9 +8,13 @@ interface Props {
   top: ReactNode;
 }
 
-export const Layout = ({ mainColumn, sideColumn, top }: Props): JSX.Element => {
+export const Project = ({
+  mainColumn,
+  sideColumn,
+  top,
+}: Props): JSX.Element => {
   return (
-    <Box color="ink" display="grid" gap={4} mx="auto" maxWidth={1232}>
+    <Box>
       {top}
       <Box display="grid" gap={4} gridAutoFlow="column">
         {mainColumn}

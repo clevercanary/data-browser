@@ -3,7 +3,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 // App dependencies
-import { Layout } from "./Layout";
+import { Project } from "./project";
 
 export default {
   argTypes: {
@@ -11,11 +11,13 @@ export default {
     sideColumn: { control: "object" },
     top: { control: "object" },
   },
-  component: Layout,
-  title: "Components/Layout",
-} as ComponentMeta<typeof Layout>;
+  component: Project,
+  title: "ProjectOverview",
+} as ComponentMeta<typeof Project>;
 
-const Template: ComponentStory<typeof Layout> = (args) => <Layout {...args} />;
+const Template: ComponentStory<typeof Project> = (args) => (
+  <Project {...args} />
+);
 
 export const Primary = Template.bind({});
 Primary.args = {
