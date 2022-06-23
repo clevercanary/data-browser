@@ -3,7 +3,8 @@ import { ProjectResponse } from "../../../../models/responses";
 
 /**
  * Maps project description.
- * @param project
+ * @param project - project response
+ * @returns string representation of project description
  */
 export function mapProjectDescription(
   project?: ProjectResponse
