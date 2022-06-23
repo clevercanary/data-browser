@@ -3,40 +3,39 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 // App dependencies
+import { ProjectContacts } from "./components/Contacts/contacts.stories";
+import { ProjectDataReleasePolicy } from "./components/DataReleasePolicy/dataReleasePolicy.stories";
+import { ProjectDescription } from "./components/Description/description.stories";
+import { ProjectHeader } from "./components/ProjectHeader/projectHeader.stories";
 import { Project } from "./project";
 
 export default {
   argTypes: {
-    mainColumn: { control: "object" },
-    sideColumn: { control: "object" },
-    top: { control: "object" },
+    mainColumn: { table: { disable: true } },
+    sideColumn: { table: { disable: true } },
+    top: { table: { disable: true } },
   },
   component: Project,
-  title: "ProjectOverview",
+  title: "Project",
 } as ComponentMeta<typeof Project>;
 
 const Template: ComponentStory<typeof Project> = (args) => (
   <Project {...args} />
 );
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const View = Template.bind({});
+View.args = {
   mainColumn: (
-    <div
-      key={1}
-      style={{ width: 500, height: 500, backgroundColor: "red" }}
-    ></div>
+    <>
+      <ProjectDescription
+        projectDescription={
+          ProjectDescription.args?.projectDescription || "None"
+        }
+      />
+      <ProjectContacts contacts={ProjectContacts.args?.contacts || []} />
+      <ProjectDataReleasePolicy />
+    </>
   ),
-  sideColumn: (
-    <div
-      key={2}
-      style={{ width: 500, height: 500, backgroundColor: "blue" }}
-    ></div>
-  ),
-  top: (
-    <div
-      key={3}
-      style={{ width: 500, height: 500, backgroundColor: "yellow" }}
-    ></div>
-  ),
+  sideColumn: <div style={{ backgroundColor: "blue", height: 200 }}></div>,
+  top: <ProjectHeader>{ProjectHeader.args?.children}</ProjectHeader>,
 };
