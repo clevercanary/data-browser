@@ -3,7 +3,7 @@ import React from "react";
 
 // App dependencies
 import * as C from "../../../app/components";
-import { mapProjectDescription } from "../../../app/components/Project/components/common/projectMapper";
+import { getProjectDescription } from "../../../app/components/Project/components/common/projectViewModelBuilder";
 import { STATUS } from "app/components/StatusBadge/statusBadge";
 import { ProjectResponse } from "app/models/responses";
 import { ENTRIES } from "app/project-edits";
@@ -334,7 +334,7 @@ export const projectsToProjDescription = (
   project: ProjectResponse
 ): React.ComponentProps<typeof C.Description> => {
   return {
-    projectDescription: mapProjectDescription(project) || "None",
+    projectDescription: getProjectDescription(project) || "None",
   };
 };
 

@@ -6,7 +6,7 @@ import { ProjectResponse } from "../../../../models/responses";
  * @param project - project response
  * @returns string representation of project description
  */
-export function mapProjectDescription(
+export function getProjectDescription(
   project?: ProjectResponse
 ): string | undefined {
   return project?.projects[0].projectDescription;
