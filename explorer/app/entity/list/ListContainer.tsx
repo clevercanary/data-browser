@@ -44,6 +44,7 @@ export const ListContainer = (props: ListModel) => {
 
   const handleTabChanged = (newIndex: number) => {
     push(entities[newIndex].route);
+    pagination?.resetPage();
   };
 
   const selectedTab = entities.findIndex(({ route }) => asPath.includes(route));
