@@ -34,7 +34,7 @@ export const filesEntity: EntityConfig<AnvilFileResponse> = {
         header: "File ID",
         componentConfig: {
           component: C.Text,
-          transformer: T.filesToFileIDColumn,
+          transformer: T.filesToFileIdColumn,
         } as ComponentConfig<typeof C.Text>,
       },
       {

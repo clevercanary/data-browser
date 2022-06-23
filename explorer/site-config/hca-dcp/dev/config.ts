@@ -10,15 +10,18 @@ import { filesEntity } from "./filesEntity";
 // Images
 import HcaLogo from "images/hca-logo.png";
 
+const CATALOG_DCP2 = "dcp2";
+const PAGINATION_PAGE_SIZE = "25";
+
 const config: SiteConfig = {
   redirectRootToPath: "/explore/projects",
   datasources: {
     defaultListParams: {
-      catalog: "dcp2",
-      size: "25",
+      catalog: CATALOG_DCP2,
+      size: PAGINATION_PAGE_SIZE,
     },
     defaultDetailParams: {
-      catalog: "dcp2",
+      catalog: CATALOG_DCP2,
     },
     url: "https://service.dev.singlecell.gi.ucsc.edu/",
   },

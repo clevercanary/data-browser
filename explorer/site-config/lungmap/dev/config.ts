@@ -6,14 +6,16 @@ import { getProjectId } from "app/transformers/hca";
 // Images
 import LungMapLogo from "images/lungmap-logo.png";
 
+const CATALOG_LM2 = "lm2";
+
 const config: SiteConfig = {
   redirectRootToPath: "/explore/projects",
   datasources: {
     defaultDetailParams: {
-      catalog: "lm2",
+      catalog: CATALOG_LM2,
     },
     defaultListParams: {
-      catalog: "lm2",
+      catalog: CATALOG_LM2,
     },
     // url: "https://service.dev.singlecell.gi.ucsc.edu/",
     url: "https://service.azul.data.humancellatlas.org/",

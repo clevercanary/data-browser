@@ -5,7 +5,6 @@ import { Layout } from "app/components/Layout/Layout";
 import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
 import { useCurrentEntity } from "app/hooks/useCurrentEntity";
 import { useFetchEntity } from "app/hooks/useFetchEntity";
-import { DetailResponseType } from "app/models/responses";
 import React from "react";
 import { DetailModel } from "../../models/viewModels";
 
@@ -26,16 +25,10 @@ export const DetailContainer = (props: DetailModel) => {
   return (
     <Layout
       mainColumn={
-        <ComponentCreator<DetailResponseType>
-          components={mainColumn}
-          response={response}
-        />
+        <ComponentCreator components={mainColumn} response={response} />
       }
       sideColumn={
-        <ComponentCreator<DetailResponseType>
-          components={sideColumn}
-          response={response}
-        />
+        <ComponentCreator components={sideColumn} response={response} />
       }
     />
   );

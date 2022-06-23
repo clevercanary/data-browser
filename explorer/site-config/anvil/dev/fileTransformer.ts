@@ -4,20 +4,15 @@ import * as C from "../../../app/components";
 
 export const filesToDatasetNameColumn = (
   file: AnvilFileResponse
-): React.ComponentProps<typeof C.Links> => {
+): React.ComponentProps<typeof C.Text> => {
   if (!file.files) {
-    return {
-      links: [],
-    };
+    return {};
   }
 
   return {
-    links: [
-      {
-        label: file.datasets[0].dataset_name,
-        url: `/explore/files/${file.files[0].file_id}`,
-      },
-    ],
+    children: file.datasets[0].dataset_name,
+    variant: "text-body-400",
+    customColor: "ink",
   };
 };
 
@@ -35,7 +30,7 @@ export const filesToFileFormatColumn = (
   };
 };
 
-export const filesToFileIDColumn = (
+export const filesToFileIdColumn = (
   file: AnvilFileResponse
 ): React.ComponentProps<typeof C.Text> => {
   if (!file.files) {

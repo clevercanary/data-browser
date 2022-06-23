@@ -9,7 +9,7 @@ import {
   URL,
 } from "../../shared/constants";
 import { ListParams } from "../../models/params";
-import { DetailResponseType, ListResponseType } from "../../models/responses";
+import { ListResponseType } from "../../models/responses";
 
 /**
  * Request to get a list of entities.
@@ -36,7 +36,7 @@ export const listAll = async (
   apiPath: string,
   listParams?: ListParams
 ): Promise<ListResponseType> => {
-  let hits: DetailResponseType[] = [];
+  let hits = [];
   const result = await list(apiPath, listParams);
   hits = result.hits;
   let nextPage = result.pagination.next;
@@ -59,7 +59,7 @@ export const detail = async (
   id: string,
   apiPath: string,
   param = DEFAULT_DETAIL_PARAMS
-): Promise<DetailResponseType> => {
+): Promise<any> => {
   const res = await fetch(
     `${URL}${apiPath}/${id}?${convertUrlParams({ ...param })}`
   );

@@ -111,29 +111,6 @@ export interface AnvilFileResponse {
   }[];
 }
 
-export interface ProjectListResponse extends PaginatedResponse {
-  hits: ProjectResponse[];
+export interface ListResponseType<T = any> extends PaginatedResponse {
+  hits: T[];
 }
-
-export interface SampleListResponse extends PaginatedResponse {
-  hits: SampleResponse[];
-}
-
-export interface FileListResponse extends PaginatedResponse {
-  hits: FileResponse[];
-}
-
-export interface AnvilFileListResponse extends PaginatedResponse {
-  hits: AnvilFileResponse[];
-}
-
-export type DetailResponseType =
-  | ProjectResponse
-  | FileResponse
-  | SampleResponse
-  | AnvilFileResponse;
-
-export type ListResponseType =
-  | ProjectListResponse
-  | SampleListResponse
-  | FileListResponse;
