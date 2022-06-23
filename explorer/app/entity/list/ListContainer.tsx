@@ -14,7 +14,7 @@ import { ListModel } from "../../models/viewModels";
 export const ListContainer = (props: ListModel) => {
   const entity = useCurrentEntity();
   const { entities } = useConfig();
-  const { response, isLoading } = useFetchEntities(props);
+  const { response, isLoading, pagination } = useFetchEntities(props);
   const { asPath, push } = useRouter();
   const columnsConfig = entity?.list?.columns;
 
@@ -35,6 +35,9 @@ export const ListContainer = (props: ListModel) => {
       <TableCreator<DetailResponseType>
         columns={columnsConfig}
         items={response.hits}
+        pageSize={response.pagination.size}
+        total={response.pagination.pages}
+        pagination={pagination}
       />
     );
   };
