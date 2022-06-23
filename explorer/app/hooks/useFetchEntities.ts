@@ -7,15 +7,21 @@ import { useAsync } from "./useAsync";
 import { useCurrentEntity } from "./useCurrentEntity";
 import { isSSR } from "app/utils/ssr";
 
+export interface PaginationConfig {
+  nextPage: () => void;
+  previousPage: () => void;
+  canNextPage: boolean;
+  canPreviousPage: boolean;
+  currentPage: number;
+}
+
 interface UseEntityListResponse {
   response?: ListResponseType;
   isLoading: boolean;
-  nextPage?: () => void;
-  previousPage?: () => void;
-  canNextPage?: boolean;
-  canPreviousPage?: boolean;
-  currentPage?: number;
+  pagination?: PaginationConfig;
 }
+
+const DEFAULT_CURRENT_PAGE = 1;
 
 /**
  * Hook responsible to handle the load and transformation of the values that will be used by listing pages.
@@ -25,7 +31,7 @@ interface UseEntityListResponse {
  * @returns an object with the loaded data and a flag indicating is the data is loading
  */
 export const useFetchEntities = (value?: ListModel): UseEntityListResponse => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(DEFAULT_CURRENT_PAGE);
   const entity = useCurrentEntity();
   const {
     data: apiData,
@@ -56,15 +62,10 @@ export const useFetchEntities = (value?: ListModel): UseEntityListResponse => {
   if (!entity) {
     return {
       isLoading: false,
-      nextPage,
-      previousPage,
-      canNextPage: false,
-      canPreviousPage: false,
-      currentPage,
     }; //TODO: return a error to make the user know that the entity doest exist
   }
 
-  if (entity.staticLoad && !isDevelopment()) {
+  if (entity.staticLoad) {
     return {
       response: value?.data,
       isLoading: false,
@@ -74,10 +75,12 @@ export const useFetchEntities = (value?: ListModel): UseEntityListResponse => {
   return {
     response: apiData,
     isLoading: apiIsLoading,
-    nextPage,
-    previousPage,
-    canNextPage: !!apiData?.pagination.next,
-    canPreviousPage: !!apiData?.pagination.previous,
-    currentPage,
+    pagination: {
+      nextPage,
+      previousPage,
+      canNextPage: !!apiData?.pagination.next,
+      canPreviousPage: !!apiData?.pagination.previous,
+      currentPage,
+    },
   };
 };

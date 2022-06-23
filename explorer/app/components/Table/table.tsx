@@ -8,34 +8,27 @@ import {
   TableRow,
 } from "@mui/material";
 import { Pagination } from "../Pagination/pagination";
+import { PaginationConfig } from "app/hooks/useFetchEntities";
 
 interface TableProps<T extends object> {
   items: T[];
   pageSize: number;
   columns: Column<T>[];
   total?: number;
-  onNextPageClicked?: () => void;
-  onPreviousPageClicked?: () => void;
-  canPreviousPage?: boolean;
-  canNextPage?: boolean;
-  currentPage?: number;
+  pagination?: PaginationConfig;
 }
 
 /**
- * This table can be Controlled or Uncrontrolled based on the set of props passed to it.
+ * This table can be Controlled or Uncontrolled based on the set of props passed to it.
  * Controlled table will receive the navigation functions and it will be used for dynamic loads.
- * Uncrontrolled table will take advantage of react's table state and will be used for static loads.
+ * Uncontrolled table will take advantage of React Table's state and will be used for static loads.
  */
 export const Table = <T extends object>({
   items,
   columns,
   pageSize,
   total,
-  onNextPageClicked,
-  onPreviousPageClicked,
-  canPreviousPage,
-  canNextPage,
-  currentPage,
+  pagination,
 }: TableProps<T>): JSX.Element => {
   const {
     getTableProps,
@@ -53,10 +46,10 @@ export const Table = <T extends object>({
     {
       columns,
       data: items,
-      manualPagination: !!currentPage,
+      manualPagination: !!pagination,
       pageCount: total,
       initialState: {
-        pageSize: pageSize ?? 25,
+        pageSize: pageSize,
       } as TableState,
     },
     usePagination
@@ -92,11 +85,11 @@ export const Table = <T extends object>({
         </TableBody>
       </MuiTable>
       <Pagination
-        currentPage={currentPage ?? pageIndex + 1}
-        onNextPage={onNextPageClicked ?? tableNextPage}
-        onPreviousPage={onPreviousPageClicked ?? tablePreviousPage}
-        canNextPage={canNextPage ?? tableCanNextPage}
-        canPreviousPage={canPreviousPage ?? tableCanPreviousPage}
+        currentPage={pagination?.currentPage ?? pageIndex + 1}
+        onNextPage={pagination?.nextPage ?? tableNextPage}
+        onPreviousPage={pagination?.previousPage ?? tablePreviousPage}
+        canNextPage={pagination?.canNextPage ?? tableCanNextPage}
+        canPreviousPage={pagination?.canPreviousPage ?? tableCanPreviousPage}
         totalPage={total ?? pageOptions.length}
       />
     </>

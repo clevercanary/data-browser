@@ -1,4 +1,5 @@
 import { ColumnConfig } from "app/config/model";
+import { PaginationConfig } from "app/hooks/useFetchEntities";
 import React from "react";
 import { CellProps, Column } from "react-table";
 import { ComponentCreator } from "../ComponentCreator/ComponentCreator";
@@ -9,11 +10,7 @@ interface TableCreatorProps<T> {
   items: T[];
   pageSize: number;
   total?: number;
-  onNextPageClicked?: () => void;
-  onPreviousPageClicked?: () => void;
-  canPreviousPage?: boolean;
-  canNextPage?: boolean;
-  currentPage?: number;
+  pagination?: PaginationConfig;
 }
 
 const createCell = <T extends object>(config: ColumnConfig<T>) =>
@@ -31,11 +28,7 @@ export const TableCreator = <T extends object>({
   items,
   pageSize,
   total,
-  onNextPageClicked,
-  onPreviousPageClicked,
-  canPreviousPage,
-  canNextPage,
-  currentPage,
+  pagination,
 }: TableCreatorProps<T>): JSX.Element => {
   const reactColumns: Column<T>[] = columns.map((columnConfig) => ({
     Header: columnConfig.header,
@@ -48,11 +41,7 @@ export const TableCreator = <T extends object>({
       columns={reactColumns}
       pageSize={pageSize}
       total={total}
-      canNextPage={canNextPage}
-      canPreviousPage={canPreviousPage}
-      onNextPageClicked={onNextPageClicked}
-      onPreviousPageClicked={onPreviousPageClicked}
-      currentPage={currentPage}
+      pagination={pagination}
     />
   );
 };
