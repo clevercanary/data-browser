@@ -4,7 +4,9 @@ import { Button, IconButton, Theme, useMediaQuery } from "@mui/material";
 import React from "react";
 
 export const Search = (): JSX.Element => {
-  const desktop = useMediaQuery((theme: Theme) => theme.breakpoints.up("lg"));
+  const desktop = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.up("desktop")
+  );
   return (
     <>
       {desktop ? (

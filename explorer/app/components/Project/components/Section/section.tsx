@@ -22,7 +22,7 @@ export const Section = ({
   collapsable = false,
   title,
 }: Props): JSX.Element => {
-  const mobile = useBreakpointHelper("down", "lg");
+  const mobile = useBreakpointHelper("down", "desktop");
   const [expanded, setExpanded] = useState<boolean>(false);
   const [transitionDuration, setTransitionDuration] =
     useState<CollapseProps["timeout"]>(0);

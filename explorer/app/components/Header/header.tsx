@@ -52,7 +52,9 @@ export const Header = ({
   socialLinks,
 }: HeaderProps): JSX.Element => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const desktop = useMediaQuery((theme: Theme) => theme.breakpoints.up("lg"));
+  const desktop = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.up("desktop")
+  );
   const HeaderContent = desktop ? Fragment : Drawer;
   const HeaderContentContainer = desktop ? Fragment : Box;
   const contentProps = desktop
@@ -131,8 +133,8 @@ export const Header = ({
             sx={{
               alignItems: "center",
               display: "flex",
-              flex: { xs: 1, lg: "none" },
-              gap: { xs: 3, lg: 2 },
+              flex: { mobile: 1, desktop: "none" },
+              gap: { mobile: 3, desktop: 2 },
               justifyContent: "flex-end",
             }}
           >

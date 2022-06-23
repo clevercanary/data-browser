@@ -31,9 +31,20 @@ declare module "@mui/material/styles/createPalette" {
 }
 
 /**
- * Typography definitions.
+ * Breakpoint and typography definitions.
  */
 declare module "@mui/material/styles" {
+  interface BreakpointOverrides {
+    xs: false;
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    mobile: true;
+    tablet: true;
+    desktop: true;
+  }
+
   interface TypographyVariants {
     "text-body-400": TypographyStyleOptions;
     "text-body-400-2lines": TypographyStyleOptions;
@@ -121,6 +132,15 @@ declare module "@mui/material/IconButton" {
   interface IconButtonPropsSizeOverrides {
     xlarge: true;
     xsmall: true;
+  }
+}
+
+/**
+ * Paper prop options.
+ */
+declare module "@mui/material/Paper" {
+  interface PaperPropsVariantOverrides {
+    panel: true;
   }
 }
 

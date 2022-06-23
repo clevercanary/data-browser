@@ -1,6 +1,17 @@
 // Core dependencies
-import { Box } from "@mui/material";
-import React, { ReactNode } from "react";
+import { Theme, useMediaQuery } from "@mui/material";
+import React, { Fragment, ReactNode } from "react";
+
+// App dependencies
+import { FlatPaper } from "../common/Paper/paper.styles";
+
+// Styles
+import {
+  Project as ProjectLayout,
+  ProjectOverview as Overview,
+  ProjectOverviewMain as Main,
+  ProjectOverviewSide as Side,
+} from "./project.styles";
 
 interface Props {
   mainColumn: ReactNode;
@@ -13,13 +24,19 @@ export const Project = ({
   sideColumn,
   top,
 }: Props): JSX.Element => {
+  const tablet = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.up("tablet")
+  );
+  const ProjectOverview = tablet ? Overview : Overview.withComponent(FlatPaper);
+  const ProjectOverviewMain = tablet ? Main : Fragment;
+  const ProjectOverviewSide = tablet ? Side : Fragment;
   return (
-    <Box>
+    <ProjectLayout>
       {top}
-      <Box display="grid" gap={4} gridAutoFlow="column">
-        {mainColumn}
-        {sideColumn}
-      </Box>
-    </Box>
+      <ProjectOverview>
+        <ProjectOverviewMain>{mainColumn}</ProjectOverviewMain>
+        <ProjectOverviewSide>{sideColumn}</ProjectOverviewSide>
+      </ProjectOverview>
+    </ProjectLayout>
   );
 };
