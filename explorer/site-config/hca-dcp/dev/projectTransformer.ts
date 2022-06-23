@@ -4,6 +4,7 @@ import React from "react";
 
 // App dependencies
 import * as C from "../../../app/components";
+import { STATUS } from "app/components/StatusBadge/statusBadge";
 import { ProjectResponse } from "app/models/responses";
 import { ENTRIES } from "app/project-edits";
 import { concatStrings } from "app/utils/string";
@@ -334,25 +335,28 @@ export const projectsToProjDescription = (
 ): React.ComponentProps<typeof Typography> => {
   return {
     children: project ? project.projects[0].projectDescription : "None",
-    color: "ink",
-    mb: 0,
-    mt: 4,
-    paragraph: true,
-    variant: "text-body-400-2lines",
   };
+};
+
+export const projectsToProjStatus = (
+  project: ProjectResponse
+): React.ComponentProps<typeof C.StatusBadge> => {
+  if (!project) {
+    return { status: STATUS.NONE };
+  }
+
+  return { status: STATUS.NONE };
 };
 
 export const projectsToProjTitle = (
   project: ProjectResponse
-): React.ComponentProps<typeof C.Text> => {
+): React.ComponentProps<typeof C.ProjectTitle> => {
   if (!project) {
-    return { children: "None" };
+    return { projectTitle: "" };
   }
 
   return {
-    variant: "text-body-400-2lines",
-    customColor: "ink",
-    children: project.projects[0].projectTitle,
+    projectTitle: project.projects[0].projectTitle,
   };
 };
 
@@ -386,22 +390,6 @@ export const projectsToCitations = (
       {
         label: `https://data.humancellatlas.org/explore/projects/${project.projects[0].projectId}`,
         url: `https://data.humancellatlas.org/explore/projects/${project.projects[0].projectId}`,
-      },
-    ],
-  };
-};
-
-export const projectsToDataRlsPolicy = (): React.ComponentProps<
-  typeof C.TextLinks
-> => {
-  return {
-    values: [
-      {
-        text: "For information regarding data sharing and data use, please see our ",
-        link: {
-          label: "HCA Data Release Policy",
-          url: "https://www.humancellatlas.org/data-release-policy/",
-        },
       },
     ],
   };

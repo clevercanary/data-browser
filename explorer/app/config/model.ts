@@ -1,5 +1,8 @@
-import { HeaderProps } from "../components/Header/header";
+// Core dependencies
 import { JSXElementConstructor } from "react";
+
+// App dependencies
+import { HeaderProps } from "../components/Header/header";
 
 type GetIdFunction<T> = (detail: T) => string;
 
@@ -47,11 +50,12 @@ export interface DataSourceConfig {
 }
 
 /**
- * Interface to define the the set of components that will be used for the two columns of the details pages.
+ * Interface to define the set of components that will be used for the detail page.
  */
 export interface DetailConfig {
   mainColumn: ComponentConfig[];
   sideColumn: ComponentConfig[];
+  top: ComponentConfig[];
 }
 
 export interface ColumnConfig<

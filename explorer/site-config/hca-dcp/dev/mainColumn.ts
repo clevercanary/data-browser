@@ -10,9 +10,6 @@ import * as T from "./projectTransformer";
 export const mainColumn = [
   {
     component: C.Stack,
-    props: {
-      border: true,
-    },
     children: [
       {
         component: C.Section,
@@ -22,9 +19,20 @@ export const mainColumn = [
         },
         children: [
           {
-            component: Typography,
-            transformer: T.projectsToProjDescription,
-          } as ComponentConfig<typeof Typography, ProjectResponse>,
+            component: C.SectionContent,
+            props: {
+              gap: 4,
+            },
+            children: [
+              {
+                component: Typography,
+                props: {
+                  variant: "inherit",
+                },
+                transformer: T.projectsToProjDescription,
+              } as ComponentConfig<typeof Typography, ProjectResponse>,
+            ],
+          } as ComponentConfig<typeof C.SectionContent, ProjectResponse>,
         ],
       } as ComponentConfig<typeof C.Section, ProjectResponse>,
       {
@@ -150,9 +158,13 @@ export const mainColumn = [
         },
         children: [
           {
-            component: C.TextLinks,
-            transformer: T.projectsToDataRlsPolicy,
-          } as ComponentConfig<typeof C.TextLinks>,
+            component: C.SectionContent,
+            children: [
+              {
+                component: C.DataReleasePolicy,
+              } as ComponentConfig<typeof C.DataReleasePolicy>,
+            ],
+          } as ComponentConfig<typeof C.SectionContent>,
         ],
       } as ComponentConfig<typeof C.Section, ProjectResponse>,
     ],
