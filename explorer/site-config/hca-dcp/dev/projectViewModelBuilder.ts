@@ -3,7 +3,7 @@ import React from "react";
 
 // App dependencies
 import * as C from "../../../app/components";
-import { getProjectDescription } from "../../../app/components/Project/components/common/projectViewModelBuilder";
+import { getProjectDescription } from "../../../app/components/Project/common/projectTransformer";
 import { STATUS } from "app/components/StatusBadge/statusBadge";
 import { ProjectResponse } from "app/models/responses";
 import { ENTRIES } from "app/project-edits";

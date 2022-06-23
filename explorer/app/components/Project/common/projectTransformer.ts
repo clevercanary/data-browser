@@ -1,5 +1,5 @@
 // App dependencies
-import { ProjectResponse } from "../../../../models/responses";
+import { ProjectResponse } from "app/models/responses";
 
 /**
  * Maps project description from API response.
