@@ -8,7 +8,6 @@ import { Tabs } from "app/components/Tabs/tabs";
 import { useConfig } from "app/hooks/useConfig";
 import { useCurrentEntity } from "app/hooks/useCurrentEntity";
 import { useFetchEntities } from "app/hooks/useFetchEntities";
-import { DetailResponseType } from "app/models/responses";
 import { ListModel } from "../../models/viewModels";
 
 export const ListContainer = (props: ListModel) => {
@@ -32,7 +31,7 @@ export const ListContainer = (props: ListModel) => {
     }
 
     return (
-      <TableCreator<DetailResponseType>
+      <TableCreator
         columns={columnsConfig}
         items={response.hits}
         pageSize={response.pagination.size}
