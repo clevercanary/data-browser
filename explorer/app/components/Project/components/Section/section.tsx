@@ -1,10 +1,11 @@
 // Core dependencies
-import { Collapse } from "@mui/material";
+import RemoveIcon from "@mui/icons-material/Remove";
+import AddIcon from "@mui/icons-material/Add";
+import { ButtonBase, Collapse } from "@mui/material";
 import { CollapseProps } from "@mui/material/Collapse/Collapse";
 import React, { ReactNode, useEffect, useState } from "react";
 
 // App dependencies
-import { CollapseButton } from "./components/CollapseButton/collapseButton";
 import { SectionTitle } from "./components/SectionTitle/sectionTitle";
 import {
   BREAKPOINT,
@@ -33,6 +34,8 @@ export const Section = ({
   const [expanded, setExpanded] = useState<boolean>(false);
   const [transitionDuration, setTransitionDuration] =
     useState<CollapseProps["timeout"]>(0);
+  const disabled = !mobile || !collapsable;
+  const ExpandIcon = expanded ? RemoveIcon : AddIcon;
 
   const onToggleExpanded = () => {
     setExpanded((expanded) => !expanded);
@@ -61,14 +64,9 @@ export const Section = ({
 
   return (
     <SectionContainer>
-      <SectionSummary>
+      <SectionSummary disabled={disabled} onClick={onToggleExpanded}>
         <SectionTitle title={title} />
-        {mobile && collapsable && (
-          <CollapseButton
-            expanded={expanded}
-            onToggleExpanded={onToggleExpanded}
-          />
-        )}
+        {!disabled && <ExpandIcon fontSize="small" />}
       </SectionSummary>
       {collapsable ? (
         <Collapse in={expanded} timeout={transitionDuration}>

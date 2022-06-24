@@ -173,6 +173,11 @@ export const theme = createTheme(defaultTheme, {
         },
       ],
     },
+    MuiButtonBase: {
+      defaultProps: {
+        disableRipple: true,
+      },
+    },
     MuiChip: {
       defaultProps: {
         size: "small",

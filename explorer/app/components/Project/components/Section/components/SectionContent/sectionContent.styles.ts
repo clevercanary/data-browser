@@ -7,7 +7,7 @@ export const SectionContent = styled(Typography)`
   color: ${({ theme }) => theme.palette.ink};
   display: flex;
   flex-direction: column;
-  margin-top: 16px;
+  padding: 8px 16px 20px;
 `;
 
 export const SectionContentListItem = styled.div`
