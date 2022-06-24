@@ -2,7 +2,7 @@
 import { createTheme } from "@mui/material/styles";
 
 // App dependencies
-import { BREAKPOINT } from "app/hooks/useBreakpointHelper";
+import { BREAKPOINT } from "../hooks/useBreakpointHelper";
 
 /**
  * Custom colors
