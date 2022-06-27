@@ -157,15 +157,15 @@ export const theme = createTheme(defaultTheme, {
             variant: "nav",
           },
           style: {
+            "&:hover": {
+              backgroundColor: defaultTheme.palette.smokeLight,
+            },
             ...defaultTheme.typography["text-body-500"],
             color: defaultTheme.palette.ink,
             minWidth: 0,
             padding: "12px 24px",
             textTransform: "capitalize",
             whiteSpace: "nowrap",
-            "&:hover": {
-              backgroundColor: defaultTheme.palette.smokeLight,
-            },
             [defaultTheme.breakpoints.up(BREAKPOINT.DESKTOP)]: {
               padding: "6px 12px",
             },
@@ -225,10 +225,10 @@ export const theme = createTheme(defaultTheme, {
             color: "ink",
           },
           style: {
-            color: defaultTheme.palette.ink,
             "&:hover": {
               backgroundColor: defaultTheme.palette.smokeLight,
             },
+            color: defaultTheme.palette.ink,
           },
         },
         {
@@ -236,10 +236,10 @@ export const theme = createTheme(defaultTheme, {
             color: "inkLight",
           },
           style: {
-            color: defaultTheme.palette.inkLight,
             "&:hover": {
               backgroundColor: defaultTheme.palette.smokeLight,
             },
+            color: defaultTheme.palette.inkLight,
           },
         },
         {
