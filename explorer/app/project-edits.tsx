@@ -1,8 +1,8 @@
 import CellXGeneIcon from "../images/icons/cellxgene.svg";
-import StemIcon from "../images/icons/stem.svg";
+import StemCellHubIcon from "../images/icons/stem.svg";
 import UCSCCellIcon from "../images/icons/ucsc-cell.svg";
 
-const UCS_CELL_BROWSER = "UCSC Cell Browser";
+const UCSC_CELL_BROWSER = "UCSC Cell Browser";
 const STEM_CELL_HUB = "Stem Cell Hub";
 
 export const ENTRIES = [
@@ -31,7 +31,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://tissue-stability.cells.ucsc.edu",
       },
@@ -56,7 +56,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://placenta-decidua.cells.ucsc.edu",
       },
@@ -84,7 +84,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://human-liver.cells.ucsc.edu",
       },
@@ -126,7 +126,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://human-ileum.cells.ucsc.edu",
       },
@@ -137,7 +137,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://ms.cells.ucsc.edu",
       },
@@ -148,7 +148,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://kidney-atlas.cells.ucsc.edu",
       },
@@ -159,7 +159,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://gut-cell-atlas.cells.ucsc.edu",
       },
@@ -170,7 +170,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://adult-retina.cells.ucsc.edu",
       },
@@ -181,7 +181,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://human-pancreas.cells.ucsc.edu",
       },
@@ -192,7 +192,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://mouse-gastrulation.cells.ucsc.edu",
       },
@@ -203,7 +203,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://heart-cell-atlas.cells.ucsc.edu",
       },
@@ -220,7 +220,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://fetal-liver.cells.ucsc.edu",
       },
@@ -231,7 +231,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://cells.ucsc.edu/?ds=adultPancreas",
       },
@@ -242,7 +242,7 @@ export const ENTRIES = [
         url: "https://cellxgene.cziscience.com/collections/a238e9fa-2bdf-41df-8522-69046f99baff",
       },
       {
-        icon: StemIcon,
+        icon: StemCellHubIcon,
         label: STEM_CELL_HUB,
         name: "STEM_CELL_HUB",
         url: "https://cirm.ucsc.edu/cgi-bin/cdwGetFile/quakeAdultAgingPancreas1/summary/index.html",
@@ -254,7 +254,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://cells.ucsc.edu/?ds=hca-lungmap-integrated+pancreas",
       },
@@ -265,7 +265,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://tabulamuris.cells.ucsc.edu",
       },
@@ -280,7 +280,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://lung-pf-control.cells.ucsc.edu",
       },
@@ -291,7 +291,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://oligodendrocyte-ms.cells.ucsc.edu",
       },
@@ -302,7 +302,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://covid19-influenza-response.cells.ucsc.edu",
       },
@@ -313,7 +313,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://fetal-thymus.cells.ucsc.edu",
       },
@@ -324,7 +324,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://quake-gbm.cells.ucsc.edu",
       },
@@ -341,7 +341,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://covid19-smoking.cells.ucsc.edu",
       },
@@ -352,7 +352,7 @@ export const ENTRIES = [
         url: "https://cellxgene.cziscience.com/collections/cdfb9ead-cb58-4a53-879d-5e4ed5329e73",
       },
       {
-        icon: StemIcon,
+        icon: StemCellHubIcon,
         label: STEM_CELL_HUB,
         name: "STEM_CELL_HUB",
         url: "https://cirm.ucsc.edu/cgi-bin/cdwGetFile/gompertsLungOrganoids/summary/index.html",
@@ -364,7 +364,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://human-fovea-periphery.cells.ucsc.edu",
       },
@@ -381,7 +381,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://preimplant-embryos.cells.ucsc.edu",
       },
@@ -392,12 +392,12 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://skeletal-muscle.cells.ucsc.edu",
       },
       {
-        icon: StemIcon,
+        icon: StemCellHubIcon,
         label: STEM_CELL_HUB,
         name: "STEM_CELL_HUB",
         url: "https://cirm.ucsc.edu/cgi-bin/cdwGetFile/pyleSkeletalMuscle/summary/index.html",
@@ -409,7 +409,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://cells.ucsc.edu/?ds=hca-lungmap-integrated+placenta-rockefeller",
       },
@@ -420,7 +420,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://aging-human-skin.cells.ucsc.edu",
       },
@@ -431,7 +431,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://healthy-human-skin.cells.ucsc.edu",
       },
@@ -442,7 +442,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://human-cellular-landscape.cells.ucsc.edu",
       },
@@ -453,7 +453,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://kidney-inflamm-response.cells.ucsc.edu",
       },
@@ -464,7 +464,7 @@ export const ENTRIES = [
     analysisPortals: [
       {
         icon: UCSCCellIcon,
-        label: UCS_CELL_BROWSER,
+        label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://h1-esc-diff.cells.ucsc.edu",
       },
