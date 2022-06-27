@@ -1,11 +1,18 @@
 import React from "react";
-import { Column, TableState, usePagination, useTable } from "react-table";
+import {
+  Column,
+  TableState,
+  usePagination,
+  useSortBy,
+  useTable,
+} from "react-table";
 import {
   Table as MuiTable,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
+  TableSortLabel,
 } from "@mui/material";
 import { Pagination } from "../Pagination/pagination";
 import { PaginationConfig } from "app/hooks/useFetchEntities";
@@ -47,11 +54,14 @@ export const Table = <T extends object>({
       columns,
       data: items,
       manualPagination: !!pagination,
+      manualSortBy: true,
+      disableMultiSort: true,
       pageCount: total,
       initialState: {
         pageSize: pageSize,
       } as TableState,
     },
+    useSortBy,
     usePagination
   );
 
@@ -61,8 +71,18 @@ export const Table = <T extends object>({
         <TableHead>
           <TableRow>
             {headers.map((column) => (
-              <TableCell {...column.getHeaderProps()} key={column.id}>
-                {column.render("Header")}
+              <TableCell
+                {...column.getHeaderProps(column.getSortByToggleProps())}
+                key={column.id}
+              >
+                <TableSortLabel
+                  active={column.isSorted}
+                  disabled={column.disableSortBy}
+                  direction={column.isSortedDesc ? "desc" : "asc"}
+                  // onClick={createSortHandler(headCell.id)}
+                >
+                  {column.render("Header")}
+                </TableSortLabel>
               </TableCell>
             ))}
           </TableRow>

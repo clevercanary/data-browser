@@ -71,8 +71,11 @@ export interface ColumnConfig<
   C extends keyof JSX.IntrinsicElements | JSXElementConstructor<any> = any
 > {
   header: string;
-  key: string;
   tooltip?: string;
+  sort?: {
+    sortKey: string;
+    default?: boolean;
+  };
   componentConfig: ComponentConfig<C, T>;
 }
 

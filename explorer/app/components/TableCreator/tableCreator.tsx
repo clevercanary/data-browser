@@ -32,6 +32,7 @@ export const TableCreator = <T extends object>({
 }: TableCreatorProps<T>): JSX.Element => {
   const reactColumns: Column<T>[] = columns.map((columnConfig) => ({
     Header: columnConfig.header,
+    // disableSortBy: true,
     Cell: createCell(columnConfig),
   }));
 
