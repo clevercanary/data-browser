@@ -2,15 +2,18 @@
 import React from "react";
 
 // App dependencies
-import * as C from "../../../app/components";
+import * as C from "app/components";
 import {
+  buildProjectCitationPath,
   getProjectContacts,
   getProjectDescription,
-} from "../../../app/components/Project/common/projectTransformer";
+} from "app/components/Project/common/projectTransformer";
 import { STATUS } from "app/components/StatusBadge/statusBadge";
 import { ProjectResponse } from "app/models/responses";
 import { ENTRIES } from "app/project-edits";
 import { concatStrings } from "app/utils/string";
+
+const formatter = Intl.NumberFormat("en", { notation: "compact" });
 
 const getOrganizations = (project: ProjectResponse): string[] => {
   return Array.from(
@@ -285,8 +288,6 @@ export const projectsToCellCount = (
     return { label: "Cell Count Estimate", value: "None" };
   }
 
-  const formatter = Intl.NumberFormat("en", { notation: "compact" });
-
   return {
     label: "Cell Count Estimate",
     value: `${formatter.format(project.projects[0].estimatedCellCount)}`,
@@ -363,26 +364,11 @@ export const projectsToSupplementaryLinksLabel = (): React.ComponentProps<
   };
 };
 
-export const projectsToCitationsLabel = (): React.ComponentProps<
-  typeof C.Text
-> => {
-  return {
-    variant: "text-body-400-2lines",
-    customColor: "ink",
-    children: `To reference this project, please use the following link:`,
-  };
-};
-
-export const projectsToCitations = (
+export const projectsToCitation = (
   project: ProjectResponse
-): React.ComponentProps<typeof C.Links> => {
+): React.ComponentProps<typeof C.Citation> => {
   return {
-    links: [
-      {
-        label: `https://data.humancellatlas.org/explore/projects/${project.projects[0].projectId}`,
-        url: `https://data.humancellatlas.org/explore/projects/${project.projects[0].projectId}`,
-      },
-    ],
+    citationPath: buildProjectCitationPath(project),
   };
 };
 
@@ -469,6 +455,53 @@ export const projectsToCellCountColumn = (
   return {
     variant: "text-body-400",
     customColor: "ink",
-    children: project.cellSuspensions[0].totalCells,
+    children: `${formatter.format(project.cellSuspensions[0].totalCells)}`,
+  };
+};
+
+export const projectsToLibConstApproachColumn = (
+  project: ProjectResponse
+): React.ComponentProps<typeof C.Text> => {
+  if (!project.protocols?.[0].libraryConstructionApproach) {
+    return {
+      children: "",
+    };
+  }
+
+  return {
+    children: concatStrings(project.protocols[0].libraryConstructionApproach),
+    variant: "text-body-400",
+    customColor: "ink",
+  };
+};
+
+export const projectsToAnatomicalEntityColumn = (
+  project: ProjectResponse
+): React.ComponentProps<typeof C.Text> => {
+  if (!project.samples?.[0]?.organ) {
+    return {
+      children: "",
+    };
+  }
+  return {
+    children: concatStrings(project.samples[0].organ),
+    variant: "text-body-400",
+    customColor: "ink",
+  };
+};
+
+export const projectsToDiseaseDonorColumn = (
+  project: ProjectResponse
+): React.ComponentProps<typeof C.Text> => {
+  if (!project.donorOrganisms?.[0]) {
+    return {
+      children: "",
+    };
+  }
+
+  return {
+    children: concatStrings(project.donorOrganisms[0].disease),
+    variant: "text-body-400",
+    customColor: "ink",
   };
 };
