@@ -12,12 +12,14 @@ import { ContributorResponse } from "./entities";
  * @param project - Project response model return from API.
  * @returns string representation of project citation path.
  */
-export function buildProjectCitationPath(project?: ProjectResponse): string {
-  if (!project) {
-    return "";
+export function buildProjectCitationPath(
+  project?: ProjectResponse
+): string | undefined {
+  if (!project || !project.projects[0].projectId) {
+    return;
   }
 
-  return `explore/projects/${project.projects[0].projectId}`;
+  return `/${project.projects[0].projectId}`;
 }
 
 /**
