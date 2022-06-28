@@ -23,18 +23,18 @@ interface Props {
 export const Contributors = ({ contributors }: Props): JSX.Element => {
   return (
     <Section collapsable title="Contributors">
-      <div>
-        {contributors ? (
-          contributors.map(({ citation, name }) => (
-            <div key={name}>
+      {contributors ? (
+        <div>
+          {contributors.map(({ citation, name }, c) => (
+            <div key={`${name}${c}`}>
               <span>{name}</span>
               <Sup>{citation}</Sup>
             </div>
-          ))
-        ) : (
-          <SectionDetailsEmpty />
-        )}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <SectionDetailsEmpty />
+      )}
     </Section>
   );
 };
