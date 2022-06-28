@@ -27,15 +27,23 @@ export function buildProjectCitationPath(
  * @param project - Project response model return from API.
  * @returns project contacts.
  */
-export function getProjectContacts(project?: ProjectResponse): Contact[] {
+export function getProjectContacts(
+  project?: ProjectResponse
+): Contact[] | undefined {
   if (!project) {
     return [];
   }
-  return project?.projects[0].contributors
+  const contacts = project.projects[0].contributors
     .filter((contributor) => contributor.correspondingContributor)
     .map(({ contactName, email, institution }) => {
       return { email, institution, name: formatName(contactName) };
     });
+
+  if (contacts.length === 0) {
+    return; // Caller is expecting undefined, not an empty array.
+  }
+
+  return contacts;
 }
 
 /**

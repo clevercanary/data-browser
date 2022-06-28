@@ -91,7 +91,7 @@ export interface ListConfig<T = any> {
  * Interface that will hold the whole configuration for a given site.
  */
 export interface SiteConfig {
-  browserURL: string;
+  browserURL?: string;
   datasources: DataSourceConfig;
   entities: EntityConfig[];
   layout: {

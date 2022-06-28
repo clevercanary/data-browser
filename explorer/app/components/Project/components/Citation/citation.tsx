@@ -19,9 +19,10 @@ interface Props {
 export const Citation = ({ citationPath }: Props): JSX.Element => {
   const { browserURL, redirectRootToPath } = useConfig();
   const citationLink = `${browserURL}${redirectRootToPath}${citationPath}`;
+  const showCitation = browserURL && redirectRootToPath && citationPath;
   return (
     <Section collapsable title="Citation">
-      {redirectRootToPath && citationPath ? (
+      {showCitation ? (
         <Stack gap={1}>
           <Typography>
             To reference this project, please use the following link:
