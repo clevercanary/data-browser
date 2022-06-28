@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Column,
+  ColumnInstance,
   TableState,
   usePagination,
   useSortBy,
@@ -15,7 +16,7 @@ import {
   TableSortLabel,
 } from "@mui/material";
 import { Pagination } from "../Pagination/pagination";
-import { PaginationConfig } from "app/hooks/useFetchEntities";
+import { PaginationConfig, SortConfig } from "app/hooks/useFetchEntities";
 
 interface TableProps<T extends object> {
   items: T[];
@@ -23,6 +24,7 @@ interface TableProps<T extends object> {
   columns: Column<T>[];
   total?: number;
   pagination?: PaginationConfig;
+  sort?: SortConfig;
 }
 
 /**
@@ -36,6 +38,7 @@ export const Table = <T extends object>({
   pageSize,
   total,
   pagination,
+  sort,
 }: TableProps<T>): JSX.Element => {
   const {
     getTableProps,
@@ -53,19 +56,33 @@ export const Table = <T extends object>({
     {
       columns,
       data: items,
-      manualPagination: !!pagination,
-      manualSortBy: true,
       disableMultiSort: true,
-      pageCount: total,
       initialState: {
         pageSize: pageSize,
       } as TableState,
       manualPagination: !!pagination,
+      manualSortBy: true,
       pageCount: total,
     },
     useSortBy,
     usePagination
   );
+
+  const handleSortClicked = (column: ColumnInstance<T>) => {
+    const newColumn =
+      column.id === sort?.sortKey && sort.sortOrder === "desc"
+        ? undefined
+        : column.id;
+    const newOrder =
+      newColumn !== sort?.sortKey
+        ? "asc"
+        : sort?.sortOrder === "desc"
+        ? undefined
+        : sort?.sortOrder === "asc"
+        ? "desc"
+        : "asc";
+    sort?.sort(newColumn, newOrder);
+  };
 
   return (
     <>
@@ -78,10 +95,16 @@ export const Table = <T extends object>({
                 key={column.id}
               >
                 <TableSortLabel
-                  active={column.isSorted}
+                  active={sort?.sortKey === column.id}
                   disabled={column.disableSortBy}
-                  direction={column.isSortedDesc ? "desc" : "asc"}
-                  // onClick={createSortHandler(headCell.id)}
+                  direction={
+                    sort?.sortKey !== column.id
+                      ? "asc"
+                      : sort?.sortOrder === "desc"
+                      ? "desc"
+                      : "asc"
+                  }
+                  onClick={() => handleSortClicked(column)}
                 >
                   {column.render("Header")}
                 </TableSortLabel>
