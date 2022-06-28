@@ -60,6 +60,8 @@ export const Table = <T extends object>({
       initialState: {
         pageSize: pageSize,
       } as TableState,
+      manualPagination: !!pagination,
+      pageCount: total,
     },
     useSortBy,
     usePagination

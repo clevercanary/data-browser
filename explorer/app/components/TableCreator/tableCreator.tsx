@@ -31,9 +31,9 @@ export const TableCreator = <T extends object>({
   pagination,
 }: TableCreatorProps<T>): JSX.Element => {
   const reactColumns: Column<T>[] = columns.map((columnConfig) => ({
-    Header: columnConfig.header,
     // disableSortBy: true,
     Cell: createCell(columnConfig),
+    Header: columnConfig.header,
   }));
 
   return (
