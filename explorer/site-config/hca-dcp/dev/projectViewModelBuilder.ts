@@ -5,6 +5,7 @@ import React from "react";
 import * as C from "app/components";
 import {
   buildProjectCitationPath,
+  buildProjectContributors,
   getProjectContacts,
   getProjectDescription,
 } from "app/components/Project/common/projectTransformer";
@@ -36,19 +37,9 @@ export const projectToContacts = (
 
 export const projectsToContributors = (
   project: ProjectResponse
-): React.ComponentProps<typeof C.Citations> => {
-  if (!project) {
-    return { citations: [] };
-  }
-
-  const projectValue = project.projects[0];
-  const organizations = getOrganizations(project);
-
+): React.ComponentProps<typeof C.Contributors> => {
   return {
-    citations: projectValue.contributors.map((contributor) => ({
-      citation: `${organizations.indexOf(contributor.institution) + 1}`,
-      value: `${contributor.contactName} (${contributor.projectRole})`,
-    })),
+    contributors: buildProjectContributors(project),
   };
 };
 

@@ -14,17 +14,9 @@ export const mainColumn = [
     transformer: T.projectToContacts,
   } as ComponentConfig<typeof C.Contacts, ProjectResponse>,
   {
-    children: [
-      {
-        component: C.Citations,
-        transformer: T.projectsToContributors,
-      } as ComponentConfig<typeof C.Citations, ProjectResponse>,
-    ],
-    component: C.Section,
-    props: {
-      title: "Contributors",
-    },
-  } as ComponentConfig<typeof C.Section, ProjectResponse>,
+    component: C.Contributors,
+    transformer: T.projectsToContributors,
+  } as ComponentConfig<typeof C.Contributors, ProjectResponse>,
   {
     children: [
       {
