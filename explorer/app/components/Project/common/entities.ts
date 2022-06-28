@@ -1,5 +1,5 @@
 /**
- * Configuration model of contributor response returned from project API.
+ * Configuration model of contributor response returned from projects index API.
  */
 export interface ContributorResponse {
   contactName: string;
