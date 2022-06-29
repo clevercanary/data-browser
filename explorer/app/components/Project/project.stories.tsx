@@ -5,6 +5,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 // App dependencies
 import { ProjectCitation } from "./components/Citation/citation.stories";
 import { ProjectContacts } from "./components/Contacts/contacts.stories";
+import { ProjectContributors } from "./components/Contributors/contributors.stories";
 import { ProjectDataReleasePolicy } from "./components/DataReleasePolicy/dataReleasePolicy.stories";
 import { ProjectDescription } from "./components/Description/description.stories";
 import { ProjectHeader } from "./components/ProjectHeader/projectHeader.stories";
@@ -33,10 +34,9 @@ View.args = {
           ProjectDescription.args?.projectDescription || "None"
         }
       />
-      <ProjectContacts contacts={ProjectContacts.args?.contacts || []} />
-      <ProjectCitation
-        citationPath={ProjectCitation.args?.citationPath || ""}
-      />
+      <ProjectContacts {...ProjectContacts.args} />
+      <ProjectContributors {...ProjectContributors.args} />
+      <ProjectCitation {...ProjectCitation.args} />
       <ProjectDataReleasePolicy />
     </>
   ),
