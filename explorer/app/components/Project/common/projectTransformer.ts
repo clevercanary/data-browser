@@ -5,20 +5,20 @@ import {
   CONTRIBUTOR_ROLE,
   Contributor,
 } from "../components/Contributors/contributors";
-import { ContributorResponse } from "./entities";
+import { ContributorResponse, Project } from "./entities";
 
 /**
  * Maps project contacts from API response.
- * @param project - Project response model return from API.
+ * @param projectResponse - Project response model return from API.
  * @returns project contacts.
  */
 export function getProjectContacts(
-  project?: ProjectResponse
+  projectResponse?: ProjectResponse
 ): Contact[] | undefined {
-  if (!project) {
-    return [];
-  }
-  const contacts = project.projects[0].contributors
+  const project = getProject(projectResponse);
+  if (!project) return;
+
+  const contacts = project.contributors
     .filter((contributor) => contributor.correspondingContributor)
     .map(({ contactName, email, institution }) => {
       return { email, institution, name: formatName(contactName) };
@@ -33,20 +33,19 @@ export function getProjectContacts(
 
 /**
  * Maps project contributors from API response.
- * @param project - Project response model return from API.
+ * @param projectResponse - Project response model return from API.
  * @returns project contributors with their corresponding [organization] citation number.
  */
 export function getProjectContributors(
-  project?: ProjectResponse
+  projectResponse?: ProjectResponse
 ): Contributor[] | undefined {
-  if (!project) {
-    return;
-  }
+  const project = getProject(projectResponse);
+  if (!project) return;
 
   // Filter for project contributors (contributors without the "data curator" role).
-  const contributors = project.projects[0].contributors;
-  const projectContributors =
-    filterContributorsWithProjectContributors(contributors);
+  const projectContributors = filterContributorsWithProjectContributors(
+    project.contributors
+  );
 
   if (projectContributors.length === 0) {
     return; // Caller is expecting undefined, not an empty array.
@@ -69,26 +68,52 @@ export function getProjectContributors(
 
 /**
  * Maps project description from API response.
- * @param project - Project response model return from API.
+ * @param projectResponse - Project response model return from API.
  * @returns string representation of project description.
  */
 export function getProjectDescription(
-  project?: ProjectResponse
+  projectResponse?: ProjectResponse
 ): string | undefined {
-  return project?.projects[0].projectDescription;
+  const project = getProject(projectResponse);
+  if (!project) return;
+  return project.projectDescription;
 }
 
 /**
  * Builds project path from projectId.
- * @param project - Project response model return from API.
+ * @param projectResponse - Project response model return from API.
  * @returns string representation of project path.
  */
-export function getProjectPath(project?: ProjectResponse): string | undefined {
-  const projectId = project?.projects[0].projectId;
-  if (!projectId) {
-    return;
+export function getProjectPath(
+  projectResponse?: ProjectResponse
+): string | undefined {
+  const project = getProject(projectResponse);
+  const projectPath = project?.projectId;
+  if (!project || !projectPath) return;
+  return `/${project.projectId}`;
+}
+
+/**
+ * Maps project supplementary links from API response.
+ * @param projectResponse - Project response model return from API.
+ * @returns list of supplementary links.
+ */
+export function getProjectSupplementaryLinks(
+  projectResponse?: ProjectResponse
+): string[] | undefined {
+  const project = getProject(projectResponse);
+  if (!project) return;
+
+  // Filter valid links - API response can return [null]
+  const supplementaryLinks = project.supplementaryLinks.filter((link) =>
+    isValidUrl(link)
+  );
+
+  if (supplementaryLinks.length === 0) {
+    return; // Caller is expecting undefined, not an empty array.
   }
-  return `/${projectId}`;
+
+  return supplementaryLinks;
 }
 
 /**
@@ -145,6 +170,15 @@ function getCitationByCollaboratingOrganizations(
 }
 
 /**
+ * Returns the project from the API response.
+ * @param projectResponse
+ */
+function getProject(projectResponse?: ProjectResponse): Project | undefined {
+  if (!projectResponse) return;
+  return projectResponse.projects?.[0];
+}
+
+/**
  * Returns true if the contributor role is "data curator".
  * @param projectRole - Project contributor role.
  * @returns true if the contributor role is "data curator".
@@ -154,4 +188,17 @@ function isContributorDataCurator(projectRole: string | undefined): boolean {
     Boolean(projectRole) &&
     projectRole?.toLowerCase() === CONTRIBUTOR_ROLE.DATA_CURATOR
   );
+}
+
+/**
+ * Return true if url specified is valid.
+ * @param testUrl
+ * @returns true when the url is valid.
+ */
+function isValidUrl(testUrl: string): boolean {
+  try {
+    return Boolean(new URL(testUrl));
+  } catch (e) {
+    return false;
+  }
 }

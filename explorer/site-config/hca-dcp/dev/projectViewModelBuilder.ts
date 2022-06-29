@@ -8,6 +8,7 @@ import {
   getProjectContacts,
   getProjectDescription,
   getProjectPath,
+  getProjectSupplementaryLinks,
 } from "app/components/Project/common/projectTransformer";
 import { STATUS } from "app/components/StatusBadge/statusBadge";
 import { ProjectResponse } from "app/models/responses";
@@ -17,34 +18,42 @@ import { concatStrings } from "app/utils/string";
 const formatter = Intl.NumberFormat("en", { notation: "compact" });
 
 export const buildCitation = (
-  project: ProjectResponse
+  projectResponse: ProjectResponse
 ): React.ComponentProps<typeof C.Citation> => {
   return {
-    projectPath: getProjectPath(project),
+    projectPath: getProjectPath(projectResponse),
   };
 };
 
 export const buildContacts = (
-  project: ProjectResponse
+  projectResponse: ProjectResponse
 ): React.ComponentProps<typeof C.Contacts> => {
   return {
-    contacts: getProjectContacts(project),
+    contacts: getProjectContacts(projectResponse),
   };
 };
 
 export const buildContributors = (
-  project: ProjectResponse
+  projectResponse: ProjectResponse
 ): React.ComponentProps<typeof C.Contributors> => {
   return {
-    contributors: getProjectContributors(project),
+    contributors: getProjectContributors(projectResponse),
   };
 };
 
 export const buildDescription = (
-  project: ProjectResponse
+  projectResponse: ProjectResponse
 ): React.ComponentProps<typeof C.Description> => {
   return {
-    projectDescription: getProjectDescription(project) || "None",
+    projectDescription: getProjectDescription(projectResponse) || "None",
+  };
+};
+
+export const buildSupplementaryLinks = (
+  projectResponse: ProjectResponse
+): React.ComponentProps<typeof C.SupplementaryLinks> => {
+  return {
+    supplementaryLinks: getProjectSupplementaryLinks(projectResponse),
   };
 };
 
@@ -347,38 +356,7 @@ export const projectsToProjTitle = (
   }
 
   return {
-    projectTitle: project.projects[0].projectTitle,
-  };
-};
-
-export const projectsToSupplementaryLinksLabel = (): React.ComponentProps<
-  typeof C.Text
-> => {
-  return {
-    children: `To reference this Supplementary links are provided by contributors and represent items
-     such as additional data which can’t be hosted here; code that was used to analyze this data; or
-     tools and visualizations associated with this specific dataset.project, please use the following link:`,
-    customColor: "ink",
-    variant: "text-body-400-2lines",
-  };
-};
-
-export const projectsToSupplementaryLinks = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.Links> => {
-  if (!project) {
-    return { links: [] };
-  }
-
-  return {
-    enumerate: true,
-    links: project.projects[0].supplementaryLinks
-      .filter((value) => !!value)
-      .map((link) => ({
-        label: link,
-        url: link,
-      })),
-    showCopyButton: true,
+    projectTitle: project?.projects[0].projectTitle,
   };
 };
 
@@ -432,8 +410,6 @@ export const projectsToSpeciesColumn = (
       project.donorOrganisms.flatMap((orgnanism) => orgnanism.genusSpecies)
     ),
     customColor: "ink",
-    // TODO(cc) resolve with ticket Update project details component to match refined mocks #94
-    // eslint-disable-next-line sonarjs/no-duplicate-string
     variant: "text-body-400",
   };
 };

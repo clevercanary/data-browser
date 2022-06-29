@@ -46,33 +46,9 @@ export const mainColumn = [
     transformer: T.buildCitation,
   } as ComponentConfig<typeof C.Citation, ProjectResponse>,
   {
-    children: [
-      {
-        children: [
-          {
-            component: C.Text,
-            transformer: T.projectsToSupplementaryLinksLabel,
-          } as ComponentConfig<typeof C.Text>,
-          {
-            component: C.Links,
-            props: {
-              enumerate: true,
-              showCopyButton: true,
-            },
-            transformer: T.projectsToSupplementaryLinks,
-          } as ComponentConfig<typeof C.Links>,
-        ],
-        component: C.Stack,
-        props: {
-          gap: 2,
-        },
-      } as ComponentConfig<typeof C.Stack>,
-    ],
-    component: C.Section,
-    props: {
-      title: "Supplementary Links",
-    },
-  } as ComponentConfig<typeof C.Section, ProjectResponse>,
+    component: C.SupplementaryLinks,
+    transformer: T.buildSupplementaryLinks,
+  } as ComponentConfig<typeof C.SupplementaryLinks>,
   {
     children: [
       {
