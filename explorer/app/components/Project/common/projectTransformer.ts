@@ -21,11 +21,27 @@ export function buildProjectCitationPath(project?: ProjectResponse): string {
 }
 
 /**
- * Builds project contributors from API response.
+ * Maps project contacts from API response.
+ * @param project - Project response model return from API.
+ * @returns project contacts.
+ */
+export function getProjectContacts(project?: ProjectResponse): Contact[] {
+  if (!project) {
+    return [];
+  }
+  return project?.projects[0].contributors
+    .filter((contributor) => contributor.correspondingContributor)
+    .map(({ contactName, email, institution }) => {
+      return { email, institution, name: formatName(contactName) };
+    });
+}
+
+/**
+ * Maps project contributors from API response.
  * @param project - Project response model return from API.
  * @returns project contributors with their corresponding [organization] citation number.
  */
-export function buildProjectContributors(
+export function getProjectContributors(
   project?: ProjectResponse
 ): Contributor[] | undefined {
   if (!project) {
@@ -50,26 +66,10 @@ export function buildProjectContributors(
       citation: citationByContributorOrganizations.get(
         projectContributor.institution
       ),
-      name: formatContributor(projectContributor.contactName),
-      role: projectContributor.projectRole,
+      name: formatName(projectContributor.contactName),
+      role: formatTitleCase(projectContributor.projectRole),
     };
   });
-}
-
-/**
- * Maps project contacts from API response.
- * @param project - Project response model return from API.
- * @returns project contacts.
- */
-export function getProjectContacts(project?: ProjectResponse): Contact[] {
-  if (!project) {
-    return [];
-  }
-  return project?.projects[0].contributors
-    .filter((contributor) => contributor.correspondingContributor)
-    .map(({ contactName, email, institution }) => {
-      return { email, institution, name: contactName };
-    });
 }
 
 /**
@@ -102,8 +102,19 @@ function filterContributorsWithProjectContributors(
  * @param commaDelimitedName
  * @returns formatted name "firstName middleName lastName".
  */
-function formatContributor(commaDelimitedName: string): string {
+function formatName(commaDelimitedName: string): string {
   return commaDelimitedName.split(/[ ,]+/).join(" ");
+}
+
+/**
+ * Formats string to title case.
+ * @param str
+ * @returns formatted string as title case.
+ */
+function formatTitleCase(str?: string): string | undefined {
+  return str?.replace(/\b[a-z]/g, function (match) {
+    return match.toUpperCase();
+  });
 }
 
 /**
@@ -114,11 +125,11 @@ function formatContributor(commaDelimitedName: string): string {
 function getCitationByCollaboratingOrganizations(
   contributors: ContributorResponse[]
 ): Map<string, number> {
-  const setOfCollaboratingOrganizations = new Set(
+  const collaboratingOrganizationsSet = new Set(
     contributors.map((contributor) => contributor.institution)
   );
   return new Map(
-    Array.from(setOfCollaboratingOrganizations).map((organization, i) => [
+    [...collaboratingOrganizationsSet].map((organization, i) => [
       organization,
       i + 1,
     ])

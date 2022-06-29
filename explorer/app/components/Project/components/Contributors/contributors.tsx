@@ -25,10 +25,11 @@ export const Contributors = ({ contributors }: Props): JSX.Element => {
     <Section collapsable title="Contributors">
       {contributors ? (
         <div>
-          {contributors.map(({ citation, name }, c) => (
+          {contributors.map(({ citation, name, role }, c) => (
             <div key={`${name}${c}`}>
               <span>{name}</span>
-              <Sup>{citation}</Sup>
+              {role && <span> ({role})</span>}
+              {citation && <Sup>{citation}</Sup>}
             </div>
           ))}
         </div>
