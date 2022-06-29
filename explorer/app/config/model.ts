@@ -18,7 +18,7 @@ export interface EntityConfig<D = any> {
   getId?: GetIdFunction<D>;
   staticLoad?: boolean;
   detail?: DetailConfig;
-  list?: ListConfig;
+  list: ListConfig;
 }
 
 /**

@@ -17,6 +17,7 @@ import {
 } from "@mui/material";
 import { Pagination } from "../Pagination/pagination";
 import { PaginationConfig, SortConfig } from "app/hooks/useFetchEntities";
+import { newColumnKey, newColumnOrder } from "./functions";
 
 interface TableProps<T extends object> {
   items: T[];
@@ -69,19 +70,11 @@ export const Table = <T extends object>({
   );
 
   const handleSortClicked = (column: ColumnInstance<T>) => {
-    const newColumn =
-      column.id === sort?.sortKey && sort.sortOrder === "desc"
-        ? undefined
-        : column.id;
-    const newOrder =
-      newColumn !== sort?.sortKey
-        ? "asc"
-        : sort?.sortOrder === "desc"
-        ? undefined
-        : sort?.sortOrder === "asc"
-        ? "desc"
-        : "asc";
-    sort?.sort(newColumn, newOrder);
+    if (sort) {
+      const newColumn = newColumnKey<T>(sort, column);
+      const newOrder = newColumnOrder(sort, newColumn);
+      sort.sort(newColumn, newOrder);
+    }
   };
 
   return (
@@ -98,11 +91,7 @@ export const Table = <T extends object>({
                   active={sort?.sortKey === column.id}
                   disabled={column.disableSortBy}
                   direction={
-                    sort?.sortKey !== column.id
-                      ? "asc"
-                      : sort?.sortOrder === "desc"
-                      ? "desc"
-                      : "asc"
+                    sort?.sortKey === column.id ? sort?.sortOrder : "asc"
                   }
                   onClick={() => handleSortClicked(column)}
                 >

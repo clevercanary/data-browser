@@ -39,10 +39,10 @@ const DEFAULT_CURRENT_PAGE = 1;
  * @param entity current entity config with all columns
  * @returns string with the default sorted key or the first one
  */
-const getDefaultSort = (entity?: EntityConfig) => {
+const getDefaultSort = (entity: EntityConfig) => {
   return (
-    entity?.list?.columns.find((column) => column.sort?.default)?.sort
-      ?.sortKey ?? entity?.list?.columns[0].sort?.sortKey
+    entity.list.columns.find((column) => column.sort?.default)?.sort?.sortKey ??
+    entity.list.columns[0].sort?.sortKey
   );
 };
 
@@ -56,7 +56,7 @@ const getDefaultSort = (entity?: EntityConfig) => {
 export const useFetchEntities = (value?: ListModel): UseEntityListResponse => {
   const entity = useCurrentEntity();
   const [currentPage, setCurrentPage] = useState(DEFAULT_CURRENT_PAGE);
-  const defaultSort = useMemo(() => getDefaultSort(entity), [entity]);
+  const defaultSort = useMemo(() => entity && getDefaultSort(entity), [entity]);
   const [sortKey, setSortKey] = useState<string | undefined>(defaultSort);
   const [sortOrder, setsortOrder] = useState<SortOrderType | undefined>(
     defaultSort ? "asc" : undefined
@@ -125,8 +125,8 @@ export const useFetchEntities = (value?: ListModel): UseEntityListResponse => {
     response: apiData,
     sort: {
       sort,
-      sortKey: sortKey,
-      sortOrder: sortOrder,
+      sortKey,
+      sortOrder,
     },
   };
 };
