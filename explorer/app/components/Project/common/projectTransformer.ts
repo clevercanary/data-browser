@@ -8,21 +8,6 @@ import {
 import { ContributorResponse } from "./entities";
 
 /**
- * Builds project citation path from projectId.
- * @param project - Project response model return from API.
- * @returns string representation of project citation path.
- */
-export function buildProjectCitationPath(
-  project?: ProjectResponse
-): string | undefined {
-  if (!project || !project.projects[0].projectId) {
-    return;
-  }
-
-  return `/${project.projects[0].projectId}`;
-}
-
-/**
  * Maps project contacts from API response.
  * @param project - Project response model return from API.
  * @returns project contacts.
@@ -91,6 +76,19 @@ export function getProjectDescription(
   project?: ProjectResponse
 ): string | undefined {
   return project?.projects[0].projectDescription;
+}
+
+/**
+ * Builds project path from projectId.
+ * @param project - Project response model return from API.
+ * @returns string representation of project path.
+ */
+export function getProjectPath(project?: ProjectResponse): string | undefined {
+  const projectId = project?.projects[0].projectId;
+  if (!projectId) {
+    return;
+  }
+  return `/${projectId}`;
 }
 
 /**

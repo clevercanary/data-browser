@@ -13,13 +13,13 @@ import { Section } from "../Section/section";
 import { CitationLink } from "./citation.styles";
 
 interface Props {
-  citationPath?: string;
+  projectPath?: string;
 }
 
-export const Citation = ({ citationPath }: Props): JSX.Element => {
-  const { browserURL, redirectRootToPath } = useConfig();
-  const citationLink = `${browserURL}${redirectRootToPath}${citationPath}`;
-  const showCitation = browserURL && redirectRootToPath && citationPath;
+export const Citation = ({ projectPath }: Props): JSX.Element => {
+  const { browserURL, redirectRootToPath: path } = useConfig();
+  const citationLink = `${browserURL}${path}${projectPath}`;
+  const showCitation = browserURL && path && projectPath;
   return (
     <Section collapsable title="Citation">
       {showCitation ? (
@@ -30,11 +30,7 @@ export const Citation = ({ citationPath }: Props): JSX.Element => {
           <CitationLink>
             <Link
               copyable
-              label={buildCitationLinkLabel(
-                browserURL,
-                redirectRootToPath,
-                citationPath
-              )}
+              label={buildCitationLinkLabel(browserURL, path, projectPath)}
               target={ANCHOR_TARGET.BLANK}
               url={citationLink}
             />
@@ -50,21 +46,21 @@ export const Citation = ({ citationPath }: Props): JSX.Element => {
 /**
  * Builds citation label for display as citation link.
  * @param origin - Url origin.
- * @param root - Url root path.
- * @param pathName - Url pathname.
+ * @param path - Pathname.
+ * @param projectPath - Project pathname.
  */
 function buildCitationLinkLabel(
   origin: string,
-  root: string,
-  pathName: string
+  path: string,
+  projectPath: string
 ): ReactNode {
   return (
     <>
       {origin}/
       <wbr />
-      {removeLeadingSlash(root)}/
+      {removeLeadingSlash(path)}/
       <wbr />
-      {removeLeadingSlash(pathName)}
+      {removeLeadingSlash(projectPath)}
     </>
   );
 }
