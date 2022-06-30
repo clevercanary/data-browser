@@ -4,8 +4,10 @@ import React from "react";
 // App dependencies
 import * as C from "app/components";
 import {
-  getProjectContributors,
+  getProjectCollaboratingOrganizations,
   getProjectContacts,
+  getProjectContributors,
+  getProjectDataCurators,
   getProjectDescription,
   getProjectPath,
   getProjectSupplementaryLinks,
@@ -22,6 +24,15 @@ export const buildCitation = (
 ): React.ComponentProps<typeof C.Citation> => {
   return {
     projectPath: getProjectPath(projectResponse),
+  };
+};
+
+export const buildCollaboratingOrganizations = (
+  projectResponse: ProjectsResponse
+): React.ComponentProps<typeof C.CollaboratingOrganizations> => {
+  return {
+    collaboratingOrganizations:
+      getProjectCollaboratingOrganizations(projectResponse),
   };
 };
 
@@ -57,31 +68,11 @@ export const buildSupplementaryLinks = (
   };
 };
 
-const getOrganizations = (project: ProjectsResponse): string[] => {
-  return Array.from(
-    new Set(
-      project.projects[0].contributors.map(
-        (contributor) => contributor.institution
-      )
-    )
-  );
-};
-
-export const projectsToDataCurators = (
-  project: ProjectsResponse
-): React.ComponentProps<typeof C.TextLinks> => {
-  if (!project) {
-    return { values: [] };
-  }
-
-  const curators = project.projects[0].contributors.filter(
-    (contr) => contr.projectRole === "data curator"
-  );
-
+export const buildDataCurators = (
+  projectResponse: ProjectsResponse
+): React.ComponentProps<typeof C.DataCurators> => {
   return {
-    values: curators.map((curator) => ({
-      text: `${curator.contactName}`,
-    })),
+    dataCurators: getProjectDataCurators(projectResponse),
   };
 };
 
@@ -103,24 +94,6 @@ export const projectsToAccessions = (
         text: "Array Express Accessions: ",
       },
     ],
-  };
-};
-
-export const projectsToOrganizations = (
-  project: ProjectsResponse
-): React.ComponentProps<typeof C.Citations> => {
-  if (!project) {
-    return { citations: [] };
-  }
-
-  const organizations = getOrganizations(project);
-
-  return {
-    align: "left",
-    citations: organizations.map((organization, index) => ({
-      citation: `${index + 1}`,
-      value: organization,
-    })),
   };
 };
 
