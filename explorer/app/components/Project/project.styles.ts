@@ -2,17 +2,23 @@ import { RoundedPaper } from "../common/Paper/paper.styles";
 import styled from "@emotion/styled";
 import { BREAKPOINT } from "../../hooks/useBreakpointHelper";
 
+export const Container = styled.div`
+  margin: ${({ theme }) => theme.spacing(0, 4)};
+  padding: ${({ theme }) => theme.spacing(6, 0)};
+
+  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+    margin: 0 auto;
+    max-width: min(calc(100% - 32px), 1232px);
+  }
+`;
+
 export const Project = styled.div`
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(2, 1fr);
-  margin: 0 16px;
-  padding: 24px 0;
 
   ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
     grid-template-columns: repeat(12, 1fr);
-    margin: 0 auto;
-    max-width: min(calc(100% - 32px), 1232px);
   }
 `;
 

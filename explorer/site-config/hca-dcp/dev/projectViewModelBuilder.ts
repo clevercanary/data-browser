@@ -61,7 +61,7 @@ const getOrganizations = (project: ProjectResponse): string[] => {
 export const projectsToDataCurators = (
   project: ProjectResponse
 ): React.ComponentProps<typeof C.TextLinks> => {
-  if (!project) {
+  if (!project.projects?.[0]) {
     return { values: [] };
   }
 
@@ -100,7 +100,7 @@ export const projectsToAccessions = (
 export const projectsToOrganizations = (
   project: ProjectResponse
 ): React.ComponentProps<typeof C.Citations> => {
-  if (!project) {
+  if (!project.projects?.[0]) {
     return { citations: [] };
   }
 
@@ -118,7 +118,7 @@ export const projectsToOrganizations = (
 export const projectsToProjectLabel = (
   project: ProjectResponse
 ): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project) {
+  if (!project.projects?.[0]) {
     return { label: "Project Label", value: "None" };
   }
 
@@ -144,7 +144,7 @@ export const projectsToSpecies = (
 export const projectsToSampleType = (
   project: ProjectResponse
 ): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project) {
+  if (!project.samples?.[0]) {
     return { label: "Sample Type", value: "None" };
   }
 
@@ -342,7 +342,7 @@ export const projectsToProjStatus = (
 export const projectsToProjTitle = (
   project: ProjectResponse
 ): React.ComponentProps<typeof C.ProjectTitle> => {
-  if (!project) {
+  if (!project.projects?.[0]) {
     return { projectTitle: "" };
   }
 
@@ -366,7 +366,7 @@ export const projectsToSupplementaryLinksLabel = (): React.ComponentProps<
 export const projectsToSupplementaryLinks = (
   project: ProjectResponse
 ): React.ComponentProps<typeof C.Links> => {
-  if (!project) {
+  if (!project.projects?.[0]) {
     return { links: [] };
   }
 

@@ -24,7 +24,7 @@ export const useFetchEntity = <T,>(
 ): UseEntityDetailResponse<T> => {
   const entity = useCurrentEntity();
   const router = useRouter();
-  const uuid = router.query.uuid as string;
+  const uuid = router.query.uuid?.[0] as string;
   const { data: response, isLoading: apiIsLoading, run } = useAsync<T>();
 
   useEffect(() => {

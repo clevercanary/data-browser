@@ -15,8 +15,8 @@ import { ContributorResponse } from "./entities";
 export function getProjectContacts(
   project?: ProjectResponse
 ): Contact[] | undefined {
-  if (!project) {
-    return [];
+  if (!project?.projects?.[0]) {
+    return;
   }
   const contacts = project.projects[0].contributors
     .filter((contributor) => contributor.correspondingContributor)
@@ -39,7 +39,7 @@ export function getProjectContacts(
 export function getProjectContributors(
   project?: ProjectResponse
 ): Contributor[] | undefined {
-  if (!project) {
+  if (!project?.projects?.[0]) {
     return;
   }
 
@@ -75,7 +75,7 @@ export function getProjectContributors(
 export function getProjectDescription(
   project?: ProjectResponse
 ): string | undefined {
-  return project?.projects[0].projectDescription;
+  return project?.projects?.[0].projectDescription;
 }
 
 /**
@@ -84,7 +84,7 @@ export function getProjectDescription(
  * @returns string representation of project path.
  */
 export function getProjectPath(project?: ProjectResponse): string | undefined {
-  const projectId = project?.projects[0].projectId;
+  const projectId = project?.projects?.[0].projectId;
   if (!projectId) {
     return;
   }
