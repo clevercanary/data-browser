@@ -35,6 +35,12 @@ export const ENTRIES = [
         name: "CELL_BROWSER",
         url: "https://tissue-stability.cells.ucsc.edu",
       },
+      {
+        icon: CellXGeneIcon,
+        label: "Cellxgene",
+        name: "CELLXGENE",
+        url: "https://cellxgene.cziscience.com/collections/4d74781b-8186-4c9a-b659-ff4dc4601d91",
+      },
     ],
     contributors: [
       {
@@ -151,6 +157,12 @@ export const ENTRIES = [
         label: UCSC_CELL_BROWSER,
         name: "CELL_BROWSER",
         url: "https://kidney-atlas.cells.ucsc.edu",
+      },
+      {
+        icon: CellXGeneIcon,
+        label: "Cellxgene",
+        name: "CELLXGENE",
+        url: "https://cellxgene.cziscience.com/collections/120e86b4-1195-48c5-845b-b98054105eec",
       },
     ],
     entryId: "abe1a013-af7a-45ed-8c26-f3793c24a1f4",
@@ -577,5 +589,27 @@ export const ENTRIES = [
       },
     ],
     entryId: "26204979-55a3-49b2-8d2b-53e0bdfcb176",
+  },
+  {
+    analysisPortals: [
+      {
+        icon: CellXGeneIcon,
+        label: "Cellxgene",
+        name: "CELLXGENE",
+        url: "https://cellxgene.cziscience.com/collections/9b02383a-9358-4f0f-9795-a891ec523bcc",
+      },
+    ],
+    entryId: "2af52a13-65cb-4973-b513-39be38f2df3f",
+  },
+  {
+    analysisPortals: [
+      {
+        icon: CellXGeneIcon,
+        label: "Cellxgene",
+        name: "CELLXGENE",
+        url: "https://cellxgene.cziscience.com/collections/e2a4a67f-6a18-431a-ab9c-6e77dd31cc80",
+      },
+    ],
+    entryId: "53c53cd4-8127-4e12-bc7f-8fe1610a715c",
   },
 ];
