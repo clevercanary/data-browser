@@ -1,25 +1,32 @@
 // App dependencies
-import { ProjectsResponse } from "app/models/responses";
+import {
+  ContributorResponse,
+  ProjectResponse,
+  ProjectsResponse,
+} from "app/models/responses";
 import { Contact } from "../components/Contacts/contacts";
 import {
   CONTRIBUTOR_ROLE,
   Contributor,
 } from "../components/Contributors/contributors";
-import { ContributorResponse, Project } from "./entities";
 
 /**
  * Maps project contacts from API response.
- * @param projectResponse - Project response model return from API.
+ * @param projectsResponse - Response model return from projects API.
  * @returns project contacts.
  */
 export function getProjectContacts(
-  projectResponse?: ProjectsResponse
+  projectsResponse?: ProjectsResponse
 ): Contact[] | undefined {
-  const project = getProject(projectResponse);
-  if (!project) return;
+  const projectResponse = getProjectResponse(projectsResponse);
+  if (!projectResponse) {
+    return;
+  }
 
-  const contacts = project.contributors
-    .filter((contributor) => contributor.correspondingContributor)
+  const contacts = projectResponse.contributors
+    .filter(
+      (contributorResponse) => contributorResponse.correspondingContributor
+    )
     .map(({ contactName, email, institution }) => {
       return { email, institution, name: formatName(contactName) };
     });
@@ -33,14 +40,16 @@ export function getProjectContacts(
 
 /**
  * Maps project contributors from API response.
- * @param projectResponse - Project response model return from API.
+ * @param projectsResponse - Response model return from projects API.
  * @returns project contributors with their corresponding [organization] citation number.
  */
 export function getProjectContributors(
-  projectResponse?: ProjectsResponse
+  projectsResponse?: ProjectsResponse
 ): Contributor[] | undefined {
-  const project = getProject(projectResponse);
-  if (!project) return;
+  const project = getProjectResponse(projectsResponse);
+  if (!project) {
+    return;
+  }
 
   // Filter for project contributors (contributors without the "data curator" role).
   const projectContributors = filterContributorsWithProjectContributors(
@@ -68,41 +77,47 @@ export function getProjectContributors(
 
 /**
  * Maps project description from API response.
- * @param projectResponse - Project response model return from API.
+ * @param projectsResponse - Response model return from projects API.
  * @returns string representation of project description.
  */
 export function getProjectDescription(
-  projectResponse?: ProjectsResponse
+  projectsResponse?: ProjectsResponse
 ): string | undefined {
-  const project = getProject(projectResponse);
-  if (!project) return;
+  const project = getProjectResponse(projectsResponse);
+  if (!project) {
+    return;
+  }
   return project.projectDescription;
 }
 
 /**
  * Builds project path from projectId.
- * @param projectResponse - Project response model return from API.
+ * @param projectsResponse - Response model return from projects API.
  * @returns string representation of project path.
  */
 export function getProjectPath(
-  projectResponse?: ProjectsResponse
+  projectsResponse?: ProjectsResponse
 ): string | undefined {
-  const project = getProject(projectResponse);
+  const project = getProjectResponse(projectsResponse);
   const projectPath = project?.projectId;
-  if (!project || !projectPath) return;
+  if (!project || !projectPath) {
+    return;
+  }
   return `/${project.projectId}`;
 }
 
 /**
  * Maps project supplementary links from API response.
- * @param projectResponse - Project response model return from API.
+ * @param projectsResponse - Response model return from projects API.
  * @returns list of supplementary links.
  */
 export function getProjectSupplementaryLinks(
-  projectResponse?: ProjectsResponse
+  projectsResponse?: ProjectsResponse
 ): string[] | undefined {
-  const project = getProject(projectResponse);
-  if (!project) return;
+  const project = getProjectResponse(projectsResponse);
+  if (!project) {
+    return;
+  }
 
   // Filter valid links - API response can return [null]
   const supplementaryLinks = project.supplementaryLinks.filter((link) =>
@@ -132,7 +147,7 @@ function filterContributorsWithProjectContributors(
 
 /**
  * Formats name from "firstName,middleName,lastName" to "firstName middleName lastName".
- * @param commaDelimitedName
+ * @param commaDelimitedName - Contributor's name tokens delimited by a comma.
  * @returns formatted name "firstName middleName lastName".
  */
 function formatName(commaDelimitedName: string): string {
@@ -141,7 +156,7 @@ function formatName(commaDelimitedName: string): string {
 
 /**
  * Formats string to title case.
- * @param str
+ * @param str - Value to format to title case.
  * @returns formatted string as title case.
  */
 function formatTitleCase(str?: string): string | undefined {
@@ -170,12 +185,16 @@ function getCitationByCollaboratingOrganizations(
 }
 
 /**
- * Returns the project from the API response.
- * @param projectResponse
+ * Returns the project value from the projects API response.
+ * @param projectsResponse - Response returned from projects API response.
  */
-function getProject(projectResponse?: ProjectsResponse): Project | undefined {
-  if (!projectResponse) return;
-  return projectResponse.projects?.[0];
+function getProjectResponse(
+  projectsResponse?: ProjectsResponse
+): ProjectResponse | undefined {
+  if (!projectsResponse) {
+    return;
+  }
+  return projectsResponse.projects?.[0];
 }
 
 /**
@@ -192,7 +211,7 @@ function isContributorDataCurator(projectRole: string | undefined): boolean {
 
 /**
  * Return true if url specified is valid.
- * @param testUrl
+ * @param testUrl - URL to check if valid.
  * @returns true when the url is valid.
  */
 function isValidUrl(testUrl: string): boolean {

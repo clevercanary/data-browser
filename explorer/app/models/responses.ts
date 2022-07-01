@@ -1,4 +1,73 @@
 /**
+ * Model of response returned from the AnVIL-specific /index/files API endpoint.
+ */
+export interface AnvilFilesResponse {
+  activities: {
+    activity_type: string[];
+    data_modality: string[];
+  }[];
+  bundles: {
+    bundleUuid: string;
+    bundleVersion: string;
+  }[];
+  datasets: {
+    dataset_name: string;
+  }[];
+  entryId: string;
+  files: {
+    accessible: boolean;
+    data_modality: string[];
+    date_created: string;
+    document_id: string;
+    file_format: string;
+    file_id: string;
+    file_type: string;
+  }[];
+  sources: {
+    sourceId: string;
+    sourceSpec: string;
+  }[];
+}
+
+/**
+ * Model of contributor value included in the response from index/projects API endpoint.
+ */
+export interface ContributorResponse {
+  contactName: string;
+  correspondingContributor?: boolean;
+  email?: string;
+  institution: string;
+  laboratory?: string;
+  projectRole?: string;
+}
+
+/**
+ * Model of response returned from /index/files API endpoint.
+ */
+export interface FilesResponse {
+  projects: {
+    projectTitle: string[];
+    estimatedCellCount?: number;
+  }[];
+  files: {
+    name: string;
+    uuid: string;
+    format: string;
+    size: number;
+    contentDescription: string[];
+  }[];
+}
+
+/**
+ * Model of index response type, such as projects (index/projects), samples (index/samples) and files (index/files).
+ * TODO(cc) possibly standardize ListX naming convention to IndexX?
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- this type can't be determined beforehand
+export interface ListResponseType<T = any> extends PaginatedResponse {
+  hits: T[];
+}
+
+/**
  * Base index response interface, implemented by specific index responses.
  */
 interface PaginatedResponse {
@@ -12,6 +81,20 @@ interface PaginatedResponse {
     sort?: string;
     order?: "asc" | "desc";
   };
+}
+
+/**
+ * Model of project value nested in response returned from index/projects API endpoint.
+ */
+export interface ProjectResponse {
+  contributedAnalyses: object;
+  contributors: ContributorResponse[];
+  estimatedCellCount: number;
+  projectDescription: string;
+  projectId: string;
+  projectShortname: string;
+  projectTitle: string;
+  supplementaryLinks: string[];
 }
 
 /**
@@ -44,23 +127,7 @@ export interface ProjectsResponse {
   cellSuspensions?: {
     totalCells: number;
   }[];
-  projects: {
-    projectId: string;
-    projectShortname: string;
-    projectTitle: string;
-    projectDescription: string;
-    contributedAnalyses: object;
-    estimatedCellCount: number;
-    supplementaryLinks: string[];
-    contributors: {
-      correspondingContributor?: boolean;
-      contactName: string;
-      email?: string;
-      institution: string;
-      laboratory?: string;
-      projectRole?: string;
-    }[];
-  }[];
+  projects: ProjectResponse[];
 }
 
 /**
@@ -86,54 +153,8 @@ export interface SamplesResponse {
 }
 
 /**
- * Model of response returned from /index/files API endpoint.
+ * Model of response returned from /index/summary API endpoint.
  */
-export interface FilesResponse {
-  projects: {
-    projectTitle: string[];
-    estimatedCellCount?: number;
-  }[];
-  files: {
-    name: string;
-    uuid: string;
-    format: string;
-    size: number;
-    contentDescription: string[];
-  }[];
-}
-
-/**
- * Model of response returned from the AnVIL-specific /index/files API endpoint.
- */
-export interface AnvilFilesResponse {
-  activities: {
-    activity_type: string[];
-    data_modality: string[];
-  }[];
-  bundles: {
-    bundleUuid: string;
-    bundleVersion: string;
-  }[];
-  datasets: {
-    dataset_name: string;
-  }[];
-  entryId: string;
-  files: {
-    accessible: boolean;
-    data_modality: string[];
-    date_created: string;
-    document_id: string;
-    file_format: string;
-    file_id: string;
-    file_type: string;
-  }[];
-  sources: {
-    sourceId: string;
-    sourceSpec: string;
-  }[];
-}
-
-// Summary
 export interface SummaryResponse {
   cellCountSummaries: {
     countOfDocsWithOrganType: number;
@@ -162,9 +183,4 @@ export interface SummaryResponse {
   speciesCount: number;
   specimenCount: number;
   totalFileSize: number;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any -- this type can't be determined beforehand
-export interface ListResponseType<T = any> extends PaginatedResponse {
-  hits: T[];
 }
