@@ -1,5 +1,5 @@
 // App dependencies
-import { ProjectResponse } from "app/models/responses";
+import { ProjectsResponse } from "app/models/responses";
 import { Contact } from "../components/Contacts/contacts";
 import {
   CONTRIBUTOR_ROLE,
@@ -13,7 +13,7 @@ import { ContributorResponse, Project } from "./entities";
  * @returns project contacts.
  */
 export function getProjectContacts(
-  projectResponse?: ProjectResponse
+  projectResponse?: ProjectsResponse
 ): Contact[] | undefined {
   const project = getProject(projectResponse);
   if (!project) return;
@@ -37,7 +37,7 @@ export function getProjectContacts(
  * @returns project contributors with their corresponding [organization] citation number.
  */
 export function getProjectContributors(
-  projectResponse?: ProjectResponse
+  projectResponse?: ProjectsResponse
 ): Contributor[] | undefined {
   const project = getProject(projectResponse);
   if (!project) return;
@@ -72,7 +72,7 @@ export function getProjectContributors(
  * @returns string representation of project description.
  */
 export function getProjectDescription(
-  projectResponse?: ProjectResponse
+  projectResponse?: ProjectsResponse
 ): string | undefined {
   const project = getProject(projectResponse);
   if (!project) return;
@@ -85,7 +85,7 @@ export function getProjectDescription(
  * @returns string representation of project path.
  */
 export function getProjectPath(
-  projectResponse?: ProjectResponse
+  projectResponse?: ProjectsResponse
 ): string | undefined {
   const project = getProject(projectResponse);
   const projectPath = project?.projectId;
@@ -99,7 +99,7 @@ export function getProjectPath(
  * @returns list of supplementary links.
  */
 export function getProjectSupplementaryLinks(
-  projectResponse?: ProjectResponse
+  projectResponse?: ProjectsResponse
 ): string[] | undefined {
   const project = getProject(projectResponse);
   if (!project) return;
@@ -173,7 +173,7 @@ function getCitationByCollaboratingOrganizations(
  * Returns the project from the API response.
  * @param projectResponse
  */
-function getProject(projectResponse?: ProjectResponse): Project | undefined {
+function getProject(projectResponse?: ProjectsResponse): Project | undefined {
   if (!projectResponse) return;
   return projectResponse.projects?.[0];
 }

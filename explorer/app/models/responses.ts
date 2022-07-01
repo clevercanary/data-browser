@@ -1,5 +1,5 @@
 /**
- * Paginated response type. This should be used by other model's reponses
+ * Base index response interface, implemented by specific index responses.
  */
 interface PaginatedResponse {
   pagination: {
@@ -14,8 +14,10 @@ interface PaginatedResponse {
   };
 }
 
-// Project
-export interface ProjectResponse {
+/**
+ * Model of response returned from /index/projects API endpoint.
+ */
+export interface ProjectsResponse {
   entryId: string;
   protocols: {
     workflow?: string[];
@@ -61,8 +63,10 @@ export interface ProjectResponse {
   }[];
 }
 
-//Samples
-export interface SampleResponse {
+/**
+ * Model of response returned from /index/samples API endpoint.
+ */
+export interface SamplesResponse {
   protocols: {
     libraryConstructionApproach: string[];
   }[];
@@ -81,8 +85,10 @@ export interface SampleResponse {
   }[];
 }
 
-//Files
-export interface FileResponse {
+/**
+ * Model of response returned from /index/files API endpoint.
+ */
+export interface FilesResponse {
   projects: {
     projectTitle: string[];
     estimatedCellCount?: number;
@@ -96,8 +102,10 @@ export interface FileResponse {
   }[];
 }
 
-// Anvil file
-export interface AnvilFileResponse {
+/**
+ * Model of response returned from the AnVIL-specific /index/files API endpoint.
+ */
+export interface AnvilFilesResponse {
   activities: {
     activity_type: string[];
     data_modality: string[];
