@@ -1,6 +1,7 @@
 import React from "react";
 import { Column, TableState, usePagination, useTable } from "react-table";
 import {
+  Box,
   Table as MuiTable,
   TableBody,
   TableCell,
@@ -9,6 +10,7 @@ import {
 } from "@mui/material";
 import { Pagination } from "../Pagination/pagination";
 import { PaginationConfig } from "app/hooks/useFetchEntities";
+import { CheckboxMenu } from "../CheckboxMenu/checkboxMenu";
 
 interface TableProps<T extends object> {
   items: T[];
@@ -56,7 +58,21 @@ export const Table = <T extends object>({
   );
 
   return (
-    <>
+    <div>
+      <Box display="flex" justifyContent="flex-end">
+        <CheckboxMenu
+          // eslint-disable-next-line @typescript-eslint/no-empty-function
+          onItemSelectionChange={() => {}}
+          {...{
+            label: "Options",
+            options: [
+              { id: "item_1", label: "Item 1" },
+              { id: "item_2", label: "Item 2" },
+            ],
+            selected: ["item_1"],
+          }}
+        />
+      </Box>
       <MuiTable {...getTableProps()}>
         <TableHead>
           <TableRow>
@@ -92,6 +108,6 @@ export const Table = <T extends object>({
         canPreviousPage={pagination?.canPreviousPage ?? tableCanPreviousPage}
         totalPage={total ?? pageOptions.length}
       />
-    </>
+    </div>
   );
 };

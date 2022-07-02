@@ -80,6 +80,7 @@ export interface ColumnConfig<
   key: string;
   tooltip?: string;
   componentConfig: ComponentConfig<C, T>;
+  hiddenColumn?: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This config model can receive any model as type
