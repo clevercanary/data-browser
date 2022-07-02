@@ -10,6 +10,7 @@ import {
   ProjectsResponse,
   PublicationResponse,
 } from "app/models/responses";
+import { Status } from "../../common/StatusBadge/statusBadge";
 import { CONTRIBUTOR_ROLE } from "./constants";
 import {
   CollaboratingOrganization,
@@ -20,7 +21,6 @@ import {
   ProjectPath,
   ProjectTitle,
   Publication,
-  Status,
   SupplementaryLink,
 } from "./entities";
 import { ENTRIES } from "../../../project-edits";

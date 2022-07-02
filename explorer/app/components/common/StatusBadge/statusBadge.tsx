@@ -2,10 +2,23 @@
 import { Chip } from "@mui/material";
 import React from "react";
 
-// App dependencies
-import { STATUS } from "../../common/constants";
-import { Status } from "../../common/entities";
+/**
+ * Model of status.
+ */
+export type Status = keyof typeof STATUS;
 
+/**
+ * Possible set of project status values.
+ */
+export enum STATUS {
+  NEW = "NEW",
+  NONE = "NONE",
+  UPDATED = "UPDATED",
+}
+
+/**
+ * Status config.
+ */
 const STATUS_CONFIG = {
   [STATUS.NEW]: { color: "info", label: "New" },
   [STATUS.NONE]: { color: "default", label: "None" },

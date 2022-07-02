@@ -7,8 +7,7 @@ import React from "react";
 
 // App dependencies
 import { Stack } from "app/components/common/Stack/Stack";
-import { Status } from "../../common/entities";
-import { StatusBadge } from "../StatusBadge/statusBadge";
+import { Status, StatusBadge } from "../../../common/StatusBadge/statusBadge";
 import { Title } from "../Title/title";
 
 interface Props {
