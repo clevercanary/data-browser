@@ -165,6 +165,7 @@ export function getProjectDescription(
 
 /**
  * Maps project data summary related information, included formatted display text from API response.
+ * TODO - resolve with the completion of mapping project detail.
  * @param projectsResponse - Response model return from projects API.
  * @returns data summaries key-value pairs of data summary label and corresponding value.
  */
@@ -175,6 +176,9 @@ export function getProjectDetails(
   if (!project) {
     return;
   }
+  const details = new Map<Key, Value>();
+  details.set("Project Label", project.projectShortname);
+  return details;
 }
 
 /**

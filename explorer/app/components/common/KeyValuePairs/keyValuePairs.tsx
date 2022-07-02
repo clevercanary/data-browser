@@ -10,7 +10,7 @@ import React, { ElementType } from "react";
 import { Stack } from "../Stack/Stack";
 
 export type Key = string;
-export type Value = number | number[] | string | string[];
+export type Value = number | number[] | string | string[]; // TODO update Value with more specific types i.e. when project details has been mapped.
 export type KeyValues = Map<Key, Value>;
 
 interface Props {
