@@ -340,7 +340,7 @@ function mapPublications(
       ...publicationResponse,
       doi: publicationResponse.doi ?? "", // Maps any null value to string.
       officialHcaPublication:
-        publicationResponse.officialHcaPublication || false, // Maps any null value to "false".
+        publicationResponse.officialHcaPublication ?? false, // Maps any null value to "false".
     };
   });
 }
