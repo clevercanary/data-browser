@@ -338,7 +338,7 @@ function mapPublications(
   return publicationsResponse.map((publicationResponse) => {
     return {
       ...publicationResponse,
-      doi: publicationResponse.doi || "", // Maps any null value to string.
+      doi: publicationResponse.doi ?? "", // Maps any null value to string.
       officialHcaPublication:
         publicationResponse.officialHcaPublication || false, // Maps any null value to "false".
     };
