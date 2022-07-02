@@ -1,6 +1,10 @@
 /**
  * Model of project collaborating organization to be used as props for the CollaboratingOrganizations component.
  */
+
+// App dependencies
+import { STATUS } from "./constants";
+
 export interface CollaboratingOrganization {
   citation: number;
   name: string;
@@ -40,6 +44,11 @@ export type Description = string;
 export type ProjectPath = string;
 
 /**
+ * Model of project title to be used as props for the Hero component.
+ */
+export type ProjectTitle = string;
+
+/**
  * Model of project publication to be used as props for the Publication component.
  */
 export interface Publication {
@@ -48,6 +57,11 @@ export interface Publication {
   publicationTitle: string;
   publicationUrl: string;
 }
+
+/**
+ * Model of project status to be used as props for the Hero component.
+ */
+export type Status = keyof typeof STATUS;
 
 /**
  * Model of project supplementary link to be used as props for the SupplementaryLinks component.
