@@ -17,6 +17,10 @@ export const sideColumn = [
     },
   } as ComponentConfig<typeof C.Section>,
   {
+    component: C.Details,
+    transformer: T.buildDetails,
+  } as ComponentConfig<typeof C.Details>,
+  {
     children: [
       {
         children: [

@@ -9,6 +9,7 @@ import {
   getProjectContributors,
   getProjectDataCurators,
   getProjectDescription,
+  getProjectDetails,
   getProjectPath,
   getProjectPublications,
   getProjectSupplementaryLinks,
@@ -96,6 +97,19 @@ export const buildDescription = (
 ): React.ComponentProps<typeof C.Description> => {
   return {
     projectDescription: getProjectDescription(projectsResponse) || "None",
+  };
+};
+
+/**
+ * Build props for Details component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the Details component.
+ */
+export const buildDetails = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.Details> => {
+  return {
+    keyValuePairs: getProjectDetails(projectsResponse),
   };
 };
 

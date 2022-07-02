@@ -1,5 +1,10 @@
 // App dependencies
 import {
+  Key,
+  KeyValues,
+  Value,
+} from "app/components/common/KeyValuePairs/keyValuePairs";
+import {
   ContributorResponse,
   ProjectResponse,
   ProjectsResponse,
@@ -156,6 +161,20 @@ export function getProjectDescription(
     return;
   }
   return project.projectDescription;
+}
+
+/**
+ * Maps project data summary related information, included formatted display text from API response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns data summaries key-value pairs of data summary label and corresponding value.
+ */
+export function getProjectDetails(
+  projectsResponse?: ProjectsResponse
+): KeyValues | undefined {
+  const project = getProjectResponse(projectsResponse);
+  if (!project) {
+    return;
+  }
 }
 
 /**
