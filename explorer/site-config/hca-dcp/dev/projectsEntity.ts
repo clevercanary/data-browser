@@ -31,8 +31,8 @@ export const projectEntity = {
       },
       {
         componentConfig: {
-          component: C.Text,
-          transformer: T.projectsToSpeciesColumn,
+          component: C.NTagCell,
+          transformer: T.buildIndexSpecies,
         },
         header: "Species",
       },

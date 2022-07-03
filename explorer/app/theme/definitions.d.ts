@@ -119,6 +119,7 @@ declare module "@mui/material/Button" {
  */
 declare module "@mui/material/Chip" {
   interface ChipPropsVariantOverrides {
+    ntag: true;
     status: true;
   }
 }
@@ -145,6 +146,7 @@ declare module "@mui/material/IconButton" {
 declare module "@mui/material/Paper" {
   interface PaperPropsVariantOverrides {
     footer: true;
+    ntag: true;
     panel: true;
   }
 }

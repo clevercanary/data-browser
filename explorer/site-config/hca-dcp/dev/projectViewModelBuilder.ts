@@ -3,6 +3,9 @@ import React from "react";
 
 // App dependencies
 import * as C from "app/components";
+import { METADATA_KEY } from "../../../app/components/Index/common/entities";
+import { getPluralizedMetadataLabel } from "../../../app/components/Index/common/indexTransformer";
+import { getProjectMetadataSpecies } from "../../../app/components/Index/common/projectIndexTransformer";
 import {
   getProjectCollaboratingOrganizations,
   getProjectContacts,
@@ -131,6 +134,20 @@ export const buildHero = (
 };
 
 /**
+ * Build props for project index species NTagCell component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the project index species NTagCell.
+ */
+export const buildIndexSpecies = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.NTagCell> => {
+  return {
+    label: getPluralizedMetadataLabel(METADATA_KEY.SPECIES),
+    values: getProjectMetadataSpecies(projectsResponse),
+  };
+};
+
+/**
  * Build props for Publications component from the given projects response.
  * @param projectsResponse - Response model return from projects API.
  * @returns model to be used as props for the Publications component.
@@ -208,23 +225,6 @@ export const projectsToProjectTitleColumn = (
 };
 
 /* eslint-disable sonarjs/no-duplicate-string -- ignoring duplicate strings here */
-export const projectsToSpeciesColumn = (
-  project: ProjectsResponse
-): React.ComponentProps<typeof C.Text> => {
-  if (!project.donorOrganisms) {
-    return {
-      children: "",
-    };
-  }
-  return {
-    children: concatStrings(
-      project.donorOrganisms.flatMap((orgnanism) => orgnanism.genusSpecies)
-    ),
-    customColor: "ink",
-    variant: "text-body-400",
-  };
-};
-
 export const projectsToCellCountColumn = (
   project: ProjectsResponse
 ): React.ComponentProps<typeof C.Text> => {
