@@ -4,318 +4,160 @@ import React from "react";
 // App dependencies
 import * as C from "app/components";
 import {
-  getProjectContributors,
+  getProjectCollaboratingOrganizations,
   getProjectContacts,
+  getProjectContributors,
+  getProjectDataCurators,
   getProjectDescription,
+  getProjectDetails,
   getProjectPath,
+  getProjectPublications,
+  getProjectStatus,
+  getProjectSupplementaryLinks,
+  getProjectTitle,
 } from "app/components/Project/common/projectTransformer";
-import { STATUS } from "app/components/StatusBadge/statusBadge";
-import { ProjectResponse } from "app/models/responses";
+import { ProjectsResponse } from "app/models/responses";
 import { ENTRIES } from "app/project-edits";
 import { concatStrings } from "app/utils/string";
 
 const formatter = Intl.NumberFormat("en", { notation: "compact" });
 
+/**
+ * Build props for Citation component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the Citation component.
+ */
 export const buildCitation = (
-  project: ProjectResponse
+  projectsResponse: ProjectsResponse
 ): React.ComponentProps<typeof C.Citation> => {
   return {
-    projectPath: getProjectPath(project),
+    projectPath: getProjectPath(projectsResponse),
   };
 };
 
+/**
+ * Build props for CollaboratingOrganizations component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the CollaboratingOrganizations component.
+ */
+export const buildCollaboratingOrganizations = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.CollaboratingOrganizations> => {
+  return {
+    collaboratingOrganizations:
+      getProjectCollaboratingOrganizations(projectsResponse),
+  };
+};
+
+/**
+ * Build props for Contacts component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the Contacts component.
+ */
 export const buildContacts = (
-  project: ProjectResponse
+  projectsResponse: ProjectsResponse
 ): React.ComponentProps<typeof C.Contacts> => {
   return {
-    contacts: getProjectContacts(project),
+    contacts: getProjectContacts(projectsResponse),
   };
 };
 
+/**
+ * Build props for Contributors component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the Contributors component.
+ */
 export const buildContributors = (
-  project: ProjectResponse
+  projectsResponse: ProjectsResponse
 ): React.ComponentProps<typeof C.Contributors> => {
   return {
-    contributors: getProjectContributors(project),
+    contributors: getProjectContributors(projectsResponse),
   };
 };
 
+/**
+ * Build props for DataCurators component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the DataCurators component.
+ */
+export const buildDataCurators = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.DataCurators> => {
+  return {
+    dataCurators: getProjectDataCurators(projectsResponse),
+  };
+};
+
+/**
+ * Build props for Description component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the Description component.
+ */
 export const buildDescription = (
-  project: ProjectResponse
+  projectsResponse: ProjectsResponse
 ): React.ComponentProps<typeof C.Description> => {
   return {
-    projectDescription: getProjectDescription(project) || "None",
+    projectDescription: getProjectDescription(projectsResponse) || "None",
   };
 };
 
-const getOrganizations = (project: ProjectResponse): string[] => {
-  return Array.from(
-    new Set(
-      project.projects[0].contributors.map(
-        (contributor) => contributor.institution
-      )
-    )
-  );
-};
-
-export const projectsToDataCurators = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.TextLinks> => {
-  if (!project) {
-    return { values: [] };
-  }
-
-  const curators = project.projects[0].contributors.filter(
-    (contr) => contr.projectRole === "data curator"
-  );
-
+/**
+ * Build props for Details component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the Details component.
+ */
+export const buildDetails = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.Details> => {
   return {
-    values: curators.map((curator) => ({
-      text: `${curator.contactName}`,
-    })),
+    keyValuePairs: getProjectDetails(projectsResponse),
   };
 };
 
-// TODO: These values are hardcoded for now, but we should be able to get them from the API
-export const projectsToAccessions = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.TextLinks> => {
-  if (!project) {
-    return { values: [] };
-  }
-
+/**
+ * Build props for Hero component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the Hero component.
+ */
+export const buildHero = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.Hero> => {
   return {
-    values: [
-      {
-        link: {
-          label: "E-MTAB-8581",
-          url: "https://www.ebi.ac.uk/arrayexpress/access/experiments/E-MTAB-8581",
-        },
-        text: "Array Express Accessions: ",
-      },
-    ],
+    breadcrumbs: undefined, // TODO breadcrumbs https://github.com/clevercanary/data-browser/issues/68.
+    status: getProjectStatus(projectsResponse), // TODO status https://github.com/clevercanary/data-browser/issues/135
+    tabs: undefined, // TODO tabs https://github.com/clevercanary/data-browser/issues/120
+    title: getProjectTitle(projectsResponse),
   };
 };
 
-export const projectsToOrganizations = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.Citations> => {
-  if (!project) {
-    return { citations: [] };
-  }
-
-  const organizations = getOrganizations(project);
-
+/**
+ * Build props for Publications component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the Publications component.
+ */
+export const buildPublications = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.Publications> => {
   return {
-    align: "left",
-    citations: organizations.map((organization, index) => ({
-      citation: `${index + 1}`,
-      value: organization,
-    })),
+    publications: getProjectPublications(projectsResponse),
   };
 };
 
-export const projectsToProjectLabel = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project) {
-    return { label: "Project Label", value: "None" };
-  }
-
+/**
+ * Build props for SupplementaryLinks component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the SupplementaryLinks component.
+ */
+export const buildSupplementaryLinks = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.SupplementaryLinks> => {
   return {
-    label: "Project Label",
-    value: project.projects[0].projectShortname,
-  };
-};
-
-export const projectsToSpecies = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project.donorOrganisms?.[0]?.genusSpecies) {
-    return { label: "Species", value: "None" };
-  }
-
-  return {
-    label: "Species",
-    value: concatStrings(project.donorOrganisms[0].genusSpecies),
-  };
-};
-
-export const projectsToSampleType = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project) {
-    return { label: "Sample Type", value: "None" };
-  }
-
-  return {
-    label: "Sample Type",
-    value: concatStrings(project.samples[0].sampleEntityType),
-  };
-};
-
-export const projectsToAnatomicalEntity = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project.samples?.[0]?.organ) {
-    return { label: "Anatomical Entity", value: "None" };
-  }
-
-  return {
-    label: "Anatomical Entity",
-    value: concatStrings(project.samples[0].organ),
-  };
-};
-
-export const projectsToOrganPart = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project.samples?.[0]?.organPart) {
-    return { label: "Organ Part", value: "None" };
-  }
-
-  return {
-    label: "Organ Part",
-    value: concatStrings(project.samples[0].organPart),
-  };
-};
-
-export const projectsToDiseaseSpecimen = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project.samples?.[0]?.disease) {
-    return { label: "Disease Status (Specimen)", value: "None" };
-  }
-
-  return {
-    label: "Disease Status (Specimen)",
-    value: concatStrings(project.samples[0].disease),
-  };
-};
-
-export const projectsToDiseaseDonor = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project.donorOrganisms?.[0]?.disease) {
-    return { label: "Disease Status (Donor)", value: "None" };
-  }
-
-  return {
-    label: "Disease Status (Donor)",
-    value: concatStrings(project.donorOrganisms[0].disease),
-  };
-};
-
-export const projectsToDevelopmentStage = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project.donorOrganisms?.[0]?.developmentStage) {
-    return { label: "Development Stage", value: "None" };
-  }
-
-  return {
-    label: "Development Stage",
-    value: concatStrings(project.donorOrganisms[0].developmentStage),
-  };
-};
-
-export const projectsToLibConstMethod = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project.protocols[0]?.libraryConstructionApproach) {
-    return { label: "Library Construction Method", value: "None" };
-  }
-
-  return {
-    label: "Library Construction Method",
-    value: concatStrings(project.protocols[0].libraryConstructionApproach),
-  };
-};
-
-export const projectsToNucleicAcidSrc = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project.protocols[0]?.nucleicAcidSource) {
-    return { label: "Nucleic Acid Source", value: "None" };
-  }
-
-  return {
-    label: "Nucleic Acid Source",
-    value: concatStrings(project.protocols[0].nucleicAcidSource),
-  };
-};
-
-export const projectsToPairedEnd = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project.protocols[1]?.pairedEnd) {
-    return { label: "Paired End", value: "None" };
-  }
-
-  return {
-    label: "Paired End",
-    value: concatStrings(
-      project.protocols[1].pairedEnd.map((value) => `${value}`)
-    ),
-  };
-};
-
-export const projectsToAnalysisProtocol = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project.protocols[0].workflow) {
-    return { label: "Analysis Protocol", value: "None" };
-  }
-
-  return {
-    label: "Analysis Protocol",
-    value: concatStrings(project.protocols[0].workflow),
-  };
-};
-
-export const projectsToFileFormat = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project.fileTypeSummaries) {
-    return { label: "File Format", value: "None" };
-  }
-
-  return {
-    label: "File Format",
-    value: concatStrings(
-      project.fileTypeSummaries.map((fileType) => fileType.format)
-    ),
-  };
-};
-
-export const projectsToCellCount = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project) {
-    return { label: "Cell Count Estimate", value: "None" };
-  }
-
-  return {
-    label: "Cell Count Estimate",
-    value: `${formatter.format(project.projects[0].estimatedCellCount)}`,
-  };
-};
-
-export const projectsToDonorCount = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.LabelValue> => {
-  if (!project.donorOrganisms?.[0]?.donorCount) {
-    return { label: "Donor Count", value: "None" };
-  }
-
-  return {
-    label: "Donor Count",
-    value: `${project.donorOrganisms[0].donorCount}`,
+    supplementaryLinks: getProjectSupplementaryLinks(projectsResponse),
   };
 };
 
 export const projectsToFileCounts = (
-  project: ProjectResponse
+  project: ProjectsResponse
 ): React.ComponentProps<typeof C.FileCounts> => {
   if (!project) {
     return { files: [] };
@@ -329,61 +171,8 @@ export const projectsToFileCounts = (
   };
 };
 
-export const projectsToProjStatus = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.StatusBadge> => {
-  if (!project) {
-    return { status: STATUS.NONE };
-  }
-
-  return { status: STATUS.NONE };
-};
-
-export const projectsToProjTitle = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.ProjectTitle> => {
-  if (!project) {
-    return { projectTitle: "" };
-  }
-
-  return {
-    projectTitle: project.projects[0].projectTitle,
-  };
-};
-
-export const projectsToSupplementaryLinksLabel = (): React.ComponentProps<
-  typeof C.Text
-> => {
-  return {
-    children: `To reference this Supplementary links are provided by contributors and represent items
-     such as additional data which can’t be hosted here; code that was used to analyze this data; or
-     tools and visualizations associated with this specific dataset.project, please use the following link:`,
-    customColor: "ink",
-    variant: "text-body-400-2lines",
-  };
-};
-
-export const projectsToSupplementaryLinks = (
-  project: ProjectResponse
-): React.ComponentProps<typeof C.Links> => {
-  if (!project) {
-    return { links: [] };
-  }
-
-  return {
-    enumerate: true,
-    links: project.projects[0].supplementaryLinks
-      .filter((value) => !!value)
-      .map((link) => ({
-        label: link,
-        url: link,
-      })),
-    showCopyButton: true,
-  };
-};
-
 export const projectsToAnalysisPortals = (
-  project: ProjectResponse
+  project: ProjectsResponse
 ): React.ComponentProps<typeof C.IconList> => {
   if (!project.entryId) {
     return { icons: [] };
@@ -406,7 +195,7 @@ export const projectsToAnalysisPortals = (
 };
 
 export const projectsToProjectTitleColumn = (
-  project: ProjectResponse
+  project: ProjectsResponse
 ): React.ComponentProps<typeof C.Links> => {
   return {
     links: [
@@ -420,7 +209,7 @@ export const projectsToProjectTitleColumn = (
 
 /* eslint-disable sonarjs/no-duplicate-string -- ignoring duplicate strings here */
 export const projectsToSpeciesColumn = (
-  project: ProjectResponse
+  project: ProjectsResponse
 ): React.ComponentProps<typeof C.Text> => {
   if (!project.donorOrganisms) {
     return {
@@ -432,14 +221,12 @@ export const projectsToSpeciesColumn = (
       project.donorOrganisms.flatMap((orgnanism) => orgnanism.genusSpecies)
     ),
     customColor: "ink",
-    // TODO(cc) resolve with ticket Update project details component to match refined mocks #94
-    // eslint-disable-next-line sonarjs/no-duplicate-string
     variant: "text-body-400",
   };
 };
 
 export const projectsToCellCountColumn = (
-  project: ProjectResponse
+  project: ProjectsResponse
 ): React.ComponentProps<typeof C.Text> => {
   if (!project.cellSuspensions?.[0]) {
     return {
@@ -454,7 +241,7 @@ export const projectsToCellCountColumn = (
 };
 
 export const projectsToLibConstApproachColumn = (
-  project: ProjectResponse
+  project: ProjectsResponse
 ): React.ComponentProps<typeof C.Text> => {
   if (!project.protocols?.[0].libraryConstructionApproach) {
     return {
@@ -470,7 +257,7 @@ export const projectsToLibConstApproachColumn = (
 };
 
 export const projectsToAnatomicalEntityColumn = (
-  project: ProjectResponse
+  project: ProjectsResponse
 ): React.ComponentProps<typeof C.Text> => {
   if (!project.samples?.[0]?.organ) {
     return {
@@ -485,7 +272,7 @@ export const projectsToAnatomicalEntityColumn = (
 };
 
 export const projectsToDiseaseDonorColumn = (
-  project: ProjectResponse
+  project: ProjectsResponse
 ): React.ComponentProps<typeof C.Text> => {
   if (!project.donorOrganisms?.[0]) {
     return {

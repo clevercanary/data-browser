@@ -5,12 +5,12 @@ import {
   EntityConfig,
   ListConfig,
 } from "../../../app/config/model";
-import { FileResponse } from "app/models/responses";
+import { FilesResponse } from "app/models/responses";
 
 /**
  * Entity config object responsible to config anything related to the /explore/files route.
  */
-export const filesEntity: EntityConfig<FileResponse> = {
+export const filesEntity: EntityConfig<FilesResponse> = {
   apiPath: "index/files",
   label: "Files",
   list: {
@@ -21,6 +21,10 @@ export const filesEntity: EntityConfig<FileResponse> = {
           transformer: T.filesToFileNameColumn,
         } as ComponentConfig<typeof C.Links>,
         header: "File Name",
+        sort: {
+          default: true,
+          sortKey: "fileName",
+        },
       },
       {
         componentConfig: {
@@ -28,6 +32,9 @@ export const filesEntity: EntityConfig<FileResponse> = {
           transformer: T.filesToFileFormatColumn,
         } as ComponentConfig<typeof C.Text>,
         header: "File Format",
+        sort: {
+          sortKey: "fileFormat",
+        },
       },
       {
         componentConfig: {
@@ -35,6 +42,9 @@ export const filesEntity: EntityConfig<FileResponse> = {
           transformer: T.filesToFileSizeColumn,
         } as ComponentConfig<typeof C.Text>,
         header: "File Size",
+        sort: {
+          sortKey: "fileSize",
+        },
       },
       {
         componentConfig: {
@@ -42,6 +52,9 @@ export const filesEntity: EntityConfig<FileResponse> = {
           transformer: T.filesToContentDescColumn,
         } as ComponentConfig<typeof C.Text>,
         header: "Content Description",
+        sort: {
+          sortKey: "contentDescription",
+        },
       },
       {
         componentConfig: {
@@ -49,6 +62,9 @@ export const filesEntity: EntityConfig<FileResponse> = {
           transformer: T.filesToProjTitleColumn,
         } as ComponentConfig<typeof C.Text>,
         header: "Project Title",
+        sort: {
+          sortKey: "projectTitle",
+        },
       },
       {
         componentConfig: {
@@ -56,8 +72,11 @@ export const filesEntity: EntityConfig<FileResponse> = {
           transformer: T.filesToCellCountColumn,
         } as ComponentConfig<typeof C.Text>,
         header: "Cell Count Estimate",
+        sort: {
+          sortKey: "cellCount",
+        },
       },
     ],
-  } as ListConfig<FileResponse>,
+  } as ListConfig<FilesResponse>,
   route: "files",
 };

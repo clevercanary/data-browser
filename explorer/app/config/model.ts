@@ -2,7 +2,7 @@
 import { JSXElementConstructor } from "react";
 
 // App dependencies
-import { HeaderProps } from "../components/Header/header";
+import { Footer, Header } from "app/components/Layout/common/entities";
 
 type GetIdFunction<T> = (detail: T) => string;
 
@@ -18,7 +18,7 @@ export interface EntityConfig<D = any> {
   getId?: GetIdFunction<D>;
   staticLoad?: boolean;
   detail?: DetailConfig;
-  list?: ListConfig;
+  list: ListConfig;
 }
 
 /**
@@ -77,8 +77,11 @@ export interface ColumnConfig<
   C extends keyof JSX.IntrinsicElements | JSXElementConstructor<any> = any
 > {
   header: string;
-  key: string;
   tooltip?: string;
+  sort?: {
+    sortKey: string;
+    default?: boolean;
+  };
   componentConfig: ComponentConfig<C, T>;
   hiddenColumn?: boolean;
 }
@@ -92,11 +95,12 @@ export interface ListConfig<T = any> {
  * Interface that will hold the whole configuration for a given site.
  */
 export interface SiteConfig {
-  browserURL?: string;
+  browserURL: string;
   datasources: DataSourceConfig;
   entities: EntityConfig[];
   layout: {
-    header: HeaderProps;
+    footer: Footer;
+    header: Header;
   };
   redirectRootToPath?: string;
   summary?: SummaryConfig;
