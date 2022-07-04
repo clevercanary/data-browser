@@ -5,7 +5,7 @@ import {
   EntityConfig,
   ListConfig,
 } from "../../../app/config/model";
-import { ProjectResponse } from "app/models/responses";
+import { ProjectsResponse } from "app/models/responses";
 import { getProjectId } from "app/transformers/hca";
 import { mainColumn as overviewMainColumn } from "./overviewMainColumn";
 import { mainColumn as metadataMainColumn } from "./metadataMainColumn";
