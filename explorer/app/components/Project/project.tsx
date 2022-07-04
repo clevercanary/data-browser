@@ -14,6 +14,7 @@ import {
 import {
   Container,
   Project as ProjectLayout,
+  ProjectHero,
   ProjectOverview as Overview,
   ProjectOverviewMain as Main,
   ProjectOverviewSide as Side,
@@ -42,7 +43,7 @@ export const Project = ({
   const ProjectOverviewSide = tablet ? Side : Fragment;
   return (
     <Container>
-      {top}
+      <ProjectHero>{top}</ProjectHero>
       <Tabs onTabChange={onTabChange} selectedTab={tabIndex} tabs={tabs}>
         <ProjectLayout>
           <ProjectOverview>

@@ -115,7 +115,7 @@ export const projectEntity: EntityConfig = {
         header: "Cell Count Estimate",
       },
     ],
-  } as ListConfig<ProjectResponse>,
+  } as ListConfig<ProjectsResponse>,
   route: "projects",
   staticLoad: true,
 };
