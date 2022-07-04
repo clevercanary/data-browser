@@ -304,32 +304,6 @@ export const theme = createTheme(defaultTheme, {
           backgroundColor: defaultTheme.palette.smokeLight,
           boxShadow: `inset 0 -1px 0 0 ${defaultTheme.palette.smoke}, inset 0 1px 0 0 ${defaultTheme.palette.smoke}`,
         },
-        ntag: {
-          // requires specificity to override MuiPopover-paper styles.
-          "&": {
-            maxWidth: 262,
-            overflow: "visible", // facilitates rendering of popover arrow.
-          },
-          backgroundColor: defaultTheme.palette.ink,
-          boxShadow:
-            "0 8px 8px -4px rgba(16, 24, 40, 0.03), 0 20px 24px -4px rgba(16, 24, 40, 0.08)",
-          color: defaultTheme.palette.common.white,
-          padding: "8px 12px",
-          // eslint-disable-next-line sort-keys -- disabling key order for readability
-          "&:before": {
-            backgroundColor: "inherit",
-            borderRadius: 1,
-            bottom: 8,
-            content: "''",
-            display: "block",
-            height: 12,
-            left: "50%",
-            position: "absolute",
-            transform: "translate(-50%, 100%) rotate(45deg)",
-            width: 12,
-            zIndex: -1,
-          },
-        },
         panel: {
           backgroundColor: defaultTheme.palette.smoke,
           borderColor: defaultTheme.palette.smoke,
@@ -343,8 +317,6 @@ export const theme = createTheme(defaultTheme, {
       variants: [
         {
           props: { variant: "footer" },
-        },
-          props: { variant: "ntag" },
         },
         {
           props: { variant: "panel" },
@@ -369,6 +341,10 @@ export const theme = createTheme(defaultTheme, {
       styleOverrides: {
         arrow: {
           color: defaultTheme.palette.ink,
+          // eslint-disable-next-line sort-keys -- disabling key order for readability
+          "&:before": {
+            borderRadius: 1,
+          },
         },
         tooltip: {
           ...defaultTheme.typography["text-body-small-400"],

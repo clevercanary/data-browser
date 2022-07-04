@@ -1,6 +1,6 @@
 // Core dependencies
 import { Chip, ChipProps, Typography } from "@mui/material";
-import React from "react";
+import React, { forwardRef } from "react";
 
 // App dependencies
 import { MetadataValue } from "../../common/entities";
@@ -17,14 +17,11 @@ interface Props {
 
 /**
  * Renders tag for NTag component.
+ * Tooltip children require forward ref.
  */
-function renderTag(
-  label: string,
-  count: number,
-  chipProps: ChipProps
-): JSX.Element {
-  return <Chip label={`${count} ${label}`} variant="ntag" {...chipProps} />;
-}
+const Tag = forwardRef<HTMLDivElement, ChipProps>(function Tag(props, ref) {
+  return <Chip ref={ref} {...props} />;
+});
 
 export const NTagCell = ({ label, values }: Props): JSX.Element => {
   const metadataCount = values.length;
@@ -33,8 +30,8 @@ export const NTagCell = ({ label, values }: Props): JSX.Element => {
     <>
       {showNTag ? (
         <NTag
-          TagElType={(props) => renderTag(label, metadataCount, props)}
-          PopoverContent={
+          Tag={<Tag label={`${metadataCount} ${label}`} variant="ntag" />}
+          TooltipTitle={
             <Typography display="block" variant="text-body-small-400">
               {stringifyMetadataValues(values)}
             </Typography>

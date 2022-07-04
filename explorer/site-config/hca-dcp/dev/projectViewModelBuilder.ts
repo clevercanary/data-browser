@@ -134,20 +134,6 @@ export const buildHero = (
 };
 
 /**
- * Build props for project index species NTagCell component from the given projects response.
- * @param projectsResponse - Response model return from projects API.
- * @returns model to be used as props for the project index species NTagCell.
- */
-export const buildIndexSpecies = (
-  projectsResponse: ProjectsResponse
-): React.ComponentProps<typeof C.NTagCell> => {
-  return {
-    label: getPluralizedMetadataLabel(METADATA_KEY.SPECIES),
-    values: getProjectMetadataSpecies(projectsResponse),
-  };
-};
-
-/**
  * Build props for Publications component from the given projects response.
  * @param projectsResponse - Response model return from projects API.
  * @returns model to be used as props for the Publications component.
