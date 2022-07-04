@@ -5,7 +5,7 @@ import React from "react";
 import * as C from "../../../app/components";
 import { METADATA_KEY } from "../../../app/components/Index/common/entities";
 import { getPluralizedMetadataLabel } from "../../../app/components/Index/common/indexTransformer";
-import { getProjectMetadataSpecies } from "../../../app/components/Index/common/projectIndexTransformer";
+import { getProjectMetadataSpecies } from "../../../app/components/Index/common/projectsTransformer";
 import { ProjectsResponse } from "../../../app/models/responses";
 
 /**
@@ -13,7 +13,7 @@ import { ProjectsResponse } from "../../../app/models/responses";
  * @param projectsResponse - Response model return from projects API.
  * @returns model to be used as props for the project index species NTagCell.
  */
-export const buildIndexSpecies = (
+export const buildSpecies = (
   projectsResponse: ProjectsResponse
 ): React.ComponentProps<typeof C.NTagCell> => {
   return {
