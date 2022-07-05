@@ -3,7 +3,6 @@ import React, { Fragment, ReactNode } from "react";
 
 // App dependencies
 import { FlatPaper } from "../common/Paper/paper.styles";
-import { Tabs } from "../Tabs/tabs";
 
 // Styles
 import {
@@ -21,21 +20,15 @@ import {
 } from "./project.styles";
 
 interface Props {
-  tabs: { label: string }[];
   mainColumn: ReactNode;
   sideColumn: ReactNode;
   top: ReactNode;
-  tabIndex: number;
-  onTabChange: (newTab: number) => void;
 }
 
 export const Project = ({
   mainColumn,
   sideColumn,
   top,
-  tabs,
-  tabIndex,
-  onTabChange,
 }: Props): JSX.Element => {
   const tablet = useBreakpointHelper(BREAKPOINT_FN_NAME.UP, BREAKPOINT.TABLET);
   const ProjectOverview = tablet ? Overview : Overview.withComponent(FlatPaper);
@@ -44,14 +37,12 @@ export const Project = ({
   return (
     <Container>
       <ProjectHero>{top}</ProjectHero>
-      <Tabs onTabChange={onTabChange} selectedTab={tabIndex} tabs={tabs}>
-        <ProjectLayout>
-          <ProjectOverview>
-            <ProjectOverviewMain>{mainColumn}</ProjectOverviewMain>
-            <ProjectOverviewSide>{sideColumn}</ProjectOverviewSide>
-          </ProjectOverview>
-        </ProjectLayout>
-      </Tabs>
+      <ProjectLayout>
+        <ProjectOverview>
+          <ProjectOverviewMain>{mainColumn}</ProjectOverviewMain>
+          <ProjectOverviewSide>{sideColumn}</ProjectOverviewSide>
+        </ProjectOverview>
+      </ProjectLayout>
     </Container>
   );
 };

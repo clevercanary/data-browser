@@ -10,15 +10,24 @@ import { detail, listAll } from "../../../app/entity/api/service";
 import { getCurrentEntity } from "app/hooks/useCurrentEntity";
 import { DetailModel } from "../../../app/models/viewModels";
 import { Project } from "../../../app/views/Project/project";
+import { UUID_PARAM_INDEX } from "app/shared/constants";
 
 interface PageUrl extends ParsedUrlQuery {
   slug: string;
-  uuid: string[];
+  param: string[];
 }
 
-const ProjectPage = (props: DetailModel): JSX.Element => {
+interface ProjectPageProps extends DetailModel {
+  slug: string;
+}
+
+const ProjectPage = ({ slug, ...props }: ProjectPageProps): JSX.Element => {
+  if (!slug) return <></>;
+
+  const entity = getCurrentEntity(slug, config());
+
   return (
-    <Page>
+    <Page entity={entity}>
       <Project {...props} />
     </Page>
   );
@@ -38,8 +47,8 @@ export const getStaticPaths: GetStaticPaths<PageUrl> = async () => {
           tabs.forEach((tab) => {
             resultParams.push({
               params: {
+                param: [entity.getId?.(hit) ?? "", tab],
                 slug: entity.route,
-                uuid: [entity.getId?.(hit) ?? "", tab],
               },
             });
           });
@@ -64,9 +73,19 @@ export const getStaticProps: GetStaticProps<DetailModel> = async ({
 }: GetStaticPropsContext) => {
   const { slug } = params as PageUrl;
   const entity = getCurrentEntity(slug, config());
-  const props: DetailModel = {};
-  if (entity?.staticLoad) {
-    const data = await detail((params as PageUrl).uuid[0], entity.apiPath);
+
+  if (!entity) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const props: ProjectPageProps = { slug };
+  if (entity.staticLoad) {
+    const data = await detail(
+      (params as PageUrl).param[UUID_PARAM_INDEX],
+      entity.apiPath
+    );
     props.data = data;
   }
   return {

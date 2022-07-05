@@ -1,23 +1,20 @@
-import { EntityConfig } from "app/config/model";
+import { TAB_PARAM_INDEX } from "app/shared/constants";
 import { useRouter } from "next/router";
+import { useCurrentEntity } from "./useCurrentEntity";
 
 /**
  * Hook to get the current tab that will be used to create the detail page
- * @param currentEntity
  */
-export const useCurrentDetailTab = (currentEntity?: EntityConfig) => {
+export const useCurrentDetailTab = () => {
   const router = useRouter();
-  const tabRoute = router.query.uuid?.[1] ?? "";
-
-  if (!currentEntity) {
-    return { currentTab: undefined, tabIndex: -1 };
-  }
+  const currentEntity = useCurrentEntity();
+  const tabRoute = router.query.param?.[TAB_PARAM_INDEX] ?? "";
 
   const currentIndex =
-    currentEntity.detail?.tabs.findIndex((tab) => tab.route === tabRoute) ?? 0;
+    currentEntity.detail.tabs.findIndex((tab) => tab.route === tabRoute) ?? 0;
 
   return {
-    currentTab: currentEntity.detail?.tabs[currentIndex],
+    currentTab: currentEntity.detail.tabs[currentIndex],
     tabIndex: currentIndex,
   };
 };

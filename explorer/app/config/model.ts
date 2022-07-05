@@ -23,7 +23,7 @@ export interface EntityConfig<D = any> extends TabConfig {
   apiPath: string;
   getId?: GetIdFunction<D>;
   staticLoad?: boolean;
-  detail?: DetailConfig;
+  detail: DetailConfig;
   list: ListConfig;
 }
 

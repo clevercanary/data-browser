@@ -9,3 +9,12 @@ export const DEFAULT_DETAIL_PARAMS =
   config().datasources.defaultDetailParams ?? {};
 
 export const isDevelopment = () => process.env.NODE_ENV === "development";
+
+/**
+ * Values to determine the index for each param.
+ * https://host/explore/[slug]/[param-uuid]/[param-tab]
+ * Index 0 will return the current uuid
+ * Index 1 will return the current tab
+ */
+export const UUID_PARAM_INDEX = 0;
+export const TAB_PARAM_INDEX = 1;

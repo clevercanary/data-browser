@@ -12,7 +12,7 @@ import { mainColumn as metadataMainColumn } from "./metadataMainColumn";
 import { mainColumn as matricesMainColumn } from "./matricesMainColumn";
 import { mainColumn as projectFilesMainColumn } from "./projectFilesMainColumn";
 import { mainColumn as exportMainColumn } from "./exportMainColumn";
-import * as T from "./projectViewModelBuilder";
+import * as T from "./projectsViewModelBuilder";
 // TODO refactor all methods to projectsViewModelBuilder with https://github.com/clevercanary/data-browser/issues/128
 import * as B from "./projectViewModelBuilder";
 import { sideColumn as overviewSideColumn } from "./overviewSideColumn";
