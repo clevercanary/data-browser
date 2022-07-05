@@ -208,18 +208,16 @@ export const projectsToProjectTitleColumn = (
 };
 
 /* eslint-disable sonarjs/no-duplicate-string -- ignoring duplicate strings here */
-export const projectsToSpeciesColumn = (
+export const projectsToCellCountColumn = (
   project: ProjectsResponse
 ): React.ComponentProps<typeof C.Text> => {
-  if (!project.donorOrganisms) {
+  if (!project.cellSuspensions?.[0]) {
     return {
       children: "",
     };
   }
   return {
-    children: concatStrings(
-      project.donorOrganisms.flatMap((orgnanism) => orgnanism.genusSpecies)
-    ),
+    children: `${formatter.format(project.cellSuspensions[0].totalCells)}`,
     customColor: "ink",
     variant: "text-body-400",
   };
@@ -237,21 +235,6 @@ export const projectsToDevStageColumn = (
     children: concatStrings(
       project.donorOrganisms.flatMap((orgnanism) => orgnanism.developmentStage)
     ),
-    customColor: "ink",
-    variant: "text-body-400",
-  };
-};
-
-export const projectsToCellCountColumn = (
-  project: ProjectsResponse
-): React.ComponentProps<typeof C.Text> => {
-  if (!project.cellSuspensions?.[0]) {
-    return {
-      children: "",
-    };
-  }
-  return {
-    children: `${formatter.format(project.cellSuspensions[0].totalCells)}`,
     customColor: "ink",
     variant: "text-body-400",
   };
