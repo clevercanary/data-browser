@@ -225,6 +225,23 @@ export const projectsToSpeciesColumn = (
   };
 };
 
+export const projectsToDevStageColumn = (
+  project: ProjectsResponse
+): React.ComponentProps<typeof C.Text> => {
+  if (!project.donorOrganisms) {
+    return {
+      children: "",
+    };
+  }
+  return {
+    children: concatStrings(
+      project.donorOrganisms.flatMap((orgnanism) => orgnanism.developmentStage)
+    ),
+    customColor: "ink",
+    variant: "text-body-400",
+  };
+};
+
 export const projectsToCellCountColumn = (
   project: ProjectsResponse
 ): React.ComponentProps<typeof C.Text> => {

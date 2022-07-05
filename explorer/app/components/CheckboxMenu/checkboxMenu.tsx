@@ -1,11 +1,23 @@
 import React, { useState } from "react";
 
-import { Button, Checkbox, Menu, MenuItem } from "@mui/material";
+import {
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Menu,
+  MenuItem,
+} from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
+export interface CheckboxMenuItem {
+  id: string;
+  label: string;
+}
+
 interface CheckboxMenuProps {
-  options: { id: string; label: string }[];
+  options: CheckboxMenuItem[];
   selected: string[];
+  readOnly?: string[];
   onItemSelectionChange: (id: string) => void;
   label: string;
 }
@@ -15,6 +27,7 @@ export const CheckboxMenu = ({
   options,
   selected,
   label,
+  readOnly = [],
 }: CheckboxMenuProps): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -41,11 +54,16 @@ export const CheckboxMenu = ({
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         {options.map((option) => (
           <MenuItem key={option.id} disableRipple>
-            <Checkbox
-              checked={selected.includes(option.id)}
-              onChange={() => onItemSelectionChange(option.id)}
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={selected.includes(option.id)}
+                  disabled={readOnly.includes(option.id)}
+                  onChange={() => onItemSelectionChange(option.id)}
+                />
+              }
+              label={option.label}
             />
-            {option.label}
           </MenuItem>
         ))}
       </Menu>

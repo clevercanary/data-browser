@@ -1,4 +1,5 @@
 import * as T from "./fileTransformer";
+import { projectsToDevStageColumn } from "./projectViewModelBuilder";
 import * as C from "../../../app/components";
 import {
   ComponentConfig,
@@ -75,6 +76,14 @@ export const filesEntity: EntityConfig<FilesResponse> = {
         sort: {
           sortKey: "cellCount",
         },
+      },
+      {
+        componentConfig: {
+          component: C.Text,
+          transformer: projectsToDevStageColumn,
+        } as ComponentConfig<typeof C.Text>,
+        header: "Development Stage",
+        hiddenColumn: true,
       },
     ],
   } as ListConfig<FilesResponse>,

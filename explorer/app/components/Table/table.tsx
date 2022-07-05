@@ -17,9 +17,16 @@ import {
   TableSortLabel,
 } from "@mui/material";
 import { Pagination } from "../Pagination/pagination";
-import { CheckboxMenu } from "../CheckboxMenu/checkboxMenu";
+import { CheckboxMenu, CheckboxMenuItem } from "../CheckboxMenu/checkboxMenu";
 import { PaginationConfig, SortConfig } from "app/hooks/useFetchEntities";
 import { newColumnKey, newColumnOrder } from "./functions";
+
+export interface EditColumnConfig {
+  options: CheckboxMenuItem[];
+  selectedColumns: string[];
+  readOnlyColuns: string[];
+  onVisibleColumnsChange: (newColumnId: string) => void;
+}
 
 interface TableProps<T extends object> {
   items: T[];
@@ -28,6 +35,7 @@ interface TableProps<T extends object> {
   total?: number;
   pagination?: PaginationConfig;
   sort?: SortConfig;
+  editColumns?: EditColumnConfig;
 }
 
 /**
@@ -38,6 +46,7 @@ interface TableProps<T extends object> {
 export const Table = <T extends object>({
   items,
   columns,
+  editColumns,
   pageSize,
   total,
   pagination,
@@ -81,20 +90,17 @@ export const Table = <T extends object>({
 
   return (
     <div>
-      <Box display="flex" justifyContent="flex-end">
-        <CheckboxMenu
-          // eslint-disable-next-line @typescript-eslint/no-empty-function
-          onItemSelectionChange={() => {}}
-          {...{
-            label: "Options",
-            options: [
-              { id: "item_1", label: "Item 1" },
-              { id: "item_2", label: "Item 2" },
-            ],
-            selected: ["item_1"],
-          }}
-        />
-      </Box>
+      {editColumns && (
+        <Box display="flex" justifyContent="flex-end">
+          <CheckboxMenu
+            label="Edit Columns"
+            onItemSelectionChange={editColumns.onVisibleColumnsChange}
+            options={editColumns.options}
+            readOnly={editColumns.readOnlyColuns}
+            selected={editColumns.selectedColumns}
+          />
+        </Box>
+      )}
       <MuiTable {...getTableProps()}>
         <TableHead>
           <TableRow>

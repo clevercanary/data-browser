@@ -36,3 +36,15 @@ WithSelectedItems.args = {
   ],
   selected: ["item_1"],
 };
+
+export const WithReadOnlyItems = Template.bind({});
+WithReadOnlyItems.args = {
+  label: "Options",
+  options: [
+    { id: "item_1", label: "Item 1" },
+    { id: "item_2", label: "Item 2" },
+    { id: "item_3", label: "Item 3" },
+  ],
+  readOnly: ["item_1", "item_2"],
+  selected: ["item_1"],
+};
