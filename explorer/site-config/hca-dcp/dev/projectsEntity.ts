@@ -13,6 +13,8 @@ import { mainColumn as matricesMainColumn } from "./matricesMainColumn";
 import { mainColumn as projectFilesMainColumn } from "./projectFilesMainColumn";
 import { mainColumn as exportMainColumn } from "./exportMainColumn";
 import * as T from "./projectViewModelBuilder";
+// TODO refactor all methods to projectsViewModelBuilder with https://github.com/clevercanary/data-browser/issues/128
+import * as B from "./projectViewModelBuilder";
 import { sideColumn as overviewSideColumn } from "./overviewSideColumn";
 import { sideColumn as metadataSideColumn } from "./metadataSideColumn";
 import { sideColumn as matricesSideColumn } from "./matricesSideColumn";
@@ -67,35 +69,35 @@ export const projectEntity: EntityConfig = {
       {
         componentConfig: {
           component: C.Links,
-          transformer: T.projectsToProjectTitleColumn,
+          transformer: B.projectsToProjectTitleColumn,
         } as ComponentConfig<typeof C.Links>,
         header: "Project Title",
       },
       {
         componentConfig: {
-          component: C.Text,
-          transformer: T.projectsToSpeciesColumn,
+          component: C.NTagCell,
+          transformer: T.buildSpecies,
         },
         header: "Species",
       },
       {
         componentConfig: {
           component: C.Text,
-          transformer: T.projectsToLibConstApproachColumn,
+          transformer: B.projectsToLibConstApproachColumn,
         },
         header: "Library Construction Approach",
       },
       {
         componentConfig: {
           component: C.Text,
-          transformer: T.projectsToAnatomicalEntityColumn,
+          transformer: B.projectsToAnatomicalEntityColumn,
         },
         header: "Anatomical Entity",
       },
       {
         componentConfig: {
           component: C.Text,
-          transformer: T.projectsToDiseaseDonorColumn,
+          transformer: B.projectsToDiseaseDonorColumn,
         },
         header: "Disease (Donor)",
       },
@@ -104,7 +106,7 @@ export const projectEntity: EntityConfig = {
           children: [
             {
               component: C.Text,
-              transformer: T.projectsToCellCountColumn,
+              transformer: B.projectsToCellCountColumn,
             } as ComponentConfig<typeof C.Text>,
           ],
           component: C.Tooltip,
