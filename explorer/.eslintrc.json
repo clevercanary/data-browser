@@ -8,7 +8,8 @@
     "plugin:prettier/recommended",
     "plugin:storybook/recommended",
     "next",
-    "plugin:sonarjs/recommended"
+    "plugin:sonarjs/recommended",
+    "plugin:eslint-comments/recommended"
   ],
   "rules": {
     "sort-keys": [
@@ -19,6 +20,8 @@
         "minKeys": 2,
         "natural": false
       }
-    ]
+    ],
+    "@typescript-eslint/explicit-function-return-type": ["error"],
+    "eslint-comments/require-description": ["error"]
   }
 }
