@@ -6,7 +6,7 @@ import {
   ListConfig,
 } from "../../../app/config/model";
 import { SamplesResponse } from "app/models/responses";
-import { projectsToDevStageColumn } from "./projectViewModelBuilder";
+import { buildDevStage } from "./projectViewModelBuilder";
 
 /**
  * Entity config object responsible to config anything related to the /explore/samples route.
@@ -100,7 +100,7 @@ export const samplesEntity: EntityConfig<SamplesResponse> = {
       {
         componentConfig: {
           component: C.Text,
-          transformer: projectsToDevStageColumn,
+          transformer: buildDevStage,
         } as ComponentConfig<typeof C.Text>,
         header: "Development Stage",
         hiddenColumn: true,

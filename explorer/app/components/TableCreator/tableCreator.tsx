@@ -1,9 +1,10 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useMemo } from "react";
 import { ColumnConfig } from "app/config/model";
 import { PaginationConfig, SortConfig } from "app/hooks/useFetchEntities";
 import { CellProps, Column } from "react-table";
 import { ComponentCreator } from "../ComponentCreator/ComponentCreator";
 import { Table } from "../Table/table";
+import { useEditColumns } from "app/hooks/useEditColumns";
 
 interface TableCreatorProps<T> {
   columns: ColumnConfig<T>[];
@@ -32,71 +33,18 @@ export const TableCreator = <T extends object>({
   pagination,
   sort,
 }: TableCreatorProps<T>): JSX.Element => {
-  const defaultColumns = useMemo(
-    () => columns.filter((column) => !column.hiddenColumn),
-    [columns]
-  );
-  const [visibleColumn, setVisibleColumn] = useState(defaultColumns);
+  const { editColumns, visibleColumns } = useEditColumns(columns);
 
   const reactVisibleColumns: Column<T>[] = useMemo(
     () =>
-      visibleColumn.map((columnConfig) => ({
+      visibleColumns.map((columnConfig) => ({
         Cell: createCell(columnConfig),
         Header: columnConfig.header,
         disableSortBy: !columnConfig.sort,
         id: columnConfig.sort?.sortKey,
       })),
-    [visibleColumn]
+    [visibleColumns]
   );
-
-  const readOnlyColumns = defaultColumns.map(({ header }) => header);
-  const selectedColumns = visibleColumn.map(({ header }) => header);
-  const columnsOptions = columns.map(({ header }) => ({
-    id: header,
-    label: header,
-  }));
-
-  const handleVisibleColumnsChanged = useCallback(
-    (columnId: string) => {
-      setVisibleColumn((state) => {
-        const columnIndex = state.findIndex(
-          ({ header }) => header === columnId
-        );
-
-        if (columnIndex !== -1) {
-          const newState = [...state];
-          newState.splice(columnIndex, 1);
-          return newState;
-        }
-
-        const newColumn = columns.find(({ header }) => header === columnId);
-        if (newColumn) {
-          return [...state, newColumn];
-        }
-        return state;
-      });
-    },
-    [columns]
-  );
-
-  const editColumns = useMemo(() => {
-    if (defaultColumns.length !== columns.length) {
-      return {
-        onVisibleColumnsChange: handleVisibleColumnsChanged,
-        options: columnsOptions,
-        readOnlyColuns: readOnlyColumns,
-        selectedColumns: selectedColumns,
-      };
-    }
-    return undefined;
-  }, [
-    columns.length,
-    columnsOptions,
-    defaultColumns.length,
-    handleVisibleColumnsChanged,
-    readOnlyColumns,
-    selectedColumns,
-  ]);
 
   return (
     <Table<T>

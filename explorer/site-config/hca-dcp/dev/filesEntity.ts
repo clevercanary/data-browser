@@ -1,5 +1,5 @@
 import * as T from "./fileTransformer";
-import { projectsToDevStageColumn } from "./projectViewModelBuilder";
+import { buildDevStage } from "./projectViewModelBuilder";
 import * as C from "../../../app/components";
 import {
   ComponentConfig,
@@ -80,7 +80,7 @@ export const filesEntity: EntityConfig<FilesResponse> = {
       {
         componentConfig: {
           component: C.Text,
-          transformer: projectsToDevStageColumn,
+          transformer: buildDevStage,
         } as ComponentConfig<typeof C.Text>,
         header: "Development Stage",
         hiddenColumn: true,

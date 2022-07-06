@@ -24,7 +24,7 @@ import { newColumnKey, newColumnOrder } from "./functions";
 export interface EditColumnConfig {
   options: CheckboxMenuItem[];
   selectedColumns: string[];
-  readOnlyColuns: string[];
+  readOnlyColumns: string[];
   onVisibleColumnsChange: (newColumnId: string) => void;
 }
 
@@ -96,7 +96,7 @@ export const Table = <T extends object>({
             label="Edit Columns"
             onItemSelectionChange={editColumns.onVisibleColumnsChange}
             options={editColumns.options}
-            readOnly={editColumns.readOnlyColuns}
+            readOnly={editColumns.readOnlyColumns}
             selected={editColumns.selectedColumns}
           />
         </Box>

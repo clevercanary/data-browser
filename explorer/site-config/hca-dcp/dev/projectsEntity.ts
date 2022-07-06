@@ -77,7 +77,7 @@ export const projectEntity = {
       {
         componentConfig: {
           component: C.Text,
-          transformer: T.projectsToDevStageColumn,
+          transformer: B.buildDevStage,
         } as ComponentConfig<typeof C.Text>,
         header: "Development Stage",
         hiddenColumn: true,
