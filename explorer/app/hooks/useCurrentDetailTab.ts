@@ -1,4 +1,4 @@
-import { TAB_PARAM_INDEX } from "app/shared/constants";
+import { PARAMS_INDEX_TAB } from "app/shared/constants";
 import { useRouter } from "next/router";
 import { useCurrentEntity } from "./useCurrentEntity";
 
@@ -8,7 +8,7 @@ import { useCurrentEntity } from "./useCurrentEntity";
 export const useCurrentDetailTab = () => {
   const router = useRouter();
   const currentEntity = useCurrentEntity();
-  const tabRoute = router.query.param?.[TAB_PARAM_INDEX] ?? "";
+  const tabRoute = router.query.params?.[PARAMS_INDEX_TAB] ?? "";
 
   const currentIndex =
     currentEntity.detail.tabs.findIndex((tab) => tab.route === tabRoute) ?? 0;

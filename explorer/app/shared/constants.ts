@@ -16,5 +16,5 @@ export const isDevelopment = () => process.env.NODE_ENV === "development";
  * Index 0 will return the current uuid
  * Index 1 will return the current tab
  */
-export const UUID_PARAM_INDEX = 0;
-export const TAB_PARAM_INDEX = 1;
+export const PARAMS_INDEX_UUID = 0;
+export const PARAMS_INDEX_TAB = 1;

@@ -10,11 +10,11 @@ import { detail, listAll } from "../../../app/entity/api/service";
 import { getCurrentEntity } from "app/hooks/useCurrentEntity";
 import { DetailModel } from "../../../app/models/viewModels";
 import { Project } from "../../../app/views/Project/project";
-import { UUID_PARAM_INDEX } from "app/shared/constants";
+import { PARAMS_INDEX_UUID } from "app/shared/constants";
 
 interface PageUrl extends ParsedUrlQuery {
   slug: string;
-  param: string[];
+  params: string[];
 }
 
 interface ProjectPageProps extends DetailModel {
@@ -47,7 +47,7 @@ export const getStaticPaths: GetStaticPaths<PageUrl> = async () => {
           tabs.forEach((tab) => {
             resultParams.push({
               params: {
-                param: [entity.getId?.(hit) ?? "", tab],
+                params: [entity.getId?.(hit) ?? "", tab],
                 slug: entity.route,
               },
             });
@@ -83,7 +83,7 @@ export const getStaticProps: GetStaticProps<DetailModel> = async ({
   const props: ProjectPageProps = { slug };
   if (entity.staticLoad) {
     const data = await detail(
-      (params as PageUrl).param[UUID_PARAM_INDEX],
+      (params as PageUrl).params[PARAMS_INDEX_UUID],
       entity.apiPath
     );
     props.data = data;

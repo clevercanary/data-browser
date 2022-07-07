@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useAsync } from "./useAsync";
 import { useCurrentEntity } from "./useCurrentEntity";
 import { isSSR } from "app/utils/ssr";
-import { isDevelopment, UUID_PARAM_INDEX } from "app/shared/constants";
+import { isDevelopment, PARAMS_INDEX_UUID } from "app/shared/constants";
 
 interface UseEntityDetailResponse<T> {
   isLoading: boolean;
@@ -24,7 +24,7 @@ export const useFetchEntity = <T,>(
 ): UseEntityDetailResponse<T> => {
   const entity = useCurrentEntity();
   const router = useRouter();
-  const uuid = router.query.param?.[UUID_PARAM_INDEX] as string;
+  const uuid = router.query.params?.[PARAMS_INDEX_UUID] as string;
   const { data: response, isLoading: apiIsLoading, run } = useAsync<T>();
 
   useEffect(() => {

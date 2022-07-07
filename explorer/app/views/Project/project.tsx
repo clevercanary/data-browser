@@ -10,12 +10,12 @@ import { useFetchEntity } from "app/hooks/useFetchEntity";
 import { DetailModel } from "../../models/viewModels";
 import { useCurrentDetailTab } from "app/hooks/useCurrentDetailTab";
 import { TabControllerProvider } from "app/components/Tabs/context";
-import { UUID_PARAM_INDEX } from "app/shared/constants";
+import { PARAMS_INDEX_UUID } from "app/shared/constants";
 
 export const Project = (props: DetailModel) => {
   const { response, isLoading } = useFetchEntity(props);
   const { push, query } = useRouter();
-  const uuid = query.param?.[UUID_PARAM_INDEX];
+  const uuid = query.params?.[PARAMS_INDEX_UUID];
   const entity = useCurrentEntity();
   const { currentTab, tabIndex } = useCurrentDetailTab();
   const mainColumn = currentTab.mainColumn;
