@@ -1,6 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "sonarjs"],
+  "plugins": ["@typescript-eslint", "sonarjs", "jsdoc"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -21,7 +21,19 @@
         "natural": false
       }
     ],
-    "@typescript-eslint/explicit-function-return-type": ["error"],
-    "eslint-comments/require-description": ["error"]
+
+    "@typescript-eslint/explicit-function-return-type": "error",
+
+    "eslint-comments/require-description": "error",
+
+    "jsdoc/require-description": "error",
+    "jsdoc/require-param": "error",
+    "jsdoc/require-param-name": "error",
+    "jsdoc/require-param-description": "error",
+    "jsdoc/require-hyphen-before-param-description": "error",
+    "jsdoc/require-returns": "error",
+    "jsdoc/require-returns-description": "error",
+    "jsdoc/check-alignment": "error",
+    "jsdoc/check-param-names": "error"
   }
 }
