@@ -29,7 +29,7 @@ export const Hero = ({
   const tabController = useTabController();
 
   if (tabs && !tabController) {
-    throw new Error(`Hero tabs must be used whithin a TabControllerProvider`);
+    throw new Error(`Hero tabs must be used within a TabControllerProvider`);
   }
 
   return (

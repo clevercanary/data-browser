@@ -34,14 +34,14 @@ export const getCurrentEntity = (path: string, config: SiteConfig) => {
   return entity;
 };
 
-const CurrentyEntityContext = React.createContext<EntityConfig>(EMPTY_ENTITY);
+const CurrentEntityContext = React.createContext<EntityConfig>(EMPTY_ENTITY);
 
-export const CurrentEntityProvider = CurrentyEntityContext.Provider;
+export const CurrentEntityProvider = CurrentEntityContext.Provider;
 
 /**
  * @returns the current entity based using the context value
  * provided by the current page
  */
 export const useCurrentEntity = () => {
-  return useContext(CurrentyEntityContext);
+  return useContext(CurrentEntityContext);
 };
