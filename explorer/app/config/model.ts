@@ -14,7 +14,8 @@ type GetIdFunction<T> = (detail: T) => string;
 export interface EntityConfig<D = any> {
   label: string;
   route: string;
-  apiPath: string;
+  apiPath?: string;
+  tsvPath?: string;
   getId?: GetIdFunction<D>;
   staticLoad?: boolean;
   detail?: DetailConfig;

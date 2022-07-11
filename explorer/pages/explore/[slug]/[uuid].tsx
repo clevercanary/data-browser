@@ -10,6 +10,8 @@ import { detail, listAll } from "../../../app/entity/api/service";
 import { getCurrentEntity } from "app/hooks/useCurrentEntity";
 import { DetailModel } from "../../../app/models/viewModels";
 import { Project } from "../../../app/views/Project/project";
+import { create } from "app/entity/fetcher/factory";
+import { getFetcher } from "app/hooks/useFetcher";
 
 interface PageUrl extends ParsedUrlQuery {
   slug: string;
@@ -30,7 +32,8 @@ export const getStaticPaths: GetStaticPaths<PageUrl> = async () => {
   const paths = await Promise.all(
     entities.map(async (entity) => {
       if (entity.staticLoad && entity.getId) {
-        const data = await listAll(entity.apiPath);
+        const fetcher = getFetcher(entity);
+        const data = await fetcher.listAll(entity.apiPath);
         return data.hits.map((hit) => ({
           params: {
             slug: entity.route,
