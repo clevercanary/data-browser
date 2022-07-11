@@ -7,18 +7,24 @@ import { Footer, Header } from "app/components/Layout/common/entities";
 type GetIdFunction<T> = (detail: T) => string;
 
 /**
+ * Interface used to defined the tab name and route
+ */
+interface TabConfig {
+  label: string;
+  route: string;
+}
+
+/**
  * Interface used to define the entities and router that will be used on the application, alongside with
  * the detail and the list page configuration.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This config model is part of a generic array
-export interface EntityConfig<D = any> {
-  label: string;
-  route: string;
+export interface EntityConfig<D = any> extends TabConfig {
   apiPath?: string;
   tsvPath?: string;
   getId?: GetIdFunction<D>;
   staticLoad?: boolean;
-  detail?: DetailConfig;
+  detail: DetailConfig;
   list: ListConfig;
 }
 
@@ -59,9 +65,16 @@ export interface DataSourceConfig {
  * Interface to define the set of components that will be used for the detail page.
  */
 export interface DetailConfig {
+  tabs: DetailTabConfig[];
+  top: ComponentConfig[];
+}
+
+/**
+ * Interface to determine the components for each tab on the detail page
+ */
+export interface DetailTabConfig extends TabConfig {
   mainColumn: ComponentConfig[];
   sideColumn: ComponentConfig[];
-  top: ComponentConfig[];
 }
 
 /**
@@ -73,7 +86,8 @@ export interface SummaryConfig {
 }
 
 export interface ColumnConfig<
-  T,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This config model is part of a generic array
+  T = any,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This config model is part of a generic array
   C extends keyof JSX.IntrinsicElements | JSXElementConstructor<any> = any
 > {
@@ -84,6 +98,7 @@ export interface ColumnConfig<
     default?: boolean;
   };
   componentConfig: ComponentConfig<C, T>;
+  hiddenColumn?: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This config model can receive any model as type

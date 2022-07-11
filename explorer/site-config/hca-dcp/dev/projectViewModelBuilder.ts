@@ -19,6 +19,7 @@ import {
 import { ProjectsResponse } from "app/models/responses";
 import { ENTRIES } from "app/project-edits";
 import { concatStrings } from "app/utils/string";
+import { projectEntity } from "./projectsEntity";
 
 const formatter = Intl.NumberFormat("en", { notation: "compact" });
 
@@ -125,7 +126,7 @@ export const buildHero = (
   return {
     breadcrumbs: undefined, // TODO breadcrumbs https://github.com/clevercanary/data-browser/issues/68.
     status: getProjectStatus(projectsResponse), // TODO status https://github.com/clevercanary/data-browser/issues/135
-    tabs: undefined, // TODO tabs https://github.com/clevercanary/data-browser/issues/120
+    tabs: projectEntity.detail.tabs.map(({ label }) => label),
     title: getProjectTitle(projectsResponse),
   };
 };
@@ -218,6 +219,30 @@ export const projectsToCellCountColumn = (
   }
   return {
     children: `${formatter.format(project.cellSuspensions[0].totalCells)}`,
+    customColor: "ink",
+    variant: "text-body-400",
+  };
+};
+
+/**
+ * Build props for the Development stage Text component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the development stage table column.
+ */
+export const buildDevStage = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.Text> => {
+  if (!projectsResponse.donorOrganisms) {
+    return {
+      children: "",
+    };
+  }
+  return {
+    children: concatStrings(
+      projectsResponse.donorOrganisms.flatMap(
+        (orgnanism) => orgnanism.developmentStage
+      )
+    ),
     customColor: "ink",
     variant: "text-body-400",
   };

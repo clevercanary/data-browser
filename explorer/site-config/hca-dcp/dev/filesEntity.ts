@@ -1,4 +1,5 @@
 import * as T from "./fileTransformer";
+import { buildDevStage } from "./projectViewModelBuilder";
 import * as C from "../../../app/components";
 import {
   ComponentConfig,
@@ -12,6 +13,10 @@ import { FilesResponse } from "app/models/responses";
  */
 export const filesEntity: EntityConfig<FilesResponse> = {
   apiPath: "index/files",
+  detail: {
+    tabs: [],
+    top: [],
+  },
   label: "Files",
   list: {
     columns: [
@@ -75,6 +80,14 @@ export const filesEntity: EntityConfig<FilesResponse> = {
         sort: {
           sortKey: "cellCount",
         },
+      },
+      {
+        componentConfig: {
+          component: C.Text,
+          transformer: buildDevStage,
+        } as ComponentConfig<typeof C.Text>,
+        header: "Development Stage",
+        hiddenColumn: true,
       },
     ],
   } as ListConfig<FilesResponse>,
