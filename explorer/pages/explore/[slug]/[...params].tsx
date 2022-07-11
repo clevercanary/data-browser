@@ -6,11 +6,9 @@ import React from "react";
 // App dependencies
 import { Page } from "../../../app/components/Layout/components/Page/page";
 import { config } from "app/config/config";
-import { detail, listAll } from "../../../app/entity/api/service";
 import { getCurrentEntity } from "app/hooks/useCurrentEntity";
 import { DetailModel } from "../../../app/models/viewModels";
 import { Project } from "../../../app/views/Project/project";
-import { create } from "app/entity/fetcher/factory";
 import { getFetcher } from "app/hooks/useFetcher";
 import { PARAMS_INDEX_UUID } from "app/shared/constants";
 
@@ -42,7 +40,8 @@ export const getStaticPaths: GetStaticPaths<PageUrl> = async () => {
     entities.map(async (entity) => {
       const resultParams: { params: PageUrl }[] = [];
       if (entity.staticLoad && entity.getId) {
-        const data = await listAll(entity.apiPath);
+        const { listAll, path } = getFetcher(entity);
+        const data = await listAll(path);
         const tabs = entity.detail?.tabs.map((tab) => tab.route) ?? [];
 
         data.hits.forEach((hit) => {
@@ -84,9 +83,10 @@ export const getStaticProps: GetStaticProps<DetailModel> = async ({
 
   const props: ProjectPageProps = { slug };
   if (entity.staticLoad) {
+    const { detail, path } = getFetcher(entity);
     const data = await detail(
       (params as PageUrl).params[PARAMS_INDEX_UUID],
-      entity.apiPath
+      path
     );
     props.data = data;
   }

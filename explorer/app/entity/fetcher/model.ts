@@ -16,11 +16,11 @@ export interface Fetcher {
   detail: (
     id: string,
     apiPath: string,
-    param: { [key: string]: string }
+    param?: { [key: string]: string }
   ) => Promise<any>;
   summary: (
     apiPath: string,
-    param: { [key: string]: string }
+    param?: { [key: string]: string }
   ) => Promise<SummaryResponse>;
 }
 

@@ -5,9 +5,9 @@ import { ListModel } from "../../app/models/viewModels";
 import { ListContainer } from "../../app/entity/list/ListContainer";
 import { config } from "app/config/config";
 import { ParsedUrlQuery } from "querystring";
-import { listAll } from "app/entity/api/service";
 import { EMPTY_PAGE } from "app/entity/api/constants";
 import { getCurrentEntity } from "app/hooks/useCurrentEntity";
+import { getFetcher } from "app/hooks/useFetcher";
 
 interface PageUrl extends ParsedUrlQuery {
   slug: string;
@@ -46,15 +46,10 @@ export const getStaticProps: GetStaticProps<ListModel> = async (
 ) => {
   const { slug } = context.params as PageUrl;
   const entity = getCurrentEntity(slug, config());
-
-  if (!entity) {
-    return {
-      notFound: true,
-    };
-  }
+  const fetcher = getFetcher(entity);
 
   const resultList = entity.staticLoad
-    ? await listAll(entity.apiPath)
+    ? await fetcher.listAll(fetcher.path)
     : EMPTY_PAGE;
 
   return {
