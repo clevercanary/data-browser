@@ -6,15 +6,14 @@
 import React, { ReactNode } from "react";
 
 // App dependencies
-import { IndexTitle } from "../../common/entities";
-import { Title } from "../../../common/Title/title";
+import { HeroTitle, Title } from "../../../common/Title/title";
 
 // Styles
 import { HeroLayout, SummaryWidget, Widgets } from "./hero.styles";
 
 interface Props {
   Summaries?: ReactNode;
-  title: IndexTitle;
+  title: HeroTitle;
 }
 
 export const Hero = ({ Summaries, title }: Props): JSX.Element => {

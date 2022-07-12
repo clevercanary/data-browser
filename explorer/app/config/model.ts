@@ -3,7 +3,7 @@ import { JSXElementConstructor } from "react";
 
 // App dependencies
 import { Footer, Header } from "app/components/Layout/common/entities";
-import { IndexTitle } from "../components/Index/common/entities";
+import { HeroTitle } from "../components/common/Title/title";
 
 type GetIdFunction<T> = (detail: T) => string;
 
@@ -121,7 +121,7 @@ export interface SiteConfig {
   browserURL: string;
   datasources: DataSourceConfig;
   entities: EntityConfig[];
-  entityTitle: IndexTitle;
+  entityTitle: HeroTitle;
   layout: {
     footer: Footer;
     header: Header;

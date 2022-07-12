@@ -1,11 +1,3 @@
-// App dependencies
-import { HeroTitle } from "../../common/Title/title";
-
-/**
- * Model of index title to be used as props for the Hero component.
- */
-export type IndexTitle = HeroTitle;
-
 /**
  * Set of possible metadata keys.
  * TODO refine with https://github.com/clevercanary/data-browser/issues/128

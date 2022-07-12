@@ -2,7 +2,7 @@
 import React, { ReactNode } from "react";
 
 // App dependencies
-import { IndexTitle } from "./common/entities";
+import { HeroTitle } from "../common/Title/title";
 import { Hero } from "./components/Hero/hero";
 
 // Styles
@@ -12,7 +12,7 @@ interface Props {
   entities?: ReactNode;
   Summaries?: ReactNode;
   Tabs?: ReactNode;
-  title: IndexTitle;
+  title: HeroTitle;
 }
 
 export const Index = ({

@@ -7,18 +7,17 @@ import React from "react";
 
 // App dependencies
 import { Stack } from "app/components/common/Stack/Stack";
-import { ProjectTitle } from "../../common/entities";
 import { Status, StatusBadge } from "../../../common/StatusBadge/statusBadge";
 import { Tabs } from "app/components/Tabs/tabs";
-import { Title } from "../../../common/Title/title";
 import { useTabController } from "app/components/Tabs/useTabController";
+import { HeroTitle, Title } from "../../../common/Title/title";
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- TODO breadcrumb type https://github.com/clevercanary/data-browser/issues/68
   breadcrumbs?: any;
   status?: Status;
   tabs?: string[];
-  title?: ProjectTitle;
+  title?: HeroTitle;
 }
 
 export const Hero = ({

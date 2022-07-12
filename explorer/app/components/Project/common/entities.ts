@@ -1,6 +1,3 @@
-// App dependencies
-import { HeroTitle } from "../../common/Title/title";
-
 /**
  * Model of project collaborating organization to be used as props for the CollaboratingOrganizations component.
  */
@@ -41,11 +38,6 @@ export type Description = string;
  * Model of project path to be used as props for the Citation component.
  */
 export type ProjectPath = string;
-
-/**
- * Model of project title to be used as props for the Hero component.
- */
-export type ProjectTitle = HeroTitle;
 
 /**
  * Model of project publication to be used as props for the Publication component.
