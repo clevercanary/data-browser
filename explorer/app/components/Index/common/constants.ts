@@ -1,11 +1,11 @@
 // App dependencies
 import { METADATA_KEY, SUMMARY } from "./entities";
+import { SummaryResponse } from "../../../models/responses";
 import {
-  calculateSummaryTotalCellCount,
   calculateSummaryFileFormatsCount,
+  calculateSummaryTotalCellCount,
   getSummaryCount,
 } from "./utils";
-import { SummaryResponse } from "../../../models/responses";
 
 // Template constants
 const { DONORS, ESTIMATED_CELLS, FILES, FILE_FORMATS, SPECIES, SPECIMENS } =
@@ -14,13 +14,14 @@ const { DONORS, ESTIMATED_CELLS, FILES, FILE_FORMATS, SPECIES, SPECIMENS } =
 /**
  * Functions binding summary response API to summary count.
  */
-export const BIND_SUMMARY_RESPONSE_FN = {
-  [DONORS]: (r: SummaryResponse) => getSummaryCount(r, "donorCount"),
+export const BIND_SUMMARY_RESPONSE = {
+  [DONORS]: (r: SummaryResponse) => getSummaryCount(r, SUMMARY_KEY.DONORS),
   [ESTIMATED_CELLS]: calculateSummaryTotalCellCount,
-  [FILES]: (r: SummaryResponse) => getSummaryCount(r, "fileCount"),
+  [FILES]: (r: SummaryResponse) => getSummaryCount(r, SUMMARY_KEY.FILES),
   [FILE_FORMATS]: calculateSummaryFileFormatsCount,
-  [SPECIES]: (r: SummaryResponse) => getSummaryCount(r, "speciesCount"),
-  [SPECIMENS]: (r: SummaryResponse) => getSummaryCount(r, "specimenCount"),
+  [SPECIES]: (r: SummaryResponse) => getSummaryCount(r, SUMMARY_KEY.SPECIES),
+  [SPECIMENS]: (r: SummaryResponse) =>
+    getSummaryCount(r, SUMMARY_KEY.SPECIMENS),
 };
 
 /**
@@ -32,7 +33,18 @@ export const PLURALIZED_METADATA_LABEL = {
 };
 
 /**
- * Set of summary labels.
+ * Set of possible summary keys.
+ */
+export const SUMMARY_KEY = {
+  [DONORS]: "donorCount",
+  [FILES]: "fileCount",
+  [FILE_FORMATS]: "fileFormats",
+  [SPECIES]: "speciesCount",
+  [SPECIMENS]: "specimenCount",
+} as const;
+
+/**
+ * Set of possible summary labels.
  */
 export const SUMMARY_LABEL = {
   [DONORS]: "Donors",

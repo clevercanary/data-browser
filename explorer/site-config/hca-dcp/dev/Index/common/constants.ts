@@ -1,12 +1,10 @@
 // App dependencies
 import { SUMMARY } from "app/components/Index/common/entities";
 
+// Template constants
+const { DONORS, ESTIMATED_CELLS, FILES, SPECIMENS } = SUMMARY;
+
 /**
  * Summary display order.
  */
-export const SUMMARIES = [
-  SUMMARY.ESTIMATED_CELLS,
-  SUMMARY.SPECIMENS,
-  SUMMARY.DONORS,
-  SUMMARY.FILES,
-];
+export const SUMMARIES = [ESTIMATED_CELLS, SPECIMENS, DONORS, FILES];

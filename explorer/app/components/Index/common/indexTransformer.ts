@@ -1,6 +1,6 @@
 // App dependencies
 import {
-  BIND_SUMMARY_RESPONSE_FN,
+  BIND_SUMMARY_RESPONSE,
   PLURALIZED_METADATA_LABEL,
   SUMMARY_LABEL,
 } from "./constants";
@@ -21,24 +21,25 @@ export function getPluralizedMetadataLabel(
 
 /**
  * Maps index summaries from summary API response.
- * @param summaryKeys - List of summary keys.
+ * @param summaries - Summary list.
  * @param summaryResponse - Response model return from summary API.
  * @returns summary counts.
  */
 export function getSummaries(
-  summaryKeys: SUMMARY[],
+  summaries: Array<keyof typeof SUMMARY>,
   summaryResponse?: SummaryResponse
 ): Summary[] | undefined {
   if (!summaryResponse) {
     return;
   }
-  return summaryKeys.map((summaryKey) => {
-    const summaryBinderFn = BIND_SUMMARY_RESPONSE_FN[summaryKey];
+  return summaries.map((summary) => {
+    const summaryBinderFn = BIND_SUMMARY_RESPONSE[summary];
     const count = summaryBinderFn(summaryResponse);
     const formattedCount = formatCountSize(count);
+    const label = SUMMARY_LABEL[summary];
     return {
       count: formattedCount,
-      label: SUMMARY_LABEL[summaryKey],
+      label,
     };
   });
 }

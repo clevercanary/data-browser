@@ -182,7 +182,7 @@ export interface SummaryResponse {
   }[];
   donorCount: number;
   fileCount: number;
-  fileFormats?: FileFormatResponse[];
+  fileFormats?: FileFormatResponse[]; // TODO revisit AnVIL specific.
   fileTypeSummaries: {
     count: number;
     format: string;
