@@ -4,20 +4,12 @@ import {
   calculateSummaryTotalCellCount,
   calculateSummaryFileFormatsCount,
   getSummaryCount,
-  getTotalFileSize,
 } from "./utils";
 import { SummaryResponse } from "../../../models/responses";
 
 // Template constants
-const {
-  DONORS,
-  ESTIMATED_CELLS,
-  FILES,
-  FILE_FORMATS,
-  FILE_SIZE,
-  SPECIES,
-  SPECIMENS,
-} = SUMMARY;
+const { DONORS, ESTIMATED_CELLS, FILES, FILE_FORMATS, SPECIES, SPECIMENS } =
+  SUMMARY;
 
 /**
  * Functions binding summary response API to summary count.
@@ -27,7 +19,6 @@ export const BIND_SUMMARY_RESPONSE_FN = {
   [ESTIMATED_CELLS]: calculateSummaryTotalCellCount,
   [FILES]: (r: SummaryResponse) => getSummaryCount(r, "fileCount"),
   [FILE_FORMATS]: calculateSummaryFileFormatsCount,
-  [FILE_SIZE]: getTotalFileSize,
   [SPECIES]: (r: SummaryResponse) => getSummaryCount(r, "speciesCount"),
   [SPECIMENS]: (r: SummaryResponse) => getSummaryCount(r, "specimenCount"),
 };
@@ -48,7 +39,6 @@ export const SUMMARY_LABEL = {
   [ESTIMATED_CELLS]: "Estimated Cells",
   [FILES]: "Files",
   [FILE_FORMATS]: "Files",
-  [FILE_SIZE]: "File Size",
   [SPECIES]: "Species",
   [SPECIMENS]: "Specimens",
 };

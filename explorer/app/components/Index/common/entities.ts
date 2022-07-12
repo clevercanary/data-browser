@@ -13,14 +13,13 @@ export enum METADATA_KEY {
 export type MetadataValue = string;
 
 /**
- * Set of possible summary counts, file sizes and other summary values as part of summary response.
+ * Set of possible summary counts and other summary values as part of summary response.
  */
 export enum SUMMARY {
   DONORS = "DONORS",
   ESTIMATED_CELLS = "ESTIMATED_CELLS",
   FILES = "FILES",
   FILE_FORMATS = "FILE_FORMATS",
-  FILE_SIZE = "FILE_SIZE",
   SPECIES = "SPECIES",
   SPECIMENS = "SPECIMENS",
 }

@@ -6,7 +6,7 @@ import {
 } from "./constants";
 import { METADATA_KEY, SUMMARY, Summary } from "./entities";
 import { SummaryResponse } from "../../../models/responses";
-import { formatCountSize, formatFileSize } from "./utils";
+import { formatCountSize } from "./utils";
 
 /**
  * Returns the pluralized metadata label for the specified metadata.
@@ -35,10 +35,7 @@ export function getSummaries(
   return summaryKeys.map((summaryKey) => {
     const summaryBinderFn = BIND_SUMMARY_RESPONSE_FN[summaryKey];
     const count = summaryBinderFn(summaryResponse);
-    const formattedCount =
-      summaryKey === SUMMARY.FILE_SIZE
-        ? formatFileSize(count)
-        : formatCountSize(count);
+    const formattedCount = formatCountSize(count);
     return {
       count: formattedCount,
       label: SUMMARY_LABEL[summaryKey],

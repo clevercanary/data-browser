@@ -32,7 +32,6 @@ HCASummaries.args = {
     { count: "7.2k", label: "Specimens" },
     { count: "1.0k", label: "Donors" },
     { count: "115.2k", label: "Files" },
-    { count: "24.80 TB", label: "File Size" },
   ],
 };
 
@@ -43,6 +42,5 @@ LungmapSummaries.args = {
     { count: "44", label: "Specimens" },
     { count: "42", label: "Donors" },
     { count: "432", label: "Files" },
-    { count: "1.32 TB", label: "File Size" },
   ],
 };

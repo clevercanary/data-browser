@@ -202,5 +202,5 @@ export interface SummaryResponse {
   }[];
   speciesCount: number;
   specimenCount: number;
-  totalFileSize: string | number;
+  totalFileSize: number;
 }

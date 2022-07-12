@@ -71,33 +71,6 @@ export function formatCountSize(value: number): string {
 }
 
 /**
- * Formats file sizes.
- * @param value - File size count.
- * @returns formatted file size as display string.
- */
-export function formatFileSize(value: number): string {
-  const fileSizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-
-  // Determine file size display value and unit
-  let val = value || 0;
-  let sigFig = 0;
-  while (val >= 1024) {
-    val = val / 1024;
-    sigFig += 1;
-  }
-
-  // Prevent format of file size to "n.00 B" (display just "n B" instead)
-  let precision = 2;
-  if (sigFig === 0) {
-    precision = 0;
-  }
-
-  // Round value to precision
-  const roundedValue = val.toFixed(precision);
-  return `${roundedValue} ${fileSizes[sigFig]}`;
-}
-
-/**
  * Calculates the summary count for the specified summary property key in the summary response.
  * @param summaryResponse - Response model return from summary API.
  * @param summaryKey - Summary response property key.
@@ -108,19 +81,6 @@ export function getSummaryCount(
   summaryKey: keyof SummaryResponse
 ): number {
   return summaryResponse[summaryKey] as number;
-}
-
-/**
- * Returns the summary total file size count from the summary response API.
- * Handles special case where totalFileSize may return a string value.
- * @param summaryResponse
- * @returns count of total file size.
- */
-export function getTotalFileSize(summaryResponse: SummaryResponse): number {
-  if (typeof summaryResponse.totalFileSize === "string") {
-    return 0;
-  }
-  return summaryResponse.totalFileSize;
 }
 
 /**
