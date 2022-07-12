@@ -22,8 +22,6 @@
       }
     ],
 
-    "@typescript-eslint/explicit-function-return-type": "error",
-
     "eslint-comments/require-description": "error",
 
     "jsdoc/require-description": "error",
@@ -35,5 +33,14 @@
     "jsdoc/require-returns-description": "error",
     "jsdoc/check-alignment": "error",
     "jsdoc/check-param-names": "error"
-  }
+  },
+  "overrides": [
+    {
+      "files": "**",
+      "excludedFiles": "*.styles.ts?(x)",
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "error"
+      }
+    }
+  ]
 }
