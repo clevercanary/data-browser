@@ -15,12 +15,12 @@ const { DONORS, ESTIMATED_CELLS, FILES, FILE_FORMATS, SPECIES, SPECIMENS } =
  * Functions binding summary response API to summary count.
  */
 export const BIND_SUMMARY_RESPONSE = {
-  [DONORS]: (r: SummaryResponse) => getSummaryCount(r, SUMMARY_KEY.DONORS),
+  [DONORS]: (r: SummaryResponse): number => getSummaryCount(r, SUMMARY_KEY.DONORS),
   [ESTIMATED_CELLS]: calculateSummaryTotalCellCount,
-  [FILES]: (r: SummaryResponse) => getSummaryCount(r, SUMMARY_KEY.FILES),
+  [FILES]: (r: SummaryResponse): number => getSummaryCount(r, SUMMARY_KEY.FILES),
   [FILE_FORMATS]: calculateSummaryFileFormatsCount,
-  [SPECIES]: (r: SummaryResponse) => getSummaryCount(r, SUMMARY_KEY.SPECIES),
-  [SPECIMENS]: (r: SummaryResponse) =>
+  [SPECIES]: (r: SummaryResponse): number => getSummaryCount(r, SUMMARY_KEY.SPECIES),
+  [SPECIMENS]: (r: SummaryResponse): number =>
     getSummaryCount(r, SUMMARY_KEY.SPECIMENS),
 };
 
