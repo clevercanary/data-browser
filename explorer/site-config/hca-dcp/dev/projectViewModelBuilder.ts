@@ -118,7 +118,8 @@ export const buildDetails = (
 
 /**
  * Build props for Hero component from the given projects response.
- * @param projectsResponse - Response model return from projects API.
+ * @param config - SiteConfig of the current project
+ * param projectsResponse - Response model return from projects API.
  * @returns model to be used as props for the Hero component.
  */
 export const buildHero =
