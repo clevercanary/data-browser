@@ -53,7 +53,7 @@ function renderSummary(
   );
 }
 
-export const Index = (props: ListModel) => {
+export const Index = (props: ListModel): JSX.Element => {
   const entity = useCurrentEntity();
   const { entities, entityTitle, summary } = useConfig();
   const { response: summaryResponse } = useSummary();
