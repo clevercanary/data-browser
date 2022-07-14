@@ -2,19 +2,9 @@
  * Handles requests to TSV file
  */
 
-import { convertUrlParams } from "../../utils/url";
-import {
-  DEFAULT_LIST_PARAMS,
-  DEFAULT_DETAIL_PARAMS,
-  URL,
-} from "../../shared/constants";
-import { ListParams } from "../../models/params";
 import { ListResponseType, SummaryResponse } from "../../models/responses";
 
-export const list = async (
-  apiPath: string,
-  listParams?: ListParams
-): Promise<ListResponseType> => {
+export const list = async (): Promise<ListResponseType> => {
   return Promise.resolve({
     hits: [],
     pagination: {
@@ -31,25 +21,16 @@ export const fetchList = async (url: string): Promise<ListResponseType> => {
   return await res.json();
 };
 
-export const listAll = async (
-  apiPath: string,
-  listParams?: ListParams
-): Promise<ListResponseType> => {
-  return list(apiPath);
+export const listAll = async (): Promise<ListResponseType> => {
+  return list();
 };
 
-export const detail = async (
-  id: string,
-  apiPath: string,
-  param = DEFAULT_DETAIL_PARAMS
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this response type can't be determined beforehand
-): Promise<any> => {
-  return Promise.resolve({});
-};
+export const detail =
+  async (): // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this response type can't be determined beforehand
+  Promise<any> => {
+    return Promise.resolve({});
+  };
 
-export const summary = async (
-  apiPath: string,
-  param = DEFAULT_DETAIL_PARAMS
-): Promise<SummaryResponse> => {
+export const summary = async (): Promise<SummaryResponse> => {
   return Promise.resolve({} as any);
 };

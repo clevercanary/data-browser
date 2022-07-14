@@ -23,4 +23,4 @@ const FETCHERS: { [key in FetcherType]: Fetcher } = {
   TSV: TSV_FETCHER,
 };
 
-export const create = (type: FetcherType) => FETCHERS[type];
+export const create = (type: FetcherType): Fetcher => FETCHERS[type];

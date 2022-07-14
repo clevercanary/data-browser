@@ -33,7 +33,7 @@ export const getFetcher = (entity: EntityConfig): FetcherResponse => {
 /**
  * Hook to determine how the data should be loaded.
  * From API or from a tsv file.
- * @returns
+ * @returns @see FetcherResponse
  */
 export const useFetcher = (): FetcherResponse => {
   const entity = useCurrentEntity();
