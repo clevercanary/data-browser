@@ -31,15 +31,10 @@ function renderSummary(
   if (!summaryConfig || !summaryResponse) {
     return;
   }
-  /* Grab the "Summaries" component. */
-  const summaryComponents = summaryConfig.components;
-  if (!Array.isArray(summaryComponents)) {
-    return;
-  }
   /* Render the Summaries component. */
   return (
     <ComponentCreator
-      components={summaryComponents}
+      components={summaryConfig.components}
       response={summaryResponse}
     />
   );
