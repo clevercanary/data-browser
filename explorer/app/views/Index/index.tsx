@@ -36,17 +36,6 @@ function renderSummary(
   if (!Array.isArray(summaryComponents)) {
     return;
   }
-  const summariesComponent = summaryComponents.find(
-    (component) => component.component.name === "Summaries"
-  );
-  /* Grab the prop "summaries". */
-  const summaries =
-    summariesComponent?.transformer &&
-    summariesComponent.transformer(summaryResponse).summaries;
-  /* If the prop "summaries" is undefined, we do not want to render the Summaries component or the styled container "Widgets" around the summary. */
-  if (!summaries) {
-    return;
-  }
   /* Render the Summaries component. */
   return (
     <ComponentCreator
