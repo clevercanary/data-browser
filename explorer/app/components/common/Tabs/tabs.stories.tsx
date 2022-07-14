@@ -1,5 +1,8 @@
+// Core dependencies
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+
+// App dependencies
 import { Tabs } from "./tabs";
 
 export default {
@@ -12,8 +15,8 @@ export default {
 
 const Template: ComponentStory<typeof Tabs> = (args) => <Tabs {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
-  selectedTab: 0,
-  tabs: ["First tab", "Second tab", "Third tab"],
+export const IndexTabs = Template.bind({});
+IndexTabs.args = {
+  tabs: [{ label: "Projects", value: "projects" }],
+  value: "projects",
 };
