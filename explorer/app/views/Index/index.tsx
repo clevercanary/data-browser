@@ -33,6 +33,9 @@ function renderSummary(
   }
   /* Grab the "Summaries" component. */
   const summaryComponents = summaryConfig.components;
+  if (!Array.isArray(summaryComponents)) {
+    return;
+  }
   const summariesComponent = summaryComponents.find(
     (component) => component.component.name === "Summaries"
   );
