@@ -25,13 +25,11 @@ export const StaticImage = ({
 }: StaticImageProps): JSX.Element => {
   const router = useRouter();
 
-  return (
-    <img
-      alt={alt}
-      height={height}
-      src={`${router.basePath}${src}`}
-      width={width}
-    />
-  );
+  // If src is a image in base64, don't add the basePath
+  const srcValue = src?.startsWith("data:image/")
+    ? src
+    : `${router.basePath}${src}`;
+
+  return <img alt={alt} height={height} src={srcValue} width={width} />;
 };
 /* eslint-enable @next/next/no-img-element -- allow static images for logos etc. */
