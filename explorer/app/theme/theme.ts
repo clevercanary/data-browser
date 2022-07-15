@@ -131,6 +131,11 @@ const defaultTheme = createTheme({
 });
 
 /**
+ * Typography constants
+ */
+const textBody500 = defaultTheme.typography["text-body-500"];
+
+/**
  * App theme
  */
 export const theme = createTheme(defaultTheme, {
@@ -151,13 +156,24 @@ export const theme = createTheme(defaultTheme, {
       defaultProps: {
         disableRipple: true,
       },
+      styleOverrides: {
+        endIcon: {
+          margin: 0,
+        },
+        root: {
+          ...textBody500,
+          gap: 4,
+          padding: "10px 16px",
+          textTransform: "capitalize",
+        },
+      },
       variants: [
         {
           props: {
             variant: "nav",
           },
           style: {
-            ...defaultTheme.typography["text-body-500"],
+            ...textBody500,
             color: defaultTheme.palette.ink,
             minWidth: 0,
             padding: "12px 24px",
@@ -228,6 +244,9 @@ export const theme = createTheme(defaultTheme, {
       styleOverrides: {
         root: {
           borderRadius: 4,
+        },
+        sizeLarge: {
+          padding: 10,
         },
         sizeSmall: {
           padding: 6,
@@ -309,7 +328,7 @@ export const theme = createTheme(defaultTheme, {
           borderColor: defaultTheme.palette.smoke,
           borderStyle: "solid",
           borderWidth: 1,
-          boxShadow: "0px 1px 4px 0px rgba(0, 0, 0, 0.07)",
+          boxShadow: "0 1px 4px 0 rgba(0, 0, 0, 0.07)",
           display: "grid",
           gap: 1,
         },
@@ -322,6 +341,90 @@ export const theme = createTheme(defaultTheme, {
           props: { variant: "panel" },
         },
       ],
+    },
+    MuiTab: {
+      styleOverrides: {
+        labelIcon: {
+          gap: 8,
+          // eslint-disable-next-line sort-keys -- disabling key order for readability
+          "& > img": {
+            maxHeight: 20, // Tab image max height.
+          },
+        },
+        root: {
+          ...textBody500,
+          color: defaultTheme.palette.inkLight,
+          marginBottom: 3,
+          minHeight: "unset",
+          minWidth: "unset",
+          opacity: 1,
+          padding: 12,
+          textTransform: "capitalize",
+          // eslint-disable-next-line sort-keys -- disabling key order for readability
+          "& > .MuiTab-iconWrapper": {
+            marginRight: 0,
+          },
+          "&.Mui-selected": {
+            color: defaultTheme.palette.ink,
+          },
+        },
+      },
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        body: {
+          ...defaultTheme.typography["text-body-400"],
+        },
+        head: {
+          ...defaultTheme.typography["text-body-small-500"],
+        },
+        root: {
+          color: defaultTheme.palette.ink,
+          padding: "18px 20px",
+        },
+      },
+    },
+    MuiTableSortLabel: {
+      styleOverrides: {
+        icon: {
+          fontSize: 20,
+          margin: 0,
+        },
+        root: {
+          "&.Mui-active": {
+            color: "inherit",
+            // eslint-disable-next-line sort-keys -- disabling key order for readability
+            "& .MuiTableSortLabel-icon": {
+              color: "inherit",
+            },
+          },
+          "&:hover": {
+            color: "inherit",
+            opacity: 0.6,
+          },
+        },
+      },
+    },
+    MuiTabs: {
+      defaultProps: {
+        textColor: "inherit",
+        variant: "scrollable",
+      },
+      styleOverrides: {
+        flexContainer: {
+          gap: 8,
+        },
+        indicator: {
+          borderTopLeftRadius: 12,
+          borderTopRightRadius: 12,
+          height: 3,
+        },
+        root: {
+          boxShadow: `inset 0 -1px 0 0 ${defaultTheme.palette.smoke}`,
+          minHeight: "unset",
+          position: "relative", // Positions scroll fuzz.
+        },
+      },
     },
     MuiToolbar: {
       styleOverrides: {

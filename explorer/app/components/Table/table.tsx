@@ -1,3 +1,13 @@
+// Core dependencies
+import SouthRoundedIcon from "@mui/icons-material/SouthRounded";
+import {
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TableSortLabel,
+} from "@mui/material";
 import React from "react";
 import {
   Column,
@@ -7,35 +17,34 @@ import {
   useSortBy,
   useTable,
 } from "react-table";
-import {
-  Box,
-  Table as MuiTable,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  TableSortLabel,
-} from "@mui/material";
-import { Pagination } from "../Pagination/pagination";
-import { CheckboxMenu, CheckboxMenuItem } from "../CheckboxMenu/checkboxMenu";
+
+// App dependencies
 import { PaginationConfig, SortConfig } from "app/hooks/useFetchEntities";
+import { CheckboxMenu, CheckboxMenuItem } from "../CheckboxMenu/checkboxMenu";
+import { Pagination } from "./components/Pagination/pagination";
+import { PaginationSummary } from "./components/PaginationSummary/paginationSummary";
 import { newColumnKey, newColumnOrder } from "./functions";
 
+// Styles
+import { RoundedPaper } from "../common/Paper/paper.styles";
+import { Table as GridTable, TableToolbar } from "./table.styles";
+
 export interface EditColumnConfig {
-  options: CheckboxMenuItem[];
-  selectedColumns: string[];
-  readOnlyColumns: string[];
   onVisibleColumnsChange: (newColumnId: string) => void;
+  options: CheckboxMenuItem[];
+  readOnlyColumns: string[];
+  selectedColumns: string[];
 }
 
 interface TableProps<T extends object> {
+  columns: Column<T>[];
+  editColumns?: EditColumnConfig;
+  gridTemplateColumns: string;
   items: T[];
   pageSize: number;
-  columns: Column<T>[];
-  total?: number;
   pagination?: PaginationConfig;
   sort?: SortConfig;
-  editColumns?: EditColumnConfig;
+  total?: number;
 }
 
 /**
@@ -50,28 +59,30 @@ interface TableProps<T extends object> {
  * @param tableProps.total - Total number of rows in the result set.
  * @param tableProps.pagination - Config for rendering pagination and corresponding events.
  * @param tableProps.sort - Config for rendering current sort and handling corresponding events.
+ * @param tableProps.gridTemplateColumns - Defines grid table track sizing.
  * @returns Configured table element for display.
  */
 export const Table = <T extends object>({
-  items,
   columns,
   editColumns,
+  gridTemplateColumns,
+  items,
   pageSize,
-  total,
   pagination,
   sort,
+  total,
 }: TableProps<T>): JSX.Element => {
   const {
-    getTableProps,
-    headers,
-    getTableBodyProps,
-    page,
-    prepareRow,
     canNextPage: tableCanNextPage,
     canPreviousPage: tableCanPreviousPage,
+    getTableBodyProps,
+    getTableProps,
+    headers,
     nextPage: tableNextPage,
-    previousPage: tablePreviousPage,
+    page,
     pageOptions,
+    prepareRow,
+    previousPage: tablePreviousPage,
     state: { pageIndex },
   } = useTable<T>(
     {
@@ -88,6 +99,8 @@ export const Table = <T extends object>({
     useSortBy,
     usePagination
   );
+  const currentPage = pagination?.currentPage ?? pageIndex + 1;
+  const totalPage = total ?? pageOptions.length;
 
   const handleSortClicked = (column: ColumnInstance<T>): void => {
     if (sort) {
@@ -98,9 +111,14 @@ export const Table = <T extends object>({
   };
 
   return (
-    <div>
+    <RoundedPaper>
       {editColumns && (
-        <Box display="flex" justifyContent="flex-end">
+        <TableToolbar>
+          <PaginationSummary
+            firstResult={(currentPage - 1) * pageSize + 1}
+            lastResult={pageSize * currentPage}
+            totalResult={totalPage * pageSize}
+          />
           <CheckboxMenu
             label="Edit Columns"
             onItemSelectionChange={editColumns.onVisibleColumnsChange}
@@ -108,55 +126,61 @@ export const Table = <T extends object>({
             readOnly={editColumns.readOnlyColumns}
             selected={editColumns.selectedColumns}
           />
-        </Box>
+        </TableToolbar>
       )}
-      <MuiTable {...getTableProps()}>
-        <TableHead>
-          <TableRow>
-            {headers.map((column) => (
-              <TableCell
-                {...column.getHeaderProps(column.getSortByToggleProps())}
-                key={column.id}
-              >
-                <TableSortLabel
-                  active={sort?.sortKey === column.id}
-                  disabled={column.disableSortBy}
-                  direction={
-                    sort?.sortKey === column.id ? sort?.sortOrder : "asc"
-                  }
-                  onClick={(): void => handleSortClicked(column)}
+      <TableContainer>
+        <GridTable
+          gridTemplateColumns={gridTemplateColumns}
+          {...getTableProps()}
+        >
+          <TableHead>
+            <TableRow>
+              {headers.map((column) => (
+                <TableCell
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                  key={column.id}
                 >
-                  {column.render("Header")}
-                </TableSortLabel>
-              </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody {...getTableBodyProps()}>
-          {page.map((row, i) => {
-            prepareRow(row);
-            return (
-              <TableRow {...row.getRowProps()} key={i}>
-                {row.cells.map((cell, index) => {
-                  return (
-                    <TableCell {...cell.getCellProps()} key={index}>
-                      {cell.render("Cell")}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </MuiTable>
+                  <TableSortLabel
+                    active={sort?.sortKey === column.id}
+                    direction={
+                      sort?.sortKey === column.id ? sort?.sortOrder : "asc"
+                    }
+                    disabled={column.disableSortBy}
+                    IconComponent={SouthRoundedIcon}
+                    onClick={(): void => handleSortClicked(column)}
+                  >
+                    {column.render("Header")}
+                  </TableSortLabel>
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody {...getTableBodyProps()}>
+            {page.map((row, i) => {
+              prepareRow(row);
+              return (
+                <TableRow {...row.getRowProps()} key={i}>
+                  {row.cells.map((cell, index) => {
+                    return (
+                      <TableCell {...cell.getCellProps()} key={index}>
+                        {cell.render("Cell")}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </GridTable>
+      </TableContainer>
       <Pagination
-        currentPage={pagination?.currentPage ?? pageIndex + 1}
-        onNextPage={pagination?.nextPage ?? tableNextPage}
-        onPreviousPage={pagination?.previousPage ?? tablePreviousPage}
         canNextPage={pagination?.canNextPage ?? tableCanNextPage}
         canPreviousPage={pagination?.canPreviousPage ?? tableCanPreviousPage}
-        totalPage={total ?? pageOptions.length}
+        currentPage={currentPage}
+        onNextPage={pagination?.nextPage ?? tableNextPage}
+        onPreviousPage={pagination?.previousPage ?? tablePreviousPage}
+        totalPage={totalPage}
       />
-    </div>
+    </RoundedPaper>
   );
 };

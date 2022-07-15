@@ -11,7 +11,7 @@ export interface AnvilFilesResponse {
     bundleVersion: string;
   }[];
   datasets: {
-    dataset_name: string;
+    title: string;
   }[];
   entryId: string;
   files: {
@@ -39,6 +39,14 @@ export interface ContributorResponse {
   institution: string;
   laboratory?: string;
   projectRole?: string;
+}
+
+/**
+ * Model of fileFormat value included in the response from index/summary API endpoint.
+ */
+export interface FileFormatResponse {
+  count: number;
+  format: string;
 }
 
 /**
@@ -174,6 +182,7 @@ export interface SummaryResponse {
   }[];
   donorCount: number;
   fileCount: number;
+  fileFormats?: FileFormatResponse[]; // TODO revisit AnVIL specific.
   fileTypeSummaries: {
     count: number;
     format: string;

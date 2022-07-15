@@ -5,6 +5,9 @@ import { Logo } from "../../../app/components/Layout/common/entities";
 import { SiteConfig } from "../../../app/config/model";
 import { filesEntity } from "./filesEntity";
 
+// Summary config
+import { summary } from "./Index/summary";
+
 // Images
 import logoAnvil from "images/logoAnvil.png";
 import logoHhs from "images/logoHhs.svg";
@@ -48,11 +51,13 @@ const config: SiteConfig = {
   browserURL: BROWSER_URL,
   datasources: {
     defaultListParams: {
+      size: "25",
       sort: "entryId",
     },
-    url: "https://service.nadove2.dev.singlecell.gi.ucsc.edu/",
+    url: "https://service.nadove3.dev.singlecell.gi.ucsc.edu/",
   },
   entities: [filesEntity],
+  entityTitle: "Anvil Data Explorer",
   layout: {
     footer: {
       logos: [
@@ -136,7 +141,11 @@ const config: SiteConfig = {
       socials: SOCIALS,
     },
   },
-  redirectRootToPath: "/explore/files",
+  redirectRootToPath: "/files",
+  summary: {
+    apiPath: "index/summary",
+    components: summary,
+  },
 };
 
 export default config;

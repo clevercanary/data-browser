@@ -3,11 +3,12 @@ import { JSXElementConstructor } from "react";
 
 // App dependencies
 import { Footer, Header } from "app/components/Layout/common/entities";
+import { HeroTitle } from "../components/common/Title/title";
 
 type GetIdFunction<T> = (detail: T) => string;
 
 /**
- * Interface used to defined the tab name and route
+ * Interface used to define the tab label and route.
  */
 interface TabConfig {
   label: string;
@@ -107,7 +108,31 @@ export interface ColumnConfig<
   };
   componentConfig: ComponentConfig<C, T>;
   hiddenColumn?: boolean;
+  width: GridTrackSize;
 }
+
+export type GridTrackAuto = "auto"; // Dimension specifying the track's maximum of the largest max-content size of the items in that track.
+export type GridTrackFlex = `${number}fr`; // Dimension specifying the track's flex factor; unit in "fr".
+export type GridTrackLength = `${number}px`; // Dimension specifying the track's (fixed) width; unit in "px".
+
+/**
+ * A min and max dimension specifying a size range greater than or equal to min and less than or equal to max.
+ * As a maximum, a GridTrackFlex value sets the track's flex factor and is invalid as a minimum.
+ */
+export interface GridTrackMinMax {
+  max: GridTrackAuto | GridTrackFlex | GridTrackLength;
+  min: GridTrackAuto | GridTrackLength;
+}
+
+/**
+ * A selection of possible types of track sizing values of each track (column).
+ * See https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns#values.
+ */
+export type GridTrackSize =
+  | GridTrackAuto
+  | GridTrackLength
+  | GridTrackFlex
+  | GridTrackMinMax;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This config model can receive any model as type
 export interface ListConfig<T = any> {
@@ -121,10 +146,11 @@ export interface SiteConfig {
   browserURL: string;
   datasources: DataSourceConfig;
   entities: EntityConfig[];
+  entityTitle: HeroTitle;
   layout: {
     footer: Footer;
     header: Header;
   };
   redirectRootToPath?: string;
-  summary?: SummaryConfig;
+  summary: SummaryConfig;
 }
