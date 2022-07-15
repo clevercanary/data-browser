@@ -1,10 +1,12 @@
 // App dependencies
+import { MetadataValue } from "./entities";
 import {
   BiosampleDatasetResponse,
   BiosampleDonorResponse,
   BiosampleResponse,
   BiosamplesResponse,
 } from "../../../models/responses";
+import { filterDefinedValues } from "./utils";
 
 /**
  * Maps anatomical site from API response.
@@ -49,12 +51,12 @@ export function getBiosampleType(
  */
 export function getDatasetName(
   biosamplesResponse?: BiosamplesResponse
-): string[] | undefined {
+): MetadataValue[] {
   const datasetResponse = getDatasetResponse(biosamplesResponse);
   const datasetNames = filterDefinedValues(datasetResponse?.title); // dataset names response can return [null]
 
-  if (datasetNames?.length === 0) {
-    return; // Caller is expecting undefined, not an empty array.
+  if (!datasetNames || datasetNames?.length === 0) {
+    return ["Unspecified"]; // Caller is expecting "Unspecified", not an empty array.
   }
 
   return datasetNames;
@@ -67,12 +69,12 @@ export function getDatasetName(
  */
 export function getOrganismType(
   biosamplesResponse?: BiosamplesResponse
-): string[] | undefined {
+): MetadataValue[] {
   const donorResponse = getDonorResponse(biosamplesResponse);
   const organismTypes = filterDefinedValues(donorResponse?.organism_type); // Organism type response can return [null].
 
-  if (organismTypes?.length === 0) {
-    return; // Caller is expecting undefined, not an empty array.
+  if (!organismTypes || organismTypes?.length === 0) {
+    return ["Unspecified"]; // Caller is expecting "Unspecified", not an empty array.
   }
 
   return organismTypes;
@@ -85,26 +87,15 @@ export function getOrganismType(
  */
 export function getPhenotypicSex(
   biosamplesResponse?: BiosamplesResponse
-): string[] | undefined {
+): MetadataValue[] {
   const donorResponse = getDonorResponse(biosamplesResponse);
   const phenotypicSexes = filterDefinedValues(donorResponse?.phenotypic_sex); // Phenotypic sex response can return [null]
 
-  if (phenotypicSexes?.length === 0) {
-    return; // Caller is expecting undefined, not an empty array.
+  if (!phenotypicSexes || phenotypicSexes?.length === 0) {
+    return ["Unspecified"]; // Caller is expecting "Unspecified", not an empty array.
   }
 
   return phenotypicSexes;
-}
-
-/**
- * Returns a list of values that are not null.
- * @param values - List of values.
- * @returns a list of values that are not null.
- */
-function filterDefinedValues(
-  values: string[] | undefined
-): string[] | undefined {
-  return values?.filter((value) => value ?? false);
 }
 
 /**

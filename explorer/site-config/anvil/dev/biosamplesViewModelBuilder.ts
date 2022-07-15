@@ -11,6 +11,8 @@ import {
   getOrganismType,
   getPhenotypicSex,
 } from "../../../app/components/Index/common/biosamplesTransformer";
+import { METADATA_KEY } from "../../../app/components/Index/common/entities";
+import { getPluralizedMetadataLabel } from "../../../app/components/Index/common/indexTransformer";
 import { BiosamplesResponse } from "../../../app/models/responses";
 
 /**
@@ -53,40 +55,43 @@ export const buildBiosampleType = (
 };
 
 /**
- * Build props for dataset name Cell component from the given biosamples response.
+ * Build props for dataset name NTagCell component from the given biosamples response.
  * @param biosamplesResponse - Response model return from biosamples API.
- * @returns model to be used as props for the dataset name cell.
+ * @returns model to be used as props for the dataset name NTagCell.
  */
 export const buildDatasetName = (
   biosamplesResponse: BiosamplesResponse
-): React.ComponentProps<typeof C.Cell> => {
+): React.ComponentProps<typeof C.NTagCell> => {
   return {
-    value: getDatasetName(biosamplesResponse),
+    label: getPluralizedMetadataLabel(METADATA_KEY.DATASET_NAME),
+    values: getDatasetName(biosamplesResponse),
   };
 };
 
 /**
- * Build props for organism type Cell component from the given biosamples response.
+ * Build props for organism type NTagCell component from the given biosamples response.
  * @param biosamplesResponse - Response model return from biosamples API.
- * @returns model to be used as props for the organism type cell.
+ * @returns model to be used as props for the organism type NTagCell.
  */
 export const buildOrganismType = (
   biosamplesResponse: BiosamplesResponse
-): React.ComponentProps<typeof C.Cell> => {
+): React.ComponentProps<typeof C.NTagCell> => {
   return {
-    value: getOrganismType(biosamplesResponse),
+    label: getPluralizedMetadataLabel(METADATA_KEY.ORGANISM_TYPE),
+    values: getOrganismType(biosamplesResponse),
   };
 };
 
 /**
- * Build props for phenotypic sex Cell component from the given biosamples response.
+ * Build props for phenotypic sex NTagCell component from the given biosamples response.
  * @param biosamplesResponse - Response model return from biosamples API.
- * @returns model to be used as props for the phenotypic sex cell.
+ * @returns model to be used as props for the phenotypic sex NTagCell.
  */
 export const buildPhenotypicSex = (
   biosamplesResponse: BiosamplesResponse
-): React.ComponentProps<typeof C.Cell> => {
+): React.ComponentProps<typeof C.NTagCell> => {
   return {
-    value: getPhenotypicSex(biosamplesResponse),
+    label: getPluralizedMetadataLabel(METADATA_KEY.PHENOTYPIC_SEX),
+    values: getPhenotypicSex(biosamplesResponse),
   };
 };

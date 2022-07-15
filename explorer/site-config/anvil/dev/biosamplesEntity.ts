@@ -38,17 +38,17 @@ export const biosamplesEntity: EntityConfig<BiosamplesResponse> = {
       },
       {
         componentConfig: {
-          component: C.Cell,
+          component: C.NTagCell,
           transformer: T.buildOrganismType,
-        } as ComponentConfig<typeof C.Cell>,
+        } as ComponentConfig<typeof C.NTagCell>,
         header: "Organism Type",
         width: { max: "1fr", min: "200px" },
       },
       {
         componentConfig: {
-          component: C.Cell,
+          component: C.NTagCell,
           transformer: T.buildPhenotypicSex,
-        } as ComponentConfig<typeof C.Cell>,
+        } as ComponentConfig<typeof C.NTagCell>,
         header: "Phenotypic Sex",
         width: { max: "1fr", min: "200px" },
       },
@@ -62,9 +62,9 @@ export const biosamplesEntity: EntityConfig<BiosamplesResponse> = {
       },
       {
         componentConfig: {
-          component: C.Cell,
+          component: C.NTagCell,
           transformer: T.buildDatasetName,
-        } as ComponentConfig<typeof C.Cell>,
+        } as ComponentConfig<typeof C.NTagCell>,
         header: "Dataset Name",
         width: { max: "1fr", min: "200px" },
       },
