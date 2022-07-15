@@ -99,6 +99,8 @@ export const Table = <T extends object>({
     useSortBy,
     usePagination
   );
+  const currentPage = pagination?.currentPage ?? pageIndex + 1;
+  const totalPage = total ?? pageOptions.length;
 
   const handleSortClicked = (column: ColumnInstance<T>): void => {
     if (sort) {
@@ -113,9 +115,9 @@ export const Table = <T extends object>({
       {editColumns && (
         <TableToolbar>
           <PaginationSummary
-            firstResult={pageIndex * pageSize + 1}
-            lastResult={pageSize * (pageIndex + 1)}
-            totalResult={(total ?? pageOptions.length) * pageSize}
+            firstResult={(currentPage - 1) * pageSize + 1}
+            lastResult={pageSize * currentPage}
+            totalResult={totalPage * pageSize}
           />
           <CheckboxMenu
             label="Edit Columns"
@@ -174,10 +176,10 @@ export const Table = <T extends object>({
       <Pagination
         canNextPage={pagination?.canNextPage ?? tableCanNextPage}
         canPreviousPage={pagination?.canPreviousPage ?? tableCanPreviousPage}
-        currentPage={pagination?.currentPage ?? pageIndex + 1}
+        currentPage={currentPage}
         onNextPage={pagination?.nextPage ?? tableNextPage}
         onPreviousPage={pagination?.previousPage ?? tablePreviousPage}
-        totalPage={total ?? pageOptions.length}
+        totalPage={totalPage}
       />
     </RoundedPaper>
   );
