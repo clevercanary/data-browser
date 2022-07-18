@@ -8,6 +8,15 @@ import {
 } from "./utils";
 
 // Template constants
+const {
+  BIOSAMPLE_TYPE,
+  DATASET_NAME,
+  DATA_MODALITY,
+  LIBRARY_PREPARATION,
+  ORGANISM_TYPE,
+  PHENOTYPIC_SEX,
+  REPORTED_ETHNICITY,
+} = METADATA_KEY;
 const { DONORS, ESTIMATED_CELLS, FILES, FILE_FORMATS, SPECIES, SPECIMENS } =
   SUMMARY;
 
@@ -31,6 +40,13 @@ export const BIND_SUMMARY_RESPONSE = {
  * Value for displaying pluralized metadata labels, for example, "tissues" or "diseases".
  */
 export const PLURALIZED_METADATA_LABEL = {
+  [BIOSAMPLE_TYPE]: "biosample types",
+  [DATASET_NAME]: "dataset names",
+  [DATA_MODALITY]: "data modalities",
+  [LIBRARY_PREPARATION]: "library preparations",
+  [ORGANISM_TYPE]: "organism types",
+  [PHENOTYPIC_SEX]: "phenotypic sexes",
+  [REPORTED_ETHNICITY]: "reported ethnicities",
   [METADATA_KEY.SPECIES]: "species",
 };
 

@@ -3,10 +3,16 @@ import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
 import { Social } from "app/components/common/Socials/socials";
 import { Logo } from "../../../app/components/Layout/common/entities";
 import { SiteConfig } from "../../../app/config/model";
-import { filesEntity } from "./filesEntity";
 
 // Summary config
 import { summary } from "./Index/summary";
+
+// Entities config
+import { activitiesEntity } from "./activitiesEntity";
+import { biosamplesEntity } from "./biosamplesEntity";
+import { datasetsEntity } from "./datasetsEntity";
+import { filesEntity } from "./filesEntity";
+import { librariesEntityConfig } from "./Index/librariesEntityConfig";
 
 // Images
 import logoAnvil from "images/logoAnvil.png";
@@ -56,7 +62,13 @@ const config: SiteConfig = {
     },
     url: "https://service.nadove3.dev.singlecell.gi.ucsc.edu/",
   },
-  entities: [filesEntity],
+  entities: [
+    datasetsEntity,
+    biosamplesEntity,
+    librariesEntityConfig,
+    activitiesEntity,
+    filesEntity,
+  ],
   entityTitle: "Anvil Data Explorer",
   layout: {
     footer: {
@@ -141,7 +153,7 @@ const config: SiteConfig = {
       socials: SOCIALS,
     },
   },
-  redirectRootToPath: "/files",
+  redirectRootToPath: "/datasets",
   summary: {
     apiPath: "index/summary",
     components: summary,
