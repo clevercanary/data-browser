@@ -1,7 +1,7 @@
 /**
  * Type that is a union of all keys of T that have a type of string or null array.
  */
-type KeyOfType<T> = {
+type KeyOfTypeStringOrNullArray<T> = {
   [K in keyof T]: T[K] extends StringOrNullArray ? K : never;
 }[keyof T];
 
@@ -16,10 +16,10 @@ type StringOrNullArray = (string | null)[];
  * @param key - The object key (of an array value containing string or null values) in each response value to aggregate.
  * @returns All non-null values in the response values with the given key.
  */
-export function processAggregatedValue<T, K extends KeyOfType<T>>(
-  responseValues: T[],
-  key: K
-): string[] {
+export function processAggregatedValue<
+  T,
+  K extends KeyOfTypeStringOrNullArray<T>
+>(responseValues: T[], key: K): string[] {
   // Aggregate key values across response values.
   const values = aggregateResponseValues(responseValues, key);
 
@@ -33,7 +33,7 @@ export function processAggregatedValue<T, K extends KeyOfType<T>>(
  * @param key - The object key (of an array value) in each response value to aggregate.
  * @returns All values in the response values with the given key.
  */
-function aggregateResponseValues<T, K extends KeyOfType<T>>(
+function aggregateResponseValues<T, K extends KeyOfTypeStringOrNullArray<T>>(
   responseValues: T[],
   key: K
 ): StringOrNullArray {
