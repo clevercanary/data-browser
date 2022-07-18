@@ -1,10 +1,9 @@
 // Core dependencies
-import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 import { Checkbox, FormControlLabel, Menu, MenuItem } from "@mui/material";
 import React, { useState } from "react";
 
-// Styles
-import { ButtonSecondary } from "../common/Button/button.styles";
+// App dependencies
+import { DropdownButton } from "../common/Button/components/DropdownButton/dropdownButton";
 
 export interface CheckboxMenuItem {
   id: string;
@@ -39,15 +38,7 @@ export const CheckboxMenu = ({
 
   return (
     <>
-      <ButtonSecondary
-        aria-haspopup="true"
-        dropdownIcon
-        EndIcon={ArrowDropDownRoundedIcon}
-        id="menu-button"
-        onClick={handleClick}
-      >
-        {label}
-      </ButtonSecondary>
+      <DropdownButton onClick={handleClick}>{label}</DropdownButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         {options.map((option) => (
           <MenuItem key={option.id} disableRipple>
