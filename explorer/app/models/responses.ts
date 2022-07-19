@@ -327,3 +327,22 @@ export interface AnvilSourceItem {
   "library:studyDesign": string;
   subjectCount: number;
 }
+
+/**
+ * Model to represent anvil's catalog TSV file
+ */
+export interface AnvilCatalogSourceItem {
+  Access: string;
+  "Consent Code": string;
+  Consortium: string;
+  "Data Type": string;
+  "dbGap Id": string;
+  Disease: string;
+  Participants: number;
+  Samples: number;
+  "Size (TB)": number;
+  Study: string;
+  "Study Accession": string;
+  "Study Design": string;
+  "Terra Workspace Name": string;
+}

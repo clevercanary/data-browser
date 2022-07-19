@@ -22,7 +22,11 @@ interface TabConfig {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This config model is part of a generic array
 export interface EntityConfig<D = any> extends TabConfig {
   apiPath?: string;
-  tsvPath?: string;
+  tsv?: {
+    path: string;
+    sourceFieldKey: { [key: string]: string };
+    sourceFieldType: { [key: string]: string };
+  };
   getId?: GetIdFunction<D>;
   staticLoad?: boolean;
   detail: DetailConfig;

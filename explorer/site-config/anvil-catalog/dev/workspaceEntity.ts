@@ -5,13 +5,13 @@ import {
   EntityConfig,
   ListConfig,
 } from "../../../app/config/model";
-import { AnvilSourceItem } from "./../../../app/models/responses";
+import { AnvilCatalogSourceItem } from "./../../../app/models/responses";
 import { SOURCE_FIELD_KEY, SOURCE_FIELD_TYPE } from "../tsv-config";
 
 /**
  * Entity config object responsible to config anything related to the /explore/workspaces route.
  */
-export const workspaceEntity: EntityConfig<AnvilSourceItem> = {
+export const workspaceEntity: EntityConfig<AnvilCatalogSourceItem> = {
   detail: {
     tabs: [],
     top: [],
@@ -22,18 +22,42 @@ export const workspaceEntity: EntityConfig<AnvilSourceItem> = {
       {
         componentConfig: {
           component: C.Text,
-          transformer: T.workspaceToStudyNameColumn,
+          transformer: T.workspaceToConsortiumColumn,
         } as ComponentConfig<typeof C.Text>,
-        header: "Study name",
+        header: "Consortium",
         width: { max: "1fr", min: "120px" },
       },
       {
         componentConfig: {
           component: C.Text,
-          transformer: T.workspaceToConsortiaColumn,
+          transformer: T.workspaceToStudyColumn,
         } as ComponentConfig<typeof C.Text>,
-        header: "Consortia",
+        header: "Study",
         width: { max: "1fr", min: "120px" },
+      },
+      {
+        componentConfig: {
+          component: C.Text,
+          transformer: T.workspaceToDbGapColumn,
+        } as ComponentConfig<typeof C.Text>,
+        header: "dbGap Id",
+        width: { max: "1fr", min: "120px" },
+      },
+      {
+        componentConfig: {
+          component: C.Text,
+          transformer: T.workspaceToConsentCodeColumn,
+        } as ComponentConfig<typeof C.Text>,
+        header: "Consent Code",
+        width: { max: "1fr", min: "120px" },
+      },
+      {
+        componentConfig: {
+          component: C.Text,
+          transformer: T.workspaceToTerraWorkspaceColumn,
+        } as ComponentConfig<typeof C.Text>,
+        header: "Terra Workspace Name",
+        width: { max: "2fr", min: "240px" },
       },
       {
         componentConfig: {
@@ -41,22 +65,14 @@ export const workspaceEntity: EntityConfig<AnvilSourceItem> = {
           transformer: T.workspaceToDiseaseColumn,
         } as ComponentConfig<typeof C.Text>,
         header: "Disease",
-        width: { max: "1fr", min: "120px" },
-      },
-      {
-        componentConfig: {
-          component: C.Text,
-          transformer: T.workspaceToDataTypeColumn,
-        } as ComponentConfig<typeof C.Text>,
-        header: "Data type",
         width: { max: "2fr", min: "240px" },
       },
       {
         componentConfig: {
           component: C.Text,
-          transformer: T.workspaceToIndicationColumn,
+          transformer: T.workspaceToAccessColumn,
         } as ComponentConfig<typeof C.Text>,
-        header: "Disease (indication)",
+        header: "Access",
         width: { max: "2fr", min: "240px" },
       },
       {
@@ -70,16 +86,24 @@ export const workspaceEntity: EntityConfig<AnvilSourceItem> = {
       {
         componentConfig: {
           component: C.Text,
+          transformer: T.workspaceToDataTypeColumn,
+        } as ComponentConfig<typeof C.Text>,
+        header: "Data Type",
+        width: { max: "2fr", min: "240px" },
+      },
+      {
+        componentConfig: {
+          component: C.Text,
           transformer: T.workspaceToParticipantsColumn,
         } as ComponentConfig<typeof C.Text>,
         header: "Participants",
         width: { max: "2fr", min: "240px" },
       },
     ],
-  } as ListConfig<AnvilSourceItem>,
+  } as ListConfig<AnvilCatalogSourceItem>,
   route: "workspaces",
   tsv: {
-    path: "dashboard-source-anvil.tsv",
+    path: "anvil-dataset-catalog-results.tsv",
     sourceFieldKey: SOURCE_FIELD_KEY,
     sourceFieldType: SOURCE_FIELD_TYPE,
   },

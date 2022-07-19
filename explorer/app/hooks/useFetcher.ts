@@ -17,10 +17,10 @@ export const getFetcher = (entity: EntityConfig): FetcherResponse => {
     };
   }
 
-  if (entity.tsvPath) {
+  if (entity.tsv) {
     return {
       ...create("TSV"),
-      path: entity.tsvPath,
+      path: entity.tsv.path,
       staticLoad: true,
     };
   }
