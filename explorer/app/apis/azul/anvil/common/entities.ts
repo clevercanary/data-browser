@@ -17,6 +17,42 @@ export interface DatasetAggregatedResponse {
 }
 
 /**
+ * Model of core library value returned from the /index/datasets API endpoint.
+ */
+export interface DatasetEntityResponse {
+  dataset_id: string;
+  description: string;
+  title: string;
+}
+
+/**
+ * Model of response returned from the /index/datasets API endpoint.
+ */
+export interface DatasetsResponse {
+  datasets: DatasetEntityResponse[];
+  entryId: string;
+}
+
+/**
+ * Model of core donor value returned from the /index/donors API endpoint.
+ */
+export interface DonorEntityResponse {
+  donor_id: string;
+  organism_type: string;
+  phenotypic_sex: string;
+  reported_ethnicity: string[];
+}
+
+/**
+ * Model of response returned from the /index/donors API endpoint.
+ */
+export interface DonorsResponse {
+  datasets: DatasetAggregatedResponse[];
+  donors: DonorEntityResponse[]; // Singleton array
+  entryId: string;
+}
+
+/**
  * Model of response returned from the /index/libraries API endpoint.
  */
 export interface LibrariesResponse {

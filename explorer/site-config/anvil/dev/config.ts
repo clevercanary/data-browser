@@ -10,6 +10,7 @@ import { summary } from "./Index/summary";
 // Entities config
 import { activitiesEntity } from "./activitiesEntity";
 import { biosamplesEntity } from "./biosamplesEntity";
+import { donorsEntityConfig } from "./Index/donorsEntityConfig";
 import { datasetsEntity } from "./datasetsEntity";
 import { filesEntity } from "./filesEntity";
 import { librariesEntityConfig } from "./Index/librariesEntityConfig";
@@ -25,6 +26,7 @@ import logoUsagov from "images/logoUsagov.png";
 // Template constants
 const BROWSER_URL = "https://staging.anvilproject.org";
 const SLOGAN = "NHGRI Analysis Visualization and Informatics Lab-space";
+export const URL_DATASETS = "/datasets";
 const LOGO: Logo = {
   alt: SLOGAN,
   height: 40,
@@ -61,10 +63,11 @@ const config: SiteConfig = {
       size: "25",
       sort: "entryId",
     },
-    url: "https://service.nadove3.dev.singlecell.gi.ucsc.edu/",
+    url: "https://service.nadove2.dev.singlecell.gi.ucsc.edu/",
   },
   entities: [
     datasetsEntity,
+    donorsEntityConfig,
     biosamplesEntity,
     librariesEntityConfig,
     activitiesEntity,
@@ -127,7 +130,7 @@ const config: SiteConfig = {
         },
         {
           label: "Datasets",
-          url: `${BROWSER_URL}/files`,
+          url: URL_DATASETS,
         },
         {
           label: "News",

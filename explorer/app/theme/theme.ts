@@ -134,6 +134,7 @@ const defaultTheme = createTheme({
  * Typography constants
  */
 const textBody500 = defaultTheme.typography["text-body-500"];
+const textBodySmall400 = defaultTheme.typography["text-body-small-400"];
 
 /**
  * App theme
@@ -152,9 +153,29 @@ export const theme = createTheme(defaultTheme, {
         },
       },
     },
+    MuiBreadcrumbs: {
+      styleOverrides: {
+        li: {
+          ...textBodySmall400,
+          "& .MuiLink-root": {
+            color: "inherit",
+          },
+        },
+        ol: {
+          gap: 2,
+        },
+        root: {
+          color: defaultTheme.palette.inkLight,
+        },
+        separator: {
+          margin: 0,
+        },
+      },
+    },
     MuiButton: {
       defaultProps: {
         disableRipple: true,
+        disableTouchRipple: true,
       },
       styleOverrides: {
         endIcon: {
@@ -193,6 +214,12 @@ export const theme = createTheme(defaultTheme, {
     MuiButtonBase: {
       defaultProps: {
         disableRipple: true,
+        disableTouchRipple: true,
+      },
+      styleOverrides: {
+        root: {
+          fontFamily: defaultTheme.typography.fontFamily,
+        },
       },
     },
     MuiCheckbox: {
@@ -226,7 +253,7 @@ export const theme = createTheme(defaultTheme, {
       },
       styleOverrides: {
         ntag: {
-          ...defaultTheme.typography["text-body-small-400"],
+          ...textBodySmall400,
           backgroundColor: defaultTheme.palette.smoke,
           borderColor: defaultTheme.palette.common.white,
           borderStyle: "solid",
@@ -406,11 +433,19 @@ export const theme = createTheme(defaultTheme, {
         fontSizeXsmall: {
           fontSize: "18px",
         },
+        fontSizeXxsmall: {
+          fontSize: "16px",
+        },
       },
       variants: [
         {
           props: {
             size: "xsmall",
+          },
+        },
+        {
+          props: {
+            size: "xxsmall",
           },
         },
       ],
@@ -462,6 +497,7 @@ export const theme = createTheme(defaultTheme, {
         icon: {
           fontSize: 20,
           margin: 0,
+          transition: "none",
         },
         root: {
           "&.Mui-active": {
@@ -523,7 +559,7 @@ export const theme = createTheme(defaultTheme, {
           },
         },
         tooltip: {
-          ...defaultTheme.typography["text-body-small-400"],
+          ...textBodySmall400,
           backgroundColor: defaultTheme.palette.ink,
           boxShadow:
             "0px 8px 8px -4px rgb(16 24 40 / 0.03), 0px 20px 24px -4px rgb(16 24 40 / 0.08)",
