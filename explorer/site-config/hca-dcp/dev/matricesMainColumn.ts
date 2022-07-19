@@ -6,11 +6,15 @@ export const mainColumn: ComponentConfig[] = [
   {
     component: C.TitledText,
     transformer: () => ({
-      text: [
-        "DCP Generated Matrices are those produced with uniform pipelines. All DCP Generated Matrices include quality control metrics.",
-        "The 10x matrices include raw counts. Smart-seq2 matrices include TPMs and estimated counts. Matrices are in Loom file format.",
-      ],
+      text: ["To do."],
       title: "DCP Generated Matrices",
+    }),
+  } as ComponentConfig<typeof C.TitledText>,
+  {
+    component: C.TitledText,
+    transformer: () => ({
+      text: ["To do."],
+      title: "Contributor Generated Matrices and Analysis Files",
     }),
   } as ComponentConfig<typeof C.TitledText>,
 ];

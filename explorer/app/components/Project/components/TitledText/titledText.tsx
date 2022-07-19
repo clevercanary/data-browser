@@ -12,7 +12,7 @@ export type Content = ReactNode | ReactNode[] | string[];
 
 interface Props {
   text: Content;
-  title: string;
+  title?: string;
 }
 
 /**
@@ -61,9 +61,11 @@ export const TitledText = ({ text, title }: Props): JSX.Element => {
   const Summary = SectionSummary.withComponent("div");
   return (
     <Section>
-      <Summary>
-        <SectionTitle title={title} />
-      </Summary>
+      {title ? (
+        <Summary>
+          <SectionTitle title={title} />
+        </Summary>
+      ) : null}
       <SectionContent component="div" variant="text-body-400-2lines">
         {getSectionContent(text)}
       </SectionContent>
