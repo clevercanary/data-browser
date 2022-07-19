@@ -291,3 +291,38 @@ export interface SummaryResponse {
   specimenCount: number;
   totalFileSize: number;
 }
+
+/**
+ * Model to represent anvil's TSV file
+ */
+export interface AnvilSourceItem {
+  name: string;
+  status: string;
+  bucketName: string;
+  bucketSize: number;
+  COL: string;
+  consentLongName: string;
+  consentTitle: string;
+  consortium: string;
+  "library:datatype": string;
+  "library:dataUseRestriction": string;
+  discoveryCount: number;
+  diseaseText?: string;
+  DS: string;
+  familyCount: number;
+  GRU: string;
+  GSO: string;
+  HMB: string;
+  "library:indication": string;
+  IRB: string;
+  MDS: string;
+  NPU: string;
+  NRES: string;
+  participantCount: number;
+  phsId: string;
+  PUB: string;
+  requestorPays: boolean;
+  sampleCount: number;
+  "library:studyDesign": string;
+  subjectCount: number;
+}

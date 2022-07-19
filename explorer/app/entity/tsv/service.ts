@@ -2,35 +2,38 @@
  * Handles requests to TSV file
  */
 
-import { ListResponseType, SummaryResponse } from "../../models/responses";
+import { database } from "app/utils/database";
+import {
+  AnvilSourceItem,
+  ListResponseType,
+  SummaryResponse,
+} from "../../models/responses";
 
 export const list = async (): Promise<ListResponseType> => {
+  const items = database.get().all();
   return Promise.resolve({
-    hits: [],
+    hits: items,
     pagination: {
       count: 0,
-      pages: 0,
-      size: 0,
-      total: 0,
+      pages: 25,
+      size: items.length,
+      total: items.length,
     },
   });
 };
 
-export const fetchList = async (url: string): Promise<ListResponseType> => {
-  const res = await fetch(url);
-  return await res.json();
+export const fetchList = async (): Promise<ListResponseType> => {
+  return list();
 };
 
 export const listAll = async (): Promise<ListResponseType> => {
   return list();
 };
 
-export const detail =
-  async (): // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this response type can't be determined beforehand
-  Promise<any> => {
-    return Promise.resolve({});
-  };
+export const detail = async (): Promise<AnvilSourceItem> => {
+  throw new Error("Not implemented function"); //This function isn't necessary yet
+};
 
 export const summary = async (): Promise<SummaryResponse> => {
-  return Promise.resolve({} as any);
+  throw new Error("Not implemented function"); //This function isn't necessary yet
 };

@@ -11,6 +11,13 @@ import { getCurrentEntity } from "app/hooks/useCurrentEntity";
 import { getFetcher } from "app/hooks/useFetcher";
 import { ListModel } from "../../app/models/viewModels";
 import { Index } from "app/views/Index";
+import { parseContentRows, readFile } from "app/utils/tsvParser";
+import {
+  SOURCE_FIELD_KEY,
+  SOURCE_FIELD_TYPE,
+} from "site-config/anvil-catalog/tsv-config";
+import { AnvilSourceItem } from "app/models/responses";
+import { database } from "app/utils/database";
 
 interface PageUrl extends ParsedUrlQuery {
   slug: string;
@@ -51,9 +58,28 @@ export const getStaticProps: GetStaticProps<ListModel> = async (
   const entity = getCurrentEntity(slug, config());
   const fetcher = getFetcher(entity);
 
-  const resultList = entity.staticLoad
-    ? await fetcher.listAll(fetcher.path)
-    : EMPTY_PAGE;
+  if (entity.tsvPath) {
+    const file = await readFile(entity.tsvPath);
+
+    if (!file) {
+      throw new Error(
+        `File ${entity.tsvPath} not found for entity ${entity.label}`
+      );
+    }
+
+    const result = await parseContentRows<AnvilSourceItem>(
+      file,
+      "\t",
+      SOURCE_FIELD_KEY,
+      SOURCE_FIELD_TYPE
+    );
+    database.get().seed(result);
+  }
+
+  const resultList =
+    entity.staticLoad || entity.tsvPath
+      ? await fetcher.listAll(fetcher.path)
+      : EMPTY_PAGE;
 
   return {
     props: {

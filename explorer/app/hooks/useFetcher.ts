@@ -21,7 +21,7 @@ export const getFetcher = (entity: EntityConfig): FetcherResponse => {
     return {
       ...create("TSV"),
       path: entity.tsvPath,
-      staticLoad: !!entity.staticLoad,
+      staticLoad: true,
     };
   }
 

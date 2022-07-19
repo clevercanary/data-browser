@@ -13,6 +13,7 @@ import { biosamplesEntity } from "./biosamplesEntity";
 import { datasetsEntity } from "./datasetsEntity";
 import { filesEntity } from "./filesEntity";
 import { librariesEntityConfig } from "./Index/librariesEntityConfig";
+import { workspaceEntity } from "./workspaceEntity";
 
 // Images
 import logoAnvil from "images/logoAnvil.png";
@@ -67,6 +68,7 @@ const config: SiteConfig = {
     biosamplesEntity,
     librariesEntityConfig,
     activitiesEntity,
+    workspaceEntity,
     filesEntity,
   ],
   entityTitle: "Anvil Data Explorer",
