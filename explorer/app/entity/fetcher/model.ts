@@ -17,6 +17,7 @@ export interface Fetcher {
     id: string,
     apiPath: string,
     param?: { [key: string]: string }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This type can't be known before hand
   ) => Promise<any>;
   summary: (
     apiPath: string,
