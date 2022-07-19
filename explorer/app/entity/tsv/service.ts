@@ -2,6 +2,7 @@
  * Handles requests to TSV file
  */
 
+import { PAGINATION_PAGE_SIZE } from "app/shared/constants";
 import { database } from "app/utils/database";
 import {
   AnvilSourceItem,
@@ -15,8 +16,8 @@ export const list = async (): Promise<ListResponseType> => {
     hits: items,
     pagination: {
       count: 0,
-      pages: 25,
-      size: items.length,
+      pages: Math.ceil(items.length / PAGINATION_PAGE_SIZE),
+      size: PAGINATION_PAGE_SIZE,
       total: items.length,
     },
   });
