@@ -18,6 +18,16 @@ const EMPTY_ENTITY: EntityConfig = {
 };
 
 /**
+ * Check if the currenct @see SiteConfing contains an entity with the route @param path
+ * @param path - entity's route
+ * @param config - currenct SiteConfig
+ * @returns true, if config contains the entity. False otherwise
+ */
+export const hasEntity = (path: string, config: SiteConfig): boolean => {
+  return !!config.entities.find((entity) => entity.route === path);
+};
+
+/**
  * Get the current entity based on the given path
  * @param path - Current URL path.
  * @param config - The site config for the current environment.

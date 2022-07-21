@@ -23,3 +23,9 @@ export const isDevelopment = (): boolean =>
  */
 export const PARAMS_INDEX_UUID = 0;
 export const PARAMS_INDEX_TAB = 1;
+
+/**
+ * Constant to determine the index to get the slug's value from @see Router.pathname
+ * https://host/explore/[slug]/[param-uuid]/[param-tab]
+ */
+export const PATHNAME_INDEX_SLUG = 1;

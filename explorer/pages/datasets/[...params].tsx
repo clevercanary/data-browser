@@ -1,32 +1,32 @@
 // Core dependencies
+import { NextPage } from "next";
 import React from "react";
 
 // App dependencies
-import { Page } from "../../app/components/Layout/components/Page/page";
-import { config } from "../../app/config/config";
-import { getCurrentEntity } from "../../app/hooks/useCurrentEntity";
+import { DetailPageModel } from "app/models/viewModels";
 import { Project } from "../../app/views/Project/project";
+import { withNonStacticDetail } from "app/hocs/withNonStaticDetail";
+import { DetailPage } from "app/components/Layout/components/DetailPage/detailPage";
+
+type DatasetPageProps = DetailPageModel;
 
 /**
- * WIP dataset detail page. TODO revisit - is this configurable?
- * @param props - TBD.
+ * Dataset detail page
+ * @param props - props that will be drilled to children components
+ * @param props.slug - slug of the current path
+ * @param props.errorCode - error code, if any, used to present the correct ErrorPage
  * @returns Element rendered as dataset detail page.
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any -- WIP for demo. TODO revisit.
-const DatasetPage = (props: any): JSX.Element => {
-  // TODO revisit and remove
-  const tempGuard = config().entities.find(
-    (entity) => entity.route === "datasets"
-  );
-  if (!tempGuard) {
-    return <></>;
-  }
-  const entity = getCurrentEntity("datasets", config());
+const DatasetPage: NextPage<DatasetPageProps> = ({
+  slug,
+  errorCode,
+  ...props
+}: DatasetPageProps) => {
   return (
-    <Page entity={entity}>
+    <DetailPage slug={slug} errorCode={errorCode}>
       <Project {...props} />
-    </Page>
+    </DetailPage>
   );
 };
 
-export default DatasetPage;
+export default withNonStacticDetail(DatasetPage);
