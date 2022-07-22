@@ -8,6 +8,7 @@ import { config } from "app/config/config";
 import type { AppProps } from "next/app";
 import { Footer } from "app/components/Layout/components/Footer/footer";
 import { Header } from "app/components/Layout/components/Header/header";
+import { AppLayout } from "app/components/Layout/components/AppLayout/appLayout";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const currenctConfig = config();
@@ -17,9 +18,11 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       <ThemeProvider theme={theme}>
         <ConfigProvider value={currenctConfig}>
           <CssBaseline />
-          <Header header={currentLayout.header} />
-          <Component {...pageProps} />
-          <Footer footer={currentLayout.footer} />
+          <AppLayout>
+            <Header header={currentLayout.header} />
+            <Component {...pageProps} />
+            <Footer footer={currentLayout.footer} />
+          </AppLayout>
         </ConfigProvider>
       </ThemeProvider>
     </Emotion10ThemeProvider>

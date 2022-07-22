@@ -10,7 +10,6 @@ import React from "react";
 import { Main } from "../Main/main";
 
 // Styles
-import { PageLayout } from "./page.styles";
 import { EntityConfig } from "app/config/model";
 import { CurrentEntityProvider } from "app/hooks/useCurrentEntity";
 
@@ -21,10 +20,8 @@ interface PageProps {
 
 export const Page = ({ children, entity }: PageProps): JSX.Element => {
   return (
-    <PageLayout>
-      <CurrentEntityProvider value={entity}>
-        <Main>{children}</Main>
-      </CurrentEntityProvider>
-    </PageLayout>
+    <CurrentEntityProvider value={entity}>
+      <Main>{children}</Main>
+    </CurrentEntityProvider>
   );
 };
