@@ -1,6 +1,6 @@
 import * as C from "../../../app/components";
 
-import { AnvilCatalogSourceItem } from "app/models/responses";
+import { AnvilSourceItem } from "app/models/responses";
 
 const createColumn = (
   value: string | number = ""
@@ -10,45 +10,33 @@ const createColumn = (
   variant: "text-body-400",
 });
 
-export const workspaceToConsortiumColumn = (
-  source: AnvilCatalogSourceItem
-): React.ComponentProps<typeof C.Text> => createColumn(source?.Consortium);
+export const workspaceToStudyNameColumn = (
+  source: AnvilSourceItem
+): React.ComponentProps<typeof C.Text> => createColumn(source?.name);
 
-export const workspaceToStudyColumn = (
-  source: AnvilCatalogSourceItem
-): React.ComponentProps<typeof C.Text> => createColumn(source?.["Study"]);
-
-export const workspaceToDbGapColumn = (
-  source: AnvilCatalogSourceItem
-): React.ComponentProps<typeof C.Text> => createColumn(source?.["dbGap Id"]);
-
-export const workspaceToConsentCodeColumn = (
-  source: AnvilCatalogSourceItem
-): React.ComponentProps<typeof C.Text> =>
-  createColumn(source?.["Consent Code"]);
-
-export const workspaceToTerraWorkspaceColumn = (
-  source: AnvilCatalogSourceItem
-): React.ComponentProps<typeof C.Text> =>
-  createColumn(source["Terra Workspace Name"]);
+export const workspaceToConsortiaColumn = (
+  source: AnvilSourceItem
+): React.ComponentProps<typeof C.Text> => createColumn(source?.consortium);
 
 export const workspaceToDiseaseColumn = (
-  source: AnvilCatalogSourceItem
-): React.ComponentProps<typeof C.Text> => createColumn(source?.Disease);
-
-export const workspaceToAccessColumn = (
-  source: AnvilCatalogSourceItem
-): React.ComponentProps<typeof C.Text> => createColumn(source?.Access);
-
-export const workspaceToStudyDesignColumn = (
-  source: AnvilCatalogSourceItem
-): React.ComponentProps<typeof C.Text> =>
-  createColumn(source?.["Study Design"]);
+  source: AnvilSourceItem
+): React.ComponentProps<typeof C.Text> => createColumn(source.diseaseText);
 
 export const workspaceToDataTypeColumn = (
-  source: AnvilCatalogSourceItem
-): React.ComponentProps<typeof C.Text> => createColumn(source?.["Data Type"]);
+  source: AnvilSourceItem
+): React.ComponentProps<typeof C.Text> =>
+  createColumn(source["library:datatype"]);
+
+export const workspaceToIndicationColumn = (
+  source: AnvilSourceItem
+): React.ComponentProps<typeof C.Text> =>
+  createColumn(source["library:indication"]);
+
+export const workspaceToStudyDesignColumn = (
+  source: AnvilSourceItem
+): React.ComponentProps<typeof C.Text> =>
+  createColumn(source["library:studyDesign"]);
 
 export const workspaceToParticipantsColumn = (
-  source: AnvilCatalogSourceItem
-): React.ComponentProps<typeof C.Text> => createColumn(source?.Participants);
+  source: AnvilSourceItem
+): React.ComponentProps<typeof C.Text> => createColumn(source.participantCount);
