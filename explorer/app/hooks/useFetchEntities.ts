@@ -5,6 +5,7 @@ import { useAsync } from "./useAsync";
 import { useCurrentEntity } from "./useCurrentEntity";
 import { EntityConfig } from "app/config/model";
 import { useFetcher } from "./useFetcher";
+import { useResetableState } from "./useResetableState";
 
 export interface PaginationConfig {
   nextPage: () => void;
@@ -55,7 +56,9 @@ export const useFetchEntities = (value?: ListModel): UseEntityListResponse => {
   const { list, fetchList, path, staticLoad } = useFetcher();
   const [currentPage, setCurrentPage] = useState(DEFAULT_CURRENT_PAGE);
   const defaultSort = useMemo(() => getDefaultSort(entity), [entity]);
-  const [sortKey, setSortKey] = useState<string | undefined>(defaultSort);
+  const [sortKey, setSortKey] = useResetableState<string | undefined>(
+    defaultSort
+  );
   const [sortOrder, setsortOrder] = useState<SortOrderType | undefined>(
     defaultSort ? "asc" : undefined
   );
@@ -77,7 +80,7 @@ export const useFetchEntities = (value?: ListModel): UseEntityListResponse => {
       setSortKey(key ?? defaultSort);
       setsortOrder(order);
     },
-    [defaultSort]
+    [defaultSort, setSortKey]
   );
 
   const nextPage = useCallback(async () => {
