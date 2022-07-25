@@ -28,6 +28,7 @@ import { newColumnKey, newColumnOrder } from "./functions";
 // Styles
 import { RoundedPaper } from "../common/Paper/paper.styles";
 import { Table as GridTable, TableToolbar } from "./table.styles";
+import { useScroll } from "app/hooks/useScroll";
 
 export interface EditColumnConfig {
   onVisibleColumnsChange: (newColumnId: string) => void;
@@ -41,6 +42,7 @@ interface TableProps<T extends object> {
   editColumns?: EditColumnConfig;
   gridTemplateColumns: string;
   items: T[];
+  isLoading?: boolean;
   pageSize: number;
   pagination?: PaginationConfig;
   sort?: SortConfig;
@@ -53,6 +55,7 @@ interface TableProps<T extends object> {
  * Uncontrolled table will take advantage of React Table's state and will be used for static loads.
  * @param tableProps - Set of props required for displaying the table.
  * @param tableProps.items - Row data to display.
+ * @param tableProps.isLoading - Display table's loading state.
  * @param tableProps.columns - Set of columns to display.
  * @param tableProps.editColumns - True if edit column functionality is enabled for table.
  * @param tableProps.pageSize - Number of rows to display per page.
@@ -71,6 +74,7 @@ export const Table = <T extends object>({
   pagination,
   sort,
   total,
+  isLoading,
 }: TableProps<T>): JSX.Element => {
   const {
     canNextPage: tableCanNextPage,
@@ -99,6 +103,7 @@ export const Table = <T extends object>({
     useSortBy,
     usePagination
   );
+  const scrollTop = useScroll();
   const currentPage = pagination?.currentPage ?? pageIndex + 1;
   const totalPage = total ?? pageOptions.length;
 
@@ -109,6 +114,18 @@ export const Table = <T extends object>({
       sort.sort(newColumn, newOrder);
       pagination?.resetPage();
     }
+  };
+
+  const handleTableNextPage = (): void => {
+    const nextPage = pagination?.nextPage ?? tableNextPage;
+    nextPage();
+    scrollTop();
+  };
+
+  const handleTablePreviousPage = (): void => {
+    const previousPage = pagination?.previousPage ?? tablePreviousPage;
+    previousPage();
+    scrollTop();
   };
 
   return (
@@ -164,8 +181,8 @@ export const Table = <T extends object>({
                   {row.cells.map((cell, index) => {
                     return (
                       <TableCell {...cell.getCellProps()} key={index}>
-                        {cell.render("Cell")}
-                      </TableCell>
+                        {isLoading ? "Loading..." : cell.render("Cell")}
+                      </TableCell> // TODO: Render the Loading component when isLoading is true
                     );
                   })}
                 </TableRow>
@@ -178,8 +195,8 @@ export const Table = <T extends object>({
         canNextPage={pagination?.canNextPage ?? tableCanNextPage}
         canPreviousPage={pagination?.canPreviousPage ?? tableCanPreviousPage}
         currentPage={currentPage}
-        onNextPage={pagination?.nextPage ?? tableNextPage}
-        onPreviousPage={pagination?.previousPage ?? tablePreviousPage}
+        onNextPage={handleTableNextPage}
+        onPreviousPage={handleTablePreviousPage}
         totalPage={totalPage}
       />
     </RoundedPaper>
