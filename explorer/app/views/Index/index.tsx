@@ -97,7 +97,7 @@ export const Index = (props: ListModel): JSX.Element => {
         total={response.pagination.pages}
         pagination={pagination}
         sort={sort}
-        isLoading={isLoading}
+        loading={isLoading}
       />
     );
   };

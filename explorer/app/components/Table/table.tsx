@@ -42,7 +42,7 @@ interface TableProps<T extends object> {
   editColumns?: EditColumnConfig;
   gridTemplateColumns: string;
   items: T[];
-  isLoading?: boolean;
+  loading?: boolean;
   pageSize: number;
   pagination?: PaginationConfig;
   sort?: SortConfig;
@@ -55,7 +55,7 @@ interface TableProps<T extends object> {
  * Uncontrolled table will take advantage of React Table's state and will be used for static loads.
  * @param tableProps - Set of props required for displaying the table.
  * @param tableProps.items - Row data to display.
- * @param tableProps.isLoading - Display table's loading state.
+ * @param tableProps.loading - Display table's loading state.
  * @param tableProps.columns - Set of columns to display.
  * @param tableProps.editColumns - True if edit column functionality is enabled for table.
  * @param tableProps.pageSize - Number of rows to display per page.
@@ -74,7 +74,7 @@ export const Table = <T extends object>({
   pagination,
   sort,
   total,
-  isLoading,
+  loading,
 }: TableProps<T>): JSX.Element => {
   const {
     canNextPage: tableCanNextPage,
@@ -129,76 +129,80 @@ export const Table = <T extends object>({
   };
 
   return (
-    <RoundedPaper>
-      {editColumns && (
-        <TableToolbar>
-          <PaginationSummary
-            firstResult={(currentPage - 1) * pageSize + 1}
-            lastResult={pageSize * currentPage}
-            totalResult={totalPage * pageSize}
-          />
-          <CheckboxMenu
-            label="Edit Columns"
-            onItemSelectionChange={editColumns.onVisibleColumnsChange}
-            options={editColumns.options}
-            readOnly={editColumns.readOnlyColumns}
-            selected={editColumns.selectedColumns}
-          />
-        </TableToolbar>
-      )}
-      <TableContainer>
-        <GridTable
-          gridTemplateColumns={gridTemplateColumns}
-          {...getTableProps()}
-        >
-          <TableHead>
-            <TableRow>
-              {headers.map((column) => (
-                <TableCell
-                  {...column.getHeaderProps(column.getSortByToggleProps())}
-                  key={column.id}
-                >
-                  <TableSortLabel
-                    active={sort?.sortKey === column.id}
-                    direction={
-                      sort?.sortKey === column.id ? sort?.sortOrder : "asc"
-                    }
-                    disabled={column.disableSortBy}
-                    IconComponent={SouthRoundedIcon}
-                    onClick={(): void => handleSortClicked(column)}
+    <div>
+      {/* TODO: Render the Loading component when loading is true */}
+      {loading && <span>Loading...</span>}{" "}
+      <RoundedPaper>
+        {editColumns && (
+          <TableToolbar>
+            <PaginationSummary
+              firstResult={(currentPage - 1) * pageSize + 1}
+              lastResult={pageSize * currentPage}
+              totalResult={totalPage * pageSize}
+            />
+            <CheckboxMenu
+              label="Edit Columns"
+              onItemSelectionChange={editColumns.onVisibleColumnsChange}
+              options={editColumns.options}
+              readOnly={editColumns.readOnlyColumns}
+              selected={editColumns.selectedColumns}
+            />
+          </TableToolbar>
+        )}
+        <TableContainer>
+          <GridTable
+            gridTemplateColumns={gridTemplateColumns}
+            {...getTableProps()}
+          >
+            <TableHead>
+              <TableRow>
+                {headers.map((column) => (
+                  <TableCell
+                    {...column.getHeaderProps(column.getSortByToggleProps())}
+                    key={column.id}
                   >
-                    {column.render("Header")}
-                  </TableSortLabel>
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody {...getTableBodyProps()}>
-            {page.map((row, i) => {
-              prepareRow(row);
-              return (
-                <TableRow {...row.getRowProps()} key={i}>
-                  {row.cells.map((cell, index) => {
-                    return (
-                      <TableCell {...cell.getCellProps()} key={index}>
-                        {isLoading ? "Loading..." : cell.render("Cell")}
-                      </TableCell> // TODO: Render the Loading component when isLoading is true
-                    );
-                  })}
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </GridTable>
-      </TableContainer>
-      <Pagination
-        canNextPage={pagination?.canNextPage ?? tableCanNextPage}
-        canPreviousPage={pagination?.canPreviousPage ?? tableCanPreviousPage}
-        currentPage={currentPage}
-        onNextPage={handleTableNextPage}
-        onPreviousPage={handleTablePreviousPage}
-        totalPage={totalPage}
-      />
-    </RoundedPaper>
+                    <TableSortLabel
+                      active={sort?.sortKey === column.id}
+                      direction={
+                        sort?.sortKey === column.id ? sort?.sortOrder : "asc"
+                      }
+                      disabled={column.disableSortBy}
+                      IconComponent={SouthRoundedIcon}
+                      onClick={(): void => handleSortClicked(column)}
+                    >
+                      {column.render("Header")}
+                    </TableSortLabel>
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody {...getTableBodyProps()}>
+              {page.map((row, i) => {
+                prepareRow(row);
+                return (
+                  <TableRow {...row.getRowProps()} key={i}>
+                    {row.cells.map((cell, index) => {
+                      return (
+                        <TableCell {...cell.getCellProps()} key={index}>
+                          {cell.render("Cell")}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </GridTable>
+        </TableContainer>
+        <Pagination
+          canNextPage={pagination?.canNextPage ?? tableCanNextPage}
+          canPreviousPage={pagination?.canPreviousPage ?? tableCanPreviousPage}
+          currentPage={currentPage}
+          onNextPage={handleTableNextPage}
+          onPreviousPage={handleTablePreviousPage}
+          totalPage={totalPage}
+        />
+      </RoundedPaper>
+    </div>
   );
 };
