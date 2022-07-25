@@ -9,7 +9,8 @@
     "plugin:storybook/recommended",
     "next",
     "plugin:sonarjs/recommended",
-    "plugin:eslint-comments/recommended"
+    "plugin:eslint-comments/recommended",
+    "plugin:typescript-sort-keys/recommended"
   ],
   "rules": {
     "sort-keys": [
