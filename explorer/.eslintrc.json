@@ -35,6 +35,7 @@
     "typescript-sort-keys/string-enum": [
       "error",
       "asc",
+      "error",
       { "caseSensitive": false }
     ],
 
