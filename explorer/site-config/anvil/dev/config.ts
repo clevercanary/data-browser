@@ -57,6 +57,16 @@ const SOCIALS: Social[] = [
 
 const config: SiteConfig = {
   browserURL: BROWSER_URL,
+  categoryConfigs: [
+    {
+      key: "organism_type",
+      label: "Organism Type",
+    },
+    {
+      key: "reported_ethnicity",
+      label: "Reported Ethnicity",
+    },
+  ],
   datasources: {
     defaultListParams: {
       size: "25",

@@ -4,6 +4,7 @@ import { JSXElementConstructor } from "react";
 // App dependencies
 import { Footer, Header } from "app/components/Layout/common/entities";
 import { HeroTitle } from "../components/common/Title/title";
+import { CategoryConfig } from "../common/entities";
 
 type GetIdFunction<T> = (detail: T) => string;
 
@@ -148,6 +149,7 @@ export interface ListConfig<T = any> {
  */
 export interface SiteConfig {
   browserURL: string;
+  categoryConfigs: CategoryConfig[];
   datasources: DataSourceConfig;
   entities: EntityConfig[];
   entityTitle: HeroTitle;
