@@ -1,5 +1,5 @@
 import { SelectCategory } from "../../../common/entities";
-import { AzulTermFacets } from "./entities";
+import { AzulTermFacets, LABEL } from "./entities";
 
 /**
  * Generalize Azul term facets model into categories and category values.
@@ -18,7 +18,7 @@ export function transformTermFacets(
     // Build category value from terms of term facet.
     const categoryValues = termFacet.terms.map((term) => ({
       count: term.count,
-      key: term.term,
+      key: term.term ?? LABEL.UNSPECIFIED,
       selected: false,
     }));
 
