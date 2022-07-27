@@ -1,10 +1,7 @@
-import {
-  CategoryConfig,
-  SelectCategory,
-  SelectCategoryView,
-} from "../common/entities";
+import { SelectCategory, SelectCategoryView } from "../common/entities";
 import { useConfig } from "./useConfig";
 import { useEffect, useState } from "react";
+import { CategoryConfig } from "../config/common/entities";
 
 /**
  * Shape of return value from this useCategoryFilter hook.
@@ -26,10 +23,11 @@ type FilterState = SelectCategory[];
 export const useCategoryFilter = (
   categories: SelectCategory[]
 ): FilterInstance => {
-  const { categoryConfigs } = useConfig();
-
   // Complete set of categories and category values to be included for display and filtering.
-  const [filterState, setFilterState] = useState<FilterState>();
+  const [filterState, setFilterState] = useState<FilterState>([]);
+
+  // Grab the site config.
+  const { categoryConfigs = [] } = useConfig();
 
   // Build filter state from categories and category config.
   useEffect(() => {
@@ -40,7 +38,9 @@ export const useCategoryFilter = (
         label: getCategoryLabel(category.key, categoryConfigs),
         values: category.values,
       }));
-    setFilterState(acceptListCategories);
+    if (acceptListCategories && acceptListCategories.length) {
+      setFilterState(acceptListCategories);
+    }
   }, [categories, categoryConfigs]);
 
   return {

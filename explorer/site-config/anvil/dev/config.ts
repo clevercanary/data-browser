@@ -2,7 +2,6 @@
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
 import { Social } from "app/components/common/Socials/socials";
 import { Logo } from "../../../app/components/Layout/common/entities";
-import { SiteConfig } from "../../../app/config/model";
 
 // Summary config
 import { summary } from "./index/summary";
@@ -21,6 +20,7 @@ import logoHhs from "images/logoHhs.svg";
 import logoNhgri from "images/logoNhgri.svg";
 import logoNih from "images/logoNih.svg";
 import logoUsagov from "images/logoUsagov.png";
+import { SiteConfig } from "../../../app/config/common/entities";
 
 // Template constants
 const BROWSER_URL = "https://staging.anvilproject.org";

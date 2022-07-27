@@ -15,14 +15,6 @@ export type CategoryKey = string;
 export type CategoryValueKey = string;
 
 /**
- * Model of category configured in site config.
- */
-export interface CategoryConfig {
-  key: string;
-  label: string;
-}
-
-/**
  * Internal filter model of a multiselect category (e.g. library construction approach).
  */
 export interface SelectCategory {

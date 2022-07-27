@@ -16,13 +16,13 @@ import { useCurrentEntity } from "app/hooks/useCurrentEntity";
 import { useFetchEntities } from "app/hooks/useFetchEntities";
 import { useSummary } from "app/hooks/useSummary";
 import { Index as IndexView } from "../../components/Index/index";
-import { EntityConfig, SummaryConfig } from "../../config/model";
 import {
   AzulEntitiesStaticResponse,
   AzulSummaryResponse,
 } from "../../apis/azul/common/entities";
 import { useCategoryFilter } from "../../hooks/useCategoryFilter";
 import { Sidebar } from "../../components/Layout/components/Sidebar/sidebar";
+import { EntityConfig, SummaryConfig } from "../../config/common/entities";
 
 /**
  * Returns tabs to be used as a prop for the Tabs component.
@@ -126,23 +126,24 @@ export const Index = (props: AzulEntitiesStaticResponse): JSX.Element => {
       />
     );
   };
-
   return (
     <>
-      <Sidebar>
-        {categories.map((category, index) => (
-          <Fragment key={index}>
-            <div>
-              <b>{category.label}</b>
-            </div>
-            {category.values.map((categoryValue, j) => (
-              <div key={j}>
-                {categoryValue.label} {categoryValue.count}
+      {categories && !!categories.length && (
+        <Sidebar>
+          {categories.map((category, index) => (
+            <Fragment key={index}>
+              <div>
+                <b>{category.label}</b>
               </div>
-            ))}
-          </Fragment>
-        ))}
-      </Sidebar>
+              {category.values.map((categoryValue, j) => (
+                <div key={j}>
+                  {categoryValue.label} {categoryValue.count}
+                </div>
+              ))}
+            </Fragment>
+          ))}
+        </Sidebar>
+      )}
       <IndexView
         entities={renderContent()}
         Summaries={renderSummary(summary, summaryResponse)}
