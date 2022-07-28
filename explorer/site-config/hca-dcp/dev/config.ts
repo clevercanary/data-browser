@@ -44,7 +44,7 @@ const SOCIALS: Social[] = [
 
 const config: SiteConfig = {
   browserURL: BROWSER_URL,
-  categoryConfigs:[
+  categoryConfigs: [
     {
       key: "anatomicalEntity",
       label: "Anatomical Entity",
