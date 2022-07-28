@@ -58,8 +58,8 @@ const config: SiteConfig = {
       label: "Contact Name",
     },
     {
-      key: "developmentalStage",
-      label: "Developmental Stage",
+      key: "developmentStage",
+      label: "Development Stage",
     },
     {
       key: "genusSpecies",
@@ -120,6 +120,10 @@ const config: SiteConfig = {
     {
       key: "sampleType",
       label: "Sample Type",
+    },
+    {
+      key: "workflow",
+      label: "Analysis Protocol",
     },
   ],
   datasources: {
