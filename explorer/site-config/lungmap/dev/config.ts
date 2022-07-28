@@ -12,6 +12,7 @@ import { summary } from "./index/summary";
 // Config
 import hcaConfig from "site-config/hca-dcp/dev/config";
 import { SiteConfig } from "../../../app/config/common/entities";
+import { clearWatchCaches } from "@typescript-eslint/typescript-estree/dist/create-program/createWatchProgram";
 
 // Template constants
 const BROWSER_URL = "https://data-browser.dev.lungmap.net";
@@ -32,6 +33,7 @@ const SOCIALS: Social[] = [
 
 const config: SiteConfig = {
   browserURL: BROWSER_URL,
+  categoryConfigs: hcaConfig.categoryConfigs,
   datasources: {
     defaultDetailParams: {
       catalog: CATALOG_LM2,
