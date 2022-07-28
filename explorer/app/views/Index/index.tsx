@@ -1,6 +1,6 @@
 // Core dependencies
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 
 // App dependencies
 import {
@@ -16,11 +16,13 @@ import { useCurrentEntity } from "app/hooks/useCurrentEntity";
 import { useFetchEntities } from "app/hooks/useFetchEntities";
 import { useSummary } from "app/hooks/useSummary";
 import { Index as IndexView } from "../../components/Index/index";
-import { EntityConfig, SummaryConfig } from "../../config/model";
 import {
   AzulEntitiesStaticResponse,
   AzulSummaryResponse,
 } from "../../apis/azul/common/entities";
+import { useCategoryFilter } from "../../hooks/useCategoryFilter";
+import { Sidebar } from "../../components/Layout/components/Sidebar/sidebar";
+import { EntityConfig, SummaryConfig } from "../../config/common/entities";
 
 /**
  * Returns tabs to be used as a prop for the Tabs component.
@@ -73,7 +75,14 @@ export const Index = (props: AzulEntitiesStaticResponse): JSX.Element => {
 
   // Fetch summary and entities.
   const { response: summaryResponse } = useSummary();
-  const { isLoading, pagination, response, sort } = useFetchEntities(props);
+  const { categories, loading, pagination, response, setFilter, sort } =
+    useFetchEntities(props, []);
+
+  // Init filter functionality.
+  const { categories: categoryViews, onFilter } = useCategoryFilter(
+    categories,
+    setFilter
+  );
 
   // Grab the column config for the current entity.
   const columnsConfig = entity?.list?.columns;
@@ -111,17 +120,46 @@ export const Index = (props: AzulEntitiesStaticResponse): JSX.Element => {
         total={response.pagination.pages}
         pagination={pagination}
         sort={sort}
-        loading={isLoading}
+        loading={loading}
       />
     );
   };
 
   return (
-    <IndexView
-      entities={renderContent()}
-      Summaries={renderSummary(summary, summaryResponse)}
-      Tabs={<Tabs onTabChange={onTabChange} tabs={tabs} value={tabsValue} />}
-      title={entityTitle}
-    />
+    <>
+      {categoryViews && !!categoryViews.length && (
+        <Sidebar>
+          {categoryViews.map((categoryView, index) => (
+            <Fragment key={index}>
+              <div>
+                <b>{categoryView.label}</b>
+              </div>
+              {categoryView.values.map((categoryValueView, j) => (
+                <div
+                  key={j}
+                  onClick={(): void =>
+                    onFilter(
+                      categoryView.key,
+                      categoryValueView.key,
+                      !categoryValueView.selected
+                    )
+                  }
+                >
+                  {categoryValueView.selected ? <>&#9889;</> : null}{" "}
+                  {categoryValueView.label} {categoryValueView.count}
+                  {categoryValueView.selected ? <>&#9889;</> : null}
+                </div>
+              ))}
+            </Fragment>
+          ))}
+        </Sidebar>
+      )}
+      <IndexView
+        entities={renderContent()}
+        Summaries={renderSummary(summary, summaryResponse)}
+        Tabs={<Tabs onTabChange={onTabChange} tabs={tabs} value={tabsValue} />}
+        title={entityTitle}
+      />
+    </>
   );
 };

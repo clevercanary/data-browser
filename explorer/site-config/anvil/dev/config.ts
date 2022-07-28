@@ -2,7 +2,6 @@
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
 import { Social } from "app/components/common/Socials/socials";
 import { Logo } from "../../../app/components/Layout/common/entities";
-import { SiteConfig } from "../../../app/config/model";
 
 // Summary config
 import { summary } from "./index/summary";
@@ -21,6 +20,7 @@ import logoHhs from "images/logoHhs.svg";
 import logoNhgri from "images/logoNhgri.svg";
 import logoNih from "images/logoNih.svg";
 import logoUsagov from "images/logoUsagov.png";
+import { SiteConfig } from "../../../app/config/common/entities";
 
 // Template constants
 const BROWSER_URL = "https://staging.anvilproject.org";
@@ -57,6 +57,40 @@ const SOCIALS: Social[] = [
 
 const config: SiteConfig = {
   browserURL: BROWSER_URL,
+  categoryConfigs: [
+    {
+      key: "biosample_type",
+      label: "BioSample Type",
+    },
+    {
+      key: "data_modality",
+      label: "Data Modality",
+    },
+    {
+      key: "file_format",
+      label: "File Format",
+    },
+    {
+      key: "file_type",
+      label: "File Type",
+    },
+    {
+      key: "organism_type",
+      label: "Organism Type",
+    },
+    {
+      key: "phenotypic_sex",
+      label: "Phenotypic Sex",
+    },
+    {
+      key: "prep_material_name",
+      label: "Library Preparation",
+    },
+    {
+      key: "reported_ethnicity",
+      label: "Reported Ethnicity",
+    },
+  ],
   datasources: {
     defaultListParams: {
       size: "25",
