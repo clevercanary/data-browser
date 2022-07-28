@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useAsync } from "./useAsync";
 import { useCurrentEntity } from "./useCurrentEntity";
 import { EntityConfig } from "app/config/model";
 import { useFetcher } from "./useFetcher";
-import { useResetableState } from "./useResetableState";
 import {
   AzulEntitiesStaticResponse,
   AzulEntitiesResponse,
@@ -20,10 +19,13 @@ export interface PaginationConfig {
 
 export type SortOrderType = "asc" | "desc";
 
-export interface SortConfig {
-  sort: (key?: string, sortOrder?: SortOrderType) => void;
+interface SortType {
   sortKey?: string;
   sortOrder?: SortOrderType;
+}
+
+export interface SortConfig extends SortType {
+  sort: (key?: string, sortOrder?: SortOrderType) => void;
 }
 
 interface UseEntityListResponse {
@@ -57,6 +59,10 @@ export const useFetchEntities = (
   value?: AzulEntitiesStaticResponse
 ): UseEntityListResponse => {
   const entity = useCurrentEntity();
+  const currentEntity = useRef(entity);
+
+  // Determine if the hook is allowed  to load
+  const [load, setLoad] = useState<boolean>(true);
 
   // Determine type of fetch to be executed, either endpoint or TSV.
   const { fetchList, list, path, staticLoad } = useFetcher();
@@ -65,12 +71,13 @@ export const useFetchEntities = (
   const [currentPage, setCurrentPage] = useState(DEFAULT_CURRENT_PAGE);
 
   // Init sort.
-  const defaultSort = useMemo(() => getDefaultSort(entity), [entity]);
-  const [sortKey, setSortKey] = useResetableState<string | undefined>(
-    defaultSort
-  );
-  const [sortOrder, setSortOrder] = useState<SortOrderType | undefined>(
-    defaultSort ? "asc" : undefined
+  const sortType = useRef<SortType | undefined>();
+
+  // Guard to check the data should be updated
+  const guardDataSet = useCallback(
+    (entityRoute?: string): boolean =>
+      entityRoute === currentEntity.current.route,
+    []
   );
 
   // Init fetch of entities.
@@ -81,20 +88,42 @@ export const useFetchEntities = (
     run,
   } = useAsync<AzulEntitiesResponse>();
 
+  useEffect(() => {
+    currentEntity.current = entity;
+  }, [entity]);
+
+  useEffect(() => {
+    sortType.current = {
+      sortKey: getDefaultSort(entity),
+      sortOrder: "asc",
+    };
+    setLoad(true);
+  }, [entity]);
+
   // Execute fetch of entities.
   useEffect(() => {
-    if (!staticLoad) {
-      run(list(path, { order: sortOrder, sort: sortKey }));
+    if (!staticLoad && load) {
+      run(
+        list(path, {
+          order: sortType.current?.sortOrder,
+          sort: sortType.current?.sortKey,
+        }),
+        { check: guardDataSet, param: entity.route }
+      );
+      setLoad(false);
     }
-  }, [list, path, run, sortKey, sortOrder, staticLoad]);
+  }, [list, load, path, run, staticLoad, entity.route, guardDataSet]);
 
   // Handle change of sort.
   const sort = useCallback(
     (key?: string, order?: SortOrderType) => {
-      setSortKey(key ?? defaultSort);
-      setSortOrder(order);
+      sortType.current = {
+        sortKey: key ?? getDefaultSort(entity),
+        sortOrder: order,
+      };
+      setLoad(true);
     },
-    [defaultSort, setSortKey]
+    [entity]
   );
 
   // Create callback for next page action.
@@ -140,8 +169,8 @@ export const useFetchEntities = (
     response: apiData,
     sort: {
       sort,
-      sortKey,
-      sortOrder,
+      sortKey: sortType.current?.sortKey,
+      sortOrder: sortType.current?.sortOrder,
     },
   };
 };

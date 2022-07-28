@@ -31,6 +31,16 @@ interface State<T> {
   status: "idle" | "pending" | "rejected" | "resolved";
 }
 
+interface GuardCheckType<T = undefined> {
+  check: (value?: T) => boolean;
+  param?: T;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- This default constant should accept any generic value
+const DEFAULT_GUARD_CHECK: GuardCheckType<any> = {
+  check: () => true,
+};
+
 /**
  * Hook to safely call async functions and managing the result's state.
  * @param state - API request's initial state. Default to idle
@@ -60,7 +70,10 @@ export const useAsync = <T>(state: State<T> = { status: "idle" }) => {
   );
 
   const run = useCallback(
-    (promise: Promise<T>) => {
+    <D>(
+      promise: Promise<T>,
+      guard: GuardCheckType<D> = DEFAULT_GUARD_CHECK
+    ) => {
       if (!promise || !promise.then) {
         throw new Error(
           `The argument passed to useAsync().run must be a promise.`
@@ -68,9 +81,13 @@ export const useAsync = <T>(state: State<T> = { status: "idle" }) => {
       }
       safeSetState({ status: "pending" });
       return promise.then(
-        (data: T) => {
-          setData(data);
-          return data;
+        (responseData: T) => {
+          if (guard.check(guard.param)) {
+            setData(responseData);
+          } else {
+            safeSetState({ status: "resolved" });
+          }
+          return responseData;
         },
         (error: Error) => {
           setError(error);
