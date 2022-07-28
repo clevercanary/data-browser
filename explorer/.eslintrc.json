@@ -19,6 +19,13 @@
     "plugin:eslint-comments/recommended"
   ],
   "rules": {
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "allowSeparatedGroups": true
+      }
+    ],
     "sort-keys": [
       "error",
       "asc",
