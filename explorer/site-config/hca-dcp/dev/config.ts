@@ -14,7 +14,7 @@ import { samplesEntity } from "./samplesEntity";
 // Images
 import logoHca from "images/logoHca.png";
 import logoHumanCellAtlas from "images/logoHumanCellAtlas.png";
-import { SiteConfig } from "../../../app/config/common/entities";
+import { FavIconConfig, SiteConfig } from "../../../app/config/common/entities";
 
 // Template constants
 const BROWSER_URL = "https://dev.singlecell.gi.ucsc.edu";
@@ -41,6 +41,15 @@ const SOCIALS: Social[] = [
     url: "https://humancellatlas.slack.com/archives/C02TM2SDVM2",
   },
 ];
+
+const FAV_ICONS: FavIconConfig = {
+  "16x16": "/favicons/human-cell/favicon-16x16.png",
+  "180x180": "/favicons/human-cell/apple-touch-icon.png",
+  "32x32": "/favicons/human-cell/favicon-32x32.png",
+  default: "/favicons/human-cell/favicon.ico",
+  maskIcon: "/favicons/human-cell/safari-pinned-tab.svg",
+  siteWebManifest: "/favicons/human-cell/site.webmanifest",
+};
 
 const config: SiteConfig = {
   browserURL: BROWSER_URL,
@@ -139,6 +148,7 @@ const config: SiteConfig = {
   entities: [projectsEntity, samplesEntity, filesEntity],
   entityTitle: "Explore Data: DCP 2.0 Data View",
   layout: {
+    favIcons: FAV_ICONS,
     footer: {
       feedbackForm: false, // TODO feedback form
       logos: [{ ...LOGO, height: 38, src: logoHumanCellAtlas }],

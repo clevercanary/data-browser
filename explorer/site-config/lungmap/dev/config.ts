@@ -11,7 +11,7 @@ import { summary } from "./index/summary";
 
 // Config
 import hcaConfig from "site-config/hca-dcp/dev/config";
-import { SiteConfig } from "../../../app/config/common/entities";
+import { FavIconConfig, SiteConfig } from "../../../app/config/common/entities";
 
 // Template constants
 const BROWSER_URL = "https://data-browser.dev.lungmap.net";
@@ -30,6 +30,15 @@ const SOCIALS: Social[] = [
   },
 ];
 
+const FAV_ICONS: FavIconConfig = {
+  "16x16": "/favicons/lung-map/favicon-16x16.png",
+  "180x180": "/favicons/lung-map/apple-touch-icon.png",
+  "32x32": "/favicons/lung-map/favicon-32x32.png",
+  default: "/favicons/lung-map/favicon.ico",
+  maskIcon: "/favicons/lung-map/safari-pinned-tab.svg",
+  siteWebManifest: "/favicons/lung-map/site.webmanifest",
+};
+
 const config: SiteConfig = {
   browserURL: BROWSER_URL,
   categoryConfigs: hcaConfig.categoryConfigs,
@@ -46,6 +55,7 @@ const config: SiteConfig = {
   entities: hcaConfig.entities,
   entityTitle: "Explore Data",
   layout: {
+    favIcons: FAV_ICONS,
     footer: {
       logos: [LOGO],
       navLinks: [

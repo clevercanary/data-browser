@@ -9,7 +9,7 @@ import { studiesEntity } from "./studieEntity";
 
 // Images
 import logoNcpi from "images/logoNcpi.svg";
-import { SiteConfig } from "../../../app/config/common/entities";
+import { FavIconConfig, SiteConfig } from "../../../app/config/common/entities";
 
 // Template constants
 const BROWSER_URL = "https://anvilproject.org";
@@ -36,11 +36,21 @@ const SOCIALS: Social[] = [
   },
 ];
 
+const FAV_ICONS: FavIconConfig = {
+  "16x16": "/favicons/ncpi/favicon-16x16.png",
+  "180x180": "/favicons/ncpi/apple-touch-icon.png",
+  "32x32": "/favicons/ncpi/favicon-32x32.png",
+  default: "/favicons/ncpi/favicon.ico",
+  maskIcon: "/favicons/ncpi/safari-pinned-tab.svg",
+  siteWebManifest: "/favicons/ncpi/site.webmanifest",
+};
+
 const config: SiteConfig = {
   ...anvilConfig,
   entities: [studiesEntity],
   entityTitle: "NCPI Dataset Catalog",
   layout: {
+    favIcons: FAV_ICONS,
     footer: anvilConfig.layout.footer,
     header: {
       authenticationEnabled: false,
