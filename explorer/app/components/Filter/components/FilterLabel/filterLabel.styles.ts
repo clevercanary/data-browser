@@ -5,7 +5,7 @@ export const FilterLabel = styled(Button)`
   color: ${({ theme }) => theme.palette.ink};
   gap: 0;
   justify-content: space-between;
-  padding: 6px 12px;
+  padding: 6px 0;
 
   :hover {
     background-color: transparent;
