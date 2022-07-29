@@ -47,6 +47,7 @@ const FAV_ICONS: FavIconConfig = {
 
 const config: SiteConfig = {
   ...anvilConfig,
+  disablePagination: true,
   entities: [studiesEntity],
   entityTitle: "NCPI Dataset Catalog",
   layout: {
