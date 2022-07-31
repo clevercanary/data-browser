@@ -43,12 +43,12 @@ const SOCIALS: Social[] = [
 ];
 
 const FAV_ICONS: FavIconConfig = {
-  "16x16": "/favicons/human-cell/favicon-16x16.png",
-  "180x180": "/favicons/human-cell/apple-touch-icon.png",
-  "32x32": "/favicons/human-cell/favicon-32x32.png",
-  default: "/favicons/human-cell/favicon.ico",
-  maskIcon: "/favicons/human-cell/safari-pinned-tab.svg",
-  siteWebManifest: "/favicons/human-cell/site.webmanifest",
+  "16x16": "/favicons/favicon-16x16.png",
+  "180x180": "/favicons/apple-touch-icon.png",
+  "32x32": "/favicons/favicon-32x32.png",
+  default: "/favicons/favicon.ico",
+  maskIcon: "/favicons/safari-pinned-tab.svg",
+  siteWebManifest: "/favicons/site.webmanifest",
 };
 
 const config: SiteConfig = {
