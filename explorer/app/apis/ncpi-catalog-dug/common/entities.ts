@@ -3,10 +3,10 @@
  */
 
 export interface DugVariableResponse {
-    "status": string,
-    "results": DugVariableResponse[];
+  results: DugVariableResponse[];
+  status: string;
 }
 
 export interface DugVariableResponseElement {
-    "dbGap Id": string
+  "dbGap Id": string;
 }
