@@ -1,18 +1,34 @@
-import * as T from "../../../../app/viewModelBuilders/ncpi-catalog/common/viewModelBuilders";
+import * as ViewBuilder from "../../../../app/viewModelBuilders/ncpi-catalog/common/viewModelBuilders";
 import * as C from "../../../../app/components";
 import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
 } from "../../../../app/config/common/entities";
-import { NPCICatalogSourceItem } from "../../../../app/apis/ncpi-catalog/common/entities";
 
+import { DugVariableResponse } from "../../../../app/apis/ncpi-catalog-dug/common/entities";
 import { studiesEntityConfig } from "site-config/ncpi-catalog/dev/index/studiesEntityConfig";
+import { DUG_API_URL } from "../constants";
+
 
 /**
  * Entity config object responsible for config related to the /explore/studies route.
  */
-export const relatedStudiesEntityConfig: EntityConfig<NPCICatalogSourceItem> = {
-  ...studiesEntityConfig,
-  label: "Related Studies"
+export const relatedStudiesEntityConfig: EntityConfig<DugVariableResponse> = {
+  detail: studiesEntityConfig.detail,
+  label: "Related Studies",
+  route: "related",
+  apiPath: DUG_API_URL,
+  list: {
+    columns: [
+        {
+            componentConfig: {
+                component: C.Cell,
+                viewBuilder: ViewBuilder.buildDbGapId,
+            } as ComponentConfig<typeof C.Cell>,
+            header: "dbGap Id",
+            width: { max: "1fr", min: "120px"}
+        }
+    ]
+    } as ListConfig<DugVariableResponse>,
 };
