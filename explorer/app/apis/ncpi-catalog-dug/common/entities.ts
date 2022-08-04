@@ -3,8 +3,12 @@
  */
 
 export interface DugVariableResponse {
-  results: DugVariableResponse[];
+  result: DugDbGapResponse;
   status: string;
+}
+
+export interface DugDbGapResponse {
+    DBGapId: DugVariableResponseElement[];
 }
 
 export interface DugVariableResponseElement {
