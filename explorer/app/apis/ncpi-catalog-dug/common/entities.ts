@@ -8,7 +8,7 @@ export interface DugVariableResponse {
 }
 
 export interface DugDbGapResponse {
-    DBGapId: DugVariableResponseElement[];
+  DBGapId: DugVariableResponseElement[];
 }
 
 export interface DugVariableResponseElement {
