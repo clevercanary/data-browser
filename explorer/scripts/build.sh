@@ -10,6 +10,8 @@ if [ -d "$DIR" ]
 then
 	if [ "$(ls $DIR)" ]; then
      cp ./site-config/$1/images/favicons/* ./public/favicons/
+	 cp ./scripts/browserconfig.xml ./public/favicons/
+	 cp ./scripts/site.webmanifest ./public/favicons/
 	fi
 else
 	echo "Directory $DIR not found."
