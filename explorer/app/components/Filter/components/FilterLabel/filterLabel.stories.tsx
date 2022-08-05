@@ -14,7 +14,7 @@ export default {
   component: FilterLabel,
   decorators: [
     (Story): JSX.Element => (
-      <div style={{ width: 312 }}>
+      <div style={{ padding: "8px 12px 8px 16px", width: 264 }}>
         <Story />
       </div>
     ),
@@ -29,8 +29,15 @@ const Template: ComponentStory<typeof FilterLabel> = (args) => (
   <FilterLabel {...args} />
 );
 
-export const GenderLabel = Template.bind({});
-GenderLabel.args = {
+export const DefaultFilterLabel = Template.bind({});
+DefaultFilterLabel.args = {
+  count: 123,
+  disabled: false,
+  label: "Label",
+};
+
+export const FilterLabelGender = Template.bind({});
+FilterLabelGender.args = {
   count: 3,
   disabled: false,
   label: "Gender",

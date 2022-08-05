@@ -56,7 +56,7 @@ export interface ComponentConfig<
   children?: ComponentConfig[];
   component: React.FC<React.ComponentProps<T>>;
   props?: React.ComponentProps<T>;
-  transformer?: (model: D) => React.ComponentProps<T>;
+  viewBuilder?: (model: D) => React.ComponentProps<T>;
 }
 
 /**
@@ -157,7 +157,7 @@ export interface ListConfig<T = any> {
 export interface SiteConfig {
   browserURL: string;
   categoryConfigs?: CategoryConfig[];
-  datasources: DataSourceConfig;
+  dataSource: DataSourceConfig;
   disablePagination?: boolean;
   entities: EntityConfig[];
   entityTitle: HeroTitle;
@@ -166,5 +166,5 @@ export interface SiteConfig {
     header: Header;
   };
   redirectRootToPath?: string;
-  summary: SummaryConfig;
+  summaryConfig?: SummaryConfig;
 }

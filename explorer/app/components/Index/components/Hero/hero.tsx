@@ -3,13 +3,19 @@
  */
 
 // Core dependencies
+import Link from "next/link";
 import React, { ReactNode } from "react";
 
 // App dependencies
 import { HeroTitle, Title } from "../../../common/Title/title";
 
 // Styles
-import { HeroLayout, SummaryWidget, Widgets } from "./hero.styles";
+import {
+  ExportButton,
+  HeroLayout,
+  SummaryWidget,
+  Widgets,
+} from "./hero.styles";
 
 interface Props {
   Summaries?: ReactNode;
@@ -22,11 +28,13 @@ export const Hero = ({ Summaries, title }: Props): JSX.Element => {
       <Title title={title} />
       {Summaries && (
         <Widgets>
-          <SummaryWidget buttonWidget={false}>
+          <SummaryWidget buttonWidget={true}>
             {/* TODO +n link widget, and accompanying Dot separator */}
             {Summaries}
           </SummaryWidget>
-          {/* TODO button widget */}
+          <Link href="/export" passHref>
+            <ExportButton href="passHref">Export</ExportButton>
+          </Link>
         </Widgets>
       )}
     </HeroLayout>

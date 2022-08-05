@@ -4,6 +4,10 @@ import React, { Fragment, useState } from "react";
 
 // App dependencies
 import {
+  AzulEntitiesStaticResponse,
+  AzulSummaryResponse,
+} from "../../apis/azul/common/entities";
+import {
   Tab,
   Tabs,
   TabsValue,
@@ -15,14 +19,12 @@ import { useConfig } from "app/hooks/useConfig";
 import { useCurrentEntity } from "app/hooks/useCurrentEntity";
 import { useFetchEntities } from "app/hooks/useFetchEntities";
 import { useSummary } from "app/hooks/useSummary";
+import { Filters } from "../../components/Filter/components/Filters/filters";
 import { Index as IndexView } from "../../components/Index/index";
-import {
-  AzulEntitiesStaticResponse,
-  AzulSummaryResponse,
-} from "../../apis/azul/common/entities";
-import { useCategoryFilter } from "../../hooks/useCategoryFilter";
+import { SidebarLabel } from "../../components/Layout/components/Sidebar/components/SidebarLabel/sidebarLabel";
 import { Sidebar } from "../../components/Layout/components/Sidebar/sidebar";
 import { EntityConfig, SummaryConfig } from "../../config/common/entities";
+import { useCategoryFilter } from "../../hooks/useCategoryFilter";
 
 /**
  * Returns tabs to be used as a prop for the Tabs component.
@@ -46,7 +48,7 @@ function getTabs(entities: EntityConfig[]): Tab[] {
  * @returns rendered Summaries component.
  */
 function renderSummary(
-  summaryConfig: SummaryConfig,
+  summaryConfig?: SummaryConfig,
   summaryResponse?: AzulSummaryResponse
 ): JSX.Element | undefined {
   if (!summaryConfig || !summaryResponse) {
@@ -67,7 +69,7 @@ export const Index = (props: AzulEntitiesStaticResponse): JSX.Element => {
 
   // Determine the current entity (e.g. projects, files, samples) and config.
   const entity = useCurrentEntity();
-  const { entities, entityTitle, summary } = useConfig();
+  const { entities, entityTitle, summaryConfig } = useConfig();
 
   const route = entity?.route;
   const { push } = useRouter();
@@ -132,35 +134,13 @@ export const Index = (props: AzulEntitiesStaticResponse): JSX.Element => {
   return (
     <>
       {categoryViews && !!categoryViews.length && (
-        <Sidebar>
-          {categoryViews.map((categoryView, index) => (
-            <Fragment key={index}>
-              <div>
-                <b>{categoryView.label}</b>
-              </div>
-              {categoryView.values.map((categoryValueView, j) => (
-                <div
-                  key={j}
-                  onClick={(): void =>
-                    onFilter(
-                      categoryView.key,
-                      categoryValueView.key,
-                      !categoryValueView.selected
-                    )
-                  }
-                >
-                  {categoryValueView.selected ? <>&#9889;</> : null}{" "}
-                  {categoryValueView.label} {categoryValueView.count}
-                  {categoryValueView.selected ? <>&#9889;</> : null}
-                </div>
-              ))}
-            </Fragment>
-          ))}
+        <Sidebar Label={<SidebarLabel label={"Filters"} />}>
+          <Filters categories={categoryViews} onFilter={onFilter} />
         </Sidebar>
       )}
       <IndexView
         entities={renderContent()}
-        Summaries={renderSummary(summary, summaryResponse)}
+        Summaries={renderSummary(summaryConfig, summaryResponse)}
         Tabs={<Tabs onTabChange={onTabChange} tabs={tabs} value={tabsValue} />}
         title={entityTitle}
       />
