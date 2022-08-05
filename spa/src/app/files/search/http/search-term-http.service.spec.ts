@@ -53,7 +53,7 @@ describe("SearchTermHttpService:", () => {
         /**
          * Confirm project facet is added as a project ID search entity
          */
-        it("bind project facets as project ID search entities", () => {
+        it("bind project facets as project ID search workspaceEntityConfig", () => {
             const searchEntities = searchTermHttpService.bindSearchEntities(
                 PROJECTS_ENTITY_API_RESPONSE.termFacets
             );

@@ -22,7 +22,7 @@ import {
 } from "../apis/azul/common/filterTransformer";
 
 /**
- * Type of function called to update filter query string params and trigger re-fetch of entities.
+ * Type of function called to update filter query string params and trigger re-fetch of workspaceEntityConfig.
  */
 export type SetFilterFn = (nextFilters: Filters) => void;
 
@@ -57,7 +57,7 @@ const getDefaultSort = (entity: EntityConfig): string | undefined => {
  * this hook will return the already loaded data. Otherwise, it will make a request for the entity's pathUrl.
  * @param staticResponse - Statically loaded data, if any.
  * @param initialFilter - Initial set of select categories.
- * @returns Model of the entities list including pagination, sort, filter and loading indicator.
+ * @returns Model of the workspaceEntityConfig list including pagination, sort, filter and loading indicator.
  */
 export const useFetchEntities = (
   staticResponse: AzulEntitiesStaticResponse | null,
@@ -88,10 +88,10 @@ export const useFetchEntities = (
     defaultSort ? "asc" : undefined
   );
 
-  // Init fetch of entities.
+  // Init fetch of workspaceEntityConfig.
   const { data, isIdle, isLoading, run } = useAsync<AzulEntitiesResponse>();
 
-  // Execute fetch of entities.
+  // Execute fetch of workspaceEntityConfig.
   useEffect(() => {
     if (!staticLoad) {
       // Build basic list params

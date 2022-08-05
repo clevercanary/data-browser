@@ -52,7 +52,7 @@ export class EntityEffects {
     ) {}
 
     /**
-     * Handle change in user's authenticated status; clear any cached entities, navigate to projects, init (re-fetch)
+     * Handle change in user's authenticated status; clear any cached workspaceEntityConfig, navigate to projects, init (re-fetch)
      * projects state.
      */
 
@@ -72,7 +72,7 @@ export class EntityEffects {
     );
 
     /**
-     * Handle change in user's authenticated status; clear any cached entities, navigate to projects, init (re-fetch)
+     * Handle change in user's authenticated status; clear any cached workspaceEntityConfig, navigate to projects, init (re-fetch)
      * projects state.
      */
 

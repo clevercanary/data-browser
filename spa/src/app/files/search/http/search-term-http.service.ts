@@ -70,7 +70,7 @@ export class SearchTermHttpService {
         return Object.keys(responseFacetsByName).reduce((accum, facetName) => {
             // Only create search terms for the allowed file facets
             if (this.ACCEPT_SEARCH_FACETS.indexOf(facetName) >= 0) {
-                // Search entities (ie terms for project facet) are handled separately as we do not want to search over
+                // Search workspaceEntityConfig (ie terms for project facet) are handled separately as we do not want to search over
                 // these values
                 const responseFacet = responseFacetsByName[facetName];
                 responseFacet.terms.forEach((termResponse: ResponseTerm) => {
@@ -85,7 +85,7 @@ export class SearchTermHttpService {
     }
 
     /**
-     * Create search entities from the project facet specified in the response.
+     * Create search workspaceEntityConfig from the project facet specified in the response.
      *
      * @param {Dictionary<ResponseFacet>} responseFacetsByName
      * @returns {SearchTerm[]}

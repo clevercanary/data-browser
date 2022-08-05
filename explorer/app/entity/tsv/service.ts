@@ -4,11 +4,11 @@
 
 import { PAGINATION_PAGE_SIZE } from "app/shared/constants";
 import { database } from "app/utils/database";
-import { AnvilSourceItem } from "../../models/responses";
 import {
   AzulEntitiesResponse,
   AzulSummaryResponse,
 } from "../../apis/azul/common/entities";
+import { AnvilSourceItem } from "../../apis/anvil/common/entities";
 
 export const list = async (): Promise<AzulEntitiesResponse> => {
   const items = database.get().all();

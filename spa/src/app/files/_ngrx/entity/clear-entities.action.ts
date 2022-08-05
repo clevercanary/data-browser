@@ -2,7 +2,7 @@
  * Human Cell Atlas
  * https://www.humancellatlas.org/
  *
- * Action dispatched when a change in the user's authenticated state has occurred and any cached entities should be
+ * Action dispatched when a change in the user's authenticated state has occurred and any cached workspaceEntityConfig should be
  * cleared.
  */
 

@@ -154,7 +154,7 @@ describe("EntityEffects", () => {
         /**
          * Confirm tracking is called.
          */
-        it("tracks click on back to entities", () => {
+        it("tracks click on back to workspaceEntityConfig", () => {
             spyOn(gtmService, "trackEvent").and.callThrough();
 
             const action = new BackToEntityAction("foo");

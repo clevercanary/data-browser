@@ -1,20 +1,17 @@
-import * as ViewBuilder from "../../../../site-config/anvil-catalog/dev/workspaceTransformer";
-import * as Components from "../../../components";
+import * as ViewBuilder from "../../../../app/viewModelBuilders/anvil-catalog/common/viewModelBuilders";
+import * as Components from "../../../../app/components";
 import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
-} from "../../../config/common/entities";
-import { AnvilSourceItem } from "../../../models/responses";
-import {
-  SOURCE_FIELD_KEY,
-  SOURCE_FIELD_TYPE,
-} from "../../../../site-config/anvil-catalog/tsv-config";
+} from "../../../../app/config/common/entities";
+import { SOURCE_FIELD_KEY, SOURCE_FIELD_TYPE } from "../../tsv-config";
+import { AnvilSourceItem } from "../../../../app/apis/anvil/common/entities";
 
 /**
  * Entity config object responsible to config anything related to the /explore/workspaces route.
  */
-export const entities: EntityConfig<AnvilSourceItem> = {
+export const workspaceEntityConfig: EntityConfig<AnvilSourceItem> = {
   detail: {
     tabs: [],
     top: [],
@@ -25,7 +22,7 @@ export const entities: EntityConfig<AnvilSourceItem> = {
       {
         componentConfig: {
           component: Components.Text,
-          viewBuilder: ViewBuilder.workspaceToConsortiaColumn,
+          viewBuilder: ViewBuilder.buildConsortia,
         } as ComponentConfig<typeof Components.Text>,
         header: "Consortium",
         width: { max: "1fr", min: "120px" },
@@ -33,7 +30,7 @@ export const entities: EntityConfig<AnvilSourceItem> = {
       {
         componentConfig: {
           component: Components.Text,
-          viewBuilder: ViewBuilder.workspaceToStudyNameColumn,
+          viewBuilder: ViewBuilder.buildStudyName,
         } as ComponentConfig<typeof Components.Text>,
         header: "Terra Workspace Name",
         width: { max: "1fr", min: "360px" },
@@ -41,7 +38,7 @@ export const entities: EntityConfig<AnvilSourceItem> = {
       {
         componentConfig: {
           component: Components.Text,
-          viewBuilder: ViewBuilder.workspaceToIndicationColumn,
+          viewBuilder: ViewBuilder.buildIndication,
         } as ComponentConfig<typeof Components.Text>,
         header: "Disease (indication)",
         width: { max: "2fr", min: "240px" },
@@ -49,7 +46,7 @@ export const entities: EntityConfig<AnvilSourceItem> = {
       {
         componentConfig: {
           component: Components.Text,
-          viewBuilder: ViewBuilder.workspaceToDataTypeColumn,
+          viewBuilder: ViewBuilder.buildDataType,
         } as ComponentConfig<typeof Components.Text>,
         header: "Data type",
         width: { max: "2fr", min: "120px" },
@@ -57,7 +54,7 @@ export const entities: EntityConfig<AnvilSourceItem> = {
       {
         componentConfig: {
           component: Components.Text,
-          viewBuilder: ViewBuilder.workspaceToStudyDesignColumn,
+          viewBuilder: ViewBuilder.buildStudyDesign,
         } as ComponentConfig<typeof Components.Text>,
         header: "Study Design",
         width: { max: "2fr", min: "240px" },
@@ -65,7 +62,7 @@ export const entities: EntityConfig<AnvilSourceItem> = {
       {
         componentConfig: {
           component: Components.Text,
-          viewBuilder: ViewBuilder.workspaceToParticipantsColumn,
+          viewBuilder: ViewBuilder.buildParticipantCount,
         } as ComponentConfig<typeof Components.Text>,
         header: "Participants",
         width: { max: "2fr", min: "120px" },

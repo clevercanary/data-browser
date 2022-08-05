@@ -1,11 +1,11 @@
 import anvilDevConfig from "../../anvil/dev/config";
-import { entities } from "../../../app/apis/anvil-catalog/common/entities";
+import { workspaceEntityConfig } from "./index/workspaceEntityConfig";
 import { SiteConfig } from "../../../app/config/common/entities";
 
 const config: SiteConfig = {
   ...anvilDevConfig,
   disablePagination: true,
-  entities: [entities],
+  entities: [workspaceEntityConfig],
   entityTitle: "Anvil Dataset Catalog",
   redirectRootToPath: "/workspaces",
   summaryConfig: undefined,
