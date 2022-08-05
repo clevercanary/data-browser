@@ -20,7 +20,7 @@ import logoHhs from "images/logoHhs.svg";
 import logoNhgri from "images/logoNhgri.svg";
 import logoNih from "images/logoNih.svg";
 import logoUsagov from "images/logoUsagov.png";
-import { FavIconConfig, SiteConfig } from "../../../app/config/common/entities";
+import { SiteConfig } from "../../../app/config/common/entities";
 
 // Template constants
 const BROWSER_URL = "https://staging.anvilproject.org";
@@ -54,15 +54,6 @@ const SOCIALS: Social[] = [
     url: "https://join.slack.com/t/anvil-community/shared_invite/zt-hsyfam1w-LXlCv~3vNLSfDj~qNd5uBg",
   },
 ];
-
-const FAV_ICONS: FavIconConfig = {
-  "16x16": "/favicons/favicon-16x16.png",
-  "180x180": "/favicons/apple-touch-icon.png",
-  "32x32": "/favicons/favicon-32x32.png",
-  default: "/favicons/favicon.ico",
-  maskIcon: "/favicons/safari-pinned-tab.svg",
-  siteWebManifest: "/favicons/site.webmanifest",
-};
 
 const config: SiteConfig = {
   browserURL: BROWSER_URL,
@@ -117,7 +108,6 @@ const config: SiteConfig = {
   ],
   entityTitle: "Anvil Data Explorer",
   layout: {
-    favIcons: FAV_ICONS,
     footer: {
       logos: [
         {

@@ -151,15 +151,6 @@ export interface ListConfig<T = any> {
   columns: ColumnConfig<T>[];
 }
 
-export interface FavIconConfig {
-  "16x16"?: string;
-  "180x180"?: string;
-  "32x32"?: string;
-  default?: string;
-  maskIcon?: string;
-  siteWebManifest?: string;
-}
-
 /**
  * Interface that will hold the whole configuration for a given site.
  */
@@ -171,7 +162,6 @@ export interface SiteConfig {
   entities: EntityConfig[];
   entityTitle: HeroTitle;
   layout: {
-    favIcons?: FavIconConfig;
     footer: Footer;
     header: Header;
   };
