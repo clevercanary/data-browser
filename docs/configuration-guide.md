@@ -1,7 +1,7 @@
 ## Configuration Guide
 
 ### Configuring an Entity List
-Entity lists display result sets from either an API endpoint or a TSV and can either be statically built or dynamically requested. To configure an entity list:
+Entity lists display result sets from either an API endpoint or a TSV and can be statically built or dynamically requested. To configure an entity list:
 
 #### 1. Add Response Model
 Add an interface matching the response model expected from the API endpoint or for a TSV row.
