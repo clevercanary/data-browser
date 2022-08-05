@@ -1,17 +1,20 @@
-import * as ViewBuilder from "./workspaceTransformer";
-import * as Components from "../../../app/components";
+import * as ViewBuilder from "../../../../site-config/anvil-catalog/dev/workspaceTransformer";
+import * as Components from "../../../components";
 import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
-} from "../../../app/config/common/entities";
-import { AnvilSourceItem } from "./../../../app/models/responses";
-import { SOURCE_FIELD_KEY, SOURCE_FIELD_TYPE } from "../tsv-config";
+} from "../../../config/common/entities";
+import { AnvilSourceItem } from "../../../models/responses";
+import {
+  SOURCE_FIELD_KEY,
+  SOURCE_FIELD_TYPE,
+} from "../../../../site-config/anvil-catalog/tsv-config";
 
 /**
  * Entity config object responsible to config anything related to the /explore/workspaces route.
  */
-export const workspaceEntity: EntityConfig<AnvilSourceItem> = {
+export const entities: EntityConfig<AnvilSourceItem> = {
   detail: {
     tabs: [],
     top: [],
