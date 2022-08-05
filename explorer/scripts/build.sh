@@ -1,9 +1,15 @@
 #!/bin/bash
 
 DIR="./site-config/$1/images/favicons/"
+PUBLIC_DIR="./public/favicons/"
 # init
 
 cp ./site-config/$1/prod/.env .env.production
+
+# check if PUBLIC_DIR does not exists
+if [ ! -d "$PUBLIC_DIR" ]; then
+	mkdir $PUBLIC_DIR
+fi
 
 # look for empty directory
 if [ -d "$DIR" ]
