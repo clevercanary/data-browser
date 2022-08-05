@@ -24,7 +24,7 @@ interface TabConfig {
 }
 
 /**
- * Interface used to define the entities and router that will be used on the application, alongside with
+ * Interface used to define the workspaceEntityConfig and router that will be used on the application, alongside with
  * the detail and the list page configuration.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This config model is part of a generic array
@@ -99,7 +99,7 @@ export interface DetailTabConfig extends TabConfig {
 }
 
 /**
- * Interface to determine the summary components and endpoint placed above the entities list.
+ * Interface to determine the summary components and endpoint placed above the workspaceEntityConfig list.
  */
 export interface SummaryConfig {
   apiPath: string;

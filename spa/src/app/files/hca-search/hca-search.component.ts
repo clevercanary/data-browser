@@ -2,7 +2,7 @@
  * Human Cell Atlas
  * https://www.humancellatlas.org/
  *
- * Component responsible for searching across terms and entities.
+ * Component responsible for searching across terms and workspaceEntityConfig.
  */
 
 // Core dependencies
