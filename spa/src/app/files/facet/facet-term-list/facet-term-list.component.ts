@@ -103,7 +103,7 @@ export class FacetTermListComponent implements AfterViewInit {
     }
 
     /**
-     * Track by function used when displaying the list of terms or entities.
+     * Track by function used when displaying the list of terms or workspaceEntityConfig.
      *
      * @param {number} index
      * @param {Term} term

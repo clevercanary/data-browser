@@ -659,7 +659,7 @@ describe("Init Effects", () => {
         });
 
         /**
-         * Prevent view init (eg hits to entities endpoint and summary endpoint) if an error has occurred during init.
+         * Prevent view init (eg hits to workspaceEntityConfig endpoint and summary endpoint) if an error has occurred during init.
          */
         xit("prevents view init on error", () => {});
     });
