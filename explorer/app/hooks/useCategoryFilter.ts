@@ -38,7 +38,7 @@ type FilterState = Filters;
 /**
  * Server-side faceted filter functionality.
  * @param categories - Full set of categories.
- * @param setFilter - Function to call to trigger re-fetch of workspaceEntityConfig on change of selected filter values.
+ * @param setFilter - Function to call to trigger re-fetch of entities on change of selected filter values.
  * @returns Object container filter accessor (view model of filter state).
  */
 export const useCategoryFilter = (

@@ -15,7 +15,7 @@ import {
 } from "../../apis/azul/common/entities";
 
 /**
- * Request to get a list of workspaceEntityConfig.
+ * Request to get a list of entities.
  * @param apiPath - Path that will be used to compose the API url
  * @param listParams - Params to be used on the request. If none passed, it will default to page's size 25 and the current catalog version
  * @returns @see ListResponseType
@@ -29,7 +29,7 @@ export const list = async (
 };
 
 /**
- * Make a get request to get a list of workspaceEntityConfig.
+ * Make a get request to get a list of entities.
  * @param url - Absolute URL to be used on the request
  * @returns JSON representation of request list.
  */
@@ -39,7 +39,7 @@ export const fetchList = async (url: string): Promise<AzulEntitiesResponse> => {
 };
 
 /**
- * Recursively call the endpoint to get a list of workspaceEntityConfig. This will iterate over the entity list until the next entity comes null
+ * Recursively call the endpoint to get a list of entities. This will iterate over the entity list until the next entity comes null
  * @param apiPath - Path that will be used to compose the API url
  * @param listParams - Params to be used on the request. If none passed, it will default to page's size 25 and the current catalog version
  * @returns @see ListResponseType

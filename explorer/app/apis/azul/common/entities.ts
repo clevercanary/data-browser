@@ -10,14 +10,14 @@ import { FileEntityResponse } from "../anvil/common/entities";
 import { CategoryKey, CategoryValueKey } from "../../../common/entities";
 
 /**
- * Base model of an entry in the "hits" value returned from an Azul workspaceEntityConfig response.
+ * Base model of an entry in the "hits" value returned from an Azul entities response.
  */
 export interface AzulHit {
   entryId: string;
 }
 
 /**
- * Set of all workspaceEntityConfig responses returned from Azul.
+ * Set of all entities responses returned from Azul.
  */
 export type AzulEntitiesResponses =
   | ActivitiesResponse

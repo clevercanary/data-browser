@@ -90,7 +90,7 @@ export class ConfigService {
     }
 
     /**
-     * Returns the URL for an workspaceEntityConfig end point (projects, files, samples).
+     * Returns the URL for an entities end point (projects, files, samples).
      *
      * @param {string} entityName
      * @returns {string}

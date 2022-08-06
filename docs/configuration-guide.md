@@ -5,14 +5,14 @@ Entity lists display result sets from either an API endpoint or a TSV and can be
 
 #### 1. Add Response Model
 Add an interface matching the response model expected from the API endpoint or TSV row.
-* Naming convention: `workspaceEntityConfig.ts`.
+* Naming convention: `entities.ts`.
 * Location: `/apis/${apiName}/common`.
 
 #### 2. Create Entity List-Specific Configuration
 * Naming convention: `entityNameEntityConfig.ts`.
 * Location: `/site-config/${site}/${env}/index`.
 * Entity list configuration implements `EntityConfig<T>` where `T` is the response model defined above in step 1.
-* Once configured, the entity list configuration must be specified in the `workspaceEntityConfig` array in the site config.
+* Once configured, the entity list configuration must be specified in the `entities` array in the site config.
 
 #### 3. Create a View Builder
 A view builder contains functions that build the component props required for displaying a value in an entity list. Each function takes at least a response model (either from an API endpoint or a row in a TSV), is parameterized by the type of component it builds props for and uses transformers to convert the response value into prop-specific values. 
