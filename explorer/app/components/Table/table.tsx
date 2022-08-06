@@ -10,13 +10,11 @@ import {
 } from "@mui/material";
 import React from "react";
 import {
-  Column,
-  ColumnInstance,
-  TableState,
-  usePagination,
-  useSortBy,
-  useTable,
-} from "react-table";
+  useReactTable,
+  ColumnDef,
+  getCoreRowModel,
+  flexRender,
+} from "@tanstack/react-table";
 
 // App dependencies
 import { CheckboxMenu, CheckboxMenuItem } from "../CheckboxMenu/checkboxMenu";
@@ -38,7 +36,7 @@ export interface EditColumnConfig {
 }
 
 interface TableProps<T extends object> {
-  columns: Column<T>[];
+  columns: ColumnDef<T>[];
   disablePagination?: boolean;
   editColumns?: EditColumnConfig;
   gridTemplateColumns: string;
@@ -80,56 +78,55 @@ export const Table = <T extends object>({
   total,
 }: TableProps<T>): JSX.Element => {
   const {
-    canNextPage: tableCanNextPage,
-    canPreviousPage: tableCanPreviousPage,
-    getTableBodyProps,
-    getTableProps,
-    headers,
-    nextPage: tableNextPage,
-    page,
-    pageOptions,
-    prepareRow,
-    previousPage: tablePreviousPage,
-    state: { pageIndex },
-  } = useTable<T>(
-    {
-      columns,
-      data: items,
-      disableMultiSort: true,
-      initialState: {
-        pageSize: disablePagination ? Number.MAX_SAFE_INTEGER : pageSize,
-      } as TableState,
-      manualPagination: !!pagination,
-      manualSortBy: true,
-      pageCount: total,
-    },
-    useSortBy,
-    usePagination
-  );
-  const scrollTop = useScroll();
-  const currentPage = pagination?.currentPage ?? pageIndex + 1;
-  const totalPage = total ?? pageOptions.length;
+    getHeaderGroups,
+    getRowModel,
+    // canNextPage: tableCanNextPage,
+    // canPreviousPage: tableCanPreviousPage,
+    // getTableBodyProps,
+    // getTableProps,
+    // headers,
+    // nextPage: tableNextPage,
+    // page,
+    // pageOptions,
+    // prepareRow,
+    // previousPage: tablePreviousPage,
+    // state: { pageIndex },
+  } = useReactTable<T>({
+    columns,
+    data: items,
+    getCoreRowModel: getCoreRowModel(),
+    // disableMultiSort: true,
+    // initialState: {
+    //   pageSize: disablePagination ? Number.MAX_SAFE_INTEGER : pageSize,
+    // } as TableState,
+    // manualPagination: !!pagination,
+    // manualSortBy: true,
+    // pageCount: total,
+  });
+  // const scrollTop = useScroll();
+  // const currentPage = pagination?.currentPage ?? pageIndex + 1;
+  // const totalPage = total ?? pageOptions.length;
 
-  const handleSortClicked = (column: ColumnInstance<T>): void => {
-    if (sort) {
-      const newColumn = newColumnKey<T>(sort, column);
-      const newOrder = newColumnOrder(sort, newColumn);
-      sort.sort(newColumn, newOrder);
-      pagination?.resetPage();
-    }
-  };
+  // const handleSortClicked = (column: ColumnInstance<T>): void => {
+  //   if (sort) {
+  //     const newColumn = newColumnKey<T>(sort, column);
+  //     const newOrder = newColumnOrder(sort, newColumn);
+  //     sort.sort(newColumn, newOrder);
+  //     pagination?.resetPage();
+  //   }
+  // };
 
-  const handleTableNextPage = (): void => {
-    const nextPage = pagination?.nextPage ?? tableNextPage;
-    nextPage();
-    scrollTop();
-  };
+  // const handleTableNextPage = (): void => {
+  //   const nextPage = pagination?.nextPage ?? tableNextPage;
+  //   nextPage();
+  //   scrollTop();
+  // };
 
-  const handleTablePreviousPage = (): void => {
-    const previousPage = pagination?.previousPage ?? tablePreviousPage;
-    previousPage();
-    scrollTop();
-  };
+  // const handleTablePreviousPage = (): void => {
+  //   const previousPage = pagination?.previousPage ?? tablePreviousPage;
+  //   previousPage();
+  //   scrollTop();
+  // };
 
   return (
     <div>
@@ -138,11 +135,11 @@ export const Table = <T extends object>({
       <RoundedPaper>
         {editColumns && (
           <TableToolbar>
-            <PaginationSummary
+            {/* <PaginationSummary
               firstResult={(currentPage - 1) * pageSize + 1}
               lastResult={pageSize * currentPage}
               totalResult={totalPage * pageSize}
-            />
+            /> */}
             <CheckboxMenu
               label="Edit Columns"
               onItemSelectionChange={editColumns.onVisibleColumnsChange}
@@ -153,51 +150,51 @@ export const Table = <T extends object>({
           </TableToolbar>
         )}
         <TableContainer>
-          <GridTable
-            gridTemplateColumns={gridTemplateColumns}
-            {...getTableProps()}
-          >
-            <TableHead>
-              <TableRow>
-                {headers.map((column) => (
-                  <TableCell
-                    {...column.getHeaderProps(column.getSortByToggleProps())}
-                    key={column.id}
-                  >
-                    <TableSortLabel
-                      active={sort?.sortKey === column.id}
-                      direction={
-                        sort?.sortKey === column.id ? sort?.sortOrder : "asc"
-                      }
-                      disabled={column.disableSortBy}
-                      IconComponent={SouthRoundedIcon}
-                      onClick={(): void => handleSortClicked(column)}
-                    >
-                      {column.render("Header")}
-                    </TableSortLabel>
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody {...getTableBodyProps()}>
-              {page.map((row, i) => {
-                prepareRow(row);
-                return (
-                  <TableRow {...row.getRowProps()} key={i}>
-                    {row.cells.map((cell, index) => {
-                      return (
-                        <TableCell {...cell.getCellProps()} key={index}>
-                          {cell.render("Cell")}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
+          <GridTable gridTemplateColumns={gridTemplateColumns}>
+            {getHeaderGroups().map((headerGroup) => (
+              <TableHead key={headerGroup.id}>
+                <TableRow>
+                  {headerGroup.headers.map((header) => (
+                    <TableCell key={header.id}>
+                      {/* <TableSortLabel
+                        active={sort?.sortKey === column.id}
+                        direction={
+                          sort?.sortKey === column.id ? sort?.sortOrder : "asc"
+                        }
+                        disabled={column.disableSortBy}
+                        IconComponent={SouthRoundedIcon}
+                        onClick={(): void => handleSortClicked(column)}
+                      > */}
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                      {/* </TableSortLabel> */}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+            ))}
+
+            <TableBody>
+              {getRowModel().rows.map((row) => (
+                <TableRow key={row.id}>
+                  {row.getVisibleCells().map((cell) => {
+                    return (
+                      <TableCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              ))}
             </TableBody>
           </GridTable>
         </TableContainer>
-        {!disablePagination && (
+        {/* {!disablePagination && (
           <DXPagination
             canNextPage={pagination?.canNextPage ?? tableCanNextPage}
             canPreviousPage={
@@ -208,7 +205,7 @@ export const Table = <T extends object>({
             onPreviousPage={handleTablePreviousPage}
             totalPage={totalPage}
           />
-        )}
+        )} */}
       </RoundedPaper>
     </div>
   );
