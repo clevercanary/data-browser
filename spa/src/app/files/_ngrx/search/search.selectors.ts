@@ -28,13 +28,13 @@ export const selectSearchTerms = createSelector(
     (state) => state.searchTerms
 );
 
-// Selected search terms - current set of selected file facet terms and workspaceEntityConfig
+// Selected search terms - current set of selected file facet terms and entities
 export const selectSelectedSearchTerms = createSelector(
     selectSearch,
     (state) => state.selectedSearchTerms
 );
 
-// Selected search terms by search key - current set of selected file facet terms and workspaceEntityConfig keyed by file facet name
+// Selected search terms by search key - current set of selected file facet terms and entities keyed by file facet name
 // or entity, respectively.
 export const selectSelectedSearchTermsBySearchKey = createSelector(
     selectSearch,
