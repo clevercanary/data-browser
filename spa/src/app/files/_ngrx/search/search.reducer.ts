@@ -2,7 +2,7 @@
  * Human Cell Atlas
  * https://www.humancellatlas.org/
  *
- * Search reducer, handles actions related to selecting and deselecting file facet terms and workspaceEntityConfig.
+ * Search reducer, handles actions related to selecting and deselecting file facet terms and entities.
  */
 
 // Core dependencies

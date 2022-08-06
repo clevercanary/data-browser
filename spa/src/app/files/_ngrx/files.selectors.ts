@@ -30,7 +30,7 @@ export const selectFileSummary =
 
 /**
  * Returns complete table state, including state that has been cached for the current selected entity, and any previously
- * selected workspaceEntityConfig.
+ * selected entities.
  *
  * @returns {TableState}
  */

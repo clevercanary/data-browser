@@ -2,7 +2,7 @@
  * Human Cell Atlas
  * https://www.humancellatlas.org/
  *
- * Spec for testing the base (workspaceEntityConfig)data source.
+ * Spec for testing the base (entities)data source.
  */
 
 // Core dependencies

@@ -42,7 +42,7 @@ export function reducer(
 
             return nextState;
 
-        // On fetch success of file facets, reset the table models of all workspaceEntityConfig except the current selected entity
+        // On fetch success of file facets, reset the table models of all entities except the current selected entity
         case FetchFacetsSuccessAction.ACTION_TYPE:
             nextState = {
                 ...state,

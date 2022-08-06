@@ -2,7 +2,7 @@
  * Human Cell Atlas
  * https://www.humancellatlas.org/
  *
- * Set of selected file facet terms and workspaceEntityConfig (projects) that comprise the current search state, as well as the
+ * Set of selected file facet terms and entities (projects) that comprise the current search state, as well as the
  * complete set of search terms that are selectable.
  */
 
@@ -242,7 +242,7 @@ export class SearchState {
     }
 
     /**
-     * Create default state of search - no selected file facet terms, no selected workspaceEntityConfig.
+     * Create default state of search - no selected file facet terms, no selected entities.
      *
      * @returns {SearchState}
      */

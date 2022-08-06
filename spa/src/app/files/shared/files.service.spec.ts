@@ -69,9 +69,9 @@ describe("FileService:", () => {
 
     describe("Bind Entity Search Results:", () => {
         /**
-         * Confirm both search terms and search workspaceEntityConfig are returned from bind function.
+         * Confirm both search terms and search entities are returned from bind function.
          */
-        it("binds both search terms and search workspaceEntityConfig", () => {
+        it("binds both search terms and search entities", () => {
             // Using square bracket notation here to do a sneaky call of a private method
             const entitySearchResults = fileService[
                 "bindEntitySearchResultsResponse"
@@ -88,7 +88,7 @@ describe("FileService:", () => {
 
     describe("Fetch Entity Search Results:", () => {
         /**
-         * Confirm catalog param is not included in fetch workspaceEntityConfig if not specified.
+         * Confirm catalog param is not included in fetch entities if not specified.
          */
         it("doesn't include catalog param if catalog is NONE", () => {
             httpClientSpy.get.and.returnValue(
@@ -119,7 +119,7 @@ describe("FileService:", () => {
         });
 
         /**
-         * Confirm catalog param is included in fetch workspaceEntityConfig if specified.
+         * Confirm catalog param is included in fetch entities if specified.
          */
         it("includes catalog param if catalog is DCP1", () => {
             httpClientSpy.get.and.returnValue(
