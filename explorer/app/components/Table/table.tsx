@@ -82,12 +82,17 @@ export const Table = <T extends object>({
     ? [{ desc: sort.sortOrder === "desc", id: sort.sortKey ?? "" }]
     : [];
 
-  const initialPagination = disablePagination
+  const initialState = disablePagination
     ? {
-        pageIndex: 0,
-        pageSize: Number.MAX_SAFE_INTEGER,
+        pagination: {
+          pageIndex: 0,
+          pageSize: Number.MAX_SAFE_INTEGER,
+        },
+        sorting: initialSorting,
       }
-    : undefined;
+    : {
+        sorting: initialSorting,
+      };
 
   const {
     getCanNextPage: tableCanNextPage,
@@ -106,10 +111,7 @@ export const Table = <T extends object>({
     manualPagination: !!pagination,
     manualSorting: true,
     pageCount: total,
-    state: {
-      pagination: initialPagination,
-      sorting: initialSorting,
-    },
+    state: initialState,
   });
   const scrollTop = useScroll();
   const currentPage =
