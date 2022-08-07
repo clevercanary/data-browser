@@ -6,7 +6,7 @@ import { Sort, SortOrderType } from "../../common/entities";
  * @param columnId - ID of the selected column to change sort to.
  * @returns the column ID to sort the table by.
  */
-export const newColumnKey = <T extends object>(
+export const newColumnKey = (
   sort: Sort,
   columnId: string
 ): string | undefined => {

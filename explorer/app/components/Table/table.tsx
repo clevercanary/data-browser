@@ -14,6 +14,7 @@ import {
   ColumnDef,
   getCoreRowModel,
   flexRender,
+  getPaginationRowModel,
 } from "@tanstack/react-table";
 
 // App dependencies
@@ -26,7 +27,7 @@ import { newColumnKey, newColumnOrder } from "./functions";
 import { RoundedPaper } from "../common/Paper/paper.styles";
 import { Table as GridTable, TableToolbar } from "./table.styles";
 import { useScroll } from "app/hooks/useScroll";
-import { Pagination, Sort } from "../../common/entities";
+import { Pagination, Sort, SortOrderType } from "../../common/entities";
 
 export interface EditColumnConfig {
   onVisibleColumnsChange: (newColumnId: string) => void;
@@ -77,56 +78,64 @@ export const Table = <T extends object>({
   sort,
   total,
 }: TableProps<T>): JSX.Element => {
+  const initialSorting = sort
+    ? [{ desc: sort.sortOrder === "desc", id: sort.sortKey ?? "" }]
+    : [];
+
+  const initialPagination = disablePagination
+    ? {
+        pageIndex: 0,
+        pageSize: Number.MAX_SAFE_INTEGER,
+      }
+    : undefined;
+
   const {
+    getCanNextPage: tableCanNextPage,
+    getCanPreviousPage: tableCanPreviousPage,
     getHeaderGroups,
     getRowModel,
-    // canNextPage: tableCanNextPage,
-    // canPreviousPage: tableCanPreviousPage,
-    // getTableBodyProps,
-    // getTableProps,
-    // headers,
-    // nextPage: tableNextPage,
-    // page,
-    // pageOptions,
-    // prepareRow,
-    // previousPage: tablePreviousPage,
-    // state: { pageIndex },
-  } = useReactTable<T>({
+    getState,
+    nextPage: tableNextPage,
+    previousPage: tablePreviousPage,
+  } = useReactTable({
     columns,
     data: items,
+    enableMultiSort: false,
     getCoreRowModel: getCoreRowModel(),
-    // disableMultiSort: true,
-    // initialState: {
-    //   pageSize: disablePagination ? Number.MAX_SAFE_INTEGER : pageSize,
-    // } as TableState,
-    // manualPagination: !!pagination,
-    // manualSortBy: true,
-    // pageCount: total,
+    getPaginationRowModel: getPaginationRowModel(),
+    manualPagination: !!pagination,
+    manualSorting: true,
+    pageCount: total,
+    state: {
+      pagination: initialPagination,
+      sorting: initialSorting,
+    },
   });
-  // const scrollTop = useScroll();
-  // const currentPage = pagination?.currentPage ?? pageIndex + 1;
-  // const totalPage = total ?? pageOptions.length;
+  const scrollTop = useScroll();
+  const currentPage =
+    pagination?.currentPage ?? getState().pagination.pageIndex + 1;
+  const totalPage = total ?? getState().pagination.pageSize;
 
-  // const handleSortClicked = (column: ColumnInstance<T>): void => {
-  //   if (sort) {
-  //     const newColumn = newColumnKey<T>(sort, column);
-  //     const newOrder = newColumnOrder(sort, newColumn);
-  //     sort.sort(newColumn, newOrder);
-  //     pagination?.resetPage();
-  //   }
-  // };
+  const handleTableNextPage = (): void => {
+    const nextPage = pagination?.nextPage ?? tableNextPage;
+    nextPage();
+    scrollTop();
+  };
 
-  // const handleTableNextPage = (): void => {
-  //   const nextPage = pagination?.nextPage ?? tableNextPage;
-  //   nextPage();
-  //   scrollTop();
-  // };
+  const handleTablePreviousPage = (): void => {
+    const previousPage = pagination?.previousPage ?? tablePreviousPage;
+    previousPage();
+    scrollTop();
+  };
 
-  // const handleTablePreviousPage = (): void => {
-  //   const previousPage = pagination?.previousPage ?? tablePreviousPage;
-  //   previousPage();
-  //   scrollTop();
-  // };
+  const handleSortClicked = (column: ColumnDef<T>): void => {
+    if (sort) {
+      const newColumn = newColumnKey(sort, column.id ?? "");
+      const newOrder = newColumnOrder(sort, newColumn);
+      sort.sort(newColumn, newOrder);
+      pagination?.resetPage();
+    }
+  };
 
   return (
     <div>
@@ -135,11 +144,11 @@ export const Table = <T extends object>({
       <RoundedPaper>
         {editColumns && (
           <TableToolbar>
-            {/* <PaginationSummary
+            <PaginationSummary
               firstResult={(currentPage - 1) * pageSize + 1}
               lastResult={pageSize * currentPage}
               totalResult={totalPage * pageSize}
-            /> */}
+            />
             <CheckboxMenu
               label="Edit Columns"
               onItemSelectionChange={editColumns.onVisibleColumnsChange}
@@ -156,20 +165,24 @@ export const Table = <T extends object>({
                 <TableRow>
                   {headerGroup.headers.map((header) => (
                     <TableCell key={header.id}>
-                      {/* <TableSortLabel
-                        active={sort?.sortKey === column.id}
+                      <TableSortLabel
+                        active={!!header.column.getIsSorted()}
                         direction={
-                          sort?.sortKey === column.id ? sort?.sortOrder : "asc"
+                          !header.column.getIsSorted()
+                            ? "asc"
+                            : (header.column.getIsSorted() as SortOrderType)
                         }
-                        disabled={column.disableSortBy}
+                        disabled={!header.column.columnDef.enableSorting}
                         IconComponent={SouthRoundedIcon}
-                        onClick={(): void => handleSortClicked(column)}
-                      > */}
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                      {/* </TableSortLabel> */}
+                        onClick={(): void =>
+                          handleSortClicked(header.column.columnDef)
+                        }
+                      >
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                      </TableSortLabel>
                     </TableCell>
                   ))}
                 </TableRow>
@@ -194,18 +207,18 @@ export const Table = <T extends object>({
             </TableBody>
           </GridTable>
         </TableContainer>
-        {/* {!disablePagination && (
+        {!disablePagination && (
           <DXPagination
-            canNextPage={pagination?.canNextPage ?? tableCanNextPage}
+            canNextPage={pagination?.canNextPage ?? !!tableCanNextPage}
             canPreviousPage={
-              pagination?.canPreviousPage ?? tableCanPreviousPage
+              pagination?.canPreviousPage ?? !!tableCanPreviousPage
             }
             currentPage={currentPage}
             onNextPage={handleTableNextPage}
             onPreviousPage={handleTablePreviousPage}
             totalPage={totalPage}
           />
-        )} */}
+        )}
       </RoundedPaper>
     </div>
   );

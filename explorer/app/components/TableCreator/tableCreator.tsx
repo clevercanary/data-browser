@@ -53,6 +53,7 @@ function isGridTrackMinMax(width: GridTrackSize): width is GridTrackMinMax {
 }
 
 const createCell = <T extends object>(config: ColumnConfig<T>) =>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- We can't determine the cell type
   function CellCreator({ row }: CellContext<T, any>): JSX.Element {
     return (
       <ComponentCreator
@@ -79,7 +80,7 @@ export const TableCreator = <T extends object>({
     () =>
       visibleColumns.map((columnConfig) => ({
         cell: createCell(columnConfig),
-        // disableSortBy: !columnConfig.sort,
+        enableSorting: !!columnConfig.sort,
         header: columnConfig.header,
         id: columnConfig.sort?.sortKey,
       })),

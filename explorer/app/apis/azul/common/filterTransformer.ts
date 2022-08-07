@@ -14,6 +14,7 @@ import {
 export function transformFilters(filters: Filters): string | undefined {
   // Build up model of filter params from filters.
   const initialFilterParams: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- We can't determine the filter value
     [k: string]: { [key in AZUL_FILTER_OPERATOR]?: any };
   } = {};
   const filterParams = filters.reduce((accum, filter) => {
