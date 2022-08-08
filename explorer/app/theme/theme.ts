@@ -379,7 +379,6 @@ export const getAppTheme = (customTheme?: ThemeOptions): Theme => {
             borderStyle: "solid",
             borderWidth: 2,
             boxSizing: "content-box",
-            color: ink,
             height: 24,
           },
           status: {
@@ -518,7 +517,6 @@ export const getAppTheme = (customTheme?: ThemeOptions): Theme => {
         styleOverrides: {
           root: {
             ...textBody400,
-            color: ink,
             minHeight: "unset",
             padding: "10px 16px",
             // eslint-disable-next-line sort-keys -- disabling key order for readability
@@ -548,7 +546,6 @@ export const getAppTheme = (customTheme?: ThemeOptions): Theme => {
         styleOverrides: {
           root: {
             ...textBody400,
-            color: ink,
             minHeight: "unset",
             padding: "10px 16px",
           },
@@ -656,7 +653,6 @@ export const getAppTheme = (customTheme?: ThemeOptions): Theme => {
             ...textBodySmall500,
           },
           root: {
-            color: ink,
             padding: "18px 20px",
           },
         },

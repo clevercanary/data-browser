@@ -26,7 +26,6 @@ export const SectionSummary = styled(ButtonBase)`
 
 export const SectionContent = styled(Typography)`
   align-items: flex-start;
-  color: ${({ theme }) => theme.palette.ink};
   display: flex;
   flex-direction: column;
   gap: 16px;
