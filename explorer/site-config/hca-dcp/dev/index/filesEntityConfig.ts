@@ -29,9 +29,9 @@ export const filesEntityConfig: EntityConfig<FilesResponse> = {
     columns: [
       {
         componentConfig: {
-          component: Components.Text,
+          component: Components.Cell,
           viewBuilder: buildFileName,
-        } as ComponentConfig<typeof Components.Text>,
+        } as ComponentConfig<typeof Components.Cell>,
         header: "File Name",
         sort: {
           default: true,
@@ -41,9 +41,9 @@ export const filesEntityConfig: EntityConfig<FilesResponse> = {
       },
       {
         componentConfig: {
-          component: Components.Text,
+          component: Components.Cell,
           viewBuilder: buildFileFormat,
-        } as ComponentConfig<typeof Components.Text>,
+        } as ComponentConfig<typeof Components.Cell>,
         header: "File Format",
         sort: {
           sortKey: "fileFormat",
@@ -52,9 +52,9 @@ export const filesEntityConfig: EntityConfig<FilesResponse> = {
       },
       {
         componentConfig: {
-          component: Components.Text,
+          component: Components.Cell,
           viewBuilder: buildFileSize,
-        } as ComponentConfig<typeof Components.Text>,
+        } as ComponentConfig<typeof Components.Cell>,
         header: "File Size",
         sort: {
           sortKey: "fileSize",
@@ -63,9 +63,9 @@ export const filesEntityConfig: EntityConfig<FilesResponse> = {
       },
       {
         componentConfig: {
-          component: Components.Text,
+          component: Components.Cell,
           viewBuilder: buildContentDesc,
-        } as ComponentConfig<typeof Components.Text>,
+        } as ComponentConfig<typeof Components.Cell>,
         header: "Content Description",
         sort: {
           sortKey: "contentDescription",
@@ -74,9 +74,9 @@ export const filesEntityConfig: EntityConfig<FilesResponse> = {
       },
       {
         componentConfig: {
-          component: Components.Text,
+          component: Components.Cell,
           viewBuilder: buildProjTitle,
-        } as ComponentConfig<typeof Components.Text>,
+        } as ComponentConfig<typeof Components.Cell>,
         header: "Project Title",
         sort: {
           sortKey: "projectTitle",
@@ -85,9 +85,9 @@ export const filesEntityConfig: EntityConfig<FilesResponse> = {
       },
       {
         componentConfig: {
-          component: Components.Text,
+          component: Components.Cell,
           viewBuilder: buildCellCount,
-        } as ComponentConfig<typeof Components.Text>,
+        } as ComponentConfig<typeof Components.Cell>,
         header: "Cell Count Estimate",
         sort: {
           sortKey: "cellCount",

@@ -10,91 +10,50 @@ import {
   filesToProjTitle,
 } from "../../../../apis/azul/hca-dcp/common/transformers";
 
-/* eslint-disable sonarjs/no-duplicate-string -- ignoring duplicate strings here*/
 export const buildFileName = (
   file: FilesResponse
-): React.ComponentProps<typeof C.Text> => {
-  if (!file.files?.[0]) {
-    return {};
-  }
-
+): React.ComponentProps<typeof C.Cell> => {
   return {
-    children: filesToFileName(file),
-    customColor: "ink",
-    variant: "text-body-400",
+    value: filesToFileName(file),
   };
 };
 
 export const buildFileFormat = (
   file: FilesResponse
-): React.ComponentProps<typeof C.Text> => {
-  if (!file.files?.[0]) {
-    return {};
-  }
-
+): React.ComponentProps<typeof C.Cell> => {
   return {
-    children: filesToFileFormat(file),
-    customColor: "ink",
-    variant: "text-body-400",
+    value: filesToFileFormat(file),
   };
 };
 
 export const buildProjTitle = (
   file: FilesResponse
-): React.ComponentProps<typeof C.Text> => {
-  if (!file.projects?.[0]) {
-    return {};
-  }
-
+): React.ComponentProps<typeof C.Cell> => {
   return {
-    children: filesToProjTitle(file),
-    customColor: "ink",
-    variant: "text-body-400",
+    value: filesToProjTitle(file),
   };
 };
 
 export const buildFileSize = (
   file: FilesResponse
-): React.ComponentProps<typeof C.Text> => {
-  if (!file.files?.[0]) {
-    return {};
-  }
-
+): React.ComponentProps<typeof C.Cell> => {
   return {
-    children: filesToFileSize(file),
-    customColor: "ink",
-    variant: "text-body-400",
+    value: filesToFileSize(file),
   };
 };
 
 export const buildContentDesc = (
   file: FilesResponse
-): React.ComponentProps<typeof C.Text> => {
-  if (!file.files?.[0]) {
-    return {};
-  }
-
+): React.ComponentProps<typeof C.Cell> => {
   return {
-    children: filesToContentDesc(file),
-    customColor: "ink",
-    variant: "text-body-400",
+    value: filesToContentDesc(file),
   };
 };
+
 export const buildCellCount = (
   file: FilesResponse
-): React.ComponentProps<typeof C.Text> => {
-  if (!file.projects?.[0].estimatedCellCount) {
-    return {
-      children: 0,
-      customColor: "ink",
-      variant: "text-body-400",
-    };
-  }
-
+): React.ComponentProps<typeof C.Cell> => {
   return {
-    children: filesToCellCount(file),
-    customColor: "ink",
-    variant: "text-body-400",
+    value: filesToCellCount(file),
   };
 };
-/* eslint-enable sonarjs/no-duplicate-string -- ignoring duplicate strings here*/
