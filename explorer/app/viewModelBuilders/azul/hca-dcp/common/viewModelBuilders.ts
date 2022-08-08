@@ -1,12 +1,17 @@
-import { concatStrings } from "app/utils/string";
-import { FilesResponse } from "app/models/responses";
-import * as C from "../../../app/components";
-import { humanFileSize } from "app/utils/fileSize";
+import { FilesResponse } from "../../../../apis/azul/hca-dcp/common/entities";
+import * as C from "../../../../components";
 
-const formatter = Intl.NumberFormat("en", { notation: "compact" });
+import {
+  filesToCellCount,
+  filesToContentDesc,
+  filesToFileFormat,
+  filesToFileName,
+  filesToFileSize,
+  filesToProjTitle,
+} from "../../../../apis/azul/hca-dcp/common/transformers";
 
 /* eslint-disable sonarjs/no-duplicate-string -- ignoring duplicate strings here*/
-export const filesToFileNameColumn = (
+export const buildFileName = (
   file: FilesResponse
 ): React.ComponentProps<typeof C.Text> => {
   if (!file.files?.[0]) {
@@ -14,13 +19,13 @@ export const filesToFileNameColumn = (
   }
 
   return {
-    children: file.files[0].name,
+    children: filesToFileName(file),
     customColor: "ink",
     variant: "text-body-400",
   };
 };
 
-export const filesToFileFormatColumn = (
+export const buildFileFormat = (
   file: FilesResponse
 ): React.ComponentProps<typeof C.Text> => {
   if (!file.files?.[0]) {
@@ -28,13 +33,13 @@ export const filesToFileFormatColumn = (
   }
 
   return {
-    children: file.files[0].format,
+    children: filesToFileFormat(file),
     customColor: "ink",
     variant: "text-body-400",
   };
 };
 
-export const filesToProjTitleColumn = (
+export const buildProjTitle = (
   file: FilesResponse
 ): React.ComponentProps<typeof C.Text> => {
   if (!file.projects?.[0]) {
@@ -42,13 +47,13 @@ export const filesToProjTitleColumn = (
   }
 
   return {
-    children: concatStrings(file.projects[0].projectTitle),
+    children: filesToProjTitle(file),
     customColor: "ink",
     variant: "text-body-400",
   };
 };
 
-export const filesToFileSizeColumn = (
+export const buildFileSize = (
   file: FilesResponse
 ): React.ComponentProps<typeof C.Text> => {
   if (!file.files?.[0]) {
@@ -56,13 +61,13 @@ export const filesToFileSizeColumn = (
   }
 
   return {
-    children: humanFileSize(file.files[0].size),
+    children: filesToFileSize(file),
     customColor: "ink",
     variant: "text-body-400",
   };
 };
 
-export const filesToContentDescColumn = (
+export const buildContentDesc = (
   file: FilesResponse
 ): React.ComponentProps<typeof C.Text> => {
   if (!file.files?.[0]) {
@@ -70,13 +75,12 @@ export const filesToContentDescColumn = (
   }
 
   return {
-    children: concatStrings(file.files[0].contentDescription),
+    children: filesToContentDesc(file),
     customColor: "ink",
     variant: "text-body-400",
   };
 };
-
-export const filesToCellCountColumn = (
+export const buildCellCount = (
   file: FilesResponse
 ): React.ComponentProps<typeof C.Text> => {
   if (!file.projects?.[0].estimatedCellCount) {
@@ -88,9 +92,9 @@ export const filesToCellCountColumn = (
   }
 
   return {
-    children: formatter.format(file.projects[0].estimatedCellCount),
+    children: filesToCellCount(file),
     customColor: "ink",
     variant: "text-body-400",
   };
 };
-/* eslint-enable sonarjs/no-duplicate-string -- watching for duplicate strings here */
+/* eslint-enable sonarjs/no-duplicate-string -- ignoring duplicate strings here*/

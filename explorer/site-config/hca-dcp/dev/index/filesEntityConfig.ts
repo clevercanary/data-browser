@@ -1,17 +1,24 @@
-import * as ViewBuilder from "./fileTransformer";
-import { buildDevStage } from "./projectViewModelBuilder";
-import * as Components from "../../../app/components";
+import { buildDevStage } from "../projectViewModelBuilder";
+import * as Components from "../../../../app/components";
 import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
-} from "../../../app/config/common/entities";
-import { FilesResponse } from "app/models/responses";
+} from "../../../../app/config/common/entities";
+import { FilesResponse } from "../../../../app/apis/azul/hca-dcp/common/entities";
+import {
+  buildCellCount,
+  buildContentDesc,
+  buildFileFormat,
+  buildFileName,
+  buildFileSize,
+  buildProjTitle,
+} from "../../../../app/viewModelBuilders/azul/hca-dcp/common/viewModelBuilders";
 
 /**
  * Entity config object responsible to config anything related to the /explore/files route.
  */
-export const filesEntity: EntityConfig<FilesResponse> = {
+export const filesEntityConfig: EntityConfig<FilesResponse> = {
   apiPath: "index/files",
   detail: {
     tabs: [],
@@ -23,7 +30,7 @@ export const filesEntity: EntityConfig<FilesResponse> = {
       {
         componentConfig: {
           component: Components.Text,
-          viewBuilder: ViewBuilder.filesToFileNameColumn,
+          viewBuilder: buildFileName,
         } as ComponentConfig<typeof Components.Text>,
         header: "File Name",
         sort: {
@@ -35,7 +42,7 @@ export const filesEntity: EntityConfig<FilesResponse> = {
       {
         componentConfig: {
           component: Components.Text,
-          viewBuilder: ViewBuilder.filesToFileFormatColumn,
+          viewBuilder: buildFileFormat,
         } as ComponentConfig<typeof Components.Text>,
         header: "File Format",
         sort: {
@@ -46,7 +53,7 @@ export const filesEntity: EntityConfig<FilesResponse> = {
       {
         componentConfig: {
           component: Components.Text,
-          viewBuilder: ViewBuilder.filesToFileSizeColumn,
+          viewBuilder: buildFileSize,
         } as ComponentConfig<typeof Components.Text>,
         header: "File Size",
         sort: {
@@ -57,7 +64,7 @@ export const filesEntity: EntityConfig<FilesResponse> = {
       {
         componentConfig: {
           component: Components.Text,
-          viewBuilder: ViewBuilder.filesToContentDescColumn,
+          viewBuilder: buildContentDesc,
         } as ComponentConfig<typeof Components.Text>,
         header: "Content Description",
         sort: {
@@ -68,7 +75,7 @@ export const filesEntity: EntityConfig<FilesResponse> = {
       {
         componentConfig: {
           component: Components.Text,
-          viewBuilder: ViewBuilder.filesToProjTitleColumn,
+          viewBuilder: buildProjTitle,
         } as ComponentConfig<typeof Components.Text>,
         header: "Project Title",
         sort: {
@@ -79,7 +86,7 @@ export const filesEntity: EntityConfig<FilesResponse> = {
       {
         componentConfig: {
           component: Components.Text,
-          viewBuilder: ViewBuilder.filesToCellCountColumn,
+          viewBuilder: buildCellCount,
         } as ComponentConfig<typeof Components.Text>,
         header: "Cell Count Estimate",
         sort: {
