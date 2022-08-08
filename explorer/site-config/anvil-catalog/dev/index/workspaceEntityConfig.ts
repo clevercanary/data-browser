@@ -21,49 +21,49 @@ export const workspaceEntityConfig: EntityConfig<AnvilSourceItem> = {
     columns: [
       {
         componentConfig: {
-          component: Components.Cell,
+          component: Components.Text,
           viewBuilder: ViewBuilder.buildConsortia,
-        } as ComponentConfig<typeof Components.Cell>,
+        } as ComponentConfig<typeof Components.Text>,
         header: "Consortium",
         width: { max: "1fr", min: "120px" },
       },
       {
         componentConfig: {
-          component: Components.Cell,
+          component: Components.Text,
           viewBuilder: ViewBuilder.buildStudyName,
-        } as ComponentConfig<typeof Components.Cell>,
+        } as ComponentConfig<typeof Components.Text>,
         header: "Terra Workspace Name",
         width: { max: "1fr", min: "360px" },
       },
       {
         componentConfig: {
-          component: Components.Cell,
+          component: Components.Text,
           viewBuilder: ViewBuilder.buildIndication,
-        } as ComponentConfig<typeof Components.Cell>,
+        } as ComponentConfig<typeof Components.Text>,
         header: "Disease (indication)",
         width: { max: "2fr", min: "240px" },
       },
       {
         componentConfig: {
-          component: Components.Cell,
+          component: Components.Text,
           viewBuilder: ViewBuilder.buildDataType,
-        } as ComponentConfig<typeof Components.Cell>,
+        } as ComponentConfig<typeof Components.Text>,
         header: "Data type",
         width: { max: "2fr", min: "120px" },
       },
       {
         componentConfig: {
-          component: Components.Cell,
+          component: Components.Text,
           viewBuilder: ViewBuilder.buildStudyDesign,
-        } as ComponentConfig<typeof Components.Cell>,
+        } as ComponentConfig<typeof Components.Text>,
         header: "Study Design",
         width: { max: "2fr", min: "240px" },
       },
       {
         componentConfig: {
-          component: Components.Cell,
+          component: Components.Text,
           viewBuilder: ViewBuilder.buildParticipantCount,
-        } as ComponentConfig<typeof Components.Cell>,
+        } as ComponentConfig<typeof Components.Text>,
         header: "Participants",
         width: { max: "2fr", min: "120px" },
       },
