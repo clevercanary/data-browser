@@ -1,21 +1,22 @@
 import { AnvilSourceItem } from "../../anvil/common/entities";
 
-export const getStudyName = (source: AnvilSourceItem): string => source?.name;
+export const getStudyName = (source: AnvilSourceItem): string =>
+  source.name ?? "";
 
 export const getConsortia = (source: AnvilSourceItem): string =>
-  source?.consortium;
+  source.consortium ?? "";
 
 export const getDisease = (source: AnvilSourceItem): string =>
-  source.diseaseText ? source.diseaseText : ""; // Empty diseaseText is allowed
+  source.diseaseText ?? "";
 
 export const getDataType = (source: AnvilSourceItem): string =>
-  source["library:datatype"];
+  source["library:datatype"] ?? "";
 
 export const getIndication = (source: AnvilSourceItem): string =>
-  source["library:indication"];
+  source["library:indication"] ?? "";
 
 export const getStudyDesign = (source: AnvilSourceItem): string =>
-  source["library:studyDesign"];
+  source["library:studyDesign"] ?? "";
 
 export const getParticipantCount = (source: AnvilSourceItem): number =>
-  source.participantCount;
+  source.participantCount ?? 0;
