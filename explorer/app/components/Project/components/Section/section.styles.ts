@@ -1,3 +1,4 @@
+// TODO section styles refactor to be resolved with https://github.com/clevercanary/data-browser/issues/400
 import { SectionTitle as Title } from "./components/SectionTitle/sectionTitle";
 import styled from "@emotion/styled";
 import { BREAKPOINT } from "../../../../hooks/useBreakpointHelper";
