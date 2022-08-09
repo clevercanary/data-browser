@@ -16,7 +16,7 @@ import {
   getProjectStatus,
   getProjectSupplementaryLinks,
   getProjectTitle,
-} from "app/components/Project/common/projectTransformer";
+} from "app/components/Layout/components/BackPage/common/projectTransformer";
 import { ProjectsResponse } from "app/models/responses";
 import { ENTRIES } from "app/project-edits";
 import { concatStrings } from "app/utils/string";

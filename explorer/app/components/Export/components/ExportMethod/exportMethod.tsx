@@ -3,13 +3,13 @@ import Link from "next/link";
 import React from "react";
 
 // Styles
-import { RoundedPaper } from "app/components/common/Paper/paper.styles";
 import {
   Content as SectionContent,
   Section,
   SectionCallout,
   SectionTitle,
-} from "app/components/Project/components/Section/section.styles";
+} from "app/components/Layout/components/BackPage/components/Section/section.styles";
+import { RoundedPaper } from "app/components/common/Paper/paper.styles";
 import { ExportButton } from "./exportMethod.styles";
 
 interface Props {
