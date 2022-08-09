@@ -39,7 +39,12 @@ const scheduleFileLocation = (
   setTimeout(() => {
     getFileLocation(url).then((result: FileLocation) => {
       if (result.status === FILE_LOCATION_PENDING) {
-        scheduleFileLocation(url, resolve, reject, result.retryAfter);
+        scheduleFileLocation(
+          result.location,
+          resolve,
+          reject,
+          result.retryAfter
+        );
       } else if (result.status === FILE_LOCATION_SUCCESSFULLY) {
         resolve(result);
       } else {
