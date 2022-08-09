@@ -1,5 +1,6 @@
 export { ShowMore } from "./ShowMore/ShowMore";
 export { Citations } from "./Citations/Citations";
+export { ExportMethod } from "./Export/components/ExportMethod/exportMethod";
 export { FileCounts } from "./FileCounts/FileCounts";
 export { IconList } from "./IconList/IconList";
 export { StaticImage } from "./common/StaticImage/staticImage";
@@ -27,3 +28,4 @@ export { Links } from "./Links/Links";
 export { Stack } from "./common/Stack/Stack";
 export { Tooltip } from "./Tooltip/tooltip";
 export { ValueInline } from "./ValueInline/valueInline";
+export { AzulFileDownload } from "./AzulFileDownload/azulFileDownload";

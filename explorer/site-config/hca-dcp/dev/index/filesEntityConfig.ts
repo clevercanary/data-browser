@@ -1,17 +1,25 @@
-import * as ViewBuilder from "./fileTransformer";
-import { buildDevStage } from "./projectViewModelBuilder";
-import * as Components from "../../../app/components";
+import { buildDevStage } from "../projectViewModelBuilder";
+import * as Components from "../../../../app/components";
 import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
-} from "../../../app/config/common/entities";
-import { FilesResponse } from "app/models/responses";
+} from "../../../../app/config/common/entities";
+import { FilesResponse } from "../../../../app/apis/azul/hca-dcp/common/entities";
+import {
+  buildCellCount,
+  buildContentDesc,
+  buildFileFormat,
+  buildFileName,
+  buildFileSize,
+  buildProjTitle,
+  buildFileDownload,
+} from "../../../../app/viewModelBuilders/azul/hca-dcp/common/viewModelBuilders";
 
 /**
  * Entity config object responsible to config anything related to the /explore/files route.
  */
-export const filesEntity: EntityConfig<FilesResponse> = {
+export const filesEntityConfig: EntityConfig<FilesResponse> = {
   apiPath: "index/files",
   detail: {
     tabs: [],
@@ -22,9 +30,17 @@ export const filesEntity: EntityConfig<FilesResponse> = {
     columns: [
       {
         componentConfig: {
-          component: Components.Text,
-          viewBuilder: ViewBuilder.filesToFileNameColumn,
-        } as ComponentConfig<typeof Components.Text>,
+          component: Components.AzulFileDownload,
+          viewBuilder: buildFileDownload,
+        } as ComponentConfig<typeof Components.AzulFileDownload>,
+        header: " ",
+        width: { max: "1fr", min: "50px" },
+      },
+      {
+        componentConfig: {
+          component: Components.Cell,
+          viewBuilder: buildFileName,
+        } as ComponentConfig<typeof Components.Cell>,
         header: "File Name",
         sort: {
           default: true,
@@ -34,9 +50,9 @@ export const filesEntity: EntityConfig<FilesResponse> = {
       },
       {
         componentConfig: {
-          component: Components.Text,
-          viewBuilder: ViewBuilder.filesToFileFormatColumn,
-        } as ComponentConfig<typeof Components.Text>,
+          component: Components.Cell,
+          viewBuilder: buildFileFormat,
+        } as ComponentConfig<typeof Components.Cell>,
         header: "File Format",
         sort: {
           sortKey: "fileFormat",
@@ -45,9 +61,9 @@ export const filesEntity: EntityConfig<FilesResponse> = {
       },
       {
         componentConfig: {
-          component: Components.Text,
-          viewBuilder: ViewBuilder.filesToFileSizeColumn,
-        } as ComponentConfig<typeof Components.Text>,
+          component: Components.Cell,
+          viewBuilder: buildFileSize,
+        } as ComponentConfig<typeof Components.Cell>,
         header: "File Size",
         sort: {
           sortKey: "fileSize",
@@ -56,9 +72,9 @@ export const filesEntity: EntityConfig<FilesResponse> = {
       },
       {
         componentConfig: {
-          component: Components.Text,
-          viewBuilder: ViewBuilder.filesToContentDescColumn,
-        } as ComponentConfig<typeof Components.Text>,
+          component: Components.Cell,
+          viewBuilder: buildContentDesc,
+        } as ComponentConfig<typeof Components.Cell>,
         header: "Content Description",
         sort: {
           sortKey: "contentDescription",
@@ -67,9 +83,9 @@ export const filesEntity: EntityConfig<FilesResponse> = {
       },
       {
         componentConfig: {
-          component: Components.Text,
-          viewBuilder: ViewBuilder.filesToProjTitleColumn,
-        } as ComponentConfig<typeof Components.Text>,
+          component: Components.Cell,
+          viewBuilder: buildProjTitle,
+        } as ComponentConfig<typeof Components.Cell>,
         header: "Project Title",
         sort: {
           sortKey: "projectTitle",
@@ -78,9 +94,9 @@ export const filesEntity: EntityConfig<FilesResponse> = {
       },
       {
         componentConfig: {
-          component: Components.Text,
-          viewBuilder: ViewBuilder.filesToCellCountColumn,
-        } as ComponentConfig<typeof Components.Text>,
+          component: Components.Cell,
+          viewBuilder: buildCellCount,
+        } as ComponentConfig<typeof Components.Cell>,
         header: "Cell Count Estimate",
         sort: {
           sortKey: "cellCount",
