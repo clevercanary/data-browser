@@ -10,9 +10,9 @@ import {
   ProjectsResponse,
   PublicationResponse,
 } from "app/models/responses";
-import { Breadcrumb } from "../../../../common/Breadcrumbs/breadcrumbs";
-import { Status } from "../../../../common/StatusBadge/statusBadge";
-import { HeroTitle } from "../../../../common/Title/title";
+import { Breadcrumb } from "../../common/Breadcrumbs/breadcrumbs";
+import { Status } from "../../common/StatusBadge/statusBadge";
+import { HeroTitle } from "../../common/Title/title";
 import { CONTRIBUTOR_ROLE } from "./constants";
 import {
   CollaboratingOrganization,
@@ -24,7 +24,7 @@ import {
   Publication,
   SupplementaryLink,
 } from "./entities";
-import { ENTRIES } from "../../../../../project-edits";
+import { ENTRIES } from "../../../project-edits";
 
 /**
  * Returns project related breadcrumbs.

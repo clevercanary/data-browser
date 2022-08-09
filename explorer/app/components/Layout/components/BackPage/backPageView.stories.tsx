@@ -4,17 +4,17 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 // App dependencies
 import { BackPageView } from "./backPageView";
-import { ProjectCitation } from "./components/Citation/citation.stories";
-import { ProjectCollaboratingOrganizations } from "./components/CollaboratingOrganizations/collaboratingOrganizations.stories";
-import { ProjectContacts } from "./components/Contacts/contacts.stories";
-import { ProjectContributors } from "./components/Contributors/contributors.stories";
-import { ProjectDataCurators } from "./components/DataCurators/dataCurators.stories";
-import { ProjectDataReleasePolicy } from "./components/DataReleasePolicy/dataReleasePolicy.stories";
-import { ProjectDescription } from "./components/Description/description.stories";
-import { ProjectDetails } from "./components/Details/details.stories";
-import { ProjectHero } from "./components/Hero/hero.stories";
-import { ProjectPublications } from "./components/Publications/publications.stories";
-import { ProjectSupplementaryLinks } from "./components/SupplementaryLinks/supplementaryLinks.stories";
+import { ProjectCitation } from "../../../Project/components/Citation/citation.stories";
+import { ProjectCollaboratingOrganizations } from "../../../Project/components/CollaboratingOrganizations/collaboratingOrganizations.stories";
+import { ProjectContacts } from "../../../Project/components/Contacts/contacts.stories";
+import { ProjectContributors } from "../../../Project/components/Contributors/contributors.stories";
+import { ProjectDataCurators } from "../../../Project/components/DataCurators/dataCurators.stories";
+import { ProjectDataReleasePolicy } from "../../../Project/components/DataReleasePolicy/dataReleasePolicy.stories";
+import { ProjectDescription } from "../../../Project/components/Description/description.stories";
+import { ProjectDetails } from "../../../Project/components/Details/details.stories";
+import { ProjectHero } from "../../../Project/components/Hero/hero.stories";
+import { ProjectPublications } from "../../../Project/components/Publications/publications.stories";
+import { ProjectSupplementaryLinks } from "../../../Project/components/SupplementaryLinks/supplementaryLinks.stories";
 
 export default {
   argTypes: {

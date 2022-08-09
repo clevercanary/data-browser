@@ -24,7 +24,7 @@ import {
   AggregatedLibraryResponse,
 } from "./aggregatedEntities";
 import { MetadataValue } from "../../../../components/Index/common/entities";
-import { Description } from "../../../../components/Layout/components/BackPage/common/entities";
+import { Description } from "../../../../components/Project/common/entities";
 import { DatasetsResponse } from "./responses";
 import { LABEL } from "../../common/entities";
 
