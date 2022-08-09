@@ -13,7 +13,7 @@ import * as ViewBuilders from "../../../../app/viewModelBuilders/azul/anvil/comm
  */
 export const biosamplesEntityConfig: EntityConfig<BioSamplesResponse> = {
   apiPath: "index/biosamples",
-  detail: {
+  backPage: {
     tabs: [],
     top: [],
   },

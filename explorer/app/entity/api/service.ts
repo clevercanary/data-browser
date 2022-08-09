@@ -5,7 +5,7 @@
 import { convertUrlParams } from "../../utils/url";
 import {
   DEFAULT_LIST_PARAMS,
-  DEFAULT_DETAIL_PARAMS,
+  DEFAULT_BACKPAGE_PARAMS,
   URL,
 } from "../../shared/constants";
 import {
@@ -68,10 +68,10 @@ export const listAll = async (
  * @param param - Catalog's version, if none passed it will default to the current one.
  * @returns @see ProjectResponse
  */
-export const detail = async (
+export const backPage = async (
   id: string,
   apiPath: string,
-  param = DEFAULT_DETAIL_PARAMS
+  param = DEFAULT_BACKPAGE_PARAMS
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this response type can't be determined beforehand
 ): Promise<any> => {
   const res = await fetch(
@@ -88,7 +88,7 @@ export const detail = async (
  */
 export const summary = async (
   apiPath: string,
-  param = DEFAULT_DETAIL_PARAMS
+  param = DEFAULT_BACKPAGE_PARAMS
 ): Promise<AzulSummaryResponse> => {
   const res = await fetch(`${URL}${apiPath}?${convertUrlParams({ ...param })}`);
   return await res.json();

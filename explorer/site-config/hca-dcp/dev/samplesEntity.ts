@@ -13,7 +13,7 @@ import { buildDevStage } from "./projectViewModelBuilder";
  */
 export const samplesEntity: EntityConfig<SamplesResponse> = {
   apiPath: "index/samples",
-  detail: {
+  backPage: {
     tabs: [],
     top: [],
   },

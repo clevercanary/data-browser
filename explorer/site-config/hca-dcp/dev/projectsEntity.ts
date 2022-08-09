@@ -7,19 +7,19 @@ import {
 } from "../../../app/config/common/entities";
 import { ProjectsResponse } from "app/models/responses";
 import { getProjectId } from "app/transformers/hca";
-import { mainColumn as overviewMainColumn } from "./detail/project/overviewMainColumn";
-import { mainColumn as metadataMainColumn } from "./detail/project/metadataMainColumn";
-import { mainColumn as matricesMainColumn } from "./detail/project/matricesMainColumn";
-import { mainColumn as projectFilesMainColumn } from "./detail/project/projectFilesMainColumn";
-import { mainColumn as exportMainColumn } from "./detail/project/exportMainColumn";
+import { mainColumn as overviewMainColumn } from "./backpage/project/overviewMainColumn";
+import { mainColumn as metadataMainColumn } from "./backpage/project/metadataMainColumn";
+import { mainColumn as matricesMainColumn } from "./backpage/project/matricesMainColumn";
+import { mainColumn as projectFilesMainColumn } from "./backpage/project/projectFilesMainColumn";
+import { mainColumn as exportMainColumn } from "./backpage/project/exportMainColumn";
 import * as ViewBuilder from "./projectsViewModelBuilder";
 import * as B from "./projectViewModelBuilder";
-import { sideColumn as overviewSideColumn } from "./detail/project/overviewSideColumn";
-import { sideColumn as metadataSideColumn } from "./detail/project/metadataSideColumn";
-import { sideColumn as matricesSideColumn } from "./detail/project/matricesSideColumn";
-import { sideColumn as projectFilesSideColumn } from "./detail/project/projectFilesSideColumn";
-import { sideColumn as exportSideColumn } from "./detail/project/exportSideColumn";
-import { top } from "./detail/project/top";
+import { sideColumn as overviewSideColumn } from "./backpage/project/overviewSideColumn";
+import { sideColumn as metadataSideColumn } from "./backpage/project/metadataSideColumn";
+import { sideColumn as matricesSideColumn } from "./backpage/project/matricesSideColumn";
+import { sideColumn as projectFilesSideColumn } from "./backpage/project/projectFilesSideColumn";
+import { sideColumn as exportSideColumn } from "./backpage/project/exportSideColumn";
+import { top } from "./backpage/project/top";
 import { PROJECTS_LABEL } from "./constants";
 
 /**
@@ -27,7 +27,7 @@ import { PROJECTS_LABEL } from "./constants";
  */
 export const projectsEntity: EntityConfig = {
   apiPath: "index/projects",
-  detail: {
+  backPage: {
     tabs: [
       {
         label: "Overview",

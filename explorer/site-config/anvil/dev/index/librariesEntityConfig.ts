@@ -13,7 +13,7 @@ import { LibrariesResponse } from "../../../../app/apis/azul/anvil/common/respon
  */
 export const librariesEntityConfig: EntityConfig<LibrariesResponse> = {
   apiPath: "index/libraries",
-  detail: {
+  backPage: {
     tabs: [],
     top: [],
   },

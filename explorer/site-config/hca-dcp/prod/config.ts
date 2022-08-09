@@ -9,7 +9,7 @@ const config: SiteConfig = {
   ...devConfig,
   browserURL: BROWSER_URL,
   dataSource: {
-    defaultDetailParams: {
+    defaultBackPageParams: {
       catalog: "dcp18",
     },
     defaultListParams: {

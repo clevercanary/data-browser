@@ -6,11 +6,11 @@ import {
 } from "../../apis/azul/common/entities";
 
 /**
- * Object that has all necessary functions to fetch data to fill listing and detail pages
+ * Object that has all necessary functions to fetch data to fill listing and backpages
  * for each entity
  */
 export interface Fetcher {
-  detail: (
+  backPage: (
     id: string,
     apiPath: string,
     param?: { [key: string]: string }

@@ -5,9 +5,9 @@ import {
   EntityConfig,
   ListConfig,
 } from "../../../../app/config/common/entities";
-import { mainColumn } from "../detail/dataset/overviewMainColumn";
-import { sideColumn } from "../detail/dataset/overviewSideColumn";
-import { top } from "../detail/dataset/top";
+import { mainColumn } from "../backpage/dataset/overviewMainColumn";
+import { sideColumn } from "../backpage/dataset/overviewSideColumn";
+import { top } from "../backpage/dataset/top";
 import { DatasetsResponse } from "../../../../app/apis/azul/anvil/common/responses";
 import * as ViewBuilder from "../../../../app/viewModelBuilders/azul/anvil/common/viewModelBuilders";
 
@@ -16,7 +16,7 @@ import * as ViewBuilder from "../../../../app/viewModelBuilders/azul/anvil/commo
  */
 export const datasetsEntityConfig: EntityConfig<DatasetsResponse> = {
   apiPath: "index/datasets",
-  detail: {
+  backPage: {
     tabs: [
       {
         label: "Overview",

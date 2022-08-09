@@ -32,7 +32,7 @@ export const listAll = async (): Promise<AzulEntitiesResponse> => {
   return list();
 };
 
-export const detail = async (): Promise<AnvilSourceItem> => {
+export const backPage = async (): Promise<AnvilSourceItem> => {
   throw new Error("Not implemented function"); //This function isn't necessary yet
 };
 

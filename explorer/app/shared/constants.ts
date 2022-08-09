@@ -5,8 +5,8 @@ import { config } from "../config/config";
  */
 export const URL: string = config().dataSource.url;
 export const DEFAULT_LIST_PARAMS = config().dataSource.defaultListParams ?? {};
-export const DEFAULT_DETAIL_PARAMS =
-  config().dataSource.defaultDetailParams ?? {};
+export const DEFAULT_BACKPAGE_PARAMS =
+  config().dataSource.defaultBackPageParams ?? {};
 
 /**
  * Determine if current deployment environment is development.

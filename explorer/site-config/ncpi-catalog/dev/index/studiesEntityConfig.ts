@@ -12,7 +12,7 @@ import { NPCICatalogSourceItem } from "../../../../app/apis/ncpi-catalog/common/
  * Entity config object responsible for config related to the /explore/studies route.
  */
 export const studiesEntityConfig: EntityConfig<NPCICatalogSourceItem> = {
-  detail: {
+  backPage: {
     tabs: [],
     top: [],
   },

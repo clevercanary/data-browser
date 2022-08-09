@@ -21,7 +21,7 @@ import {
  */
 export const filesEntityConfig: EntityConfig<FilesResponse> = {
   apiPath: "index/files",
-  detail: {
+  backPage: {
     tabs: [],
     top: [],
   },

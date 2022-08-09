@@ -129,7 +129,7 @@ const config: SiteConfig = {
     },
   ],
   dataSource: {
-    defaultDetailParams: {
+    defaultBackPageParams: {
       catalog: CATALOG_DCP2,
     },
     defaultListParams: {

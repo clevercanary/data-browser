@@ -12,7 +12,7 @@ import { SOURCE_FIELD_KEY, SOURCE_FIELD_TYPE } from "../../tsv-config";
  * Entity config object responsible to config anything related to the /explore/workspaces route.
  */
 export const workspaceEntity: EntityConfig<AnvilSourceItem> = {
-  detail: {
+  backPage: {
     tabs: [],
     top: [],
   },

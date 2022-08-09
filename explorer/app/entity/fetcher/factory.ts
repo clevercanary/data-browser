@@ -3,7 +3,7 @@ import * as tsvService from "../tsv/service";
 import * as apiService from "../api/service";
 
 const TSV_FETCHER: Fetcher = {
-  detail: tsvService.detail,
+  backPage: tsvService.backPage,
   fetchList: tsvService.fetchList,
   list: tsvService.list,
   listAll: tsvService.listAll,
@@ -11,7 +11,7 @@ const TSV_FETCHER: Fetcher = {
 };
 
 const API_FETCHER: Fetcher = {
-  detail: apiService.detail,
+  backPage: apiService.backPage,
   fetchList: apiService.fetchList,
   list: apiService.list,
   listAll: apiService.listAll,

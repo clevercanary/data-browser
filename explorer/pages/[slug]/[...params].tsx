@@ -42,7 +42,7 @@ export const getStaticPaths: GetStaticPaths<PageUrl> = async () => {
       if (entity.staticLoad && entity.getId) {
         const { listAll, path } = getFetcher(entity);
         const data = await listAll(path);
-        const tabs = entity.detail?.tabs.map((tab) => tab.route) ?? [];
+        const tabs = entity.backPage?.tabs?.map((tab) => tab.route) ?? [];
 
         data.hits.forEach((hit) => {
           tabs.forEach((tab) => {
@@ -83,8 +83,8 @@ export const getStaticProps: GetStaticProps<AzulEntityStaticResponse> = async ({
 
   const props: ProjectPageProps = { slug };
   if (entity.staticLoad) {
-    const { detail, path } = getFetcher(entity);
-    const data = await detail(
+    const { backPage, path } = getFetcher(entity);
+    const data = await backPage(
       (params as PageUrl).params[PARAMS_INDEX_UUID],
       path
     );

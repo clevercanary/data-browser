@@ -34,7 +34,7 @@ const config: SiteConfig = {
   browserURL: BROWSER_URL,
   categoryConfigs: hcaConfig.categoryConfigs,
   dataSource: {
-    defaultDetailParams: {
+    defaultBackPageParams: {
       catalog: CATALOG_LM2,
     },
     defaultListParams: {

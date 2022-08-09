@@ -26,12 +26,12 @@ interface TabConfig {
 
 /**
  * Interface used to define the entities and router that will be used on the application, alongside with
- * the detail and the list page configuration.
+ * the backPage and the list page configuration.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This config model is part of a generic array
 export interface EntityConfig<D = any> extends TabConfig {
   apiPath?: string;
-  detail: DetailConfig;
+  backPage: BackPage;
   getId?: GetIdFunction<D>;
   list: ListConfig;
   staticLoad?: boolean;
@@ -74,7 +74,7 @@ export type ComponentsConfig =
  * Interface to determine the API URL and version
  */
 export interface DataSourceConfig {
-  defaultDetailParams?: {
+  defaultBackPageParams?: {
     [key: string]: string;
   };
   defaultListParams?: {
@@ -84,17 +84,17 @@ export interface DataSourceConfig {
 }
 
 /**
- * Interface to define the set of components that will be used for the detail page.
+ * Interface to define the set of components that will be used for the backpage.
  */
-export interface DetailConfig {
-  tabs: DetailTabConfig[];
+export interface BackPage {
+  tabs?: BackPageConfig[];
   top: ComponentsConfig;
 }
 
 /**
- * Interface to determine the components for each tab on the detail page
+ * Interface to determine the components for each tab on the backpage
  */
-export interface DetailTabConfig extends TabConfig {
+export interface BackPageConfig extends TabConfig {
   mainColumn: ComponentsConfig;
   sideColumn: ComponentsConfig;
 }

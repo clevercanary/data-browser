@@ -13,7 +13,7 @@ import { DonorsResponse } from "../../../../app/apis/azul/anvil/common/responses
  */
 export const donorsEntityConfig: EntityConfig<DonorsResponse> = {
   apiPath: "index/donors",
-  detail: {
+  backPage: {
     tabs: [],
     top: [],
   },

@@ -15,7 +15,7 @@ import { DUG_API_PATH } from "../constants";
  */
 export const relatedStudiesEntityConfig: EntityConfig<DugVariableResponse> = {
   apiPath: DUG_API_PATH,
-  detail: studiesEntityConfig.detail,
+  backPage: studiesEntityConfig.backPage,
   label: "Related Studies",
   list: {
     columns: [
