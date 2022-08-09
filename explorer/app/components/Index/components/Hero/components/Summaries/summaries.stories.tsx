@@ -10,7 +10,6 @@ export default {
     summaries: { control: "array" },
   },
   component: Summaries,
-  title: "Components/Index/Summaries",
 } as ComponentMeta<typeof Summaries>;
 
 const Template: ComponentStory<typeof Summaries> = (args) => (

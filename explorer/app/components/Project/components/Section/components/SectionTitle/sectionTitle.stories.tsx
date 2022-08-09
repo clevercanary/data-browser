@@ -10,14 +10,14 @@ export default {
     title: { control: "text" },
   },
   component: SectionTitle,
-  title: "Components/Section/SectionTitle",
+  title: "Components/SectionTitle",
 } as ComponentMeta<typeof SectionTitle>;
 
 const Template: ComponentStory<typeof SectionTitle> = (args) => (
   <SectionTitle {...args} />
 );
 
-export const DefaultTitle = Template.bind({});
-DefaultTitle.args = {
+export const Primary = Template.bind({});
+Primary.args = {
   title: "Analysis Portals",
 };

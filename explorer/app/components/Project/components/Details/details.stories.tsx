@@ -3,7 +3,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 // App dependencies
-import { KeyValues } from "app/components/common/KeyValuePairs/keyValuePairs";
+import { KeyValues } from "../../../common/KeyValuePairs/keyValuePairs";
 import { Details } from "./details";
 
 // Template constants
@@ -19,7 +19,7 @@ export default {
     keyValuePairs: { control: "object" },
   },
   component: Details,
-  title: "Components/Project",
+  title: "Project/Detail",
 } as ComponentMeta<typeof Details>;
 
 const Template: ComponentStory<typeof Details> = (args) => (

@@ -7,8 +7,8 @@ import {
   Key,
   KeyValuePairs,
   KeyValues,
-} from "app/components/common/KeyValuePairs/keyValuePairs";
-import { Stack } from "app/components/common/Stack/Stack";
+} from "../../../common/KeyValuePairs/keyValuePairs";
+import { Stack } from "../../../common/Stack/Stack";
 import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
 import { Section } from "../Section/section";
 

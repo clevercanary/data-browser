@@ -7,7 +7,7 @@ import { Contributors } from "./contributors";
 
 export default {
   component: Contributors,
-  title: "Components/Project",
+  title: "Project/Detail",
 } as ComponentMeta<typeof Contributors>;
 
 const Template: ComponentStory<typeof Contributors> = (args) => (

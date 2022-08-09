@@ -7,7 +7,7 @@ import { SupplementaryLinks } from "./supplementaryLinks";
 
 export default {
   component: SupplementaryLinks,
-  title: "Components/Project",
+  title: "Project/Detail",
 } as ComponentMeta<typeof SupplementaryLinks>;
 
 const Template: ComponentStory<typeof SupplementaryLinks> = (args) => (

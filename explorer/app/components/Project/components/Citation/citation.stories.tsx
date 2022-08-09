@@ -10,7 +10,7 @@ export default {
     projectPath: { control: "text" },
   },
   component: Citation,
-  title: "Components/Project",
+  title: "Project/Detail",
 } as ComponentMeta<typeof Citation>;
 
 const Template: ComponentStory<typeof Citation> = (args) => (
