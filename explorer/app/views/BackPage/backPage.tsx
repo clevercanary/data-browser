@@ -1,11 +1,11 @@
 // Core dependencies
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 
 // App dependencies
 import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
 import { BackPageView } from "app/components/Layout/components/BackPage/backPageView";
-import { useCurrentDetailTab } from "app/hooks/useCurrentDetailTab";
+import { useCurrentBackPage } from "app/hooks/useCurrentBackPage";
 import { useCurrentEntity } from "app/hooks/useCurrentEntity";
 import { useFetchEntity } from "app/hooks/useFetchEntity";
 import { PARAMS_INDEX_UUID } from "app/shared/constants";
@@ -21,17 +21,17 @@ import { AzulEntityStaticResponse } from "../../apis/azul/common/entities";
 /**
  * Returns tabs to be used as a prop for the Tabs component.
  * @param entity - Entity config related to the /explore/projects route.
- * @returns tabs list.
+ * @returns tabs list or undefined.
  */
-function getTabs(entity: EntityConfig): Tab[] {
-  return entity.detail.tabs.map(({ label, route }) => ({
+function getTabs(entity: EntityConfig): Tab[] | undefined {
+  return entity.backPage.tabs?.map(({ label, route }) => ({
     label,
     value: route,
   }));
 }
 
 export const BackPage = (props: AzulEntityStaticResponse): JSX.Element => {
-  const { currentTab, route: tabRoute } = useCurrentDetailTab();
+  const { currentTab, route: tabRoute } = useCurrentBackPage();
   const entity = useCurrentEntity();
   const { isLoading, response } = useFetchEntity(props);
   const [tabsValue, setTabsValue] = useState<TabsValue>(tabRoute);
@@ -41,11 +41,7 @@ export const BackPage = (props: AzulEntityStaticResponse): JSX.Element => {
   const mainColumn = currentTab.mainColumn;
   const sideColumn = currentTab.sideColumn;
   const tabs = getTabs(entity);
-  const top = entity.detail.top;
-
-  if (isLoading) {
-    return <span></span>; //TODO: return the loading UI component
-  }
+  const top = entity.backPage.top;
 
   /**
    * Callback fired when selected tab value changes.
@@ -53,10 +49,23 @@ export const BackPage = (props: AzulEntityStaticResponse): JSX.Element => {
    * - Executes a pushState.
    * @param tabValue - Selected tab value.
    */
-  const onTabChange = (tabValue: TabValue): void => {
-    setTabsValue(tabValue); // Set state tabsValue prior to route change to indicate selection success.
-    push(`/${entityRoute}/${uuid}/${tabValue}`);
-  };
+  const onTabChange = useCallback(
+    (tabValue: TabValue): void => {
+      setTabsValue(tabValue); // Set state tabsValue prior to route change to indicate selection success.
+      push(`/${entityRoute}/${uuid}/${tabValue}`);
+    },
+    [entityRoute, push, uuid]
+  );
+
+  const TabsComponent = useMemo(
+    () =>
+      tabs && <Tabs onTabChange={onTabChange} tabs={tabs} value={tabsValue} />,
+    [onTabChange, tabs, tabsValue]
+  );
+
+  if (isLoading) {
+    return <span></span>; //TODO: return the loading UI component
+  }
 
   return (
     <BackPageView
@@ -66,7 +75,7 @@ export const BackPage = (props: AzulEntityStaticResponse): JSX.Element => {
       sideColumn={
         <ComponentCreator components={sideColumn} response={response} />
       }
-      Tabs={<Tabs onTabChange={onTabChange} tabs={tabs} value={tabsValue} />}
+      Tabs={TabsComponent}
       top={<ComponentCreator components={top} response={response} />}
     />
   );
