@@ -1,7 +1,7 @@
 import { AzulHit } from "../../common/entities";
 import { FilesEntityResponse } from "./entities";
-import { AggregateProjectResponse } from "./aggregatedEntities";
+import { AggregatedProjectResponse } from "./aggregatedEntities";
 
 export type FilesResponse = AzulHit &
   FilesEntityResponse &
-  AggregateProjectResponse;
+  AggregatedProjectResponse;

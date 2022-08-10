@@ -1,8 +1,8 @@
-export interface AggregateProject {
+export interface AggregatedProject {
   estimatedCellCount?: number;
   projectTitle: string[];
 }
 
-export interface AggregateProjectResponse {
-  projects: AggregateProject[];
+export interface AggregatedProjectResponse {
+  projects: AggregatedProject[];
 }

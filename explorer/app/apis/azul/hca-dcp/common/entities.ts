@@ -1,7 +1,6 @@
 /**
  * Model of response returned from /index/files API endpoint.
  */
-
 export interface FilesEntity {
   contentDescription: string[];
   format: string;
