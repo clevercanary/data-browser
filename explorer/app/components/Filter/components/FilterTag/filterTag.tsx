@@ -1,6 +1,6 @@
 // Core dependencies
-import { CloseRounded } from "@mui/icons-material";
 import { Chip } from "@mui/material";
+import { CloseRounded } from "@mui/icons-material";
 import React from "react";
 
 // Styles

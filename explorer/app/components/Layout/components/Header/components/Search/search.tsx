@@ -1,7 +1,7 @@
 // Core dependencies
-import SearchIcon from "@mui/icons-material/Search";
 import { Button, IconButton } from "@mui/material";
 import React from "react";
+import SearchIcon from "@mui/icons-material/Search";
 
 // App dependencies
 import {

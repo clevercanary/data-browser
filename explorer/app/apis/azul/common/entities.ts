@@ -1,4 +1,3 @@
-import { FileFormatResponse } from "../../../models/responses";
 import {
   ActivitiesResponse,
   BioSamplesResponse,
@@ -6,8 +5,9 @@ import {
   DonorsResponse,
   LibrariesResponse,
 } from "../anvil/common/responses";
-import { FileEntityResponse } from "../anvil/common/entities";
 import { CategoryKey, CategoryValueKey } from "../../../common/entities";
+import { FileEntityResponse } from "../anvil/common/entities";
+import { FileFormatResponse } from "../../../models/responses";
 
 /**
  * Base model of an entry in the "hits" value returned from an Azul entities response.

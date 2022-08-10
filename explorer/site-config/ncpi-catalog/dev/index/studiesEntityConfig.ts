@@ -1,5 +1,5 @@
-import * as ViewBuilder from "../../../../app/viewModelBuilders/ncpi-catalog/common/viewModelBuilders";
 import * as Components from "../../../../app/components";
+import * as ViewBuilder from "../../../../app/viewModelBuilders/ncpi-catalog/common/viewModelBuilders";
 import {
   ComponentConfig,
   EntityConfig,

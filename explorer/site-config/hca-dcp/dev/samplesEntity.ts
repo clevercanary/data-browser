@@ -1,12 +1,12 @@
-import * as ViewBuilder from "./sampleTransformer";
 import * as Components from "../../../app/components";
+import * as ViewBuilder from "./sampleTransformer";
 import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
 } from "../../../app/config/common/entities";
-import { SamplesResponse } from "app/models/responses";
 import { buildDevStage } from "./projectViewModelBuilder";
+import { SamplesResponse } from "app/models/responses";
 
 /**
  * Entity config object responsible to config anything related to the /explore/samples route.

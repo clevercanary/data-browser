@@ -1,6 +1,6 @@
 // Core dependencies
-import { Tooltip } from "@mui/material";
 import { ReactElement } from "react";
+import { Tooltip } from "@mui/material";
 
 interface Props {
   Tag: ReactElement;

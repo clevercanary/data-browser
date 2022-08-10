@@ -1,6 +1,6 @@
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { FileCounts } from "./FileCounts";
+import React from "react";
 
 export default {
   component: FileCounts,

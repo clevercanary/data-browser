@@ -1,17 +1,17 @@
 // Core dependencies
+import React, { ReactNode, useEffect, useState } from "react";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import { Collapse } from "@mui/material";
 import { CollapseProps } from "@mui/material/Collapse/Collapse";
-import React, { ReactNode, useEffect, useState } from "react";
+import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 
 // App dependencies
-import { SectionTitle } from "./components/SectionTitle/sectionTitle";
 import {
   BREAKPOINT,
   BREAKPOINT_FN_NAME,
   useBreakpointHelper,
 } from "../../../../hooks/useBreakpointHelper";
+import { SectionTitle } from "./components/SectionTitle/sectionTitle";
 
 // Styles
 import {

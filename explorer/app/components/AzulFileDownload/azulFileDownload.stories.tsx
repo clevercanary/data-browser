@@ -1,6 +1,6 @@
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { AzulFileDownload } from "./azulFileDownload";
+import React from "react";
 
 export default {
   component: AzulFileDownload,

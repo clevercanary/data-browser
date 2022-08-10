@@ -1,12 +1,12 @@
 // Core dependencies
-import { Typography } from "@mui/material";
 import React from "react";
+import { Typography } from "@mui/material";
 
 // App dependencies
-import { Publication } from "../../common/entities";
 import { ANCHOR_TARGET, Link } from "../../../Links/components/Link/link";
-import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
+import { Publication } from "../../common/entities";
 import { Section } from "../Section/section";
+import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
 
 interface Props {
   publications?: Publication[];

@@ -1,6 +1,6 @@
 // Core dependencies
-import { Typography } from "@mui/material";
 import React from "react";
+import { Typography } from "@mui/material";
 
 // Styles
 import { SidebarLabel as Label } from "./sidebarLabel.styles";

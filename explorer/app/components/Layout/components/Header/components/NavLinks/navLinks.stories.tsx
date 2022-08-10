@@ -1,6 +1,6 @@
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { NavLinks } from "./navLinks";
+import React from "react";
 
 export default {
   argTypes: {

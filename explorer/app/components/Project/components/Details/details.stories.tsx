@@ -1,10 +1,10 @@
 // Core dependencies
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import React from "react";
 
 // App dependencies
-import { KeyValues } from "../../../common/KeyValuePairs/keyValuePairs";
 import { Details } from "./details";
+import { KeyValues } from "../../../common/KeyValuePairs/keyValuePairs";
 
 // Template constants
 const details: KeyValues = new Map([

@@ -1,5 +1,5 @@
-import { FilesResponse } from "./entities";
 import { concatStrings } from "../../../../utils/string";
+import { FilesResponse } from "./entities";
 import { humanFileSize } from "../../../../utils/fileSize";
 
 export const filesToFileName = (file: FilesResponse): string =>

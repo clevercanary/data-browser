@@ -1,6 +1,6 @@
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Links } from "./Links";
+import React from "react";
 
 export default {
   argTypes: {

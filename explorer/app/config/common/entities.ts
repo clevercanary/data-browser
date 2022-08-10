@@ -1,6 +1,6 @@
 // Core dependencies
-import { ThemeOptions } from "@mui/material";
 import { JSXElementConstructor } from "react";
+import { ThemeOptions } from "@mui/material";
 
 // App dependencies
 import { Footer, Header } from "app/components/Layout/common/entities";

@@ -9,13 +9,13 @@ import {
 import React from "react";
 
 // App dependencies
-import { CheckedIcon } from "app/components/common/CustomIcon/components/CheckedIcon/checkedIcon";
-import { UncheckedIcon } from "app/components/common/CustomIcon/components/UncheckedIcon/uncheckedIcon";
 import {
   CategoryKey,
   SelectCategoryValueView,
 } from "../../../../common/entities";
+import { CheckedIcon } from "app/components/common/CustomIcon/components/CheckedIcon/checkedIcon";
 import { OnFilterFn } from "../../../../hooks/useCategoryFilter";
+import { UncheckedIcon } from "app/components/common/CustomIcon/components/UncheckedIcon/uncheckedIcon";
 
 // Styles
 import { FilterView } from "./filterMenu.styles";

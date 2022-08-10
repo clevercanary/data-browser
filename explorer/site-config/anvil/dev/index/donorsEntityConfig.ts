@@ -1,11 +1,11 @@
 // App dependencies
 import * as Components from "../../../../app/components";
+import * as ViewBuilder from "../../../../app/viewModelBuilders/azul/anvil/common/viewModelBuilders";
 import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
 } from "../../../../app/config/common/entities";
-import * as ViewBuilder from "../../../../app/viewModelBuilders/azul/anvil/common/viewModelBuilders";
 import { DonorsResponse } from "../../../../app/apis/azul/anvil/common/responses";
 
 /**

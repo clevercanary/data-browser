@@ -1,7 +1,7 @@
 // TODO replace Item component with Link from explorer/app/components/Links/components/Link/link.tsx
 import { Box } from "@mui/material";
-import React from "react";
 import { Item } from "./Item";
+import React from "react";
 
 interface LinksProps {
   enumerate?: boolean;

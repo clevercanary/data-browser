@@ -1,7 +1,7 @@
 // Core dependencies
-import { CloseRounded } from "@mui/icons-material";
 import { Drawer, PaperProps } from "@mui/material";
 import React, { ReactNode, useEffect } from "react";
+import { CloseRounded } from "@mui/icons-material";
 
 // App dependencies
 import {

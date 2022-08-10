@@ -1,11 +1,4 @@
-import { buildDevStage } from "../projectViewModelBuilder";
 import * as Components from "../../../../app/components";
-import {
-  ComponentConfig,
-  EntityConfig,
-  ListConfig,
-} from "../../../../app/config/common/entities";
-import { FilesResponse } from "../../../../app/apis/azul/hca-dcp/common/entities";
 import {
   buildCellCount,
   buildContentDesc,
@@ -15,6 +8,13 @@ import {
   buildFileSize,
   buildProjTitle,
 } from "../../../../app/viewModelBuilders/azul/hca-dcp/common/viewModelBuilders";
+import {
+  ComponentConfig,
+  EntityConfig,
+  ListConfig,
+} from "../../../../app/config/common/entities";
+import { buildDevStage } from "../projectViewModelBuilder";
+import { FilesResponse } from "../../../../app/apis/azul/hca-dcp/common/entities";
 
 /**
  * Entity config object responsible to config anything related to the /explore/files route.

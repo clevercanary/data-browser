@@ -1,12 +1,12 @@
 // App dependencies
 import * as Components from "../../../../app/components";
+import * as ViewBuilders from "../../../../app/viewModelBuilders/azul/anvil/common/viewModelBuilders";
 import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
 } from "../../../../app/config/common/entities";
 import { BioSamplesResponse } from "../../../../app/apis/azul/anvil/common/responses";
-import * as ViewBuilders from "../../../../app/viewModelBuilders/azul/anvil/common/viewModelBuilders";
 
 /**
  * Entity config object responsible for config related to the /explore/biosamples route.

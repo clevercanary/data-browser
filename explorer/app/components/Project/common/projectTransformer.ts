@@ -1,20 +1,5 @@
 // App dependencies
 import {
-  Key,
-  KeyValues,
-  Value,
-} from "app/components/common/KeyValuePairs/keyValuePairs";
-import {
-  ContributorResponse,
-  ProjectResponse,
-  ProjectsResponse,
-  PublicationResponse,
-} from "app/models/responses";
-import { Breadcrumb } from "../../common/Breadcrumbs/breadcrumbs";
-import { Status } from "../../common/StatusBadge/statusBadge";
-import { HeroTitle } from "../../common/Title/title";
-import { CONTRIBUTOR_ROLE } from "./constants";
-import {
   CollaboratingOrganization,
   Contact,
   Contributor,
@@ -24,7 +9,22 @@ import {
   Publication,
   SupplementaryLink,
 } from "./entities";
+import {
+  ContributorResponse,
+  ProjectResponse,
+  ProjectsResponse,
+  PublicationResponse,
+} from "app/models/responses";
+import {
+  Key,
+  KeyValues,
+  Value,
+} from "app/components/common/KeyValuePairs/keyValuePairs";
+import { Breadcrumb } from "../../common/Breadcrumbs/breadcrumbs";
+import { CONTRIBUTOR_ROLE } from "./constants";
 import { ENTRIES } from "../../../project-edits";
+import { HeroTitle } from "../../common/Title/title";
+import { Status } from "../../common/StatusBadge/statusBadge";
 
 /**
  * Returns project related breadcrumbs.

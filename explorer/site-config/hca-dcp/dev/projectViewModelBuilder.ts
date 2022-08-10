@@ -17,10 +17,10 @@ import {
   getProjectSupplementaryLinks,
   getProjectTitle,
 } from "app/components/Project/common/projectTransformer";
-import { ProjectsResponse } from "app/models/responses";
-import { ENTRIES } from "app/project-edits";
 import { concatStrings } from "app/utils/string";
+import { ENTRIES } from "app/project-edits";
 import { PROJECTS_URL } from "./config";
+import { ProjectsResponse } from "app/models/responses";
 
 const formatter = Intl.NumberFormat("en", { notation: "compact" });
 

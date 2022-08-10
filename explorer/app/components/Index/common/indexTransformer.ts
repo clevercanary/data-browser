@@ -5,8 +5,8 @@ import {
   SUMMARY_LABEL,
 } from "./constants";
 import { METADATA_KEY, SUMMARY, Summary } from "./entities";
-import { formatCountSize } from "./utils";
 import { AzulSummaryResponse } from "../../../apis/azul/common/entities";
+import { formatCountSize } from "./utils";
 
 /**
  * Returns the pluralized metadata label for the specified metadata.

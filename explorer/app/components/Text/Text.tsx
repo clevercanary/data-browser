@@ -3,10 +3,10 @@
  * control over the tag that will be used and the custom colors.
  * https://github.com/mui/material-ui/issues/15695
  */
-import styled from "@emotion/styled";
-import { SimplePaletteColorOptions } from "@mui/material";
 import Typography, { TypographyProps } from "@mui/material/Typography";
 import { CustomColors } from "app/theme/theme";
+import { SimplePaletteColorOptions } from "@mui/material";
+import styled from "@emotion/styled";
 
 interface TextProps extends Omit<TypographyProps, "color"> {
   colorOption?: keyof SimplePaletteColorOptions;

@@ -1,9 +1,9 @@
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { AzulEntityStaticResponse } from "../apis/azul/common/entities";
 import { PARAMS_INDEX_UUID } from "app/shared/constants";
 import { useAsync } from "./useAsync";
+import { useEffect } from "react";
 import { useFetcher } from "./useFetcher";
+import { useRouter } from "next/router";
 
 interface UseEntityDetailResponse<T> {
   isLoading: boolean;

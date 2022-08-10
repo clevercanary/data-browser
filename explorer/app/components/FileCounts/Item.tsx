@@ -1,7 +1,7 @@
-import { Typography } from "@mui/material";
+import { ItemContainer } from "./FileCounts.styles";
 import React from "react";
 import { Text } from "../Text/Text";
-import { ItemContainer } from "./FileCounts.styles";
+import { Typography } from "@mui/material";
 
 export interface ItemProps {
   count: string | number;

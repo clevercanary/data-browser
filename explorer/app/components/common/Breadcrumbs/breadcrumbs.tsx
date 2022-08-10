@@ -1,12 +1,12 @@
 // Core dependencies
-import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import {
   Link as BreadcrumbLink,
   Breadcrumbs as MBreadcrumbs,
   Typography,
 } from "@mui/material";
-import Link from "next/link";
 import React, { ReactNode } from "react";
+import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
+import Link from "next/link";
 
 export interface Breadcrumb {
   path: string;

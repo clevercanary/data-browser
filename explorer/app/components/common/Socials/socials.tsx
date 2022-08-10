@@ -1,12 +1,12 @@
 // Core dependencies
 import { Box, IconButtonProps, SxProps, Theme } from "@mui/material";
-import Link from "next/link";
 import React, { ElementType } from "react";
+import Link from "next/link";
 
 // App dependencies
-import { IconName } from "../CustomIcon/common/iconSvgPathShapes";
-import { CustomIcon } from "../CustomIcon/customIcon";
 import { ANCHOR_TARGET } from "../../Links/components/Link/link";
+import { CustomIcon } from "../CustomIcon/customIcon";
+import { IconName } from "../CustomIcon/common/iconSvgPathShapes";
 
 // Styles
 import { IconButtonSocials } from "../IconButton/iconButton.styles";

@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
 import { Button } from "@mui/material";
+import styled from "@emotion/styled";
 
 export const FilterLabel = styled(Button)`
   color: ${({ theme }) => theme.palette.ink.main};

@@ -1,6 +1,6 @@
 import { ComponentsConfig } from "app/config/common/entities";
-import { useConfig } from "app/hooks/useConfig";
 import React from "react";
+import { useConfig } from "app/hooks/useConfig";
 import { v4 as uuid4 } from "uuid";
 
 interface ComponentCreatorProps<T> {

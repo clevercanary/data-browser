@@ -1,6 +1,6 @@
 // Core dependencies
-import React from "react";
 import NextHead from "next/head";
+import React from "react";
 import { useConfig } from "app/hooks/useConfig";
 import { useRouter } from "next/router";
 

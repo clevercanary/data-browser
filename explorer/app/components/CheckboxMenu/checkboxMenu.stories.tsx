@@ -1,6 +1,6 @@
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { CheckboxMenu } from "./checkboxMenu";
+import React from "react";
 
 export default {
   argTypes: {

@@ -8,25 +8,25 @@ import {
   LibraryEntityResponse,
 } from "./entities";
 import {
-  processAggregatedOrArrayValue,
-  processEntityValue,
-} from "../../common/utils";
-import {
-  Key,
-  KeyValues,
-  Value,
-} from "../../../../components/common/KeyValuePairs/keyValuePairs";
-import { Breadcrumb } from "../../../../components/common/Breadcrumbs/breadcrumbs";
-import {
   AggregatedBioSampleResponse,
   AggregatedDatasetResponse,
   AggregatedDonorResponse,
   AggregatedLibraryResponse,
 } from "./aggregatedEntities";
-import { MetadataValue } from "../../../../components/Index/common/entities";
-import { Description } from "../../../../components/Project/common/entities";
+import {
+  Key,
+  KeyValues,
+  Value,
+} from "../../../../components/common/KeyValuePairs/keyValuePairs";
+import {
+  processAggregatedOrArrayValue,
+  processEntityValue,
+} from "../../common/utils";
+import { Breadcrumb } from "../../../../components/common/Breadcrumbs/breadcrumbs";
 import { DatasetsResponse } from "./responses";
+import { Description } from "../../../../components/Project/common/entities";
 import { LABEL } from "../../common/entities";
+import { MetadataValue } from "../../../../components/Index/common/entities";
 
 /**
  * Maps activity type from the core activity entity returned from the index/activites API response.

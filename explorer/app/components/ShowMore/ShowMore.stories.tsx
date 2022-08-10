@@ -1,7 +1,7 @@
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { ShowMore } from "./ShowMore";
 import { Contacts } from "../Project/components/Contacts/contacts";
+import React from "react";
+import { ShowMore } from "./ShowMore";
 
 export default {
   argTypes: {

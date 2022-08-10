@@ -1,6 +1,6 @@
 import anvilDevConfig from "../../anvil/dev/config";
-import { workspaceEntity } from "./index/workspaceEntity";
 import { SiteConfig } from "../../../app/config/common/entities";
+import { workspaceEntity } from "./index/workspaceEntity";
 
 const config: SiteConfig = {
   ...anvilDevConfig,

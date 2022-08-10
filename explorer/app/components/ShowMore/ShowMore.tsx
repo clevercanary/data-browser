@@ -1,6 +1,6 @@
-import { Button } from "@mui/material";
-import React, { useState } from "react";
 import { Container, Wrapper } from "./ShowMore.styles";
+import React, { useState } from "react";
+import { Button } from "@mui/material";
 
 interface ShowMoreProps {
   buttonLabelHide?: string;

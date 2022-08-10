@@ -1,10 +1,10 @@
-import { SelectCategory, SelectCategoryValue } from "../../../common/entities";
 import {
   AZUL_FILTER_OPERATOR,
   AzulTermFacets,
   Filters,
   LABEL,
 } from "./entities";
+import { SelectCategory, SelectCategoryValue } from "../../../common/entities";
 
 /**
  * Transform generic filter (selected categories and category values) into an Azul-specific filter query param.

@@ -1,14 +1,14 @@
-import * as ViewBuilder from "../../../../app/viewModelBuilders/ncpi-catalog/common/viewModelBuilders";
 import * as C from "../../../../app/components";
+import * as ViewBuilder from "../../../../app/viewModelBuilders/ncpi-catalog/common/viewModelBuilders";
 import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
 } from "../../../../app/config/common/entities";
 
+import { DUG_API_PATH } from "../constants";
 import { DugVariableResponse } from "../../../../app/apis/ncpi-catalog-dug/common/entities";
 import { studiesEntityConfig } from "site-config/ncpi-catalog/dev/index/studiesEntityConfig";
-import { DUG_API_PATH } from "../constants";
 
 /**
  * Entity config object responsible for config related to the /explore/studies route.

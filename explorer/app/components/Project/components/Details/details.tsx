@@ -1,6 +1,6 @@
 // Core dependencies
-import { Typography } from "@mui/material";
 import React, { Fragment } from "react";
+import { Typography } from "@mui/material";
 
 // App dependencies
 import {
@@ -8,9 +8,9 @@ import {
   KeyValuePairs,
   KeyValues,
 } from "../../../common/KeyValuePairs/keyValuePairs";
-import { Stack } from "../../../common/Stack/Stack";
-import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
 import { Section } from "../Section/section";
+import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
+import { Stack } from "../../../common/Stack/Stack";
 
 interface Props {
   keyValuePairs?: KeyValues;

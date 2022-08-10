@@ -1,10 +1,10 @@
 // Core dependencies
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import React from "react";
 
 // App dependencies
-import { Label as SidebarLabel } from "./components/SidebarLabel/sidebarLabel.stories";
 import { Sidebar } from "./sidebar";
+import { Label as SidebarLabel } from "./components/SidebarLabel/sidebarLabel.stories";
 
 export default {
   argTypes: {

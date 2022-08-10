@@ -1,15 +1,15 @@
 // Core dependencies
-import { ThemeProvider as Emotion10ThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
+import { ThemeProvider as Emotion10ThemeProvider } from "@emotion/react";
 import { ThemeProvider } from "@mui/material/styles";
 
 // App dependencies
-import { ConfigProvider } from "app/components/Config/Config";
-import { Head } from "app/components/Head/head";
-import { Footer } from "app/components/Layout/components/Footer/footer";
-import { Header } from "app/components/Layout/components/Header/header";
 import { config } from "app/config/config";
+import { ConfigProvider } from "app/components/Config/Config";
+import { Footer } from "app/components/Layout/components/Footer/footer";
 import { getAppTheme } from "app/theme/theme";
+import { Head } from "app/components/Head/head";
+import { Header } from "app/components/Layout/components/Header/header";
 
 // Styles
 import { AppLayout } from "app/components/Layout/components/AppLayout/appLayout.styles";

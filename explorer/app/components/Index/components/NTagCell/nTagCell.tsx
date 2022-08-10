@@ -4,8 +4,8 @@ import React, { forwardRef } from "react";
 
 // App dependencies
 import { MetadataValue } from "../../common/entities";
-import { stringifyMetadataValues } from "../../common/utils";
 import { NTag } from "../NTag/nTag";
+import { stringifyMetadataValues } from "../../common/utils";
 
 // Template constants
 const MAX_DISPLAYABLE_VALUES = 1;

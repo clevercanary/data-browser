@@ -1,7 +1,7 @@
 // Core dependencies
 import { LinkProps, Link as MLink } from "@mui/material";
-import NLink from "next/link";
 import React, { ReactNode } from "react";
+import NLink from "next/link";
 
 // App dependencies
 import { CopyToClipboard } from "../../../common/CopyToClipboard/copyToClipboard";

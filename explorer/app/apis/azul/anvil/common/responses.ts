@@ -6,7 +6,6 @@ import {
   FileEntityResponse,
   LibraryEntityResponse,
 } from "./entities";
-import { AzulHit } from "../../common/entities";
 import {
   AggregatedActivityResponse,
   AggregatedBioSampleResponse,
@@ -15,6 +14,7 @@ import {
   AggregatedFileResponse,
   AggregatedLibraryResponse,
 } from "./aggregatedEntities";
+import { AzulHit } from "../../common/entities";
 
 /**
  * Model of response returned from the /index/activities API endpoint.

@@ -1,5 +1,5 @@
-import React from "react";
 import { Item, ItemProps } from "./Item";
+import React from "react";
 
 interface FileCountsProps {
   files: ItemProps[];

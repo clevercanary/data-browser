@@ -1,7 +1,7 @@
 // App dependencies
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
-import { Social } from "app/components/common/Socials/socials";
 import { Logo } from "../../../app/components/Layout/common/entities";
+import { Social } from "app/components/common/Socials/socials";
 
 // Images
 import logoLungmap from "images/logoLungmap.png";

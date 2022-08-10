@@ -1,9 +1,9 @@
 // App dependencies
+import { breakpointTablet } from "../../../app/theme/theme";
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
-import { Social } from "../../../app/components/common/Socials/socials";
 import { Logo } from "../../../app/components/Layout/common/entities";
 import { SiteConfig } from "../../../app/config/common/entities";
-import { breakpointTablet } from "../../../app/theme/theme";
+import { Social } from "../../../app/components/common/Socials/socials";
 
 // Summary config
 import { summary } from "./index/summary";

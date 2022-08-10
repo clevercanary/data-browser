@@ -1,13 +1,13 @@
 // Core dependencies
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import React from "react";
 
 // App dependencies
-import { Filters } from "./filters";
 import {
   DefaultFilterMenu,
   FilterSelectCategoryViewDonorDisease,
 } from "../FilterMenu/filterMenu.stories";
+import { Filters } from "./filters";
 
 export default {
   argTypes: {

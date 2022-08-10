@@ -1,7 +1,7 @@
 // App dependencies
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
-import { Social } from "app/components/common/Socials/socials";
 import { Logo } from "../../../app/components/Layout/common/entities";
+import { Social } from "app/components/common/Socials/socials";
 
 // Summary config
 import { summary } from "./index/summary";
@@ -9,8 +9,8 @@ import { summary } from "./index/summary";
 // Entities config
 import { activitiesEntityConfig } from "./index/activitiesEntityConfig";
 import { biosamplesEntityConfig } from "./index/biosamplesEntityConfig";
-import { donorsEntityConfig } from "./index/donorsEntityConfig";
 import { datasetsEntityConfig } from "./index/datasetsEntityConfig";
+import { donorsEntityConfig } from "./index/donorsEntityConfig";
 import { filesEntityConfig } from "./index/filesEntityConfig";
 import { librariesEntityConfig } from "./index/librariesEntityConfig";
 

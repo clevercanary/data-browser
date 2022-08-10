@@ -1,6 +1,6 @@
+import { ItemContainer } from "./ValueBlock.styles";
 import React from "react";
 import { Text } from "../Text/Text";
-import { ItemContainer } from "./ValueBlock.styles";
 
 export interface ItemProps {
   label: string;

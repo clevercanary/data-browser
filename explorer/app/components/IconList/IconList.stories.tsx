@@ -1,7 +1,7 @@
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { IconList } from "./IconList";
 import CellXGeneIcon from "images/icons/cellxgene.svg";
+import { IconList } from "./IconList";
+import React from "react";
 import StemIcon from "images/icons/stem.svg";
 import UCSCCellIcon from "images/icons/ucsc-cell.svg";
 import UCSCGenomeIcon from "images/icons/ucsc-genome.svg";

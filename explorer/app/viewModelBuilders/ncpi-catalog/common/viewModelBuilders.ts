@@ -1,6 +1,4 @@
-import React from "react";
 import * as C from "../../../components";
-import { NPCICatalogSourceItem } from "../../../apis/ncpi-catalog/common/entities";
 import {
   getConsentCode,
   getDataType,
@@ -11,6 +9,8 @@ import {
   getStudy,
   getStudyDesign,
 } from "../../../apis/ncpi-catalog/common/transformers";
+import { NPCICatalogSourceItem } from "../../../apis/ncpi-catalog/common/entities";
+import React from "react";
 
 /**
  * Build props for platform cell component from the given study in the NCPI catalog.

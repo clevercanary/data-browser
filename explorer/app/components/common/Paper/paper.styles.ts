@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
 import { Paper } from "./paper";
+import styled from "@emotion/styled";
 
 /**
  * Flat paper - typically used when in full stretch or full "bleed" across a container.

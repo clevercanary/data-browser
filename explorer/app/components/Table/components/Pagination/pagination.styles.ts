@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
 import { BREAKPOINT } from "../../../../hooks/useBreakpointHelper";
+import styled from "@emotion/styled";
 
 export const Pagination = styled.div`
   align-items: center;

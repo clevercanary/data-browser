@@ -1,10 +1,10 @@
 // App dependencies
-import { METADATA_KEY, SUMMARY } from "./entities";
 import {
   calculateSummaryFileFormatsCount,
   calculateSummaryTotalCellCount,
   getSummaryCount,
 } from "./utils";
+import { METADATA_KEY, SUMMARY } from "./entities";
 import { AzulSummaryResponse } from "../../../apis/azul/common/entities";
 
 // Template constants

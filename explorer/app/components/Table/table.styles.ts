@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
 import { Table as MTable } from "@mui/material";
+import styled from "@emotion/styled";
 
 interface Props {
   gridTemplateColumns: string;

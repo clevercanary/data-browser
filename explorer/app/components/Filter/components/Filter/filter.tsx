@@ -1,6 +1,6 @@
 // Core dependencies
-import { PopoverPosition } from "@mui/material";
 import React, { ElementType, MouseEvent, ReactNode, useState } from "react";
+import { PopoverPosition } from "@mui/material";
 
 // Styles
 import { FilterPopover } from "./filter.styles";

@@ -1,6 +1,6 @@
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { LabelValue } from "./LabelValue";
+import React from "react";
 
 export default {
   argTypes: {

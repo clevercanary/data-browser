@@ -3,7 +3,6 @@ import Link from "next/link";
 import React from "react";
 
 // Styles
-import { RoundedPaper } from "app/components/common/Paper/paper.styles";
 import {
   Section,
   SectionCallout,
@@ -11,6 +10,7 @@ import {
   SectionTitle,
 } from "app/components/Project/components/Section/section.styles";
 import { ExportButton } from "./exportMethod.styles";
+import { RoundedPaper } from "app/components/common/Paper/paper.styles";
 
 interface Props {
   buttonLabel: string;

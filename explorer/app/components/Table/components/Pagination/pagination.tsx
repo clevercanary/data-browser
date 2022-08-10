@@ -1,8 +1,8 @@
 // Core dependencies
 import EastRoundedIcon from "@mui/icons-material/EastRounded";
-import WestRoundedIcon from "@mui/icons-material/WestRounded";
-import { Typography } from "@mui/material";
 import React from "react";
+import { Typography } from "@mui/material";
+import WestRoundedIcon from "@mui/icons-material/WestRounded";
 
 // App dependencies
 import { Stack } from "../../../common/Stack/Stack";

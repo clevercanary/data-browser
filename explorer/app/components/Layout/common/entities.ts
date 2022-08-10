@@ -1,7 +1,7 @@
 // App dependencies
-import { Social } from "../../common/Socials/socials";
 import { ImageSrc } from "../../common/StaticImage/staticImage";
 import { NavAlignment } from "../components/Header/components/NavLinks/navLinks";
+import { Social } from "../../common/Socials/socials";
 
 /**
  * Model of footer to be used as props for the Footer component.

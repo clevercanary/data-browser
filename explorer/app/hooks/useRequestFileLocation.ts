@@ -3,8 +3,8 @@ import {
   FILE_LOCATION_SUCCESSFULLY,
   FileLocationResponse,
 } from "app/apis/azul/common/entities";
-import { useCallback } from "react";
 import { useAsync } from "./useAsync";
+import { useCallback } from "react";
 
 export interface FileLocation {
   location: string;

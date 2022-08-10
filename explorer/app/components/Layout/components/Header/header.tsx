@@ -1,23 +1,23 @@
 // Core dependencies
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import { Box, Divider, IconButton, Toolbar, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 
 // App dependencies
-import { Header as HeaderProps } from "../../common/entities";
-import { ELEMENT_ALIGNMENT } from "../../../../common/entities";
-import { Socials } from "../../../common/Socials/socials";
-import { Content } from "./components/Content/content";
-import { Logo } from "./components/Logo/logo";
-import { NavLinks } from "./components/NavLinks/navLinks";
-import { ProfileComponent } from "./components/ProfileComponent/profileComponent";
-import { Search } from "./components/Search/search";
 import {
   BREAKPOINT,
   BREAKPOINT_FN_NAME,
   useBreakpointHelper,
 } from "../../../../hooks/useBreakpointHelper";
+import { Content } from "./components/Content/content";
+import { ELEMENT_ALIGNMENT } from "../../../../common/entities";
+import { Header as HeaderProps } from "../../common/entities";
+import { Logo } from "./components/Logo/logo";
+import { NavLinks } from "./components/NavLinks/navLinks";
+import { ProfileComponent } from "./components/ProfileComponent/profileComponent";
+import { Search } from "./components/Search/search";
+import { Socials } from "../../../common/Socials/socials";
 
 // Styles
 import { Header as AppBar } from "./header.styles";

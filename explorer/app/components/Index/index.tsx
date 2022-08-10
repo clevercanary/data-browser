@@ -2,8 +2,8 @@
 import React, { ReactNode } from "react";
 
 // App dependencies
-import { HeroTitle } from "../common/Title/title";
 import { Hero } from "./components/Hero/hero";
+import { HeroTitle } from "../common/Title/title";
 
 // Styles
 import { Index as IndexLayout } from "./index.styles";

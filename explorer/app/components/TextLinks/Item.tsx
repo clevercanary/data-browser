@@ -1,8 +1,8 @@
-import { Typography } from "@mui/material";
+import { ItemContainer } from "./TextLinks.styles";
+import Link from "next/link";
 import React from "react";
 import { Text } from "../Text/Text";
-import Link from "next/link";
-import { ItemContainer } from "./TextLinks.styles";
+import { Typography } from "@mui/material";
 
 export interface ItemProps {
   link?: { label: string; url: string };

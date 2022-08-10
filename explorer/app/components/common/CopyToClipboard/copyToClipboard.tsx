@@ -1,8 +1,8 @@
 // Core dependencies
-import copy from "copy-to-clipboard";
-import ContentCopyRoundedIcon from "@mui/icons-material/ContentCopyRounded";
 import { IconButton, Tooltip } from "@mui/material";
 import React, { useEffect } from "react";
+import ContentCopyRoundedIcon from "@mui/icons-material/ContentCopyRounded";
+import copy from "copy-to-clipboard";
 
 interface Props {
   copyStr: string;

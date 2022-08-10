@@ -1,6 +1,6 @@
-import { SamplesResponse } from "app/models/responses";
-import { concatStrings } from "app/utils/string";
 import * as C from "../../../app/components";
+import { concatStrings } from "app/utils/string";
+import { SamplesResponse } from "app/models/responses";
 
 const formatter = Intl.NumberFormat("en", { notation: "compact" });
 

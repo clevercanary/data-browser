@@ -1,8 +1,8 @@
 // App dependencies
 import anvilConfig from "../../anvil/dev/config";
-import { Social } from "app/components/common/Socials/socials";
-import { Logo } from "../../../app/components/Layout/common/entities";
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
+import { Logo } from "../../../app/components/Layout/common/entities";
+import { Social } from "app/components/common/Socials/socials";
 
 // Entities config
 import { studiesEntityConfig } from "./index/studiesEntityConfig";

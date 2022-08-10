@@ -1,6 +1,6 @@
 // Core dependencies
-import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import { Button, IconButton } from "@mui/material";
+import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import React from "react";
 
 // App dependencies

@@ -1,22 +1,22 @@
 // Core dependencies
-import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 // App dependencies
-import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
-import { BackPageView } from "app/components/Layout/components/BackPage/backPageView";
-import { useCurrentDetailTab } from "app/hooks/useCurrentDetailTab";
-import { useCurrentEntity } from "app/hooks/useCurrentEntity";
-import { useFetchEntity } from "app/hooks/useFetchEntity";
-import { PARAMS_INDEX_UUID } from "app/shared/constants";
 import {
   Tab,
   Tabs,
   TabsValue,
   TabValue,
 } from "../../components/common/Tabs/tabs";
-import { EntityConfig } from "../../config/common/entities";
 import { AzulEntityStaticResponse } from "../../apis/azul/common/entities";
+import { BackPageView } from "app/components/Layout/components/BackPage/backPageView";
+import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
+import { EntityConfig } from "../../config/common/entities";
+import { PARAMS_INDEX_UUID } from "app/shared/constants";
+import { useCurrentDetailTab } from "app/hooks/useCurrentDetailTab";
+import { useCurrentEntity } from "app/hooks/useCurrentEntity";
+import { useFetchEntity } from "app/hooks/useFetchEntity";
 
 /**
  * Returns tabs to be used as a prop for the Tabs component.

@@ -1,11 +1,11 @@
 // Core dependencies
-import { Typography } from "@mui/material";
 import React, { Fragment } from "react";
+import { Typography } from "@mui/material";
 
 // App dependencies
 import { Dot } from "../../../../../common/Dot/dot";
-import { Summary } from "../../../../common/entities";
 import { Stack } from "../../../../../common/Stack/Stack";
+import { Summary } from "../../../../common/entities";
 
 interface Props {
   summaries?: Summary[];

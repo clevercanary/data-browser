@@ -4,10 +4,10 @@ import NLink from "next/link";
 import React from "react";
 
 // App dependencies
-import { Socials } from "app/components/common/Socials/socials";
 import { Footer as FooterProps } from "../../common/entities";
-import { Stack } from "../../../common/Stack/Stack";
 import { Logo } from "../Header/components/Logo/logo";
+import { Socials } from "app/components/common/Socials/socials";
+import { Stack } from "../../../common/Stack/Stack";
 
 // Styles
 import { IconButtonSocialsFooter } from "../../../common/IconButton/iconButton.styles";

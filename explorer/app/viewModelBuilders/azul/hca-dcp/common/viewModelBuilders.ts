@@ -1,5 +1,5 @@
-import { FilesResponse } from "../../../../apis/azul/hca-dcp/common/entities";
 import * as C from "../../../../components";
+import { FilesResponse } from "../../../../apis/azul/hca-dcp/common/entities";
 
 import {
   filesToCellCount,

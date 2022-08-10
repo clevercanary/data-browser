@@ -1,6 +1,6 @@
-import React from "react";
 import { Item, ItemProps } from "./Item";
 import { Container } from "./ValueBlock.styles";
+import React from "react";
 
 interface ValueBlockProps {
   items: ItemProps[];

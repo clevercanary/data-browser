@@ -1,13 +1,13 @@
 // Core dependencies
-import { Typography } from "@mui/material";
 import React, { Fragment } from "react";
+import { Typography } from "@mui/material";
 
 // App dependencies
-import { SupplementaryLink } from "../../common/entities";
-import { Stack } from "../../../common/Stack/Stack";
 import { ANCHOR_TARGET, Link } from "../../../Links/components/Link/link";
-import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
 import { Section } from "../Section/section";
+import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
+import { Stack } from "../../../common/Stack/Stack";
+import { SupplementaryLink } from "../../common/entities";
 
 // Styles
 import {

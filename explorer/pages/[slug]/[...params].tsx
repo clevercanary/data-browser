@@ -4,13 +4,13 @@ import { ParsedUrlQuery } from "querystring";
 import React from "react";
 
 // App dependencies
-import { Page } from "../../app/components/Layout/components/Page/page";
-import { config } from "app/config/config";
-import { getFetcher } from "app/hooks/useFetcher";
-import { getCurrentEntity } from "app/hooks/useCurrentEntity";
-import { PARAMS_INDEX_UUID } from "app/shared/constants";
 import { AzulEntityStaticResponse } from "../../app/apis/azul/common/entities";
 import { BackPage } from "../../app/views/BackPage/backPage";
+import { config } from "app/config/config";
+import { getCurrentEntity } from "app/hooks/useCurrentEntity";
+import { getFetcher } from "app/hooks/useFetcher";
+import { Page } from "../../app/components/Layout/components/Page/page";
+import { PARAMS_INDEX_UUID } from "app/shared/constants";
 
 interface PageUrl extends ParsedUrlQuery {
   params: string[];

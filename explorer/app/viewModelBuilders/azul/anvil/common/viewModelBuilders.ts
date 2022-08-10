@@ -2,6 +2,21 @@
 import React from "react";
 
 // App dependencies
+import * as C from "../../../../components";
+import {
+  ActivityEntityResponse,
+  BioSampleEntityResponse,
+  DatasetEntityResponse,
+  DonorEntityResponse,
+  FileEntityResponse,
+  LibraryEntityResponse,
+} from "../../../../apis/azul/anvil/common/entities";
+import {
+  AggregatedBioSampleResponse,
+  AggregatedDatasetResponse,
+  AggregatedDonorResponse,
+  AggregatedLibraryResponse,
+} from "../../../../apis/azul/anvil/common/aggregatedEntities";
 import {
   getActivityDataModalities,
   getActivityType,
@@ -31,25 +46,10 @@ import {
   getPrepMaterialName,
   getReportedEthnicities,
 } from "../../../../apis/azul/anvil/common/transformers";
-import * as C from "../../../../components";
+import { DatasetsResponse } from "../../../../apis/azul/anvil/common/responses";
 import { getPluralizedMetadataLabel } from "../../../../components/Index/common/indexTransformer";
 import { METADATA_KEY } from "../../../../components/Index/common/entities";
 import { URL_DATASETS } from "../../../../../site-config/anvil/dev/config";
-import {
-  ActivityEntityResponse,
-  BioSampleEntityResponse,
-  DatasetEntityResponse,
-  DonorEntityResponse,
-  FileEntityResponse,
-  LibraryEntityResponse,
-} from "../../../../apis/azul/anvil/common/entities";
-import {
-  AggregatedBioSampleResponse,
-  AggregatedDatasetResponse,
-  AggregatedDonorResponse,
-  AggregatedLibraryResponse,
-} from "../../../../apis/azul/anvil/common/aggregatedEntities";
-import { DatasetsResponse } from "../../../../apis/azul/anvil/common/responses";
 
 /**
  * Build props for activity type Cell component from the given activities response.

@@ -1,6 +1,6 @@
 // Core dependencies
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import React from "react";
 
 // App dependencies
 import { CollaboratingOrganizations } from "./collaboratingOrganizations";

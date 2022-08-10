@@ -1,12 +1,13 @@
 // Core dependencies
-import { useRouter } from "next/router";
 import React, { Fragment, useState } from "react";
+import { useRouter } from "next/router";
 
 // App dependencies
 import {
   AzulEntitiesStaticResponse,
   AzulSummaryResponse,
 } from "../../apis/azul/common/entities";
+import { EntityConfig, SummaryConfig } from "../../config/common/entities";
 import {
   Tab,
   Tabs,
@@ -14,17 +15,16 @@ import {
   TabValue,
 } from "app/components/common/Tabs/tabs";
 import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
+import { Filters } from "../../components/Filter/components/Filters/filters";
+import { Index as IndexView } from "../../components/Index/index";
+import { Sidebar } from "../../components/Layout/components/Sidebar/sidebar";
+import { SidebarLabel } from "../../components/Layout/components/Sidebar/components/SidebarLabel/sidebarLabel";
 import { TableCreator } from "app/components/TableCreator/tableCreator";
+import { useCategoryFilter } from "../../hooks/useCategoryFilter";
 import { useConfig } from "app/hooks/useConfig";
 import { useCurrentEntity } from "app/hooks/useCurrentEntity";
 import { useFetchEntities } from "app/hooks/useFetchEntities";
 import { useSummary } from "app/hooks/useSummary";
-import { Filters } from "../../components/Filter/components/Filters/filters";
-import { Index as IndexView } from "../../components/Index/index";
-import { SidebarLabel } from "../../components/Layout/components/Sidebar/components/SidebarLabel/sidebarLabel";
-import { Sidebar } from "../../components/Layout/components/Sidebar/sidebar";
-import { EntityConfig, SummaryConfig } from "../../config/common/entities";
-import { useCategoryFilter } from "../../hooks/useCategoryFilter";
 
 /**
  * Returns tabs to be used as a prop for the Tabs component.
