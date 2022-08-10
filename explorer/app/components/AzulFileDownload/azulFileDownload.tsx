@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 
 // App dependencies
+import { API_FILE_LOCATION_FETCH } from "../../apis/azul/anvil/common/constants";
 import { useRequestFileLocation } from "app/hooks/useRequestFileLocation";
 import { DownloadIcon } from "../common/CustomIcon/components/DownloadIcon/downloadIcon";
 import { LoadingIcon } from "../common/CustomIcon/components/LoadingIcon/loadingIcon";
@@ -11,14 +12,18 @@ import { LoadingIcon } from "../common/CustomIcon/components/LoadingIcon/loading
 import { IconButtonPrimary } from "../common/IconButton/iconButton.styles";
 
 interface AzulFileDownloadProps {
-  url: string;
+  url: string; // Original "file fetch URL" as returned from Azul endpoint.
 }
 
 export const AzulFileDownload = ({
   url,
 }: AzulFileDownloadProps): JSX.Element => {
   const downloadRef = useRef<HTMLAnchorElement>(null);
-  const { data, isLoading, isSuccess, run } = useRequestFileLocation(url);
+
+  // Correct the file fetch URL as per the Azul spec.
+  const azulFetchUrl = buildFetchFileUrl(url);
+  const { data, isLoading, isSuccess, run } =
+    useRequestFileLocation(azulFetchUrl);
   const fileLocation = data?.location;
 
   // Initiates file download when file location request is successful.
@@ -49,3 +54,18 @@ export const AzulFileDownload = ({
     </>
   );
 };
+
+/**
+ * Prepend "/fetch" to the path of the specified file URL, if not already included. See #1596.
+ * @param fileUrl - Original file URL as returned from Azul.
+ * @returns Complete and correct URL to use when requesting file location from Azul.
+ */
+function buildFetchFileUrl(fileUrl: string): string {
+  const url = new URL(fileUrl);
+  const path = url.pathname;
+  if (!path.includes(API_FILE_LOCATION_FETCH)) {
+    url.pathname = `${API_FILE_LOCATION_FETCH}${path}`;
+  }
+
+  return url.toString();
+}
