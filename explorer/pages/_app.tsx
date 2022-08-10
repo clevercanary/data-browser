@@ -1,15 +1,17 @@
+/* eslint-disable sort-imports -- Sorting causes an error when running the HCA dev environment, for unknown reason */
+
 // Core dependencies
-import { CssBaseline } from "@mui/material";
 import { ThemeProvider as Emotion10ThemeProvider } from "@emotion/react";
+import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
 // App dependencies
-import { config } from "app/config/config";
 import { ConfigProvider } from "app/components/Config/Config";
-import { Footer } from "app/components/Layout/components/Footer/footer";
-import { getAppTheme } from "app/theme/theme";
 import { Head } from "app/components/Head/head";
+import { Footer } from "app/components/Layout/components/Footer/footer";
 import { Header } from "app/components/Layout/components/Header/header";
+import { config } from "app/config/config";
+import { getAppTheme } from "app/theme/theme";
 
 // Styles
 import { AppLayout } from "app/components/Layout/components/AppLayout/appLayout.styles";
@@ -41,3 +43,5 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 }
 
 export default MyApp;
+
+/* eslint-enable sort-imports -- Paired comment */
