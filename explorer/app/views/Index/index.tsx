@@ -127,20 +127,20 @@ export const Index = (props: AzulEntitiesStaticResponse): JSX.Element => {
     if (entitiesResponse.hits.length === 0) {
       return (
         <NoResults
-          actions={
-            <>
-              <ButtonPrimary
-                onClick={(): void => console.log("Remove last filter")} // TODO create "remove last filter" function
-              >
-                Remove last filter
-              </ButtonPrimary>
-              <ButtonSecondary
-                onClick={(): void => console.log("Clear all filters")} // TODO create "clear all filters" function
-              >
-                Clear all filters
-              </ButtonSecondary>
-            </>
-          }
+          // actions={
+          //   <>
+          //     <ButtonPrimary
+          //       onClick={(): void => console.log("Remove last filter")} // TODO create "remove last filter" function
+          //     >
+          //       Remove last filter
+          //     </ButtonPrimary>
+          //     <ButtonSecondary
+          //       onClick={(): void => console.log("Clear all filters")} // TODO create "clear all filters" function
+          //     >
+          //       Clear all filters
+          //     </ButtonSecondary>
+          //   </>
+          // }
           title={"No Results found"}
         />
       );
