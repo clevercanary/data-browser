@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { IconList } from "./IconList";
 import CellXGeneIcon from "images/icons/cellxgene.svg";
 import StemIcon from "images/icons/stem.svg";

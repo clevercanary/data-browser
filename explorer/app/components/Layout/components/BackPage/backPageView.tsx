@@ -10,10 +10,10 @@ import {
 
 // Styles
 import {
-  BackPageView as BackPageLayout,
   BackPageHero,
-  BackPageOverview as Overview,
+  BackPageView as BackPageLayout,
   BackPageOverviewMain as Main,
+  BackPageOverview as Overview,
   BackPageOverviewSide as Side,
 } from "./backPageView.styles";
 import { FlatPaper } from "../../../common/Paper/paper.styles";

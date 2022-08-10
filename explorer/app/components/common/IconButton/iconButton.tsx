@@ -4,7 +4,7 @@
  */
 
 // Core dependencies
-import { IconButton as MIconButton, IconButtonProps } from "@mui/material";
+import { IconButtonProps, IconButton as MIconButton } from "@mui/material";
 import React, { ElementType } from "react";
 
 interface Props extends IconButtonProps {

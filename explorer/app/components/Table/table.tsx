@@ -10,11 +10,11 @@ import {
 } from "@mui/material";
 import React from "react";
 import {
-  useReactTable,
   ColumnDef,
-  getCoreRowModel,
   flexRender,
+  getCoreRowModel,
   getPaginationRowModel,
+  useReactTable,
 } from "@tanstack/react-table";
 
 // App dependencies

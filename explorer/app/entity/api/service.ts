@@ -4,8 +4,8 @@
 
 import { convertUrlParams } from "../../utils/url";
 import {
-  DEFAULT_LIST_PARAMS,
   DEFAULT_DETAIL_PARAMS,
+  DEFAULT_LIST_PARAMS,
   URL,
 } from "../../shared/constants";
 import {

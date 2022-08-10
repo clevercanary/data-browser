@@ -5,9 +5,9 @@ import React from "react";
 // Styles
 import { RoundedPaper } from "app/components/common/Paper/paper.styles";
 import {
-  Content as SectionContent,
   Section,
   SectionCallout,
+  Content as SectionContent,
   SectionTitle,
 } from "app/components/Project/components/Section/section.styles";
 import { ExportButton } from "./exportMethod.styles";

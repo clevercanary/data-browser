@@ -1,5 +1,5 @@
 // Core dependencies
-import { Link as MLink, LinkProps } from "@mui/material";
+import { LinkProps, Link as MLink } from "@mui/material";
 import NLink from "next/link";
 import React, { ReactNode } from "react";
 

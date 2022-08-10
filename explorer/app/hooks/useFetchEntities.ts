@@ -5,10 +5,10 @@ import { EntityConfig } from "app/config/common/entities";
 import { useFetcher } from "./useFetcher";
 import { useResetableState } from "./useResetableState";
 import {
-  AzulEntitiesStaticResponse,
   AzulEntitiesResponse,
-  Filters,
+  AzulEntitiesStaticResponse,
   AzulListParams,
+  Filters,
 } from "../apis/azul/common/entities";
 import {
   Pagination,

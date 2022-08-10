@@ -9,11 +9,11 @@ import { FilesResponse } from "../../../../app/apis/azul/hca-dcp/common/entities
 import {
   buildCellCount,
   buildContentDesc,
+  buildFileDownload,
   buildFileFormat,
   buildFileName,
   buildFileSize,
   buildProjTitle,
-  buildFileDownload,
 } from "../../../../app/viewModelBuilders/azul/hca-dcp/common/viewModelBuilders";
 
 /**

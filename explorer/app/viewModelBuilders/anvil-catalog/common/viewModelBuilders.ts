@@ -1,11 +1,11 @@
 import {
-  getStudyName,
   getConsortia,
-  getDisease,
   getDataType,
+  getDisease,
   getIndication,
   getParticipantCount,
   getStudyDesign,
+  getStudyName,
 } from "../../../apis/anvil-catalog/common/transformers";
 import * as C from "../../../components";
 import { AnvilSourceItem } from "../../../apis/anvil/common/entities";

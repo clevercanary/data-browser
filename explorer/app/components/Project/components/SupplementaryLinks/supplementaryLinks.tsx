@@ -11,8 +11,8 @@ import { Section } from "../Section/section";
 
 // Styles
 import {
-  Marker,
   SupplementaryLink as EllipsisLink,
+  Marker,
   SupplementaryList,
 } from "./supplementaryLinks.styles";
 
