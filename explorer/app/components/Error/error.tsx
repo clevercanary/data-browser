@@ -24,9 +24,11 @@ export const Error = (): JSX.Element => {
           An error occurred processing your request
         </Typography>
       </SectionContent>
-      <Link href={ROOT_URL || "/explore"} passHref>
-        <ButtonPrimary href="passHref">To Homepage</ButtonPrimary>
-      </Link>
+      {ROOT_URL && (
+        <Link href={ROOT_URL} passHref>
+          <ButtonPrimary href="passHref">To Homepage</ButtonPrimary>
+        </Link>
+      )}
     </CustomError>
   );
 };
