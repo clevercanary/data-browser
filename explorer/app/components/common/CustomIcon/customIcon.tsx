@@ -1,6 +1,5 @@
 import { SvgIcon, SvgIconProps } from "@mui/material";
 import React from "react";
-
 import { IconName, IconSvgPathShapes } from "./common/iconSvgPathShapes";
 
 interface Props extends SvgIconProps {

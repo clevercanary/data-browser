@@ -1,8 +1,7 @@
 import Link from "next/link";
 import React from "react";
-
-import { Logo as LogoProps } from "../../../../common/entities";
 import { StaticImage } from "../../../../../common/StaticImage/staticImage";
+import { Logo as LogoProps } from "../../../../common/entities";
 
 interface Props {
   logo: LogoProps;

@@ -1,6 +1,5 @@
 import { Theme, ThemeOptions } from "@mui/material";
 import { createTheme, Shadows } from "@mui/material/styles";
-
 import { BREAKPOINT } from "../hooks/useBreakpointHelper";
 
 /**

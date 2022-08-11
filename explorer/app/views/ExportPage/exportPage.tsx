@@ -1,9 +1,8 @@
-import React from "react";
-
+import { AzulEntityStaticResponse } from "app/apis/azul/common/entities";
 import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
 import { BackPageView } from "app/components/Layout/components/BackPage/backPageView";
 import { useExportConfig } from "app/hooks/useExportConfig";
-import { AzulEntityStaticResponse } from "app/apis/azul/common/entities";
+import React from "react";
 
 export const ExportPage = (props: AzulEntityStaticResponse): JSX.Element => {
   const exportConfig = useExportConfig();

@@ -1,10 +1,10 @@
+import { AzulSummaryResponse } from "../../../apis/azul/common/entities";
 import { METADATA_KEY, SUMMARY } from "./entities";
 import {
   calculateSummaryFileFormatsCount,
   calculateSummaryTotalCellCount,
   getSummaryCount,
 } from "./utils";
-import { AzulSummaryResponse } from "../../../apis/azul/common/entities";
 
 // Template constants
 const {

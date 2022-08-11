@@ -1,12 +1,10 @@
-import anvilConfig from "../../anvil/dev/config";
 import { Social } from "app/components/common/Socials/socials";
-import { Logo } from "../../../app/components/Layout/common/entities";
-import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
-
-import { studiesEntityConfig } from "./index/studiesEntityConfig";
-
 import logoNcpi from "images/logoNcpi.svg";
+import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
+import { Logo } from "../../../app/components/Layout/common/entities";
 import { SiteConfig } from "../../../app/config/common/entities";
+import anvilConfig from "../../anvil/dev/config";
+import { studiesEntityConfig } from "./index/studiesEntityConfig";
 
 // Template constants
 const BROWSER_URL = "https://anvilproject.org";

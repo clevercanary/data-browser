@@ -1,5 +1,5 @@
-import { MetadataValue } from "./entities";
 import { ProjectsResponse } from "../../../models/responses";
+import { MetadataValue } from "./entities";
 
 /**
  * Maps project species from API response.

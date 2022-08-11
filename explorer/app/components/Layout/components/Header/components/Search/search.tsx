@@ -1,7 +1,6 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { Button, IconButton } from "@mui/material";
 import React from "react";
-
 import {
   BREAKPOINT,
   BREAKPOINT_FN_NAME,

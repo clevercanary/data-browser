@@ -1,11 +1,9 @@
 import { Link as EmailLink, Typography } from "@mui/material";
 import Link from "next/link";
 import React from "react";
-
 import { Contact } from "../../common/entities";
 import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
 import { Section } from "../Section/section";
-
 import { SectionContentListItem } from "../Section/section.styles";
 
 interface Props {

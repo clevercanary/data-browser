@@ -1,7 +1,6 @@
 import { ThemeOptions } from "@mui/material";
-import { JSXElementConstructor } from "react";
-
 import { Footer, Header } from "app/components/Layout/common/entities";
+import { JSXElementConstructor } from "react";
 import { HeroTitle } from "../../components/common/Title/title";
 
 type GetIdFunction<T> = (detail: T) => string;

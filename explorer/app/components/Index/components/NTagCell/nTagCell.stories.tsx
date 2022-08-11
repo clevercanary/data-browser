@@ -1,6 +1,5 @@
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-
+import React from "react";
 import { NTagCell } from "./nTagCell";
 
 export default {

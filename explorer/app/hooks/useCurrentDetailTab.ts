@@ -1,6 +1,5 @@
-import { useRouter } from "next/router";
-
 import { PARAMS_INDEX_TAB } from "app/shared/constants";
+import { useRouter } from "next/router";
 import { BackPageTabConfig } from "../config/common/entities";
 import { useCurrentEntity } from "./useCurrentEntity";
 

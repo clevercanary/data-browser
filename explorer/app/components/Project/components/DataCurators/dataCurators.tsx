@@ -1,5 +1,4 @@
 import React from "react";
-
 import { DataCurator } from "../../common/entities";
 import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
 import { Section } from "../Section/section";

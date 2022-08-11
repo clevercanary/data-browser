@@ -1,16 +1,15 @@
-import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
-import { ParsedUrlQuery } from "querystring";
-import React from "react";
-
-import { Page } from "../../app/components/Layout/components/Page/page";
 import { config } from "app/config/config";
 import { EMPTY_PAGE } from "app/entity/api/constants";
 import { getCurrentEntity } from "app/hooks/useCurrentEntity";
 import { getFetcher } from "app/hooks/useFetcher";
-import { Index } from "app/views/Index";
-import { parseContentRows, readFile } from "app/utils/tsvParser";
 import { database } from "app/utils/database";
+import { parseContentRows, readFile } from "app/utils/tsvParser";
+import { Index } from "app/views/Index";
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
+import { ParsedUrlQuery } from "querystring";
+import React from "react";
 import { AzulEntitiesStaticResponse } from "../../app/apis/azul/common/entities";
+import { Page } from "../../app/components/Layout/components/Page/page";
 
 interface PageUrl extends ParsedUrlQuery {
   slug: string;

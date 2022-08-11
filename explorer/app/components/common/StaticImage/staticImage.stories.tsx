@@ -1,9 +1,7 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-
-import { StaticImage } from "./staticImage";
-
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import logoHca from "images/logoHca.png";
+import React from "react";
+import { StaticImage } from "./staticImage";
 
 export default {
   argTypes: {

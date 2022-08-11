@@ -1,19 +1,17 @@
 import React, { Fragment, ReactNode } from "react";
-
 import {
   BREAKPOINT,
   BREAKPOINT_FN_NAME,
   useBreakpointHelper,
 } from "../../../../hooks/useBreakpointHelper";
-
+import { FlatPaper } from "../../../common/Paper/paper.styles";
 import {
-  BackPageView as BackPageLayout,
   BackPageHero,
   BackPageOverview as Overview,
   BackPageOverviewMain as Main,
   BackPageOverviewSide as Side,
+  BackPageView as BackPageLayout,
 } from "./backPageView.styles";
-import { FlatPaper } from "../../../common/Paper/paper.styles";
 
 interface Props {
   mainColumn: ReactNode;

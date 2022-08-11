@@ -1,5 +1,3 @@
-import React from "react";
-
 import * as C from "app/components";
 import {
   getProjectBreadcrumbs,
@@ -18,6 +16,7 @@ import {
 import { ProjectsResponse } from "app/models/responses";
 import { ENTRIES } from "app/project-edits";
 import { concatStrings } from "app/utils/string";
+import React from "react";
 import { PROJECTS_URL } from "./config";
 
 const formatter = Intl.NumberFormat("en", { notation: "compact" });

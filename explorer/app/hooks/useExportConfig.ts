@@ -1,5 +1,5 @@
-import { BackPageConfig } from "../config/common/entities";
 import { useConfig } from "app/hooks/useConfig";
+import { BackPageConfig } from "../config/common/entities";
 
 /**
  * Hook to get the export config

@@ -1,19 +1,15 @@
+import logoHca from "images/logoHca.png";
+import logoHumanCellAtlas from "images/logoHumanCellAtlas.png";
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
 import { Social } from "../../../app/components/common/Socials/socials";
 import { Logo } from "../../../app/components/Layout/common/entities";
 import { SiteConfig } from "../../../app/config/common/entities";
 import { breakpointTablet } from "../../../app/theme/theme";
-
-import { summary } from "./index/summary";
-
-import { filesEntityConfig } from "./index/filesEntityConfig";
-import { projectsEntity } from "./projectsEntity";
-import { samplesEntityConfig } from "./index/samplesEntityConfig";
-
 import { exportConfig } from "./export/export";
-
-import logoHca from "images/logoHca.png";
-import logoHumanCellAtlas from "images/logoHumanCellAtlas.png";
+import { filesEntityConfig } from "./index/filesEntityConfig";
+import { samplesEntityConfig } from "./index/samplesEntityConfig";
+import { summary } from "./index/summary";
+import { projectsEntity } from "./projectsEntity";
 
 // Template constants
 const BROWSER_URL = "https://dev.singlecell.gi.ucsc.edu";

@@ -1,13 +1,10 @@
-import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
 import { Social } from "app/components/common/Socials/socials";
-import { Logo } from "../../../app/components/Layout/common/entities";
-
 import logoLungmap from "images/logoLungmap.png";
-
-import { summary } from "./index/summary";
-
 import hcaConfig from "site-config/hca-dcp/dev/config";
+import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
+import { Logo } from "../../../app/components/Layout/common/entities";
 import { SiteConfig } from "../../../app/config/common/entities";
+import { summary } from "./index/summary";
 
 // Template constants
 const BROWSER_URL = "https://data-browser.dev.lungmap.net";

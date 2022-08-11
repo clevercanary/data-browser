@@ -1,9 +1,7 @@
 import React from "react";
-
 import { Contributor } from "../../common/entities";
-import { Section } from "../Section/section";
 import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
-
+import { Section } from "../Section/section";
 import { Sup } from "../Sup/Sup.styles";
 
 interface Props {

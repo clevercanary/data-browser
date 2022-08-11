@@ -1,15 +1,14 @@
-import React, { useMemo } from "react";
-import { ColumnDef, CellContext } from "@tanstack/react-table";
-
+import { CellContext, ColumnDef } from "@tanstack/react-table";
 import {
   ColumnConfig,
   GridTrackMinMax,
   GridTrackSize,
 } from "app/config/common/entities";
 import { useEditColumns } from "app/hooks/useEditColumns";
+import React, { useMemo } from "react";
+import { Pagination, Sort } from "../../common/entities";
 import { ComponentCreator } from "../ComponentCreator/ComponentCreator";
 import { Table } from "../Table/table";
-import { Pagination, Sort } from "../../common/entities";
 
 interface TableCreatorProps<T> {
   columns: ColumnConfig<T>[];

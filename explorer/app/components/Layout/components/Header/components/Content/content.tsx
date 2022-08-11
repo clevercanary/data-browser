@@ -1,6 +1,5 @@
 import { Box, Drawer } from "@mui/material";
 import React, { Fragment, ReactNode } from "react";
-
 import { HEADER_HEIGHT } from "../../header";
 
 interface Props {

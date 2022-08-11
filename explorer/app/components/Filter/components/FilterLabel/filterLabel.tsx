@@ -1,6 +1,5 @@
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 import React from "react";
-
 import { FilterLabel as Label } from "./filterLabel.styles";
 
 interface Props {

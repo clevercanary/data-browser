@@ -1,5 +1,4 @@
 import React from "react";
-
 import * as C from "../../../app/components";
 import { METADATA_KEY } from "../../../app/components/Index/common/entities";
 import { getPluralizedMetadataLabel } from "../../../app/components/Index/common/indexTransformer";

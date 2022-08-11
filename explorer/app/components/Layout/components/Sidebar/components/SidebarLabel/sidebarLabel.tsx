@@ -1,6 +1,5 @@
 import { Typography } from "@mui/material";
 import React from "react";
-
 import { SidebarLabel as Label } from "./sidebarLabel.styles";
 
 interface Props {

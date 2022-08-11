@@ -1,5 +1,4 @@
 import React, { ElementType } from "react";
-
 import { StatusCircle } from "./statusIcon.styles";
 
 /**

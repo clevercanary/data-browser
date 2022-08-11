@@ -1,5 +1,5 @@
-import * as C from "../../../../../app/components";
 import { ComponentConfig } from "app/config/common/entities";
+import * as C from "../../../../../app/components";
 
 export const sideColumn: ComponentConfig[] = [
   {

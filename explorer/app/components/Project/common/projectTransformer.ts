@@ -9,6 +9,7 @@ import {
   ProjectsResponse,
   PublicationResponse,
 } from "app/models/responses";
+import { ENTRIES } from "../../../project-edits";
 import { Breadcrumb } from "../../common/Breadcrumbs/breadcrumbs";
 import { Status } from "../../common/StatusBadge/statusBadge";
 import { HeroTitle } from "../../common/Title/title";
@@ -23,7 +24,6 @@ import {
   Publication,
   SupplementaryLink,
 } from "./entities";
-import { ENTRIES } from "../../../project-edits";
 
 /**
  * Returns project related breadcrumbs.

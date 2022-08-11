@@ -1,7 +1,6 @@
-import React from "react";
-
 import { EntityConfig } from "app/config/common/entities";
 import { CurrentEntityProvider } from "app/hooks/useCurrentEntity";
+import React from "react";
 
 interface PageProps {
   children: React.ReactNode | React.ReactNode[];

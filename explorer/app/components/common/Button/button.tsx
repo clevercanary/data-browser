@@ -5,7 +5,6 @@
 
 import { Button as MButton } from "@mui/material";
 import React, { forwardRef } from "react";
-
 import { Button as ButtonProps } from "./common/entities";
 
 type Props = ButtonProps;

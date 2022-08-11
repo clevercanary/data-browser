@@ -1,9 +1,7 @@
 import React from "react";
-
 import { CollaboratingOrganization } from "../../common/entities";
 import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
 import { Section } from "../Section/section";
-
 import { Sup } from "../Sup/Sup.styles";
 
 interface Props {

@@ -1,13 +1,11 @@
 import { CloseRounded } from "@mui/icons-material";
 import { Drawer, PaperProps } from "@mui/material";
 import React, { ReactNode, useEffect } from "react";
-
 import {
   BREAKPOINT,
   BREAKPOINT_FN_NAME,
   useBreakpointHelper,
 } from "../../../../hooks/useBreakpointHelper";
-
 import { CloseDrawerIconButton } from "../../../common/IconButton/iconButton.styles";
 import { Sidebar as PermanentSidebar } from "./sidebar.styles";
 

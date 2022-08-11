@@ -1,7 +1,5 @@
 import React, { ReactNode } from "react";
-
 import { SectionTitle } from "../Section/components/SectionTitle/sectionTitle";
-
 import {
   CollapsableSection as Section,
   SectionSummary,

@@ -1,6 +1,5 @@
 import { Typography } from "@mui/material";
 import React from "react";
-
 import { Description as ProjectDescription } from "../../common/entities";
 import { Section } from "../Section/section";
 

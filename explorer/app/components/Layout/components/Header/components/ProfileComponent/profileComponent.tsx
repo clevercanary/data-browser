@@ -1,7 +1,6 @@
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import { Button, IconButton } from "@mui/material";
 import React from "react";
-
 import {
   BREAKPOINT,
   BREAKPOINT_FN_NAME,

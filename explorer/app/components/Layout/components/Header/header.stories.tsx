@@ -1,12 +1,10 @@
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-
-import { ELEMENT_ALIGNMENT } from "../../../../common/entities";
-import { Header } from "./header";
-
 import logoAnvil from "images/logoAnvil.png";
 import logoHca from "images/logoHca.png";
 import logoLungmap from "images/logoLungmap.png";
+import React from "react";
+import { ELEMENT_ALIGNMENT } from "../../../../common/entities";
+import { Header } from "./header";
 
 export default {
   argTypes: {

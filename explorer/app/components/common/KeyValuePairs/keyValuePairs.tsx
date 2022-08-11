@@ -4,7 +4,6 @@
  */
 
 import React, { ElementType } from "react";
-
 import { Stack } from "../Stack/Stack";
 
 export type Key = string;

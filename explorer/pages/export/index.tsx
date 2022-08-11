@@ -1,5 +1,4 @@
 import React from "react";
-
 import { ExportPage as ExportPageView } from "../../app/views/ExportPage/exportPage";
 
 /**

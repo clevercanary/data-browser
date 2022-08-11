@@ -1,11 +1,10 @@
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-
-import { Filters } from "./filters";
+import React from "react";
 import {
   DefaultFilterMenu,
   DonorDiseaseFilterMenu,
 } from "../FilterMenu/filterMenu.stories";
+import { Filters } from "./filters";
 
 export default {
   argTypes: {

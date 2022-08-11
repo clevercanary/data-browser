@@ -1,6 +1,5 @@
 import { PopoverPosition } from "@mui/material";
 import React, { ElementType, MouseEvent, ReactNode, useState } from "react";
-
 import { FilterPopover } from "./filter.styles";
 
 interface Props {

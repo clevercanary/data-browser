@@ -1,10 +1,8 @@
 import { Checkbox, FormControlLabel, MenuItem } from "@mui/material";
 import React, { MouseEvent, useState } from "react";
-
 import { DropdownButton } from "../common/Button/components/DropdownButton/dropdownButton";
 import { CheckedIcon } from "../common/CustomIcon/components/CheckedIcon/checkedIcon";
 import { UncheckedIcon } from "../common/CustomIcon/components/UncheckedIcon/uncheckedIcon";
-
 import { CheckboxMenu as Menu } from "./checkboxMenu.styles";
 
 export interface CheckboxMenuItem {

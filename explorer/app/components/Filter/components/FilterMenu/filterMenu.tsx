@@ -5,16 +5,14 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import React from "react";
-
 import { CheckedIcon } from "app/components/common/CustomIcon/components/CheckedIcon/checkedIcon";
 import { UncheckedIcon } from "app/components/common/CustomIcon/components/UncheckedIcon/uncheckedIcon";
+import React from "react";
 import {
   CategoryKey,
   SelectCategoryValueView,
 } from "../../../../common/entities";
 import { OnFilterFn } from "../../../../hooks/useCategoryFilter";
-
 import { FilterView } from "./filterMenu.styles";
 
 interface Props {

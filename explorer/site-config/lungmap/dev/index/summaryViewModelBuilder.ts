@@ -1,8 +1,7 @@
 import React from "react";
-
+import { AzulSummaryResponse } from "../../../../app/apis/azul/common/entities";
 import * as C from "../../../../app/components";
 import { getSummaries } from "../../../../app/components/Index/common/indexTransformer";
-import { AzulSummaryResponse } from "../../../../app/apis/azul/common/entities";
 import { SUMMARIES } from "./common/constants";
 
 /**

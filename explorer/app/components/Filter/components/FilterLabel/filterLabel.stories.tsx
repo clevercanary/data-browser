@@ -1,6 +1,5 @@
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-
+import React from "react";
 import { FilterLabel } from "./filterLabel";
 
 export default {
