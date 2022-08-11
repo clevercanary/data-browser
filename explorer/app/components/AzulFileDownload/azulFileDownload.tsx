@@ -1,10 +1,11 @@
 import { Box } from "@mui/material";
 import { useRequestFileLocation } from "app/hooks/useRequestFileLocation";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { API_FILE_LOCATION_FETCH } from "../../apis/azul/anvil/common/constants";
 import { DownloadIcon } from "../common/CustomIcon/components/DownloadIcon/downloadIcon";
 import { LoadingIcon } from "../common/CustomIcon/components/LoadingIcon/loadingIcon";
 import { IconButtonPrimary } from "../common/IconButton/iconButton.styles";
+
 
 interface AzulFileDownloadProps {
   url: string; // Original "file fetch URL" as returned from Azul endpoint.
@@ -14,7 +15,8 @@ export const AzulFileDownload = ({
   url,
 }: AzulFileDownloadProps): JSX.Element => {
   const downloadRef = useRef<HTMLAnchorElement>(null);
-
+  // Used to prevent the download button from being clicked twice
+  const [isDownloading, setDownloading] = useState(false);
   // Correct the file fetch URL as per the Azul spec.
   const azulFetchUrl = buildFetchFileUrl(url);
   const { data, isLoading, isSuccess, run } =
@@ -27,6 +29,7 @@ export const AzulFileDownload = ({
       const downloadEl = downloadRef.current;
       downloadEl.href = fileLocation;
       downloadEl.click();
+      setDownloading(false);
     }
   }, [fileLocation, isLoading, isSuccess]);
 
@@ -34,13 +37,15 @@ export const AzulFileDownload = ({
    * Initiate file location request.
    */
   const onFileLocationRequested = async (): Promise<void> => {
+    // Prevent duplicate downloads
+    setDownloading(true);
     run();
   };
 
   return (
     <>
       <IconButtonPrimary
-        disabled={false}
+        disabled={isDownloading}
         Icon={isLoading ? LoadingIcon : DownloadIcon}
         onClick={onFileLocationRequested}
         size="medium"
