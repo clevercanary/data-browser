@@ -4,7 +4,6 @@ import { studiesEntityConfig } from "site-config/ncpi-catalog/dev/index/studiesE
 import { relatedStudiesEntityConfig } from "./index/relatedStudiesEntityConfig";
 import { DUG_API_URL, DUG_API_PARAMS } from "./constants";
 
-// Images
 import logoNcpi from "images/logoNcpiDug.svg";
 
 const config: SiteConfig = {

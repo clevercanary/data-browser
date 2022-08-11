@@ -1,7 +1,5 @@
-// Core dependencies
 import React from "react";
 
-// App dependencies
 import { EntityConfig } from "app/config/common/entities";
 import { CurrentEntityProvider } from "app/hooks/useCurrentEntity";
 

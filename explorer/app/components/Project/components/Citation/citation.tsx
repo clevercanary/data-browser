@@ -1,8 +1,6 @@
-// Core dependencies
 import { Typography } from "@mui/material";
 import React, { ReactNode } from "react";
 
-// App dependencies
 import { useConfig } from "app/hooks/useConfig";
 import { ProjectPath } from "../../common/entities";
 import { Stack } from "../../../common/Stack/Stack";
@@ -10,7 +8,6 @@ import { ANCHOR_TARGET, Link } from "../../../Links/components/Link/link";
 import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
 import { Section } from "../Section/section";
 
-// Styles
 import { CitationLink } from "./citation.styles";
 
 interface Props {

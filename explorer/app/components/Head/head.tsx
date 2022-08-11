@@ -1,4 +1,3 @@
-// Core dependencies
 import React from "react";
 import NextHead from "next/head";
 import { useConfig } from "app/hooks/useConfig";

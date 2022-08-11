@@ -1,8 +1,6 @@
-// Core dependencies
 import { Typography } from "@mui/material";
 import React, { Fragment } from "react";
 
-// App dependencies
 import {
   Key,
   KeyValuePairs,

@@ -1,8 +1,6 @@
-// Core dependencies
 import { ThemeOptions } from "@mui/material";
 import { JSXElementConstructor } from "react";
 
-// App dependencies
 import { Footer, Header } from "app/components/Layout/common/entities";
 import { HeroTitle } from "../../components/common/Title/title";
 

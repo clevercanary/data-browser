@@ -1,11 +1,8 @@
-// Core dependencies
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
-// App dependencies
 import { Footer } from "./footer";
 
-// Images
 import logoHhs from "images/logoHhs.svg";
 import logoHumanCellAtlas from "images/logoHumanCellAtlas.png";
 import logoLungmap from "images/logoLungmap.png";

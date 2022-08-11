@@ -1,9 +1,7 @@
-// Core dependencies
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
 
-// App dependencies
 import { Page } from "../../app/components/Layout/components/Page/page";
 import { config } from "app/config/config";
 import { getFetcher } from "app/hooks/useFetcher";

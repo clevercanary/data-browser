@@ -1,8 +1,6 @@
-// Core dependencies
 import { Box, Drawer } from "@mui/material";
 import React, { Fragment, ReactNode } from "react";
 
-// App dependencies
 import { HEADER_HEIGHT } from "../../header";
 
 interface Props {

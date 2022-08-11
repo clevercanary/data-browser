@@ -1,7 +1,5 @@
-// Core dependencies
 import React from "react";
 
-// App dependencies
 import { ExportPage as ExportPageView } from "../../app/views/ExportPage/exportPage";
 
 /**

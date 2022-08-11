@@ -1,8 +1,6 @@
-// Core dependencies
 import { Tab as MTab, Tabs as MTabs, TabProps, TabsProps } from "@mui/material";
 import React from "react";
 
-// Styles
 import { TabScrollFuzz } from "./tabs.styles";
 
 export type TabsValue = TabsProps["value"]; // any

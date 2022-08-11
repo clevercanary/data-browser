@@ -1,4 +1,3 @@
-// App dependencies
 import { BackPageConfig } from "../config/common/entities";
 import { useConfig } from "app/hooks/useConfig";
 

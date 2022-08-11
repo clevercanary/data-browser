@@ -1,4 +1,3 @@
-// App dependencies
 import { METADATA_KEY, SUMMARY } from "./entities";
 import {
   calculateSummaryFileFormatsCount,

@@ -1,7 +1,5 @@
-// Core dependencies
 import React from "react";
 
-// App dependencies
 import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
 import { BackPageView } from "app/components/Layout/components/BackPage/backPageView";
 import { useExportConfig } from "app/hooks/useExportConfig";

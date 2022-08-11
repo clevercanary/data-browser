@@ -1,4 +1,3 @@
-// App dependencies
 import { MetadataValue } from "./entities";
 import { ProjectsResponse } from "../../../models/responses";
 

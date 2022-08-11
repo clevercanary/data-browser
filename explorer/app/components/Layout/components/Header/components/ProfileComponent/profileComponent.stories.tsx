@@ -1,8 +1,6 @@
-// Core dependencies
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-// Ap dependencies
 import { ProfileComponent } from "./profileComponent";
 
 export default {

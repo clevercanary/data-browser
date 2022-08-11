@@ -1,8 +1,6 @@
-// Core dependencies
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-// App dependencies
 import { SupplementaryLinks } from "./supplementaryLinks";
 
 export default {

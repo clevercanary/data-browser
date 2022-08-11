@@ -1,8 +1,6 @@
-// Core dependencies
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
-// App dependencies
 import { Filter } from "./filter";
 import { DefaultFilterLabel } from "../FilterLabel/filterLabel.stories";
 import {

@@ -1,4 +1,3 @@
-// App dependencies
 import devConfig from "../dev/config";
 import { SiteConfig } from "../../../app/config/common/entities";
 

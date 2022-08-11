@@ -1,15 +1,11 @@
-// App dependencies
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
 import { Social } from "app/components/common/Socials/socials";
 import { Logo } from "../../../app/components/Layout/common/entities";
 
-// Images
 import logoLungmap from "images/logoLungmap.png";
 
-// Summary config
 import { summary } from "./index/summary";
 
-// Config
 import hcaConfig from "site-config/hca-dcp/dev/config";
 import { SiteConfig } from "../../../app/config/common/entities";
 

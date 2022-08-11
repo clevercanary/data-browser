@@ -1,11 +1,8 @@
-// Core dependencies
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-// App dependencies
 import { StaticImage } from "./staticImage";
 
-// Images
 import logoHca from "images/logoHca.png";
 
 export default {

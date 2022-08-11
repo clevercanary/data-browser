@@ -1,10 +1,8 @@
-// Core dependencies
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import { Box, Divider, IconButton, Toolbar, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
-// App dependencies
 import { Header as HeaderProps } from "../../common/entities";
 import { ELEMENT_ALIGNMENT } from "../../../../common/entities";
 import { Socials } from "../../../common/Socials/socials";
@@ -19,7 +17,6 @@ import {
   useBreakpointHelper,
 } from "../../../../hooks/useBreakpointHelper";
 
-// Styles
 import { Header as AppBar } from "./header.styles";
 
 // Template variables

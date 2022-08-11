@@ -1,4 +1,3 @@
-// App dependencies
 import {
   BIND_SUMMARY_RESPONSE,
   PLURALIZED_METADATA_LABEL,

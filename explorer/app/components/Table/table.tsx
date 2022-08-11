@@ -1,4 +1,3 @@
-// Core dependencies
 import SouthRoundedIcon from "@mui/icons-material/SouthRounded";
 import {
   TableBody,
@@ -17,13 +16,11 @@ import {
   getPaginationRowModel,
 } from "@tanstack/react-table";
 
-// App dependencies
 import { CheckboxMenu, CheckboxMenuItem } from "../CheckboxMenu/checkboxMenu";
 import { Pagination as DXPagination } from "./components/Pagination/pagination";
 import { PaginationSummary } from "./components/PaginationSummary/paginationSummary";
 import { newColumnKey, newColumnOrder } from "./functions";
 
-// Styles
 import { RoundedPaper } from "../common/Paper/paper.styles";
 import { Table as GridTable, TableToolbar } from "./table.styles";
 import { useScroll } from "app/hooks/useScroll";

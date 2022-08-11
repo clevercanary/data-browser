@@ -1,8 +1,6 @@
-// Core dependencies
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-// App dependencies
 import { BackPageView } from "./backPageView";
 import { ProjectCitation } from "../../../Project/components/Citation/citation.stories";
 import { ProjectCollaboratingOrganizations } from "../../../Project/components/CollaboratingOrganizations/collaboratingOrganizations.stories";

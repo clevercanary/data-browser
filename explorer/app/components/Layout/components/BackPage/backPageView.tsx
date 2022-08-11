@@ -1,14 +1,11 @@
-// Core dependencies
 import React, { Fragment, ReactNode } from "react";
 
-// App dependencies
 import {
   BREAKPOINT,
   BREAKPOINT_FN_NAME,
   useBreakpointHelper,
 } from "../../../../hooks/useBreakpointHelper";
 
-// Styles
 import {
   BackPageView as BackPageLayout,
   BackPageHero,

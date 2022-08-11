@@ -1,4 +1,3 @@
-// App dependencies
 import { MetadataValue } from "./entities";
 import { AzulSummaryResponse } from "../../../apis/azul/common/entities";
 

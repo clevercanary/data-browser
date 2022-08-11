@@ -1,4 +1,3 @@
-// App dependencies
 import {
   ActivityEntityResponse,
   BioSampleEntityResponse,

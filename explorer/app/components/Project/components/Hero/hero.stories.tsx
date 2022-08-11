@@ -1,8 +1,6 @@
-// Core dependencies
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
-// App dependencies
 import { STATUS } from "../../../common/StatusBadge/statusBadge";
 import { Hero } from "./hero";
 

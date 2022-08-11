@@ -1,22 +1,17 @@
-// App dependencies
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
 import { Social } from "../../../app/components/common/Socials/socials";
 import { Logo } from "../../../app/components/Layout/common/entities";
 import { SiteConfig } from "../../../app/config/common/entities";
 import { breakpointTablet } from "../../../app/theme/theme";
 
-// Summary config
 import { summary } from "./index/summary";
 
-// Entities config
 import { filesEntityConfig } from "./index/filesEntityConfig";
 import { projectsEntity } from "./projectsEntity";
 import { samplesEntityConfig } from "./index/samplesEntityConfig";
 
-// Export config
 import { exportConfig } from "./export/export";
 
-// Images
 import logoHca from "images/logoHca.png";
 import logoHumanCellAtlas from "images/logoHumanCellAtlas.png";
 

@@ -1,12 +1,9 @@
-// App dependencies
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
 import { Social } from "app/components/common/Socials/socials";
 import { Logo } from "../../../app/components/Layout/common/entities";
 
-// Summary config
 import { summary } from "./index/summary";
 
-// Entities config
 import { activitiesEntityConfig } from "./index/activitiesEntityConfig";
 import { biosamplesEntityConfig } from "./index/biosamplesEntityConfig";
 import { donorsEntityConfig } from "./index/donorsEntityConfig";
@@ -14,10 +11,8 @@ import { datasetsEntityConfig } from "./index/datasetsEntityConfig";
 import { filesEntityConfig } from "./index/filesEntityConfig";
 import { librariesEntityConfig } from "./index/librariesEntityConfig";
 
-// Export config
 import { exportConfig } from "./export/export";
 
-// Images
 import logoAnvil from "images/logoAnvil.png";
 import logoHhs from "images/logoHhs.svg";
 import logoNhgri from "images/logoNhgri.svg";

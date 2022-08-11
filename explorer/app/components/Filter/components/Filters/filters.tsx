@@ -1,8 +1,6 @@
-// Core dependencies
 import { ButtonProps } from "@mui/material";
 import React from "react";
 
-// App dependencies
 import { CategoryTag, SelectCategoryView } from "../../../../common/entities";
 import { Filter } from "../Filter/filter";
 import { FilterLabel } from "../FilterLabel/filterLabel";
@@ -10,7 +8,6 @@ import { FilterMenu } from "../FilterMenu/filterMenu";
 import { FilterTags } from "../FilterTags/filterTags";
 import { OnFilterFn } from "../../../../hooks/useCategoryFilter";
 
-// Styles
 import { Filters as FilterList } from "./filters.styles";
 
 interface Props {

@@ -1,7 +1,5 @@
-// Core dependencies
 import React from "react";
 
-// App dependencies
 import { Page } from "../../app/components/Layout/components/Page/page";
 import { config } from "../../app/config/config";
 import { getCurrentEntity } from "../../app/hooks/useCurrentEntity";

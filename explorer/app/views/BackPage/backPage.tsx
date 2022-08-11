@@ -1,8 +1,6 @@
-// Core dependencies
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
-// App dependencies
 import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
 import { BackPageView } from "app/components/Layout/components/BackPage/backPageView";
 import { useCurrentDetailTab } from "app/hooks/useCurrentDetailTab";

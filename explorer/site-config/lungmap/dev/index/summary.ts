@@ -1,4 +1,3 @@
-// App dependencies
 import * as Components from "../../../../app/components";
 import { ComponentConfig } from "app/config/common/entities";
 import * as ViewBuilder from "./summaryViewModelBuilder";

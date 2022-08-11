@@ -1,13 +1,10 @@
-// App dependencies
 import anvilConfig from "../../anvil/dev/config";
 import { Social } from "app/components/common/Socials/socials";
 import { Logo } from "../../../app/components/Layout/common/entities";
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
 
-// Entities config
 import { studiesEntityConfig } from "./index/studiesEntityConfig";
 
-// Images
 import logoNcpi from "images/logoNcpi.svg";
 import { SiteConfig } from "../../../app/config/common/entities";
 

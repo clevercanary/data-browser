@@ -1,8 +1,6 @@
-// Core dependencies
 import React, { useMemo } from "react";
 import { ColumnDef, CellContext } from "@tanstack/react-table";
 
-// App dependencies
 import {
   ColumnConfig,
   GridTrackMinMax,

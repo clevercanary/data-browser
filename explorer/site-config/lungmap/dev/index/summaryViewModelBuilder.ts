@@ -1,7 +1,5 @@
-// Core dependencies
 import React from "react";
 
-// App dependencies
 import * as C from "../../../../app/components";
 import { getSummaries } from "../../../../app/components/Index/common/indexTransformer";
 import { AzulSummaryResponse } from "../../../../app/apis/azul/common/entities";

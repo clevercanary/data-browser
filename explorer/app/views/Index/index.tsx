@@ -1,8 +1,6 @@
-// Core dependencies
 import { useRouter } from "next/router";
 import React, { Fragment, useState } from "react";
 
-// App dependencies
 import {
   AzulEntitiesResponse,
   AzulEntitiesStaticResponse,

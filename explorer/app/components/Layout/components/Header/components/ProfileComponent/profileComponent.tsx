@@ -1,9 +1,7 @@
-// Core dependencies
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import { Button, IconButton } from "@mui/material";
 import React from "react";
 
-// App dependencies
 import {
   BREAKPOINT,
   BREAKPOINT_FN_NAME,

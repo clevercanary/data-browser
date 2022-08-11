@@ -1,8 +1,6 @@
-// Core dependencies
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
-// App dependencies
 import { SearchOffIcon } from "../CustomIcon/components/SearchOffIcon/searchOffIcon";
 import { PRIORITY, StatusIcon } from "./statusIcon";
 
