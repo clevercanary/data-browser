@@ -2,7 +2,10 @@
 import React from "react";
 
 // App dependencies
-import { FilesResponse, SamplesResponse } from "../../../../apis/azul/hca-dcp/common/responses";
+import {
+  FilesResponse,
+  SamplesResponse,
+} from "../../../../apis/azul/hca-dcp/common/responses";
 import * as Transformers from "../../../../apis/azul/hca-dcp/common/transformers";
 import * as C from "../../../../components";
 
