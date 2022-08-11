@@ -6,7 +6,6 @@ import { DownloadIcon } from "../common/CustomIcon/components/DownloadIcon/downl
 import { LoadingIcon } from "../common/CustomIcon/components/LoadingIcon/loadingIcon";
 import { IconButtonPrimary } from "../common/IconButton/iconButton.styles";
 
-
 interface AzulFileDownloadProps {
   url: string; // Original "file fetch URL" as returned from Azul endpoint.
 }
@@ -16,7 +15,7 @@ export const AzulFileDownload = ({
 }: AzulFileDownloadProps): JSX.Element => {
   const downloadRef = useRef<HTMLAnchorElement>(null);
   // Used to prevent the download button from being clicked twice
-  const [isDownloading, setDownloading] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
   // Correct the file fetch URL as per the Azul spec.
   const azulFetchUrl = buildFetchFileUrl(url);
   const { data, isLoading, isSuccess, run } =
@@ -29,7 +28,7 @@ export const AzulFileDownload = ({
       const downloadEl = downloadRef.current;
       downloadEl.href = fileLocation;
       downloadEl.click();
-      setDownloading(false);
+      setIsDownloading(false);
     }
   }, [fileLocation, isLoading, isSuccess]);
 
@@ -38,7 +37,7 @@ export const AzulFileDownload = ({
    */
   const onFileLocationRequested = async (): Promise<void> => {
     // Prevent duplicate downloads
-    setDownloading(true);
+    setIsDownloading(true);
     run();
   };
 
