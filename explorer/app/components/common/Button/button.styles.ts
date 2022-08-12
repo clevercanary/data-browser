@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Button as MButton } from "@mui/material";
 import { Button } from "./button";
 
 // Primary button.
@@ -21,7 +22,7 @@ export const ButtonPrimary = styled(Button)`
     color: ${({ theme }) => theme.palette.common.white};
     opacity: 0.5;
   }
-`;
+` as typeof MButton;
 
 // Secondary button.
 export const ButtonSecondary = styled(Button)`
