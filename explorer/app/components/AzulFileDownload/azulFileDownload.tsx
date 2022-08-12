@@ -4,7 +4,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { API_FILE_LOCATION_FETCH } from "../../apis/azul/anvil/common/constants";
 import { DownloadIcon } from "../common/CustomIcon/components/DownloadIcon/downloadIcon";
 import { LoadingIcon } from "../common/CustomIcon/components/LoadingIcon/loadingIcon";
-import { IconButtonPrimary } from "../common/IconButton/iconButton.styles";
+import {
+  IconButtonPrimary,
+  MockIconButtonPrimary,
+} from "../common/IconButton/iconButton.styles";
 
 interface AzulFileDownloadProps {
   url?: string; // Original "file fetch URL" as returned from Azul endpoint.
@@ -41,14 +44,19 @@ export const AzulFileDownload = ({
     run();
   };
 
+  const realButton = (
+    <IconButtonPrimary
+      disabled={!url}
+      Icon={isLoading ? LoadingIcon : DownloadIcon}
+      onClick={onFileLocationRequested}
+      size="medium"
+    />
+  );
+  const mockButton = <MockIconButtonPrimary />;
+
   return (
     <>
-      <IconButtonPrimary
-        disabled={!url || isDownloading}
-        Icon={isLoading ? LoadingIcon : DownloadIcon}
-        onClick={onFileLocationRequested}
-        size="medium"
-      />
+      {isDownloading ? mockButton : realButton}
       <Box component="a" download ref={downloadRef} sx={{ display: "none" }} />
     </>
   );
