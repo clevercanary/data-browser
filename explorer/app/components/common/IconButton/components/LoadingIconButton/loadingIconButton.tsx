@@ -1,15 +1,15 @@
 /**
- * Dummy "loading" icon button - a placeholder element styled like a primary icon button without the use of a button element.
+ * Mock "loading" icon button - a placeholder element styled like a primary icon button without the use of a button element.
  */
 
 import React from "react";
 import { LoadingIcon } from "../../../CustomIcon/components/LoadingIcon/loadingIcon";
-import { DummyIconButtonPrimary } from "../../iconButton.styles";
+import { MockIconButtonPrimary } from "../../iconButton.styles";
 
 export const LoadingIconButton = (): JSX.Element => {
   return (
-    <DummyIconButtonPrimary>
+    <MockIconButtonPrimary>
       <LoadingIcon fontSize="small" />
-    </DummyIconButtonPrimary>
+    </MockIconButtonPrimary>
   );
 };
