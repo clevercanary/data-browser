@@ -4,11 +4,14 @@ import { SectionTitle } from "app/components/Project/components/Section/componen
 import {
   Content as SectionText,
   Section,
-  SectionActions,
 } from "app/components/Project/components/Section/section.styles";
 import Link from "next/link";
 import React from "react";
-import { SectionContent } from "./exportToTerraReady.styles";
+import { BatchNormalizationWarning } from "../../../BatchNormalizationWarning/batchNormalizationWarning";
+import {
+  Actions as SectionActions,
+  SectionContent,
+} from "./exportToTerraReady.styles";
 
 interface Props {
   terraUrl: string;
@@ -25,7 +28,7 @@ export const ExportToTerraReady = ({ terraUrl }: Props): JSX.Element => {
               Your Terra Workspace has been opened in a new browser tab. The
               workspace URL is referenced below.
             </p>
-            <p>BatchNormalizationWarning</p>
+            <BatchNormalizationWarning />
           </SectionText>
         </SectionContent>
         <SectionActions>
