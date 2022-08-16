@@ -23,11 +23,8 @@ export const ExportToTerraNotStarted = ({ run }: Props): JSX.Element => {
     <RoundedPaper>
       <Section>
         <SectionContent gap={2}>
-          <SectionTitle title="Select File Types" />
+          <SectionTitle title="Export To Terra" />
           <SectionText component="div" variant="text-body-400-2lines">
-            <p>
-              Select the files types to be imported into your Terra workspace.
-            </p>
             <BatchNormalizationWarning />
           </SectionText>
         </SectionContent>
