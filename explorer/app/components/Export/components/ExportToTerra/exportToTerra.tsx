@@ -17,11 +17,13 @@ export const ExportToTerra = ({
   );
   if (!isLoading && !isSuccess) {
     return <ExportToTerraNotStarted run={run} />;
-  } else if (isLoading) {
-    return <Loading loading={true} />;
   } else if (!isLoading && isSuccess) {
-    return <ExportToTerraReady terraUrl={`${url}?${params.toString()}`} />;
+    return (
+      <ExportToTerraReady
+        terraUrl={`https://app.terra.bio/#import-data?${data?.location}`}
+      />
+    );
   } else {
-    return <p>BAD</p>;
+    return <Loading loading={true} />;
   }
 };
