@@ -1,5 +1,5 @@
 import { useRequestFileLocation } from "../../../../hooks/useRequestFileLocation";
-import { Loading } from "../../../Loading/loading";
+import { RoundedLoading } from "../../../Loading/loading.styles";
 import { ExportToTerraNotStarted } from "./components/ExportToTerraNotStarted/exportToTerraNotStarted";
 import { ExportToTerraReady } from "./components/ExportToTerraReady/exportToTerraReady";
 
@@ -12,18 +12,24 @@ export const ExportToTerra = ({
   params,
   url,
 }: ExportToTerraProps): JSX.Element => {
-  const { data, isLoading, isSuccess, run } = useRequestFileLocation(
+  const { data, isIdle, isLoading, isSuccess, run } = useRequestFileLocation(
     `${url}?${params.toString()}`
   );
-  if (!isLoading && !isSuccess) {
-    return <ExportToTerraNotStarted run={run} />;
-  } else if (!isLoading && isSuccess) {
-    return (
-      <ExportToTerraReady
-        terraUrl={`https://app.terra.bio/#import-data?${data?.location}`}
-      />
-    );
-  } else {
-    return <Loading loading={true} />;
-  }
+  return (
+    <>
+      {/* Export is idle or loading */}
+      {(isIdle || isLoading) && (
+        <div>
+          <RoundedLoading loading={isLoading} />
+          <ExportToTerraNotStarted run={run} />
+        </div>
+      )}
+      {/* Export is successful */}
+      {isSuccess && (
+        <ExportToTerraReady
+          terraUrl={`https://app.terra.bio/#import-data?${data?.location}`}
+        />
+      )}
+    </>
+  );
 };
