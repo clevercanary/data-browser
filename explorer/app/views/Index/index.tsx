@@ -24,7 +24,6 @@ import { Index as IndexView } from "../../components/Index/index";
 import { SidebarLabel } from "../../components/Layout/components/Sidebar/components/SidebarLabel/sidebarLabel";
 import { Sidebar } from "../../components/Layout/components/Sidebar/sidebar";
 import { EntityConfig, SummaryConfig } from "../../config/common/entities";
-import { useCategoryFilter } from "../../hooks/useCategoryFilter";
 
 /**
  * Returns tabs to be used as a prop for the Tabs component.
@@ -80,14 +79,8 @@ export const Index = (props: AzulEntitiesStaticResponse): JSX.Element => {
 
   // Fetch summary and entities.
   const { response: summaryResponse } = useSummary();
-  const { categories, loading, pagination, response, setFilter, sort } =
+  const { categories, loading, onFilter, pagination, response, sort } =
     useFetchEntities(props, []);
-
-  // Init filter functionality.
-  const { categories: categoryViews, onFilter } = useCategoryFilter(
-    categories,
-    setFilter
-  );
 
   // Grab the column config for the current entity.
   const columnsConfig = entity?.list?.columns;
@@ -154,9 +147,9 @@ export const Index = (props: AzulEntitiesStaticResponse): JSX.Element => {
 
   return (
     <>
-      {categoryViews && !!categoryViews.length && (
+      {categories && !!categories.length && (
         <Sidebar Label={<SidebarLabel label={"Filters"} />}>
-          <Filters categories={categoryViews} onFilter={onFilter} />
+          <Filters categories={categories} onFilter={onFilter} />
         </Sidebar>
       )}
       <IndexView
