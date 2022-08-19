@@ -1,19 +1,18 @@
-import React, { Fragment, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import {
-  BREAKPOINT,
-  BREAKPOINT_FN_NAME,
-  useBreakpointHelper,
-} from "../../../../hooks/useBreakpointHelper";
-import {
+  BackPageContent,
+  BackPageContentMainColumn,
+  BackPageContentSideColumn,
   BackPageHero,
-  BackPageOverview,
-  BackPageOverviewMain as Main,
-  BackPageOverviewSide as Side,
   BackPageTabs,
   BackPageView as BackPageLayout,
+  DetailPageOverviewContent,
+  DetailPageOverviewContentMainColumn,
+  DetailPageOverviewContentSideColumn,
 } from "./backPageView.styles";
 
 interface Props {
+  isDetailOverview?: boolean;
   mainColumn: ReactNode;
   sideColumn: ReactNode;
   Tabs?: ReactNode;
@@ -21,22 +20,29 @@ interface Props {
 }
 
 export const BackPageView = ({
+  isDetailOverview = false,
   mainColumn,
   sideColumn,
   Tabs,
   top,
 }: Props): JSX.Element => {
-  const tablet = useBreakpointHelper(BREAKPOINT_FN_NAME.UP, BREAKPOINT.TABLET);
-  const BackPageOverviewMain = tablet ? Main : Fragment;
-  const BackPageOverviewSide = tablet ? Side : Fragment;
+  const Content = isDetailOverview
+    ? DetailPageOverviewContent
+    : BackPageContent;
+  const MainColumn = isDetailOverview
+    ? DetailPageOverviewContentMainColumn
+    : BackPageContentMainColumn;
+  const SideColumn = isDetailOverview
+    ? DetailPageOverviewContentSideColumn
+    : BackPageContentSideColumn;
   return (
     <BackPageLayout>
       <BackPageHero>{top}</BackPageHero>
       {Tabs && <BackPageTabs>{Tabs}</BackPageTabs>}
-      <BackPageOverview>
-        <BackPageOverviewMain>{mainColumn}</BackPageOverviewMain>
-        <BackPageOverviewSide>{sideColumn}</BackPageOverviewSide>
-      </BackPageOverview>
+      <Content>
+        <MainColumn>{mainColumn}</MainColumn>
+        <SideColumn>{sideColumn}</SideColumn>
+      </Content>
     </BackPageLayout>
   );
 };

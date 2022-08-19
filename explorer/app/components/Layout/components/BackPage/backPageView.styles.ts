@@ -1,5 +1,7 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { BREAKPOINT } from "../../../../hooks/useBreakpointHelper";
+import { Sections } from "../../../Detail/components/Sections/sections";
 
 export const BackPageView = styled.div`
   display: grid;
@@ -33,7 +35,8 @@ export const BackPageTabs = styled.div`
   }
 `;
 
-export const BackPageOverview = styled.div`
+// Back page content (main and side column wrapper).
+export const BackPageContent = styled.div`
   align-items: flex-start;
   display: grid;
   gap: 16px 0;
@@ -50,20 +53,89 @@ export const BackPageOverview = styled.div`
   }
 `;
 
-const BackPageOverviewColumn = styled.div`
+// Detail back page "overview" content (main and side column wrapper).
+// Typically used by back page "project" or "datasets" tab.
+// Used with DetailPageOverviewContentMainColumn and DetailPageOverviewContentSideColumn, the "sections"
+// appear to be contained within a combination of "fluid" and "gridded" paper elements.
+// These styles render:
+// - mobile - a gridded, flat paper environment, each section stacked with a 1px gap, and
+// - tablet - a main and side column arrangement, and within each column, a gridded, rounded paper environment, each section stacked with a 1px gap.
+export const DetailPageOverviewContent = styled(BackPageContent)`
+  background-color: ${({ theme }) => theme.palette.smoke.main};
+  gap: 1px;
+  padding: 1px 0;
+
+  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+    background-color: transparent;
+    padding: 0;
+  }
+`;
+
+// Back page content column.
+const BackPageContentColumn = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px 0;
 `;
 
-export const BackPageOverviewMain = styled(BackPageOverviewColumn)`
+const mainColumn = css`
+  grid-column: 1 / 9;
+`;
+
+const sideColumn = css`
+  grid-column: 9 / -1;
+`;
+
+// Main column.
+export const BackPageContentMainColumn = styled(BackPageContentColumn)`
   ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
-    grid-column: 1 / 9;
+    ${mainColumn};
   }
 `;
 
-export const BackPageOverviewSide = styled(BackPageOverviewColumn)`
+// Side column.
+export const BackPageContentSideColumn = styled(BackPageContentColumn)`
   ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
-    grid-column: 9 / -1;
+    ${sideColumn};
+  }
+`;
+
+// Detail back page "overview" main column.
+// Typically used by back page "project" or "datasets" tab.
+export const DetailPageOverviewContentMainColumn = styled(Sections)`
+  display: contents;
+
+  && > * {
+    display: contents; // required to override nested GridPaper.
+  }
+
+  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+    align-self: flex-start;
+    display: grid;
+    ${mainColumn};
+
+    && > * {
+      display: grid; // required to restore nested GridPaper display property.
+    }
+  }
+`;
+
+// Detail back page "overview" side column.
+// Typically used by back page "project" or "datasets" tab.
+export const DetailPageOverviewContentSideColumn = styled(Sections)`
+  display: contents;
+
+  && > * {
+    display: contents; // required to override nested GridPaper.
+  }
+
+  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+    align-self: flex-start;
+    display: grid;
+    ${sideColumn};
+
+    && > * {
+      display: grid; // required to restore nested GridPaper display property.
+    }
   }
 `;
