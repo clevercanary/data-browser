@@ -4,12 +4,12 @@ import {
   BREAKPOINT_FN_NAME,
   useBreakpointHelper,
 } from "../../../../hooks/useBreakpointHelper";
-import { FlatPaper } from "../../../common/Paper/paper.styles";
 import {
   BackPageHero,
-  BackPageOverview as Overview,
+  BackPageOverview,
   BackPageOverviewMain as Main,
   BackPageOverviewSide as Side,
+  BackPageTabs,
   BackPageView as BackPageLayout,
 } from "./backPageView.styles";
 
@@ -27,17 +27,12 @@ export const BackPageView = ({
   top,
 }: Props): JSX.Element => {
   const tablet = useBreakpointHelper(BREAKPOINT_FN_NAME.UP, BREAKPOINT.TABLET);
-  const BackPageOverview = tablet
-    ? Overview
-    : Overview.withComponent(FlatPaper);
   const BackPageOverviewMain = tablet ? Main : Fragment;
   const BackPageOverviewSide = tablet ? Side : Fragment;
   return (
     <BackPageLayout>
-      <BackPageHero>
-        {top}
-        {Tabs}
-      </BackPageHero>
+      <BackPageHero>{top}</BackPageHero>
+      {Tabs && <BackPageTabs>{Tabs}</BackPageTabs>}
       <BackPageOverview>
         <BackPageOverviewMain>{mainColumn}</BackPageOverviewMain>
         <BackPageOverviewSide>{sideColumn}</BackPageOverviewSide>
