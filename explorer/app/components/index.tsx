@@ -1,7 +1,7 @@
 export { AzulFileDownload } from "./AzulFileDownload/azulFileDownload";
 export { Stack } from "./common/Stack/Stack";
 export { StaticImage } from "./common/StaticImage/staticImage";
-export { Section } from "./Detail/components/Section/section";
+export { CollapsableSection } from "./Detail/components/Section/components/CollapsableSection/collapsableSection";
 export { ExportMethod } from "./Export/components/ExportMethod/exportMethod";
 export { FileCounts } from "./FileCounts/FileCounts";
 export { IconList } from "./IconList/IconList";

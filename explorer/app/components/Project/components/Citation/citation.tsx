@@ -2,8 +2,8 @@ import { Typography } from "@mui/material";
 import { useConfig } from "app/hooks/useConfig";
 import React, { ReactNode } from "react";
 import { Stack } from "../../../common/Stack/Stack";
+import { CollapsableSection } from "../../../Detail/components/Section/components/CollapsableSection/collapsableSection";
 import { SectionDetailsEmpty } from "../../../Detail/components/Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
-import { Section } from "../../../Detail/components/Section/section";
 import { ANCHOR_TARGET, Link } from "../../../Links/components/Link/link";
 import { ProjectPath } from "../../common/entities";
 import { CitationLink } from "./citation.styles";
@@ -17,7 +17,7 @@ export const Citation = ({ projectPath }: Props): JSX.Element => {
   const citationLink = `${browserURL}${path}${projectPath}`;
   const showCitation = browserURL && path && projectPath;
   return (
-    <Section collapsable title="Citation">
+    <CollapsableSection collapsable title="Citation">
       {showCitation ? (
         <Stack gap={1}>
           <Typography>
@@ -35,7 +35,7 @@ export const Citation = ({ projectPath }: Props): JSX.Element => {
       ) : (
         <SectionDetailsEmpty />
       )}
-    </Section>
+    </CollapsableSection>
   );
 };
 

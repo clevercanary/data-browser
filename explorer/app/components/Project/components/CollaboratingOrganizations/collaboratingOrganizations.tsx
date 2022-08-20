@@ -1,6 +1,6 @@
 import React from "react";
+import { CollapsableSection } from "../../../Detail/components/Section/components/CollapsableSection/collapsableSection";
 import { SectionDetailsEmpty } from "../../../Detail/components/Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
-import { Section } from "../../../Detail/components/Section/section";
 import { CollaboratingOrganization } from "../../common/entities";
 import { Sup } from "../Sup/Sup.styles";
 
@@ -12,7 +12,7 @@ export const CollaboratingOrganizations = ({
   collaboratingOrganizations,
 }: Props): JSX.Element => {
   return (
-    <Section collapsable title="Collaborating Organizations">
+    <CollapsableSection collapsable title="Collaborating Organizations">
       {collaboratingOrganizations ? (
         <div>
           {collaboratingOrganizations.map(({ citation, name }, c) => (
@@ -25,6 +25,6 @@ export const CollaboratingOrganizations = ({
       ) : (
         <SectionDetailsEmpty />
       )}
-    </Section>
+    </CollapsableSection>
   );
 };

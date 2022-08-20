@@ -1,6 +1,6 @@
 import React from "react";
+import { CollapsableSection } from "../../../Detail/components/Section/components/CollapsableSection/collapsableSection";
 import { SectionDetailsEmpty } from "../../../Detail/components/Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
-import { Section } from "../../../Detail/components/Section/section";
 import { Contributor } from "../../common/entities";
 import { Sup } from "../Sup/Sup.styles";
 
@@ -10,7 +10,7 @@ interface Props {
 
 export const Contributors = ({ contributors }: Props): JSX.Element => {
   return (
-    <Section collapsable title="Contributors">
+    <CollapsableSection collapsable title="Contributors">
       {contributors ? (
         <div>
           {contributors.map(({ citation, name, role }, c) => (
@@ -24,6 +24,6 @@ export const Contributors = ({ contributors }: Props): JSX.Element => {
       ) : (
         <SectionDetailsEmpty />
       )}
-    </Section>
+    </CollapsableSection>
   );
 };

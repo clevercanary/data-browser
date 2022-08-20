@@ -7,13 +7,13 @@ import {
   BREAKPOINT,
   BREAKPOINT_FN_NAME,
   useBreakpointHelper,
-} from "../../../../hooks/useBreakpointHelper";
-import { SectionTitle } from "./components/SectionTitle/sectionTitle";
+} from "../../../../../../hooks/useBreakpointHelper";
 import {
   CollapsableSection as SectionContainer,
   SectionContent as Content,
   SectionSummary,
-} from "./section.styles";
+} from "../../section.styles";
+import { SectionTitle } from "../SectionTitle/sectionTitle";
 
 interface Props {
   children: ReactNode;
@@ -21,7 +21,7 @@ interface Props {
   title: string;
 }
 
-export const Section = ({
+export const CollapsableSection = ({
   children,
   collapsable = false,
   title,
