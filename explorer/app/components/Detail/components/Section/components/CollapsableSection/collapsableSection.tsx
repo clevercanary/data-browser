@@ -8,12 +8,12 @@ import {
   BREAKPOINT_FN_NAME,
   useBreakpointHelper,
 } from "../../../../../../hooks/useBreakpointHelper";
-import {
-  CollapsableSection as SectionContainer,
-  SectionContent as Content,
-  SectionSummary,
-} from "../../section.styles";
 import { SectionTitle } from "../SectionTitle/sectionTitle";
+import {
+  CollapsableSection as Section,
+  SectionSummary,
+  SectionText,
+} from "./collapsableSection.styles";
 
 interface Props {
   children: ReactNode;
@@ -36,9 +36,9 @@ export const CollapsableSection = ({
   const disabled = !mobile || !collapsable;
   const ExpandIcon = expanded ? RemoveRoundedIcon : AddRoundedIcon;
   const SectionContent = (
-    <Content component="div" variant="text-body-400-2lines">
+    <SectionText component="div" variant="text-body-400-2lines">
       {children}
-    </Content>
+    </SectionText>
   );
 
   const onToggleExpanded = (): void => {
@@ -67,7 +67,7 @@ export const CollapsableSection = ({
   }, [mobile]);
 
   return (
-    <SectionContainer>
+    <Section>
       <SectionSummary disabled={disabled} onClick={onToggleExpanded}>
         <SectionTitle title={title} />
         {!disabled && <ExpandIcon fontSize="small" />}
@@ -79,6 +79,6 @@ export const CollapsableSection = ({
       ) : (
         SectionContent
       )}
-    </SectionContainer>
+    </Section>
   );
 };
