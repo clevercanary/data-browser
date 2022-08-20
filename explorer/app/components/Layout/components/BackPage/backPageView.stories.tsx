@@ -15,6 +15,7 @@ import { ProjectHero } from "./components/BackPageHero/backPageHero.stories";
 
 export default {
   argTypes: {
+    isDetailOverview: { control: "boolean" },
     mainColumn: { table: { disable: true } },
     sideColumn: { table: { disable: true } },
     top: { table: { disable: true } },
@@ -32,6 +33,7 @@ const Template: ComponentStory<typeof BackPageView> = (args) => (
 
 export const HCAProject = Template.bind({});
 HCAProject.args = {
+  isDetailOverview: true,
   mainColumn: (
     <>
       <ProjectDescription
