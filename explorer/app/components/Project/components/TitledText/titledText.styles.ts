@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Typography } from "@mui/material";
-import { Content } from "../Section/section.styles";
+import { Content } from "../../../Detail/components/Section/section.styles";
 
 export const SectionContent = styled(Content)`
   gap: 0;

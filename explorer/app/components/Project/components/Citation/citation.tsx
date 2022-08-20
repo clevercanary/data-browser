@@ -2,10 +2,10 @@ import { Typography } from "@mui/material";
 import { useConfig } from "app/hooks/useConfig";
 import React, { ReactNode } from "react";
 import { Stack } from "../../../common/Stack/Stack";
+import { SectionDetailsEmpty } from "../../../Detail/components/Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
+import { Section } from "../../../Detail/components/Section/section";
 import { ANCHOR_TARGET, Link } from "../../../Links/components/Link/link";
 import { ProjectPath } from "../../common/entities";
-import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
-import { Section } from "../Section/section";
 import { CitationLink } from "./citation.styles";
 
 interface Props {

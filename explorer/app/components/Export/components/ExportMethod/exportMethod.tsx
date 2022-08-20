@@ -4,7 +4,7 @@ import {
   Section,
   SectionCallout,
   SectionTitle,
-} from "app/components/Project/components/Section/section.styles";
+} from "app/components/Detail/components/Section/section.styles";
 import Link from "next/link";
 import React from "react";
 import { ExportButton } from "./exportMethod.styles";

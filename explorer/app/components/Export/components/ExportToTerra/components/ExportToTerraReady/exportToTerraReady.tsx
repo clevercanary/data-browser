@@ -1,10 +1,10 @@
 import { ButtonPrimary } from "app/components/common/Button/button.styles";
 import { FluidPaper } from "app/components/common/Paper/paper.styles";
-import { SectionTitle } from "app/components/Project/components/Section/components/SectionTitle/sectionTitle";
+import { SectionTitle } from "app/components/Detail/components/Section/components/SectionTitle/sectionTitle";
 import {
   Content as SectionText,
   Section,
-} from "app/components/Project/components/Section/section.styles";
+} from "app/components/Detail/components/Section/section.styles";
 import Link from "next/link";
 import React from "react";
 import { BatchNormalizationWarning } from "../../../BatchNormalizationWarning/batchNormalizationWarning";

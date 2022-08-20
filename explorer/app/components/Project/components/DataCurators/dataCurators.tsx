@@ -1,7 +1,7 @@
 import React from "react";
+import { SectionDetailsEmpty } from "../../../Detail/components/Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
+import { Section } from "../../../Detail/components/Section/section";
 import { DataCurator } from "../../common/entities";
-import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
-import { Section } from "../Section/section";
 
 interface Props {
   dataCurators?: DataCurator[];

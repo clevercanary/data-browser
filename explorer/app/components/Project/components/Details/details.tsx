@@ -6,8 +6,8 @@ import {
   KeyValues,
 } from "../../../common/KeyValuePairs/keyValuePairs";
 import { Stack } from "../../../common/Stack/Stack";
-import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
-import { Section } from "../Section/section";
+import { SectionDetailsEmpty } from "../../../Detail/components/Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
+import { Section } from "../../../Detail/components/Section/section";
 
 interface Props {
   keyValuePairs?: KeyValues;

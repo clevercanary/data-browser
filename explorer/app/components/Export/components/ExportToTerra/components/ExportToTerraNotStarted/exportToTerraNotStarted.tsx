@@ -3,9 +3,9 @@ import { FluidPaper } from "app/components/common/Paper/paper.styles";
 import {
   Content as SectionText,
   Section,
-} from "app/components/Project/components/Section/section.styles";
+} from "app/components/Detail/components/Section/section.styles";
 import React from "react";
-import { SectionTitle } from "../../../../../Project/components/Section/components/SectionTitle/sectionTitle";
+import { SectionTitle } from "../../../../../Detail/components/Section/components/SectionTitle/sectionTitle";
 import { BatchNormalizationWarning } from "../../../BatchNormalizationWarning/batchNormalizationWarning";
 import {
   Actions as SectionActions,

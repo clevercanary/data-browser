@@ -1,10 +1,10 @@
 import { Typography } from "@mui/material";
 import React, { Fragment } from "react";
 import { Stack } from "../../../common/Stack/Stack";
+import { SectionDetailsEmpty } from "../../../Detail/components/Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
+import { Section } from "../../../Detail/components/Section/section";
 import { ANCHOR_TARGET, Link } from "../../../Links/components/Link/link";
 import { SupplementaryLink } from "../../common/entities";
-import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
-import { Section } from "../Section/section";
 import {
   Marker,
   SupplementaryLink as EllipsisLink,

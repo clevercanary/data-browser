@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import React from "react";
+import { Section } from "../../../Detail/components/Section/section";
 import { Description as ProjectDescription } from "../../common/entities";
-import { Section } from "../Section/section";
 
 interface Props {
   projectDescription: ProjectDescription;

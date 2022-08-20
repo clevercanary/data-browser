@@ -1,7 +1,7 @@
 import { FluidPaper } from "app/components/common/Paper/paper.styles";
 import React, { ReactNode } from "react";
-import { SectionTitle } from "../Section/components/SectionTitle/sectionTitle";
-import { Section } from "../Section/section.styles";
+import { SectionTitle } from "../../../Detail/components/Section/components/SectionTitle/sectionTitle";
+import { Section } from "../../../Detail/components/Section/section.styles";
 import { SectionContent } from "./titledText.styles";
 
 export type Content = ReactNode | ReactNode[] | string[];

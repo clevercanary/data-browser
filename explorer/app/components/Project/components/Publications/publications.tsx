@@ -1,9 +1,9 @@
 import { Typography } from "@mui/material";
 import React from "react";
+import { SectionDetailsEmpty } from "../../../Detail/components/Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
+import { Section } from "../../../Detail/components/Section/section";
 import { ANCHOR_TARGET, Link } from "../../../Links/components/Link/link";
 import { Publication } from "../../common/entities";
-import { SectionDetailsEmpty } from "../Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
-import { Section } from "../Section/section";
 
 interface Props {
   publications?: Publication[];

@@ -1,7 +1,7 @@
 import { Link as PolicyLink, Typography } from "@mui/material";
 import Link from "next/link";
 import React from "react";
-import { Section } from "../Section/section";
+import { Section } from "../../../Detail/components/Section/section";
 
 export const DataReleasePolicy = (): JSX.Element => {
   return (
