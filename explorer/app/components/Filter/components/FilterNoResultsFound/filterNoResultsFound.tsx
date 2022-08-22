@@ -24,7 +24,7 @@ export const FilterNoResultsFound = ({
         mt={1}
         variant="text-body-400"
       >
-        Try adjusting your search or filter to find what your’re looking for.
+        Try adjusting your search or filter to find what you’re looking for.
       </Typography>
       <TextButtonPrimary onClick={onClearSearchTerm}>
         Clear All
