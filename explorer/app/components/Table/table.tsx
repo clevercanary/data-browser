@@ -33,11 +33,13 @@ export interface EditColumnConfig {
 
 interface TableProps<T extends object> {
   columns: ColumnDef<T>[];
+  count?: number;
   disablePagination?: boolean;
   editColumns?: EditColumnConfig;
   gridTemplateColumns: string;
   items: T[];
   loading?: boolean;
+  pages?: number;
   pageSize: number;
   pagination?: Pagination;
   sort?: Sort;
@@ -55,6 +57,8 @@ interface TableProps<T extends object> {
  * @param tableProps.editColumns - True if edit column functionality is enabled for table.
  * @param tableProps.pageSize - Number of rows to display per page.
  * @param tableProps.total - Total number of rows in the result set.
+ * @param tableProps.count - Total number of rows in the current page.
+ * @param tableProps.pages - Total amount of pages.
  * @param tableProps.pagination - Config for rendering pagination and corresponding events.
  * @param tableProps.sort - Config for rendering current sort and handling corresponding events.
  * @param tableProps.gridTemplateColumns - Defines grid table track sizing.
@@ -63,10 +67,12 @@ interface TableProps<T extends object> {
  */
 export const TableComponent = <T extends object>({
   columns,
+  count,
   disablePagination,
   editColumns,
   gridTemplateColumns,
   items,
+  pages,
   pageSize,
   pagination,
   sort,
@@ -111,6 +117,7 @@ export const TableComponent = <T extends object>({
   const currentPage =
     pagination?.currentPage ?? getState().pagination.pageIndex + 1;
   const totalPage = total ?? getState().pagination.pageSize;
+  const pageCount = count ?? getState().pagination.pageSize;
 
   const handleTableNextPage = (): void => {
     const nextPage = pagination?.nextPage ?? tableNextPage;
@@ -133,6 +140,8 @@ export const TableComponent = <T extends object>({
     }
   };
 
+  const isLastPage = currentPage === pages;
+
   return (
     <div>
       <RoundedPaper>
@@ -141,8 +150,8 @@ export const TableComponent = <T extends object>({
             <TableToolbar>
               <PaginationSummary
                 firstResult={(currentPage - 1) * pageSize + 1}
-                lastResult={pageSize * currentPage}
-                totalResult={totalPage * pageSize}
+                lastResult={isLastPage ? totalPage : pageCount * currentPage}
+                totalResult={totalPage}
               />
               <CheckboxMenu
                 label="Edit Columns"
@@ -211,7 +220,7 @@ export const TableComponent = <T extends object>({
               currentPage={currentPage}
               onNextPage={handleTableNextPage}
               onPreviousPage={handleTablePreviousPage}
-              totalPage={totalPage}
+              totalPage={pages ?? 0}
             />
           )}
         </GridPaper>

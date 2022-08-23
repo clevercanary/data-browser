@@ -84,6 +84,7 @@ export interface DataSourceConfig {
  * Interface to define the set of components that will be used for the back page.
  */
 export interface BackPageConfig {
+  detailOverviews?: TabConfig["label"][];
   tabs: BackPageTabConfig[];
   top: ComponentsConfig;
 }
@@ -160,6 +161,7 @@ export interface SiteConfig {
   entities: EntityConfig[];
   entityTitle: HeroTitle;
   export?: BackPageConfig;
+  exportToTerraUrl?: string; // TODO(cc) revist location; possibly nest inside "export"?
   layout: {
     footer: Footer;
     header: Header;

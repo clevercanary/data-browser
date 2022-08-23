@@ -8,7 +8,7 @@ import { useEditColumns } from "app/hooks/useEditColumns";
 import React, { useMemo } from "react";
 import { Pagination, Sort } from "../../common/entities";
 import { ComponentCreator } from "../ComponentCreator/ComponentCreator";
-import { RoundedLoading } from "../Loading/loading.styles";
+import { Loading } from "../Loading/loading";
 import { Table } from "../Table/table";
 
 interface TableCreatorProps<T> {
@@ -16,6 +16,8 @@ interface TableCreatorProps<T> {
   disablePagination?: boolean;
   items: T[];
   loading?: boolean;
+  pageCount?: number;
+  pages: number;
   pageSize: number;
   pagination?: Pagination;
   sort?: Sort;
@@ -67,6 +69,8 @@ export const TableCreator = <T extends object>({
   disablePagination,
   items,
   loading,
+  pageCount,
+  pages,
   pageSize,
   pagination,
   sort,
@@ -90,17 +94,19 @@ export const TableCreator = <T extends object>({
 
   return (
     <div>
-      <RoundedLoading loading={loading || false} />
+      <Loading loading={loading || false} />
       <Table<T>
         columns={reactVisibleColumns}
         disablePagination={disablePagination}
         editColumns={editColumns}
         gridTemplateColumns={gridTemplateColumns}
         items={items}
+        pages={pages}
         pageSize={pageSize}
         pagination={pagination}
         sort={sort}
         total={total}
+        count={pageCount}
         loading={loading}
         staticallyLoaded={staticallyLoaded}
       />
