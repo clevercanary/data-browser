@@ -8,6 +8,7 @@ import { useEditColumns } from "app/hooks/useEditColumns";
 import React, { useMemo } from "react";
 import { Pagination, Sort } from "../../common/entities";
 import { ComponentCreator } from "../ComponentCreator/ComponentCreator";
+import { RoundedLoading } from "../Loading/loading.styles";
 import { Table } from "../Table/table";
 
 interface TableCreatorProps<T> {
@@ -18,6 +19,7 @@ interface TableCreatorProps<T> {
   pageSize: number;
   pagination?: Pagination;
   sort?: Sort;
+  staticallyLoaded?: boolean;
   total?: number;
 }
 
@@ -68,10 +70,12 @@ export const TableCreator = <T extends object>({
   pageSize,
   pagination,
   sort,
+  staticallyLoaded,
   total,
 }: TableCreatorProps<T>): JSX.Element => {
   const { editColumns, visibleColumns } = useEditColumns(columns);
   const gridTemplateColumns = getGridTemplateColumnsValue(visibleColumns);
+  console.log(`isLoading: ${loading}`);
 
   const reactVisibleColumns: ColumnDef<T>[] = useMemo(
     () =>
@@ -85,17 +89,21 @@ export const TableCreator = <T extends object>({
   );
 
   return (
-    <Table<T>
-      columns={reactVisibleColumns}
-      disablePagination={disablePagination}
-      editColumns={editColumns}
-      gridTemplateColumns={gridTemplateColumns}
-      items={items}
-      pageSize={pageSize}
-      pagination={pagination}
-      sort={sort}
-      total={total}
-      loading={loading}
-    />
+    <div>
+      <RoundedLoading loading={loading || false} />
+      <Table<T>
+        columns={reactVisibleColumns}
+        disablePagination={disablePagination}
+        editColumns={editColumns}
+        gridTemplateColumns={gridTemplateColumns}
+        items={items}
+        pageSize={pageSize}
+        pagination={pagination}
+        sort={sort}
+        total={total}
+        loading={loading}
+        staticallyLoaded={staticallyLoaded}
+      />
+    </div>
   );
 };

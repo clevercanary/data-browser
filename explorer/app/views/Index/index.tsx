@@ -147,6 +147,7 @@ export const Index = (props: AzulEntitiesStaticResponse): JSX.Element => {
         pagination={pagination}
         sort={sort}
         loading={loading}
+        staticallyLoaded={entity.staticLoad}
         disablePagination={config.disablePagination}
       />
     );
