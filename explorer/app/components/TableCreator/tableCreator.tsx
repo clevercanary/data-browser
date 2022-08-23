@@ -79,7 +79,6 @@ export const TableCreator = <T extends object>({
 }: TableCreatorProps<T>): JSX.Element => {
   const { editColumns, visibleColumns } = useEditColumns(columns);
   const gridTemplateColumns = getGridTemplateColumnsValue(visibleColumns);
-  console.log(`isLoading: ${loading}`);
 
   const reactVisibleColumns: ColumnDef<T>[] = useMemo(
     () =>
