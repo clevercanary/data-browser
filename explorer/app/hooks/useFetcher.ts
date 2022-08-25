@@ -1,9 +1,10 @@
-import { EntityConfig } from "../config/common/entities";
+import { ApiOption, EntityConfig } from "../config/common/entities";
 import { create } from "../entity/fetcher/factory";
 import { Fetcher } from "../entity/fetcher/model";
 import { useCurrentEntity } from "./useCurrentEntity";
 
 interface FetcherResponse extends Fetcher {
+  method?: ApiOption;
   path: string;
   staticLoad: boolean;
 }
@@ -12,6 +13,7 @@ export const getFetcher = (entity: EntityConfig): FetcherResponse => {
   if (entity.apiPath) {
     return {
       ...create("API"),
+      method: entity.options?.method,
       path: entity.apiPath,
       staticLoad: !!entity.staticLoad,
     };
