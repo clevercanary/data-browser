@@ -7,6 +7,7 @@ import {
   AzulListParams,
   AzulSummaryResponse,
 } from "../../apis/azul/common/entities";
+import { ApiOption } from "../../config/common/entities";
 import {
   DEFAULT_DETAIL_PARAMS,
   DEFAULT_LIST_PARAMS,
@@ -31,11 +32,20 @@ export const list = async (
 /**
  * Make a get request to get a list of entities.
  * @param url - Absolute URL to be used on the request
+ * @param method - Method to be used for the request, either GET or POST for now
  * @returns JSON representation of request list.
  */
-export const fetchList = async (url: string): Promise<AzulEntitiesResponse> => {
-  const res = await fetch(url);
-  return await res.json();
+export const fetchList = async (
+  url: string,
+  method?: ApiOption
+): Promise<AzulEntitiesResponse> => {
+  if (typeof method !== undefined) {
+    const res = await fetch(url, { method: method });
+    return await res.json(); //TODO: make this less bad
+  } else {
+    const res = await fetch(url);
+    return await res.json();
+  }
 };
 
 /**
