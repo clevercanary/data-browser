@@ -17,7 +17,11 @@ export interface Fetcher {
     param?: { [key: string]: string }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This type can't be known before hand
   ) => Promise<any>;
-  fetchList: (url: string, options?: Options) => Promise<AzulEntitiesResponse>;
+  fetchList: (
+    url: string,
+    params?: Record<string, string>,
+    options?: Options
+  ) => Promise<AzulEntitiesResponse>;
   list: (
     apiPath: string,
     listParams?: AzulListParams,

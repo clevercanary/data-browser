@@ -28,26 +28,33 @@ export const list = async (
   options?: Options
 ): Promise<AzulEntitiesResponse> => {
   const params = { ...DEFAULT_LIST_PARAMS, ...listParams };
-  return await fetchList(
-    `${URL}${apiPath}?${convertUrlParams(params)}`,
-    options
-  );
+  return await fetchList(`${URL}${apiPath}`, params, options);
 };
 
 /**
  * Make a get request to get a list of entities.
  * @param url - Absolute URL to be used on the request
+ * @param params - The parameters to be used for the API call
  * @param options - String with the type of API call, must be either GET or POST for now
  * @returns JSON representation of request list.
  */
 export const fetchList = async (
   url: string,
+  params?: Record<string, string>,
   options?: Options
 ): Promise<AzulEntitiesResponse> => {
-  console.log("I'm making an API call!"); //TODO: get rid of this
-  const res = await fetch(url, options);
-  console.log(`It's a ${options?.method} call!`); //TODO: get rid of this
-  return await res.json();
+  if (options?.method == "GET" || options?.method == undefined) {
+    const url_with_params = `${url}?${convertUrlParams(params ?? {})}`;
+    const res = await fetch(url_with_params);
+    return await res.json();
+  } else {
+    const res = await fetch(url, {
+      ...options,
+      body: JSON.stringify(params),
+      headers: { "Content-Type": "application/json" },
+    });
+    return await res.json();
+  }
 };
 
 /**
