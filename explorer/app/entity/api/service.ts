@@ -45,14 +45,9 @@ export const fetchList = async (
   options?: Options
 ): Promise<AzulEntitiesResponse> => {
   console.log("I'm making an API call!"); //TODO: get rid of this
-  if (typeof options !== undefined) {
-    const res = await fetch(url, options);
-    console.log(`It's a ${options?.method} call!`); //TODO: get rid of this
-    return await res.json();
-  } else {
-    const res = await fetch(url);
-    return await res.json();
-  }
+  const res = await fetch(url, options);
+  console.log(`It's a ${options?.method} call!`); //TODO: get rid of this
+  return await res.json();
 };
 
 /**
