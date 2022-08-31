@@ -5,6 +5,7 @@ import { useFetcher } from "./useFetcher";
 
 const DEFAULT_CURRENT_PAGE = 1;
 
+// TODO(cc) revisit optional chaining; pagination needs to be optional. #338
 export const usePagination = (
   runFn: (p: Promise<AzulEntitiesResponse>) => Promise<AzulEntitiesResponse>,
   data?: AzulEntitiesResponse
@@ -17,27 +18,27 @@ export const usePagination = (
 
   // Create callback for next page action.
   const nextPage = useCallback(async () => {
-    if (data?.pagination.next) {
+    if (data?.pagination?.next) {
       setCurrentPage((s) => s + 1);
       runFn(fetchList(data.pagination.next));
     }
-  }, [data?.pagination.next, fetchList, runFn]);
+  }, [data?.pagination?.next, fetchList, runFn]);
 
   // Create callback for previous page action.
   const previousPage = useCallback(async () => {
-    if (data?.pagination.previous) {
+    if (data?.pagination?.previous) {
       setCurrentPage((s) => s - 1);
       runFn(fetchList(data.pagination.previous));
     }
-  }, [data?.pagination.previous, fetchList, runFn]);
+  }, [data?.pagination?.previous, fetchList, runFn]);
 
   const resetPage = useCallback(() => {
     setCurrentPage(DEFAULT_CURRENT_PAGE);
   }, []);
 
   return {
-    canNextPage: !!data?.pagination.next,
-    canPreviousPage: !!data?.pagination.previous,
+    canNextPage: !!data?.pagination?.next,
+    canPreviousPage: !!data?.pagination?.previous,
     currentPage,
     nextPage,
     previousPage,
