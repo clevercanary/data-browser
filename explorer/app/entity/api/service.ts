@@ -18,12 +18,18 @@ import { convertUrlParams } from "../../utils/url";
  * Request to get a list of entities.
  * @param apiPath - Path that will be used to compose the API url
  * @param listParams - Params to be used on the request. If none passed, it will default to page's size 25 and the current catalog version
+ * @param staticResponse - Param to determine that the response was loaded statically and should be returned as promise result.
  * @returns @see ListResponseType
  */
 export const list = async (
   apiPath: string,
-  listParams?: AzulListParams
+  listParams?: AzulListParams,
+  staticResponse?: AzulEntitiesResponse
 ): Promise<AzulEntitiesResponse> => {
+  if (staticResponse) {
+    return new Promise((resolve) => resolve(staticResponse));
+  }
+
   const params = { ...DEFAULT_LIST_PARAMS, ...listParams };
   return await fetchList(`${URL}${apiPath}?${convertUrlParams(params)}`);
 };

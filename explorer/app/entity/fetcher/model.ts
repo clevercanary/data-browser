@@ -18,7 +18,8 @@ export interface Fetcher {
   fetchList: (url: string) => Promise<AzulEntitiesResponse>;
   list: (
     apiPath: string,
-    listParams?: AzulListParams
+    listParams?: AzulListParams,
+    staticResponse?: AzulEntitiesResponse
   ) => Promise<AzulEntitiesResponse>;
   listAll: (
     apiPath: string,
