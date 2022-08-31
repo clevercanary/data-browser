@@ -2,6 +2,15 @@ import { ColumnConfig } from "app/config/common/entities";
 import { useCallback, useMemo } from "react";
 import { useResetableState } from "./useResetableState";
 
+type ColumnOption = { id: string; label: string };
+
+export interface EditColumnsFunctions {
+  onVisibleColumnsChange: (columndId: string) => void;
+  options: ColumnOption[];
+  readOnlyColumns: string[];
+  selectedColumns: string[];
+}
+
 /**
  * Hook used to isolate the logic necessary for tables with the edit columns functionality.
  * Where is possible to dynamically determine which columns should be displayed.
@@ -11,13 +20,16 @@ import { useResetableState } from "./useResetableState";
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type -- TODO add return type here
 export const useEditColumns = (columns: ColumnConfig[]) => {
   const defaultColumns = useMemo(
-    () => columns.filter(({ hiddenColumn }) => !hiddenColumn),
+    () =>
+      columns
+        .filter(({ hiddenColumn }) => !hiddenColumn)
+        .map(({ header }) => header),
     [columns]
   );
   const [visibleColumns, setVisibleColumns] = useResetableState(defaultColumns);
 
-  const readOnlyColumns = defaultColumns.map(({ header }) => header);
-  const selectedColumns = visibleColumns.map(({ header }) => header);
+  const readOnlyColumns = defaultColumns;
+  const selectedColumns = visibleColumns;
   const columnsOptions = columns.map(({ header }) => ({
     id: header,
     label: header,
@@ -26,9 +38,7 @@ export const useEditColumns = (columns: ColumnConfig[]) => {
   const handleVisibleColumnsChanged = useCallback(
     (columnId: string) => {
       setVisibleColumns((state) => {
-        const columnIndex = state.findIndex(
-          ({ header }) => header === columnId
-        );
+        const columnIndex = state.findIndex((header) => header === columnId);
 
         if (columnIndex !== -1) {
           const newState = [...state];
@@ -38,7 +48,7 @@ export const useEditColumns = (columns: ColumnConfig[]) => {
 
         const newColumn = columns.find(({ header }) => header === columnId);
         if (newColumn) {
-          return [...state, newColumn];
+          return [...state, newColumn.header];
         }
         return state;
       });
@@ -67,6 +77,8 @@ export const useEditColumns = (columns: ColumnConfig[]) => {
 
   return {
     editColumns,
-    visibleColumns,
+    visibleColumns: columns.filter(({ header }) =>
+      visibleColumns.includes(header)
+    ),
   };
 };

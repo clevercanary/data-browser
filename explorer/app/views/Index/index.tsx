@@ -70,7 +70,7 @@ export const Index = (props: AzulEntitiesStaticResponse): JSX.Element => {
   const entity = useCurrentEntity();
   const { entities, entityTitle, summaryConfig } = useConfig();
 
-  const route = entity?.route;
+  const route = entity.route;
   const { push } = useRouter();
 
   // Init tabs state.
@@ -79,11 +79,19 @@ export const Index = (props: AzulEntitiesStaticResponse): JSX.Element => {
 
   // Fetch summary and entities.
   const { response: summaryResponse } = useSummary();
-  const { categories, loading, onFilter, pagination, response, sort } =
-    useFetchEntities(props);
+  const {
+    categories,
+    dataEntity,
+    dataEntityRoute,
+    loading,
+    onFilter,
+    pagination,
+    response,
+    sort,
+  } = useFetchEntities(props);
 
   // Grab the column config for the current entity.
-  const columnsConfig = entity?.list?.columns;
+  const columnsConfig = dataEntity.list.columns;
 
   /**
    * Callback fired when selected tab value changes.
@@ -142,8 +150,9 @@ export const Index = (props: AzulEntitiesStaticResponse): JSX.Element => {
         sort={sort}
         pages={entitiesResponse.pagination.pages}
         loading={loading}
-        staticallyLoaded={entity.staticLoad}
         disablePagination={config.disablePagination}
+        currentEntityRoute={route}
+        dataEntityRoute={dataEntityRoute}
       />
     );
   };

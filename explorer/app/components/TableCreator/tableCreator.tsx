@@ -13,6 +13,8 @@ import { Table } from "../Table/table";
 
 interface TableCreatorProps<T> {
   columns: ColumnConfig<T>[];
+  currentEntityRoute: string;
+  dataEntityRoute: string;
   disablePagination?: boolean;
   items: T[];
   loading?: boolean;
@@ -21,7 +23,6 @@ interface TableCreatorProps<T> {
   pageSize: number;
   pagination?: Pagination;
   sort?: Sort;
-  staticallyLoaded?: boolean;
   total?: number;
 }
 
@@ -66,6 +67,8 @@ const createCell = <T extends object>(config: ColumnConfig<T>) =>
 
 export const TableCreator = <T extends object>({
   columns,
+  currentEntityRoute,
+  dataEntityRoute,
   disablePagination,
   items,
   loading,
@@ -74,7 +77,6 @@ export const TableCreator = <T extends object>({
   pageSize,
   pagination,
   sort,
-  staticallyLoaded,
   total,
 }: TableCreatorProps<T>): JSX.Element => {
   const { editColumns, visibleColumns } = useEditColumns(columns);
@@ -107,7 +109,8 @@ export const TableCreator = <T extends object>({
         total={total}
         count={pageCount}
         loading={loading}
-        staticallyLoaded={staticallyLoaded}
+        currentEntityRoute={currentEntityRoute}
+        dataEntityRoute={dataEntityRoute}
       />
     </div>
   );

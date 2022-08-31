@@ -2,6 +2,8 @@
  * Hook to make API async calls and handles the API result state.
  */
 import React, { useCallback, useEffect, useReducer, useRef } from "react";
+import { EntityConfig } from "./../config/common/entities";
+import { useCurrentEntity } from "./useCurrentEntity";
 
 /**
  * Hook to safely call an async function, by checking if the component is mounted before the call
@@ -27,19 +29,23 @@ type Error = { message: string };
 
 interface State<T> {
   data?: T;
+  dataEntityRoute: string;
   error?: Error;
   status: "idle" | "pending" | "rejected" | "resolved";
 }
 
 /**
  * Hook to safely call async functions and managing the result's state.
- * @param state - API request's initial state. Default to idle
  * @returns set of functions to be used to as request handlers
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type -- TODO revisit return type here
-export const useAsync = <T>(state: State<T> = { status: "idle" }) => {
-  const initialStateRef = useRef<State<T>>(state);
-  const [{ data, error, status }, setState] = useReducer(
+export const useAsync = <T>() => {
+  const entity = useCurrentEntity();
+  const initialStateRef = useRef<State<T>>({
+    dataEntityRoute: entity.route,
+    status: "idle",
+  });
+  const [{ data, dataEntityRoute, error, status }, setState] = useReducer(
     (s: State<T>, a: State<T>) => ({ ...s, ...a }),
     initialStateRef.current
   );
@@ -47,11 +53,21 @@ export const useAsync = <T>(state: State<T> = { status: "idle" }) => {
   const safeSetState = useSafeDispatch(setState);
 
   const setData = useCallback(
-    (data?: T) => safeSetState({ data, status: "resolved" }),
+    (dataEntityRoute: string, data?: T) =>
+      safeSetState({
+        data,
+        dataEntityRoute,
+        status: "resolved",
+      }),
     [safeSetState]
   );
   const setError = useCallback(
-    (error: Error) => safeSetState({ error, status: "rejected" }),
+    (dataEntityRoute: string, error: Error) =>
+      safeSetState({
+        dataEntityRoute,
+        error,
+        status: "rejected",
+      }),
     [safeSetState]
   );
   const reset = useCallback(
@@ -60,29 +76,31 @@ export const useAsync = <T>(state: State<T> = { status: "idle" }) => {
   );
 
   const run = useCallback(
-    (promise: Promise<T>) => {
+    (promise: Promise<T>, dataEntity: EntityConfig = entity) => {
+      const entityRoute = dataEntity.route;
       if (!promise || !promise.then) {
         throw new Error(
           `The argument passed to useAsync().run must be a promise.`
         );
       }
-      safeSetState({ status: "pending" });
+      safeSetState({ dataEntityRoute: entity.route, status: "pending" });
       return promise.then(
         (data: T) => {
-          setData(data);
+          setData(entityRoute, data);
           return data;
         },
         (error: Error) => {
-          setError(error);
+          setError(entityRoute, error);
           return Promise.reject(error);
         }
       );
     },
-    [safeSetState, setData, setError]
+    [entity, safeSetState, setData, setError]
   );
 
   return {
     data,
+    dataEntityRoute,
     error,
     isError: status === "rejected",
     isIdle: status === "idle",

@@ -34,6 +34,8 @@ export interface EditColumnConfig {
 interface TableProps<T extends object> {
   columns: ColumnDef<T>[];
   count?: number;
+  currentEntityRoute: string;
+  dataEntityRoute: string;
   disablePagination?: boolean;
   editColumns?: EditColumnConfig;
   gridTemplateColumns: string;
@@ -43,7 +45,6 @@ interface TableProps<T extends object> {
   pageSize: number;
   pagination?: Pagination;
   sort?: Sort;
-  staticallyLoaded?: boolean;
   total?: number;
 }
 
@@ -240,22 +241,11 @@ const shouldSkipRender = <T extends object>(
   nextProps: TableProps<T>
 ): boolean => {
   /**
-   * If the table's items aren't statically loaded, skip the next render when the component
-   * is loading
-   */
-  if (!nextProps.staticallyLoaded) {
-    return !!nextProps.loading;
-  }
-
-  /**
-   * If the table's items are statically loaded, check if both columns config and items
-   * have changed. If not, skip the next render
+   * Skip the next render when component is loading or if data route is different from the current one
    */
   return (
-    (prevProps.columns !== nextProps.columns &&
-      prevProps.items === nextProps.items) ||
-    (prevProps.columns === nextProps.columns &&
-      prevProps.items !== nextProps.items)
+    !!nextProps.loading ||
+    nextProps.currentEntityRoute !== nextProps.dataEntityRoute
   );
 };
 

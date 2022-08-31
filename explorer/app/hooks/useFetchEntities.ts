@@ -1,3 +1,4 @@
+import { EntityConfig } from "app/config/common/entities";
 import { useCallback, useContext, useEffect, useMemo } from "react";
 import {
   AzulEntitiesResponse,
@@ -19,6 +20,8 @@ import {
 } from "../common/entities";
 import { useAsync } from "./useAsync";
 import { OnFilterFn, useCategoryFilter } from "./useCategoryFilter";
+import { useConfig } from "./useConfig";
+import { getCurrentEntity, useCurrentEntity } from "./useCurrentEntity";
 import { useFetcher } from "./useFetcher";
 import { usePagination } from "./usePagination";
 import { useSort } from "./useSort";
@@ -33,6 +36,8 @@ export type SetFilterFn = (nextFilters: Filters) => void;
  */
 interface EntitiesResponse {
   categories: SelectCategory[];
+  dataEntity: EntityConfig;
+  dataEntityRoute: string;
   loading: boolean;
   onFilter: OnFilterFn;
   pagination?: Pagination;
@@ -51,11 +56,15 @@ export const useFetchEntities = (
 ): EntitiesResponse => {
   // Determine type of fetch to be executed, either API endpoint or TSV.
   const { list, path, staticLoad } = useFetcher();
+  const entity = useCurrentEntity();
+  const config = useConfig();
 
   // Init fetch of entities.
-  const { data, isIdle, isLoading, run } = useAsync<AzulEntitiesResponse>();
-  const { resetPage, ...pagination } = usePagination(data);
+  const { data, dataEntityRoute, isIdle, isLoading, run } =
+    useAsync<AzulEntitiesResponse>();
+  const { resetPage, ...pagination } = usePagination(run, data);
   const { sort, sortKey, sortOrder } = useSort();
+  const dataEntity = getCurrentEntity(dataEntityRoute, config);
 
   // Generalize the filters returned from Azul.
   const categories = useMemo(() => {
@@ -82,20 +91,31 @@ export const useFetchEntities = (
 
   // Execute fetch of entities.
   useEffect(() => {
-    if (!staticLoad) {
-      // Build basic list params
-      const listParams: AzulListParams = { order: sortOrder, sort: sortKey };
+    // Build basic list params
+    const listParams: AzulListParams = { order: sortOrder, sort: sortKey };
 
-      // Build filter query params, if any
-      const filtersParam = transformFilters(filterState);
-      if (filtersParam) {
-        listParams.filters = filtersParam;
-      }
-
-      // Execute the fetch.
-      run(list(path, listParams));
+    // Build filter query params, if any
+    const filtersParam = transformFilters(filterState);
+    if (filtersParam) {
+      listParams.filters = filtersParam;
     }
-  }, [filterState, list, path, run, sortKey, sortOrder, staticLoad]);
+
+    // Execute the fetch.
+    run(
+      list(path, listParams, staticLoad ? staticResponse?.data : undefined),
+      entity
+    );
+  }, [
+    entity,
+    filterState,
+    list,
+    path,
+    run,
+    sortKey,
+    sortOrder,
+    staticLoad,
+    staticResponse?.data,
+  ]);
 
   const handleFilterChange = useCallback(
     (
@@ -109,23 +129,13 @@ export const useFetchEntities = (
     [onFilter, resetPage]
   );
 
-  // Exit if we're dealing with a statically-loaded entity; data has already been fetched during build; indicate
-  // load is complete and return static data.
-  if (staticLoad) {
-    return {
-      categories: [],
-      loading: false,
-      onFilter,
-      response: staticResponse?.data,
-    };
-  }
-
-  // Otherwise, return the fetching, pagination and sort state.
   return {
     categories: categoryViews,
+    dataEntity,
+    dataEntityRoute,
     loading: isLoading || isIdle,
     onFilter: handleFilterChange,
-    pagination: { ...pagination, resetPage },
+    pagination: staticLoad ? undefined : { ...pagination, resetPage },
     response: data,
     sort: {
       sort,
