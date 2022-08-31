@@ -16,7 +16,7 @@ import {
 import { convertUrlParams } from "../../utils/url";
 
 /**
- * Request to get a list of entities.
+ * Make a GET or POST request for a list of entities
  * @param apiPath - Path that will be used to compose the API url
  * @param listParams - Params to be used on the request. If none passed, it will default to page's size 25 and the current catalog version
  * @param options - String with the type of API call, must be either GET or POST for now
@@ -43,9 +43,9 @@ export const fetchList = async (
   params?: Record<string, string>,
   options?: Options
 ): Promise<AzulEntitiesResponse> => {
-  if (options?.method == "GET" || options?.method == undefined) {
-    const url_with_params = `${url}?${convertUrlParams(params ?? {})}`;
-    const res = await fetch(url_with_params);
+  if (options?.method === "GET" || options?.method === undefined) {
+    const urlWithParams = `${url}?${convertUrlParams(params ?? {})}`;
+    const res = await fetch(urlWithParams);
     return await res.json();
   } else {
     const res = await fetch(url, {
