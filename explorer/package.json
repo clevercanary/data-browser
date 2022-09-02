@@ -23,7 +23,7 @@
     "prepare": "cd .. && husky install explorer/.husky",
     "storybook": "start-storybook -s images,.next  -p 6006",
     "build-storybook": "build-storybook",
-    "test": "jest --watch ./__tests__/*",
+    "test": "jest --watch",
     "test:e2e": "playwright test ./e2e/*"
   },
   "dependencies": {
