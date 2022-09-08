@@ -123,6 +123,11 @@ export interface ColumnConfig<
   width: GridTrackSize;
 }
 
+export interface GoogleGISAuthConfig {
+  clientId: string;
+  scope: string;
+}
+
 export type GridTrackAuto = "auto"; // Dimension specifying the track's maximum of the largest max-content size of the items in that track.
 export type GridTrackFlex = `${number}fr`; // Dimension specifying the track's flex factor; unit in "fr".
 export type GridTrackLength = `${number}px`; // Dimension specifying the track's (fixed) width; unit in "px".
@@ -155,6 +160,7 @@ export interface ListConfig<T = any> {
  * Interface that will hold the whole configuration for a given site.
  */
 export interface SiteConfig {
+  authConfig?: GoogleGISAuthConfig;
   browserURL: string;
   categoryConfigs?: CategoryConfig[];
   dataSource: DataSourceConfig;

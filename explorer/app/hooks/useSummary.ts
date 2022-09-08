@@ -1,11 +1,12 @@
+import { config } from "app/config/config";
 import { useContext, useEffect } from "react";
-import { AZUL_PARAM } from "../apis/azul/common/constants";
 import { AzulSummaryResponse } from "../apis/azul/common/entities";
-import { transformFilters } from "../apis/azul/common/filterTransformer";
+import { AuthContext } from "../common/context/authState";
 import { FilterStateContext } from "../common/context/filterState";
 import { useAsync } from "./useAsync";
-import { useConfig } from "./useConfig";
-import { useFetcher } from "./useFetcher";
+import { useEntityService } from "./useEntityService";
+
+const { summaryConfig: summaryConfig } = config();
 
 interface UseSummaryResponse {
   isLoading: boolean;
@@ -17,13 +18,8 @@ interface UseSummaryResponse {
  * @returns an object with the loaded data and a flag indicating is the data is loading
  */
 export const useSummary = (): UseSummaryResponse => {
-  // Grab the summary config for this site.
-  const { summaryConfig: summaryConfig } = useConfig();
-
-  // Grab the filter context; use this to keep selected filter state up-to-date.
+  const authState = useContext(AuthContext);
   const { filterState } = useContext(FilterStateContext);
-
-  // Initialize the fetch.
   const {
     data: response,
     isLoading: apiIsLoading,
@@ -31,21 +27,10 @@ export const useSummary = (): UseSummaryResponse => {
   } = useAsync<AzulSummaryResponse>();
 
   // Determine type of fetch to be executed, either API endpoint or TSV.
-  const { summary } = useFetcher();
-
-  // Fetch the summary if there's a summary config for this site. s
+  const { fetchSummary } = useEntityService();
   useEffect(() => {
-    if (summaryConfig) {
-      // Build filter query params, if any
-      let summaryParams;
-      const filtersParam = transformFilters(filterState);
-      if (filtersParam) {
-        summaryParams = { [AZUL_PARAM.FILTERS]: filtersParam };
-      }
-
-      run(summary(summaryConfig.apiPath, summaryParams));
-    }
-  }, [filterState, run, summary, summaryConfig]);
+    run(fetchSummary(filterState, authState.token));
+  }, [authState.token, filterState, run, fetchSummary]);
 
   // Return if there's no summary config for this site.
   if (!summaryConfig) {

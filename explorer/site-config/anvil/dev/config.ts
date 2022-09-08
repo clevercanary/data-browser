@@ -51,6 +51,12 @@ const SOCIALS: Social[] = [
 ];
 
 const config: SiteConfig = {
+  authConfig: {
+    clientId:
+      "561542988117-9e04fhfrc9su130eb2ggea7bdppolkjq.apps.googleusercontent.com",
+    scope:
+      "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid",
+  },
   browserURL: BROWSER_URL,
   categoryConfigs: [
     {
@@ -149,7 +155,7 @@ const config: SiteConfig = {
       socials: SOCIALS,
     },
     header: {
-      authenticationEnabled: false,
+      authenticationEnabled: true,
       logo: LOGO,
       navAlignment: ELEMENT_ALIGNMENT.CENTER,
       navLinks: [
