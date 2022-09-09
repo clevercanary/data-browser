@@ -6,6 +6,7 @@ interface Props {
 }
 
 export const ProfileImage = styled.div<Props>`
+  border-radius: 50%;
   height: 32px;
   width: 32px;
 
@@ -17,7 +18,6 @@ export const ProfileImage = styled.div<Props>`
         `
       : css`
           background-color: ${theme.palette.smoke.main};
-          border-radius: 50%;
         `;
   }};
 `;

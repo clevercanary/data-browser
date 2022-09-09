@@ -18,20 +18,18 @@ interface UseSummaryResponse {
  * @returns an object with the loaded data and a flag indicating is the data is loading
  */
 export const useSummary = (): UseSummaryResponse => {
-  const authState = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
   const { filterState } = useContext(FilterStateContext);
   const {
     data: response,
     isLoading: apiIsLoading,
     run,
   } = useAsync<AzulSummaryResponse>();
+  const { fetchSummary } = useEntityService(); // Determine type of fetch to be executed, either API endpoint or TSV.
 
-  // Determine type of fetch to be executed, either API endpoint or TSV.
-  const { fetchSummary } = useEntityService();
   useEffect(() => {
-    run(fetchSummary(filterState, authState.token));
-    console.log("token", authState.token);
-  }, [authState.token, filterState, run, fetchSummary]);
+    run(fetchSummary(filterState, token));
+  }, [fetchSummary, filterState, run, token]);
 
   // Return if there's no summary config for this site.
   if (!summaryConfig) {

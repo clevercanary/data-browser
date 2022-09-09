@@ -51,7 +51,7 @@ export const useEntityList = (
   staticResponse: AzulEntitiesStaticResponse | null
 ): EntitiesResponse => {
   const { filterState, setFilterState } = useContext(FilterStateContext);
-  const authState = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
 
   // Determine type of fetch to be executed, either API endpoint or TSV.
 
@@ -101,17 +101,17 @@ export const useEntityList = (
       }
 
       // Execute the fetch.
-      run(fetchEntitiesFromQuery(path, listParams, authState.token));
+      run(fetchEntitiesFromQuery(path, listParams, token));
     }
   }, [
-    authState.token,
-    filterState,
     fetchEntitiesFromQuery,
+    filterState,
     path,
     run,
     sortKey,
     sortOrder,
     staticLoad,
+    token,
   ]);
 
   const handleFilterChange = useCallback(
