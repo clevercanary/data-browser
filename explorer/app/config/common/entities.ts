@@ -125,7 +125,9 @@ export interface ColumnConfig<
 
 export interface GoogleGISAuthConfig {
   clientId: string;
+  googleProfileEndpoint: string;
   scope: string;
+  terraProfileEndpoint: string; // TODO move this to its own interface
 }
 
 export type GridTrackAuto = "auto"; // Dimension specifying the track's maximum of the largest max-content size of the items in that track.

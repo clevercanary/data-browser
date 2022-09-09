@@ -115,8 +115,6 @@ export const fetchSummary = async (
   filterState: FilterState,
   accessToken: string | undefined
 ): Promise<AzulSummaryResponse> => {
-  const param = DEFAULT_DETAIL_PARAMS;
-
   if (!summaryConfig) {
     throw new Error("Summary not configured!");
   }
@@ -129,6 +127,11 @@ export const fetchSummary = async (
   if (filtersParam) {
     summaryParams = { [AZUL_PARAM.FILTERS]: filtersParam }; //TODO Check if we need to add the catalog here (merge in default params)
   }
-  const res = await fetch(`${URL}${apiPath}?${convertUrlParams({ ...param })}`);
+
+  const options = createFetchOptions(accessToken);
+  const res = await fetch(
+    `${URL}${apiPath}?${convertUrlParams({ ...summaryParams })}`,
+    options
+  );
   return await res.json();
 };

@@ -20,7 +20,7 @@ function navigateToLogin(router: NextRouter): void {
 
 export const ProfileComponent = (): JSX.Element => {
   const { isAuthorized, userProfile } = useContext(AuthContext);
-  const profileImage = userProfile?.picture;
+  const profileImageURL = userProfile?.picture;
   const router = useRouter();
   const desktop = useBreakpointHelper(
     BREAKPOINT_FN_NAME.UP,
@@ -29,7 +29,7 @@ export const ProfileComponent = (): JSX.Element => {
   return (
     <>
       {isAuthorized ? (
-        <ProfileImage profileImage={profileImage} />
+        <ProfileImage profileImageURL={profileImageURL} />
       ) : desktop ? (
         <Button
           startIcon={<LoginRoundedIcon />}

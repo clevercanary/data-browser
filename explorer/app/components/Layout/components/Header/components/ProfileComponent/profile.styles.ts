@@ -2,17 +2,17 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 interface Props {
-  profileImage?: string;
+  profileImageURL?: string;
 }
 
 export const ProfileImage = styled.div<Props>`
   height: 32px;
   width: 32px;
 
-  ${({ profileImage, theme }) => {
-    return profileImage
+  ${({ profileImageURL, theme }) => {
+    return profileImageURL
       ? css`
-          background: no-repeat url(${profileImage});
+          background: no-repeat url(${profileImageURL});
           background-size: cover;
         `
       : css`

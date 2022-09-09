@@ -30,6 +30,7 @@ export const useSummary = (): UseSummaryResponse => {
   const { fetchSummary } = useEntityService();
   useEffect(() => {
     run(fetchSummary(filterState, authState.token));
+    console.log("token", authState.token);
   }, [authState.token, filterState, run, fetchSummary]);
 
   // Return if there's no summary config for this site.

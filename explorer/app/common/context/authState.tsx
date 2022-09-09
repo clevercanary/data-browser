@@ -1,9 +1,12 @@
+import { config } from "app/config/config";
+import { useRouter } from "next/router";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { GoogleGISAuthConfig } from "../../config/common/entities";
 
 type AuthorizeUserFn = () => void;
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any -- see todo
 declare const google: any; // TODO see https://github.com/clevercanary/data-browser/issues/544.
+const authConfig = config().authConfig;
 
 /**
  * Model of token response.
@@ -53,7 +56,7 @@ export const AuthContext = createContext<IAuthContext>({
 });
 
 interface Props {
-  authConfig?: GoogleGISAuthConfig;
+  authConfig: GoogleGISAuthConfig;
   children: ReactNode | ReactNode[];
 }
 
@@ -67,11 +70,12 @@ interface Props {
 export function AuthProvider({ authConfig, children }: Props): JSX.Element {
   const { clientId, scope } = authConfig || {};
   const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
+  const [hasTerraAccount, setHasTerraAccount] = useState<boolean>(false);
   const [token, setToken] = useState<string>();
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any -- see todo
   const [tokenClient, setTokenClient] = useState<any>(); // TODO see https://github.com/clevercanary/data-browser/issues/544.
   const [userProfile, setUserProfile] = useState<UserProfile>();
-
+  const router = useRouter();
   /**
    * Requests access token and authorizes user.
    */
@@ -83,12 +87,12 @@ export function AuthProvider({ authConfig, children }: Props): JSX.Element {
    * Fetches user profile from Google APIS.
    * @param accessToken - Token client access token.
    */
-  const fetchProfile = (accessToken?: string): void => {
+  const fetchGoogleProfile = (accessToken?: string): void => {
     if (accessToken) {
       const headers = new Headers();
       headers.append("authorization", "Bearer " + accessToken);
       const options = { headers };
-      fetch("https://www.googleapis.com/oauth2/v3/userinfo", options)
+      fetch(authConfig.googleProfileEndpoint, options)
         .then((response) => response.json())
         .then((profile) => {
           setUserProfile(profile);
@@ -98,7 +102,33 @@ export function AuthProvider({ authConfig, children }: Props): JSX.Element {
           console.log(err);
           setUserProfile(undefined);
           setIsAuthorized(false);
-        }); // TODO handle error.
+        }); // TODO Auth  - handle error.
+    }
+  };
+
+  /**
+   * Fetches user profile from Google APIS.
+   * @param accessToken - Token client access token.
+   */
+  const fetchTerraProfile = (accessToken?: string): void => {
+    if (accessToken) {
+      const headers = new Headers();
+      headers.append("authorization", "Bearer " + accessToken);
+      const options = { headers };
+      //TODO Auth Configure URL
+      fetch(authConfig.terraProfileEndpoint, options)
+        .then((response) => response.json())
+        .then((profile) => {
+          if (profile?.enabled?.google) {
+            setHasTerraAccount(true);
+          } else {
+            setHasTerraAccount(false);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setHasTerraAccount(false);
+        }); // TODO Auth  - handle error.
     }
   };
 
@@ -121,8 +151,21 @@ export function AuthProvider({ authConfig, children }: Props): JSX.Element {
 
   // Fetches user profile and sets userProfile state when token is retrieved.
   useEffect(() => {
-    fetchProfile(token);
+    fetchGoogleProfile(token);
   }, [token]);
+
+  // Fetches user profile and sets userProfile state when token is retrieved.
+  useEffect(() => {
+    fetchTerraProfile(token);
+  }, [token]);
+
+  // Fetches user profile and sets userProfile state when token is retrieved.
+  useEffect(() => {
+    if (isAuthorized) {
+      // navigate to to the explore page
+      router.push("/datasets");
+    }
+  }, [isAuthorized]);
 
   return (
     <AuthContext.Provider
