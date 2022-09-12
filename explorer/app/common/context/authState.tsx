@@ -4,13 +4,18 @@ import {
   ReactNode,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import { GoogleGISAuthConfig } from "../../config/common/entities";
 
-type AuthorizeUserFn = () => void;
+// Template constants
+export const ROUTE_LOGIN = "/login";
+
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any -- see todo
 declare const google: any; // TODO see https://github.com/clevercanary/data-browser/issues/544.
+
+type AuthorizeUserFn = () => void;
 
 /**
  * Model of token response.
@@ -75,13 +80,15 @@ interface Props {
  */
 export function AuthProvider({ authConfig, children }: Props): JSX.Element {
   const { clientId, scope } = authConfig || {};
+  const router = useRouter();
+  const { asPath } = router;
+  const routeHistoryRef = useRef<string>(asPath);
   const [hasTerraAccount, setHasTerraAccount] = useState<boolean>(false);
   const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
   const [token, setToken] = useState<string>();
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any -- see todo
   const [tokenClient, setTokenClient] = useState<any>(); // TODO see https://github.com/clevercanary/data-browser/issues/544.
   const [userProfile, setUserProfile] = useState<UserProfile>();
-  const router = useRouter();
 
   /**
    * Requests access token and authorizes user.
@@ -164,12 +171,22 @@ export function AuthProvider({ authConfig, children }: Props): JSX.Element {
     }
   }, [authConfig, fetchGoogleProfile, fetchTerraProfile, token]);
 
-  // Navigates to the explore page with successful authorization.
+  // Route history ref is updated with the previous route path.
   useEffect(() => {
-    if (isAuthorized) {
-      router.push("/datasets");
+    if (asPath !== ROUTE_LOGIN) {
+      // Login route omitted; once authorization is successful, the router redirects back to the
+      // path prior to logging in.
+      routeHistoryRef.current = asPath;
     }
-  }, [isAuthorized]); // TODO fixing this lint error causes a loop on refereshing the page aas router is always a new object.
+  }, [asPath]);
+
+  // Authorization is successful, and the page redirects back to the previous route.
+  useEffect(() => {
+    if (isAuthorized && asPath !== routeHistoryRef.current) {
+      router.push(routeHistoryRef.current);
+    }
+  }, [asPath, isAuthorized, router]);
+
   return (
     <AuthContext.Provider
       value={{

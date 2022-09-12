@@ -2,7 +2,10 @@ import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import { Button, IconButton } from "@mui/material";
 import { NextRouter, useRouter } from "next/router";
 import React, { useContext } from "react";
-import { AuthContext } from "../../../../../../common/context/authState";
+import {
+  AuthContext,
+  ROUTE_LOGIN,
+} from "../../../../../../common/context/authState";
 import {
   BREAKPOINT,
   BREAKPOINT_FN_NAME,
@@ -15,7 +18,7 @@ import { ProfileImage } from "./profile.styles";
  * @param router - Next router.
  */
 function navigateToLogin(router: NextRouter): void {
-  router.push("/login");
+  router.push(ROUTE_LOGIN);
 }
 
 export const ProfileComponent = (): JSX.Element => {
