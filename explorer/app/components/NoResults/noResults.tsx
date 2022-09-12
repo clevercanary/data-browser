@@ -5,7 +5,7 @@ import { SearchOffIcon } from "../common/CustomIcon/components/SearchOffIcon/sea
 import { RoundedPaper } from "../common/Paper/paper.styles";
 import { PRIORITY, StatusIcon } from "../common/StatusIcon/statusIcon";
 import { SectionTitle } from "../Detail/components/Section/components/SectionTitle/sectionTitle";
-import { Section, SectionContent } from "./noResults.styles";
+import { NoResultsSection, NoResultsSectionContent } from "./noResults.styles";
 
 interface Props {
   actions?: ReactNode;
@@ -20,18 +20,18 @@ export const NoResults = ({
 }: Props): JSX.Element => {
   return (
     <RoundedPaper>
-      <Section>
+      <NoResultsSection>
         <StatusIcon priority={PRIORITY.LOW} StatusIcon={SearchOffIcon} />
-        <SectionContent alignItems="center" gap={2}>
+        <NoResultsSectionContent>
           <SectionTitle title={title} />
           {description && (
             <Typography color="ink.light" variant="text-body-400-2lines">
               {description}
             </Typography>
           )}
-        </SectionContent>
+        </NoResultsSectionContent>
         {actions && <SectionActions>{actions}</SectionActions>}
-      </Section>
+      </NoResultsSection>
     </RoundedPaper>
   );
 };
