@@ -1,11 +1,7 @@
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import { Button, IconButton } from "@mui/material";
-import { NextRouter, useRouter } from "next/router";
 import React, { useContext } from "react";
-import {
-  AuthContext,
-  ROUTE_LOGIN,
-} from "../../../../../../common/context/authState";
+import { AuthContext } from "../../../../../../common/context/authState";
 import {
   BREAKPOINT,
   BREAKPOINT_FN_NAME,
@@ -13,18 +9,10 @@ import {
 } from "../../../../../../hooks/useBreakpointHelper";
 import { ProfileImage } from "./profile.styles";
 
-/**
- * Navigates to login page.
- * @param router - Next router.
- */
-function navigateToLogin(router: NextRouter): void {
-  router.push(ROUTE_LOGIN);
-}
-
 export const ProfileComponent = (): JSX.Element => {
-  const { isAuthorized, userProfile } = useContext(AuthContext);
+  const { isAuthorized, requestAuthorization, userProfile } =
+    useContext(AuthContext);
   const profileImageURL = userProfile?.picture;
-  const router = useRouter();
   const desktop = useBreakpointHelper(
     BREAKPOINT_FN_NAME.UP,
     BREAKPOINT.DESKTOP
@@ -37,12 +25,12 @@ export const ProfileComponent = (): JSX.Element => {
         <Button
           startIcon={<LoginRoundedIcon />}
           variant="nav"
-          onClick={(): void => navigateToLogin(router)}
+          onClick={requestAuthorization}
         >
           Sign in
         </Button>
       ) : (
-        <IconButton color="ink" onClick={(): void => navigateToLogin(router)}>
+        <IconButton color="ink" onClick={requestAuthorization}>
           <LoginRoundedIcon />
         </IconButton>
       )}

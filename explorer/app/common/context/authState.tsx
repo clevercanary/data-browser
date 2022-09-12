@@ -16,6 +16,7 @@ export const ROUTE_LOGIN = "/login";
 declare const google: any; // TODO see https://github.com/clevercanary/data-browser/issues/544.
 
 type AuthorizeUserFn = () => void;
+type RequestAuthorizationFn = () => void;
 
 /**
  * Model of token response.
@@ -50,6 +51,7 @@ interface IAuthContext {
   authorizeUser: AuthorizeUserFn;
   hasTerraAccount: boolean;
   isAuthorized: boolean;
+  requestAuthorization: RequestAuthorizationFn;
   token?: string;
   userProfile?: UserProfile;
 }
@@ -62,6 +64,8 @@ export const AuthContext = createContext<IAuthContext>({
   authorizeUser: () => {},
   hasTerraAccount: false,
   isAuthorized: false,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function -- allow dummy function for default state.
+  requestAuthorization: () => {},
   token: undefined,
   userProfile: undefined,
 });
@@ -96,6 +100,13 @@ export function AuthProvider({ authConfig, children }: Props): JSX.Element {
   const authorizeUser = useCallback((): void => {
     tokenClient.requestAccessToken();
   }, [tokenClient]);
+
+  /**
+   * Navigates to login page.
+   */
+  const requestAuthorization = useCallback((): void => {
+    router.push(ROUTE_LOGIN);
+  }, [router]);
 
   /**
    * Fetches google user profile from Google APIS.
@@ -193,6 +204,7 @@ export function AuthProvider({ authConfig, children }: Props): JSX.Element {
         authorizeUser,
         hasTerraAccount,
         isAuthorized,
+        requestAuthorization,
         token,
         userProfile,
       }}
