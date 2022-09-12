@@ -11,6 +11,7 @@ const DEFAULT_CURRENT_PAGE = 1;
 export const usePagination = (data?: AzulEntitiesResponse): Pagination => {
   const { token } = useContext(AuthContext);
   const { run } = useAsync<AzulEntitiesResponse>();
+  console.log("Use Pagination");
 
   // Determine type of fetch to be executed, either API endpoint or TSV.
   const { fetchEntitiesFromURL } = useEntityService();

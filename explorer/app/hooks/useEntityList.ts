@@ -99,7 +99,6 @@ export const useEntityList = (
       if (filtersParam) {
         listParams.filters = filtersParam;
       }
-
       // Execute the fetch.
       run(fetchEntitiesFromQuery(path, listParams, token));
     }

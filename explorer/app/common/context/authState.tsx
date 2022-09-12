@@ -43,6 +43,7 @@ export interface UserProfile {
  */
 interface IAuthContext {
   authorizeUser: AuthorizeUserFn;
+  hasTerraAccount: boolean;
   isAuthorized: boolean;
   token?: string;
   userProfile?: UserProfile;
@@ -54,6 +55,7 @@ interface IAuthContext {
 export const AuthContext = createContext<IAuthContext>({
   // eslint-disable-next-line @typescript-eslint/no-empty-function -- allow dummy function for default state.
   authorizeUser: () => {},
+  hasTerraAccount: false,
   isAuthorized: false,
   token: undefined,
   userProfile: undefined,
@@ -121,7 +123,6 @@ export function AuthProvider({ authConfig, children }: Props): JSX.Element {
       const headers = new Headers();
       headers.append("authorization", "Bearer " + accessToken);
       const options = { headers };
-      //TODO Auth Configure URL
       fetch(endpoint, options)
         .then((response) => response.json())
         .then((profile) => {
@@ -168,11 +169,16 @@ export function AuthProvider({ authConfig, children }: Props): JSX.Element {
     if (isAuthorized) {
       router.push("/datasets");
     }
-  }, [isAuthorized, router]);
-
+  }, [isAuthorized]); // TODO fixing this lint error causes a loop on refereshing the page aas router is always a new object.
   return (
     <AuthContext.Provider
-      value={{ authorizeUser, isAuthorized, token, userProfile }}
+      value={{
+        authorizeUser,
+        hasTerraAccount,
+        isAuthorized,
+        token,
+        userProfile,
+      }}
     >
       {children}
     </AuthContext.Provider>

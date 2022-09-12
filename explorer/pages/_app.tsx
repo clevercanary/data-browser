@@ -14,6 +14,8 @@ import { AuthProvider } from "../app/common/context/authState";
 import { FilterStateProvider } from "../app/common/context/filterState";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+  console.log("My App rendering...");
+  console.log(pageProps);
   const currentConfig = config();
   const currentLayout = currentConfig.layout;
   const theme = getAppTheme(currentConfig.theme);

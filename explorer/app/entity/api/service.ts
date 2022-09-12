@@ -70,10 +70,9 @@ export const fetchEntitiesFromURL = async (
 export const fetchAllEntities = async (
   apiPath: string
 ): Promise<AzulEntitiesResponse> => {
-  let hits = [];
   const listParams = {};
   const result = await fetchEntitiesFromQuery(apiPath, listParams, undefined);
-  hits = result.hits;
+  let hits = result.hits;
   let nextPage = result.pagination.next;
   while (nextPage) {
     const resNextPage = await fetch(nextPage);
@@ -88,9 +87,7 @@ export const fetchAllEntities = async (
  *  Request to get a single project.
  * @param id - project's uuid.
  * @param apiPath - API endpoint URL.
- * @param options - The method to use to make the API call, right now either GET or POST
  * @param param - Catalog's version, if none passed it will default to the current one.
- * @param accessToken - auth token
  * @returns @see ProjectResponse
  */
 export const fetchEntityDetail = async (

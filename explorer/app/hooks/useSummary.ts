@@ -28,7 +28,9 @@ export const useSummary = (): UseSummaryResponse => {
   const { fetchSummary } = useEntityService(); // Determine type of fetch to be executed, either API endpoint or TSV.
 
   useEffect(() => {
-    run(fetchSummary(filterState, token));
+    if (summaryConfig) {
+      run(fetchSummary(filterState, token));
+    }
   }, [fetchSummary, filterState, run, token]);
 
   // Return if there's no summary config for this site.

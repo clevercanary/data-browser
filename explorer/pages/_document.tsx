@@ -12,7 +12,6 @@ class MyDocument extends Document {
           an a later version. */}
           {/* TODO self host fonts */}
           {/* TODO only load fonts required for the app being built */}
-          {/* eslint-disable-next-line @eslint-plugin-next/no-sync-scripts -- see todo */}
           <script src="https://accounts.google.com/gsi/client" async></script>
           <link rel="stylesheet" href="https://use.typekit.net/qhb0geh.css" />
           <link
