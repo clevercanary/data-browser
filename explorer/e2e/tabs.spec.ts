@@ -6,7 +6,9 @@ test("Navigate through each tab, expecting them to render a table and change the
   // Go to the front page
   await page.goto("http://localhost:3000/explore");
   // Wait for the page to load
-  await expect(page.locator("_react=TableComponent")).toBeVisible();
+  await expect(page.locator("_react=TableComponent")).toBeVisible({
+    timeout: 10000,
+  });
   const NumTabs = (await page.$$("_react=Tabs >> button")).length;
   // Go through the tabs, from back to front
   for (let i = 0; i < NumTabs; i++) {
@@ -24,6 +26,6 @@ test("Navigate through each tab, expecting them to render a table and change the
     await expect(CurrentTabLocator).toHaveAttribute("aria-selected", "true");
     await expect(CurrentTabLocator).toHaveClass(/Mui-selected/);
     // Check that the next page has changes
-    await expect(page).not.toHaveURL(currentUrl);
+    await expect(page).not.toHaveURL(currentUrl, { timeout: 10000 });
   }
 });

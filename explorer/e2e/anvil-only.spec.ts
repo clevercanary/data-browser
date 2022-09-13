@@ -1,7 +1,9 @@
 import { expect, test } from "@playwright/test";
 
 // TODO: Currently Anvil specific, fixable if we can tell which pages have notable filters and if the Hero components were removed
-test("Select a filter and note changes", async ({ page }) => {
+test("Select a filter and expect it to change displayed components", async ({
+  page,
+}) => {
   // Go to the biosamples page
   await page.goto("localhost:3000/explore/biosamples");
   // Select the filter dropdown
@@ -60,7 +62,9 @@ test("Select a filter and note changes", async ({ page }) => {
 });
 
 //TODO: Currently Anvil specific solely based on the columns that cause a change, unsure how to fix right now
-test("Check that changing sort order causes a change", async ({ page }) => {
+test("Check that changing sort order changes certain columns", async ({
+  page,
+}) => {
   // Go to the biosamples page
   await page.goto("localhost:3000/explore/biosamples");
   // Iterate through the first 2 tabs
