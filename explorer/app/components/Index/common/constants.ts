@@ -8,9 +8,13 @@ import {
 
 // Template constants
 const {
+  ANATOMICAL_ENTITY,
   BIOSAMPLE_TYPE,
   DATA_MODALITY,
   DATASET_NAME,
+  DEVELOPMENT_STAGE,
+  DISEASE_DONOR,
+  LIB_CONST_APPROACH,
   LIBRARY_PREPARATION,
   ORGANISM_TYPE,
   PHENOTYPIC_SEX,
@@ -39,10 +43,14 @@ export const BIND_SUMMARY_RESPONSE = {
  * Value for displaying pluralized metadata labels, for example, "tissues" or "diseases".
  */
 export const PLURALIZED_METADATA_LABEL = {
+  [ANATOMICAL_ENTITY]: "anatomical entities",
   [BIOSAMPLE_TYPE]: "biosample types",
   [DATASET_NAME]: "dataset names",
   [DATA_MODALITY]: "data modalities",
+  [DEVELOPMENT_STAGE]: "development stages",
+  [DISEASE_DONOR]: "diseases (donors)",
   [LIBRARY_PREPARATION]: "library preparations",
+  [LIB_CONST_APPROACH]: "library construction approaches",
   [ORGANISM_TYPE]: "organism types",
   [PHENOTYPIC_SEX]: "phenotypic sexes",
   [REPORTED_ETHNICITY]: "reported ethnicities",
