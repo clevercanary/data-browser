@@ -21,7 +21,6 @@ import { getPluralizedMetadataLabel } from "../../../app/components/Index/common
 import { PROJECTS_URL } from "./config";
 
 const formatter = Intl.NumberFormat("en", { notation: "compact" });
-//TODO: SQUASH COMMITS
 /**
  * Build props for Citation component from the given projects response.
  * @param projectsResponse - Response model return from projects API.
