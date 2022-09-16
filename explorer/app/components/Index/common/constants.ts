@@ -52,7 +52,7 @@ export const PLURALIZED_METADATA_LABEL = {
   [DATA_MODALITY]: "data modalities",
   [DATA_TYPE]: "data types",
   [DEVELOPMENT_STAGE]: "development stages",
-  [DISEASE_DONOR]: "diseases (donors)",
+  [DISEASE_DONOR]: "diseases",
   [LIBRARY_CONSTRUCTION_APPROACH]: "library construction approaches",
   [LIBRARY_PREPARATION]: "library preparations",
   [ORGANISM_TYPE]: "organism types",
