@@ -245,18 +245,22 @@ export const buildDevStage = (
   };
 };
 
-export const projectsToLibConstApproachColumn = (
+export const projectsToLibraryConstructionApproachColumn = (
   project: ProjectsResponse
 ): React.ComponentProps<typeof C.NTagCell> => {
   if (!project.protocols?.[0].libraryConstructionApproach) {
     return {
-      label: getPluralizedMetadataLabel(METADATA_KEY.LIB_CONST_APPROACH),
+      label: getPluralizedMetadataLabel(
+        METADATA_KEY.LIBRARY_CONSTRUCTION_APPROACH
+      ),
       values: [],
     };
   }
 
   return {
-    label: getPluralizedMetadataLabel(METADATA_KEY.LIB_CONST_APPROACH),
+    label: getPluralizedMetadataLabel(
+      METADATA_KEY.LIBRARY_CONSTRUCTION_APPROACH
+    ),
     values: project.protocols[0]?.libraryConstructionApproach,
   };
 };

@@ -39,8 +39,9 @@ export const samplesGetSpecies = (sample: SamplesResponse): string[] =>
 export const samplesGetSampleType = (sample: SamplesResponse): string =>
   concatStrings(sample?.samples[0]?.sampleEntityType ?? []) ?? "";
 
-export const samplesGetLibConsApproach = (sample: SamplesResponse): string[] =>
-  sample?.protocols[0]?.libraryConstructionApproach ?? [];
+export const samplesGetLibraryConstructionApproach = (
+  sample: SamplesResponse
+): string[] => sample?.protocols[0]?.libraryConstructionApproach ?? [];
 
 export const samplesGetAnatomicalEntity = (sample: SamplesResponse): string[] =>
   [sample?.samples[0]?.organ] ?? [];

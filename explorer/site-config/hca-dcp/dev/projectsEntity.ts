@@ -86,7 +86,7 @@ export const projectsEntity: EntityConfig = {
       {
         componentConfig: {
           component: Components.NTagCell,
-          viewBuilder: B.projectsToLibConstApproachColumn,
+          viewBuilder: B.projectsToLibraryConstructionApproachColumn,
         },
         header: "Library Construction Approach",
         width: { max: "1fr", min: "126px" },

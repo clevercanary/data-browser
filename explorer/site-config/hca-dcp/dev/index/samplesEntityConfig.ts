@@ -9,7 +9,7 @@ import {
   samplesBuildAnatomicalEntity,
   samplesBuildCellCount,
   samplesBuildDiseaseDonor,
-  samplesBuildLibConsApproach,
+  samplesBuildLibraryConstructionApproach,
   samplesBuildProjTitle,
   samplesBuildSampleId,
   samplesBuildSampleType,
@@ -77,7 +77,7 @@ export const samplesEntityConfig: EntityConfig<SamplesResponse> = {
       {
         componentConfig: {
           component: Components.NTagCell,
-          viewBuilder: samplesBuildLibConsApproach,
+          viewBuilder: samplesBuildLibraryConstructionApproach,
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "Library Construction Approach",
         sort: {

@@ -153,12 +153,14 @@ export const samplesBuildSampleType = (
     value: Transformers.samplesGetSampleType(sample),
   };
 };
-export const samplesBuildLibConsApproach = (
+export const samplesBuildLibraryConstructionApproach = (
   sample: SamplesResponse
 ): React.ComponentProps<typeof C.NTagCell> => {
   return {
-    label: getPluralizedMetadataLabel(METADATA_KEY.LIB_CONST_APPROACH),
-    values: Transformers.samplesGetLibConsApproach(sample),
+    label: getPluralizedMetadataLabel(
+      METADATA_KEY.LIBRARY_CONSTRUCTION_APPROACH
+    ),
+    values: Transformers.samplesGetLibraryConstructionApproach(sample),
   };
 };
 export const samplesBuildAnatomicalEntity = (
