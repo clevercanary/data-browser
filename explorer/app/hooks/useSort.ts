@@ -11,6 +11,7 @@ import { useResetableState } from "./useResetableState";
  */
 const getDefaultSort = (entity: EntityConfig): string | undefined => {
   return (
+    // TODO Delete use one in config instead.
     entity.list.columns.find((column) => column.sort?.default)?.sort?.sortKey ??
     entity.list.columns[0].sort?.sortKey
   );

@@ -19,7 +19,7 @@ interface UseSummaryResponse {
  */
 export const useSummary = (): UseSummaryResponse => {
   const { token } = useContext(AuthContext);
-  const { filterState } = useContext(FilterStateContext);
+  const { exploreState } = useContext(FilterStateContext);
   const {
     data: response,
     isLoading: apiIsLoading,
@@ -29,9 +29,9 @@ export const useSummary = (): UseSummaryResponse => {
 
   useEffect(() => {
     if (summaryConfig) {
-      run(fetchSummary(filterState, token));
+      run(fetchSummary(exploreState.filterState, token));
     }
-  }, [fetchSummary, filterState, run, token]);
+  }, [fetchSummary, exploreState.filterState, run, token]);
 
   // Return if there's no summary config for this site.
   if (!summaryConfig) {

@@ -86,3 +86,12 @@ export const getTabs = (): Tab[] => {
     value: route,
   }));
 };
+
+export const getDefaultSort = (
+  entityConfig: EntityConfig
+): string | undefined => {
+  return (
+    entityConfig.list.columns.find((column) => column.sort?.default)?.sort
+      ?.sortKey ?? entityConfig.list.columns[0].sort?.sortKey
+  );
+};

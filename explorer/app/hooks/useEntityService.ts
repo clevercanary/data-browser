@@ -1,4 +1,5 @@
 import { EntityConfig } from "../config/common/entities";
+import { getEntityConfig } from "../config/config";
 import { createEntityService } from "../entity/service/factory";
 import { EntityService } from "../entity/service/model";
 import { useCurrentEntityConfig } from "./useCurrentEntityConfig";
@@ -41,4 +42,9 @@ export const getEntityService = (entity: EntityConfig): FetcherResponse => {
 export const useEntityService = (): FetcherResponse => {
   const entity = useCurrentEntityConfig();
   return getEntityService(entity);
+};
+
+export const getEntityServiceByPath = (path: string): FetcherResponse => {
+  const entityConfig = getEntityConfig(path);
+  return getEntityService(entityConfig);
 };

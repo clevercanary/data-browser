@@ -15,13 +15,16 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useScroll } from "app/hooks/useScroll";
-import React from "react";
+import React, { useContext } from "react";
+import {
+  ExploreActionKind,
+  FilterStateContext,
+} from "../../common/context/filterState";
 import { Pagination, Sort, SortOrderType } from "../../common/entities";
 import { CheckboxMenu, CheckboxMenuItem } from "../CheckboxMenu/checkboxMenu";
 import { GridPaper, RoundedPaper } from "../common/Paper/paper.styles";
 import { Pagination as DXPagination } from "./components/Pagination/pagination";
 import { PaginationSummary } from "./components/PaginationSummary/paginationSummary";
-import { newColumnKey, newColumnOrder } from "./functions";
 import { Table as GridTable, TableToolbar } from "./table.styles";
 
 export interface EditColumnConfig {
@@ -78,6 +81,8 @@ export const TableComponent = <T extends object>({
   sort,
   total,
 }: TableProps<T>): JSX.Element => {
+  const { exploreDispatch } = useContext(FilterStateContext);
+
   const initialSorting = sort
     ? [{ desc: sort.sortOrder === "desc", id: sort.sortKey ?? "" }]
     : [];
@@ -133,9 +138,20 @@ export const TableComponent = <T extends object>({
 
   const handleSortClicked = (column: ColumnDef<T>): void => {
     if (sort) {
-      const newColumn = newColumnKey(sort, column.id ?? "");
-      const newOrder = newColumnOrder(sort, newColumn);
-      sort.sort(newColumn, newOrder);
+      console.log("SortClicked!", column);
+      //const newColumn = newColumnKey(sort, column.id ?? "");
+      //const newOrder = newColumnOrder(sort, newColumn);
+      if (sort.sortKey !== column.id) {
+        exploreDispatch({
+          payload: column.id,
+          type: ExploreActionKind.SetSortKey,
+        });
+      } else {
+        exploreDispatch({
+          payload: null,
+          type: ExploreActionKind.FlipSortOrder,
+        });
+      }
       pagination?.resetPage();
     }
   };

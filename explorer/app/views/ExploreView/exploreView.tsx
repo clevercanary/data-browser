@@ -1,43 +1,50 @@
-import { Tabs, TabsValue, TabValue } from "app/components/common/Tabs/tabs";
+import { Tabs, TabValue } from "app/components/common/Tabs/tabs";
 import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
 import { NoResults } from "app/components/NoResults/noResults";
 import { TableCreator } from "app/components/TableCreator/tableCreator";
-import { useCurrentEntityConfig } from "app/hooks/useCurrentEntityConfig";
 import { useEntityList } from "app/hooks/useEntityList";
-import { useResetableState } from "app/hooks/useResetableState";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useContext } from "react";
 import {
   AzulEntitiesResponse,
   AzulEntitiesStaticResponse,
   AzulSummaryResponse,
 } from "../../apis/azul/common/entities";
+import {
+  ExploreActionKind,
+  FilterStateContext,
+} from "../../common/context/filterState";
 import { Filters } from "../../components/Filter/components/Filters/filters";
 import { Index as IndexView } from "../../components/Index/index";
 import { SidebarLabel } from "../../components/Layout/components/Sidebar/components/SidebarLabel/sidebarLabel";
 import { Sidebar } from "../../components/Layout/components/Sidebar/sidebar";
 import { SummaryConfig } from "../../config/common/entities";
-import { config, getTabs } from "../../config/config";
+import { config, getEntityConfig, getTabs } from "../../config/config";
 import { useSummary } from "../../hooks/useSummary";
 
 // TODO(Dave) create an interface for props and maybe not drill the static load through here
 export const ExploreView = (props: AzulEntitiesStaticResponse): JSX.Element => {
   const { disablePagination, explorerTitle, summaryConfig } = config();
-  const currentEntityConfig = useCurrentEntityConfig();
-
+  const { exploreDispatch, exploreState } = useContext(FilterStateContext);
+  const tabValue = exploreState.tabValue;
+  const currentEntityConfig = getEntityConfig(exploreState.tabValue);
   const route = currentEntityConfig.route;
+
+  console.log("Starting Explore View");
+  console.log("Current Entity Cnfig", route);
 
   const { push } = useRouter();
 
   // Init tabs state.
-  const [tabsValue, setTabsValue] = useResetableState<TabsValue>(route);
+  //const [tabsValue, setTabsValue] = useResetableState<TabsValue>(route);
   const tabs = getTabs();
 
   // Fetch summary and entities.
   const { response: summaryResponse } = useSummary();
   const { categories, loading, onFilter, pagination, response, sort } =
     useEntityList(props);
-
+  console.log("Sortt", sort);
+  console.log("Loading", loading);
   // Get the column config for the current entity.
   const columnsConfig = currentEntityConfig.list.columns;
 
@@ -48,9 +55,16 @@ export const ExploreView = (props: AzulEntitiesStaticResponse): JSX.Element => {
    * @param tabValue - Selected tab value.
    */
   const onTabChange = (tabValue: TabValue): void => {
-    setTabsValue(tabValue); // Set state tabsValue prior to route change to indicate selection success.
+    //  setTabsValue(tabValue); // Set state tabsValue prior to route change to indicate selection success.
     push(`/${tabValue}`);
     pagination?.resetPage();
+    exploreDispatch({
+      payload: tabValue,
+      type: ExploreActionKind.SelectEntityType,
+    });
+    // const ec = getEntityConfig(tabValue);
+    // const defaultSort = getDefaultSort(ec);
+    // // sort?.sort(defaultSort);defaultSort
   };
 
   /**
@@ -114,7 +128,7 @@ export const ExploreView = (props: AzulEntitiesStaticResponse): JSX.Element => {
       <IndexView
         entities={renderContent(response)}
         Summaries={renderSummary(summaryConfig, summaryResponse)}
-        Tabs={<Tabs onTabChange={onTabChange} tabs={tabs} value={tabsValue} />}
+        Tabs={<Tabs onTabChange={onTabChange} tabs={tabs} value={tabValue} />}
         title={explorerTitle}
       />
     </>

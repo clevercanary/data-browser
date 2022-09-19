@@ -10,7 +10,10 @@ import {
   transformTermFacets,
 } from "../apis/azul/common/filterTransformer";
 import { AuthContext } from "../common/context/authState";
-import { FilterStateContext } from "../common/context/filterState";
+import {
+  ExploreActionKind,
+  FilterStateContext,
+} from "../common/context/filterState";
 import {
   CategoryKey,
   CategoryValueKey,
@@ -18,11 +21,12 @@ import {
   SelectCategory,
   Sort,
 } from "../common/entities";
+import { config } from "../config/config";
 import { useAsync } from "./useAsync";
-import { OnFilterFn, useCategoryFilter } from "./useCategoryFilter";
-import { useEntityService } from "./useEntityService";
+import { buildCategoryViews, OnFilterFn } from "./useCategoryFilter";
+//import { OnFilterFn, useCategoryFilter } from "./useCategoryFilter";
+import { getEntityServiceByPath } from "./useEntityService";
 import { usePagination } from "./usePagination";
-import { useSort } from "./useSort";
 
 /**
  * Type of function called to update filter query string params and trigger re-fetch of entities.
@@ -50,19 +54,28 @@ interface EntitiesResponse {
 export const useEntityList = (
   staticResponse: AzulEntitiesStaticResponse | null
 ): EntitiesResponse => {
-  const { filterState, setFilterState } = useContext(FilterStateContext);
+  console.log("Starting Use Entity List");
+  // Load up the relevant contexts
+  const { exploreDispatch, exploreState } = useContext(FilterStateContext);
+  const filterState = exploreState.filterState;
+  const sortKey = exploreState.sortState.sortKey;
+  const sortOrder = exploreState.sortState.sortOrder;
+  console.log("ExploreState", sortKey);
   const { token } = useContext(AuthContext);
 
   // Determine type of fetch to be executed, either API endpoint or TSV.
-
-  const { fetchEntitiesFromQuery, listStaticLoad, path } = useEntityService();
+  const { fetchEntitiesFromQuery, listStaticLoad, path } =
+    getEntityServiceByPath(exploreState.tabValue);
 
   // Init fetch of entities.
   const { data, isIdle, isLoading, run } = useAsync<AzulEntitiesResponse>();
   const { resetPage, ...pagination } = usePagination(data);
-  const { sort, sortKey, sortOrder } = useSort();
+  //const { sort, sortKey, sortOrder } = useSort();
+  const { categoryConfigs = [] } = config();
 
-  // Generalize the filters returned from Azul.
+  // calculate the categories from the data response
+  // only re-calc if the data changes.
+  // TODO - revisit for client side filter.
   const categories = useMemo(() => {
     if (listStaticLoad || !data || !data.termFacets) {
       return [];
@@ -71,25 +84,33 @@ export const useEntityList = (
   }, [data, listStaticLoad]);
 
   // Init filter functionality.
-  const {
-    categories: categoryViews,
-    filter,
-    onFilter,
-  } = useCategoryFilter(categories, filterState);
+  // const {
+  //   categories: categoryViews,
+  //   filter,
+  //   onFilter,
+  // } = useMemoseCategoryFilter(categories, filterState);
 
   /**
    * Hook for updating the global FilterStateContext with current selected values.
+   * This is in a hook to limit when it runs. The set filter state will only be run
+   * if if the fitler value changes or the setFilterState function changes. These functions are
+   * retrived from FilteStateContext
    * @param filter -
    * @param setFilerState - used to set the FilterStateContext
    */
-  useEffect(() => {
-    setFilterState(filter);
-  }, [filter, setFilterState]);
+  // useEffect(() => {
+  //   setFilterState(filter);
+  // }, [filter, setFilterState]);
 
   /**
    * Hook for fetching entites matching the current query and authentication state.
+   * Only runs if one of its deps changes.
    */
   useEffect(() => {
+    console.log("-----Running Fetch---------");
+    console.log("Path", path);
+    console.log("Sortkey", sortKey);
+    console.log("-----Done printing---------");
     if (!listStaticLoad) {
       // Build basic list params
       const listParams: AzulListParams = { order: sortOrder, sort: sortKey };
@@ -113,38 +134,48 @@ export const useEntityList = (
     token,
   ]);
 
+  // Function to call when the filter changes.
+  // Wrapped in a useCallback so that it is memoized unless its deps change,
+  // returned as part of this hook.
   const handleFilterChange = useCallback(
     (
       categoryKey: CategoryKey,
       selectedCategoryValue: CategoryValueKey,
       selected: boolean
     ) => {
-      onFilter(categoryKey, selectedCategoryValue, selected);
+      exploreDispatch({
+        payload: {
+          categoryKey,
+          selected,
+          selectedValue: selectedCategoryValue,
+        },
+        type: ExploreActionKind.UpdateFilter,
+      });
+      //    onFilter(categoryKey, selectedCategoryValue, selected);
       resetPage();
     },
-    [onFilter, resetPage]
+    [exploreDispatch, resetPage]
   );
 
   // Exit if we're dealing with a statically-loaded entity; data has already been fetched during build; indicate
   // load is complete and return static data.
-  if (listStaticLoad) {
-    return {
-      categories: [],
-      loading: false,
-      onFilter,
-      response: staticResponse?.data,
-    };
-  }
+  // if (listStaticLoad) {
+  //   return {
+  //     categories: [],
+  //     loading: false,
+  //     onFilter,
+  //     response: staticResponse?.data,
+  //   };
+  // }
 
   // Otherwise, return the fetching, pagination and sort state.
   return {
-    categories: categoryViews,
+    categories: buildCategoryViews(categories, categoryConfigs, filterState),
     loading: isLoading || isIdle,
     onFilter: handleFilterChange,
     pagination: { ...pagination, resetPage },
     response: data,
     sort: {
-      sort,
       sortKey,
       sortOrder,
     },
