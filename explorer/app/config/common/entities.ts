@@ -116,7 +116,7 @@ export interface ColumnConfig<
   componentConfig: ComponentConfig<C, T>;
   header: string;
   hiddenColumn?: boolean;
-  sort?: {
+  sort: {
     default?: boolean;
     sortKey: string;
   };

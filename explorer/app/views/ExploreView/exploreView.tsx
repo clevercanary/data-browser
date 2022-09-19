@@ -28,23 +28,13 @@ export const ExploreView = (props: AzulEntitiesStaticResponse): JSX.Element => {
   const { exploreDispatch, exploreState } = useContext(FilterStateContext);
   const tabValue = exploreState.tabValue;
   const currentEntityConfig = getEntityConfig(exploreState.tabValue);
-  const route = currentEntityConfig.route;
-
-  console.log("Starting Explore View");
-  console.log("Current Entity Cnfig", route);
-
   const { push } = useRouter();
-
-  // Init tabs state.
-  //const [tabsValue, setTabsValue] = useResetableState<TabsValue>(route);
   const tabs = getTabs();
 
   // Fetch summary and entities.
   const { response: summaryResponse } = useSummary();
   const { categories, loading, onFilter, pagination, response, sort } =
     useEntityList(props);
-  console.log("Sortt", sort);
-  console.log("Loading", loading);
   // Get the column config for the current entity.
   const columnsConfig = currentEntityConfig.list.columns;
 
@@ -62,9 +52,6 @@ export const ExploreView = (props: AzulEntitiesStaticResponse): JSX.Element => {
       payload: tabValue,
       type: ExploreActionKind.SelectEntityType,
     });
-    // const ec = getEntityConfig(tabValue);
-    // const defaultSort = getDefaultSort(ec);
-    // // sort?.sort(defaultSort);defaultSort
   };
 
   /**

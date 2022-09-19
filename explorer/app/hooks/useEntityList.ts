@@ -54,13 +54,11 @@ interface EntitiesResponse {
 export const useEntityList = (
   staticResponse: AzulEntitiesStaticResponse | null
 ): EntitiesResponse => {
-  console.log("Starting Use Entity List");
   // Load up the relevant contexts
   const { exploreDispatch, exploreState } = useContext(FilterStateContext);
   const filterState = exploreState.filterState;
   const sortKey = exploreState.sortState.sortKey;
   const sortOrder = exploreState.sortState.sortOrder;
-  console.log("ExploreState", sortKey);
   const { token } = useContext(AuthContext);
 
   // Determine type of fetch to be executed, either API endpoint or TSV.
@@ -107,10 +105,6 @@ export const useEntityList = (
    * Only runs if one of its deps changes.
    */
   useEffect(() => {
-    console.log("-----Running Fetch---------");
-    console.log("Path", path);
-    console.log("Sortkey", sortKey);
-    console.log("-----Done printing---------");
     if (!listStaticLoad) {
       // Build basic list params
       const listParams: AzulListParams = { order: sortOrder, sort: sortKey };

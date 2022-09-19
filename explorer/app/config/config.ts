@@ -70,7 +70,7 @@ export const getEntityConfig = (
   );
 
   if (!entityConfig) {
-    throw Error("No entity found");
+    throw Error("No entity found with name: " + path);
   }
 
   return entityConfig;
@@ -86,12 +86,15 @@ export const getTabs = (): Tab[] => {
     value: route,
   }));
 };
-
-export const getDefaultSort = (
-  entityConfig: EntityConfig
-): string | undefined => {
+/**
+ * Get the default sort for the given entity config.
+ * @param entityConfig - the entity config to search.
+ * @returns - the default sort if it is configured or the first column if
+ * no default is set.
+ */
+export const getDefaultSort = (entityConfig: EntityConfig): string => {
   return (
     entityConfig.list.columns.find((column) => column.sort?.default)?.sort
-      ?.sortKey ?? entityConfig.list.columns[0].sort?.sortKey
+      ?.sortKey ?? entityConfig.list.columns[0].sort.sortKey
   );
 };

@@ -79,8 +79,8 @@ export interface Pagination {
  */
 export interface Sort {
   // sort: (key?: string, sortOrder?: SortOrderType) => void;
-  sortKey?: string;
-  sortOrder?: SortOrderType;
+  sortKey: string;
+  sortOrder: SortOrderType;
 }
 
 /**

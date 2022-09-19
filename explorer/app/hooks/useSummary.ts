@@ -25,7 +25,9 @@ export const useSummary = (): UseSummaryResponse => {
     isLoading: apiIsLoading,
     run,
   } = useAsync<AzulSummaryResponse>();
-  const { fetchSummary } = useEntityService(); // Determine type of fetch to be executed, either API endpoint or TSV.
+
+  const tabValue = exploreState.tabValue;
+  const { fetchSummary } = useEntityService(tabValue); // Determine type of fetch to be executed, either API endpoint or TSV.
 
   useEffect(() => {
     if (summaryConfig) {

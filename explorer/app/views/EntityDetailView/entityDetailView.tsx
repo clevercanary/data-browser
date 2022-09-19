@@ -31,8 +31,10 @@ function getTabs(entity: EntityConfig): Tab[] {
 export const EntityDetailView = (
   props: AzulEntityStaticResponse
 ): JSX.Element => {
-  const { currentTab, route: tabRoute } = useCurrentDetailTab();
   const { exploreState } = useContext(FilterStateContext);
+  const { currentTab, route: tabRoute } = useCurrentDetailTab(
+    exploreState.tabValue
+  );
   const currentEntityConfig = getEntityConfig(exploreState.tabValue);
   const { isLoading, response } = useFetchEntity(props);
   const [tabsValue, setTabsValue] = useState<TabsValue>(tabRoute);

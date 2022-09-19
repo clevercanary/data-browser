@@ -162,7 +162,7 @@ function exploreReducer(
      * Select entity Type
      **/
     case ExploreActionKind.SelectEntityType: {
-      const nextSort = {
+      const nextSort: Sort = {
         sortKey: getDefaultSort(getEntityConfig(payload)),
         sortOrder: "asc",
       };
@@ -204,13 +204,8 @@ function exploreReducer(
      * Paginate Tale
      **/
     case ExploreActionKind.PaginateTable: {
-      const nextSort: Sort = {
-        sortKey: payload,
-        sortOrder: "asc",
-      };
       return {
-        ...state,
-        sortState: nextSort,
+        ...state, // TODO implement this case
       };
     }
     default:

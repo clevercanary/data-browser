@@ -138,7 +138,6 @@ export const TableComponent = <T extends object>({
 
   const handleSortClicked = (column: ColumnDef<T>): void => {
     if (sort) {
-      console.log("SortClicked!", column);
       //const newColumn = newColumnKey(sort, column.id ?? "");
       //const newOrder = newColumnOrder(sort, newColumn);
       if (sort.sortKey !== column.id) {
