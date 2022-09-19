@@ -153,14 +153,16 @@ export const useEntityList = (
 
   // Exit if we're dealing with a statically-loaded entity; data has already been fetched during build; indicate
   // load is complete and return static data.
-  // if (listStaticLoad) {
-  //   return {
-  //     categories: [],
-  //     loading: false,
-  //     onFilter,
-  //     response: staticResponse?.data,
-  //   };
-  // }
+  if (listStaticLoad) {
+    return {
+      categories: [],
+      loading: false,
+      onFilter: (): string => {
+        return "";
+      },
+      response: staticResponse?.data,
+    };
+  }
 
   // Otherwise, return the fetching, pagination and sort state.
   return {

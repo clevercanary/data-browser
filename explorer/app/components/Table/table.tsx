@@ -136,18 +136,16 @@ export const TableComponent = <T extends object>({
     scrollTop();
   };
 
-  const handleSortClicked = (column: ColumnDef<T>): void => {
+  const handleSortClicked = (columnDef: ColumnDef<T>): void => {
     if (sort) {
-      //const newColumn = newColumnKey(sort, column.id ?? "");
-      //const newOrder = newColumnOrder(sort, newColumn);
-      if (sort.sortKey !== column.id) {
+      if (sort.sortKey !== columnDef.id) {
         exploreDispatch({
-          payload: column.id,
+          payload: columnDef.id ?? "", // TODO fix or empty string
           type: ExploreActionKind.SetSortKey,
         });
       } else {
         exploreDispatch({
-          payload: null,
+          payload: "asc", // TODO asc is ignored how to not specify?
           type: ExploreActionKind.FlipSortOrder,
         });
       }

@@ -13,6 +13,7 @@ export interface CurrentDetailTab {
 
 /**
  * Hook to get the current tab and its route that will be used to create the detail page.
+ * @param tabValue - the selected entity thpe
  * @returns Current tab and current tab route.
  */
 export const useCurrentDetailTab = (tabValue: string): CurrentDetailTab => {

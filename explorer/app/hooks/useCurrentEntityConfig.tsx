@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { EntityConfig, SiteConfig } from "../config/common/entities";
 
 /**
@@ -46,6 +46,6 @@ export const CurrentEntityProvider = CurrentEntityContext.Provider;
  * @returns The current entity based using the context value provided by the current page.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This config model is part of a generic array
-const useCurrentEntityConfig = (): EntityConfig<any> => {
-  return useContext(CurrentEntityContext);
-};
+// const useCurrentEntityConfig = (): EntityConfig<any> => {
+//   return useContext(CurrentEntityContext);
+// };

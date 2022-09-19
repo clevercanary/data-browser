@@ -13,7 +13,7 @@ export const usePagination = (data?: AzulEntitiesResponse): Pagination => {
   const { token } = useContext(AuthContext);
 
   const { run } = useAsync<AzulEntitiesResponse>();
-  const { exploreDispatch, exploreState } = useContext(FilterStateContext);
+  const { exploreState } = useContext(FilterStateContext);
   const tabValue = exploreState.tabValue;
 
   // Determine type of fetch to be executed, either API endpoint or TSV.
