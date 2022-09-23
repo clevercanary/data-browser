@@ -4,6 +4,7 @@ import { SelectCategory } from "../../../common/entities";
 /**
  * Internal model of a category term count keyed by category term.
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- This type matches react table getFacetedUniqueValues return type see https://github.com/TanStack/table/blob/6d4a91e74676da0b28fe07fcc1b7d26f535db0f4/packages/table-core/src/utils/getFacetedUniqueValues.ts.
 type CountByTerms = Map<any, number>;
 
 /**
@@ -81,6 +82,7 @@ export function getFacetedUniqueValuesWithArrayValues<T extends RowData>(): (
     memo(
       () => [table.getColumn(columnId).getFacetedRowModel()],
       (facetedRowModel) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This type matches react table getFacetedUniqueValues return type.
         const facetedUniqueValues = new Map<any, number>();
         for (let i = 0; i < facetedRowModel.flatRows.length; i++) {
           const value = facetedRowModel.flatRows[i]?.getValue(columnId);
