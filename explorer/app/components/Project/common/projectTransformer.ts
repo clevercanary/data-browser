@@ -10,17 +10,11 @@ import {
   PublicationResponse,
 } from "app/models/responses";
 import { LABEL } from "../../../apis/azul/common/entities";
-import {
-  processAggregatedOrArrayValue,
-  processEntityValue,
-  processNumberEntityValue,
-} from "../../../apis/azul/common/utils";
 import { ENTRIES } from "../../../project-edits";
 import { Breadcrumb } from "../../common/Breadcrumbs/breadcrumbs";
 import { Status } from "../../common/StatusBadge/statusBadge";
 import { HeroTitle } from "../../common/Title/title";
 import { ItemProps } from "../../IconList/Item";
-import { MetadataValue } from "../../Index/common/entities";
 import { CONTRIBUTOR_ROLE } from "./constants";
 import {
   CollaboratingOrganization,
@@ -32,8 +26,6 @@ import {
   Publication,
   SupplementaryLink,
 } from "./entities";
-
-const formatter = Intl.NumberFormat("en", { notation: "compact" });
 
 /**
  * Returns project related breadcrumbs.
@@ -334,113 +326,6 @@ export function getProjectIconList(
     },
     label: entry.label,
   }));
-}
-
-/** Returns the project title
- * @param projectsResponse - Response model from projects API
- * @returns String containing the project title
- */
-export function getProjectsTitleName(
-  projectsResponse: ProjectsResponse
-): string {
-  return processEntityValue(projectsResponse.projects, "projectTitle");
-}
-
-/** Returns the project url
- * @param projectsResponse - Response model from projects API
- * @returns String containing the project url
- */
-export function getProjectsTitleUrl(
-  projectsResponse: ProjectsResponse
-): string {
-  return `/projects/${processEntityValue(
-    projectsResponse.projects,
-    "projectId"
-  )}`;
-}
-
-/**
- * Maps the project cell count from the projects API.
- * @param projectsResponse - Response model return from projects API.
- * @returns project species.
- */
-export function getProjectMetadataSpecies(
-  projectsResponse?: ProjectsResponse
-): MetadataValue[] {
-  return processAggregatedOrArrayValue(
-    projectsResponse?.donorOrganisms ?? [],
-    "genusSpecies"
-  );
-}
-
-/** Returns the formatted cell count
- * @param projectsResponse - Response model from projects API
- * @returns String containing the formatted cell count
- */
-export function getProjectsCellCountColumn(
-  projectsResponse: ProjectsResponse
-): string {
-  return `${formatter.format(
-    processNumberEntityValue(
-      projectsResponse.cellSuspensions ?? [],
-      "totalCells"
-    )
-  )}`;
-}
-
-/**
- * Returns an array of valid development stages
- * @param projectsResponse - Response model from projects API
- * @returns List of metadata values for the development stage
- */
-export function getProjectsDevelopmentStage(
-  projectsResponse: ProjectsResponse
-): MetadataValue[] {
-  return processAggregatedOrArrayValue(
-    projectsResponse.donorOrganisms,
-    "developmentStage"
-  );
-}
-
-/**
- * Returns an array for the library construction approach column
- * @param projectsResponse - Response model from projects API
- * @returns List of metadata values for the library construction approach
- */
-export function getProjectsLibraryConstructionApproachColumn(
-  projectsResponse: ProjectsResponse
-): MetadataValue[] {
-  //TODO: Refactor to use utils functions, currently having typing issues
-  if (!projectsResponse.protocols[0].libraryConstructionApproach) {
-    return [LABEL.UNSPECIFIED];
-  } else {
-    return projectsResponse.protocols[0]?.libraryConstructionApproach;
-  }
-}
-
-/**
- * Returns an array for the anatomical entity column
- * @param projectsResponse - Response model from projects API
- * @returns List of metadata values for the anatomical entity approach
- */
-export function getProjectsAnatomicalEntityColumn(
-  projectsResponse: ProjectsResponse
-): MetadataValue[] {
-  return processAggregatedOrArrayValue(projectsResponse.samples, "organ");
-}
-
-/**
- * Returns an array for the disease (donor) column
- * @param projectsResponse - Response model from projects API
- * @returns List of metadata values for the disease (donor)
- */
-export function getProjectsDiseaseDonor(
-  projectsResponse: ProjectsResponse
-): MetadataValue[] {
-  return processAggregatedOrArrayValue(
-    projectsResponse?.donorOrganisms,
-    "disease"
-  );
 }
 
 /**

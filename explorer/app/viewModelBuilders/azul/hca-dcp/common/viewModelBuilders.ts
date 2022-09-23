@@ -1,26 +1,22 @@
 import React from "react";
-import { PROJECTS_URL } from "../../../../../site-config/hca-dcp/dev/config";
 import {
   FilesResponse,
   SamplesResponse,
 } from "../../../../apis/azul/hca-dcp/common/responses";
 import * as Transformers from "../../../../apis/azul/hca-dcp/common/transformers";
-import * as C from "../../../../components";
-import { METADATA_KEY } from "../../../../components/Index/common/entities";
-import { getPluralizedMetadataLabel } from "../../../../components/Index/common/indexTransformer";
 import {
-  getProjectBreadcrumbs,
   getProjectMetadataSpecies,
   getProjectsAnatomicalEntityColumn,
   getProjectsCellCountColumn,
   getProjectsDevelopmentStage,
   getProjectsDiseaseDonor,
   getProjectsLibraryConstructionApproachColumn,
-  getProjectStatus,
   getProjectsTitleName,
   getProjectsTitleUrl,
-  getProjectTitle,
-} from "../../../../components/Project/common/projectTransformer";
+} from "../../../../apis/azul/hca-dcp/common/transformers";
+import * as C from "../../../../components";
+import { METADATA_KEY } from "../../../../components/Index/common/entities";
+import { getPluralizedMetadataLabel } from "../../../../components/Index/common/indexTransformer";
 import { ProjectsResponse } from "../../../../models/responses";
 
 /**
@@ -211,21 +207,7 @@ export const samplesBuildCellCount = (
     value: Transformers.samplesGetCellCount(sample),
   };
 };
-/**
- * Build props for Hero component from the given projects response.
- * @param projectsResponse - Response model return from projects API.
- * @returns model to be used as props for the BackPageHero component.
- */
-export const projectBuildHero = (
-  projectsResponse: ProjectsResponse
-): React.ComponentProps<typeof C.BackPageHero> => {
-  const firstCrumb = { path: PROJECTS_URL, text: "Explore" };
-  return {
-    breadcrumbs: getProjectBreadcrumbs(firstCrumb, projectsResponse),
-    status: getProjectStatus(projectsResponse), // TODO status https://github.com/clevercanary/data-browser/issues/135
-    title: getProjectTitle(projectsResponse),
-  };
-};
+
 /**
  * Build props for FileCounts component from the given projects response.
  * @param project - Response model return from projects API.
