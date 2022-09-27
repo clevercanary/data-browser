@@ -85,7 +85,7 @@ export function getProjectsTitleUrl(
 }
 
 /**
- * Maps the project cell count from the projects API.
+ * Maps the metadata species from the projects API.
  * @param projectsResponse - Response model return from projects API.
  * @returns project species.
  */
@@ -114,9 +114,9 @@ export function getProjectsCellCountColumn(
 }
 
 /**
- * Returns an array of valid development stages
+ * Returns an array of development stages
  * @param projectsResponse - Response model from projects API
- * @returns List of metadata values for the development stage
+ * @returns List of metadata values for the development stage cell
  */
 export function getProjectsDevelopmentStage(
   projectsResponse: ProjectsResponse
@@ -130,7 +130,7 @@ export function getProjectsDevelopmentStage(
 /**
  * Returns an array for the library construction approach column
  * @param projectsResponse - Response model from projects API
- * @returns List of metadata values for the library construction approach
+ * @returns List of metadata values for the library construction approach cell
  */
 export function getProjectsLibraryConstructionApproachColumn(
   projectsResponse: ProjectsResponse
@@ -146,7 +146,7 @@ export function getProjectsLibraryConstructionApproachColumn(
 /**
  * Returns an array for the anatomical entity column
  * @param projectsResponse - Response model from projects API
- * @returns List of metadata values for the anatomical entity approach
+ * @returns List of metadata values for the anatomical entity approach cell
  */
 export function getProjectsAnatomicalEntityColumn(
   projectsResponse: ProjectsResponse
@@ -157,7 +157,7 @@ export function getProjectsAnatomicalEntityColumn(
 /**
  * Returns an array for the disease (donor) column
  * @param projectsResponse - Response model from projects API
- * @returns List of metadata values for the disease (donor)
+ * @returns List of metadata values for the disease (donor) cell
  */
 export function getProjectsDiseaseDonor(
   projectsResponse: ProjectsResponse

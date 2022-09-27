@@ -159,7 +159,6 @@ export const buildSupplementaryLinks = (
  * @returns model to be used as props for the FileCounts component.
  */
 export const projectsToFileCounts = (
-  //TODO: This is unused, figure out if still needed. Also duplicated in viewModelBuilders(not used there either)
   project: ProjectsResponse
 ): React.ComponentProps<typeof C.FileCounts> => {
   if (!project) {

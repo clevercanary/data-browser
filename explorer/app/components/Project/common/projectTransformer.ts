@@ -9,12 +9,10 @@ import {
   ProjectsResponse,
   PublicationResponse,
 } from "app/models/responses";
-import { LABEL } from "../../../apis/azul/common/entities";
 import { ENTRIES } from "../../../project-edits";
 import { Breadcrumb } from "../../common/Breadcrumbs/breadcrumbs";
 import { Status } from "../../common/StatusBadge/statusBadge";
 import { HeroTitle } from "../../common/Title/title";
-import { ItemProps } from "../../IconList/Item";
 import { CONTRIBUTOR_ROLE } from "./constants";
 import {
   CollaboratingOrganization,
@@ -177,11 +175,11 @@ export function getProjectDataCurators(
  */
 export function getProjectDescription(
   projectsResponse?: ProjectsResponse
-): Description | LABEL {
+): Description | undefined {
   const project = getProjectResponse(projectsResponse);
 
   if (!project) {
-    return LABEL.EMPTY;
+    return;
   }
   return project.projectDescription;
 }
@@ -298,34 +296,6 @@ export function getProjectTitle(
     return;
   }
   return project.projectTitle;
-}
-
-/**
- * Returns the list of icons for the project's associated portals
- * @param projectsResponse - Response model return from projects API.
- * @returns iconList for the project
- */
-export function getProjectIconList(
-  projectsResponse: ProjectsResponse
-): ItemProps[] {
-  if (!projectsResponse.entryId) {
-    return [];
-  }
-
-  const entry = ENTRIES.find(
-    (entry) => entry.entryId === projectsResponse.entryId
-  );
-  if (!entry?.analysisPortals) {
-    return [];
-  }
-
-  return entry.analysisPortals.map((entry) => ({
-    icon: {
-      alt: entry.label ?? "",
-      path: entry.icon,
-    },
-    label: entry.label,
-  }));
 }
 
 /**

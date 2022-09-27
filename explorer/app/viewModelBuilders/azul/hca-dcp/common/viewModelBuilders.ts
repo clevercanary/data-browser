@@ -209,29 +209,9 @@ export const samplesBuildCellCount = (
 };
 
 /**
- * Build props for FileCounts component from the given projects response.
+ * Build props for the project title cell component from the given projects response.
  * @param project - Response model return from projects API.
- * @returns model to be used as props for the FileCounts component.
- */
-export const projectsBuildFileCounts = (
-  //TODO: This is unused, figure out if still needed. Also duplicated in projectViewModelBuilder(not used their either)
-  project: ProjectsResponse
-): React.ComponentProps<typeof C.FileCounts> => {
-  if (!project) {
-    return { files: [] };
-  }
-
-  return {
-    files: project.fileTypeSummaries.map((file) => ({
-      count: file.count,
-      name: file.format,
-    })),
-  };
-};
-/**
- * Build props for ProjectTitle from the given projects response.
- * @param project - Response model return from projects API.
- * @returns model to be used as props for the ProjectTitle components.
+ * @returns model to be used as props for the project title cell components.
  */
 export const projectsBuildProjectTitleColumn = (
   project: ProjectsResponse
@@ -280,9 +260,9 @@ export const projectsBuildDevelopmentStage = (
   };
 };
 /**
- * Build props for the Development stage Text component from the given projects response.
+ * Build props for the library construction cell component from the given projects response.
  * @param project - Response model return from projects API.
- * @returns model to be used as props for the development stage table column.
+ * @returns model to be used as props for the library construction cell approach cell.
  */
 export const projectsBuildLibraryConstructionApproachColumn = (
   project: ProjectsResponse
