@@ -177,7 +177,6 @@ export function getProjectDescription(
   projectsResponse?: ProjectsResponse
 ): Description | undefined {
   const project = getProjectResponse(projectsResponse);
-
   if (!project) {
     return;
   }
