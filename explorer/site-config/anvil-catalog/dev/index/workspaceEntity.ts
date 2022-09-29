@@ -76,7 +76,7 @@ export const workspaceEntity: EntityConfig<AnVILCatalogWorkspace> = {
         sort: {
           sortKey: SOURCE_FIELD_KEY.DISEASES,
         },
-        width: { max: "2fr", min: "240px" },
+        width: { max: "1.6fr", min: "160px" },
       },
       {
         componentConfig: {
@@ -87,7 +87,7 @@ export const workspaceEntity: EntityConfig<AnVILCatalogWorkspace> = {
         sort: {
           sortKey: SOURCE_FIELD_KEY.DATA_TYPES,
         },
-        width: { max: "2fr", min: "120px" },
+        width: { max: "1.6fr", min: "160px" },
       },
       {
         componentConfig: {
@@ -98,7 +98,7 @@ export const workspaceEntity: EntityConfig<AnVILCatalogWorkspace> = {
         sort: {
           sortKey: SOURCE_FIELD_KEY.STUDY_DESIGNS,
         },
-        width: { max: "2fr", min: "240px" },
+        width: { max: "1.6fr", min: "160px" },
       },
       {
         componentConfig: {
@@ -109,7 +109,7 @@ export const workspaceEntity: EntityConfig<AnVILCatalogWorkspace> = {
         sort: {
           sortKey: SOURCE_FIELD_KEY.PARTICIPANT_COUNT,
         },
-        width: { max: "2fr", min: "120px" },
+        width: { max: "1.16fr", min: "116px" },
       },
     ],
   } as ListConfig<AnVILCatalogWorkspace>,
