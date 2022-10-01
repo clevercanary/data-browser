@@ -1,3 +1,4 @@
+import { buildAnVILCatalogWorkspaces } from "../../../../app/apis/anvil-catalog/common/utils";
 import { NCPICatalogDataset } from "../../../../app/apis/ncpi-catalog/common/entities";
 import * as Components from "../../../../app/components";
 import {
@@ -113,6 +114,7 @@ export const studiesEntityConfig: EntityConfig<NCPICatalogDataset> = {
   } as ListConfig<NCPICatalogDataset>,
   route: "studies",
   tsv: {
+    builderFn: buildAnVILCatalogWorkspaces,
     path: "ncpi-dataset-catalog-results.tsv",
     sourceFieldKey: SOURCE_FIELD_KEY,
     sourceFieldType: SOURCE_FIELD_TYPE,

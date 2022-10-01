@@ -1,4 +1,8 @@
-import { AnVILCatalogWorkspace } from "./entities";
+import {
+  AnVILCatalogEntity,
+  AnVILCatalogStudy,
+  AnVILCatalogWorkspace,
+} from "./entities";
 
 /**
  * Returns the consent code.
@@ -7,61 +11,67 @@ import { AnVILCatalogWorkspace } from "./entities";
  */
 export const getConsentCode = (
   anvilCatalogWorkspace: AnVILCatalogWorkspace
-): string => anvilCatalogWorkspace["library:dataUseRestriction"] ?? "";
+): string => anvilCatalogWorkspace.consentCode ?? "";
+
+/**
+ * Returns the consent codes.
+ * @param anvilCatalogStudy - AnVIL catalog study.
+ * @returns Array of consent codes.
+ */
+export const getConsentCodes = (
+  anvilCatalogStudy: AnVILCatalogStudy
+): string[] => anvilCatalogStudy.consentCodes ?? [];
 
 /**
  * Returns the consortium.
- * @param anvilCatalogWorkspace - AnVIL catalog workspace.
+ * @param anvilCatalogEntity - AnVIL catalog entity.
  * @returns String value of consortium.
  */
-export const getConsortium = (
-  anvilCatalogWorkspace: AnVILCatalogWorkspace
-): string => anvilCatalogWorkspace.consortium ?? "";
+export const getConsortium = (anvilCatalogEntity: AnVILCatalogEntity): string =>
+  anvilCatalogEntity.consortium ?? "";
 
 /**
  * Returns the data types.
- * @param anvilCatalogWorkspace - AnVIL catalog workspace.
+ * @param anvilCatalogEntity - AnVIL catalog entity.
  * @returns Array of data types.
  */
 export const getDataTypes = (
-  anvilCatalogWorkspace: AnVILCatalogWorkspace
-): string[] => anvilCatalogWorkspace["library:datatype"] ?? [];
+  anvilCatalogEntity: AnVILCatalogEntity
+): string[] => anvilCatalogEntity.dataTypes ?? [];
 
 /**
- * Returns the dbGap Id.
- * @param anvilCatalogWorkspace - AnVIL catalog workspace.
- * @returns String value of dbGap Id.
+ * Returns the dbGapId.
+ * @param anvilCatalogEntity - AnVIL catalog entity.
+ * @returns String value of dbGapId.
  */
-export const getDbGapId = (
-  anvilCatalogWorkspace: AnVILCatalogWorkspace
-): string => anvilCatalogWorkspace.phsId || "";
+export const getDbGapId = (anvilCatalogEntity: AnVILCatalogEntity): string =>
+  anvilCatalogEntity.dbGapId || "";
 
 /**
  * Returns the diseases (indications).
- * @param anvilCatalogWorkspace - AnVIL catalog workspace.
+ * @param anvilCatalogEntity - AnVIL catalog entity.
  * @returns Array of diseases (indications).
  */
-export const getDiseases = (
-  anvilCatalogWorkspace: AnVILCatalogWorkspace
-): string[] => anvilCatalogWorkspace["library:indication"] ?? [];
+export const getDiseases = (anvilCatalogEntity: AnVILCatalogEntity): string[] =>
+  anvilCatalogEntity.diseases ?? [];
 
 /**
  * Returns the participant count.
- * @param anvilCatalogWorkspace - AnVIL catalog workspace.
- * @returns The number of participants in the study.
+ * @param anvilCatalogEntity - AnVIL catalog entity.
+ * @returns The number of participants in the entity.
  */
 export const getParticipantCount = (
-  anvilCatalogWorkspace: AnVILCatalogWorkspace
-): number => anvilCatalogWorkspace.participantCount ?? 0;
+  anvilCatalogEntity: AnVILCatalogEntity
+): number => anvilCatalogEntity.participantCount ?? 0;
 
 /**
  * Returns the study designs.
- * @param anvilCatalogWorkspace - AnVIL catalog workspace.
+ * @param anvilCatalogEntity - AnVIL catalog entity.
  * @returns Array of study designs.
  */
 export const getStudyDesigns = (
-  anvilCatalogWorkspace: AnVILCatalogWorkspace
-): string[] => anvilCatalogWorkspace["library:studyDesign"] ?? [];
+  anvilCatalogEntity: AnVILCatalogEntity
+): string[] => anvilCatalogEntity.studyDesigns ?? [];
 
 /**
  * Returns the terra workspace name.
@@ -70,4 +80,13 @@ export const getStudyDesigns = (
  */
 export const getTerraWorkspaceName = (
   anvilCatalogWorkspace: AnVILCatalogWorkspace
-): string => anvilCatalogWorkspace.name ?? "";
+): string => anvilCatalogWorkspace.workspaceName ?? "";
+
+/**
+ * Returns the terra workspace count.
+ * @param anvilCatalogStudy - AnVIL catalog study.
+ * @returns The number of terra workspaces in the study.
+ */
+export const getTerraWorkspaceCount = (
+  anvilCatalogStudy: AnVILCatalogStudy
+): number => anvilCatalogStudy.workspaceCount ?? 0;

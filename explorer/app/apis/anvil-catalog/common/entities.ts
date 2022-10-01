@@ -1,7 +1,7 @@
 /**
- * Model of AnVIL catalog workspace.
+ * Model of AnVIL catalog.
  */
-export interface AnVILCatalogWorkspace {
+export interface AnVILCatalog {
   bucketName: string;
   bucketSize: number;
   COL: string;
@@ -31,4 +31,29 @@ export interface AnVILCatalogWorkspace {
   sampleCount: number;
   status: string;
   subjectCount: number;
+}
+
+export type AnVILCatalogEntity = AnVILCatalogStudy | AnVILCatalogWorkspace;
+
+export interface AnVILCatalogStudy {
+  consentCodes: string[];
+  consortium: string;
+  dataTypes: string[];
+  dbGapId: string;
+  diseases: string[];
+  participantCount: number;
+  studyDesigns: string[];
+  workspaceCount: number;
+  workspaceNames: string[];
+}
+
+export interface AnVILCatalogWorkspace {
+  consentCode: string;
+  consortium: string;
+  dataTypes: string[];
+  dbGapId: string;
+  diseases: string[];
+  participantCount: number;
+  studyDesigns: string[];
+  workspaceName: string;
 }
