@@ -14,6 +14,7 @@ import {
   getStudyDesigns,
   getTerraWorkspaceCount,
   getTerraWorkspaceName,
+  getTerraWorkspaceNames,
 } from "../../../apis/anvil-catalog/common/transformers";
 import * as C from "../../../components";
 import { METADATA_KEY } from "../../../components/Index/common/entities";
@@ -128,6 +129,19 @@ export const buildStudyDesigns = (
 };
 
 /**
+ * Build props for terra workspace count cell component from the given AnVIL study.
+ * @param anVILCatalogStudy - AnVIL catalog study.
+ * @returns Model to be used as props for the terra workspace count cell.
+ */
+export const buildTerraWorkspaceCount = (
+  anVILCatalogStudy: AnVILCatalogStudy
+): React.ComponentProps<typeof C.Cell> => {
+  return {
+    value: getTerraWorkspaceCount(anVILCatalogStudy),
+  };
+};
+
+/**
  * Build props for terra workspace name cell component from the given AnVIL workspace.
  * @param anvilCatalogWorkspace - AnVIL catalog workspace.
  * @returns Model to be used as props for the terra workspace name cell.
@@ -141,14 +155,15 @@ export const buildTerraWorkspaceName = (
 };
 
 /**
- * Build props for terra workspace count cell component from the given AnVIL study.
+ * Build props for terra workspace names cell component from the given AnVIL study.
  * @param anVILCatalogStudy - AnVIL catalog study.
- * @returns Model to be used as props for the terra workspace count cell.
+ * @returns Model to be used as props for the terra workspace names cell.
  */
-export const buildTerraWorkspaceCount = (
+export const buildTerraWorkspaceNames = (
   anVILCatalogStudy: AnVILCatalogStudy
-): React.ComponentProps<typeof C.Cell> => {
+): React.ComponentProps<typeof C.NTagCell> => {
   return {
-    value: getTerraWorkspaceCount(anVILCatalogStudy),
+    label: getPluralizedMetadataLabel(METADATA_KEY.WORKSPACE_NAME),
+    values: getTerraWorkspaceNames(anVILCatalogStudy),
   };
 };

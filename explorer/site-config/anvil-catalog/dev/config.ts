@@ -11,10 +11,6 @@ const config: SiteConfig = {
       label: "Consent Code",
     },
     {
-      key: "consentCodes",
-      label: "Consent Code",
-    },
-    {
       key: "consortium",
       label: "Consortium",
     },

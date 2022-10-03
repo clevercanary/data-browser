@@ -52,7 +52,7 @@ export const studiesEntity: EntityConfig<AnVILCatalogStudy> = {
         header: "Consent Codes",
         sort: {
           default: true,
-          sortKey: "consentCodes",
+          sortKey: "consentCode", // consentCodes - a list of consent codes
         },
         width: { max: "1fr", min: "120px" },
       },
@@ -91,15 +91,26 @@ export const studiesEntity: EntityConfig<AnVILCatalogStudy> = {
       },
       {
         componentConfig: {
-          component: Components.Cell,
-          viewBuilder: ViewBuilder.buildTerraWorkspaceCount,
-        } as ComponentConfig<typeof Components.Cell>,
+          component: Components.NTagCell,
+          viewBuilder: ViewBuilder.buildTerraWorkspaceNames,
+        } as ComponentConfig<typeof Components.NTagCell>,
         header: "Workspaces",
         sort: {
-          sortKey: "workspaceCount",
+          sortKey: "workspaceName", // workspaceNames - a list of workspace names
         },
         width: { max: "1fr", min: "120px" },
       },
+      // {
+      //   componentConfig: {
+      //     component: Components.Cell,
+      //     viewBuilder: ViewBuilder.buildTerraWorkspaceCount,
+      //   } as ComponentConfig<typeof Components.Cell>,
+      //   header: "Workspaces",
+      //   sort: {
+      //     sortKey: "workspaceCount",
+      //   },
+      //   width: { max: "1fr", min: "120px" },
+      // },
       {
         componentConfig: {
           component: Components.Cell,

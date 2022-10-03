@@ -20,7 +20,7 @@ export const getConsentCode = (
  */
 export const getConsentCodes = (
   anvilCatalogStudy: AnVILCatalogStudy
-): string[] => anvilCatalogStudy.consentCodes ?? [];
+): string[] => anvilCatalogStudy.consentCode ?? []; // consentCodes - a list of consent codes.
 
 /**
  * Returns the consortium.
@@ -74,6 +74,15 @@ export const getStudyDesigns = (
 ): string[] => anvilCatalogEntity.studyDesigns ?? [];
 
 /**
+ * Returns the terra workspace count.
+ * @param anvilCatalogStudy - AnVIL catalog study.
+ * @returns The number of terra workspaces in the study.
+ */
+export const getTerraWorkspaceCount = (
+  anvilCatalogStudy: AnVILCatalogStudy
+): number => anvilCatalogStudy.workspaceCount ?? 0;
+
+/**
  * Returns the terra workspace name.
  * @param anvilCatalogWorkspace - AnVIL catalog workspace.
  * @returns String value of terra workspace name.
@@ -83,10 +92,10 @@ export const getTerraWorkspaceName = (
 ): string => anvilCatalogWorkspace.workspaceName ?? "";
 
 /**
- * Returns the terra workspace count.
+ * Returns the terra workspace names.
  * @param anvilCatalogStudy - AnVIL catalog study.
- * @returns The number of terra workspaces in the study.
+ * @returns Array of terra workspace names.
  */
-export const getTerraWorkspaceCount = (
+export const getTerraWorkspaceNames = (
   anvilCatalogStudy: AnVILCatalogStudy
-): number => anvilCatalogStudy.workspaceCount ?? 0;
+): string[] => anvilCatalogStudy.workspaceName ?? []; // workspaceNames - a list of workspace names.

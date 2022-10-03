@@ -88,7 +88,7 @@ function buildAnVILCatalogStudy(
   study: AnVILCatalogStudy
 ): AnVILCatalogStudy {
   const consentCodes = accumulateValue(
-    study.consentCodes,
+    study.consentCode, // consentCodes - a list of consent codes.
     workspace.consentCode
   );
   const consortium = workspace.consortium;
@@ -104,11 +104,11 @@ function buildAnVILCatalogStudy(
     workspace.studyDesigns
   );
   const workspaceNames = accumulateValue(
-    study.workspaceNames,
+    study.workspaceName, // workspaceNames - a list of workspace names.
     workspace.workspaceName
   );
   return {
-    consentCodes,
+    consentCode: consentCodes,
     consortium,
     dataTypes,
     dbGapId,
@@ -116,7 +116,7 @@ function buildAnVILCatalogStudy(
     participantCount,
     studyDesigns,
     workspaceCount: workspaceNames.length,
-    workspaceNames,
+    workspaceName: workspaceNames,
   };
 }
 

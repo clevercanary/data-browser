@@ -97,9 +97,13 @@ export function getSummaryCount(
  * String-concatenates the specified list of metadata values to a string value, joined by a comma ",".
  * @param metadataValues - List of metadata values.
  * @returns the metadata values in a string, each value joined by a comma.
+ * TODO review switch between studies and workspaces tab and the component creator out of sync with the data structure.
  */
 export function stringifyMetadataValues(
   metadataValues: MetadataValue[]
 ): string {
-  return metadataValues.join(", ");
+  if (Array.isArray(metadataValues)) {
+    return metadataValues.join(", ");
+  }
+  return metadataValues;
 }
