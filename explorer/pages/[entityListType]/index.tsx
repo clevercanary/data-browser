@@ -71,7 +71,7 @@ const IndexPage = ({
   ...props
 }: ListPageProps): JSX.Element => {
   if (!entityListType) return <></>;
-  return <ExploreView {...props} />;
+  return <ExploreView entityListType={entityListType} {...props} />;
 };
 
 /**
