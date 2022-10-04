@@ -1,4 +1,5 @@
 import {
+  AnVILCatalogConsortium,
   AnVILCatalogEntity,
   AnVILCatalogStudy,
   AnVILCatalogWorkspace,
@@ -9,6 +10,7 @@ import {
   getConsortium,
   getDataTypes,
   getDbGapId,
+  getDbGapIds,
   getDiseases,
   getParticipantCount,
   getStudyDesigns,
@@ -34,16 +36,16 @@ export const buildConsentCode = (
 };
 
 /**
- * Build props for consent codes cell component from the given AnVIL study.
- * @param anvilCatalogStudy - AnVIL catalog study.
+ * Build props for consent codes cell component from the given AnVIL entity.
+ * @param anvilCatalogEntity - AnVIL catalog entity.
  * @returns Model to be used as props for the consent codes cell.
  */
 export const buildConsentCodes = (
-  anvilCatalogStudy: AnVILCatalogStudy
+  anvilCatalogEntity: Exclude<AnVILCatalogEntity, AnVILCatalogWorkspace>
 ): React.ComponentProps<typeof C.NTagCell> => {
   return {
     label: getPluralizedMetadataLabel(METADATA_KEY.CONSENT_CODE),
-    values: getConsentCodes(anvilCatalogStudy),
+    values: getConsentCodes(anvilCatalogEntity),
   };
 };
 
@@ -84,6 +86,20 @@ export const buildDbGapId = (
 ): React.ComponentProps<typeof C.Cell> => {
   return {
     value: getDbGapId(anvilCatalogEntity),
+  };
+};
+
+/**
+ * Build props for dbGapIds cell component from the given AnVIL consortium catalog.
+ * @param anvilCatalogConsortium - AnVIL catalog consortium.
+ * @returns Model to be used as props for the dbGapIds cell.
+ */
+export const buildDbGapIds = (
+  anvilCatalogConsortium: AnVILCatalogConsortium
+): React.ComponentProps<typeof C.NTagCell> => {
+  return {
+    label: getPluralizedMetadataLabel(METADATA_KEY.DBGAP_ID),
+    values: getDbGapIds(anvilCatalogConsortium),
   };
 };
 
@@ -155,15 +171,15 @@ export const buildTerraWorkspaceName = (
 };
 
 /**
- * Build props for terra workspace names cell component from the given AnVIL study.
- * @param anVILCatalogStudy - AnVIL catalog study.
+ * Build props for terra workspace names cell component from the given AnVIL entity.
+ * @param anVILCatalogEntity - AnVIL catalog entity.
  * @returns Model to be used as props for the terra workspace names cell.
  */
 export const buildTerraWorkspaceNames = (
-  anVILCatalogStudy: AnVILCatalogStudy
+  anVILCatalogEntity: Exclude<AnVILCatalogEntity, AnVILCatalogWorkspace>
 ): React.ComponentProps<typeof C.NTagCell> => {
   return {
     label: getPluralizedMetadataLabel(METADATA_KEY.WORKSPACE_NAME),
-    values: getTerraWorkspaceNames(anVILCatalogStudy),
+    values: getTerraWorkspaceNames(anVILCatalogEntity),
   };
 };

@@ -35,6 +35,18 @@ export interface AnVILCatalog {
 
 export type AnVILCatalogEntity = AnVILCatalogStudy | AnVILCatalogWorkspace;
 
+export interface AnVILCatalogConsortium {
+  consentCode: string[]; // consentCodes - a list of consent codes.
+  consortium: string;
+  dataTypes: string[];
+  dbGapId: string[]; // dbGapIds - a list of study ids.
+  diseases: string[];
+  participantCount: number;
+  studyDesigns: string[];
+  workspaceCount: number;
+  workspaceName: string[]; // workspaceNames - a list of workspace names.
+}
+
 export interface AnVILCatalogStudy {
   consentCode: string[]; // consentCodes - a list of consent codes.
   consortium: string;

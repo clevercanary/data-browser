@@ -1,4 +1,5 @@
 import {
+  AnVILCatalogConsortium,
   AnVILCatalogEntity,
   AnVILCatalogStudy,
   AnVILCatalogWorkspace,
@@ -15,12 +16,12 @@ export const getConsentCode = (
 
 /**
  * Returns the consent codes.
- * @param anvilCatalogStudy - AnVIL catalog study.
+ * @param anvilCatalogEntity - AnVIL catalog entity.
  * @returns Array of consent codes.
  */
 export const getConsentCodes = (
-  anvilCatalogStudy: AnVILCatalogStudy
-): string[] => anvilCatalogStudy.consentCode ?? []; // consentCodes - a list of consent codes.
+  anvilCatalogEntity: Exclude<AnVILCatalogEntity, AnVILCatalogWorkspace>
+): string[] => anvilCatalogEntity.consentCode ?? []; // consentCodes - a list of consent codes.
 
 /**
  * Returns the consortium.
@@ -46,6 +47,15 @@ export const getDataTypes = (
  */
 export const getDbGapId = (anvilCatalogEntity: AnVILCatalogEntity): string =>
   anvilCatalogEntity.dbGapId || "";
+
+/**
+ * Returns the dbGapIds.
+ * @param anvilCatalogConsortium - AnVIL catalog consortium.
+ * @returns Array of dbGapIds.
+ */
+export const getDbGapIds = (
+  anvilCatalogConsortium: AnVILCatalogConsortium
+): string[] => anvilCatalogConsortium.dbGapId || [];
 
 /**
  * Returns the diseases (indications).
@@ -93,9 +103,9 @@ export const getTerraWorkspaceName = (
 
 /**
  * Returns the terra workspace names.
- * @param anvilCatalogStudy - AnVIL catalog study.
+ * @param anvilCatalogEntity - AnVIL catalog entity.
  * @returns Array of terra workspace names.
  */
 export const getTerraWorkspaceNames = (
-  anvilCatalogStudy: AnVILCatalogStudy
-): string[] => anvilCatalogStudy.workspaceName ?? []; // workspaceNames - a list of workspace names.
+  anvilCatalogEntity: Exclude<AnVILCatalogEntity, AnVILCatalogWorkspace>
+): string[] => anvilCatalogEntity.workspaceName ?? []; // workspaceNames - a list of workspace names.

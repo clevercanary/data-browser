@@ -1,8 +1,36 @@
 import {
   AnVILCatalog,
+  AnVILCatalogConsortium,
   AnVILCatalogStudy,
   AnVILCatalogWorkspace,
 } from "./entities";
+
+/**
+ * Returns AnVIL catalog consortia.
+ * @param anvilCatalogs - AnVIL catalogs.
+ * @returns AnVIL catalog consortia.
+ */
+export function buildAnVILCatalogConsortia(
+  anvilCatalogs: unknown[]
+): unknown[] {
+  const anvilCatalogConsortiaByConsortium = new Map();
+  const workspaces = buildAnVILCatalogWorkspaces(
+    anvilCatalogs
+  ) as AnVILCatalogWorkspace[];
+
+  // Build the workspaces for the consortium.
+  for (const workspace of workspaces) {
+    const { consortium } = workspace;
+    const anvilCatalogConsortium =
+      anvilCatalogConsortiaByConsortium.get(consortium) || {};
+    anvilCatalogConsortiaByConsortium.set(
+      consortium,
+      buildAnVILCatalogConsortium(workspace, anvilCatalogConsortium)
+    );
+  }
+
+  return [...anvilCatalogConsortiaByConsortium.values()];
+}
 
 /**
  * Returns AnVIL catalog studies.
@@ -75,6 +103,58 @@ function accumulateValues(
   const concatenatedValues = values01.concat(values02);
   const setOfAccumulatedValues = new Set(concatenatedValues);
   return [...setOfAccumulatedValues];
+}
+
+/**
+ * Returns AnVIL catalog consortium.
+ * @param workspace - AnVIL catalog workspace.
+ * @param anvilCatalogConsortium - AnVIL catalog consortium.
+ * @returns AnVIL catalog consortium.
+ */
+function buildAnVILCatalogConsortium(
+  workspace: AnVILCatalogWorkspace,
+  anvilCatalogConsortium: AnVILCatalogConsortium
+): AnVILCatalogConsortium {
+  const consentCodes = accumulateValue(
+    anvilCatalogConsortium.consentCode, // consentCodes - a list of consent codes.
+    workspace.consentCode
+  );
+  const consortium = workspace.consortium;
+  const dataTypes = accumulateValues(
+    anvilCatalogConsortium.dataTypes,
+    workspace.dataTypes
+  );
+  const dbGapId = accumulateValue(
+    anvilCatalogConsortium.dbGapId,
+    workspace.dbGapId
+  ); // dbGapIds - a list of study ids.
+  const diseases = accumulateValues(
+    anvilCatalogConsortium.diseases,
+    workspace.diseases
+  );
+  const participantCount = sumValues([
+    anvilCatalogConsortium.participantCount,
+    workspace.participantCount,
+  ]);
+  const studyDesigns = accumulateValues(
+    anvilCatalogConsortium.studyDesigns,
+    workspace.studyDesigns
+  );
+  const workspaceNames = accumulateValue(
+    anvilCatalogConsortium.workspaceName, // workspaceNames - a list of workspace names.
+    workspace.workspaceName
+  );
+  return {
+    consentCode: consentCodes,
+    consortium,
+    dataTypes,
+    dbGapId,
+    diseases,
+    participantCount,
+    studyDesigns,
+    workspaceCount: workspaceNames.length,
+    workspaceName: workspaceNames,
+  };
 }
 
 /**

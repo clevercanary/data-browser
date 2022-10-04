@@ -1,5 +1,5 @@
-import { AnVILCatalogStudy } from "../../../../app/apis/anvil-catalog/common/entities";
-import { buildAnVILCatalogStudies } from "../../../../app/apis/anvil-catalog/common/utils";
+import { AnVILCatalogConsortium } from "../../../../app/apis/anvil-catalog/common/entities";
+import { buildAnVILCatalogConsortia } from "../../../../app/apis/anvil-catalog/common/utils";
 import * as Components from "../../../../app/components";
 import {
   ComponentConfig,
@@ -10,29 +10,17 @@ import * as ViewBuilder from "../../../../app/viewModelBuilders/anvil-catalog/co
 import { SOURCE_FIELD_KEY, SOURCE_FIELD_TYPE } from "../../tsv-config";
 
 /**
- * Entity config object responsible to config anything related to the /explore/studies route.
+ * Entity config object responsible to config anything related to the /explore/consortia route.
  */
-export const studiesEntity: EntityConfig<AnVILCatalogStudy> = {
+export const consortiaEntity: EntityConfig<AnVILCatalogConsortium> = {
   detail: {
     staticLoad: true,
     tabs: [],
     top: [],
   },
-  label: "Studies",
+  label: "Consortia",
   list: {
     columns: [
-      {
-        componentConfig: {
-          component: Components.Cell,
-          viewBuilder: ViewBuilder.buildDbGapId,
-        } as ComponentConfig<typeof Components.Cell>,
-        header: "dbGap Id",
-        sort: {
-          default: true,
-          sortKey: "dbGapId",
-        },
-        width: { max: "1fr", min: "120px" },
-      },
       {
         componentConfig: {
           component: Components.Cell,
@@ -41,6 +29,18 @@ export const studiesEntity: EntityConfig<AnVILCatalogStudy> = {
         header: "Consortium",
         sort: {
           sortKey: "consortium",
+        },
+        width: { max: "1fr", min: "120px" },
+      },
+      {
+        componentConfig: {
+          component: Components.NTagCell,
+          viewBuilder: ViewBuilder.buildDbGapIds,
+        } as ComponentConfig<typeof Components.NTagCell>,
+        header: "dbGap Id",
+        sort: {
+          default: true,
+          sortKey: "dbGapId", // dbGapIds - a list of study ids.
         },
         width: { max: "1fr", min: "120px" },
       },
@@ -100,17 +100,6 @@ export const studiesEntity: EntityConfig<AnVILCatalogStudy> = {
         },
         width: { max: "1fr", min: "120px" },
       },
-      // {
-      //   componentConfig: {
-      //     component: Components.Cell,
-      //     viewBuilder: ViewBuilder.buildTerraWorkspaceCount,
-      //   } as ComponentConfig<typeof Components.Cell>,
-      //   header: "Workspaces",
-      //   sort: {
-      //     sortKey: "workspaceCount",
-      //   },
-      //   width: { max: "1fr", min: "120px" },
-      // },
       {
         componentConfig: {
           component: Components.Cell,
@@ -123,10 +112,10 @@ export const studiesEntity: EntityConfig<AnVILCatalogStudy> = {
         width: { max: "1fr", min: "120px" },
       },
     ],
-  } as ListConfig<AnVILCatalogStudy>,
-  route: "studies",
+  } as ListConfig<AnVILCatalogConsortium>,
+  route: "consortia",
   tsv: {
-    builderFn: buildAnVILCatalogStudies,
+    builderFn: buildAnVILCatalogConsortia,
     path: "dashboard-source-anvil.tsv",
     sourceFieldKey: SOURCE_FIELD_KEY,
     sourceFieldType: SOURCE_FIELD_TYPE,
