@@ -1,5 +1,5 @@
-import { AnVILCatalogConsortium } from "../../../../app/apis/anvil-catalog/common/entities";
-import { buildAnVILCatalogConsortia } from "../../../../app/apis/anvil-catalog/common/utils";
+import { AnVILCatalogConsortium } from "../../../../app/apis/catalog/anvil-catalog/common/entities";
+import { buildAnVILCatalogConsortia } from "../../../../app/apis/catalog/anvil-catalog/common/utils";
 import * as Components from "../../../../app/components";
 import {
   ComponentConfig,
@@ -40,7 +40,7 @@ export const consortiaEntity: EntityConfig<AnVILCatalogConsortium> = {
         header: "dbGap Id",
         sort: {
           default: true,
-          sortKey: "dbGapId", // dbGapIds - a list of study ids.
+          sortKey: "dbGapId", // dbGapIds - a list of study identifiers.
         },
         width: { max: "1fr", min: "120px" },
       },

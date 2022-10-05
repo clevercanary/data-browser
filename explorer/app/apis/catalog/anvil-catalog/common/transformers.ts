@@ -55,7 +55,7 @@ export const getDbGapId = (anvilCatalogEntity: AnVILCatalogEntity): string =>
  */
 export const getDbGapIds = (
   anvilCatalogConsortium: AnVILCatalogConsortium
-): string[] => anvilCatalogConsortium.dbGapId || [];
+): string[] => anvilCatalogConsortium.dbGapId || []; // dbGapIds - a list of study identifiers.
 
 /**
  * Returns the diseases (indications).

@@ -3,7 +3,7 @@ import {
   AnVILCatalogEntity,
   AnVILCatalogStudy,
   AnVILCatalogWorkspace,
-} from "../../../apis/anvil-catalog/common/entities";
+} from "../../../apis/catalog/anvil-catalog/common/entities";
 import {
   getConsentCode,
   getConsentCodes,
@@ -17,7 +17,7 @@ import {
   getTerraWorkspaceCount,
   getTerraWorkspaceName,
   getTerraWorkspaceNames,
-} from "../../../apis/anvil-catalog/common/transformers";
+} from "../../../apis/catalog/anvil-catalog/common/transformers";
 import * as C from "../../../components";
 import { METADATA_KEY } from "../../../components/Index/common/entities";
 import { getPluralizedMetadataLabel } from "../../../components/Index/common/indexTransformer";

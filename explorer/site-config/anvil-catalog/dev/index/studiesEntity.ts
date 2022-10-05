@@ -1,5 +1,5 @@
-import { AnVILCatalogStudy } from "../../../../app/apis/anvil-catalog/common/entities";
-import { buildAnVILCatalogStudies } from "../../../../app/apis/anvil-catalog/common/utils";
+import { AnVILCatalogStudy } from "../../../../app/apis/catalog/anvil-catalog/common/entities";
+import { buildAnVILCatalogStudies } from "../../../../app/apis/catalog/anvil-catalog/common/utils";
 import * as Components from "../../../../app/components";
 import {
   ComponentConfig,
