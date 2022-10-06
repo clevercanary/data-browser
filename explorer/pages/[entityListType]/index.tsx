@@ -99,10 +99,11 @@ export const getStaticProps: GetStaticProps<
 > = async (context: GetStaticPropsContext) => {
   const { entityListType } = context.params as PageUrl;
   const entityConfig = getEntityConfig(entityListType);
+  const { tsv } = entityConfig;
   const { fetchAllEntities } = getEntityService(entityConfig); // Determine the type of fetch, either from an API endpoint or a TSV.
 
   // Seed database.
-  if (entityConfig) {
+  if (entityConfig && tsv) {
     await seedDatabase(entityListType, entityConfig);
   }
 
