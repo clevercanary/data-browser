@@ -12,7 +12,7 @@ import { DUG_API_PATH } from "../constants";
 /**
  * Entity config object responsible for config related to the /explore/studies route.
  */
-export const relatedStudiesEntityConfig: EntityConfig<DugVariableResponse> = {
+export const relatedStudiesEntity: EntityConfig<DugVariableResponse> = {
   apiPath: DUG_API_PATH,
   detail: studiesEntity.detail,
   label: "Related Studies",
