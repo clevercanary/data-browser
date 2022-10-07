@@ -1,27 +1,23 @@
 import styled from "@emotion/styled";
+import {
+  Section,
+  SectionActions,
+} from "../Detail/components/Section/section.styles";
 
 export const LoginOutside = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px 0;
+  max-width: 400px;
 `;
 
-export const LoginContent = styled.div`
-  display: flex;
-  flex-direction: column;
+export const LoginSection = styled(Section)`
   gap: 24px 0;
-  padding: 31px;
-  width: 398px;
+  padding: 31px !important;
+  padding-top: 33px !important;
 `;
 
-export const LoginDescription = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px 0;
-`;
-
-export const LoginButtons = styled.div`
-  display: flex;
+export const LoginSectionActions = styled(SectionActions)`
   flex-direction: column;
   gap: 16px 0;
 `;

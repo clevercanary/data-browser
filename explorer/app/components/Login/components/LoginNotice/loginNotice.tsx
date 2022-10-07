@@ -1,4 +1,5 @@
-import { Typography } from "@mui/material";
+import { Link, Typography } from "@mui/material";
+import NLink from "next/link";
 import React from "react";
 
 interface Props {
@@ -12,8 +13,14 @@ export const LoginNotice = ({
 }: Props): JSX.Element => {
   return (
     <Typography color="ink.light" variant="text-body-small-400">
-      By loging in, you agree to <a href={privacyUrl}>privacy notice</a> and{" "}
-      <a href={conditionsUrl}>condition of use</a>
+      By logging in, you agree to the{" "}
+      <NLink href={privacyUrl} passHref>
+        <Link>privacy notice</Link>
+      </NLink>{" "}
+      and{" "}
+      <NLink href={conditionsUrl} passHref>
+        <Link>conditions of use</Link>
+      </NLink>
     </Typography>
   );
 };
