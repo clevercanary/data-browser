@@ -4,7 +4,7 @@ import {
   SectionActions,
 } from "../Detail/components/Section/section.styles";
 
-export const LoginOutside = styled.div`
+export const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px 0;

@@ -5,9 +5,9 @@ import { GoogleIcon } from "../common/CustomIcon/components/GoogleIcon/googleIco
 import { RoundedPaper } from "../common/Paper/paper.styles";
 import { SectionContent } from "../Detail/components/Section/section.styles";
 import {
-  LoginOutside,
   LoginSection,
   LoginSectionActions,
+  LoginWrapper,
 } from "./login.styles";
 
 interface Props {
@@ -24,7 +24,7 @@ export const Login = ({
   title,
 }: Props): JSX.Element => {
   return (
-    <LoginOutside>
+    <LoginWrapper>
       <RoundedPaper>
         <LoginSection>
           <SectionContent>
@@ -35,11 +35,10 @@ export const Login = ({
           </SectionContent>
           <LoginSectionActions>
             {isGoogle && <LoginButton EndIcon={GoogleIcon}>Google</LoginButton>}
-            {isGoogle && <LoginButton EndIcon={GoogleIcon}>Google</LoginButton>}
           </LoginSectionActions>
         </LoginSection>
       </RoundedPaper>
       {loginNotice}
-    </LoginOutside>
+    </LoginWrapper>
   );
 };
