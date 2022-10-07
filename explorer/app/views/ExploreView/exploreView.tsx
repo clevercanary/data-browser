@@ -90,6 +90,10 @@ export const ExploreView = (props: AzulEntitiesStaticResponse): JSX.Element => {
       return <></>; //TODO: return the loading UI component
     }
 
+    if (entityListType !== tabValue) {
+      return <></>; // TODO(Fran) review loading and return.
+    }
+
     if (!entitiesResponse.hits || entitiesResponse.hits.length === 0) {
       return (
         <NoResults
