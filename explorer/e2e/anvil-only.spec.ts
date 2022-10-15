@@ -1,11 +1,27 @@
 import { expect, test } from "@playwright/test";
+/* eslint-disable sonarjs/no-duplicate-string  -- ignoring duplicate strings here */
+
+test("Expect the URL to lead to the correct tab", async ({ page }) => {
+  // Try Biosamples tab
+  await page.goto("/explore/biosamples");
+  await page.click("text=BioSamples");
+  await expect(page.locator("text=Anatomical Site")).toBeVisible();
+  await expect(page.locator('_react=Tabs[value="biosamples"]')).toBeVisible();
+
+  // Try libraries tab
+  await page.goto("/explore/files");
+  await expect(page.locator("text=File ID")).toBeVisible();
+  await expect(page.locator('_react=Tabs[value="files"]')).toBeVisible();
+});
 
 // TODO: Currently Anvil specific, fixable if we can tell which pages have notable filters and if the Hero components were removed
 test("Select a filter and expect it to change displayed components", async ({
   page,
 }) => {
   // Go to the biosamples page
-  await page.goto("localhost:3000/explore/biosamples");
+  await page.goto("/explore/");
+  await page.click("text=BioSamples");
+  await expect(page.locator("text=Anatomical Site")).toBeVisible();
   // Select the filter dropdown
   await page.locator("_react=Filter >> nth=0").click();
   // Get the name of the first and second filter dropdown
@@ -24,9 +40,10 @@ test("Select a filter and expect it to change displayed components", async ({
     .allInnerTexts();
 
   // Get the current number of donors
-  const HeroLocator = await page.locator("_react=Hero >> div");
+  const HeroLocator = await page.locator("_react=Hero >> div >> nth=3");
+  await expect(HeroLocator).toBeVisible();
   const OldDonorNumber = parseInt(
-    (await HeroLocator.allInnerTexts())[3].split("\n")[0]
+    (await HeroLocator.allInnerTexts())[0].split("\n")[0]
   );
   // Click the first filter button
   await page.locator(`_react=FilterMenu >> text=${SecondFilterName}`).click();
@@ -46,13 +63,8 @@ test("Select a filter and expect it to change displayed components", async ({
       )
     ).toBeVisible;
   }
-  // Get new number of donors
-  const NewDonorNumber = parseInt(
-    (await HeroLocator.allInnerTexts())[3].split("\n")[0]
-  );
 
   // Expect the Hero to show fewer donors than before
-  test.fail(OldDonorNumber <= NewDonorNumber, "Summary donor unchanged");
   await expect(page.locator("_react=Hero >> div")).not.toContainText(
     [`${OldDonorNumber}`, "Donors"],
     {
@@ -66,9 +78,10 @@ test("Check that changing sort order changes certain columns", async ({
   page,
 }) => {
   // Go to the biosamples page
-  await page.goto("localhost:3000/explore/biosamples");
+  await page.goto("/explore/");
+  await page.click("text=BioSamples");
+  await expect(page.locator("text=Anatomical Site")).toBeVisible();
   // Iterate through the first 2 tabs
-  await expect(page.locator("_react=TableComponent")).toBeVisible();
   const NumberTabs = 2;
   for (let i = 0; i < NumberTabs; i++) {
     // Find the value of the first row in the correct column
@@ -88,3 +101,5 @@ test("Check that changing sort order changes certain columns", async ({
     }
   }
 });
+
+/* eslint-enable sonarjs/no-duplicate-string -- Checking duplicate strings again*/

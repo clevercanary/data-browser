@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 
+test.setTimeout(60000);
 test("Navigate through each tab, expecting them to render a table and change the url", async ({
   page,
 }) => {
@@ -7,7 +8,7 @@ test("Navigate through each tab, expecting them to render a table and change the
   await page.goto("http://localhost:3000/explore");
   // Wait for the page to load
   await expect(page.locator("_react=TableComponent")).toBeVisible({
-    timeout: 10000,
+    timeout: 20000,
   });
   const NumTabs = (await page.$$("_react=Tabs >> button")).length;
   // Go through the tabs, from back to front
@@ -26,6 +27,6 @@ test("Navigate through each tab, expecting them to render a table and change the
     await expect(CurrentTabLocator).toHaveAttribute("aria-selected", "true");
     await expect(CurrentTabLocator).toHaveClass(/Mui-selected/);
     // Check that the next page has changes
-    await expect(page).not.toHaveURL(currentUrl, { timeout: 10000 });
+    await expect(page).not.toHaveURL(currentUrl, { timeout: 20000 });
   }
 });

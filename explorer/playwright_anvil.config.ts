@@ -4,5 +4,11 @@ const config: PlaywrightTestConfig = {
   use: {
     baseURL: "http://localhost:3000/explore/",
   },
+  webServer: {
+    command: "npm run dev:anvil",
+    reuseExistingServer: !process.env.CI,
+    timeout: 120 * 1000,
+    url: "http://localhost:3000/explore/",
+  },
 };
 export default config;
