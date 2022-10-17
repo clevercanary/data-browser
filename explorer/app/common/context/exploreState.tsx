@@ -27,7 +27,7 @@ const defaultPaginationState = {
   canPreviousPage: false,
   currentPage: 1,
   pageCount: 1,
-  rowsPerPage: 0,
+  rowsPerPage: 25,
   totalRows: 0,
 };
 
@@ -42,6 +42,9 @@ export const ExploreStateContext = createContext<IExploreStateContext>({
   exploreState: {
     categoryViews: [],
     filterState: [],
+    listItems: [],
+    listStaticLoad: false,
+    loading: false,
     paginationState: defaultPaginationState,
     sortState: {
       sortKey: getDefaultSort(getEntityConfig(defaultEntity)) ?? "",
@@ -65,6 +68,9 @@ export function ExploreStateProvider({
   const [exploreState, exploreDispatch] = useReducer(exploreReducer, {
     categoryViews: [],
     filterState: [],
+    listItems: [],
+    listStaticLoad: false,
+    loading: false,
     paginationState: defaultPaginationState,
     sortState: {
       sortKey: getDefaultSort(getEntityConfig(defaultEntity)) ?? "", // TODO remove ??
@@ -89,9 +95,19 @@ export interface PaginationState {
   totalRows: number;
 }
 
-type ExploreState = {
+export interface ExploreResponse {
+  listItems: any[] | undefined;
+  loading: boolean;
+  pagination: PaginationState;
+  selectCategories: SelectCategory[];
+}
+
+export type ExploreState = {
   categoryViews: SelectCategory[];
   filterState: SelectedFilter[];
+  listItems: any[] | undefined;
+  listStaticLoad: boolean;
+  loading: boolean;
   paginationState: PaginationState;
   sortState: Sort;
   tabValue: string;
@@ -121,7 +137,7 @@ type PaginateTableAction = {
 };
 
 type ProcessExploreResponseAction = {
-  payload: SelectCategory[];
+  payload: ExploreResponse;
   type: ExploreActionKind.ProcessExploreResponse;
 };
 
@@ -185,13 +201,21 @@ function exploreReducer(
      * Process explore response
      **/
     case ExploreActionKind.ProcessExploreResponse: {
+      let listItems: any[] | undefined = [];
+      if (!payload.loading) {
+        listItems = payload.listItems;
+      }
+
       return {
         ...state,
         categoryViews: buildCategoryViews(
-          payload,
+          payload.selectCategories,
           categoryConfigs,
           state.filterState
         ),
+        listItems: listItems,
+        loading: payload.loading,
+        paginationState: payload.pagination,
       };
     }
     /**
@@ -202,8 +226,14 @@ function exploreReducer(
         sortKey: getDefaultSort(getEntityConfig(payload)),
         sortOrder: "asc",
       };
+
+      const { tsv } = getEntityConfig(payload);
+      const listStaticLoad = !!tsv;
+
       return {
         ...state,
+        listStaticLoad,
+        loading: true,
         sortState: nextSort,
         tabValue: payload,
       };

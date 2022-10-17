@@ -1,5 +1,7 @@
+import { PaginationState } from "../../../common/context/exploreState";
 import { SelectCategory, SelectCategoryValue } from "../../../common/entities";
 import {
+  AzulPaginationResponse,
   AzulTermFacets,
   AZUL_FILTER_OPERATOR,
   Filters,
@@ -43,6 +45,18 @@ export function transformFilters(filters: Filters): string {
 
   // Convert filter to query string param
   return JSON.stringify(filterParams);
+}
+
+export function transformAzulPagination(
+  azulPagination: AzulPaginationResponse
+): PaginationState {
+  console.log("AZUL Pag", azulPagination);
+
+  return {
+    pageCount: azulPagination.pages,
+    rowsPerPage: azulPagination.size,
+    totalRows: azulPagination.total,
+  };
 }
 
 /**

@@ -76,7 +76,7 @@ export interface AzulListParams {
 /**
  * Base index response interface, implemented by specific index responses (e.g. projects, samples, files).
  */
-interface AzulPaginationResponse {
+export interface AzulPaginationResponse {
   count: number;
   next?: string;
   order?: "asc" | "desc";

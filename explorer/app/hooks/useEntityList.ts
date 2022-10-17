@@ -5,6 +5,7 @@ import {
   AzulListParams,
 } from "../apis/azul/common/entities";
 import {
+  transformAzulPagination,
   transformFilters,
   transformTermFacets,
 } from "../apis/azul/common/filterTransformer";
@@ -35,11 +36,12 @@ interface EntitiesResponse {
  */
 export const useEntityList = (
   staticResponse: AzulEntitiesStaticResponse | null
-): EntitiesResponse => {
+): void => {
   // Load up the relevant contexts
   const { exploreDispatch, exploreState } = useContext(ExploreStateContext);
   const { filterState, sortState } = exploreState;
   const { sortKey, sortOrder } = sortState;
+
   const { token } = useContext(AuthContext);
   const { fetchEntitiesFromQuery, listStaticLoad, path } =
     getEntityServiceByPath(exploreState.tabValue); // Determine type of fetch to be executed, either API endpoint or TSV.
@@ -49,7 +51,7 @@ export const useEntityList = (
 
   /**
    * Hook for fetching entities matching the current query and authentication state.
-   * Only runs if one of its deps changes.
+   * Only runs if one of its deps changes. Skipped if staticLoaded entity
    */
   useEffect(() => {
     if (!listStaticLoad) {
@@ -62,6 +64,7 @@ export const useEntityList = (
         listParams.filters = filtersParam;
       }
       // Execute the fetch.
+      console.log("Fetching for:", path);
       run(fetchEntitiesFromQuery(path, listParams, token));
     }
   }, [
@@ -79,25 +82,52 @@ export const useEntityList = (
   useEffect(() => {
     if (!listStaticLoad && termFacets) {
       exploreDispatch({
-        payload: transformTermFacets(termFacets),
+        payload: {
+          listItems: data?.hits,
+          loading: isLoading || isIdle,
+          // pagination: { ...pagination, resetPage },
+          pagination: transformAzulPagination(data?.pagination),
+          selectCategories: transformTermFacets(termFacets),
+        },
         type: ExploreActionKind.ProcessExploreResponse,
       });
     }
-  }, [exploreDispatch, listStaticLoad, termFacets]);
+  }, [
+    data?.hits,
+    exploreDispatch,
+    isIdle,
+    isLoading,
+    listStaticLoad,
+    termFacets,
+  ]);
+
+  useEffect(() => {
+    if (listStaticLoad) {
+      exploreDispatch({
+        payload: {
+          listItems: staticResponse?.data?.hits ?? [],
+          loading: false,
+          pagination: undefined,
+          selectCategories: [],
+        },
+        type: ExploreActionKind.ProcessExploreResponse,
+      });
+    }
+  }, [staticResponse?.data?.hits, exploreDispatch, listStaticLoad]);
 
   // Exit if we're dealing with a statically-loaded entity; data has already been fetched during build; indicate
   // load is complete and return static data.
-  if (listStaticLoad) {
-    return {
-      loading: false,
-      response: staticResponse?.data,
-    };
-  }
-
-  // Otherwise, return the fetching, pagination and sort state.
-  return {
-    loading: isLoading || isIdle,
-    pagination: { ...pagination, resetPage },
-    response: data,
-  };
+  // if (listStaticLoad) {
+  //   return {
+  //     loading: false,
+  //     response: staticResponse?.data,
+  //   };
+  // }
+  //
+  // // Otherwise, return the fetching, pagination and sort state.
+  // return {
+  //   loading: isLoading || isIdle,
+  //   pagination: { ...pagination, resetPage },
+  //   response: data,
+  // };
 };

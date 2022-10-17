@@ -23,7 +23,6 @@ import {
   ExploreStateContext,
 } from "../../common/context/exploreState";
 import { Pagination, Sort, SortOrderType } from "../../common/entities";
-import { getEntityConfig } from "../../config/config";
 import { CheckboxMenu, CheckboxMenuItem } from "../CheckboxMenu/checkboxMenu";
 import { GridPaper, RoundedPaper } from "../common/Paper/paper.styles";
 import {
@@ -84,14 +83,16 @@ export const TableComponent = <T extends object>({
   items,
   pages,
   pageSize,
-  pagination,
+  //pagination,
   sort,
   total,
 }: TableProps<T>): JSX.Element => {
   const { exploreDispatch, exploreState } = useContext(ExploreStateContext);
   const { filterState, tabValue } = exploreState;
-  const { tsv } = getEntityConfig(tabValue);
-  const listStaticLoad = !!tsv;
+  // const { tsv } = getEntityConfig(tabValue);
+  // const listStaticLoad = !!tsv;
+  const listStaticLoad = exploreState.listStaticLoad;
+
   const initialSorting = sort
     ? [{ desc: sort.sortOrder === "desc", id: sort.sortKey ?? "" }]
     : [];
@@ -106,6 +107,7 @@ export const TableComponent = <T extends object>({
     : {
         sorting: initialSorting,
       };
+
   const tableInstance = useReactTable({
     columns,
     data: items,
@@ -119,7 +121,7 @@ export const TableComponent = <T extends object>({
       : undefined,
     getFilteredRowModel: listStaticLoad ? getFilteredRowModel() : undefined,
     getPaginationRowModel: getPaginationRowModel(),
-    manualPagination: !!pagination,
+    manualPagination: listStaticLoad,
     manualSorting: !listStaticLoad,
     pageCount: total,
     state,
@@ -144,13 +146,31 @@ export const TableComponent = <T extends object>({
   const isLastPage = currentPage === pages;
 
   const handleTableNextPage = (): void => {
-    const nextPage = pagination?.nextPage ?? tableNextPage;
+    let nextPage = tableNextPage;
+    if (!listStaticLoad) {
+      nextPage = (): void => {
+        exploreDispatch({
+          payload: "next",
+          type: ExploreActionKind.PaginateTable,
+        });
+      };
+    }
+    // const nextPage = pagination?.nextPage ?? tableNextPage;
     nextPage();
     scrollTop();
   };
 
   const handleTablePreviousPage = (): void => {
-    const previousPage = pagination?.previousPage ?? tablePreviousPage;
+    //const previousPage = pagination?.previousPage ?? tablePreviousPage;
+    let previousPage = tablePreviousPage;
+    if (!listStaticLoad) {
+      previousPage = (): void => {
+        exploreDispatch({
+          payload: "prev",
+          type: ExploreActionKind.PaginateTable,
+        });
+      };
+    }
     previousPage();
     scrollTop();
   };
@@ -188,7 +208,12 @@ export const TableComponent = <T extends object>({
   useEffect(() => {
     if (listStaticLoad) {
       exploreDispatch({
-        payload: buildCategoryViews(headerGroups),
+        payload: {
+          listItems: exploreState.listItems,
+          loading: false,
+          pagination: undefined,
+          selectCategories: buildCategoryViews(headerGroups),
+        },
         type: ExploreActionKind.ProcessExploreResponse,
       });
     }
@@ -243,7 +268,6 @@ export const TableComponent = <T extends object>({
                 </TableRow>
               </TableHead>
             ))}
-
             <TableBody>
               {getRowModel().rows.map((row) => (
                 <TableRow key={row.id}>
@@ -311,7 +335,5 @@ const shouldSkipRender = <T extends object>(
 };
 
 // TODO(Dave) review whether memo is necessary - flash between tabs / loading state.
-export const Table = React.memo(
-  TableComponent,
-  shouldSkipRender
-) as typeof TableComponent;
+// export const Table = React.memo(TableComponent) as typeof TableComponent;
+export const Table = TableComponent as typeof TableComponent;
