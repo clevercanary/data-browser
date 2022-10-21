@@ -71,7 +71,6 @@ export const ExploreView = (props: AzulEntitiesStaticResponse): JSX.Element => {
    */
   const onTabChange = (tabValue: TabValue): void => {
     push(`/${tabValue}`);
-    //  pagination?.resetPage(); // TODO(Dave) review use of resetPage
   };
 
   // Selects entity type with update to entity list type.
@@ -90,9 +89,7 @@ export const ExploreView = (props: AzulEntitiesStaticResponse): JSX.Element => {
    * @returns Element to render.
    */
   const renderContent = (exploreState: ExploreState): JSX.Element => {
-    console.log("RPP", exploreState.paginationState.rowsPerPage);
-
-    if (!exploreState) {
+    if (!exploreState || !tabValue) {
       return <></>; //TODO: return the loading UI component
     }
 
@@ -132,11 +129,11 @@ export const ExploreView = (props: AzulEntitiesStaticResponse): JSX.Element => {
       <TableCreator
         columns={columnsConfig}
         items={exploreState.listItems ?? []}
-        pageSize={exploreState.paginationState.rowsPerPage}
-        total={exploreState.paginationState.totalRows}
+        pageSize={exploreState.paginationState.pageSize}
+        total={exploreState.paginationState.rows}
         pagination={undefined}
         sort={sortState}
-        pages={exploreState.paginationState.pageCount}
+        pages={exploreState.paginationState.pages}
         loading={exploreState.loading}
         staticallyLoaded={staticLoad}
         disablePagination={disablePagination}

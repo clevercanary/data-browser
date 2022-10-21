@@ -1,7 +1,11 @@
-import { PaginationState } from "../../../common/context/exploreState";
+import {
+  PaginationIndex,
+  PaginationResponse,
+} from "../../../common/context/exploreState";
 import { SelectCategory, SelectCategoryValue } from "../../../common/entities";
 import {
   AzulPaginationResponse,
+  AzulSearchIndex,
   AzulTermFacets,
   AZUL_FILTER_OPERATOR,
   Filters,
@@ -48,14 +52,38 @@ export function transformFilters(filters: Filters): string {
 }
 
 export function transformAzulPagination(
-  azulPagination: AzulPaginationResponse
-): PaginationState {
-  console.log("AZUL Pag", azulPagination);
-
+  azulPagination: AzulPaginationResponse | undefined
+): PaginationResponse {
+  if (!azulPagination) {
+    return {
+      nextIndex: null,
+      pageSize: 0,
+      pages: 0,
+      previousIndex: null,
+      rows: 0,
+    };
+  }
   return {
-    pageCount: azulPagination.pages,
-    rowsPerPage: azulPagination.size,
-    totalRows: azulPagination.total,
+    nextIndex: extractIndex("search_after", azulPagination.next),
+    pageSize: azulPagination.size,
+    pages: azulPagination.pages,
+    previousIndex: extractIndex("search_before", azulPagination.previous),
+    rows: azulPagination.total,
+  };
+}
+
+function extractIndex(
+  type: AzulSearchIndex,
+  urlString: string | undefined
+): PaginationIndex | null {
+  if (!urlString) {
+    return null;
+  }
+  const url = new URL(urlString);
+  const params = new URLSearchParams(url.search);
+  return {
+    type: type,
+    value: params.get(type),
   };
 }
 
