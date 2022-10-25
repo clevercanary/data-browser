@@ -67,16 +67,17 @@ export function buildAnVILCatalogStudies(anvilCatalogs: unknown[]): unknown[] {
  */
 export function buildAnVILCatalogWorkspaces(
   anVILCatalogs: unknown[]
-): unknown[] {
+): AnVILCatalogWorkspace[] {
   return (anVILCatalogs as AnVILCatalog[]).map((anVILCatalog) => {
     const workspace: AnVILCatalogWorkspace = {
       consentCode: anVILCatalog["library:dataUseRestriction"],
       consortium: anVILCatalog.consortium,
-      dataTypes: anVILCatalog["library:datatype"],
+      dataType: anVILCatalog["library:datatype"],
       dbGapId: anVILCatalog.phsId,
-      diseases: anVILCatalog["library:indication"],
+      disease: anVILCatalog["library:indication"],
       participantCount: anVILCatalog.participantCount,
-      studyDesigns: anVILCatalog["library:studyDesign"],
+      studyDesign: anVILCatalog["library:studyDesign"],
+      studyName: "",
       workspaceName: anVILCatalog.name,
     };
     return workspace;
@@ -99,24 +100,28 @@ function buildAnVILCatalogConsortium(
   );
   const consortium = workspace.consortium;
   const dataTypes = accumulateValues(
-    anvilCatalogConsortium.dataTypes,
-    workspace.dataTypes
+    anvilCatalogConsortium.dataType,
+    workspace.dataType
   );
   const dbGapId = accumulateValue(
     anvilCatalogConsortium.dbGapId,
     workspace.dbGapId
   ); // dbGapIds - a list of study ids.
   const diseases = accumulateValues(
-    anvilCatalogConsortium.diseases,
-    workspace.diseases
+    anvilCatalogConsortium.disease,
+    workspace.disease
   );
   const participantCount = sumValues([
     anvilCatalogConsortium.participantCount,
     workspace.participantCount,
   ]);
   const studyDesigns = accumulateValues(
-    anvilCatalogConsortium.studyDesigns,
-    workspace.studyDesigns
+    anvilCatalogConsortium.studyDesign,
+    workspace.studyDesign
+  );
+  const studyNames = accumulateValue(
+    anvilCatalogConsortium.studyName,
+    workspace.studyName
   );
   const workspaceNames = accumulateValue(
     anvilCatalogConsortium.workspaceName, // workspaceNames - a list of workspace names.
@@ -125,11 +130,12 @@ function buildAnVILCatalogConsortium(
   return {
     consentCode: consentCodes,
     consortium,
-    dataTypes,
+    dataType: dataTypes,
     dbGapId,
-    diseases,
+    disease: diseases,
     participantCount,
-    studyDesigns,
+    studyDesign: studyDesigns,
+    studyName: studyNames,
     workspaceCount: workspaceNames.length,
     workspaceName: workspaceNames,
   };
@@ -150,17 +156,19 @@ function buildAnVILCatalogStudy(
     workspace.consentCode
   );
   const consortium = workspace.consortium;
-  const dataTypes = accumulateValues(study.dataTypes, workspace.dataTypes);
+  const dataTypes = accumulateValues(study.dataType, workspace.dataType);
   const dbGapId = workspace.dbGapId;
-  const diseases = accumulateValues(study.diseases, workspace.diseases);
+  const diseases = accumulateValues(study.disease, workspace.disease);
   const participantCount = sumValues([
     study.participantCount,
     workspace.participantCount,
   ]);
   const studyDesigns = accumulateValues(
-    study.studyDesigns,
-    workspace.studyDesigns
+    study.studyDesign,
+    workspace.studyDesign
   );
+  const studyName = "";
+  const studyDescription = "";
   const workspaceNames = accumulateValue(
     study.workspaceName, // workspaceNames - a list of workspace names.
     workspace.workspaceName
@@ -168,11 +176,13 @@ function buildAnVILCatalogStudy(
   return {
     consentCode: consentCodes,
     consortium,
-    dataTypes,
+    dataType: dataTypes,
     dbGapId,
-    diseases,
+    disease: diseases,
     participantCount,
-    studyDesigns,
+    studyDescription,
+    studyDesign: studyDesigns,
+    studyName,
     workspaceCount: workspaceNames.length,
     workspaceName: workspaceNames,
   };

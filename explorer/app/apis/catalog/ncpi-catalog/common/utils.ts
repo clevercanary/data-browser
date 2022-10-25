@@ -1,21 +1,23 @@
+import { NCPIStudy } from "../../../../../files/ncpi-catalog/build-ncpi-catalog";
 import {
   accumulateValue,
   accumulateValues,
   sumValues,
 } from "../../common/utils";
-import { NCPICatalog, NCPICatalogPlatform, NCPICatalogStudy } from "./entities";
+import { NCPICatalogPlatform } from "./entities";
 
 /**
- * Returns NCPI catalog platforms.
- * @param ncpiCatalogs - NCPI catalogs.
+ * Build the catalog Platforms for NCPI
  * @returns NCPI catalog platforms.
+ * @param ncpiPlatformStudies - array of studies
  */
-export function buildNCPICatalogPlatforms(ncpiCatalogs: unknown[]): unknown[] {
+export function buildNCPICatalogPlatforms(
+  ncpiPlatformStudies: NCPIStudy[]
+): NCPICatalogPlatform[] {
   const ncpiCatalogPlatformsByPlatform = new Map();
-  const studies = buildNCPICatalogStudies(ncpiCatalogs) as NCPICatalogStudy[];
 
   // Build the catalog platforms for the platform.
-  for (const study of studies) {
+  for (const study of ncpiPlatformStudies) {
     const { platforms } = study;
     for (const platform of platforms) {
       const ncpiCatalogPlatform =
@@ -31,80 +33,52 @@ export function buildNCPICatalogPlatforms(ncpiCatalogs: unknown[]): unknown[] {
 }
 
 /**
- * Returns NCPI catalog studies.
- * @param ncpiCatalogs - NCPI catalogs.
- * @returns NCPI catalog studies.
- */
-export function buildNCPICatalogStudies(ncpiCatalogs: unknown[]): unknown[] {
-  return (ncpiCatalogs as NCPICatalog[]).map((ncpiCatalog) => {
-    const study: NCPICatalogStudy = {
-      consentCodes: ncpiCatalog.consentCodes,
-      dataTypes: ncpiCatalog.dataTypes,
-      dbGapId: ncpiCatalog.dbGapId,
-      focusDisease: ncpiCatalog.focusDisease,
-      participantCount: ncpiCatalog.participantCount,
-      platforms: ncpiCatalog.platforms,
-      studyAccession: ncpiCatalog.studyAccession,
-      studyDesigns: ncpiCatalog.studyDesigns,
-      studyName: ncpiCatalog.study,
-    };
-    return study;
-  });
-}
-
-/**
  * Returns NCPI catalog platform.
  * @param platform - The platform for the given NCPI catalog platform.
- * @param ncpiCatalogStudy - NCPI catalog study.
+ * @param ncpiStudy - an ncpiStudy.
  * @param ncpiCatalogPlatform - NCPI catalog platform.
  * @returns NCPI catalog platform.
  */
 function buildNCPICatalogPlatform(
   platform: string,
-  ncpiCatalogStudy: NCPICatalogStudy,
+  ncpiStudy: NCPIStudy,
   ncpiCatalogPlatform: NCPICatalogPlatform
 ): NCPICatalogPlatform {
-  const consentCodes = accumulateValues(
-    ncpiCatalogPlatform.consentCodes,
-    ncpiCatalogStudy.consentCodes
+  const consentCode = accumulateValues(
+    ncpiCatalogPlatform.consentCode,
+    ncpiStudy.consentCodes
   );
-  const dataTypes = accumulateValues(
-    ncpiCatalogPlatform.dataTypes,
-    ncpiCatalogStudy.dataTypes
+  const dataType = accumulateValues(
+    ncpiCatalogPlatform.dataType,
+    ncpiStudy.dataTypes
   );
-  const dbGapIds = accumulateValue(
+  const dbGapId = accumulateValue(
     ncpiCatalogPlatform.dbGapId,
-    ncpiCatalogStudy.dbGapId
+    ncpiStudy.dbGapId
   ); // dbGapIds - a list of study ids.
-  const focusDiseases = accumulateValue(
-    ncpiCatalogPlatform.focusDisease,
-    ncpiCatalogStudy.focusDisease
-  ); // focusDiseases - a list of focuses / diseases.
+  const focus = accumulateValue(ncpiCatalogPlatform.focus, ncpiStudy.focus); // focusDiseases - a list of focuses / diseases.
   const participantCount = sumValues([
     ncpiCatalogPlatform.participantCount,
-    ncpiCatalogStudy.participantCount,
+    ncpiStudy.participantCount,
   ]);
-  const studyNames = accumulateValue(
-    ncpiCatalogPlatform.studyName,
-    ncpiCatalogStudy.studyName
-  ); // studyNames - a list of study names.
-  const studyAccessions = accumulateValue(
+  const title = accumulateValue(ncpiCatalogPlatform.title, ncpiStudy.title); // studyNames - a list of study names.
+  const studyAccession = accumulateValue(
     ncpiCatalogPlatform.studyAccession,
-    ncpiCatalogStudy.studyAccession
+    ncpiStudy.studyAccession
   ); // studyAccessions - a list of study accessions.
-  const studyDesigns = accumulateValues(
-    ncpiCatalogPlatform.studyDesigns,
-    ncpiCatalogStudy.studyDesigns
+  const studyDesign = accumulateValues(
+    ncpiCatalogPlatform.studyDesign,
+    ncpiStudy.studyDesigns
   );
   return {
-    consentCodes,
-    dataTypes,
-    dbGapId: dbGapIds,
-    focusDisease: focusDiseases,
+    consentCode,
+    dataType,
+    dbGapId,
+    focus,
     participantCount,
-    platforms: platform,
-    studyAccession: studyAccessions,
-    studyDesigns,
-    studyName: studyNames,
+    platform,
+    studyAccession,
+    studyDesign,
+    title,
   };
 }

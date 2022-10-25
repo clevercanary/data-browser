@@ -33,16 +33,20 @@ export interface AnVILCatalog {
   subjectCount: number;
 }
 
-export type AnVILCatalogEntity = AnVILCatalogStudy | AnVILCatalogWorkspace;
+export type AnVILCatalogEntity =
+  | AnVILCatalogStudy
+  | AnVILCatalogWorkspace
+  | AnVILCatalogConsortium;
 
 export interface AnVILCatalogConsortium {
   consentCode: string[]; // consentCodes - a list of consent codes.
   consortium: string;
-  dataTypes: string[];
+  dataType: string[];
   dbGapId: string[]; // dbGapIds - a list of study ids.
-  diseases: string[];
+  disease: string[];
   participantCount: number;
-  studyDesigns: string[];
+  studyDesign: string[];
+  studyName: string[];
   workspaceCount: number;
   workspaceName: string[]; // workspaceNames - a list of workspace names.
 }
@@ -50,11 +54,13 @@ export interface AnVILCatalogConsortium {
 export interface AnVILCatalogStudy {
   consentCode: string[]; // consentCodes - a list of consent codes.
   consortium: string;
-  dataTypes: string[];
+  dataType: string[];
   dbGapId: string;
-  diseases: string[];
+  disease: string[];
   participantCount: number;
-  studyDesigns: string[];
+  studyDescription: string;
+  studyDesign: string[];
+  studyName: string;
   workspaceCount: number;
   workspaceName: string[]; // workspaceNames - a list of workspace names.
 }
@@ -62,10 +68,11 @@ export interface AnVILCatalogStudy {
 export interface AnVILCatalogWorkspace {
   consentCode: string;
   consortium: string;
-  dataTypes: string[];
+  dataType: string[];
   dbGapId: string;
-  diseases: string[];
+  disease: string[];
   participantCount: number;
-  studyDesigns: string[];
+  studyDesign: string[];
+  studyName: string;
   workspaceName: string;
 }

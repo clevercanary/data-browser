@@ -1,5 +1,5 @@
 import { AnVILCatalogStudy } from "../../../../app/apis/catalog/anvil-catalog/common/entities";
-import { buildAnVILCatalogStudies } from "../../../../app/apis/catalog/anvil-catalog/common/utils";
+import { getDbGapId } from "../../../../app/apis/catalog/anvil-catalog/common/transformers";
 import * as Components from "../../../../app/components";
 import {
   ComponentConfig,
@@ -7,20 +7,44 @@ import {
   ListConfig,
 } from "../../../../app/config/common/entities";
 import * as ViewBuilder from "../../../../app/viewModelBuilders/anvil-catalog/common/viewModelBuilders";
-import { SOURCE_FIELD_KEY, SOURCE_FIELD_TYPE } from "../../tsv-config";
+import { ANVIL_CATALOG_FILTER_CATEGORY_KEYS } from "../../filter-category-keys";
+import { mainColumn } from "../detail/study/overviewMainColumn";
+import { sideColumn } from "../detail/study/overviewSideColumn";
+import { top } from "../detail/study/top";
 
 /**
  * Entity config object responsible to config anything related to the /explore/studies route.
  */
-export const studiesEntity: EntityConfig<AnVILCatalogStudy> = {
+export const studiesEntityConfig: EntityConfig<AnVILCatalogStudy> = {
   detail: {
+    detailOverviews: ["Overview"],
     staticLoad: true,
-    tabs: [],
-    top: [],
+    tabs: [
+      {
+        label: "Overview",
+        mainColumn: mainColumn,
+        route: "",
+        sideColumn: sideColumn,
+      },
+    ],
+    top: top,
   },
+  getId: getDbGapId,
   label: "Studies",
   list: {
     columns: [
+      {
+        componentConfig: {
+          component: Components.Links,
+          viewBuilder: ViewBuilder.buildStudyName,
+        } as ComponentConfig<typeof Components.Links>,
+        header: "Study",
+        sort: {
+          default: true,
+          sortKey: ANVIL_CATALOG_FILTER_CATEGORY_KEYS.STUDY_NAME,
+        },
+        width: { max: "2fr", min: "240px" },
+      },
       {
         componentConfig: {
           component: Components.Cell,
@@ -29,7 +53,7 @@ export const studiesEntity: EntityConfig<AnVILCatalogStudy> = {
         header: "dbGap Id",
         sort: {
           default: true,
-          sortKey: "dbGapId",
+          sortKey: ANVIL_CATALOG_FILTER_CATEGORY_KEYS.DB_GAP_ID,
         },
         width: { max: "1fr", min: "120px" },
       },
@@ -40,7 +64,7 @@ export const studiesEntity: EntityConfig<AnVILCatalogStudy> = {
         } as ComponentConfig<typeof Components.Cell>,
         header: "Consortium",
         sort: {
-          sortKey: "consortium",
+          sortKey: ANVIL_CATALOG_FILTER_CATEGORY_KEYS.CONSORTIUM,
         },
         width: { max: "1fr", min: "120px" },
       },
@@ -52,7 +76,7 @@ export const studiesEntity: EntityConfig<AnVILCatalogStudy> = {
         header: "Consent Codes",
         sort: {
           default: true,
-          sortKey: "consentCode", // consentCodes - a list of consent codes.
+          sortKey: ANVIL_CATALOG_FILTER_CATEGORY_KEYS.CONSENT_CODE,
         },
         width: { max: "1fr", min: "120px" },
       },
@@ -63,7 +87,7 @@ export const studiesEntity: EntityConfig<AnVILCatalogStudy> = {
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "Disease (indication)",
         sort: {
-          sortKey: "diseases",
+          sortKey: ANVIL_CATALOG_FILTER_CATEGORY_KEYS.DISEASE,
         },
         width: { max: "1fr", min: "120px" },
       },
@@ -74,7 +98,7 @@ export const studiesEntity: EntityConfig<AnVILCatalogStudy> = {
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "Data Type",
         sort: {
-          sortKey: "dataTypes",
+          sortKey: ANVIL_CATALOG_FILTER_CATEGORY_KEYS.DATA_TYPE,
         },
         width: { max: "1fr", min: "120px" },
       },
@@ -85,7 +109,7 @@ export const studiesEntity: EntityConfig<AnVILCatalogStudy> = {
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "Study Design",
         sort: {
-          sortKey: "studyDesigns",
+          sortKey: ANVIL_CATALOG_FILTER_CATEGORY_KEYS.STUDY_DESIGN,
         },
         width: { max: "1fr", min: "120px" },
       },
@@ -118,7 +142,7 @@ export const studiesEntity: EntityConfig<AnVILCatalogStudy> = {
         } as ComponentConfig<typeof Components.Cell>,
         header: "Participants",
         sort: {
-          sortKey: "participantCount",
+          sortKey: ANVIL_CATALOG_FILTER_CATEGORY_KEYS.PARTICIPANT_COUNT,
         },
         width: { max: "1fr", min: "120px" },
       },
@@ -126,10 +150,5 @@ export const studiesEntity: EntityConfig<AnVILCatalogStudy> = {
   } as ListConfig<AnVILCatalogStudy>,
   route: "studies",
   staticLoad: true,
-  tsv: {
-    builderFn: buildAnVILCatalogStudies,
-    path: "dashboard-source-anvil.tsv",
-    sourceFieldKey: SOURCE_FIELD_KEY,
-    sourceFieldType: SOURCE_FIELD_TYPE,
-  },
+  staticLoadFile: "files/anvil-catalog/out/anvil-studies.json",
 };
