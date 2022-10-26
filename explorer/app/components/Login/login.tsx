@@ -34,7 +34,7 @@ export const Login = ({
             <Typography color="ink.main" component="h3" variant="text-heading">
               {title}
             </Typography>
-            <Typography variant="text-body-400">{text}</Typography>
+            {text && <Typography variant="text-body-400">{text}</Typography>}
           </SectionContent>
           <LoginSectionActions>
             {isGoogle && (
