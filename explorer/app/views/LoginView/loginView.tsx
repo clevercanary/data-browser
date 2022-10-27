@@ -4,7 +4,8 @@ import { LoginNotice } from "../../components/Login/components/LoginNotice/login
 import { Login } from "../../components/Login/login";
 
 export const LoginView = (): JSX.Element => {
-  const { googleGISAuthConfig, loginNotice } = useAuthenticationConfig();
+  const { googleGISAuthConfig, loginNotice, text, title } =
+    useAuthenticationConfig();
 
   return (
     <Login
@@ -17,8 +18,8 @@ export const LoginView = (): JSX.Element => {
           />
         ) : undefined
       }
-      text="You need to create a terra account in order to view restricted access data"
-      title="Sign in to your account"
+      text={text}
+      title={title}
     />
   );
 };
