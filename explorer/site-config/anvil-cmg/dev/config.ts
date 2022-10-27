@@ -15,7 +15,6 @@ import { biosamplesEntityConfig } from "./index/biosamplesEntityConfig";
 import { datasetsEntityConfig } from "./index/datasetsEntityConfig";
 import { donorsEntityConfig } from "./index/donorsEntityConfig";
 import { filesEntityConfig } from "./index/filesEntityConfig";
-import { librariesEntityConfig } from "./index/librariesEntityConfig";
 import { summary } from "./index/summary";
 
 // Template constants
@@ -56,27 +55,35 @@ const config: SiteConfig = {
   browserURL: BROWSER_URL,
   categoryConfigs: [
     {
-      key: "biosample_type",
+      key: "biosamples.anatomical_site",
+      label: "Anatomical Site",
+    },
+    {
+      key: "biosamples.biosample_type",
       label: "BioSample Type",
     },
     {
-      key: "data_modality",
+      key: "activities.data_modality",
       label: "Data Modality",
     },
     {
-      key: "file_format",
+      key: "datasets.title",
+      label: "Dataset",
+    },
+    {
+      key: "files.file_format",
       label: "File Format",
     },
     {
-      key: "file_type",
+      key: "files.file_type",
       label: "File Type",
     },
     {
-      key: "organism_type",
+      key: "donors.organism_type",
       label: "Organism Type",
     },
     {
-      key: "phenotypic_sex",
+      key: "donors.phenotypic_sex",
       label: "Phenotypic Sex",
     },
     {
@@ -84,7 +91,7 @@ const config: SiteConfig = {
       label: "Library Preparation",
     },
     {
-      key: "reported_ethnicity",
+      key: "donors.reported_ethnicity",
       label: "Reported Ethnicity",
     },
   ],
@@ -103,7 +110,6 @@ const config: SiteConfig = {
     datasetsEntityConfig,
     donorsEntityConfig,
     biosamplesEntityConfig,
-    librariesEntityConfig,
     activitiesEntityConfig,
     filesEntityConfig,
   ],
