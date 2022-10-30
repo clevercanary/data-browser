@@ -1,8 +1,14 @@
 import type { PlaywrightTestConfig } from "@playwright/test";
 const config: PlaywrightTestConfig = {
+  expect: {
+    timeout: 10 * 1000,
+  },
   testDir: "e2e",
+  testMatch: /.*\/(general|anvil)\/.*\.spec\.ts/,
+  timeout: 60 * 1000,
   use: {
     baseURL: "http://localhost:3000/explore/",
+    screenshot: "only-on-failure",
   },
   webServer: {
     command: "npm run dev:anvil",

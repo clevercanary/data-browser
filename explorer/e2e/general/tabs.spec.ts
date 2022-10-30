@@ -24,7 +24,9 @@ test("Navigate through each tab, expecting them to render a table and change the
     // Click the next tab
     await CurrentTabLocator.click();
     // Check that the next tab is selected
-    await expect(CurrentTabLocator).toHaveAttribute("aria-selected", "true");
+    await expect(CurrentTabLocator).toHaveAttribute("aria-selected", "true", {
+      timeout: 10000,
+    });
     await expect(CurrentTabLocator).toHaveClass(/Mui-selected/);
     // Check that the next page has changes
     await expect(page).not.toHaveURL(currentUrl, { timeout: 20000 });
