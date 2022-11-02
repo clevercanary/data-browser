@@ -9,7 +9,6 @@ export const NavLinkMenu = styled(Menu)`
   }
 
   .MuiListItemIcon-root {
-    min-width: 24px;
-    color: ${({ theme }) => theme.palette.ink.light};
+    min-width: 24px !important;
   }
 `;

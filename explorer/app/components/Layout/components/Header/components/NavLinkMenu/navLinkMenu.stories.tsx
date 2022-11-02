@@ -5,7 +5,8 @@ import { NavLinkMenu } from "./navLinkMenu";
 
 export default {
   argTypes: {
-    isGoogle: { control: "array" },
+    menuItems: { control: "array" },
+    menuLabel: { control: "text" },
   },
   component: NavLinkMenu,
   title: "Components/Navigation/NavLinkMenu",
@@ -35,35 +36,39 @@ MoreMenu.args = {
       url: "/faq",
     },
   ],
+  menuLabel: "More",
 };
 
 export const FollowUsMenu = Template.bind({});
 FollowUsMenu.args = {
   menuItems: [
     {
-      icon: <CustomIcon fontSize="small" iconName="discourse" />,
+      icon: (
+        <CustomIcon fontSize="small" color="inkLight" iconName="discourse" />
+      ),
       label: "Discourse",
       url: "https://help.anvilproject.org/",
     },
     {
-      icon: <CustomIcon fontSize="small" iconName="twitter" />,
+      icon: <CustomIcon fontSize="small" color="inkLight" iconName="twitter" />,
       label: "Twitter",
       url: "https://twitter.com/useAnVIL",
     },
     {
-      icon: <CustomIcon fontSize="small" iconName="slack" />,
+      icon: <CustomIcon fontSize="small" color="inkLight" iconName="slack" />,
       label: "Slack",
       url: "https://join.slack.com/t/anvil-community/shared_invite/zt-hsyfam1w-LXlCv~3vNLSfDj~qNd5uBg",
     },
     {
-      icon: <CustomIcon fontSize="small" iconName="youtube" />,
+      icon: <CustomIcon fontSize="small" color="inkLight" iconName="youtube" />,
       label: "YouTube",
       url: "https://www.youtube.com/channel/UCBbHCj7kUogAMFyBAzzzfUw",
     },
     {
-      icon: <CustomIcon fontSize="small" iconName="github" />,
+      icon: <CustomIcon fontSize="small" color="inkLight" iconName="github" />,
       label: "GitHub",
       url: "https://github.com/anvilproject",
     },
   ],
+  menuLabel: "Follow Us",
 };

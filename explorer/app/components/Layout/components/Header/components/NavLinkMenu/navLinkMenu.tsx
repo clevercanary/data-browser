@@ -11,9 +11,10 @@ export interface MenuItem {
 
 interface Props {
   menuItems: MenuItem[];
+  menuLabel: string;
 }
 
-export const NavLinkMenu = ({ menuItems }: Props): JSX.Element => {
+export const NavLinkMenu = ({ menuItems, menuLabel }: Props): JSX.Element => {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState<null | HTMLButtonElement>(null);
   const open = Boolean(anchorEl);
@@ -28,7 +29,7 @@ export const NavLinkMenu = ({ menuItems }: Props): JSX.Element => {
 
   return (
     <>
-      <button onClick={onOpenMenu}>Menu</button>
+      <button onClick={onOpenMenu}>{menuLabel}</button>
       <Menu
         anchorEl={anchorEl}
         anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
