@@ -8,7 +8,7 @@ export const NavLinkMenu = styled(Menu)`
     border-color: ${({ theme }) => theme.palette.smoke.main};
   }
 
-  .MuiListItemIcon-root {
-    min-width: 24px !important;
+  & .MuiListItemIcon-root {
+    min-width: 24px;
   }
 `;
