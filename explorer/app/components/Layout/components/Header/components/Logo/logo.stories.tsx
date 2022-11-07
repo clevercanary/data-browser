@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import logoAltosLabs from "images/logoAltosLabs.png";
 import logoAnvil from "images/logoAnvil.png";
 import logoHca from "images/logoHca.png";
 import logoLungmap from "images/logoLungmap.png";
@@ -20,6 +21,16 @@ export default {
 } as ComponentMeta<typeof Logo>;
 
 const Template: ComponentStory<typeof Logo> = (args) => <Logo {...args} />;
+
+export const AltosLabsLogo = Template.bind({});
+AltosLabsLogo.args = {
+  logo: {
+    alt: "Altos Labs",
+    height: 40,
+    link: "/",
+    src: logoAltosLabs,
+  },
+};
 
 export const AnvilLogo = Template.bind({});
 AnvilLogo.args = {
