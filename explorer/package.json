@@ -7,6 +7,8 @@
     "build:ncpi-catalog-dug": "./scripts/build.sh ncpi-catalog-dug && next build && next export -o out/explore",
     "dev:ncpi-catalog": "./scripts/dev.sh ncpi-catalog && next dev",
     "build:ncpi-catalog": "./scripts/build.sh ncpi-catalog && next build && next export -o out/explore",
+    "dev:altos-labs-catalog": "./scripts/dev.sh altos-labs-catalog && next dev",
+    "build:altos-labs-catalog": "./scripts/build.sh altos-labs-catalog && next build && next export -o out/explore",
     "dev:anvil-catalog": "./scripts/dev.sh anvil-catalog && next dev",
     "build:anvil-catalog": "./scripts/build.sh anvil-catalog && next build && next export -o out/explore",
     "dev:lungmap": "./scripts/dev.sh lungmap && next dev",
