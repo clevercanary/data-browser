@@ -2,6 +2,7 @@ import logoAltosLabs from "images/logoAltosLabs.png";
 import { CATALOG_DEFAULT } from "../../../app/apis/azul/anvil/common/constants";
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
 import { SiteConfig } from "../../../app/config/common/entities";
+import anvilConfig from "../../anvil/dev/config";
 import { consortiaEntity } from "./index/consortiaEntity";
 import { studiesEntity } from "./index/studiesEntity";
 import { workspaceEntity } from "./index/workspaceEntity";
@@ -9,7 +10,12 @@ import { workspaceEntity } from "./index/workspaceEntity";
 // Template constants
 const BROWSER_URL = "https://altoslabs.com/";
 
+// Remove the summary from the AnVIL config.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- using rest syntax to remove summary from config.
+const { summaryConfig, ...basicConfig } = anvilConfig;
+
 const config: SiteConfig = {
+  ...basicConfig,
   browserURL: BROWSER_URL,
   categoryConfigs: [
     {
