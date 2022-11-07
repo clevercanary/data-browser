@@ -1,4 +1,6 @@
 import { ColumnSort } from "@tanstack/react-table";
+import altosLabsCatalogDev from "../../site-config/altos-labs-catalog/dev/config";
+import altosLabsCatalogProd from "../../site-config/altos-labs-catalog/prod/config";
 import anvilCatalogDev from "../../site-config/anvil-catalog/dev/config";
 import anvilCatalogProd from "../../site-config/anvil-catalog/prod/config";
 import anvilCmgDev from "../../site-config/anvil-cmg/dev/config";
@@ -17,6 +19,8 @@ import { Tab } from "../components/common/Tabs/tabs";
 import { EntityConfig, SiteConfig } from "./common/entities";
 
 const CONFIGS: { [k: string]: SiteConfig } = {
+  "altos-labs-catalog-dev": altosLabsCatalogDev,
+  "altos-labs-catalog-prod": altosLabsCatalogProd,
   "anvil-catalog-dev": anvilCatalogDev,
   "anvil-catalog-prod": anvilCatalogProd,
   "anvil-cmg-dev": anvilCmgDev,
