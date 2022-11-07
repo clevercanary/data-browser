@@ -1,4 +1,4 @@
-import logoAltosLabs from "images/altos-labs.png";
+import logoAltosLabs from "images/logoAltosLabs.png";
 import { CATALOG_DEFAULT } from "../../../app/apis/azul/anvil/common/constants";
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
 import { SiteConfig } from "../../../app/config/common/entities";

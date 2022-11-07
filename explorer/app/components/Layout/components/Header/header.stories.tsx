@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { SOCIAL } from "app/components/common/Socials/socials";
+import logoAltosLabs from "images/logoAltosLabs.png";
 import logoAnvil from "images/logoAnvil.png";
 import logoHca from "images/logoHca.png";
 import logoLungmap from "images/logoLungmap.png";
@@ -30,6 +31,31 @@ export default {
 } as ComponentMeta<typeof Header>;
 
 const Template: ComponentStory<typeof Header> = (args) => <Header {...args} />;
+
+export const AltosLabsHeader = Template.bind({});
+AltosLabsHeader.args = {
+  header: {
+    logo: {
+      alt: "Altos Labs",
+      height: 40,
+      link: "/",
+      src: logoAltosLabs,
+    },
+    navAlignment: ELEMENT_ALIGNMENT.LEFT,
+    navLinks: [
+      {
+        label: "Datasets",
+        url: "/workspaces",
+      },
+    ],
+    socials: [
+      {
+        ...SOCIAL.TWITTER,
+        url: "https://www.twitter.com/altos_labs",
+      },
+    ],
+  },
+};
 
 export const AnvilHeader = Template.bind({});
 AnvilHeader.args = {
