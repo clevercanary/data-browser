@@ -9,7 +9,7 @@ export const Sidebar = styled.div`
 `;
 
 export const SidebarPositioner = styled.div`
-  height: calc(100vh - ${HEADER_HEIGHT}px);
+  max-height: calc(100vh - ${HEADER_HEIGHT}px);
   overflow-y: scroll;
   position: sticky;
   top: ${HEADER_HEIGHT}px;
