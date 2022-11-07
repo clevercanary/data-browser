@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import logoAltosLabs from "images/logoAltosLabs.png";
 import logoHhs from "images/logoHhs.svg";
 import logoHumanCellAtlas from "images/logoHumanCellAtlas.png";
 import logoLungmap from "images/logoLungmap.png";
@@ -25,6 +26,32 @@ export default {
 } as ComponentMeta<typeof Footer>;
 
 const Template: ComponentStory<typeof Footer> = (args) => <Footer {...args} />;
+
+export const AltosLabsFooter = Template.bind({});
+AltosLabsFooter.args = {
+  footer: {
+    logos: [
+      {
+        alt: "Altos Labs",
+        height: 32,
+        link: "https://altoslabs.com/",
+        src: logoAltosLabs,
+      },
+    ],
+    navLinks: [
+      {
+        label: "Altos Labs",
+        url: "https://altoslabs.com/",
+      },
+    ],
+    socials: [
+      {
+        type: "twitter",
+        url: "https://www.twitter.com/altos_labs",
+      },
+    ],
+  },
+};
 
 export const AnvilFooter = Template.bind({});
 AnvilFooter.args = {
