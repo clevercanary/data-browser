@@ -23,15 +23,15 @@ const SecondaryTemplate: ComponentStory<typeof Button> = (args) => (
   <ButtonSecondary {...args} />
 );
 
-const NavDropdownButtonTemplate: ComponentStory<typeof NavLinkDropdownButton> = (
-  args
- ) => <NavLinkDropdownButton {...args} />;
- 
+const NavDropdownButtonTemplate: ComponentStory<
+  typeof NavLinkDropdownButton
+> = (args) => <NavLinkDropdownButton {...args} />;
+
 export const SecondaryButton = SecondaryTemplate.bind({});
 SecondaryButton.args = {
   children: "Secondary Button",
 };
- 
+
 export const PrimaryButton = PrimaryTemplate.bind({});
 PrimaryButton.args = {
   children: "Primary Button",
