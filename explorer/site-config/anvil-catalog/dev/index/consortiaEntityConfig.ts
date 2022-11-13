@@ -1,5 +1,7 @@
-import { AnVILCatalogConsortium } from "../../../../app/apis/catalog/anvil-catalog/common/entities";
-import { getConsortium } from "../../../../app/apis/catalog/anvil-catalog/common/transformers";
+import {
+  AnVILCatalogConsortium,
+  getConsortium,
+} from "../../../../app/apis/catalog/anvil-catalog/common/entities";
 import * as Components from "../../../../app/components";
 import {
   ComponentConfig,

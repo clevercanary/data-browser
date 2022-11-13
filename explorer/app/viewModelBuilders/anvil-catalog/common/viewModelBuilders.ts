@@ -4,12 +4,8 @@ import {
   AnVILCatalogEntity,
   AnVILCatalogStudy,
   AnVILCatalogWorkspace,
-} from "../../../apis/catalog/anvil-catalog/common/entities";
-import {
   getDbGapId,
-  getStudyBreadcrumbs,
-  getTerraWorkspaceCount,
-} from "../../../apis/catalog/anvil-catalog/common/transformers";
+} from "../../../apis/catalog/anvil-catalog/common/entities";
 import { ExploreState } from "../../../common/context/exploreState";
 import * as C from "../../../components";
 import {
@@ -207,8 +203,15 @@ export const buildStudyHero = (
     path: "/" + entityConfig.route,
     text: entityConfig.label,
   };
+
+  const studyName = response.studyName;
+  const breadcrumbs = [firstCrumb];
+  if (studyName) {
+    breadcrumbs.push({ path: "", text: studyName });
+  }
+
   return {
-    breadcrumbs: getStudyBreadcrumbs(firstCrumb, response),
+    breadcrumbs: breadcrumbs,
     title: response.studyName,
   };
 };
@@ -228,19 +231,6 @@ export const buildStudyName = (
         url: `/studies/${getDbGapId(workspaceOrStudy)}`,
       },
     ],
-  };
-};
-
-/**
- * Build props for terra workspace count cell component from the given AnVIL study.
- * @param anVILCatalogStudy - AnVIL catalog study.
- * @returns Model to be used as props for the terra workspace count cell.
- */
-export const buildTerraWorkspaceCount = (
-  anVILCatalogStudy: AnVILCatalogStudy
-): React.ComponentProps<typeof C.Cell> => {
-  return {
-    value: getTerraWorkspaceCount(anVILCatalogStudy),
   };
 };
 

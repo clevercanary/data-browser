@@ -66,3 +66,18 @@ export function NCPIPlatformInputMapper(
 
   return ncpiCatalogPlatform;
 }
+
+/**
+ * Returns the platform.
+ * @param ncpiCatalogPlatform - NCPI catalog platform.
+ * @returns String value of platform.
+ */
+export const getPlatform = (ncpiCatalogPlatform: NCPICatalogPlatform): string =>
+  ncpiCatalogPlatform.platform ?? ""; // platform - a singular platform.
+/**
+ * Returns the study identifier.
+ * @param ncpiCatalogStudy - NCPI catalog study.
+ * @returns String value of dbGapId.
+ */
+export const getDbGapId = (ncpiCatalogStudy: NCPICatalogStudy): string =>
+  ncpiCatalogStudy.dbGapId ?? "";

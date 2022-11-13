@@ -1,37 +1,7 @@
 /**
  * Model of AnVIL catalog.
  */
-export interface AnVILCatalog {
-  bucketName: string;
-  bucketSize: number;
-  COL: string;
-  consentLongName: string;
-  consentTitle: string;
-  consortium: string;
-  discoveryCount: number;
-  diseaseText: string;
-  DS: string;
-  familyCount: number;
-  GRU: string;
-  GSO: string;
-  HMB: string;
-  IRB: string;
-  "library:datatype": string[];
-  "library:dataUseRestriction": string;
-  "library:indication": string[];
-  "library:studyDesign": string[];
-  MDS: string;
-  name: string;
-  NPU: string;
-  NRES: string;
-  participantCount: number;
-  phsId: string;
-  PUB: string;
-  requestorPays: boolean;
-  sampleCount: number;
-  status: string;
-  subjectCount: number;
-}
+import { sanitizeString } from "../../../../viewModelBuilders/common/utils";
 
 export type AnVILCatalogEntity =
   | AnVILCatalogStudy
@@ -76,3 +46,46 @@ export interface AnVILCatalogWorkspace {
   studyName: string;
   workspaceName: string;
 }
+
+/**
+ * Returns the dbGapId.
+ * @param workspaceOrStudy - AnVIL catalog entity.
+ * @returns String value of dbGapId.
+ */
+export const getDbGapId = (
+  workspaceOrStudy: Exclude<AnVILCatalogEntity, AnVILCatalogConsortium>
+): string => workspaceOrStudy.dbGapId || "";
+/**
+ * Returns the terra workspace name.
+ * @param anvilCatalogWorkspace - AnVIL catalog workspace.
+ * @returns String value of terra workspace name.
+ */
+export const getTerraWorkspaceName = (
+  anvilCatalogWorkspace: AnVILCatalogWorkspace
+): string => anvilCatalogWorkspace.workspaceName ?? "";
+/**
+ * Returns the consortium.
+ * @param anvilCatalogEntity - AnVIL catalog entity.
+ * @returns String value of consortium.
+ */
+export const getConsortium = (anvilCatalogEntity: AnVILCatalogEntity): string =>
+  anvilCatalogEntity.consortium ?? "";
+
+export const anvilCatalogStudyInputMapper = (
+  input: AnVILCatalogStudy
+): AnVILCatalogStudy => {
+  return {
+    ...input,
+    studyName: sanitizeString(input.studyName),
+  };
+};
+
+export const anvilCatalogWorkspaceInputMapper = (
+  input: AnVILCatalogWorkspace
+  // eslint-disable-next-line sonarjs/no-identical-functions -- //TODO remove this duplication
+): AnVILCatalogWorkspace => {
+  return {
+    ...input,
+    studyName: sanitizeString(input.studyName),
+  };
+};

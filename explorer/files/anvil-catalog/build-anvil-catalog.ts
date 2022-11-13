@@ -1,4 +1,3 @@
-import { AnVILCatalog } from "../../app/apis/catalog/anvil-catalog/common/entities";
 import { parseContentRows, readFile } from "../../app/utils/tsvParser";
 import {
   SOURCE_FIELD_KEY,
@@ -7,7 +6,7 @@ import {
 import { writeAsJSON } from "../common/utils";
 import { buildAnVILCatalogConsortia } from "./build-consortia";
 import { buildAnVILCatalogStudies } from "./build-studies";
-import { buildAnVILCatalogWorkspaces } from "./build-workspaces";
+import { AnVILCatalog, buildAnVILCatalogWorkspaces } from "./build-workspaces";
 
 console.log("Building AnVIL Catalog Data");
 export {};

@@ -1,5 +1,8 @@
-import { AnVILCatalogWorkspace } from "../../../../app/apis/catalog/anvil-catalog/common/entities";
-import { getTerraWorkspaceName } from "../../../../app/apis/catalog/anvil-catalog/common/transformers";
+import {
+  AnVILCatalogWorkspace,
+  anvilCatalogWorkspaceInputMapper,
+  getTerraWorkspaceName,
+} from "../../../../app/apis/catalog/anvil-catalog/common/entities";
 import * as Components from "../../../../app/components";
 import {
   ComponentConfig,
@@ -128,6 +131,7 @@ export const workspaceEntityConfig: EntityConfig<AnVILCatalogWorkspace> = {
     ],
   } as ListConfig<AnVILCatalogWorkspace>,
   route: "workspaces",
+  staticEntityImportMapper: anvilCatalogWorkspaceInputMapper,
   staticLoad: true,
   staticLoadFile: "files/anvil-catalog/out/anvil-workspaces.json",
 };

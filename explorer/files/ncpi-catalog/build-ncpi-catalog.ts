@@ -1,7 +1,7 @@
-import { buildNCPICatalogPlatforms } from "../../app/apis/catalog/ncpi-catalog/common/utils";
 import { parseContentRows, readFile } from "../../app/utils/tsvParser";
 import { DbGapStudy, getStudy } from "../common/dbGaP";
 import { writeAsJSON } from "../common/utils";
+import { buildNCPICatalogPlatforms } from "./build-plaftorms";
 
 console.log("Building NCPI Catalog Data");
 export {};

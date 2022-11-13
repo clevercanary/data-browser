@@ -1,8 +1,8 @@
 import {
+  getPlatform,
   NCPICatalogPlatform,
   NCPIPlatformInputMapper,
 } from "../../../../app/apis/catalog/ncpi-catalog/common/entities";
-import { getPlatform } from "../../../../app/apis/catalog/ncpi-catalog/common/transformers";
 import * as Components from "../../../../app/components";
 import {
   ComponentConfig,

@@ -1,8 +1,8 @@
 import {
+  getDbGapId,
   NCPICatalogStudy,
   NCPIStudyInputMapper,
 } from "../../../../app/apis/catalog/ncpi-catalog/common/entities";
-import { getDbGapId } from "../../../../app/apis/catalog/ncpi-catalog/common/transformers";
 import * as Components from "../../../../app/components";
 import {
   ComponentConfig,

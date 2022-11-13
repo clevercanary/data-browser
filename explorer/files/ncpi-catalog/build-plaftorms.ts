@@ -1,10 +1,10 @@
-import { NCPIStudy } from "../../../../../files/ncpi-catalog/build-ncpi-catalog";
 import {
   accumulateValue,
   accumulateValues,
   sumValues,
-} from "../../common/utils";
-import { NCPICatalogPlatform } from "./entities";
+} from "../../app/apis/catalog/common/utils";
+import { NCPICatalogPlatform } from "../../app/apis/catalog/ncpi-catalog/common/entities";
+import { NCPIStudy } from "./build-ncpi-catalog";
 
 /**
  * Build the catalog Platforms for NCPI

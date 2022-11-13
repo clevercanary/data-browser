@@ -1,5 +1,8 @@
-import { AnVILCatalogStudy } from "../../../../app/apis/catalog/anvil-catalog/common/entities";
-import { getDbGapId } from "../../../../app/apis/catalog/anvil-catalog/common/transformers";
+import {
+  AnVILCatalogStudy,
+  anvilCatalogStudyInputMapper,
+  getDbGapId,
+} from "../../../../app/apis/catalog/anvil-catalog/common/entities";
 import * as Components from "../../../../app/components";
 import {
   ComponentConfig,
@@ -149,6 +152,7 @@ export const studiesEntityConfig: EntityConfig<AnVILCatalogStudy> = {
     ],
   } as ListConfig<AnVILCatalogStudy>,
   route: "studies",
+  staticEntityImportMapper: anvilCatalogStudyInputMapper,
   staticLoad: true,
   staticLoadFile: "files/anvil-catalog/out/anvil-studies.json",
 };
