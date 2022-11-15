@@ -80,7 +80,6 @@ export const getStaticPaths: GetStaticPaths<PageUrl> = async () => {
       const resultParams: { params: PageUrl }[] = [];
       if (entityConfig.detail.staticLoad && entityConfig.getId) {
         const { fetchAllEntities, path } = getEntityService(entityConfig);
-        console.log(path);
         const data = await fetchAllEntities(path);
         const tabs = entityConfig.detail?.tabs.map((tab) => tab.route) ?? [];
 

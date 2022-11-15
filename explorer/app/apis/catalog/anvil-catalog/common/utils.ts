@@ -1,5 +1,9 @@
-import { sanitizeString } from "../../../../viewModelBuilders/common/utils";
 import {
+  sanitizeString,
+  sanitizeStringArray,
+} from "../../../../viewModelBuilders/common/utils";
+import {
+  AnVILCatalogConsortium,
   AnVILCatalogEntity,
   AnVILCatalogStudy,
   AnVILCatalogWorkspace,
@@ -47,5 +51,14 @@ export const anvilCatalogWorkspaceInputMapper = (
   return {
     ...input,
     studyName: sanitizeString(input.studyName),
+  };
+};
+
+export const anvilCatalogConsortiumInputMapper = (
+  input: AnVILCatalogConsortium
+): AnVILCatalogConsortium => {
+  return {
+    ...input,
+    studyName: sanitizeStringArray(input.studyName),
   };
 };

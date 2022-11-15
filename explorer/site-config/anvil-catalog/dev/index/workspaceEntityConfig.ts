@@ -51,9 +51,9 @@ export const workspaceEntityConfig: EntityConfig<AnVILCatalogWorkspace> = {
       },
       {
         componentConfig: {
-          component: Components.Links,
+          component: Components.Link,
           viewBuilder: ViewBuilder.buildStudyName,
-        } as ComponentConfig<typeof Components.Links>,
+        } as ComponentConfig<typeof Components.Link>,
         header: "Study",
         sort: {
           sortKey: ANVIL_CATALOG_FILTER_CATEGORY_KEYS.STUDY_NAME,

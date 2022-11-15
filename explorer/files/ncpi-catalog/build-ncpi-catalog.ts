@@ -83,16 +83,7 @@ export async function buildNCPIPlatformStudies(
     };
 
     ncpiStudies.push(ncpiStudy);
-    console.log(
-      ncpiStudy.dbGapId,
-      ncpiStudy?.title,
-      ncpiStudy.platforms,
-      ncpiStudy.studyDesigns,
-      ncpiStudy.participantCount,
-      ncpiStudy.focus,
-      ncpiStudy.dataTypes,
-      ncpiStudy.consentCodes
-    );
+    console.log(ncpiStudy.dbGapId, ncpiStudy.title);
   }
   return ncpiStudies;
 }

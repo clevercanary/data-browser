@@ -44,14 +44,14 @@ export const buildConsentCodes = (
 
 /**
  * Build props for consortium cell component from the given AnVIL entity.
- * @param anVILCatalogConsortium - AnVIL catalog Consortium .
+ * @param anVILCatalogEntity - AnVIL catalog entity .
  * @returns Model to be used as props for the consortium cell.
  */
 export const buildConsortium = (
-  anVILCatalogConsortium: AnVILCatalogConsortium
+  anVILCatalogEntity: AnVILCatalogEntity
 ): React.ComponentProps<typeof C.Cell> => {
   return {
-    value: anVILCatalogConsortium.consortium,
+    value: anVILCatalogEntity.consortium,
   };
 };
 
@@ -75,7 +75,7 @@ export const buildDataTypes = (
  * @returns Model to be used as props for the dbGapId cell.
  */
 export const buildDbGapId = (
-  anVILCatalogStudy: AnVILCatalogStudy
+  anvilCatalogEntity: AnVILCatalogStudy
 ): React.ComponentProps<typeof C.Cell> => {
   return {
     value: anvilCatalogEntity.dbGapId,
@@ -222,14 +222,10 @@ export const buildStudyHero = (
  */
 export const buildStudyName = (
   workspaceOrStudy: Exclude<AnVILCatalogEntity, AnVILCatalogConsortium>
-): React.ComponentProps<typeof C.Links> => {
+): React.ComponentProps<typeof C.Link> => {
   return {
-    links: [
-      {
-        label: workspaceOrStudy.studyName,
-        url: `/studies/${workspaceOrStudy.dbGapId}`,
-      },
-    ],
+    label: workspaceOrStudy.studyName,
+    url: `/studies/${workspaceOrStudy.dbGapId}`,
   };
 };
 

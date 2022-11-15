@@ -38,9 +38,9 @@ export const studiesEntityConfig: EntityConfig<AnVILCatalogStudy> = {
     columns: [
       {
         componentConfig: {
-          component: Components.Links,
+          component: Components.Link,
           viewBuilder: ViewBuilder.buildStudyName,
-        } as ComponentConfig<typeof Components.Links>,
+        } as ComponentConfig<typeof Components.Link>,
         header: "Study",
         sort: {
           default: true,

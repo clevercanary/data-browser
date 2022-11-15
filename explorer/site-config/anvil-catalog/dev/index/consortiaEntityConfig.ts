@@ -1,5 +1,8 @@
 import { AnVILCatalogConsortium } from "../../../../app/apis/catalog/anvil-catalog/common/entities";
-import { getConsortiumId } from "../../../../app/apis/catalog/anvil-catalog/common/utils";
+import {
+  anvilCatalogConsortiumInputMapper,
+  getConsortiumId,
+} from "../../../../app/apis/catalog/anvil-catalog/common/utils";
 import * as Components from "../../../../app/components";
 import {
   ComponentConfig,
@@ -127,6 +130,7 @@ export const consortiaEntityConfig: EntityConfig<AnVILCatalogConsortium> = {
     ],
   } as ListConfig<AnVILCatalogConsortium>,
   route: "consortia",
+  staticEntityImportMapper: anvilCatalogConsortiumInputMapper,
   staticLoad: true,
   staticLoadFile: "files/anvil-catalog/out/anvil-consortia.json",
 };
