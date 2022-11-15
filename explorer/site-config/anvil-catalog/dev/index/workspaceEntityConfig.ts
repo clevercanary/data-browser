@@ -1,8 +1,8 @@
+import { AnVILCatalogWorkspace } from "../../../../app/apis/catalog/anvil-catalog/common/entities";
 import {
-  AnVILCatalogWorkspace,
   anvilCatalogWorkspaceInputMapper,
-  getTerraWorkspaceName,
-} from "../../../../app/apis/catalog/anvil-catalog/common/entities";
+  getWorkspaceId,
+} from "../../../../app/apis/catalog/anvil-catalog/common/utils";
 import * as Components from "../../../../app/components";
 import {
   ComponentConfig,
@@ -22,7 +22,7 @@ export const workspaceEntityConfig: EntityConfig<AnVILCatalogWorkspace> = {
     tabs: [],
     top: [],
   },
-  getId: getTerraWorkspaceName,
+  getId: getWorkspaceId,
   label: "Workspaces",
   list: {
     columns: [

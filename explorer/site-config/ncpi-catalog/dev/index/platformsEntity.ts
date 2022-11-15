@@ -1,8 +1,8 @@
+import { NCPICatalogPlatform } from "../../../../app/apis/catalog/ncpi-catalog/common/entities";
 import {
-  getPlatform,
-  NCPICatalogPlatform,
+  getPlatformId,
   NCPIPlatformInputMapper,
-} from "../../../../app/apis/catalog/ncpi-catalog/common/entities";
+} from "../../../../app/apis/catalog/ncpi-catalog/common/utils";
 import * as Components from "../../../../app/components";
 import {
   ComponentConfig,
@@ -22,7 +22,7 @@ export const platformsEntity: EntityConfig<NCPICatalogPlatform> = {
     tabs: [],
     top: [],
   },
-  getId: getPlatform,
+  getId: getPlatformId,
   label: "Platforms",
   list: {
     columns: [

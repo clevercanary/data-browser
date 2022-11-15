@@ -1,8 +1,8 @@
+import { NCPICatalogStudy } from "../../../../app/apis/catalog/ncpi-catalog/common/entities";
 import {
-  getDbGapId,
-  NCPICatalogStudy,
+  getStudyId,
   NCPIStudyInputMapper,
-} from "../../../../app/apis/catalog/ncpi-catalog/common/entities";
+} from "../../../../app/apis/catalog/ncpi-catalog/common/utils";
 import * as Components from "../../../../app/components";
 import {
   ComponentConfig,
@@ -22,7 +22,7 @@ export const studiesEntity: EntityConfig<NCPICatalogStudy> = {
     tabs: [],
     top: [],
   },
-  getId: getDbGapId,
+  getId: getStudyId,
   label: "Studies",
   list: {
     columns: [

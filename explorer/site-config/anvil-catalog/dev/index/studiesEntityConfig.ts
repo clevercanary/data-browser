@@ -1,8 +1,8 @@
+import { AnVILCatalogStudy } from "../../../../app/apis/catalog/anvil-catalog/common/entities";
 import {
-  AnVILCatalogStudy,
   anvilCatalogStudyInputMapper,
-  getDbGapId,
-} from "../../../../app/apis/catalog/anvil-catalog/common/entities";
+  getStudyId,
+} from "../../../../app/apis/catalog/anvil-catalog/common/utils";
 import * as Components from "../../../../app/components";
 import {
   ComponentConfig,
@@ -32,7 +32,7 @@ export const studiesEntityConfig: EntityConfig<AnVILCatalogStudy> = {
     ],
     top: top,
   },
-  getId: getDbGapId,
+  getId: getStudyId,
   label: "Studies",
   list: {
     columns: [

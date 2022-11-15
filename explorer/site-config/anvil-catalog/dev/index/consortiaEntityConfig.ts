@@ -1,7 +1,5 @@
-import {
-  AnVILCatalogConsortium,
-  getConsortium,
-} from "../../../../app/apis/catalog/anvil-catalog/common/entities";
+import { AnVILCatalogConsortium } from "../../../../app/apis/catalog/anvil-catalog/common/entities";
+import { getConsortiumId } from "../../../../app/apis/catalog/anvil-catalog/common/utils";
 import * as Components from "../../../../app/components";
 import {
   ComponentConfig,
@@ -21,7 +19,7 @@ export const consortiaEntityConfig: EntityConfig<AnVILCatalogConsortium> = {
     tabs: [],
     top: [],
   },
-  getId: getConsortium,
+  getId: getConsortiumId,
   label: "Consortia",
   list: {
     columns: [
