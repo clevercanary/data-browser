@@ -8,7 +8,7 @@ export const NavLinkDropdownButton = styled(Button)`
 
   &:active,
   &:hover {
-    background-color: ${({ theme }) => theme.palette.smoke.lightest};
+    background-color: ${({ theme }) => theme.palette.smoke.light};
   }
 
   .MuiButton-endIcon {
