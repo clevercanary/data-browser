@@ -71,7 +71,7 @@ export const buildDataTypes = (
 
 /**
  * Build props for dbGapId cell component from the given AnVIL entity.
- * @param anVILCatalogStudy - AnVIL catalog entity with a dbGapId
+ * @param anvilCatalogEntity - AnVIL catalog entity.
  * @returns Model to be used as props for the dbGapId cell.
  */
 export const buildDbGapId = (
