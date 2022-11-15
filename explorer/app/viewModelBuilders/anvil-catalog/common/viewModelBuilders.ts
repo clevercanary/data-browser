@@ -78,7 +78,7 @@ export const buildDbGapId = (
   anVILCatalogStudy: AnVILCatalogStudy
 ): React.ComponentProps<typeof C.Cell> => {
   return {
-    value: anVILCatalogStudy.dbGapId,
+    value: anvilCatalogEntity.dbGapId,
   };
 };
 
