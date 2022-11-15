@@ -5,7 +5,6 @@ import {
   AnVILCatalogStudy,
   AnVILCatalogWorkspace,
 } from "../../../apis/catalog/anvil-catalog/common/entities";
-import { getStudyId } from "../../../apis/catalog/anvil-catalog/common/utils";
 import { ExploreState } from "../../../common/context/exploreState";
 import * as C from "../../../components";
 import {
@@ -228,7 +227,7 @@ export const buildStudyName = (
     links: [
       {
         label: workspaceOrStudy.studyName,
-        url: `/studies/${getStudyId(workspaceOrStudy)}`,
+        url: `/studies/${workspaceOrStudy.dbGapId}`,
       },
     ],
   };
