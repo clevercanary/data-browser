@@ -43,7 +43,7 @@ const config: SiteConfig = {
   browserURL: BROWSER_URL,
   categoryConfigs: [
     {
-      key: HCADCP_FILTER_CATEGORY_KEYS.ANATOMICAL_ENTITY,
+      key: HCADCP_FILTER_CATEGORY_KEYS.SPECIMEN_ORGAN,
       label: "Anatomical Entity",
     },
     {

@@ -1,5 +1,4 @@
 export const HCADCP_FILTER_CATEGORY_KEYS = {
-  ANATOMICAL_ENTITY: "anatomicalEntity",
   BIOLOGICAL_SEX: "biologicalSex",
   CELL_COUNT: "cellCount",
   CONTACT_NAME: "contactName",
