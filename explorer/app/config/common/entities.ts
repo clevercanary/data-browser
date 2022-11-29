@@ -106,7 +106,7 @@ export interface BackPageConfig {
  */
 export interface BackPageTabConfig extends TabConfig {
   mainColumn: ComponentsConfig;
-  sideColumn: ComponentsConfig;
+  sideColumn?: ComponentsConfig;
 }
 
 /**
