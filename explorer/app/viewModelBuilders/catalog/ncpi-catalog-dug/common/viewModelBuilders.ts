@@ -20,10 +20,10 @@ export const buildDetailViewRelatedStudiesTable = (
 ): React.ComponentProps<typeof C.DetailViewTable> => {
   const { relatedStudies = [] } = dugCatalogStudy;
   return {
-    Tools: buildTableToolbarTools(),
     columns: buildTableColumns(),
     gridTemplateColumns: "2fr auto auto 1fr auto 1fr auto",
     items: relatedStudies,
+    tools: buildTableToolbarTools(),
   };
 };
 

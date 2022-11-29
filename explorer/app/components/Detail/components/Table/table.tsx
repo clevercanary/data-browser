@@ -26,14 +26,14 @@ interface TableProps<T extends object> {
   columns: ColumnDef<T>[];
   gridTemplateColumns: string;
   items: T[];
-  Tools?: ReactNode;
+  tools?: ReactNode;
 }
 
 export const Table = <T extends object>({
   columns,
   gridTemplateColumns,
   items,
-  Tools,
+  tools,
 }: TableProps<T>): JSX.Element => {
   const tableInstance = useReactTable({
     columns,
@@ -44,7 +44,7 @@ export const Table = <T extends object>({
   return items.length > 0 ? (
     <RoundedPaper>
       <GridPaper>
-        {Tools && <TableToolbar>{Tools}</TableToolbar>}
+        {tools && <TableToolbar>{tools}</TableToolbar>}
         <TableContainer>
           <GridTable gridTemplateColumns={gridTemplateColumns}>
             {getHeaderGroups().map((headerGroup) => (
