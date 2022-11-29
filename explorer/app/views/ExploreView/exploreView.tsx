@@ -28,7 +28,7 @@ import { useSummary } from "../../hooks/useSummary";
 export const ExploreView = (props: AzulEntitiesStaticResponse): JSX.Element => {
   const { explorerTitle, summaryConfig } = config(); // Get app level config.
   const { exploreDispatch, exploreState } = useContext(ExploreStateContext); // Get the useReducer state and dispatch for "Explore".
-  const { categoryViews, tabValue } = exploreState;
+  const { categoryViews, isRelatedView, tabValue } = exploreState;
   const entityConfig = getEntityConfig(tabValue); // Entity config.
   const { push } = useRouter();
   const tabs = getTabs();
@@ -82,7 +82,11 @@ export const ExploreView = (props: AzulEntitiesStaticResponse): JSX.Element => {
     <>
       {categoryViews && !!categoryViews.length && (
         <Sidebar Label={<SidebarLabel label={"Filters"} />}>
-          <Filters categoryViews={categoryViews} onFilter={onFilterChange} />
+          <Filters
+            categoryViews={categoryViews}
+            disabled={isRelatedView}
+            onFilter={onFilterChange}
+          />
         </Sidebar>
       )}
       <IndexView
