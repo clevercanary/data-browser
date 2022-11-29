@@ -3,7 +3,6 @@ import {
   ColumnConfig,
   GridTrackMinMax,
   GridTrackSize,
-  ListViewConfig,
 } from "app/config/common/entities";
 import { useEditColumns } from "app/hooks/useEditColumns";
 import React, { useMemo } from "react";
@@ -19,7 +18,6 @@ interface TableCreatorProps<T> {
   disablePagination?: boolean;
   exploreState: ExploreState;
   items: T[];
-  listView?: ListViewConfig;
   loading?: boolean;
   pageCount?: number;
   pages: number;
@@ -73,7 +71,6 @@ export const TableCreator = <T extends object>({
   columns,
   disablePagination,
   items,
-  listView,
   loading,
   pageCount,
   pages,
@@ -108,7 +105,6 @@ export const TableCreator = <T extends object>({
         editColumns={editColumns}
         gridTemplateColumns={gridTemplateColumns}
         items={items}
-        listView={listView}
         pages={pages}
         pageSize={pageSize}
         pagination={pagination}
