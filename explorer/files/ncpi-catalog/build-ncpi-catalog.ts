@@ -1,6 +1,7 @@
 import { parseContentRows, readFile } from "../../app/utils/tsvParser";
 import { DbGapStudy, getStudy } from "../common/dbGaP";
 import { writeAsJSON } from "../common/utils";
+import { buildNCPIDugCatalogStudies } from "../ncpi-catalog-dug/build-ncpi-catalog-dug";
 import { buildNCPICatalogPlatforms } from "./build-plaftorms";
 
 console.log("Building NCPI Catalog Data");
@@ -51,6 +52,10 @@ async function buildCatalog(): Promise<void> {
     platformStudyStubs
   );
 
+  const ncpiDugCatalogStudies = await buildNCPIDugCatalogStudies(
+    ncpiPlatformStudies
+  );
+
   const ncpiCatalogPlatforms = buildNCPICatalogPlatforms(ncpiPlatformStudies);
 
   await writeAsJSON(
@@ -61,6 +66,11 @@ async function buildCatalog(): Promise<void> {
   await writeAsJSON(
     "ncpi-catalog/out/ncpi-platforms.json",
     Object.fromEntries(ncpiCatalogPlatforms.entries())
+  );
+
+  await writeAsJSON(
+    "ncpi-catalog-dug/out/ncpi-dug-studies.json",
+    Object.fromEntries(ncpiDugCatalogStudies.entries())
   );
 }
 

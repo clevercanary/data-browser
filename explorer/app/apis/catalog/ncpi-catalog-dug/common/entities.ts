@@ -14,4 +14,6 @@ export interface DugDbGapIdResultResponse {
   c_id: string;
 }
 
-export type DUGCatalogStudy = NCPICatalogStudy;
+export interface DugCatalogStudy extends NCPICatalogStudy {
+  relatedStudies?: DugCatalogStudy[];
+}
