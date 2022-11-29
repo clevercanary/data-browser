@@ -68,7 +68,7 @@ interface TableProps<T extends object> {
  * @param tableProps.total - Total number of rows in the result set.
  * @param tableProps.sort - Config for rendering current sort and handling corresponding events.
  * @param tableProps.gridTemplateColumns - Defines grid table track sizing.
- * @param tableProps.disablePagination - Determine if the table shouldn't be paginated
+ * @param tableProps.disablePagination - Determine if the table shouldn't be paginated.
  * @returns Configured table element for display.
  */
 export const TableComponent = <T extends object>({
@@ -105,7 +105,7 @@ export const TableComponent = <T extends object>({
 
   const tableInstance = useReactTable({
     columns,
-    data: isRelatedView && relatedListItems ? relatedListItems : items,
+    data: items, //isRelatedView && relatedListItems ? relatedListItems : items,
     enableColumnFilters: true, //listStaticLoad,
     enableFilters: true, //listStaticLoad,
     enableMultiSort: false,

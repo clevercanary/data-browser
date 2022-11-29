@@ -1,11 +1,14 @@
 import { SelectedFilterValue } from "../../../../../app/apis/azul/common/entities";
+import {
+  DugSearchResponse,
+  DugSearchResultResponse,
+} from "../../../../../app/apis/catalog/ncpi-catalog-dug/common/entities";
 import { CategoryKey } from "../../../../../app/common/entities";
 import { RelatedSearchResult } from "../../../../../app/config/common/entities";
+import { DUG_API_PARAMS, DUG_API_PATH, DUG_API_URL } from "../../constants";
 
 // Template variables
-const DUG_KEYS = ["AnVIL", "DbGaP"];
-const DUG_URL =
-  "https://search.biodatacatalyst.renci.org/search-api/search_var";
+const DUG_KEYS = ["AnVIL", "DbGaP"]; // keyof DugSearchResultResponse.
 
 /**
  * Fetches BioDataCatalyst page specified by URL and corresponding search param and returns related studies.
@@ -24,7 +27,7 @@ export async function fetchRelatedStudies(
   }
   const relatedStudies: string[] = [];
   for (const selectedCategoryValue of selectedCategoryValues) {
-    const params = { index: "variables_index", query: selectedCategoryValue };
+    const params = { ...DUG_API_PARAMS, query: selectedCategoryValue };
     const options = {
       body: JSON.stringify(params),
       headers: {
@@ -34,10 +37,10 @@ export async function fetchRelatedStudies(
       method: "POST",
     };
     try {
-      const response = await fetch(DUG_URL, options);
-      const { result } = await response.json();
+      const response = await fetch(`${DUG_API_URL}${DUG_API_PATH}`, options);
+      const { result } = (await response.json()) as DugSearchResponse;
       for (const key of DUG_KEYS) {
-        result[key]?.forEach((r: { c_id: string }) => {
+        result[key as keyof DugSearchResultResponse]?.forEach((r) => {
           const dbGapId = r.c_id?.split(".")[0];
           return relatedStudies.push(dbGapId);
         });

@@ -156,7 +156,8 @@ export interface RelatedViewConfig {
  * List view configuration.
  */
 export interface ListViewConfig {
-  relatedView: RelatedViewConfig;
+  disablePagination?: boolean;
+  relatedView?: RelatedViewConfig;
 }
 
 export interface GoogleGISAuthConfig {
@@ -220,7 +221,6 @@ export interface SiteConfig {
   browserURL: string;
   categoryConfigs?: CategoryConfig[];
   dataSource: DataSourceConfig;
-  disablePagination?: boolean;
   entities: EntityConfig[];
   explorerTitle: HeroTitle;
   export?: BackPageConfig;
