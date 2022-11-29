@@ -105,7 +105,7 @@ export const TableComponent = <T extends object>({
 
   const tableInstance = useReactTable({
     columns,
-    data: items, //isRelatedView && relatedListItems ? relatedListItems : items,
+    data: items,
     enableColumnFilters: true, //listStaticLoad,
     enableFilters: true, //listStaticLoad,
     enableMultiSort: false,
@@ -208,7 +208,7 @@ export const TableComponent = <T extends object>({
 
   // Builds categoryViews using react table `getFacetedUniqueValues`, for statically loaded api only, with update of columnFilters.
   useEffect(() => {
-    if (listStaticLoad) {
+    if (!isRelatedView && listStaticLoad) {
       exploreDispatch({
         payload: {
           listItems: exploreState.listItems,
@@ -229,6 +229,7 @@ export const TableComponent = <T extends object>({
     columnFilters,
     exploreDispatch,
     headerGroups,
+    isRelatedView,
     listStaticLoad,
     exploreState.listItems,
     tableInstance,
