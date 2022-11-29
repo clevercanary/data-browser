@@ -21,6 +21,7 @@ import { SidebarLabel } from "../../components/Layout/components/Sidebar/compone
 import { Sidebar } from "../../components/Layout/components/Sidebar/sidebar";
 import { SummaryConfig } from "../../config/common/entities";
 import { config, getEntityConfig, getTabs } from "../../config/config";
+import { useEntityListRelatedView } from "../../hooks/useEntityListRelatedView";
 import { useSummary } from "../../hooks/useSummary";
 
 // TODO(Dave) create an interface for props and maybe not drill the static load through here
@@ -33,13 +34,13 @@ export const ExploreView = (props: AzulEntitiesStaticResponse): JSX.Element => {
 
   const { categoryViews, sortState, tabValue } = exploreState;
   const { push } = useRouter();
-  const { list, listView, staticLoad } = getEntityConfig(tabValue);
+  const { list, staticLoad } = getEntityConfig(tabValue);
 
   const { columns: columnsConfig } = list;
   const tabs = getTabs();
   const { response: summaryResponse } = useSummary(); // Fetch summary.
-  //const { loading, pagination, response } = useEntityList(props); // Fetch entities.
   useEntityList(props); // Fetch entities.
+  useEntityListRelatedView(); // Fetch related entities.
   const { entityListType } = props;
 
   /**
@@ -130,7 +131,6 @@ export const ExploreView = (props: AzulEntitiesStaticResponse): JSX.Element => {
         columns={columnsConfig}
         exploreState={exploreState}
         items={exploreState.listItems ?? []}
-        listView={listView}
         pageSize={exploreState.paginationState.pageSize}
         total={exploreState.paginationState.rows}
         pagination={undefined}
