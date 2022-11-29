@@ -19,6 +19,7 @@ import {
 import { useScroll } from "app/hooks/useScroll";
 import React, { useContext, useEffect } from "react";
 import {
+  EntityView,
   ExploreActionKind,
   ExploreStateContext,
 } from "../../common/context/exploreState";
@@ -234,6 +235,16 @@ export const TableComponent = <T extends object>({
     exploreState.listItems,
     tableInstance,
   ]);
+
+  // Unmount - reset entity view to "exact".
+  useEffect(() => {
+    return () => {
+      exploreDispatch({
+        payload: EntityView.EXACT,
+        type: ExploreActionKind.ToggleEntityView,
+      });
+    };
+  }, [exploreDispatch]);
 
   function canNextPage(): boolean {
     return (
