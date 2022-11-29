@@ -1,5 +1,6 @@
 import SouthRoundedIcon from "@mui/icons-material/SouthRounded";
 import {
+  AlertTitle,
   TableBody,
   TableCell,
   TableContainer,
@@ -25,6 +26,7 @@ import {
 } from "../../common/context/exploreState";
 import { Pagination, Sort, SortOrderType } from "../../common/entities";
 import { CheckboxMenu, CheckboxMenuItem } from "../CheckboxMenu/checkboxMenu";
+import { InfoIcon } from "../common/CustomIcon/components/InfoIcon/infoIcon";
 import { GridPaper, RoundedPaper } from "../common/Paper/paper.styles";
 import {
   buildCategoryViews,
@@ -33,7 +35,7 @@ import {
 import { EntityViewToggle } from "./components/EntityViewToggle/EntityViewToggle";
 import { Pagination as DXPagination } from "./components/Pagination/pagination";
 import { PaginationSummary } from "./components/PaginationSummary/paginationSummary";
-import { Table as GridTable, TableToolbar } from "./table.styles";
+import { Alert, Table as GridTable, TableToolbar } from "./table.styles";
 
 export interface EditColumnConfig {
   onVisibleColumnsChange: (newColumnId: string) => void;
@@ -279,6 +281,14 @@ export const TableComponent = <T extends object>({
               selected={editColumns.selectedColumns}
             />
           </TableToolbar>
+        )}
+        {isRelatedView && (
+          <Alert icon={<InfoIcon fontSize="small" />} severity="info">
+            <AlertTitle>
+              Dug has identified the following studies as mentioning the
+              selected focus/disease or related term in the study description.
+            </AlertTitle>
+          </Alert>
         )}
         <TableContainer>
           <GridTable gridTemplateColumns={gridTemplateColumns}>
