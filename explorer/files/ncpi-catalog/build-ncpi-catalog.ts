@@ -30,8 +30,6 @@ export interface NCPIStudy extends DbGapStudy {
   platforms: string[];
 }
 
-type NCPIStudyDict = Record<string, NCPIStudy>;
-
 /**
  * Returns the NCPI dashboard studies.
  * @returns void
@@ -70,7 +68,7 @@ export async function buildNCPIPlatformStudies(
   platformStudyStubs: NCPIPlatformStudyStub[]
 ): Promise<NCPIStudy[]> {
   const ncpiStudies: NCPIStudy[] = [];
-  const studiesById: NCPIStudyDict = {};
+  const studiesById: Map<string, NCPIStudy> = new Map();
 
   // build workspaces
   for (const stub of platformStudyStubs) {
@@ -82,10 +80,10 @@ export async function buildNCPIPlatformStudies(
     }
 
     // If a study with this ID has been seen already, add the platform to that existing object
-    if (Object.prototype.hasOwnProperty.call(studiesById, study.dbGapId)) {
-      const platforms = studiesById[study.dbGapId].platforms;
-      if (!platforms.includes(stub.platform)) {
-        platforms.push(stub.platform);
+    const existingPlatforms = studiesById.get(study.dbGapId)?.platforms;
+    if (existingPlatforms) {
+      if (!existingPlatforms.includes(stub.platform)) {
+        existingPlatforms.push(stub.platform);
       }
       continue;
     }
@@ -95,7 +93,7 @@ export async function buildNCPIPlatformStudies(
       platforms: [stub.platform],
     };
 
-    studiesById[study.dbGapId] = ncpiStudy;
+    studiesById.set(study.dbGapId, ncpiStudy);
     ncpiStudies.push(ncpiStudy);
     console.log(ncpiStudy.dbGapId, ncpiStudy.title);
   }
