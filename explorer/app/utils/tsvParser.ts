@@ -134,7 +134,7 @@ function formatDatumAsBoolean(datum: string): boolean {
  * @param fieldType - field type
  * @returns formatted data
  */
-function parseDatumValue(
+export function parseDatumValue(
   datum: string,
   fieldType: string
 ): ReturnType | ReturnType[] {
