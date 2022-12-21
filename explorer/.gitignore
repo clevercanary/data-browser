@@ -49,6 +49,8 @@ _templates
 # favicons
 /public/favicons/*
 
+/files/altos-catalog/files/
+/files/altos-catalog/out/
 /files/anvil-catalog/out/
 /files/ncpi-catalog/out/
 /files/ncpi-catalog-dug/out/
