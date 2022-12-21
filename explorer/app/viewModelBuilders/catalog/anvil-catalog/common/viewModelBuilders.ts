@@ -87,6 +87,7 @@ export const buildDetailViewWorkspacesTable = (
     columns: buildTableColumns(),
     gridTemplateColumns: "auto 1fr 1fr 1fr 1fr 1fr auto",
     items: workspaces,
+    noResultsTitle: "No Workspaces",
   };
 };
 
