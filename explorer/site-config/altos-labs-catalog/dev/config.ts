@@ -2,67 +2,46 @@ import logoAltosLabs from "images/logoAltosLabs.png";
 import { CATALOG_DEFAULT } from "../../../app/apis/azul/anvil/common/constants";
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
 import { SiteConfig } from "../../../app/config/common/entities";
-import anvilConfig from "../../anvil/dev/config";
-import { consortiaEntity } from "./index/consortiaEntity";
-import { studiesEntity } from "./index/studiesEntity";
-import { workspaceEntity } from "./index/workspaceEntity";
+import { ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS } from "../filter-category-keys";
+import { experimentEntity } from "./index/experimentEntity";
 
 // Template constants
 const BROWSER_URL = "https://altoslabs.com/";
 
-// Remove the summary from the AnVIL config.
-// eslint-disable-next-line @typescript-eslint/no-unused-vars -- using rest syntax to remove summary from config.
-const { summaryConfig, ...basicConfig } = anvilConfig;
-
 const config: SiteConfig = {
-  ...basicConfig,
   browserURL: BROWSER_URL,
   categoryConfigs: [
     {
-      key: "consentCode",
-      label: "Consent Code",
+      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.DOI,
+      label: "DOI",
     },
     {
-      key: "consortium",
-      label: "Consortium",
+      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.SHORTHAND,
+      label: "Shorthand",
     },
     {
-      key: "dataTypes",
-      label: "Data Type",
+      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.SPECIES,
+      label: "Species",
     },
     {
-      key: "dbGapId",
-      label: "dbGap Id",
+      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.TISSUE,
+      label: "Tissue",
     },
     {
-      key: "diseases",
-      label: "Disease (indication)",
-    },
-    {
-      key: "studyDesigns",
-      label: "Study Design",
-    },
-    {
-      key: "workspaceName",
-      label: "Terra Workspace Name",
+      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.TITLE,
+      label: "Title",
     },
   ],
   dataSource: {
-    // TODO review dataSource
-    defaultDetailParams: {
-      // TODO review defaultDetailParams
-      catalog: CATALOG_DEFAULT,
-    },
+    // TODO review dataSource config
     defaultListParams: {
-      // TODO review defaultListParams
       catalog: CATALOG_DEFAULT,
       size: "25",
       sort: "entryId",
     },
-    url: "https://service.nadove2.dev.singlecell.gi.ucsc.edu/", // TODO review dataSource url
+    url: "", // TODO review dataSource url
   },
-  disablePagination: true,
-  entities: [workspaceEntity, studiesEntity, consortiaEntity],
+  entities: [experimentEntity],
   explorerTitle: "Altos Labs Catalog",
   layout: {
     footer: {
@@ -109,8 +88,7 @@ const config: SiteConfig = {
       ],
     },
   },
-  redirectRootToPath: "/workspaces",
-  summaryConfig: undefined,
+  redirectRootToPath: "/experiments",
   theme: {
     palette: {
       primary: {

@@ -27,6 +27,7 @@ const {
   REPORTED_ETHNICITY,
   STUDY,
   STUDY_DESIGN,
+  TISSUE,
   WORKSPACE_NAME,
 } = METADATA_KEY;
 const { DONORS, ESTIMATED_CELLS, FILE_FORMATS, FILES, SPECIES, SPECIMENS } =
@@ -69,9 +70,10 @@ export const PLURALIZED_METADATA_LABEL = {
   [PHENOTYPIC_SEX]: "phenotypic sexes",
   [PLATFORM]: "platforms",
   [REPORTED_ETHNICITY]: "reported ethnicities",
+  [METADATA_KEY.SPECIES]: "species",
   [STUDY]: "studies",
   [STUDY_DESIGN]: "study designs",
-  [METADATA_KEY.SPECIES]: "species",
+  [TISSUE]: "tissues",
   [WORKSPACE_NAME]: "workspaces",
 };
 

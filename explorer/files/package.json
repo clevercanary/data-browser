@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build-altos-db": "esrun altos-catalog/build-altos-catalog.ts",
     "build-anvil-db": "esrun anvil-catalog/build-anvil-catalog.ts",
     "build-ncpi-db": "esrun ncpi-catalog/build-ncpi-catalog.ts",
     "build-dug-db": "esrun ncpi-catalog-dug/build-ncpi-catalog-dug.ts"
