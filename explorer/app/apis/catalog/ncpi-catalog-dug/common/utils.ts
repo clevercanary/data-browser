@@ -1,4 +1,4 @@
-import { DugStudy } from "../../../../../files/ncpi-catalog-dug/build-ncpi-catalog-dug";
+import { DugStudy } from "../../../../../files/ncpi-catalog-dug/build-studies";
 import {
   sanitizeString,
   sanitizeStringArray,

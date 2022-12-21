@@ -1,59 +1,44 @@
-import { fetchRelatedStudies } from "../common/bioDataCatalyst";
-import { NCPIStudy } from "../ncpi-catalog/build-ncpi-catalog";
+import { parseContentRows, readFile } from "../../app/utils/tsvParser";
+import { writeAsJSON } from "../common/utils";
+import { buildNCPIPlatformStudies } from "../ncpi-catalog/build-platform-studies";
+import {
+  SOURCE_FIELD_KEY,
+  SOURCE_FIELD_TYPE,
+  tsvPath,
+} from "../ncpi-catalog/constants";
+import { NCPIPlatformStudy } from "../ncpi-catalog/entities";
+import { buildNCPIDugCatalogStudies } from "./build-studies";
 
-export interface DugStudy extends NCPIStudy {
-  relatedStudies?: NCPIStudy[];
-}
+console.log("Building NCPI Catalog Dug Data");
+export {};
 
 /**
- * Build the NCPI Dug studies.
- * @param ncpiStudies - NCPI studies.
- * @returns NCPI Dug catalog studies.
+ * Builds the NCPI Catalog Dug studies.
+ * @returns void
  */
-export async function buildNCPIDugCatalogStudies(
-  ncpiStudies: NCPIStudy[]
-): Promise<DugStudy[]> {
-  // Map dbGapId with study.
-  const studyByDbGapId = new Map<string, NCPIStudy>();
-  for (const study of ncpiStudies) {
-    const { dbGapId } = study;
-    if (studyByDbGapId.has(dbGapId)) {
-      continue;
-    } else {
-      studyByDbGapId.set(dbGapId, study);
-    }
+async function buildCatalog(): Promise<void> {
+  const file = await readFile(tsvPath);
+  if (!file) {
+    throw new Error(`File ${tsvPath} not found`);
   }
 
-  // Map focus with set of related dbGapId.
-  const setOfFocuses = new Set<string>(ncpiStudies.map(({ focus }) => focus));
-  const setOfRelatedDbGapIdsByFocus = new Map<string, Set<string>>();
-  for (const focus of [...setOfFocuses]) {
-    const setOfRelatedDbGapIds = await fetchRelatedStudies(focus);
-    setOfRelatedDbGapIdsByFocus.set(focus, setOfRelatedDbGapIds);
-  }
+  const platformStudies = (await parseContentRows(
+    file,
+    "\t",
+    SOURCE_FIELD_KEY,
+    SOURCE_FIELD_TYPE
+  )) as NCPIPlatformStudy[];
 
-  // Build Dug studies.
-  const dugStudies: DugStudy[] = [];
-  for (const study of ncpiStudies) {
-    const { dbGapId, focus } = study;
-    // Build related studies.
-    const relatedStudies: NCPIStudy[] = [];
-    const setOfRelatedDbGapIds = setOfRelatedDbGapIdsByFocus.get(focus);
-    if (setOfRelatedDbGapIds) {
-      // Remove the study of interest from the related studies.
-      setOfRelatedDbGapIds.delete(dbGapId);
-      for (const relatedDbGapId of [...setOfRelatedDbGapIds]) {
-        const relatedStudy = studyByDbGapId.get(relatedDbGapId);
-        if (relatedStudy) {
-          relatedStudies.push(relatedStudy);
-        }
-      }
-    }
-    dugStudies.push({
-      ...study,
-      relatedStudies,
-    });
-  }
+  const ncpiPlatformStudies = await buildNCPIPlatformStudies(platformStudies);
 
-  return dugStudies;
+  const ncpiDugCatalogStudies = await buildNCPIDugCatalogStudies(
+    ncpiPlatformStudies
+  );
+
+  await writeAsJSON(
+    "ncpi-catalog-dug/out/ncpi-dug-studies.json",
+    Object.fromEntries(ncpiDugCatalogStudies.entries())
+  );
 }
+
+buildCatalog();
