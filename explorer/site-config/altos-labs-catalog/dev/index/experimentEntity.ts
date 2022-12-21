@@ -36,7 +36,7 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
           default: true,
           sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.TITLE,
         },
-        width: { max: "1.5fr", min: "1fr" },
+        width: { max: "1.5fr", min: "200px" },
       },
       {
         componentConfig: {
@@ -48,7 +48,7 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
           default: true,
           sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.DOI,
         },
-        width: { max: "1fr", min: "1fr" },
+        width: { max: "1fr", min: "160px" },
       },
       {
         componentConfig: {
@@ -60,7 +60,7 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
           default: true,
           sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.SHORTHAND,
         },
-        width: { max: "0.5fr", min: "100px" },
+        width: { max: "0.5fr", min: "132px" },
       },
       {
         componentConfig: {
@@ -71,7 +71,7 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
         sort: {
           sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.TISSUE,
         },
-        width: { max: "0.5fr", min: "100px" },
+        width: { max: "0.5fr", min: "132px" },
       },
       {
         componentConfig: {
@@ -82,7 +82,7 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
         sort: {
           sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.SPECIES,
         },
-        width: { max: "0.5fr", min: "100px" },
+        width: { max: "0.5fr", min: "132px" },
       },
     ],
   } as ListConfig<AltosLabsCatalogExperiment>,
