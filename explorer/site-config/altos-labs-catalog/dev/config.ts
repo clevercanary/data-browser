@@ -77,7 +77,7 @@ const config: SiteConfig = {
       navLinks: [
         {
           label: "Datasets",
-          url: "/workspaces",
+          url: "/experiments",
         },
       ],
       socials: [
