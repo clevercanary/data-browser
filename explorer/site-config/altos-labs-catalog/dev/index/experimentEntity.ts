@@ -29,6 +29,18 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
       {
         componentConfig: {
           component: Components.Cell,
+          viewBuilder: ViewBuilder.buildShorthand,
+        } as ComponentConfig<typeof Components.Cell>,
+        header: "Shorthand",
+        sort: {
+          default: true,
+          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.SHORTHAND,
+        },
+        width: { max: "0.5fr", min: "132px" },
+      },
+      {
+        componentConfig: {
+          component: Components.Cell,
           viewBuilder: ViewBuilder.buildTitle,
         } as ComponentConfig<typeof Components.Cell>,
         header: "Title",
@@ -52,13 +64,12 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
       },
       {
         componentConfig: {
-          component: Components.Cell,
-          viewBuilder: ViewBuilder.buildShorthand,
-        } as ComponentConfig<typeof Components.Cell>,
-        header: "Shorthand",
+          component: Components.NTagCell,
+          viewBuilder: ViewBuilder.buildSpecies,
+        } as ComponentConfig<typeof Components.NTagCell>,
+        header: "Species",
         sort: {
-          default: true,
-          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.SHORTHAND,
+          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.SPECIES,
         },
         width: { max: "0.5fr", min: "132px" },
       },
@@ -70,17 +81,6 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
         header: "Tissue",
         sort: {
           sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.TISSUE,
-        },
-        width: { max: "0.5fr", min: "132px" },
-      },
-      {
-        componentConfig: {
-          component: Components.NTagCell,
-          viewBuilder: ViewBuilder.buildSpecies,
-        } as ComponentConfig<typeof Components.NTagCell>,
-        header: "Species",
-        sort: {
-          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.SPECIES,
         },
         width: { max: "0.5fr", min: "132px" },
       },
