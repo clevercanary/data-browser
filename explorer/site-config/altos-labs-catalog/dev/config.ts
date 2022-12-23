@@ -54,7 +54,7 @@ const config: SiteConfig = {
     url: "", // TODO review dataSource url
   },
   entities: [experimentEntity],
-  explorerTitle: "Altos Labs Catalog",
+  explorerTitle: "Altos Labs Data Browser",
   layout: {
     footer: {
       logos: [
@@ -88,7 +88,7 @@ const config: SiteConfig = {
       navAlignment: ELEMENT_ALIGNMENT.LEFT,
       navLinks: [
         {
-          label: "Datasets",
+          label: "Data Browser",
           url: "/experiments",
         },
       ],
