@@ -11,9 +11,10 @@ import { ANCHOR_TARGET } from "../../../components/Links/common/entities";
  */
 export const buildAssay = (
   altosLabsCatalogEntity: AltosLabsCatalogEntity
-): React.ComponentProps<typeof C.Cell> => {
+): React.ComponentProps<typeof C.NTagCell> => {
   return {
-    value: altosLabsCatalogEntity.assay,
+    label: "Assays",
+    values: altosLabsCatalogEntity.assay,
   };
 };
 
