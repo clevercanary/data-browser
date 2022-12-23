@@ -7,11 +7,16 @@ import {
 import { writeAsJSON } from "../common/utils";
 import { buildAltosLabCatalogExperiment } from "./build-experiment";
 import {
+  FILE_NAME_TYPE,
   SOURCE_FIELD_KEY,
   SOURCE_FIELD_PROPERTY,
   SOURCE_FIELD_TYPE,
 } from "./constants";
-import { AltosLabsCatalogFile } from "./entities";
+import {
+  AltosLabsCatalogFile,
+  ExperimentTypeKeyFileName,
+  EXPERIMENT_TYPE,
+} from "./entities";
 
 console.log("Building Altos Catalog Data");
 export {};
@@ -25,7 +30,9 @@ const tsvPaths = [
  * Read and parse the Altos Labs TSVs, join them, generate related list views and save.
  */
 async function buildCatalog(): Promise<void> {
-  // Read and parse the raw tsvs.
+  // Map raw tsv file name to experiment type.
+  const experimentTypeByFileName = getExperimentTypeByFileName();
+  // Read and parse the raw tsv files.
   const altosLabsCatalogs = [] as AltosLabsCatalog[];
   for (const path of tsvPaths) {
     // Read the file.
@@ -40,8 +47,13 @@ async function buildCatalog(): Promise<void> {
       SOURCE_FIELD_KEY,
       SOURCE_FIELD_TYPE
     )) as AltosLabsCatalogFile[];
+    // Determine experiment type.
+    const experimentType = experimentTypeByFileName.get(path);
+    if (!experimentType) {
+      throw new Error(`Experiment type not defined for ${path}`);
+    }
     // Consolidate contents into desired Altos Labs shape.
-    const catalogs = buildAltosLabsCatalog(rows);
+    const catalogs = buildAltosLabsCatalog(rows, experimentType);
     altosLabsCatalogs.push(...catalogs);
   }
 
@@ -64,10 +76,12 @@ async function buildCatalog(): Promise<void> {
 /**
  * Returns Altos Labs Catalog.
  * @param rows - Altos Labs catalog file rows.
+ * @param experimentType - Experiment type.
  * @returns Altos Labs Catalog.
  */
 function buildAltosLabsCatalog(
-  rows: AltosLabsCatalogFile[]
+  rows: AltosLabsCatalogFile[],
+  experimentType: EXPERIMENT_TYPE
 ): AltosLabsCatalog[] {
   return rows.map((r) => {
     const row = {} as AltosLabsCatalog;
@@ -85,8 +99,22 @@ function buildAltosLabsCatalog(
       }
       Object.assign(row, { [key]: value });
     }
-    return row;
+    return { ...row, ...{ experimentType, initiative: "APP" } };
   });
+}
+
+/**
+ * Returns a map key-value pair file name and experiment type.
+ * @returns key-value pair file name and experiment type.
+ */
+function getExperimentTypeByFileName(): Map<string, EXPERIMENT_TYPE> {
+  return new Map(
+    (Object.entries(FILE_NAME_TYPE) as ExperimentTypeKeyFileName[]).map(
+      ([key, value]) => {
+        return [value, EXPERIMENT_TYPE[key]];
+      }
+    )
+  );
 }
 
 buildCatalog();

@@ -25,3 +25,12 @@ export interface AltosLabsCatalogFile {
   Title: string;
   Vector?: string; // perturbational only
 }
+
+export type ExperimentTypeKey = keyof typeof EXPERIMENT_TYPE;
+
+export type ExperimentTypeKeyFileName = [ExperimentTypeKey, string];
+
+export enum EXPERIMENT_TYPE {
+  PERTURBATIONAL = "perturbational",
+  REPROGRAMMING = "reprogramming",
+}
