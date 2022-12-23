@@ -12,8 +12,20 @@ const config: SiteConfig = {
   browserURL: BROWSER_URL,
   categoryConfigs: [
     {
+      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.ASSAY,
+      label: "Assay",
+    },
+    {
       key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.DOI,
       label: "DOI",
+    },
+    {
+      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.EXPERIMENT_TYPE,
+      label: "Experiment Type",
+    },
+    {
+      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.INITIATIVE,
+      label: "Initiative",
     },
     {
       key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.SHORTHAND,
