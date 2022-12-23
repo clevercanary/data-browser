@@ -1,4 +1,10 @@
+export const FILE_NAME_TYPE = {
+  PERTURBATIONAL: "altos-catalog/files/public-datasets-perturbational.tsv",
+  REPROGRAMMING: "altos-catalog/files/public-datasets-reprogramming.tsv",
+};
+
 export const SOURCE_FIELD_KEY = {
+  ASSAY: "Readout",
   DOI: "DOI",
   SHORTHAND: "Shorthand",
   SPECIES: "Species",
@@ -7,6 +13,7 @@ export const SOURCE_FIELD_KEY = {
 };
 
 export const SOURCE_FIELD_TYPE = {
+  ASSAY: "string",
   DOI: "string",
   SHORTHAND: "string",
   SPECIES: "array",
@@ -15,6 +22,7 @@ export const SOURCE_FIELD_TYPE = {
 };
 
 export const SOURCE_FIELD_PROPERTY = {
+  ASSAY: "assay",
   DOI: "doi",
   SHORTHAND: "shorthand",
   SPECIES: "species",

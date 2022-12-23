@@ -13,7 +13,10 @@ export function AltosLabsExperimentInputMapper(
   altosLabsCatalogExperiment: AltosLabsCatalogExperiment
 ): AltosLabsCatalogExperiment {
   const altosLabsExperiment: AltosLabsCatalogExperiment = {
+    assay: sanitizeString(altosLabsCatalogExperiment.assay),
     doi: sanitizeString(altosLabsCatalogExperiment.doi),
+    experimentType: altosLabsCatalogExperiment.experimentType,
+    initiative: altosLabsCatalogExperiment.initiative, // Expected value "APP".
     shorthand: sanitizeString(altosLabsCatalogExperiment.shorthand),
     species: sanitizeStringArray(altosLabsCatalogExperiment.species),
     tissue: sanitizeStringArray(altosLabsCatalogExperiment.tissue),
