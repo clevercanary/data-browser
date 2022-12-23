@@ -29,6 +29,18 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
       {
         componentConfig: {
           component: Components.Cell,
+          viewBuilder: ViewBuilder.buildInitiative,
+        } as ComponentConfig<typeof Components.Cell>,
+        header: "Initiative",
+        hiddenColumn: false,
+        sort: {
+          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.INITIATIVE,
+        },
+        width: { max: "0.5fr", min: "132px" },
+      },
+      {
+        componentConfig: {
+          component: Components.Cell,
           viewBuilder: ViewBuilder.buildShorthand,
         } as ComponentConfig<typeof Components.Cell>,
         header: "Shorthand",
@@ -93,28 +105,16 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
         sort: {
           sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.EXPERIMENT_TYPE,
         },
-        width: { max: "0.5fr", min: "132px" },
+        width: { max: "1fr", min: "160px" },
       },
       {
         componentConfig: {
-          component: Components.Cell,
+          component: Components.NTagCell,
           viewBuilder: ViewBuilder.buildAssay,
-        } as ComponentConfig<typeof Components.Cell>,
+        } as ComponentConfig<typeof Components.NTagCell>,
         header: "Assay",
         sort: {
           sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.ASSAY,
-        },
-        width: { max: "0.5fr", min: "132px" },
-      },
-      {
-        componentConfig: {
-          component: Components.Cell,
-          viewBuilder: ViewBuilder.buildInitiative,
-        } as ComponentConfig<typeof Components.Cell>,
-        header: "Initiative",
-        hiddenColumn: true,
-        sort: {
-          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.INITIATIVE,
         },
         width: { max: "0.5fr", min: "132px" },
       },
