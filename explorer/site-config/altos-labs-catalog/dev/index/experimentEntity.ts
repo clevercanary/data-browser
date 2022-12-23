@@ -84,6 +84,40 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
         },
         width: { max: "0.5fr", min: "132px" },
       },
+      {
+        componentConfig: {
+          component: Components.Cell,
+          viewBuilder: ViewBuilder.buildExperimentType,
+        } as ComponentConfig<typeof Components.Cell>,
+        header: "Experiment Type",
+        sort: {
+          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.EXPERIMENT_TYPE,
+        },
+        width: { max: "0.5fr", min: "132px" },
+      },
+      {
+        componentConfig: {
+          component: Components.Cell,
+          viewBuilder: ViewBuilder.buildAssay,
+        } as ComponentConfig<typeof Components.Cell>,
+        header: "Assay",
+        sort: {
+          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.ASSAY,
+        },
+        width: { max: "0.5fr", min: "132px" },
+      },
+      {
+        componentConfig: {
+          component: Components.Cell,
+          viewBuilder: ViewBuilder.buildInitiative,
+        } as ComponentConfig<typeof Components.Cell>,
+        header: "Initiative",
+        hiddenColumn: true,
+        sort: {
+          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.INITIATIVE,
+        },
+        width: { max: "0.5fr", min: "132px" },
+      },
     ],
   } as ListConfig<AltosLabsCatalogExperiment>,
   listView: {
