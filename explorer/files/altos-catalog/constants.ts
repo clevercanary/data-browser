@@ -13,7 +13,7 @@ export const SOURCE_FIELD_KEY = {
 };
 
 export const SOURCE_FIELD_TYPE = {
-  ASSAY: "string",
+  ASSAY: "array",
   DOI: "string",
   SHORTHAND: "string",
   SPECIES: "array",
