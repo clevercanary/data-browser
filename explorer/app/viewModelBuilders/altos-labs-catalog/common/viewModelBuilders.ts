@@ -5,6 +5,19 @@ import { getPluralizedMetadataLabel } from "../../../components/Index/common/ind
 import { ANCHOR_TARGET } from "../../../components/Links/common/entities";
 
 /**
+ * Build props for assay cell component from the given Altos Labs entity.
+ * @param altosLabsCatalogEntity - Altos Labs catalog entity.
+ * @returns Model to be used as props for the assay cell.
+ */
+export const buildAssay = (
+  altosLabsCatalogEntity: AltosLabsCatalogEntity
+): React.ComponentProps<typeof C.Cell> => {
+  return {
+    value: altosLabsCatalogEntity.assay,
+  };
+};
+
+/**
  * Build props for DOI cell component from the given Altos Labs entity.
  * @param altosLabsCatalogEntity - Altos Labs catalog entity.
  * @returns Model to be used as props for the DOI cell.
@@ -16,6 +29,32 @@ export const buildDOI = (
     label: altosLabsCatalogEntity.doi,
     target: ANCHOR_TARGET.BLANK,
     url: altosLabsCatalogEntity.doi,
+  };
+};
+
+/**
+ * Build props for experiment type cell component from the given Altos Labs entity.
+ * @param altosLabsCatalogEntity - Altos Labs catalog entity.
+ * @returns Model to be used as props for the experiment type cell.
+ */
+export const buildExperimentType = (
+  altosLabsCatalogEntity: AltosLabsCatalogEntity
+): React.ComponentProps<typeof C.Cell> => {
+  return {
+    value: altosLabsCatalogEntity.experimentType,
+  };
+};
+
+/**
+ * Build props for initiative cell component from the given Altos Labs entity.
+ * @param altosLabsCatalogEntity - Altos Labs catalog entity.
+ * @returns Model to be used as props for the initiative cell.
+ */
+export const buildInitiative = (
+  altosLabsCatalogEntity: AltosLabsCatalogEntity
+): React.ComponentProps<typeof C.Cell> => {
+  return {
+    value: altosLabsCatalogEntity.initiative,
   };
 };
 
