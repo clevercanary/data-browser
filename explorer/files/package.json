@@ -8,7 +8,7 @@
     "build-anvil-db": "esrun anvil-catalog/build-anvil-catalog.ts",
     "build-ncpi-db": "esrun ncpi-catalog/build-ncpi-catalog.ts",
     "build-dug-db": "esrun ncpi-catalog-dug/build-ncpi-catalog-dug.ts",
-    "update-ncpi-source": "esrun ncpi-catalog/update-crdc-source.ts"
+    "update-ncpi-source": "esrun ncpi-catalog/update-ncpi-source.ts"
   },
   "author": "",
   "license": "ISC",

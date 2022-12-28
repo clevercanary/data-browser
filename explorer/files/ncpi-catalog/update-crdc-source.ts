@@ -1,8 +1,7 @@
-import fs from "fs";
 import fetch from "node-fetch";
 import { parseContentRows, readFile } from "../../app/utils/tsvParser";
 import { SOURCE_FIELD_KEY, SOURCE_FIELD_TYPE } from "./constants";
-import { NCPIPlatformStudy } from "./entities";
+import { dbGapId, NCPIPlatformStudy } from "./entities";
 
 const urlCRDC =
   "https://api.gdc.cancer.gov/projects?from=0&size=100&sort=project_id:asc&pretty=true";
@@ -20,7 +19,7 @@ type CRDCResponse = {
   };
 };
 
-async function updateCrdcSource(): Promise<void> {
+export async function updateCrdcSource(): Promise<dbGapId[]> {
   // Extract the current studies from the source tsv
   const file = await readFile(sourcePath);
   if (!file) {
@@ -43,37 +42,14 @@ async function updateCrdcSource(): Promise<void> {
 
   // Get IDs not contained in the source
   const ids = studyParser(CRDCJson);
-  const newIds = ids.filter((id) => !CRDCSourceIds.includes(id));
-  const newRows = newIds.map((newId) => ["CRDC", newId]);
-
-  // Update the TSV file
-  appendToTsv(sourcePath, newRows);
-
-  // Report changes
-  console.log(`${newIds.length} studies added. Ids (if any) follow:`);
-  console.log(newIds.join("\n"));
+  return ids.filter((id) => !CRDCSourceIds.includes(id));
 }
 
-function studyParser(studyJson: CRDCResponse): string[] {
+function studyParser(studyJson: CRDCResponse): dbGapId[] {
   const studies = studyJson.data.hits;
   return studies
     .map((study) => study.dbgap_accession_number)
     .filter((id) => id !== "" && id !== null && id !== undefined);
-}
-
-function appendToTsv(path: string, data: string[][]): void {
-  let out = "";
-  for (const row of data) {
-    let line = "";
-    for (const cell of row) {
-      line += `${cell}\t`;
-    }
-    out += `${line.slice(0, -1)}\n`;
-  }
-  fs.appendFile(path, out, (err) => {
-    if (err) throw err;
-  });
-  console.log("Source updated!");
 }
 
 updateCrdcSource();

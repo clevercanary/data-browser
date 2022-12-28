@@ -8,3 +8,5 @@ export interface NCPIPlatformStudy {
 export interface NCPIStudy extends DbGapStudy {
   platforms: string[];
 }
+
+export type dbGapId = string;
