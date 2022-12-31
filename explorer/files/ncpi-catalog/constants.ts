@@ -5,6 +5,13 @@ const SOURCE_HEADER_KEY = {
   PLATFORM: "platform",
 };
 
+export const SOURCE_CATEGORY_KEY = {
+  ANVIL: "AnVIL",
+  BDC: "BDC",
+  CRDC: "CRDC",
+  KFDRC: "KFDRC",
+};
+
 export const SOURCE_FIELD_KEY = {
   [SOURCE_HEADER_KEY.DB_GAP_ID]: "dbGapId",
   [SOURCE_HEADER_KEY.PLATFORM]: "platform",
