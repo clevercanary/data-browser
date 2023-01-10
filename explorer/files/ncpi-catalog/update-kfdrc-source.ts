@@ -7,7 +7,9 @@ import {
 } from "./constants";
 import { NCPIPlatformStudy } from "./entities";
 import {
-  appendToTsv,
+  addNCPIHeader,
+  mergeSourceStudies,
+  replaceTsv,
   reportStudyResults,
   sourcePath,
 } from "./ncpi-update-utils";
@@ -67,8 +69,12 @@ async function updateKfdrcSource(sourcePath: string): Promise<void> {
   const newKFDRCIds = KFDRCIds.filter((id) => !KFDRCSourceIds.includes(id));
 
   // Add to source TSV
-  const KFDRCRows = newKFDRCIds.map((id) => [SOURCE_CATEGORY_KEY.KFDRC, id]);
-  appendToTsv(sourcePath, KFDRCRows);
+  const rowsOut = mergeSourceStudies(
+    sourceStudies,
+    SOURCE_CATEGORY_KEY.KFDRC,
+    KFDRCIds
+  );
+  replaceTsv(sourcePath, addNCPIHeader(rowsOut));
   reportStudyResults(newKFDRCIds);
 }
 

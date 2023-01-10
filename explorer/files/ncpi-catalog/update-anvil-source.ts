@@ -7,7 +7,9 @@ import {
 } from "./constants";
 import { dbGapId, NCPIPlatformStudy } from "./entities";
 import {
-  appendToTsv,
+  addNCPIHeader,
+  mergeSourceStudies,
+  replaceTsv,
   reportStudyResults,
   sourcePath,
 } from "./ncpi-update-utils";
@@ -50,9 +52,13 @@ async function updateAnvilSource(sourcePath: string): Promise<void> {
   }
   const newAnvilIds = anvilIds.filter((id) => !anvilSourceIds.includes(id));
 
-  // Update spreadsheet
-  const anvilRows = newAnvilIds.map((id) => [SOURCE_CATEGORY_KEY.ANVIL, id]);
-  appendToTsv(sourcePath, anvilRows);
+  // Update spreadsheet and report
+  const rowsOut = mergeSourceStudies(
+    sourceStudies,
+    SOURCE_CATEGORY_KEY.ANVIL,
+    anvilIds
+  );
+  replaceTsv(sourcePath, addNCPIHeader(rowsOut));
   reportStudyResults(newAnvilIds);
 }
 

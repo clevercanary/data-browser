@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@types/fhir": "^0.0.35",
+    "csv-stringify": "^6.2.3",
     "html-entities": "^2.3.3",
     "node-fetch": "^3.2.10",
     "remark": "^14.0.2",

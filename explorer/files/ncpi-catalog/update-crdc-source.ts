@@ -7,7 +7,9 @@ import {
 } from "./constants";
 import { dbGapId, NCPIPlatformStudy } from "./entities";
 import {
-  appendToTsv,
+  addNCPIHeader,
+  mergeSourceStudies,
+  replaceTsv,
   reportStudyResults,
   sourcePath,
 } from "./ncpi-update-utils";
@@ -49,11 +51,14 @@ export async function updateCrdcSource(sourcePath: string): Promise<void> {
   const CRDCJson = (await data.json()) as CRDCResponse;
 
   // Get IDs not contained in the source
-  const newIds = studyParser(CRDCJson).filter(
-    (id) => !CRDCSourceIds.includes(id)
+  const ids = studyParser(CRDCJson);
+  const newIds = ids.filter((id) => !CRDCSourceIds.includes(id));
+  const outputRows = mergeSourceStudies(
+    sourceStudies,
+    SOURCE_CATEGORY_KEY.CRDC,
+    ids
   );
-  const newRows = newIds.map((newId) => [SOURCE_CATEGORY_KEY.CRDC, newId]);
-  appendToTsv(sourcePath, newRows);
+  replaceTsv(sourcePath, addNCPIHeader(outputRows));
   reportStudyResults(newIds);
 }
 

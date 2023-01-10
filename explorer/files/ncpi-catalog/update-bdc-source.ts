@@ -7,7 +7,9 @@ import {
 } from "./constants";
 import { NCPIPlatformStudy } from "./entities";
 import {
-  appendToTsv,
+  addNCPIHeader,
+  mergeSourceStudies,
+  replaceTsv,
   reportStudyResults,
   sourcePath,
 } from "./ncpi-update-utils";
@@ -37,15 +39,21 @@ export async function updateBdcSource(sourcePath: string): Promise<void> {
   // Get studies from BDC api
   const data = await fetch(urlBDC);
   const BDCJson = (await data.json()) as BDCResponse;
-  const newBDCIds = BDCJson.map((studyId) => studyId?.split(".")[0])
-    .filter((studyId) => studyId?.startsWith("phs"))
-    .filter((id) => !BDCSourceIds.includes(id));
+  const BDCIds = [
+    ...new Set(
+      BDCJson.map((studyId) => studyId?.split(".")[0]).filter((studyId) =>
+        studyId?.startsWith("phs")
+      )
+    ),
+  ];
+  const newBDCIds = BDCIds.filter((id) => !BDCSourceIds.includes(id));
 
-  const newBDCRows = [...new Set(newBDCIds)].map((newId) => [
+  const outputRows = mergeSourceStudies(
+    sourceStudies,
     SOURCE_CATEGORY_KEY.BDC,
-    newId,
-  ]);
-  appendToTsv(sourcePath, newBDCRows);
+    BDCIds
+  );
+  replaceTsv(sourcePath, addNCPIHeader(outputRows));
   reportStudyResults(newBDCIds);
 }
 
