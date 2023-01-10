@@ -20,6 +20,7 @@ export interface AltosLabsCatalogFile {
   Shorthand: string;
   Species: string;
   "Target type"?: string; // perturbational only
+  "Taxonomy ID": string;
   Timepoints?: string; // perturbational only
   Tissue?: string; // perturbational only
   Title: string;

@@ -6,6 +6,7 @@ export const FILE_NAME_TYPE = {
 export const SOURCE_FIELD_KEY = {
   ASSAY: "Readout",
   DOI: "DOI",
+  NCBI_TAXONOMY_ID: "Taxonomy ID",
   SHORTHAND: "Shorthand",
   SPECIES: "Species",
   TISSUE: "Tissue",
@@ -15,6 +16,7 @@ export const SOURCE_FIELD_KEY = {
 export const SOURCE_FIELD_TYPE = {
   ASSAY: "array",
   DOI: "string",
+  NCBI_TAXONOMY_ID: "array",
   SHORTHAND: "string",
   SPECIES: "array",
   TISSUE: "array",
@@ -24,6 +26,7 @@ export const SOURCE_FIELD_TYPE = {
 export const SOURCE_FIELD_PROPERTY = {
   ASSAY: "assay",
   DOI: "doi",
+  NCBI_TAXONOMY_ID: "NCBITaxonomyID",
   SHORTHAND: "shorthand",
   SPECIES: "species",
   TISSUE: "tissue",
