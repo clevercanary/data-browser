@@ -9,6 +9,7 @@ export interface AltosLabsCatalog {
   doi: string;
   experimentType: EXPERIMENT_TYPE;
   initiative: string;
+  NCBITaxonomyID?: string[];
   shorthand: string;
   species: string[];
   tissue: string[];
