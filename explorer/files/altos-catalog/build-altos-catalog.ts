@@ -100,8 +100,7 @@ function buildAltosLabsCatalog(
       }
       Object.assign(row, { [key]: value });
     }
-    const taxonomyIds = parseDatumValue(r["Taxonomy ID"], "array");
-    const species = (Array.isArray(taxonomyIds) ? taxonomyIds : []).map(
+    const species = (row.NCBITaxonomyID || []).map(
       (id) => TaxonomySpecies[id as keyof typeof TaxonomySpecies]
     );
     return { ...row, species, ...{ experimentType, initiative: "APP" } };
