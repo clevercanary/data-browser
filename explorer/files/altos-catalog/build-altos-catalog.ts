@@ -17,6 +17,7 @@ import {
   ExperimentTypeKeyFileName,
   EXPERIMENT_TYPE,
 } from "./entities";
+import { TaxonomySpecies } from "./taxonomy";
 
 console.log("Building Altos Catalog Data");
 export {};
@@ -99,7 +100,11 @@ function buildAltosLabsCatalog(
       }
       Object.assign(row, { [key]: value });
     }
-    return { ...row, ...{ experimentType, initiative: "APP" } };
+    const taxonomyIds = parseDatumValue(r["Taxonomy ID"], "array");
+    const species = (Array.isArray(taxonomyIds) ? taxonomyIds : []).map(
+      (id) => TaxonomySpecies[id as keyof typeof TaxonomySpecies]
+    );
+    return { ...row, species, ...{ experimentType, initiative: "APP" } };
   });
 }
 
