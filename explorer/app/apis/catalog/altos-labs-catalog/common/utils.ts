@@ -14,6 +14,7 @@ export function AltosLabsExperimentInputMapper(
 ): AltosLabsCatalogExperiment {
   const altosLabsExperiment: AltosLabsCatalogExperiment = {
     assay: sanitizeStringArray(altosLabsCatalogExperiment.assay),
+    description: altosLabsCatalogExperiment.description,
     doi: sanitizeString(altosLabsCatalogExperiment.doi),
     experimentType: altosLabsCatalogExperiment.experimentType,
     initiative: altosLabsCatalogExperiment.initiative, // Expected value "APP".
@@ -28,8 +29,8 @@ export function AltosLabsExperimentInputMapper(
 /**
  * Returns the id of the experiment.
  * @param altosLabsCatalogExperiment - Altos Lab catalog experiment.
- * @returns String value of doi.
+ * @returns String value of shorthand.
  */
-export const getDOIId = (
+export const getShorthandId = (
   altosLabsCatalogExperiment: AltosLabsCatalogExperiment
-): string => altosLabsCatalogExperiment.doi || "";
+): string => altosLabsCatalogExperiment.shorthand || "";

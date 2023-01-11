@@ -1,7 +1,7 @@
 import { AltosLabsCatalogExperiment } from "../../../../app/apis/catalog/altos-labs-catalog/common/entities";
 import {
   AltosLabsExperimentInputMapper,
-  getDOIId,
+  getShorthandId,
 } from "../../../../app/apis/catalog/altos-labs-catalog/common/utils";
 import * as Components from "../../../../app/components";
 import {
@@ -9,20 +9,30 @@ import {
   EntityConfig,
   ListConfig,
 } from "../../../../app/config/common/entities";
-import * as ViewBuilder from "../../../../app/viewModelBuilders/altos-labs-catalog/common/viewModelBuilders";
+import * as ViewBuilder from "../../../../app/viewModelBuilders/catalog/altos-labs-catalog/common/viewModelBuilders";
 import { ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS } from "../../filter-category-keys";
+import { mainColumn } from "../detail/experiment/overviewMainColumn";
+import { sideColumn } from "../detail/experiment/overviewSideColumn";
+import { top } from "../detail/experiment/top";
 
 /**
  * Entity config object responsible to config anything related to the /explore/experiments route.
  */
 export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
   detail: {
-    detailOverviews: [],
+    detailOverviews: ["Overview"],
     staticLoad: true,
-    tabs: [],
-    top: [],
+    tabs: [
+      {
+        label: "Overview",
+        mainColumn: mainColumn,
+        route: "",
+        sideColumn: sideColumn,
+      },
+    ],
+    top: top,
   },
-  getId: getDOIId, // TODO review getId "property" and associated function
+  getId: getShorthandId,
   label: "Experiments",
   list: {
     columns: [
@@ -52,9 +62,9 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
       },
       {
         componentConfig: {
-          component: Components.Cell,
+          component: Components.Link,
           viewBuilder: ViewBuilder.buildTitle,
-        } as ComponentConfig<typeof Components.Cell>,
+        } as ComponentConfig<typeof Components.Link>,
         header: "Title",
         sort: {
           default: true,
