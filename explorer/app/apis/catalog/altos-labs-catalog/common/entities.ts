@@ -6,6 +6,7 @@ import { EXPERIMENT_TYPE } from "../../../../../files/altos-catalog/entities";
 
 export interface AltosLabsCatalog {
   assay: string[];
+  description: string;
   doi: string;
   experimentType: EXPERIMENT_TYPE;
   initiative: string;
