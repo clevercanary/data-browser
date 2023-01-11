@@ -61,16 +61,16 @@ async function buildCatalog(): Promise<void> {
   /**
    * Build the experiment catalog.
    */
-  const anVILCatalogExperiment =
+  const altosLabsCatalogExperiment =
     buildAltosLabCatalogExperiment(altosLabsCatalogs);
 
   /**
    * Write out the resulting files.
    */
-  console.log("Experiment:", anVILCatalogExperiment.length);
+  console.log("Experiment:", altosLabsCatalogExperiment.length);
   await writeAsJSON(
     "altos-catalog/out/altos-catalog-experiment.json",
-    Object.fromEntries(anVILCatalogExperiment.entries())
+    Object.fromEntries(altosLabsCatalogExperiment.entries())
   );
 }
 
@@ -103,7 +103,15 @@ function buildAltosLabsCatalog(
     const species = (row.NCBITaxonomyID || []).map(
       (id) => TaxonomySpecies[id as keyof typeof TaxonomySpecies]
     );
-    return { ...row, species, ...{ experimentType, initiative: "APP" } };
+    return {
+      ...row,
+      species,
+      ...{
+        description: "None", // TODO description
+        experimentType,
+        initiative: "APP",
+      },
+    };
   });
 }
 
