@@ -18,18 +18,14 @@ import {
   SOURCE_FIELD_PROPERTY,
   SOURCE_FIELD_TYPE,
 } from "./constants";
-import {
-  AltosLabsCatalogFile as AltosLabsCatalogSourceFile,
-  ExperimentTypeKeyFileName,
-  EXPERIMENT_TYPE,
-} from "./entities";
+import { ExperimentTypeKeyFileName, EXPERIMENT_TYPE } from "./entities";
 import { TaxonomySpecies } from "./taxonomy";
 
 console.log("Building Altos Catalog Data");
 export {};
 
-const filesTsvPath = "altos-catalog/files/files.tsv";
-const datasetsTsvPaths = [
+const filesTsvPath = "altos-catalog/files/public-datasets-files.tsv";
+const experimentsTsvPaths = [
   "altos-catalog/files/public-datasets-perturbational.tsv",
   "altos-catalog/files/public-datasets-reprogramming.tsv",
 ];
@@ -42,29 +38,39 @@ async function buildCatalog(): Promise<void> {
   const experimentTypeByFileName = getExperimentTypeByFileName();
   // Read and parse the raw tsv files.
   const altosLabsCatalogs = [] as AltosLabsCatalog[];
-  for (const path of datasetsTsvPaths) {
-    // Read the file.
-    const file = await readFile(path);
-    if (!file) {
-      throw new Error(`File ${path} not found`);
-    }
-    // Parse file contents.
-    const rows = (await parseContentRows(
-      file,
-      "\t",
-      SOURCE_FIELD_KEY,
-      SOURCE_FIELD_TYPE
-    )) as AltosLabsCatalogSourceFile[];
+  for (const path of experimentsTsvPaths) {
     // Determine experiment type.
     const experimentType = experimentTypeByFileName.get(path);
     if (!experimentType) {
       throw new Error(`Experiment type not defined for ${path}`);
     }
-    // Consolidate contents into desired Altos Labs shape.
-    const catalogs = buildAltosLabsCatalog(rows, experimentType);
+    // Convert spreadsheet.
+    const catalogs = await convertSpreadsheet<AltosLabsCatalog>(
+      path,
+      SOURCE_FIELD_KEY,
+      SOURCE_FIELD_TYPE,
+      SOURCE_FIELD_PROPERTY,
+      (row: AltosLabsCatalog): AltosLabsCatalog => {
+        const species = row.NCBITaxonomyID.map(
+          (id) => TaxonomySpecies[id as keyof typeof TaxonomySpecies]
+        );
+        return {
+          ...row,
+          ...{
+            description: "None", // TODO description
+            experimentType,
+            initiative: "APP",
+            species,
+          },
+        };
+      }
+    );
     altosLabsCatalogs.push(...catalogs);
   }
 
+  /**
+   * Build the file catalog.
+   */
   const altosLabsCatalogFile = await buildAltosLabsFiles(altosLabsCatalogs);
 
   /**
@@ -100,84 +106,61 @@ async function buildAltosLabsFiles(
 ): Promise<AltosLabsCatalogFile[]> {
   // Map shorthand to experiment object.
   const experimentByShorthand = getExperimentByShorthand(altosLabsCatalogs);
+  // Convert spreadsheet.
+  return await convertSpreadsheet<AltosLabsCatalogFile>(
+    filesTsvPath,
+    FILES_SOURCE_FIELD_KEY,
+    FILES_SOURCE_FIELD_TYPE,
+    FILES_SOURCE_FIELD_PROPERTY,
+    (row: AltosLabsCatalogFile): AltosLabsCatalogFile => ({
+      ...experimentByShorthand[row.shorthand],
+      ...row,
+    })
+  );
+}
+
+/**
+ * Reads a TSV file and converts it to an array of row objects following a given shape.
+ * @param path - TSV file path.
+ * @param FIELD_KEY - Field column names.
+ * @param FIELD_TYPE - Field types.
+ * @param FIELD_PROPERTY - Field property names.
+ * @param rowCallback - Function called to finalize row object.
+ * @returns array of rows in desired shape.
+ */
+async function convertSpreadsheet<RowType extends object>(
+  path: string,
+  FIELD_KEY: Record<string, string>,
+  FIELD_TYPE: Record<string, string>,
+  FIELD_PROPERTY: Record<string, string>,
+  rowCallback?: (x: RowType) => RowType
+): Promise<RowType[]> {
   // Read the file.
-  const file = await readFile(filesTsvPath);
+  const file = await readFile(path);
   if (!file) {
-    throw new Error(`File ${filesTsvPath} not found`);
+    throw new Error(`File ${path} not found`);
   }
   // Parse file contents.
   const rows = (await parseContentRows(
     file,
     "\t",
-    FILES_SOURCE_FIELD_KEY,
-    FILES_SOURCE_FIELD_TYPE
-  )) as AltosLabsCatalogSourceFile[];
+    FIELD_KEY,
+    FIELD_TYPE
+  )) as Record<string, string>[];
   // Consolidate contents into desired Altos Labs shape.
   return rows.map((r) => {
-    const row = {} as AltosLabsCatalogFile;
-    for (const [fieldKey, rowKey] of Object.entries(FILES_SOURCE_FIELD_KEY)) {
-      const key =
-        FILES_SOURCE_FIELD_PROPERTY[
-          fieldKey as keyof typeof FILES_SOURCE_FIELD_KEY
-        ];
-      let value = r[rowKey as keyof AltosLabsCatalogSourceFile] || "";
+    const row = {} as RowType;
+    for (const [fieldKey, rowKey] of Object.entries(FIELD_KEY)) {
+      const key = FIELD_PROPERTY[fieldKey];
+      const valueString = r[rowKey] || "";
+      let value: unknown = valueString;
       if (!value) {
-        const fieldType =
-          FILES_SOURCE_FIELD_TYPE[
-            fieldKey as keyof typeof FILES_SOURCE_FIELD_KEY
-          ];
-        value = parseDatumValue(
-          value,
-          fieldType
-        ) as unknown as keyof typeof FILES_SOURCE_FIELD_PROPERTY;
+        const fieldType = FIELD_TYPE[fieldKey];
+        value = parseDatumValue(valueString, fieldType);
       }
       Object.assign(row, { [key]: value });
     }
-    return {
-      ...experimentByShorthand[row.shorthand],
-      ...row,
-    };
-  });
-}
-
-/**
- * Returns Altos Labs Catalog.
- * @param rows - Altos Labs catalog file rows.
- * @param experimentType - Experiment type.
- * @returns Altos Labs Catalog.
- */
-function buildAltosLabsCatalog(
-  rows: AltosLabsCatalogSourceFile[],
-  experimentType: EXPERIMENT_TYPE
-): AltosLabsCatalog[] {
-  return rows.map((r) => {
-    const row = {} as AltosLabsCatalog;
-    for (const [fieldKey, rowKey] of Object.entries(SOURCE_FIELD_KEY)) {
-      const key =
-        SOURCE_FIELD_PROPERTY[fieldKey as keyof typeof SOURCE_FIELD_KEY];
-      let value = r[rowKey as keyof AltosLabsCatalogSourceFile] || "";
-      if (!value) {
-        const fieldType =
-          SOURCE_FIELD_TYPE[fieldKey as keyof typeof SOURCE_FIELD_KEY];
-        value = parseDatumValue(
-          value,
-          fieldType
-        ) as unknown as keyof typeof SOURCE_FIELD_PROPERTY;
-      }
-      Object.assign(row, { [key]: value });
-    }
-    const species = (row.NCBITaxonomyID || []).map(
-      (id) => TaxonomySpecies[id as keyof typeof TaxonomySpecies]
-    );
-    return {
-      ...row,
-      ...{
-        description: "None", // TODO description
-        experimentType,
-        initiative: "APP",
-        species,
-      },
-    };
+    return rowCallback ? rowCallback(row) : row;
   });
 }
 
