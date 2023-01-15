@@ -3,6 +3,24 @@ export const FILE_NAME_TYPE = {
   REPROGRAMMING: "altos-catalog/files/public-datasets-reprogramming.tsv",
 };
 
+export const FILES_SOURCE_FIELD_KEY = {
+  FILE_PATH: "s3path",
+  FILE_TYPE: "type",
+  SHORTHAND: "shorthand",
+};
+
+export const FILES_SOURCE_FIELD_TYPE = {
+  FILE_PATH: "string",
+  FILE_TYPE: "string",
+  SHORTHAND: "string",
+};
+
+export const FILES_SOURCE_FIELD_PROPERTY = {
+  FILE_PATH: "filePath",
+  FILE_TYPE: "fileType",
+  SHORTHAND: "shorthand",
+};
+
 export const SOURCE_FIELD_KEY = {
   ASSAY: "Readout",
   DOI: "DOI",
