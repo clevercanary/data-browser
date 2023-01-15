@@ -1,5 +1,8 @@
 import React from "react";
-import { AltosLabsCatalogEntity } from "../../../../apis/catalog/altos-labs-catalog/common/entities";
+import {
+  AltosLabsCatalogEntity,
+  AltosLabsCatalogFile,
+} from "../../../../apis/catalog/altos-labs-catalog/common/entities";
 import { ExploreState } from "../../../../common/context/exploreState";
 import * as C from "../../../../components";
 import { Breadcrumb } from "../../../../components/common/Breadcrumbs/breadcrumbs";
@@ -110,6 +113,32 @@ export const buildExperimentType = (
 ): React.ComponentProps<typeof C.Cell> => {
   return {
     value: altosLabsCatalogEntity.experimentType,
+  };
+};
+
+/**
+ * Build props for file path cell component from the given Altos Labs entity.
+ * @param altosLabsCatalogFile - Altos Labs catalog file entity.
+ * @returns Model to be used as props for the file path cell.
+ */
+export const buildFilePath = (
+  altosLabsCatalogFile: AltosLabsCatalogFile
+): React.ComponentProps<typeof C.Cell> => {
+  return {
+    value: altosLabsCatalogFile.filePath,
+  };
+};
+
+/**
+ * Build props for file type cell component from the given Altos Labs entity.
+ * @param altosLabsCatalogFile - Altos Labs catalog file entity.
+ * @returns Model to be used as props for the file type cell.
+ */
+export const buildFileType = (
+  altosLabsCatalogFile: AltosLabsCatalogFile
+): React.ComponentProps<typeof C.Cell> => {
+  return {
+    value: altosLabsCatalogFile.fileType,
   };
 };
 
