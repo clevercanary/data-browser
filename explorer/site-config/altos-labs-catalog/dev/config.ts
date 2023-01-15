@@ -3,7 +3,8 @@ import { CATALOG_DEFAULT } from "../../../app/apis/azul/anvil/common/constants";
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
 import { SiteConfig } from "../../../app/config/common/entities";
 import { ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS } from "../filter-category-keys";
-import { experimentEntity } from "./index/experimentEntity";
+import { experimentEntity } from "./index/experimentEntityConfig";
+import { fileEntity } from "./index/fileEntityConfig";
 
 // Template constants
 const BROWSER_URL = "https://altoslabs.com/";
@@ -53,7 +54,7 @@ const config: SiteConfig = {
     },
     url: "", // TODO review dataSource url
   },
-  entities: [experimentEntity],
+  entities: [experimentEntity, fileEntity],
   explorerTitle: "Altos Labs Data Browser",
   layout: {
     footer: {
