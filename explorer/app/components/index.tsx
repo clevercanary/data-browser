@@ -7,7 +7,12 @@ export { MdxMarkdown } from "./common/MDXMarkdown/mdxMarkdown";
 export { Stack } from "./common/Stack/Stack";
 export { StaticImage } from "./common/StaticImage/staticImage";
 export { CollapsableSection } from "./Detail/components/Section/components/CollapsableSection/collapsableSection";
-export { GridPaperSection } from "./Detail/components/Section/section.styles";
+export { SectionTitle } from "./Detail/components/Section/components/SectionTitle/sectionTitle";
+export {
+  GridPaperSection,
+  SectionContent,
+  SectionText,
+} from "./Detail/components/Section/section.styles";
 export { Table as DetailViewTable } from "./Detail/components/Table/table";
 export { ExportMethod } from "./Export/components/ExportMethod/exportMethod";
 export { FileCounts } from "./FileCounts/FileCounts";
@@ -18,6 +23,7 @@ export { NTagCell } from "./Index/components/NTagCell/nTagCell";
 export { LabelValue } from "./LabelValue/LabelValue";
 export { BackPageHero } from "./Layout/components/BackPage/components/BackPageHero/backPageHero";
 export { Link } from "./Links/components/Link/link";
+export { LinkLabel } from "./Links/components/LinkLabel/linkLabel";
 export { Links } from "./Links/Links";
 export { Citation } from "./Project/components/Citation/citation";
 export { CollaboratingOrganizations } from "./Project/components/CollaboratingOrganizations/collaboratingOrganizations";

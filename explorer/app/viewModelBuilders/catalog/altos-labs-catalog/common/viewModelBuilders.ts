@@ -78,7 +78,11 @@ export const buildExperimentDetails = (
   keyValuePairs.set("Assay", stringifyValues(assay));
   keyValuePairs.set(
     "DOI",
-    C.Link({ label: DOI, target: ANCHOR_TARGET.BLANK, url: DOI })
+    C.Link({
+      label: C.LinkLabel({ label: DOI }),
+      target: ANCHOR_TARGET.BLANK,
+      url: DOI,
+    })
   );
   keyValuePairs.set("Experiment Type", experimentType);
   keyValuePairs.set("Shorthand", shorthand);
