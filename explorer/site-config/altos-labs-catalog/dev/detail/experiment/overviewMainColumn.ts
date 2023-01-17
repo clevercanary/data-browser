@@ -7,9 +7,9 @@ export const mainColumn = [
   {
     children: [
       {
-        component: C.Markdown,
+        component: C.MdxMarkdown,
         viewBuilder: T.buildExperimentDescription,
-      } as ComponentConfig<typeof C.Markdown, AltosLabsCatalogEntity>,
+      } as ComponentConfig<typeof C.MdxMarkdown, AltosLabsCatalogEntity>,
     ],
     component: C.CollapsableSection,
     props: {

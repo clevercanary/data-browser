@@ -1,3 +1,5 @@
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
 import {
   AltosLabsCatalog,
   AltosLabsCatalogFile,
@@ -5,6 +7,7 @@ import {
 import {
   parseContentRows,
   parseDatumValue,
+  readDir,
   readFile,
 } from "../../app/utils/tsvParser";
 import { writeAsJSON } from "../common/utils";
@@ -24,10 +27,11 @@ import { TaxonomySpecies } from "./taxonomy";
 console.log("Building Altos Catalog Data");
 export {};
 
-const filesTsvPath = "altos-catalog/files/public-datasets-files.tsv";
-const experimentsTsvPaths = [
-  "altos-catalog/files/public-datasets-perturbational.tsv",
-  "altos-catalog/files/public-datasets-reprogramming.tsv",
+const altosDir = "../../../altos-data-browser/files/altos-catalog/";
+const filesTsvFileName = "public-datasets-files.tsv";
+const experimentsTsvFileNames = [
+  "public-datasets-perturbational.tsv",
+  "public-datasets-reprogramming.tsv",
 ];
 
 /**
@@ -36,28 +40,31 @@ const experimentsTsvPaths = [
 async function buildCatalog(): Promise<void> {
   // Map raw tsv file name to experiment type.
   const experimentTypeByFileName = getExperimentTypeByFileName();
+  // Map abstract to shorthand.
+  const abstractByShorthand = await getAbstractByShorthand();
   // Read and parse the raw tsv files.
   const altosLabsCatalogs = [] as AltosLabsCatalog[];
-  for (const path of experimentsTsvPaths) {
+  for (const fileName of experimentsTsvFileNames) {
     // Determine experiment type.
-    const experimentType = experimentTypeByFileName.get(path);
+    const experimentType = experimentTypeByFileName.get(fileName);
     if (!experimentType) {
-      throw new Error(`Experiment type not defined for ${path}`);
+      throw new Error(`Experiment type not defined for ${fileName}`);
     }
     // Convert spreadsheet.
     const catalogs = await convertSpreadsheet<AltosLabsCatalog>(
-      path,
+      `${altosDir}files/${fileName}`,
       SOURCE_FIELD_KEY,
       SOURCE_FIELD_TYPE,
       SOURCE_FIELD_PROPERTY,
       (row: AltosLabsCatalog): AltosLabsCatalog => {
+        const description = abstractByShorthand.get(row.shorthand) || null;
         const species = row.NCBITaxonomyID.map(
           (id) => TaxonomySpecies[id as keyof typeof TaxonomySpecies]
         );
         return {
           ...row,
           ...{
-            description: "None", // TODO description
+            description,
             experimentType,
             initiative: "APP",
             species,
@@ -86,12 +93,12 @@ async function buildCatalog(): Promise<void> {
    */
   console.log("File:", altosLabsCatalogFile.length);
   await writeAsJSON(
-    "altos-catalog/out/altos-catalog-file.json",
+    `${altosDir}out/altos-catalog-file.json`,
     Object.fromEntries(altosLabsCatalogFile.entries())
   );
   console.log("Experiment:", altosLabsCatalogExperiment.length);
   await writeAsJSON(
-    "altos-catalog/out/altos-catalog-experiment.json",
+    `${altosDir}out/altos-catalog-experiment.json`,
     Object.fromEntries(altosLabsCatalogExperiment.entries())
   );
 }
@@ -108,7 +115,7 @@ async function buildAltosLabsFiles(
   const experimentByShorthand = getExperimentByShorthand(altosLabsCatalogs);
   // Convert spreadsheet.
   return await convertSpreadsheet<AltosLabsCatalogFile>(
-    filesTsvPath,
+    `${altosDir}files/${filesTsvFileName}`,
     FILES_SOURCE_FIELD_KEY,
     FILES_SOURCE_FIELD_TYPE,
     FILES_SOURCE_FIELD_PROPERTY,
@@ -162,6 +169,30 @@ async function convertSpreadsheet<RowType extends object>(
     }
     return rowCallback ? rowCallback(row) : row;
   });
+}
+
+/**
+ * Reads and serializes each MDX abstract file and returns a map key-value pair shortname and abstract.
+ * @returns key-value pair shortname and abstract.
+ */
+async function getAbstractByShorthand(): Promise<
+  Map<string, MDXRemoteSerializeResult>
+> {
+  const abstractByShorthand: Map<string, MDXRemoteSerializeResult> = new Map();
+  // Read the abstract file names.
+  const fileNames = (await readDir(`${altosDir}files/abstracts`)) || [];
+  // Read each file and serialize the contents.
+  for (const fileName of fileNames) {
+    const file = await readFile(`${altosDir}files/abstracts/${fileName}`);
+    if (!file) {
+      throw new Error(`File ${fileName} not found`);
+    }
+    const mdxSource = await serialize(file, {
+      mdxOptions: { development: false }, // See https://github.com/hashicorp/next-mdx-remote/issues/307#issuecomment-1363415249 and https://github.com/hashicorp/next-mdx-remote/issues/307#issuecomment-1378362096.
+    });
+    abstractByShorthand.set(fileName.split(".")[0], mdxSource);
+  }
+  return abstractByShorthand;
 }
 
 /**

@@ -18,6 +18,7 @@
   "dependencies": {
     "@types/fhir": "^0.0.35",
     "html-entities": "^2.3.3",
+    "next-mdx-remote": "^4.2.0",
     "node-fetch": "^3.2.10",
     "remark": "^14.0.2",
     "remark-html": "^15.0.1",
