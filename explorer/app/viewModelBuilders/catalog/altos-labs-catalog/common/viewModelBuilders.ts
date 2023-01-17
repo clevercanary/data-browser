@@ -159,12 +159,15 @@ export const buildS3Uri = (
 ): React.ComponentProps<typeof C.Link> => {
   try {
     const url = new URL(altosLabsCatalogFile.filePath);
-    const prefix = (url.pathname.match(/\/public.+/g) || []).shift();
-    if (!prefix) throw true; // S3 URI will render without a corresponding link.
-    const s3Url = new URL(getS3Uri(prefix));
+    const prefix = url.pathname.match(/\/public.+/g)?.shift();
+    // S3 URI will render without a corresponding link if the pathname does not have the required prefix.
+    if (!prefix) throw true;
+    // Create a new url for the specified file type (processed or raw) and append any relevant search parameters.
+    const processedData = isProcessedData(prefix);
+    const s3Url = new URL(getS3Uri(processedData));
     s3Url.searchParams.append("region", "us-west-2");
     s3Url.searchParams.append("prefix", prefix);
-    if (!isProcessedData(prefix)) {
+    if (!processedData) {
       s3Url.searchParams.append("showversions", "false");
     }
     return {
@@ -260,11 +263,11 @@ function getCatalogBreadcrumbs(
 
 /**
  * Returns the S3 url for the specified URI pathname.
- * @param pathname - S3 URI pathname.
+ * @param processedData - Boolean indicating whether data is processed.
  * @returns the S3 url.
  */
-function getS3Uri(pathname: string): string {
-  if (isProcessedData(pathname)) {
+function getS3Uri(processedData: boolean): string {
+  if (processedData) {
     return S3_URI.PROCESSED_DATA;
   }
   return S3_URI.RAW_DATA;
