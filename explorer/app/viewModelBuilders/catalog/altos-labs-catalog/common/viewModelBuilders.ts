@@ -16,6 +16,13 @@ import { getPluralizedMetadataLabel } from "../../../../components/Index/common/
 import { ANCHOR_TARGET } from "../../../../components/Links/common/entities";
 import { getEntityConfig } from "../../../../config/config";
 
+const S3_URI = {
+  PROCESSED_DATA:
+    "https://s3.console.aws.amazon.com/s3/object/altos-lab-project-app",
+  RAW_DATA:
+    "https://s3.console.aws.amazon.com/s3/buckets/altos-lab-project-app",
+};
+
 /**
  * Build props for assay cell component from the given Altos Labs entity.
  * @param altosLabsCatalogEntity - Altos Labs catalog entity.
@@ -117,19 +124,6 @@ export const buildExperimentType = (
 };
 
 /**
- * Build props for file path cell component from the given Altos Labs entity.
- * @param altosLabsCatalogFile - Altos Labs catalog file entity.
- * @returns Model to be used as props for the file path cell.
- */
-export const buildFilePath = (
-  altosLabsCatalogFile: AltosLabsCatalogFile
-): React.ComponentProps<typeof C.Cell> => {
-  return {
-    value: altosLabsCatalogFile.filePath,
-  };
-};
-
-/**
  * Build props for file type cell component from the given Altos Labs entity.
  * @param altosLabsCatalogFile - Altos Labs catalog file entity.
  * @returns Model to be used as props for the file type cell.
@@ -153,6 +147,37 @@ export const buildInitiative = (
   return {
     value: altosLabsCatalogEntity.initiative,
   };
+};
+
+/**
+ * Build props for S3 URI cell component from the given Altos Labs entity.
+ * @param altosLabsCatalogFile - Altos Labs catalog file entity.
+ * @returns Model to be used as props for the S3 URI cell.
+ */
+export const buildS3Uri = (
+  altosLabsCatalogFile: AltosLabsCatalogFile
+): React.ComponentProps<typeof C.Link> => {
+  try {
+    const url = new URL(altosLabsCatalogFile.filePath);
+    const prefix = (url.pathname.match(/\/public.+/g) || []).shift();
+    if (!prefix) throw true; // S3 URI will render without a corresponding link.
+    const s3Url = new URL(getS3Uri(prefix));
+    s3Url.searchParams.append("region", "us-west-2");
+    s3Url.searchParams.append("prefix", prefix);
+    if (!isProcessedData(prefix)) {
+      s3Url.searchParams.append("showversions", "false");
+    }
+    return {
+      label: altosLabsCatalogFile.filePath,
+      target: ANCHOR_TARGET.BLANK,
+      url: s3Url.href,
+    };
+  } catch (err) {
+    return {
+      label: altosLabsCatalogFile.filePath,
+      url: "",
+    };
+  }
 };
 
 /**
@@ -231,4 +256,25 @@ function getCatalogBreadcrumbs(
     breadcrumbs.push({ path: "", text: lastCrumbText });
   }
   return breadcrumbs;
+}
+
+/**
+ * Returns the S3 url for the specified URI pathname.
+ * @param pathname - S3 URI pathname.
+ * @returns the S3 url.
+ */
+function getS3Uri(pathname: string): string {
+  if (isProcessedData(pathname)) {
+    return S3_URI.PROCESSED_DATA;
+  }
+  return S3_URI.RAW_DATA;
+}
+
+/**
+ * Returns true if the pathname ends with ".h5ad".
+ * @param pathname - S3 URI pathname.
+ * @returns true if the pathname ends with ".h5ad".
+ */
+function isProcessedData(pathname: string): boolean {
+  return pathname.endsWith(".h5ad");
 }
