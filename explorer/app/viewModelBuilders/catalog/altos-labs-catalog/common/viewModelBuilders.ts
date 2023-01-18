@@ -158,7 +158,7 @@ export const buildS3Uri = (
   altosLabsCatalogFile: AltosLabsCatalogFile
 ): React.ComponentProps<typeof C.Link> => {
   try {
-    const url = new URL(altosLabsCatalogFile.filePath);
+    const url = new URL(altosLabsCatalogFile.s3Uri);
     const prefix = url.pathname.match(/\/public.+/g)?.shift();
     // S3 URI will render without a corresponding link if the pathname does not have the required prefix.
     if (!prefix) throw true;
@@ -171,13 +171,13 @@ export const buildS3Uri = (
       s3Url.searchParams.append("showversions", "false");
     }
     return {
-      label: altosLabsCatalogFile.filePath,
+      label: altosLabsCatalogFile.s3Uri,
       target: ANCHOR_TARGET.BLANK,
       url: s3Url.href,
     };
   } catch (err) {
     return {
-      label: altosLabsCatalogFile.filePath,
+      label: altosLabsCatalogFile.s3Uri,
       url: "",
     };
   }

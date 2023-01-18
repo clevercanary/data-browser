@@ -33,7 +33,7 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
         } as ComponentConfig<typeof Components.Link>,
         header: "S3 URI",
         sort: {
-          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.FILE_PATH,
+          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.S3_URI,
         },
         width: { max: "1fr", min: "160px" },
       },

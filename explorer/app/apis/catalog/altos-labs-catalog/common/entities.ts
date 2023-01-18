@@ -22,7 +22,7 @@ export type AltosLabsCatalogEntity =
   | AltosLabsCatalogFile;
 
 export interface AltosLabsCatalogExperiment extends AltosLabsCatalog {
-  files: string[];
+  s3Uris: string[];
 }
 
 export interface AltosLabsCatalogFile {
@@ -30,10 +30,10 @@ export interface AltosLabsCatalogFile {
   description: string;
   doi: string;
   experimentType: EXPERIMENT_TYPE;
-  filePath: string;
   fileType: string;
   initiative: string;
   NCBITaxonomyID?: string[];
+  s3Uri: string;
   shorthand: string;
   species: string[];
   tissue: string[];

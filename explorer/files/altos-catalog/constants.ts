@@ -4,20 +4,20 @@ export const FILE_NAME_TYPE = {
 };
 
 export const FILES_SOURCE_FIELD_KEY = {
-  FILE_PATH: "s3path",
   FILE_TYPE: "type",
+  S3_URI: "s3path",
   SHORTHAND: "shorthand",
 };
 
 export const FILES_SOURCE_FIELD_TYPE = {
-  FILE_PATH: "string",
   FILE_TYPE: "string",
+  S3_URI: "string",
   SHORTHAND: "string",
 };
 
 export const FILES_SOURCE_FIELD_PROPERTY = {
-  FILE_PATH: "filePath",
   FILE_TYPE: "fileType",
+  S3_URI: "s3Uri",
   SHORTHAND: "shorthand",
 };
 
