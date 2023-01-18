@@ -17,10 +17,9 @@ import { ANCHOR_TARGET } from "../../../../components/Links/common/entities";
 import { getEntityConfig } from "../../../../config/config";
 
 const S3_URI = {
-  PROCESSED_DATA:
-    "https://s3.console.aws.amazon.com/s3/object/altos-lab-project-app",
-  RAW_DATA:
+  DIRECTORY_URL:
     "https://s3.console.aws.amazon.com/s3/buckets/altos-lab-project-app",
+  FILE_URL: "https://s3.console.aws.amazon.com/s3/object/altos-lab-project-app",
 };
 
 /**
@@ -162,12 +161,12 @@ export const buildS3Uri = (
     const prefix = url.pathname.match(/\/public.+/g)?.shift();
     // S3 URI will render without a corresponding link if the pathname does not have the required prefix.
     if (!prefix) throw true;
-    // Create a new url for the specified file type (processed or raw) and append any relevant search parameters.
-    const processedData = isProcessedData(prefix);
-    const s3Url = new URL(getS3Uri(processedData));
+    // Create a new url for the specified S3 Uri file name or directory and append any relevant search parameters.
+    const directory = isPrefixDirectory(prefix);
+    const s3Url = new URL(getS3UriUrl(directory));
     s3Url.searchParams.append("region", "us-west-2");
     s3Url.searchParams.append("prefix", prefix);
-    if (!processedData) {
+    if (directory) {
       s3Url.searchParams.append("showversions", "false");
     }
     return {
@@ -262,22 +261,22 @@ function getCatalogBreadcrumbs(
 }
 
 /**
- * Returns the S3 url for the specified URI pathname.
- * @param processedData - Boolean indicating whether data is processed.
+ * Returns the S3 url corresponding with the S3 Uri path type (file name or directory).
+ * @param directory - Boolean indicating the S3 Uri path is a directory.
  * @returns the S3 url.
  */
-function getS3Uri(processedData: boolean): string {
-  if (processedData) {
-    return S3_URI.PROCESSED_DATA;
+function getS3UriUrl(directory: boolean): string {
+  if (directory) {
+    return S3_URI.DIRECTORY_URL;
   }
-  return S3_URI.RAW_DATA;
+  return S3_URI.FILE_URL;
 }
 
 /**
- * Returns true if the pathname ends with ".h5ad".
- * @param pathname - S3 URI pathname.
- * @returns true if the pathname ends with ".h5ad".
+ * Returns true if the pathname is a directory.
+ * @param pathname - S3 Uri pathname.
+ * @returns true if the pathname is a directory.
  */
-function isProcessedData(pathname: string): boolean {
-  return pathname.endsWith(".h5ad");
+function isPrefixDirectory(pathname: string): boolean {
+  return !/(\/\w+\.\w+)$/g.test(pathname);
 }
