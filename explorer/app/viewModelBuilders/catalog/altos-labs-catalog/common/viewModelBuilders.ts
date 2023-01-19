@@ -52,15 +52,15 @@ export const buildDOI = (
 };
 
 /**
- * Build props for Markdown component from the given Altos Labs entity.
+ * Build props for MdxMarkdown component from the given Altos Labs entity.
  * @param altosLabsCatalogEntity - Altos Labs catalog entity.
- * @returns Model to be used as props for the Markdown component.
+ * @returns Model to be used as props for the MdxMarkdown component.
  */
 export const buildExperimentDescription = (
   altosLabsCatalogEntity: AltosLabsCatalogEntity
-): React.ComponentProps<typeof C.Markdown> => {
+): React.ComponentProps<typeof C.MdxMarkdown> => {
   return {
-    content: altosLabsCatalogEntity.description,
+    source: altosLabsCatalogEntity.description,
   };
 };
 
@@ -78,7 +78,11 @@ export const buildExperimentDetails = (
   keyValuePairs.set("Assay", stringifyValues(assay));
   keyValuePairs.set(
     "DOI",
-    C.Link({ label: DOI, target: ANCHOR_TARGET.BLANK, url: DOI })
+    C.Link({
+      label: C.LinkLabel({ label: DOI }),
+      target: ANCHOR_TARGET.BLANK,
+      url: DOI,
+    })
   );
   keyValuePairs.set("Experiment Type", experimentType);
   keyValuePairs.set("Shorthand", shorthand);

@@ -1,6 +1,6 @@
 export const FILE_NAME_TYPE = {
-  PERTURBATIONAL: "altos-catalog/files/public-datasets-perturbational.tsv",
-  REPROGRAMMING: "altos-catalog/files/public-datasets-reprogramming.tsv",
+  PERTURBATIONAL: "public-datasets-perturbational.tsv",
+  REPROGRAMMING: "public-datasets-reprogramming.tsv",
 };
 
 export const FILES_SOURCE_FIELD_KEY = {
