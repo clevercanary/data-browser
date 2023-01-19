@@ -72,7 +72,9 @@ async function buildCatalog(): Promise<void> {
         };
       }
     );
-    altosLabsCatalogs.push(...catalogs);
+    // Filter out any experiments with an undefined shorthand.
+    const filteredCatalogs = catalogs.filter((row) => row.shorthand);
+    altosLabsCatalogs.push(...filteredCatalogs);
   }
 
   /**
