@@ -2,11 +2,14 @@
  * Model of Altos Labs catalog.
  */
 
-import { EXPERIMENT_TYPE } from "../../../../../files/altos-catalog/entities";
+import {
+  Description,
+  EXPERIMENT_TYPE,
+} from "../../../../../files/altos-catalog/entities";
 
 export interface AltosLabsCatalog {
   assay: string[];
-  description: string;
+  description: Description;
   DOI: string;
   experimentType: EXPERIMENT_TYPE;
   initiative: string;
@@ -27,7 +30,7 @@ export interface AltosLabsCatalogExperiment extends AltosLabsCatalog {
 
 export interface AltosLabsCatalogFile {
   assay: string[];
-  description: string;
+  description: Description;
   DOI: string;
   experimentType: EXPERIMENT_TYPE;
   fileType: string;

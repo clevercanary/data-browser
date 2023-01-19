@@ -150,5 +150,6 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
   route: "files",
   staticEntityImportMapper: AltosLabsFileInputMapper,
   staticLoad: true,
-  staticLoadFile: "files/altos-catalog/out/altos-catalog-file.json",
+  staticLoadFile:
+    "../../altos-data-browser/files/altos-catalog/out/altos-catalog-file.json",
 };
