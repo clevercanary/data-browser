@@ -17,14 +17,14 @@ export function AltosLabsExperimentInputMapper(
   altosLabsCatalogExperiment: AltosLabsCatalogExperiment
 ): AltosLabsCatalogExperiment {
   const altosLabsExperiment: AltosLabsCatalogExperiment = {
+    DOI: sanitizeString(altosLabsCatalogExperiment.DOI),
     NCBITaxonomyID: sanitizeStringArray(
       altosLabsCatalogExperiment.NCBITaxonomyID
     ),
+    S3URIs: sanitizeStringArray(altosLabsCatalogExperiment.S3URIs),
     assay: sanitizeStringArray(altosLabsCatalogExperiment.assay),
     description: altosLabsCatalogExperiment.description,
-    doi: sanitizeString(altosLabsCatalogExperiment.doi),
     experimentType: altosLabsCatalogExperiment.experimentType,
-    files: sanitizeStringArray(altosLabsCatalogExperiment.files),
     initiative: altosLabsCatalogExperiment.initiative, // Expected value "APP".
     shorthand: sanitizeString(altosLabsCatalogExperiment.shorthand),
     species: sanitizeStringArray(altosLabsCatalogExperiment.species),
@@ -43,11 +43,11 @@ export function AltosLabsFileInputMapper(
   altosLabsCatalogFile: AltosLabsCatalogFile
 ): AltosLabsCatalogFile {
   const altosLabsFile: AltosLabsCatalogFile = {
+    DOI: sanitizeString(altosLabsCatalogFile.DOI),
+    S3URI: sanitizeString(altosLabsCatalogFile.S3URI),
     assay: sanitizeStringArray(altosLabsCatalogFile.assay),
     description: altosLabsCatalogFile.description,
-    doi: sanitizeString(altosLabsCatalogFile.doi),
     experimentType: altosLabsCatalogFile.experimentType,
-    filePath: sanitizeString(altosLabsCatalogFile.filePath),
     fileType: sanitizeString(altosLabsCatalogFile.fileType),
     initiative: altosLabsCatalogFile.initiative, // Expected value "APP".
     shorthand: sanitizeString(altosLabsCatalogFile.shorthand),

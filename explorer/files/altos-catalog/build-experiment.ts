@@ -14,14 +14,13 @@ export function buildAltosLabCatalogExperiment(
   altosLabsCatalogs: AltosLabsCatalog[],
   altosLabsCatalogFile: AltosLabsCatalogFile[]
 ): AltosLabsCatalogExperiment[] {
-  const filesByShorthand = getFilesByShorthand(altosLabsCatalogFile);
-
+  const S3URIsByShorthand = getS3URIsByShorthand(altosLabsCatalogFile);
   return altosLabsCatalogs.map(
     (experiment: AltosLabsCatalog): AltosLabsCatalogExperiment => {
       return {
         ...experiment,
         ...{
-          files: filesByShorthand[experiment.shorthand] || [],
+          S3URIs: S3URIsByShorthand[experiment.shorthand] || [],
         },
       };
     }
@@ -29,19 +28,19 @@ export function buildAltosLabCatalogExperiment(
 }
 
 /**
- * Returns an object mapping shorthand to file paths array.
- * @param files - Altos Labs files.
- * @returns object mapping shorthand to file paths array.
+ * Returns an object mapping shorthand to a list of S3URIs.
+ * @param altosLabsCatalogFiles - Altos Labs catalog file entities.
+ * @returns object mapping shorthand to a list of S3URIs.
  */
-function getFilesByShorthand(
-  files: AltosLabsCatalogFile[]
+function getS3URIsByShorthand(
+  altosLabsCatalogFiles: AltosLabsCatalogFile[]
 ): Record<string, string[]> {
-  const filesByShorthand: Record<string, string[]> = {};
-  for (const file of files) {
+  const S3URIsByShorthand: Record<string, string[]> = {};
+  for (const altosLabsCatalogFile of altosLabsCatalogFiles) {
     (
-      filesByShorthand[file.shorthand] ||
-      (filesByShorthand[file.shorthand] = [])
-    ).push(file.filePath);
+      S3URIsByShorthand[altosLabsCatalogFile.shorthand] ||
+      (S3URIsByShorthand[altosLabsCatalogFile.shorthand] = [])
+    ).push(altosLabsCatalogFile.S3URI);
   }
-  return filesByShorthand;
+  return S3URIsByShorthand;
 }
