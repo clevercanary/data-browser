@@ -156,30 +156,22 @@ export const buildInitiative = (
 export const buildS3Uri = (
   altosLabsCatalogFile: AltosLabsCatalogFile
 ): React.ComponentProps<typeof C.Link> => {
-  try {
-    const url = new URL(altosLabsCatalogFile.s3Uri);
-    const prefix = url.pathname.match(/\/public.+/g)?.shift();
-    // S3 URI will render without a corresponding link if the pathname does not have the required prefix.
-    if (!prefix) throw true;
-    // Create a new url for the specified S3 Uri file name or directory and append any relevant search parameters.
-    const directory = isPrefixDirectory(prefix);
-    const s3Url = new URL(getS3UriUrl(directory));
-    s3Url.searchParams.append("region", "us-west-2");
-    s3Url.searchParams.append("prefix", prefix);
-    if (directory) {
-      s3Url.searchParams.append("showversions", "false");
+  const { s3Uri } = altosLabsCatalogFile;
+  if (/^s3:\/\//g.test(s3Uri)) {
+    const s3UriPathname = getS3UriPathname(s3Uri);
+    if (s3UriPathname) {
+      const s3Url = getS3UriUrl(s3UriPathname);
+      return {
+        label: s3Uri,
+        target: ANCHOR_TARGET.BLANK,
+        url: s3Url.href,
+      };
     }
-    return {
-      label: altosLabsCatalogFile.s3Uri,
-      target: ANCHOR_TARGET.BLANK,
-      url: s3Url.href,
-    };
-  } catch (err) {
-    return {
-      label: altosLabsCatalogFile.s3Uri,
-      url: "",
-    };
   }
+  return {
+    label: s3Uri,
+    url: "",
+  };
 };
 
 /**
@@ -261,15 +253,34 @@ function getCatalogBreadcrumbs(
 }
 
 /**
- * Returns the S3 url corresponding with the S3 Uri path type (file name or directory).
- * @param directory - Boolean indicating the S3 Uri path is a directory.
+ * Returns the S3 Uri pathname from the specified url.
+ * @param s3Uri - S3 Uri url.
+ * @returns the S3 Uri pathname.
+ */
+function getS3UriPathname(s3Uri: string): string | undefined {
+  const matches = s3Uri.match(/(\/\/.*?\/)(?<prefix>.*)/);
+  return matches?.groups?.prefix;
+}
+
+/**
+ * Returns the S3 url for the specified S3 Uri and appends any relevant search parameters.
+ * @param pathname - S3 Uri pathname.
  * @returns the S3 url.
  */
-function getS3UriUrl(directory: boolean): string {
-  if (directory) {
-    return S3_URI.DIRECTORY_URL;
+function getS3UriUrl(pathname: string): URL {
+  const pathnameIsDirectory = isDirectory(pathname);
+  let s3Url;
+  if (pathnameIsDirectory) {
+    s3Url = new URL(S3_URI.DIRECTORY_URL);
+  } else {
+    s3Url = new URL(S3_URI.FILE_URL);
   }
-  return S3_URI.FILE_URL;
+  s3Url.searchParams.append("region", "us-west-2");
+  s3Url.searchParams.append("prefix", pathname);
+  if (pathnameIsDirectory) {
+    s3Url.searchParams.append("showversions", "false");
+  }
+  return s3Url;
 }
 
 /**
@@ -277,6 +288,6 @@ function getS3UriUrl(directory: boolean): string {
  * @param pathname - S3 Uri pathname.
  * @returns true if the pathname is a directory.
  */
-function isPrefixDirectory(pathname: string): boolean {
-  return !/(\/\w+\.\w+)$/g.test(pathname);
+function isDirectory(pathname: string): boolean {
+  return !/\w+\.\w+$/g.test(pathname);
 }
