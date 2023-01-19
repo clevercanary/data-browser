@@ -7,14 +7,33 @@ export const mainColumn = [
   {
     children: [
       {
-        component: C.Markdown,
-        viewBuilder: T.buildExperimentDescription,
-      } as ComponentConfig<typeof C.Markdown, AltosLabsCatalogEntity>,
+        children: [
+          {
+            component: C.SectionTitle,
+            props: {
+              title: "Description",
+            },
+          },
+          {
+            children: [
+              {
+                component: C.MdxMarkdown,
+                viewBuilder: T.buildExperimentDescription,
+              } as ComponentConfig<
+                typeof C.MdxMarkdown,
+                AltosLabsCatalogEntity
+              >,
+            ],
+            component: C.SectionText,
+            props: {
+              component: "div",
+              variant: "text-body-400-2lines",
+            },
+          },
+        ],
+        component: C.SectionContent,
+      },
     ],
-    component: C.CollapsableSection,
-    props: {
-      collapsable: false,
-      title: "Description",
-    },
-  } as ComponentConfig<typeof C.CollapsableSection, AltosLabsCatalogEntity>,
+    component: C.GridPaperSection,
+  },
 ];
