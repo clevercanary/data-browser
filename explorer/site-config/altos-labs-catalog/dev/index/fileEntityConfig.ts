@@ -28,12 +28,12 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
     columns: [
       {
         componentConfig: {
-          component: Components.Cell,
-          viewBuilder: ViewBuilder.buildFilePath,
-        } as ComponentConfig<typeof Components.Cell>,
-        header: "File path",
+          component: Components.Link,
+          viewBuilder: ViewBuilder.buildS3URI,
+        } as ComponentConfig<typeof Components.Link>,
+        header: "S3 URI",
         sort: {
-          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.FILE_PATH,
+          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.S3_URI,
         },
         width: { max: "1fr", min: "160px" },
       },

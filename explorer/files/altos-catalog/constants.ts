@@ -4,20 +4,20 @@ export const FILE_NAME_TYPE = {
 };
 
 export const FILES_SOURCE_FIELD_KEY = {
-  FILE_PATH: "s3path",
   FILE_TYPE: "type",
+  S3_URI: "s3path",
   SHORTHAND: "shorthand",
 };
 
 export const FILES_SOURCE_FIELD_TYPE = {
-  FILE_PATH: "string",
   FILE_TYPE: "string",
+  S3_URI: "string",
   SHORTHAND: "string",
 };
 
 export const FILES_SOURCE_FIELD_PROPERTY = {
-  FILE_PATH: "filePath",
   FILE_TYPE: "fileType",
+  S3_URI: "S3URI",
   SHORTHAND: "shorthand",
 };
 
@@ -43,7 +43,7 @@ export const SOURCE_FIELD_TYPE = {
 
 export const SOURCE_FIELD_PROPERTY = {
   ASSAY: "assay",
-  DOI: "doi",
+  DOI: "DOI",
   NCBI_TAXONOMY_ID: "NCBITaxonomyID",
   SHORTHAND: "shorthand",
   SPECIES: "species",
