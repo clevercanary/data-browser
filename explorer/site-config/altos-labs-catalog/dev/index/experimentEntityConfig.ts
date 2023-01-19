@@ -136,5 +136,6 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
   route: "experiments",
   staticEntityImportMapper: AltosLabsExperimentInputMapper,
   staticLoad: true,
-  staticLoadFile: "files/altos-catalog/out/altos-catalog-experiment.json",
+  staticLoadFile:
+    "../../altos-data-browser/files/altos-catalog/out/altos-catalog-experiment.json",
 };
