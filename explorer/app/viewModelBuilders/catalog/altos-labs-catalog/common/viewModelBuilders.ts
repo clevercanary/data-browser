@@ -45,9 +45,9 @@ export const buildDOI = (
   altosLabsCatalogEntity: AltosLabsCatalogEntity
 ): React.ComponentProps<typeof C.Link> => {
   return {
-    label: altosLabsCatalogEntity.doi,
+    label: altosLabsCatalogEntity.DOI,
     target: ANCHOR_TARGET.BLANK,
-    url: altosLabsCatalogEntity.doi,
+    url: altosLabsCatalogEntity.DOI,
   };
 };
 
@@ -72,13 +72,13 @@ export const buildExperimentDescription = (
 export const buildExperimentDetails = (
   altosLabsCatalogEntity: AltosLabsCatalogEntity
 ): React.ComponentProps<typeof C.KeyValuePairs> => {
-  const { assay, doi, experimentType, shorthand, species, tissue } =
+  const { assay, DOI, experimentType, shorthand, species, tissue } =
     altosLabsCatalogEntity;
   const keyValuePairs = new Map<Key, Value>();
   keyValuePairs.set("Assay", stringifyValues(assay));
   keyValuePairs.set(
-    "Doi",
-    C.Link({ label: doi, target: ANCHOR_TARGET.BLANK, url: doi })
+    "DOI",
+    C.Link({ label: DOI, target: ANCHOR_TARGET.BLANK, url: DOI })
   );
   keyValuePairs.set("Experiment Type", experimentType);
   keyValuePairs.set("Shorthand", shorthand);
@@ -149,27 +149,27 @@ export const buildInitiative = (
 };
 
 /**
- * Build props for S3 URI cell component from the given Altos Labs entity.
+ * Build props for S3URI cell component from the given Altos Labs entity.
  * @param altosLabsCatalogFile - Altos Labs catalog file entity.
- * @returns Model to be used as props for the S3 URI cell.
+ * @returns Model to be used as props for the S3URI cell.
  */
-export const buildS3Uri = (
+export const buildS3URI = (
   altosLabsCatalogFile: AltosLabsCatalogFile
 ): React.ComponentProps<typeof C.Link> => {
-  const { s3Uri } = altosLabsCatalogFile;
-  if (/^s3:\/\//g.test(s3Uri)) {
-    const s3UriPathname = getS3UriPathname(s3Uri);
-    if (s3UriPathname) {
-      const s3Url = getS3UriUrl(s3UriPathname);
+  const { S3URI } = altosLabsCatalogFile;
+  if (/^s3:\/\//g.test(S3URI)) {
+    const S3URIPathname = getS3URIPathname(S3URI);
+    if (S3URIPathname) {
+      const S3URL = getS3URIUrl(S3URIPathname);
       return {
-        label: s3Uri,
+        label: S3URI,
         target: ANCHOR_TARGET.BLANK,
-        url: s3Url.href,
+        url: S3URL.href,
       };
     }
   }
   return {
-    label: s3Uri,
+    label: S3URI,
     url: "",
   };
 };
@@ -253,39 +253,39 @@ function getCatalogBreadcrumbs(
 }
 
 /**
- * Returns the S3 Uri pathname from the specified url.
- * @param s3Uri - S3 Uri url.
- * @returns the S3 Uri pathname.
+ * Returns the S3URI pathname from the S3URI.
+ * @param S3URI - S3URI.
+ * @returns the S3URI pathname.
  */
-function getS3UriPathname(s3Uri: string): string | undefined {
-  const matches = s3Uri.match(/(\/\/.*?\/)(?<prefix>.*)/);
+function getS3URIPathname(S3URI: string): string | undefined {
+  const matches = S3URI.match(/(\/\/.*?\/)(?<prefix>.*)/);
   return matches?.groups?.prefix;
 }
 
 /**
- * Returns the S3 url for the specified S3 Uri and appends any relevant search parameters.
- * @param pathname - S3 Uri pathname.
+ * Returns the S3 url for the specified S3URI pathname and appends any relevant search parameters.
+ * @param pathname - S3URI pathname.
  * @returns the S3 url.
  */
-function getS3UriUrl(pathname: string): URL {
+function getS3URIUrl(pathname: string): URL {
   const pathnameIsDirectory = isDirectory(pathname);
-  let s3Url;
+  let S3URL;
   if (pathnameIsDirectory) {
-    s3Url = new URL(S3_URI.DIRECTORY_URL);
+    S3URL = new URL(S3_URI.DIRECTORY_URL);
   } else {
-    s3Url = new URL(S3_URI.FILE_URL);
+    S3URL = new URL(S3_URI.FILE_URL);
   }
-  s3Url.searchParams.append("region", "us-west-2");
-  s3Url.searchParams.append("prefix", pathname);
+  S3URL.searchParams.append("region", "us-west-2");
+  S3URL.searchParams.append("prefix", pathname);
   if (pathnameIsDirectory) {
-    s3Url.searchParams.append("showversions", "false");
+    S3URL.searchParams.append("showversions", "false");
   }
-  return s3Url;
+  return S3URL;
 }
 
 /**
  * Returns true if the pathname is a directory.
- * @param pathname - S3 Uri pathname.
+ * @param pathname - Pathname.
  * @returns true if the pathname is a directory.
  */
 function isDirectory(pathname: string): boolean {

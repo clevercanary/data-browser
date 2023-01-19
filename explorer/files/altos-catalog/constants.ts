@@ -17,7 +17,7 @@ export const FILES_SOURCE_FIELD_TYPE = {
 
 export const FILES_SOURCE_FIELD_PROPERTY = {
   FILE_TYPE: "fileType",
-  S3_URI: "s3Uri",
+  S3_URI: "S3URI",
   SHORTHAND: "shorthand",
 };
 
@@ -43,7 +43,7 @@ export const SOURCE_FIELD_TYPE = {
 
 export const SOURCE_FIELD_PROPERTY = {
   ASSAY: "assay",
-  DOI: "doi",
+  DOI: "DOI",
   NCBI_TAXONOMY_ID: "NCBITaxonomyID",
   SHORTHAND: "shorthand",
   SPECIES: "species",

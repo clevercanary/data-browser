@@ -7,7 +7,7 @@ import { EXPERIMENT_TYPE } from "../../../../../files/altos-catalog/entities";
 export interface AltosLabsCatalog {
   assay: string[];
   description: string;
-  doi: string;
+  DOI: string;
   experimentType: EXPERIMENT_TYPE;
   initiative: string;
   NCBITaxonomyID: string[];
@@ -22,18 +22,18 @@ export type AltosLabsCatalogEntity =
   | AltosLabsCatalogFile;
 
 export interface AltosLabsCatalogExperiment extends AltosLabsCatalog {
-  s3Uris: string[];
+  S3URIs: string[];
 }
 
 export interface AltosLabsCatalogFile {
   assay: string[];
   description: string;
-  doi: string;
+  DOI: string;
   experimentType: EXPERIMENT_TYPE;
   fileType: string;
   initiative: string;
   NCBITaxonomyID?: string[];
-  s3Uri: string;
+  S3URI: string;
   shorthand: string;
   species: string[];
   tissue: string[];

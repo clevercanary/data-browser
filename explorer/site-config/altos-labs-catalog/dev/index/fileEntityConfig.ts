@@ -29,7 +29,7 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
       {
         componentConfig: {
           component: Components.Link,
-          viewBuilder: ViewBuilder.buildS3Uri,
+          viewBuilder: ViewBuilder.buildS3URI,
         } as ComponentConfig<typeof Components.Link>,
         header: "S3 URI",
         sort: {
