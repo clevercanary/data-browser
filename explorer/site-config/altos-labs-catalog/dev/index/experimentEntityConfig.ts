@@ -78,6 +78,7 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
           viewBuilder: ViewBuilder.buildDOI,
         } as ComponentConfig<typeof Components.Link>,
         header: "DOI",
+        hiddenColumn: true,
         sort: {
           default: true,
           sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.DOI,
