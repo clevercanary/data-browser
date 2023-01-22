@@ -1,7 +1,7 @@
 import {
   sanitizeString,
   sanitizeStringArray,
-} from "../../../../viewModelBuilders/common/utils";
+} from "@clevercanary/data-explorer/lib/viewModelBuilders/common/utils";
 import {
   AltosLabsCatalogEntity,
   AltosLabsCatalogExperiment,
