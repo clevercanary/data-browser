@@ -1,6 +1,7 @@
 export const ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS = {
   ASSAY: "assay",
   DOI: "doi",
+  EXPERIMENT: "title",
   EXPERIMENT_TYPE: "experimentType",
   FILE_TYPE: "fileType",
   INITIATIVE: "initiative",
@@ -8,5 +9,4 @@ export const ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS = {
   SHORTHAND: "shorthand",
   SPECIES: "species",
   TISSUE: "tissue",
-  TITLE: "title",
 };

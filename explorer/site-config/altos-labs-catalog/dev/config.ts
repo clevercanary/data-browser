@@ -21,6 +21,10 @@ const config: SiteConfig = {
       label: "DOI",
     },
     {
+      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.EXPERIMENT,
+      label: "Experiment",
+    },
+    {
       key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.EXPERIMENT_TYPE,
       label: "Experiment Type",
     },
@@ -39,10 +43,6 @@ const config: SiteConfig = {
     {
       key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.TISSUE,
       label: "Tissue",
-    },
-    {
-      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.TITLE,
-      label: "Title",
     },
   ],
   dataSource: {

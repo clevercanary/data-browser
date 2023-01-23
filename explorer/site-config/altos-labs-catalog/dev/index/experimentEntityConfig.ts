@@ -63,12 +63,12 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
       {
         componentConfig: {
           component: Components.Link,
-          viewBuilder: ViewBuilder.buildTitle,
+          viewBuilder: ViewBuilder.buildExperiment,
         } as ComponentConfig<typeof Components.Link>,
-        header: "Title",
+        header: "Experiment",
         sort: {
           default: true,
-          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.TITLE,
+          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.EXPERIMENT,
         },
         width: { max: "1.5fr", min: "200px" },
       },

@@ -52,6 +52,21 @@ export const buildDOI = (
 };
 
 /**
+ * Build props for experiment cell component from the given Altos Labs entity.
+ * @param altosLabsCatalogEntity - Altos Labs catalog entity.
+ * @returns Model to be used as props for the experiment cell.
+ */
+export const buildExperiment = (
+  altosLabsCatalogEntity: AltosLabsCatalogEntity
+): React.ComponentProps<typeof C.Link> => {
+  const { shorthand, title } = altosLabsCatalogEntity;
+  return {
+    label: title,
+    url: shorthand ? `/experiments/${shorthand}` : "",
+  };
+};
+
+/**
  * Build props for MdxMarkdown component from the given Altos Labs entity.
  * @param altosLabsCatalogEntity - Altos Labs catalog entity.
  * @returns Model to be used as props for the MdxMarkdown component.
@@ -216,21 +231,6 @@ export const buildTissue = (
   return {
     label: getPluralizedMetadataLabel(METADATA_KEY.TISSUE),
     values: altosLabsCatalogEntity.tissue,
-  };
-};
-
-/**
- * Build props for title cell component from the given Altos Labs entity.
- * @param altosLabsCatalogEntity - Altos Labs catalog entity.
- * @returns Model to be used as props for the title cell.
- */
-export const buildTitle = (
-  altosLabsCatalogEntity: AltosLabsCatalogEntity
-): React.ComponentProps<typeof C.Link> => {
-  const { shorthand, title } = altosLabsCatalogEntity;
-  return {
-    label: title,
-    url: shorthand ? `/experiments/${shorthand}` : "",
   };
 };
 
