@@ -1,14 +1,23 @@
 import {
   ColumnSort,
-  HeaderGroup,
   InitialTableState,
   memo,
+  OnChangeFn,
   Row,
   RowData,
   SortDirection,
   Table,
 } from "@tanstack/react-table";
+import { Column } from "@tanstack/table-core";
+import { VisibilityState } from "@tanstack/table-core/src/features/Visibility";
+import { ChangeEvent } from "react";
 import { SelectCategory } from "../../../common/entities";
+import {
+  ColumnConfig,
+  GridTrackMinMax,
+  GridTrackSize,
+} from "../../../config/common/entities";
+import { CheckboxMenuItem } from "../../CheckboxMenu/checkboxMenu";
 
 /**
  * Internal model of a category term count keyed by category term.
@@ -44,33 +53,28 @@ export function arrIncludesSome<T>(
 
 /**
  * Build view-specific models from react table faceted values function.
- * @param headerGroups - Header groups for the table.
+ * @param columns - Table columns.
  * @returns Array of category views objects.
  */
-export function buildCategoryViews<T>(
-  headerGroups: HeaderGroup<T>[]
-): SelectCategory[] {
+export function buildCategoryViews<T>(columns: Column<T>[]): SelectCategory[] {
   const categoryViews: SelectCategory[] = [];
-  for (const headerGroup of headerGroups) {
-    for (const header of headerGroup.headers) {
-      const { column } = header;
-      const { columnDef, getCanFilter, getFacetedUniqueValues, id } = column;
-      const { header: columnHeader } = columnDef;
-      if (getCanFilter()) {
-        const key = id;
-        const label = columnHeader as string;
-        const values = [...getFacetedUniqueValues()].map(([value, count]) => ({
-          count,
-          key: value,
-          label: value,
-          selected: false, // Selected state updated in reducer.
-        }));
-        categoryViews.push({
-          key,
-          label,
-          values: values,
-        });
-      }
+  for (const column of columns) {
+    const { columnDef, getCanFilter, getFacetedUniqueValues, id } = column;
+    const { header: columnHeader } = columnDef;
+    if (getCanFilter()) {
+      const key = id;
+      const label = columnHeader as string;
+      const values = [...getFacetedUniqueValues()].map(([value, count]) => ({
+        count,
+        key: value,
+        label: value,
+        selected: false, // Selected state updated in reducer.
+      }));
+      categoryViews.push({
+        key,
+        label,
+        values: values,
+      });
     }
   }
   return categoryViews;
@@ -88,6 +92,43 @@ export function getColumnSortDirection(
     return;
   }
   return sortDirection;
+}
+
+/**
+ * Returns edit column checkbox menu options.
+ * @param columns - Table columns.
+ * @param visibilityState - Table visibility state.
+ * @param setColumnVisibility - Updater function updating the column visibility state.
+ * @param initialVisibilityState - Initial table visibility state.
+ * @returns a list of edit column options.
+ */
+export function getEditColumnOptions<T>(
+  columns: Column<T>[],
+  visibilityState: VisibilityState,
+  setColumnVisibility: OnChangeFn<VisibilityState>,
+  initialVisibilityState?: VisibilityState
+): CheckboxMenuItem[] {
+  return columns.reduce(
+    (acc, { columnDef: { header }, getCanHide, getIsVisible, id }) => {
+      if (getCanHide()) {
+        const option: CheckboxMenuItem = {
+          checked: getIsVisible(),
+          disabled: initialVisibilityState?.[id] || false,
+          label: header as string, // TODO revisit type assertion here
+          onChange: (event: ChangeEvent<HTMLInputElement>): void => {
+            setColumnVisibility({
+              ...visibilityState,
+              [id]: event.target.checked,
+            });
+          },
+          value: id,
+        };
+        acc.push(option);
+      }
+      return acc;
+    },
+    [] as CheckboxMenuItem[]
+  );
 }
 
 /**
@@ -131,15 +172,37 @@ export function getFacetedUniqueValuesWithArrayValues<T extends RowData>(): (
 }
 
 /**
+ * Generates a string value for the CSS property grid-template-columns.
+ * Defines grid table track sizing (for each visible column).
+ * @param columns - Table columns.
+ * @returns string value for the css property grid-template-columns.
+ */
+export function getGridTemplateColumns<T>(columns: Column<T>[]): string {
+  return columns
+    .map(({ columnDef: { meta } }) => {
+      const width = meta?.width;
+      if (isGridTrackMinMax(width)) {
+        return `minmax(${width.min}, ${width.max})`;
+      }
+      return width;
+    })
+    .join(" ");
+}
+
+/**
  * Returns initial table state.
+ * @param columns - Column configuration.
  * @param defaultSort - Column sort configuration.
  * @returns initial table state.
  */
 export function getInitialState(
+  columns: ColumnConfig[],
   defaultSort: ColumnSort | undefined
 ): InitialTableState {
+  const columnVisibility = getDefaultColumnVisibility(columns);
   const sorting = getInitialTableStateSorting(defaultSort);
   return {
+    columnVisibility,
     sorting,
   };
 }
@@ -170,6 +233,27 @@ export function isColumnSortActive(
     return sortDirection;
   }
   return true;
+}
+
+/**
+ * Returns the initial table visibility state for the specified column configuration.
+ * @param columns - Column configuration.
+ * @returns initial table visibility state.
+ */
+function getDefaultColumnVisibility(columns: ColumnConfig[]): VisibilityState {
+  return columns.reduce((acc, { columnVisible = true, id }) => {
+    Object.assign(acc, { [id]: columnVisible });
+    return acc;
+  }, {});
+}
+
+/**
+ * Determine if the given track size width is a size range.
+ * @param width - Grid table track size.
+ * @returns true if the given track size width is a size range.
+ */
+function isGridTrackMinMax(width?: GridTrackSize): width is GridTrackMinMax {
+  return (width as GridTrackMinMax).min !== undefined;
 }
 
 /**

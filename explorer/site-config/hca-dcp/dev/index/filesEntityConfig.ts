@@ -38,7 +38,7 @@ export const filesEntityConfig: EntityConfig<FilesResponse> = {
           viewBuilder: filesBuildFileDownload,
         } as ComponentConfig<typeof Components.AzulFileDownload>,
         disableSorting: true,
-        editable: false,
+        enableHiding: false,
         header: HCA_DCP_CATEGORY_LABEL.AZUL_FILE_DOWNLOAD,
         id: HCA_DCP_CATEGORY_KEY.AZUL_FILE_DOWNLOAD,
         width: "auto",
@@ -98,13 +98,13 @@ export const filesEntityConfig: EntityConfig<FilesResponse> = {
         width: { max: "1fr", min: "120px" },
       },
       {
+        columnVisible: false,
         componentConfig: {
           component: Components.Text,
           viewBuilder: projectsBuildDevelopmentStage,
         } as ComponentConfig<typeof Components.Text>,
         disableSorting: true,
         header: HCA_DCP_CATEGORY_LABEL.DEVELOPMENT_STAGE,
-        hiddenColumn: true,
         id: HCA_DCP_CATEGORY_KEY.DEVELOPMENT_STAGE,
         width: { max: "1fr", min: "148px" },
       },

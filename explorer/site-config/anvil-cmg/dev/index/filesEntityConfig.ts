@@ -32,7 +32,7 @@ export const filesEntityConfig: EntityConfig<FilesResponse> = {
           viewBuilder: ViewBuilder.buildFileDownload,
         } as ComponentConfig<typeof Components.AzulFileDownload>,
         disableSorting: true,
-        editable: false,
+        enableHiding: false,
         header: ANVIL_CMG_CATEGORY_LABEL.AZUL_FILE_DOWNLOAD,
         id: ANVIL_CMG_CATEGORY_KEY.AZUL_FILE_DOWNLOAD,
         width: "auto",

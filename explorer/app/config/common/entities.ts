@@ -124,13 +124,13 @@ export interface ColumnConfig<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This config model is part of a generic array
   C extends keyof JSX.IntrinsicElements | JSXElementConstructor<any> = any
 > {
+  columnVisible?: boolean; // Column is visible. Default is "true".
   componentConfig: ComponentConfig<C, T>;
   disableSorting?: boolean; // Disables sorting for the column.
-  editable?: boolean; // Determines editability of column via "Edit Columns" functionality (default is "true").
+  enableHiding?: boolean; // Enables hiding of column. Column is available for "Edit Columns" functionality. Default is "true".
   header: string;
-  hiddenColumn?: boolean; //TODO rename to hidden by default or similar
   id: string; // The unique identifier for the column.
-  tooltip?: string;
+  tooltip?: string; // TODO review need to define `tooltip` field - it is currently not in use.
   width: GridTrackSize;
 }
 
