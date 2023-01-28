@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 DIR="./site-config/$1/images/favicons/"
 PUBLIC_DIR="./public/favicons/"
