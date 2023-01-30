@@ -38,11 +38,9 @@ export const datasetsEntityConfig: EntityConfig<DatasetsResponse> = {
           component: Components.Link,
           viewBuilder: ViewBuilder.buildDatasetTitle,
         } as ComponentConfig<typeof Components.Link>,
+        defaultSorting: true,
         header: "Dataset",
-        sort: {
-          default: true,
-          sortKey: "datasets.title",
-        },
+        id: "datasets.title",
         width: { max: "2fr", min: "200px" },
       },
       {
@@ -51,9 +49,7 @@ export const datasetsEntityConfig: EntityConfig<DatasetsResponse> = {
           viewBuilder: ViewBuilder.buildRegisteredIdentifier,
         } as ComponentConfig<typeof Components.Cell>,
         header: "Identifier",
-        sort: {
-          sortKey: "datasets.registered_identifier",
-        },
+        id: "datasets.registered_identifier",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -62,9 +58,7 @@ export const datasetsEntityConfig: EntityConfig<DatasetsResponse> = {
           viewBuilder: ViewBuilder.buildConsentGroup,
         } as ComponentConfig<typeof Components.Cell>,
         header: "Consent Group",
-        sort: {
-          sortKey: "datasets.consent_group",
-        },
+        id: "datasets.consent_group",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -73,9 +67,7 @@ export const datasetsEntityConfig: EntityConfig<DatasetsResponse> = {
           viewBuilder: ViewBuilder.buildOrganismTypes,
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "Organism Type",
-        sort: {
-          sortKey: "donors.organism_type",
-        },
+        id: "donors.organism_type",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -84,9 +76,7 @@ export const datasetsEntityConfig: EntityConfig<DatasetsResponse> = {
           viewBuilder: ViewBuilder.buildPhenotypicSexes,
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "Phenotypic Sex",
-        sort: {
-          sortKey: "donors.phenotypic_sex",
-        },
+        id: "donors.phenotypic_sex",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -95,9 +85,7 @@ export const datasetsEntityConfig: EntityConfig<DatasetsResponse> = {
           viewBuilder: ViewBuilder.buildReportedEthnicities,
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "Reported Ethnicity",
-        sort: {
-          sortKey: "donors.reported_ethnicity",
-        },
+        id: "donors.reported_ethnicity",
         width: { max: "1fr", min: "200px" },
       },
       // {
@@ -106,9 +94,7 @@ export const datasetsEntityConfig: EntityConfig<DatasetsResponse> = {
       //     viewBuilder: ViewBuilder.buildPrepMaterialNames,
       //   } as ComponentConfig<typeof Components.NTagCell>,
       //   header: "Library Preparation",
-      //   sort: {
-      //     sortKey: "prep_material_name",
-      //   },
+      //   id: "prep_material_name",
       //   width: { max: "1fr", min: "200px" },
       // },
       {
@@ -118,9 +104,7 @@ export const datasetsEntityConfig: EntityConfig<DatasetsResponse> = {
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "Data Modality",
         hiddenColumn: true,
-        sort: {
-          sortKey: "activities.data_modality",
-        },
+        id: "activities.data_modality",
         width: { max: "1fr", min: "148px" },
       },
     ],

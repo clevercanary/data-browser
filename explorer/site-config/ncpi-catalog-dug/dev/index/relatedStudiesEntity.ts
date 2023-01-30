@@ -24,9 +24,7 @@ export const relatedStudiesEntity: EntityConfig<DugSearchResponse> = {
           viewBuilder: ViewBuilder.buildDbGapId,
         } as ComponentConfig<typeof C.Cell>,
         header: "dbGap Id",
-        sort: {
-          sortKey: "phsId", // TODO Validate this is correct
-        },
+        id: "phsId", // TODO Validate this is correct
         width: { max: "1fr", min: "120px" },
       },
     ],

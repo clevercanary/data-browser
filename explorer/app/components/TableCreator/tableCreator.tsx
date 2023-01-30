@@ -6,10 +6,10 @@ import {
 } from "app/config/common/entities";
 import { useEditColumns } from "app/hooks/useEditColumns";
 import React, { useMemo } from "react";
-import { Pagination, Sort } from "../../common/entities";
+import { Pagination } from "../../common/entities";
 import { ComponentCreator } from "../ComponentCreator/ComponentCreator";
 import { Loading } from "../Loading/loading";
-import { arrIncludesSome } from "../Table/common/utils";
+import { arrIncludesSome, getInitialState } from "../Table/common/utils";
 import { Table } from "../Table/table";
 
 interface TableCreatorProps<T> {
@@ -21,7 +21,6 @@ interface TableCreatorProps<T> {
   pages: number;
   pageSize: number;
   pagination?: Pagination;
-  sort?: Sort;
   staticallyLoaded?: boolean;
   total?: number;
 }
@@ -74,7 +73,6 @@ export const TableCreator = <T extends object>({
   pages,
   pageSize,
   pagination,
-  sort,
   staticallyLoaded,
   total,
 }: TableCreatorProps<T>): JSX.Element => {
@@ -83,17 +81,17 @@ export const TableCreator = <T extends object>({
 
   const reactVisibleColumns: ColumnDef<T>[] = useMemo(
     () =>
-      visibleColumns.map((columnConfig) => ({
-        accessorKey: columnConfig.sort?.sortKey,
+      visibleColumns.map(({ enableSorting = true, ...columnConfig }) => ({
+        accessorKey: columnConfig.id,
         cell: createCell(columnConfig),
-        enableSorting: !!columnConfig.sort,
+        enableSorting,
         filterFn: arrIncludesSome,
         header: columnConfig.header,
-        id: columnConfig.sort?.sortKey,
+        id: columnConfig.id,
       })),
     [visibleColumns]
   );
-
+  const initialState = getInitialState(columns);
   return (
     <div>
       <Loading loading={loading || false} />
@@ -103,12 +101,12 @@ export const TableCreator = <T extends object>({
         disablePagination={disablePagination}
         editColumns={editColumns}
         gridTemplateColumns={gridTemplateColumns}
+        initialState={initialState}
         items={items}
         loading={loading}
         pages={pages}
         pageSize={pageSize}
         pagination={pagination}
-        sort={sort}
         staticallyLoaded={staticallyLoaded}
         total={total}
       />

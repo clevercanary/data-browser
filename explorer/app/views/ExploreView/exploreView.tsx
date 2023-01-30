@@ -117,7 +117,6 @@ function renderEntities(
     loading,
     paginationState,
     relatedListItems,
-    sortState,
     tabValue,
   } = exploreState;
   const { list, listView, staticLoad } = entityConfig;
@@ -168,7 +167,6 @@ function renderEntities(
       pages={paginationState.pages}
       pageSize={paginationState.pageSize}
       pagination={undefined}
-      sort={sortState}
       staticallyLoaded={staticLoad}
       total={paginationState.rows}
     />

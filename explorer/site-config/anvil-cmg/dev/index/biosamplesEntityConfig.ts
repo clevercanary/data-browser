@@ -26,11 +26,9 @@ export const biosamplesEntityConfig: EntityConfig<BioSamplesResponse> = {
           component: Components.Cell,
           viewBuilder: ViewBuilders.buildBioSampleId,
         } as ComponentConfig<typeof Components.Cell>,
+        defaultSorting: true,
         header: "Biosample Id",
-        sort: {
-          default: true,
-          sortKey: "biosamples.biosample_id",
-        },
+        id: "biosamples.biosample_id",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -39,9 +37,7 @@ export const biosamplesEntityConfig: EntityConfig<BioSamplesResponse> = {
           viewBuilder: ViewBuilders.buildBioSampleType,
         } as ComponentConfig<typeof Components.Cell>,
         header: "Biosample Type",
-        sort: {
-          sortKey: "biosamples.biosample_type",
-        },
+        id: "biosamples.biosample_type",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -50,9 +46,7 @@ export const biosamplesEntityConfig: EntityConfig<BioSamplesResponse> = {
           viewBuilder: ViewBuilders.buildOrganismTypes,
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "Organism Type",
-        sort: {
-          sortKey: "donors.organism_type",
-        },
+        id: "donors.organism_type",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -61,9 +55,7 @@ export const biosamplesEntityConfig: EntityConfig<BioSamplesResponse> = {
           viewBuilder: ViewBuilders.buildPhenotypicSexes,
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "Phenotypic Sex",
-        sort: {
-          sortKey: "donors.phenotypic_sex",
-        },
+        id: "donors.phenotypic_sex",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -72,9 +64,7 @@ export const biosamplesEntityConfig: EntityConfig<BioSamplesResponse> = {
           viewBuilder: ViewBuilders.buildAnatomicalSite,
         } as ComponentConfig<typeof Components.Cell>,
         header: "Anatomical Site",
-        sort: {
-          sortKey: "biosamples.anatomical_site",
-        },
+        id: "biosamples.anatomical_site",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -83,9 +73,7 @@ export const biosamplesEntityConfig: EntityConfig<BioSamplesResponse> = {
           viewBuilder: ViewBuilders.buildDatasetTitles,
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "Dataset",
-        sort: {
-          sortKey: "datasets.title",
-        },
+        id: "datasets.title",
         width: { max: "1fr", min: "200px" },
       },
     ],

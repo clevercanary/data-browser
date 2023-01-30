@@ -26,11 +26,9 @@ export const librariesEntityConfig: EntityConfig<LibrariesResponse> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildLibraryId,
         } as ComponentConfig<typeof Components.Cell>,
+        defaultSorting: true,
         header: "Library Id",
-        sort: {
-          default: true,
-          sortKey: "library_id",
-        },
+        id: "library_id",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -39,9 +37,7 @@ export const librariesEntityConfig: EntityConfig<LibrariesResponse> = {
           viewBuilder: ViewBuilder.buildPrepMaterialName,
         } as ComponentConfig<typeof Components.Cell>,
         header: "Prep Material Name",
-        sort: {
-          sortKey: "prep_material_name",
-        },
+        id: "prep_material_name",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -50,9 +46,7 @@ export const librariesEntityConfig: EntityConfig<LibrariesResponse> = {
           viewBuilder: ViewBuilder.buildBioSampleTypes,
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "BioSample Type",
-        sort: {
-          sortKey: "biosample_type",
-        },
+        id: "biosample_type",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -61,9 +55,7 @@ export const librariesEntityConfig: EntityConfig<LibrariesResponse> = {
           viewBuilder: ViewBuilder.buildDatasetIds,
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "Dataset Name",
-        sort: {
-          sortKey: "dataset_id",
-        },
+        id: "dataset_id",
         width: { max: "1fr", min: "200px" },
       },
     ],

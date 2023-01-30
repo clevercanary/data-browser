@@ -3,7 +3,11 @@ import {
   AzulSearchIndex,
   SelectedFilter,
 } from "../../apis/azul/common/entities";
-import { config, getDefaultSort, getEntityConfig } from "../../config/config";
+import {
+  config,
+  getDefaultSortState,
+  getEntityConfig,
+} from "../../config/config";
 import {
   buildCategoryViews,
   buildNextFilterState,
@@ -61,10 +65,7 @@ export const ExploreStateContext = createContext<IExploreStateContext>({
     loading: false,
     paginationState: defaultPaginationState,
     relatedListItems: undefined,
-    sortState: {
-      sortKey: getDefaultSort(getEntityConfig(defaultEntity)) ?? "",
-      sortOrder: "asc",
-    }, // TODO remove ??
+    sortState: getDefaultSortState(getEntityConfig(defaultEntity)),
     tabValue: defaultEntity,
   },
 });
@@ -96,10 +97,7 @@ export function ExploreStateProvider({
     loading: true,
     paginationState: defaultPaginationState,
     relatedListItems: undefined,
-    sortState: {
-      sortKey: getDefaultSort(getEntityConfig(entityListType)) ?? "", // TODO remove ??
-      sortOrder: "asc",
-    },
+    sortState: getDefaultSortState(getEntityConfig(entityListType)),
     tabValue: entityListType,
   });
 
@@ -331,11 +329,7 @@ function exploreReducer(
       if (payload === state.tabValue) {
         return state;
       }
-      const nextSort: Sort = {
-        sortKey: getDefaultSort(getEntityConfig(payload)),
-        sortOrder: "asc",
-      };
-
+      const nextSort = getDefaultSortState(getEntityConfig(payload));
       const { staticLoad } = getEntityConfig(payload);
       const listStaticLoad = staticLoad;
 

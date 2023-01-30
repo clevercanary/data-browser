@@ -78,8 +78,7 @@ export interface Pagination {
  * Generic sort model used by both static and dynamic lists.
  */
 export interface Sort {
-  // sort: (key?: string, sortOrder?: SortOrderType) => void;
-  sortKey: string;
+  sortKey: string | undefined;
   sortOrder: SortOrderType;
 }
 

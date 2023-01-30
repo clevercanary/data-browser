@@ -12,7 +12,9 @@ import ncpiDugMapDev from "../../site-config/ncpi-catalog-dug/dev/config";
 import ncpiDugMapProd from "../../site-config/ncpi-catalog-dug/prod/config";
 import ncpiMapDev from "../../site-config/ncpi-catalog/dev/config";
 import ncpiMapProd from "../../site-config/ncpi-catalog/prod/config";
+import { Sort } from "../common/entities";
 import { Tab } from "../components/common/Tabs/tabs";
+import { getDefaultSortKey } from "../components/Table/common/utils";
 import { EntityConfig, SiteConfig } from "./common/entities";
 
 const CONFIGS: { [k: string]: SiteConfig } = {
@@ -86,15 +88,13 @@ export const getTabs = (): Tab[] => {
     value: route,
   }));
 };
+
 /**
- * Get the default sort for the given entity config.
- * @param entityConfig - the entity config to search.
- * @returns - the default sort if it is configured or the first column if
- * no default is set.
+ * Returns the default sort state for the given entity config.
+ * @param entityConfig - Entity configuration.
+ * @returns default sort state.
  */
-export const getDefaultSort = (entityConfig: EntityConfig): string => {
-  return (
-    entityConfig.list.columns.find((column) => column.sort?.default)?.sort
-      ?.sortKey ?? entityConfig.list.columns[0].sort.sortKey
-  );
+export const getDefaultSortState = (entityConfig: EntityConfig): Sort => {
+  const sortKey = getDefaultSortKey(entityConfig.list.columns);
+  return { sortKey, sortOrder: "asc" };
 };

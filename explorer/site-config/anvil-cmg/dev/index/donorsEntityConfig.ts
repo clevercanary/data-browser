@@ -26,11 +26,9 @@ export const donorsEntityConfig: EntityConfig<DonorsResponse> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildDonorId,
         } as ComponentConfig<typeof Components.Cell>,
+        defaultSorting: true,
         header: "Donor Id",
-        sort: {
-          default: true,
-          sortKey: "donors.donor_id",
-        },
+        id: "donors.donor_id",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -39,9 +37,7 @@ export const donorsEntityConfig: EntityConfig<DonorsResponse> = {
           viewBuilder: ViewBuilder.buildOrganismType,
         } as ComponentConfig<typeof Components.Cell>,
         header: "Organism Type",
-        sort: {
-          sortKey: "donors.organism_type",
-        },
+        id: "donors.organism_type",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -50,9 +46,7 @@ export const donorsEntityConfig: EntityConfig<DonorsResponse> = {
           viewBuilder: ViewBuilder.buildPhenotypicSex,
         } as ComponentConfig<typeof Components.Cell>,
         header: "Phenoypic Sex",
-        sort: {
-          sortKey: "donors.phenotypic_sex",
-        },
+        id: "donors.phenotypic_sex",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -61,9 +55,7 @@ export const donorsEntityConfig: EntityConfig<DonorsResponse> = {
           viewBuilder: ViewBuilder.buildReportedEthnicity,
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "Reported Ethnicity",
-        sort: {
-          sortKey: "donors.reported_ethnicity",
-        },
+        id: "donors.reported_ethnicity",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -72,9 +64,7 @@ export const donorsEntityConfig: EntityConfig<DonorsResponse> = {
           viewBuilder: ViewBuilder.buildDatasetTitles,
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "Dataset",
-        sort: {
-          sortKey: "datasets.title",
-        },
+        id: "datasets.title",
         width: { max: "1fr", min: "200px" },
       },
     ],

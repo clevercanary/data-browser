@@ -26,11 +26,9 @@ export const activitiesEntityConfig: EntityConfig<ActivitiesResponse> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildDocumentId,
         } as ComponentConfig<typeof Components.Cell>,
+        defaultSorting: true,
         header: "Document Id",
-        sort: {
-          default: true,
-          sortKey: "activities.document_id",
-        },
+        id: "activities.document_id",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -39,9 +37,7 @@ export const activitiesEntityConfig: EntityConfig<ActivitiesResponse> = {
           viewBuilder: ViewBuilder.buildActivityType,
         } as ComponentConfig<typeof Components.Cell>,
         header: "Activity Type",
-        sort: {
-          sortKey: "activities.activity_type",
-        },
+        id: "activities.activity_type",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -50,9 +46,7 @@ export const activitiesEntityConfig: EntityConfig<ActivitiesResponse> = {
           viewBuilder: ViewBuilder.buildDataModality,
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "Data Modality",
-        sort: {
-          sortKey: "activities.data_modality",
-        },
+        id: "activities.data_modality",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -61,9 +55,7 @@ export const activitiesEntityConfig: EntityConfig<ActivitiesResponse> = {
           viewBuilder: ViewBuilder.buildBioSampleTypes,
         } as ComponentConfig<typeof Components.Cell>,
         header: "BioSample Type",
-        sort: {
-          sortKey: "biosamples.biosample_type",
-        },
+        id: "biosamples.biosample_type",
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -72,9 +64,7 @@ export const activitiesEntityConfig: EntityConfig<ActivitiesResponse> = {
           viewBuilder: ViewBuilder.buildDatasetTitles,
         } as ComponentConfig<typeof Components.NTagCell>,
         header: "Dataset",
-        sort: {
-          sortKey: "datasets.title",
-        },
+        id: "datasets.title",
         width: { max: "1fr", min: "200px" },
       },
     ],

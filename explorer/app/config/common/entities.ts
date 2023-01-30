@@ -124,13 +124,12 @@ export interface ColumnConfig<
   C extends keyof JSX.IntrinsicElements | JSXElementConstructor<any> = any
 > {
   componentConfig: ComponentConfig<C, T>;
+  defaultSorting?: boolean; // Establishes initial table state "sorting" field.
   editable?: boolean; // Determines editability of column via "Edit Columns" functionality (default is "true").
+  enableSorting?: boolean; // Enables sorting for the column. Default is "true".
   header: string;
   hiddenColumn?: boolean; //TODO rename to hidden by default or similar
-  sort: {
-    default?: boolean;
-    sortKey: string;
-  };
+  id: string; // The unique identifier for the column.
   tooltip?: string;
   width: GridTrackSize;
 }

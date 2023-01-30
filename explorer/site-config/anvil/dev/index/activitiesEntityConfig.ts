@@ -6,6 +6,7 @@ import {
   ListConfig,
 } from "../../../../app/config/common/entities";
 import * as ViewBuilder from "../../../../app/viewModelBuilders/azul/anvil/common/viewModelBuilders";
+import { ANVIL_CATEGORY_KEY, ANVIL_CATEGORY_LABEL } from "../category";
 
 /**
  * Entity config object responsible for config related to the /explore/activities route.
@@ -26,11 +27,9 @@ export const activitiesEntityConfig: EntityConfig<ActivitiesResponse> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildDocumentId,
         } as ComponentConfig<typeof Components.Cell>,
-        header: "Document Id",
-        sort: {
-          default: true,
-          sortKey: "document_id",
-        },
+        defaultSorting: true,
+        header: ANVIL_CATEGORY_LABEL.DOCUMENT_ID,
+        id: ANVIL_CATEGORY_KEY.DOCUMENT_ID,
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -38,10 +37,8 @@ export const activitiesEntityConfig: EntityConfig<ActivitiesResponse> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildActivityType,
         } as ComponentConfig<typeof Components.Cell>,
-        header: "Activity Type",
-        sort: {
-          sortKey: "activity_type",
-        },
+        header: ANVIL_CATEGORY_LABEL.ACTIVITY_TYPE,
+        id: ANVIL_CATEGORY_KEY.ACTIVITY_TYPE,
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -49,10 +46,8 @@ export const activitiesEntityConfig: EntityConfig<ActivitiesResponse> = {
           component: Components.NTagCell,
           viewBuilder: ViewBuilder.buildDataModality,
         } as ComponentConfig<typeof Components.NTagCell>,
-        header: "Data Modality",
-        sort: {
-          sortKey: "data_modality",
-        },
+        header: ANVIL_CATEGORY_LABEL.DATA_MODALITY,
+        id: ANVIL_CATEGORY_KEY.DATA_MODALITY,
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -60,10 +55,8 @@ export const activitiesEntityConfig: EntityConfig<ActivitiesResponse> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildBioSampleTypes,
         } as ComponentConfig<typeof Components.Cell>,
-        header: "BioSample Type",
-        sort: {
-          sortKey: "biosample_type",
-        },
+        header: ANVIL_CATEGORY_LABEL.BIOSAMPLE_TYPE,
+        id: ANVIL_CATEGORY_KEY.BIOSAMPLE_TYPE,
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -71,10 +64,8 @@ export const activitiesEntityConfig: EntityConfig<ActivitiesResponse> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildDatasetNames,
         } as ComponentConfig<typeof Components.Cell>,
-        header: "Dataset Name",
-        sort: {
-          sortKey: "title",
-        },
+        header: ANVIL_CATEGORY_LABEL.DATASET_NAME,
+        id: ANVIL_CATEGORY_KEY.DATASET_NAME,
         width: { max: "1fr", min: "200px" },
       },
     ],
