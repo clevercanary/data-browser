@@ -64,9 +64,9 @@ async function buildCatalog(): Promise<void> {
         return {
           ...row,
           ...{
+            collection: "APP Public Data",
             description,
             experimentType,
-            initiative: "APP",
             species,
           },
         };
