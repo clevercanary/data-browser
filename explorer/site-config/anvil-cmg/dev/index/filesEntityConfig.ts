@@ -43,7 +43,7 @@ export const filesEntityConfig: EntityConfig<FilesResponse> = {
           viewBuilder: ViewBuilder.buildFileName,
         } as ComponentConfig<typeof Components.Cell>,
         header: ANVIL_CMG_CATEGORY_LABEL.FILE_NAME,
-        id: ANVIL_CMG_CATEGORY_LABEL.FILE_NAME,
+        id: ANVIL_CMG_CATEGORY_KEY.FILE_NAME,
         width: { max: "1fr", min: "120px" },
       },
       {
