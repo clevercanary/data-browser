@@ -132,13 +132,13 @@ export function getFacetedUniqueValuesWithArrayValues<T extends RowData>(): (
 
 /**
  * Returns initial table state.
- * @param columnSort - Column sort configuration.
+ * @param defaultSort - Column sort configuration.
  * @returns initial table state.
  */
 export function getInitialState(
-  columnSort: ColumnSort | undefined
+  defaultSort: ColumnSort | undefined
 ): InitialTableState {
-  const sorting = getInitialTableStateSorting(columnSort);
+  const sorting = getInitialTableStateSorting(defaultSort);
   return {
     sorting,
   };
@@ -146,16 +146,16 @@ export function getInitialState(
 
 /**
  * Returns the initial table sorting state for the specified column sort configuration.
- * @param columnSort - Column sort configuration.
+ * @param defaultSort - Column sort configuration.
  * @returns initial table sorting state.
  */
 export function getInitialTableStateSorting(
-  columnSort: ColumnSort | undefined
+  defaultSort: ColumnSort | undefined
 ): ColumnSort[] | undefined {
-  if (!columnSort) {
+  if (!defaultSort) {
     return;
   }
-  return [columnSort];
+  return [defaultSort];
 }
 
 /**

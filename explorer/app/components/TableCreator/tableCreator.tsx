@@ -14,7 +14,7 @@ import { Table } from "../Table/table";
 
 interface TableCreatorProps<T> {
   columns: ColumnConfig<T>[];
-  columnSort: ColumnSort | undefined;
+  defaultSort: ColumnSort | undefined;
   disablePagination?: boolean;
   items: T[];
   loading?: boolean;
@@ -67,7 +67,7 @@ const createCell = <T extends object>(config: ColumnConfig<T>) =>
 
 export const TableCreator = <T extends object>({
   columns,
-  columnSort,
+  defaultSort,
   disablePagination,
   items,
   loading,
@@ -93,7 +93,7 @@ export const TableCreator = <T extends object>({
       })),
     [visibleColumns]
   );
-  const initialState = getInitialState(columnSort);
+  const initialState = getInitialState(defaultSort);
   return (
     <div>
       <Loading loading={loading || false} />

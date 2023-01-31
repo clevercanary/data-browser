@@ -159,7 +159,7 @@ function renderEntities(
   return (
     <TableCreator
       columns={columnsConfig}
-      columnSort={defaultSort}
+      defaultSort={defaultSort}
       disablePagination={disablePagination}
       items={
         isRelatedView && relatedListItems ? relatedListItems : listItems ?? []
