@@ -2,7 +2,10 @@ import logoAltosLabs from "images/logoAltosLabs.png";
 import { CATALOG_DEFAULT } from "../../../app/apis/azul/anvil/common/constants";
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
 import { SiteConfig } from "../../../app/config/common/entities";
-import { ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS } from "../filter-category-keys";
+import {
+  ALTOS_LABS_CATALOG_CATEGORY_KEY,
+  ALTOS_LABS_CATALOG_CATEGORY_LABEL,
+} from "../category";
 import { experimentEntity } from "./index/experimentEntityConfig";
 import { fileEntity } from "./index/fileEntityConfig";
 
@@ -13,36 +16,36 @@ const config: SiteConfig = {
   browserURL: BROWSER_URL,
   categoryConfigs: [
     {
-      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.ASSAY,
-      label: "Assay",
+      key: ALTOS_LABS_CATALOG_CATEGORY_KEY.ASSAY,
+      label: ALTOS_LABS_CATALOG_CATEGORY_LABEL.ASSAY,
     },
     {
-      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.DOI,
-      label: "DOI",
+      key: ALTOS_LABS_CATALOG_CATEGORY_KEY.DOI,
+      label: ALTOS_LABS_CATALOG_CATEGORY_LABEL.DOI,
     },
     {
-      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.EXPERIMENT,
-      label: "Experiment",
+      key: ALTOS_LABS_CATALOG_CATEGORY_KEY.EXPERIMENT,
+      label: ALTOS_LABS_CATALOG_CATEGORY_LABEL.EXPERIMENT,
     },
     {
-      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.EXPERIMENT_TYPE,
-      label: "Experiment Type",
+      key: ALTOS_LABS_CATALOG_CATEGORY_KEY.EXPERIMENT_TYPE,
+      label: ALTOS_LABS_CATALOG_CATEGORY_LABEL.EXPERIMENT_TYPE,
     },
     {
-      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.INITIATIVE,
-      label: "Initiative",
+      key: ALTOS_LABS_CATALOG_CATEGORY_KEY.INITIATIVE,
+      label: ALTOS_LABS_CATALOG_CATEGORY_LABEL.INITIATIVE,
     },
     {
-      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.SHORTHAND,
-      label: "Shorthand",
+      key: ALTOS_LABS_CATALOG_CATEGORY_KEY.SHORTHAND,
+      label: ALTOS_LABS_CATALOG_CATEGORY_LABEL.SHORTHAND,
     },
     {
-      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.SPECIES,
-      label: "Species",
+      key: ALTOS_LABS_CATALOG_CATEGORY_KEY.SPECIES,
+      label: ALTOS_LABS_CATALOG_CATEGORY_LABEL.SPECIES,
     },
     {
-      key: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.TISSUE,
-      label: "Tissue",
+      key: ALTOS_LABS_CATALOG_CATEGORY_KEY.TISSUE,
+      label: ALTOS_LABS_CATALOG_CATEGORY_LABEL.TISSUE,
     },
   ],
   dataSource: {
