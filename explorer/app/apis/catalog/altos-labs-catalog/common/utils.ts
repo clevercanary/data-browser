@@ -23,9 +23,9 @@ export function AltosLabsExperimentInputMapper(
     ),
     S3URIs: sanitizeStringArray(altosLabsCatalogExperiment.S3URIs),
     assay: sanitizeStringArray(altosLabsCatalogExperiment.assay),
+    collection: altosLabsCatalogExperiment.collection, // Expected value "APP".
     description: altosLabsCatalogExperiment.description,
     experimentType: altosLabsCatalogExperiment.experimentType,
-    initiative: altosLabsCatalogExperiment.initiative, // Expected value "APP".
     shorthand: sanitizeString(altosLabsCatalogExperiment.shorthand),
     species: sanitizeStringArray(altosLabsCatalogExperiment.species),
     tissue: sanitizeStringArray(altosLabsCatalogExperiment.tissue),
@@ -46,10 +46,10 @@ export function AltosLabsFileInputMapper(
     DOI: sanitizeString(altosLabsCatalogFile.DOI),
     S3URI: sanitizeString(altosLabsCatalogFile.S3URI),
     assay: sanitizeStringArray(altosLabsCatalogFile.assay),
+    collection: altosLabsCatalogFile.collection, // Expected value "APP".
     description: altosLabsCatalogFile.description,
     experimentType: altosLabsCatalogFile.experimentType,
     fileType: sanitizeString(altosLabsCatalogFile.fileType),
-    initiative: altosLabsCatalogFile.initiative, // Expected value "APP".
     shorthand: sanitizeString(altosLabsCatalogFile.shorthand),
     species: sanitizeStringArray(altosLabsCatalogFile.species),
     tissue: sanitizeStringArray(altosLabsCatalogFile.tissue),

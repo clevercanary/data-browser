@@ -43,10 +43,10 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
       {
         componentConfig: {
           component: Components.Cell,
-          viewBuilder: ViewBuilder.buildInitiative,
+          viewBuilder: ViewBuilder.buildCollection,
         } as ComponentConfig<typeof Components.Cell>,
-        header: ALTOS_LABS_CATALOG_CATEGORY_LABEL.INITIATIVE,
-        id: ALTOS_LABS_CATALOG_CATEGORY_KEY.INITIATIVE,
+        header: ALTOS_LABS_CATALOG_CATEGORY_LABEL.COLLECTION,
+        id: ALTOS_LABS_CATALOG_CATEGORY_KEY.COLLECTION,
         width: { max: "0.5fr", min: "132px" },
       },
       {
