@@ -8,6 +8,7 @@ import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
+  SORT_DIRECTION,
 } from "../../../../app/config/common/entities";
 import * as ViewBuilder from "../../../../app/viewModelBuilders/catalog/anvil-catalog/common/viewModelBuilders";
 import {
@@ -34,7 +35,6 @@ export const workspaceEntityConfig: EntityConfig<AnVILCatalogWorkspace> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildConsortium,
         } as ComponentConfig<typeof Components.Cell>,
-        defaultSorting: true,
         header: ANVIL_CATALOG_CATEGORY_LABEL.CONSORTIUM,
         id: ANVIL_CATALOG_CATEGORY_KEY.CONSORTIUM,
         width: { max: "1fr", min: "120px" },
@@ -112,6 +112,10 @@ export const workspaceEntityConfig: EntityConfig<AnVILCatalogWorkspace> = {
         width: { max: "1.16fr", min: "116px" },
       },
     ],
+    defaultSort: {
+      desc: SORT_DIRECTION.ASCENDING,
+      id: ANVIL_CATALOG_CATEGORY_KEY.CONSORTIUM,
+    },
   } as ListConfig<AnVILCatalogWorkspace>,
   listView: {
     disablePagination: true,

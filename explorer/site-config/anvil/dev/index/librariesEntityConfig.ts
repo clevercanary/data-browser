@@ -4,6 +4,7 @@ import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
+  SORT_DIRECTION,
 } from "../../../../app/config/common/entities";
 import * as ViewBuilder from "../../../../app/viewModelBuilders/azul/anvil/common/viewModelBuilders";
 import { ANVIL_CATEGORY_KEY, ANVIL_CATEGORY_LABEL } from "../category";
@@ -27,7 +28,6 @@ export const librariesEntityConfig: EntityConfig<LibrariesResponse> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildLibraryId,
         } as ComponentConfig<typeof Components.Cell>,
-        defaultSorting: true,
         header: ANVIL_CATEGORY_LABEL.LIBRARY_ID,
         id: ANVIL_CATEGORY_KEY.LIBRARY_ID,
         width: { max: "1fr", min: "200px" },
@@ -60,6 +60,10 @@ export const librariesEntityConfig: EntityConfig<LibrariesResponse> = {
         width: { max: "1fr", min: "200px" },
       },
     ],
+    defaultSort: {
+      desc: SORT_DIRECTION.ASCENDING,
+      id: ANVIL_CATEGORY_KEY.LIBRARY_ID,
+    },
   } as ListConfig<LibrariesResponse>,
   route: "libraries",
   staticLoad: false,

@@ -4,8 +4,13 @@ import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
+  SORT_DIRECTION,
 } from "../../../../app/config/common/entities";
 import * as ViewBuilder from "../../../../app/viewModelBuilders/azul/anvil-cmg/common/viewModelBuilders";
+import {
+  ANVIL_CMG_CATEGORY_KEY,
+  ANVIL_CMG_CATEGORY_LABEL,
+} from "../../category";
 
 /**
  * Entity config object responsible for config related to the /explore/donors route.
@@ -26,9 +31,8 @@ export const donorsEntityConfig: EntityConfig<DonorsResponse> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildDonorId,
         } as ComponentConfig<typeof Components.Cell>,
-        defaultSorting: true,
-        header: "Donor Id",
-        id: "donors.donor_id",
+        header: ANVIL_CMG_CATEGORY_LABEL.DONOR_ID,
+        id: ANVIL_CMG_CATEGORY_KEY.DONOR_ID,
         width: { max: "1fr", min: "200px" },
       },
       {
@@ -68,6 +72,10 @@ export const donorsEntityConfig: EntityConfig<DonorsResponse> = {
         width: { max: "1fr", min: "200px" },
       },
     ],
+    defaultSort: {
+      desc: SORT_DIRECTION.ASCENDING,
+      id: ANVIL_CMG_CATEGORY_KEY.DONOR_ID,
+    },
   } as ListConfig<DonorsResponse>,
   route: "donors",
   staticLoad: false,

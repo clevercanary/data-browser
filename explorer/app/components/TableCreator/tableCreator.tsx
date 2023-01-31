@@ -1,4 +1,4 @@
-import { CellContext, ColumnDef } from "@tanstack/react-table";
+import { CellContext, ColumnDef, ColumnSort } from "@tanstack/react-table";
 import {
   ColumnConfig,
   GridTrackMinMax,
@@ -14,6 +14,7 @@ import { Table } from "../Table/table";
 
 interface TableCreatorProps<T> {
   columns: ColumnConfig<T>[];
+  columnSort: ColumnSort | undefined;
   disablePagination?: boolean;
   items: T[];
   loading?: boolean;
@@ -66,6 +67,7 @@ const createCell = <T extends object>(config: ColumnConfig<T>) =>
 
 export const TableCreator = <T extends object>({
   columns,
+  columnSort,
   disablePagination,
   items,
   loading,
@@ -81,17 +83,17 @@ export const TableCreator = <T extends object>({
 
   const reactVisibleColumns: ColumnDef<T>[] = useMemo(
     () =>
-      visibleColumns.map(({ enableSorting = true, ...columnConfig }) => ({
+      visibleColumns.map(({ disableSorting, ...columnConfig }) => ({
         accessorKey: columnConfig.id,
         cell: createCell(columnConfig),
-        enableSorting,
+        enableSorting: !disableSorting,
         filterFn: arrIncludesSome,
         header: columnConfig.header,
         id: columnConfig.id,
       })),
     [visibleColumns]
   );
-  const initialState = getInitialState(columns);
+  const initialState = getInitialState(columnSort);
   return (
     <div>
       <Loading loading={loading || false} />

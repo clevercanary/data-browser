@@ -4,6 +4,7 @@ import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
+  SORT_DIRECTION,
 } from "../../../../app/config/common/entities";
 import * as ViewBuilders from "../../../../app/viewModelBuilders/azul/anvil/common/viewModelBuilders";
 import { ANVIL_CATEGORY_KEY, ANVIL_CATEGORY_LABEL } from "../category";
@@ -27,7 +28,6 @@ export const biosamplesEntityConfig: EntityConfig<BioSamplesResponse> = {
           component: Components.Cell,
           viewBuilder: ViewBuilders.buildBioSampleId,
         } as ComponentConfig<typeof Components.Cell>,
-        defaultSorting: true,
         header: ANVIL_CATEGORY_LABEL.BIOSAMPLE_ID,
         id: ANVIL_CATEGORY_KEY.BIOSAMPLE_ID,
         width: { max: "1fr", min: "200px" },
@@ -78,6 +78,10 @@ export const biosamplesEntityConfig: EntityConfig<BioSamplesResponse> = {
         width: { max: "1fr", min: "200px" },
       },
     ],
+    defaultSort: {
+      desc: SORT_DIRECTION.ASCENDING,
+      id: ANVIL_CATEGORY_KEY.BIOSAMPLE_ID,
+    },
   } as ListConfig<BioSamplesResponse>,
   route: "biosamples",
   staticLoad: false,

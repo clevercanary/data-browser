@@ -1,4 +1,5 @@
 import { ThemeOptions } from "@mui/material";
+import { ColumnSort } from "@tanstack/react-table";
 import { Footer, Header } from "app/components/Layout/common/entities";
 import { JSXElementConstructor } from "react";
 import { SelectedFilterValue } from "../../apis/azul/common/entities";
@@ -124,9 +125,8 @@ export interface ColumnConfig<
   C extends keyof JSX.IntrinsicElements | JSXElementConstructor<any> = any
 > {
   componentConfig: ComponentConfig<C, T>;
-  defaultSorting?: boolean; // Establishes initial table state "sorting" field.
+  disableSorting?: boolean; // Disables sorting for the column.
   editable?: boolean; // Determines editability of column via "Edit Columns" functionality (default is "true").
-  enableSorting?: boolean; // Enables sorting for the column. Default is "true".
   header: string;
   hiddenColumn?: boolean; //TODO rename to hidden by default or similar
   id: string; // The unique identifier for the column.
@@ -211,6 +211,7 @@ export type GridTrackSize =
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This config model can receive any model as type
 export interface ListConfig<T = any> {
   columns: ColumnConfig<T>[];
+  defaultSort?: ColumnSort; // Establishes initial table state "sorting" state.
 }
 
 /**
@@ -233,6 +234,11 @@ export interface SiteConfig {
   summaryConfig?: SummaryConfig;
   theme?: ThemeOptions;
 }
+
+export const SORT_DIRECTION = {
+  ASCENDING: false,
+  DESCENDING: true,
+};
 
 export type ApiOption = "GET" | "POST";
 

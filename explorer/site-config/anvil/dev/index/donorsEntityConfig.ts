@@ -4,6 +4,7 @@ import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
+  SORT_DIRECTION,
 } from "../../../../app/config/common/entities";
 import * as ViewBuilder from "../../../../app/viewModelBuilders/azul/anvil/common/viewModelBuilders";
 import { ANVIL_CATEGORY_KEY, ANVIL_CATEGORY_LABEL } from "../category";
@@ -27,7 +28,6 @@ export const donorsEntityConfig: EntityConfig<DonorsResponse> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildDonorId,
         } as ComponentConfig<typeof Components.Cell>,
-        defaultSorting: true,
         header: ANVIL_CATEGORY_LABEL.DONOR_ID,
         id: ANVIL_CATEGORY_KEY.DONOR_ID,
         width: { max: "1fr", min: "200px" },
@@ -69,6 +69,10 @@ export const donorsEntityConfig: EntityConfig<DonorsResponse> = {
         width: { max: "1fr", min: "200px" },
       },
     ],
+    defaultSort: {
+      desc: SORT_DIRECTION.ASCENDING,
+      id: ANVIL_CATEGORY_KEY.DONOR_ID,
+    },
   } as ListConfig<DonorsResponse>,
   route: "donors",
   staticLoad: false,

@@ -1,6 +1,7 @@
 export const HCA_DCP_CATEGORY_KEY = {
   ANALYSIS_PROTOCOL: "workflow",
   ANATOMICAL_ENTITY: "specimenOrgan",
+  AZUL_FILE_DOWNLOAD: "azulFileDownload",
   BIOLOGICAL_SEX: "biologicalSex",
   CELL_COUNT: "cellCount",
   CONTACT_NAME: "contactName",
@@ -35,6 +36,7 @@ export const HCA_DCP_CATEGORY_KEY = {
 export const HCA_DCP_CATEGORY_LABEL = {
   ANALYSIS_PROTOCOL: "Analysis Protocol",
   ANATOMICAL_ENTITY: "Anatomical Entity",
+  AZUL_FILE_DOWNLOAD: " ",
   BIOLOGICAL_SEX: "Biological Sex",
   CELL_COUNT: "Cell Count Estimate",
   CONTACT_NAME: "Contact Name",

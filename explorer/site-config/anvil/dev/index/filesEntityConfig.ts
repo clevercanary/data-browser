@@ -4,6 +4,7 @@ import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
+  SORT_DIRECTION,
 } from "../../../../app/config/common/entities";
 import * as ViewBuilder from "../../../../app/viewModelBuilders/azul/anvil/common/viewModelBuilders";
 import { ANVIL_CATEGORY_KEY, ANVIL_CATEGORY_LABEL } from "../category";
@@ -27,7 +28,6 @@ export const filesEntityConfig: EntityConfig<FilesResponse> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildFileId,
         } as ComponentConfig<typeof Components.Cell>,
-        defaultSorting: true,
         header: ANVIL_CATEGORY_LABEL.FILE_ID,
         id: ANVIL_CATEGORY_KEY.FILE_ID,
         width: { max: "1fr", min: "120px" },
@@ -69,6 +69,10 @@ export const filesEntityConfig: EntityConfig<FilesResponse> = {
         width: { max: "2fr", min: "240px" },
       },
     ],
+    defaultSort: {
+      desc: SORT_DIRECTION.ASCENDING,
+      id: ANVIL_CATEGORY_KEY.FILE_ID,
+    },
   } as ListConfig<FilesResponse>,
   route: "files",
   staticLoad: false,

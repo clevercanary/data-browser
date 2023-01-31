@@ -8,6 +8,7 @@ import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
+  SORT_DIRECTION,
 } from "../../../../app/config/common/entities";
 import * as ViewBuilder from "../../../../app/viewModelBuilders/catalog/anvil-catalog/common/viewModelBuilders";
 import {
@@ -50,7 +51,6 @@ export const studiesEntityConfig: EntityConfig<AnVILCatalogStudy> = {
           component: Components.Link,
           viewBuilder: ViewBuilder.buildStudyName,
         } as ComponentConfig<typeof Components.Link>,
-        defaultSorting: true,
         header: ANVIL_CATALOG_CATEGORY_LABEL.STUDY_NAME,
         id: ANVIL_CATALOG_CATEGORY_KEY.STUDY_NAME,
         width: { max: "2fr", min: "240px" },
@@ -137,6 +137,10 @@ export const studiesEntityConfig: EntityConfig<AnVILCatalogStudy> = {
         width: { max: "1fr", min: "120px" },
       },
     ],
+    defaultSort: {
+      desc: SORT_DIRECTION.ASCENDING,
+      id: ANVIL_CATALOG_CATEGORY_KEY.STUDY_NAME,
+    },
   } as ListConfig<AnVILCatalogStudy>,
   listView: {
     disablePagination: true,

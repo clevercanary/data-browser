@@ -120,7 +120,7 @@ function renderEntities(
     tabValue,
   } = exploreState;
   const { list, listView, staticLoad } = entityConfig;
-  const { columns: columnsConfig } = list;
+  const { columns: columnsConfig, defaultSort } = list;
   const { disablePagination = false } = listView || {};
 
   if (!exploreState || !tabValue) {
@@ -159,6 +159,7 @@ function renderEntities(
   return (
     <TableCreator
       columns={columnsConfig}
+      columnSort={defaultSort}
       disablePagination={disablePagination}
       items={
         isRelatedView && relatedListItems ? relatedListItems : listItems ?? []

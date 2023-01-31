@@ -5,8 +5,13 @@ import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
+  SORT_DIRECTION,
 } from "../../../../app/config/common/entities";
 import * as ViewBuilder from "../../../../app/viewModelBuilders/azul/anvil-cmg/common/viewModelBuilders";
+import {
+  ANVIL_CMG_CATEGORY_KEY,
+  ANVIL_CMG_CATEGORY_LABEL,
+} from "../../category";
 import { mainColumn } from "../detail/dataset/overviewMainColumn";
 import { sideColumn } from "../detail/dataset/overviewSideColumn";
 import { top } from "../detail/dataset/top";
@@ -38,9 +43,8 @@ export const datasetsEntityConfig: EntityConfig<DatasetsResponse> = {
           component: Components.Link,
           viewBuilder: ViewBuilder.buildDatasetTitle,
         } as ComponentConfig<typeof Components.Link>,
-        defaultSorting: true,
-        header: "Dataset",
-        id: "datasets.title",
+        header: ANVIL_CMG_CATEGORY_LABEL.DATASET,
+        id: ANVIL_CMG_CATEGORY_KEY.DATASET,
         width: { max: "2fr", min: "200px" },
       },
       {
@@ -108,6 +112,10 @@ export const datasetsEntityConfig: EntityConfig<DatasetsResponse> = {
         width: { max: "1fr", min: "148px" },
       },
     ],
+    defaultSort: {
+      desc: SORT_DIRECTION.ASCENDING,
+      id: ANVIL_CMG_CATEGORY_KEY.DATASET,
+    },
   } as ListConfig<DatasetsResponse>,
   route: "datasets",
   staticLoad: false,

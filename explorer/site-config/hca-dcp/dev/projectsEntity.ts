@@ -5,6 +5,7 @@ import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
+  SORT_DIRECTION,
 } from "../../../app/config/common/entities";
 import {
   projectsBuildAnatomicalEntityColumn,
@@ -80,7 +81,6 @@ export const projectsEntity: EntityConfig = {
           component: Components.Link,
           viewBuilder: projectsBuildProjectTitleColumn,
         } as ComponentConfig<typeof Components.Link>,
-        defaultSorting: true,
         header: HCA_DCP_CATEGORY_LABEL.PROJECT_TITLE,
         id: HCA_DCP_CATEGORY_KEY.PROJECT_TITLE,
         width: { max: "2fr", min: "374px" },
@@ -149,6 +149,10 @@ export const projectsEntity: EntityConfig = {
         width: { max: "1fr", min: "148px" },
       },
     ],
+    defaultSort: {
+      desc: SORT_DIRECTION.ASCENDING,
+      id: HCA_DCP_CATEGORY_KEY.PROJECT_TITLE,
+    },
   } as ListConfig<ProjectsResponse>,
   route: "projects",
   staticLoad: false,

@@ -1,3 +1,4 @@
+import { ColumnSort } from "@tanstack/react-table";
 import anvilCatalogDev from "../../site-config/anvil-catalog/dev/config";
 import anvilCatalogProd from "../../site-config/anvil-catalog/prod/config";
 import anvilCmgDev from "../../site-config/anvil-cmg/dev/config";
@@ -12,9 +13,7 @@ import ncpiDugMapDev from "../../site-config/ncpi-catalog-dug/dev/config";
 import ncpiDugMapProd from "../../site-config/ncpi-catalog-dug/prod/config";
 import ncpiMapDev from "../../site-config/ncpi-catalog/dev/config";
 import ncpiMapProd from "../../site-config/ncpi-catalog/prod/config";
-import { Sort } from "../common/entities";
 import { Tab } from "../components/common/Tabs/tabs";
-import { getDefaultSortKey } from "../components/Table/common/utils";
 import { EntityConfig, SiteConfig } from "./common/entities";
 
 const CONFIGS: { [k: string]: SiteConfig } = {
@@ -90,11 +89,12 @@ export const getTabs = (): Tab[] => {
 };
 
 /**
- * Returns the default sort state for the given entity config.
+ * Returns the initial table sorting state for the specified entity list configuration.
  * @param entityConfig - Entity configuration.
- * @returns default sort state.
+ * @returns initial sort state.
  */
-export const getDefaultSortState = (entityConfig: EntityConfig): Sort => {
-  const sortKey = getDefaultSortKey(entityConfig.list.columns);
-  return { sortKey, sortOrder: "asc" };
+export const getDefaultSortState = (
+  entityConfig: EntityConfig
+): ColumnSort | undefined => {
+  return entityConfig.list.defaultSort;
 };

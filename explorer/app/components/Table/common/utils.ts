@@ -5,10 +5,10 @@ import {
   memo,
   Row,
   RowData,
+  SortDirection,
   Table,
 } from "@tanstack/react-table";
 import { SelectCategory } from "../../../common/entities";
-import { ColumnConfig } from "../../../config/common/entities";
 
 /**
  * Internal model of a category term count keyed by category term.
@@ -77,32 +77,18 @@ export function buildCategoryViews<T>(
 }
 
 /**
- * Returns the default sort key for the specified column configuration.
- * @param columns - Column configuration.
- * @returns - the default sort key (if configured), or the first available sort-enabled column.
+ * Returns the column sort direction.
+ * @param sortDirection - Column sort direction.
+ * @returns the coumn sort direction.
  */
-export const getDefaultSortKey = (
-  columns: ColumnConfig[]
-): string | undefined => {
-  let sortKey;
-  for (const column of columns) {
-    const { defaultSorting, enableSorting = true, id } = column;
-    if (!enableSorting) {
-      continue; // Skip column if sorting is disabled.
-    }
-    if (defaultSorting) {
-      sortKey = id;
-      break; // Default sorting column is identified; break and return sorting key.
-    } else {
-      if (!sortKey) {
-        // First available, sortable column is identified and shall be returned as the sort key,
-        // unless a subsequent column is identified with the default sort key.
-        sortKey = id;
-      }
-    }
+export function getColumnSortDirection(
+  sortDirection: false | SortDirection
+): SortDirection | undefined {
+  if (!sortDirection) {
+    return;
   }
-  return sortKey;
-};
+  return sortDirection;
+}
 
 /**
  * Returns unique category term counts keyed by category terms.
@@ -146,42 +132,44 @@ export function getFacetedUniqueValuesWithArrayValues<T extends RowData>(): (
 
 /**
  * Returns initial table state.
- * @param columns - Column configuration.
+ * @param columnSort - Column sort configuration.
  * @returns initial table state.
  */
-export function getInitialState(columns: ColumnConfig[]): InitialTableState {
-  const sorting = getInitialTableStateSorting(columns);
+export function getInitialState(
+  columnSort: ColumnSort | undefined
+): InitialTableState {
+  const sorting = getInitialTableStateSorting(columnSort);
   return {
     sorting,
   };
 }
 
 /**
- * Returns the default column sorting for the specified column configuration.
- * @param columns - Column configuration.
- * @returns default column sorting configuration.
+ * Returns the initial table sorting state for the specified column sort configuration.
+ * @param columnSort - Column sort configuration.
+ * @returns initial table sorting state.
  */
-function getDefaultSorting(columns: ColumnConfig[]): ColumnSort | undefined {
-  const defaultSortKey = getDefaultSortKey(columns);
-  if (!defaultSortKey) {
+export function getInitialTableStateSorting(
+  columnSort: ColumnSort | undefined
+): ColumnSort[] | undefined {
+  if (!columnSort) {
     return;
   }
-  return { desc: false, id: defaultSortKey };
+  return [columnSort];
 }
 
 /**
- * Returns the initial table sorting state for the specified column configuration.
- * @param columns - Column configuration.
- * @returns initial table sorting state.
+ * Returns true if column has a sort direction.
+ * @param sortDirection - Column sort direction.
+ * @returns true when column has a sort direction.
  */
-function getInitialTableStateSorting(
-  columns: ColumnConfig[]
-): ColumnSort[] | undefined {
-  const defaultSorting = getDefaultSorting(columns);
-  if (!defaultSorting) {
-    return;
+export function isColumnSortActive(
+  sortDirection: false | SortDirection
+): boolean {
+  if (!sortDirection) {
+    return sortDirection;
   }
-  return [defaultSorting];
+  return true;
 }
 
 /**

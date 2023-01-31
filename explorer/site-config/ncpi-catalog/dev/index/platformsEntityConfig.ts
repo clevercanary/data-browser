@@ -8,6 +8,7 @@ import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
+  SORT_DIRECTION,
 } from "../../../../app/config/common/entities";
 import * as ViewBuilder from "../../../../app/viewModelBuilders/catalog/ncpi-catalog/common/viewModelBuilders";
 import {
@@ -34,7 +35,6 @@ export const platformsEntityConfig: EntityConfig<NCPICatalogPlatform> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildPlatform,
         } as ComponentConfig<typeof Components.Cell>,
-        defaultSorting: true,
         header: NCPI_CATALOG_CATEGORY_LABEL.PLATFORM,
         id: NCPI_CATALOG_CATEGORY_KEY.PLATFORM, // platform - a singular platform.
         width: { max: "1fr", min: "100px" },
@@ -103,6 +103,10 @@ export const platformsEntityConfig: EntityConfig<NCPICatalogPlatform> = {
         width: { max: "1.16fr", min: "116px" },
       },
     ],
+    defaultSort: {
+      desc: SORT_DIRECTION.ASCENDING,
+      id: NCPI_CATALOG_CATEGORY_KEY.PLATFORM,
+    },
   } as ListConfig<NCPICatalogPlatform>,
   listView: {
     disablePagination: true,

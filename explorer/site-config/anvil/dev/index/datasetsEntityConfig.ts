@@ -5,6 +5,7 @@ import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
+  SORT_DIRECTION,
 } from "../../../../app/config/common/entities";
 import * as ViewBuilder from "../../../../app/viewModelBuilders/azul/anvil/common/viewModelBuilders";
 import { ANVIL_CATEGORY_KEY, ANVIL_CATEGORY_LABEL } from "../category";
@@ -39,7 +40,6 @@ export const datasetsEntityConfig: EntityConfig<DatasetsResponse> = {
           component: Components.Link,
           viewBuilder: ViewBuilder.buildDatasetName,
         } as ComponentConfig<typeof Components.Link>,
-        defaultSorting: true,
         header: ANVIL_CATEGORY_LABEL.DATASET_NAME,
         id: ANVIL_CATEGORY_KEY.DATASET_NAME,
         width: { max: "1fr", min: "200px" },
@@ -91,6 +91,10 @@ export const datasetsEntityConfig: EntityConfig<DatasetsResponse> = {
         width: { max: "1fr", min: "148px" },
       },
     ],
+    defaultSort: {
+      desc: SORT_DIRECTION.ASCENDING,
+      id: ANVIL_CATEGORY_KEY.DATASET_NAME,
+    },
   } as ListConfig<DatasetsResponse>,
   route: "datasets",
   staticLoad: false,

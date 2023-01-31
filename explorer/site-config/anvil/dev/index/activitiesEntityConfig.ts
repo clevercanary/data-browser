@@ -4,6 +4,7 @@ import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
+  SORT_DIRECTION,
 } from "../../../../app/config/common/entities";
 import * as ViewBuilder from "../../../../app/viewModelBuilders/azul/anvil/common/viewModelBuilders";
 import { ANVIL_CATEGORY_KEY, ANVIL_CATEGORY_LABEL } from "../category";
@@ -27,7 +28,6 @@ export const activitiesEntityConfig: EntityConfig<ActivitiesResponse> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildDocumentId,
         } as ComponentConfig<typeof Components.Cell>,
-        defaultSorting: true,
         header: ANVIL_CATEGORY_LABEL.DOCUMENT_ID,
         id: ANVIL_CATEGORY_KEY.DOCUMENT_ID,
         width: { max: "1fr", min: "200px" },
@@ -69,6 +69,10 @@ export const activitiesEntityConfig: EntityConfig<ActivitiesResponse> = {
         width: { max: "1fr", min: "200px" },
       },
     ],
+    defaultSort: {
+      desc: SORT_DIRECTION.ASCENDING,
+      id: ANVIL_CATEGORY_KEY.DOCUMENT_ID,
+    },
   } as ListConfig<ActivitiesResponse>,
   route: "activities",
   staticLoad: false,

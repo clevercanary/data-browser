@@ -25,13 +25,16 @@ import {
   ExploreActionKind,
   ExploreStateContext,
 } from "../../common/context/exploreState";
-import { Pagination, SortOrderType } from "../../common/entities";
+import { Pagination } from "../../common/entities";
+import { SORT_DIRECTION } from "../../config/common/entities";
 import { CheckboxMenu, CheckboxMenuItem } from "../CheckboxMenu/checkboxMenu";
 import { InfoIcon } from "../common/CustomIcon/components/InfoIcon/infoIcon";
 import { GridPaper, RoundedPaper } from "../common/Paper/paper.styles";
 import {
   buildCategoryViews,
+  getColumnSortDirection,
   getFacetedUniqueValuesWithArrayValues,
+  isColumnSortActive,
 } from "./common/utils";
 import { EntityViewToggle } from "./components/EntityViewToggle/EntityViewToggle";
 import { Pagination as DXPagination } from "./components/Pagination/pagination";
@@ -88,11 +91,7 @@ export const TableComponent = <T extends object>({
   const { filterState, isRelatedView, relatedListItems, sortState } =
     exploreState;
   const listStaticLoad = exploreState.listStaticLoad;
-
-  const sorting =
-    sortState && sortState.sortKey
-      ? [{ desc: sortState.sortOrder === "desc", id: sortState.sortKey }]
-      : undefined;
+  const sorting = sortState ? [sortState] : undefined;
   const state = disablePagination
     ? {
         pagination: {
@@ -179,16 +178,17 @@ export const TableComponent = <T extends object>({
     scrollTop();
   };
 
+  // TODO review handleSortClicked with possible use of React Table API e.g. setSorting.
   const handleSortClicked = (columnDef: ColumnDef<T>): void => {
-    if (sortState) {
-      if (sortState.sortKey !== columnDef.id) {
+    if (columnDef.id) {
+      if (sortState?.id !== columnDef.id) {
         exploreDispatch({
-          payload: columnDef.id ?? "", // TODO fix or empty string
+          payload: columnDef.id,
           type: ExploreActionKind.SetSortKey,
         });
       } else {
         exploreDispatch({
-          payload: "asc", // TODO asc is ignored how to not specify?
+          payload: SORT_DIRECTION.ASCENDING, // TODO asc is ignored how to not specify?
           type: ExploreActionKind.FlipSortOrder,
         });
       }
@@ -302,13 +302,11 @@ export const TableComponent = <T extends object>({
                   {headerGroup.headers.map((header) => (
                     <TableCell key={header.id}>
                       <TableSortLabel
-                        active={!!header.column.getIsSorted()}
-                        direction={
-                          !header.column.getIsSorted()
-                            ? "asc"
-                            : (header.column.getIsSorted() as SortOrderType)
-                        }
-                        disabled={!header.column.columnDef.enableSorting}
+                        active={isColumnSortActive(header.column.getIsSorted())}
+                        direction={getColumnSortDirection(
+                          header.column.getIsSorted()
+                        )}
+                        disabled={!header.column.getCanSort()}
                         IconComponent={SouthRoundedIcon}
                         onClick={(): void =>
                           handleSortClicked(header.column.columnDef)
