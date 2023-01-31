@@ -8,9 +8,13 @@ import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
+  SORT_DIRECTION,
 } from "../../../../app/config/common/entities";
 import * as ViewBuilder from "../../../../app/viewModelBuilders/catalog/altos-labs-catalog/common/viewModelBuilders";
-import { ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS } from "../../filter-category-keys";
+import {
+  ALTOS_LABS_CATALOG_CATEGORY_KEY,
+  ALTOS_LABS_CATALOG_CATEGORY_LABEL,
+} from "../../category";
 
 /**
  * Entity config object responsible to config anything related to the /explore/files route.
@@ -31,10 +35,8 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
           component: Components.Link,
           viewBuilder: ViewBuilder.buildS3URI,
         } as ComponentConfig<typeof Components.Link>,
-        header: "S3 URI",
-        sort: {
-          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.S3_URI,
-        },
+        header: ALTOS_LABS_CATALOG_CATEGORY_LABEL.S3_URI,
+        id: ALTOS_LABS_CATALOG_CATEGORY_KEY.S3_URI,
         width: { max: "1fr", min: "160px" },
       },
       {
@@ -42,10 +44,8 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildFileType,
         } as ComponentConfig<typeof Components.Cell>,
-        header: "File type",
-        sort: {
-          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.FILE_TYPE,
-        },
+        header: ALTOS_LABS_CATALOG_CATEGORY_LABEL.FILE_TYPE,
+        id: ALTOS_LABS_CATALOG_CATEGORY_KEY.FILE_TYPE,
         width: { max: "0.5fr", min: "132px" },
       },
       {
@@ -53,11 +53,9 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildInitiative,
         } as ComponentConfig<typeof Components.Cell>,
-        header: "Initiative",
+        header: ALTOS_LABS_CATALOG_CATEGORY_LABEL.INITIATIVE,
         hiddenColumn: true,
-        sort: {
-          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.INITIATIVE,
-        },
+        id: ALTOS_LABS_CATALOG_CATEGORY_KEY.INITIATIVE,
         width: { max: "0.5fr", min: "132px" },
       },
       {
@@ -65,11 +63,8 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildShorthand,
         } as ComponentConfig<typeof Components.Cell>,
-        header: "Shorthand",
-        sort: {
-          default: true,
-          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.SHORTHAND,
-        },
+        header: ALTOS_LABS_CATALOG_CATEGORY_LABEL.SHORTHAND,
+        id: ALTOS_LABS_CATALOG_CATEGORY_KEY.SHORTHAND,
         width: { max: "0.5fr", min: "132px" },
       },
       {
@@ -77,11 +72,8 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
           component: Components.Link,
           viewBuilder: ViewBuilder.buildExperiment,
         } as ComponentConfig<typeof Components.Link>,
-        header: "Experiment",
-        sort: {
-          default: true,
-          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.EXPERIMENT,
-        },
+        header: ALTOS_LABS_CATALOG_CATEGORY_LABEL.EXPERIMENT,
+        id: ALTOS_LABS_CATALOG_CATEGORY_KEY.EXPERIMENT,
         width: { max: "1.5fr", min: "200px" },
       },
       {
@@ -89,12 +81,9 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
           component: Components.Link,
           viewBuilder: ViewBuilder.buildDOI,
         } as ComponentConfig<typeof Components.Link>,
-        header: "DOI",
+        header: ALTOS_LABS_CATALOG_CATEGORY_LABEL.DOI,
         hiddenColumn: true,
-        sort: {
-          default: true,
-          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.DOI,
-        },
+        id: ALTOS_LABS_CATALOG_CATEGORY_KEY.DOI,
         width: { max: "1fr", min: "160px" },
       },
       {
@@ -102,10 +91,8 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
           component: Components.NTagCell,
           viewBuilder: ViewBuilder.buildSpecies,
         } as ComponentConfig<typeof Components.NTagCell>,
-        header: "Species",
-        sort: {
-          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.SPECIES,
-        },
+        header: ALTOS_LABS_CATALOG_CATEGORY_LABEL.SPECIES,
+        id: ALTOS_LABS_CATALOG_CATEGORY_KEY.SPECIES,
         width: { max: "0.5fr", min: "132px" },
       },
       {
@@ -113,10 +100,8 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
           component: Components.NTagCell,
           viewBuilder: ViewBuilder.buildTissue,
         } as ComponentConfig<typeof Components.NTagCell>,
-        header: "Tissue",
-        sort: {
-          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.TISSUE,
-        },
+        header: ALTOS_LABS_CATALOG_CATEGORY_LABEL.TISSUE,
+        id: ALTOS_LABS_CATALOG_CATEGORY_KEY.TISSUE,
         width: { max: "0.5fr", min: "132px" },
       },
       {
@@ -124,11 +109,9 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildExperimentType,
         } as ComponentConfig<typeof Components.Cell>,
-        header: "Experiment Type",
+        header: ALTOS_LABS_CATALOG_CATEGORY_LABEL.EXPERIMENT_TYPE,
         hiddenColumn: true,
-        sort: {
-          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.EXPERIMENT_TYPE,
-        },
+        id: ALTOS_LABS_CATALOG_CATEGORY_KEY.EXPERIMENT_TYPE,
         width: { max: "1fr", min: "160px" },
       },
       {
@@ -136,13 +119,15 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
           component: Components.NTagCell,
           viewBuilder: ViewBuilder.buildAssay,
         } as ComponentConfig<typeof Components.NTagCell>,
-        header: "Assay",
-        sort: {
-          sortKey: ALTOS_LABS_CATALOG_FILTER_CATEGORY_KEYS.ASSAY,
-        },
+        header: ALTOS_LABS_CATALOG_CATEGORY_LABEL.ASSAY,
+        id: ALTOS_LABS_CATALOG_CATEGORY_KEY.ASSAY,
         width: { max: "0.5fr", min: "132px" },
       },
     ],
+    defaultSort: {
+      desc: SORT_DIRECTION.ASCENDING,
+      id: ALTOS_LABS_CATALOG_CATEGORY_KEY.S3_URI,
+    },
   } as ListConfig<AltosLabsCatalogFile>,
   listView: {
     disablePagination: true,
