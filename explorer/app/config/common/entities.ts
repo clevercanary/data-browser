@@ -126,8 +126,8 @@ export interface ColumnConfig<
 > {
   columnVisible?: boolean; // Column is visible. Default is "true".
   componentConfig: ComponentConfig<C, T>;
+  disableHiding?: boolean; // Disables hiding of column. Column is unavailable for "Edit Columns" functionality when "true".
   disableSorting?: boolean; // Disables sorting for the column.
-  enableHiding?: boolean; // Enables hiding of column. Column is available for "Edit Columns" functionality. Default is "true".
   header: string;
   id: string; // The unique identifier for the column.
   tooltip?: string; // TODO review need to define `tooltip` field - it is currently not in use.

@@ -66,7 +66,6 @@ interface TableProps<T extends object> {
  * @param tableProps.disablePagination - Determine if the table shouldn't be paginated.
  * @param tableProps.initialState - Initial table state.
  * @param tableProps.items - Row data to display.
- * @param tableProps.sort - Config for rendering current sort and handling corresponding events.
  * @param tableProps.total - Total number of rows in the result set.
  * @returns Configured table element for display.
  */

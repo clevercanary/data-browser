@@ -47,20 +47,18 @@ export const TableCreator = <T extends object>({
 }: TableCreatorProps<T>): JSX.Element => {
   const columnDefs: ColumnDef<T>[] = useMemo(
     () =>
-      columns.map(
-        ({ disableSorting, enableHiding = true, ...columnConfig }) => ({
-          accessorKey: columnConfig.id,
-          cell: createCell(columnConfig),
-          enableHiding,
-          enableSorting: !disableSorting,
-          filterFn: arrIncludesSome,
-          header: columnConfig.header,
-          id: columnConfig.id,
-          meta: {
-            width: columnConfig.width,
-          },
-        })
-      ),
+      columns.map(({ disableHiding, disableSorting, ...columnConfig }) => ({
+        accessorKey: columnConfig.id,
+        cell: createCell(columnConfig),
+        enableHiding: !disableHiding,
+        enableSorting: !disableSorting,
+        filterFn: arrIncludesSome,
+        header: columnConfig.header,
+        id: columnConfig.id,
+        meta: {
+          width: columnConfig.width,
+        },
+      })),
     [columns]
   );
   const initialState = getInitialState(columns, defaultSort);
