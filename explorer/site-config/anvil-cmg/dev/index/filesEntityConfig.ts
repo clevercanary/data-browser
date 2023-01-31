@@ -94,7 +94,7 @@ export const filesEntityConfig: EntityConfig<FilesResponse> = {
     ],
     defaultSort: {
       desc: SORT_DIRECTION.ASCENDING,
-      id: ANVIL_CMG_CATEGORY_LABEL.FILE_NAME,
+      id: ANVIL_CMG_CATEGORY_KEY.FILE_NAME,
     },
   } as ListConfig<FilesResponse>,
   route: "files",
