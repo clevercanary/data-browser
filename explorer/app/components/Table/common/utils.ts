@@ -12,7 +12,6 @@ import {
 } from "@tanstack/react-table";
 import { Column } from "@tanstack/table-core";
 import { VisibilityState } from "@tanstack/table-core/src/features/Visibility";
-import { ChangeEvent } from "react";
 import { SelectCategory } from "../../../common/entities";
 import {
   ColumnConfig,
@@ -102,23 +101,26 @@ export function getColumnSortDirection(
  * @returns a list of edit column options.
  */
 export function getEditColumnOptions<T>(table: Table<T>): CheckboxMenuItem[] {
-  const { getAllColumns, getState, initialState, setColumnVisibility } = table;
+  const { getAllColumns, initialState } = table;
   const { columnVisibility: initialVisibilityState } = initialState;
   const allColumns = getAllColumns();
-  const { columnVisibility } = getState();
   return allColumns.reduce(
-    (acc, { columnDef: { header }, getCanHide, getIsVisible, id }) => {
+    (
+      acc,
+      {
+        columnDef: { header },
+        getCanHide,
+        getIsVisible,
+        getToggleVisibilityHandler,
+        id,
+      }
+    ) => {
       if (getCanHide()) {
         const option: CheckboxMenuItem = {
           checked: getIsVisible(),
           disabled: initialVisibilityState[id],
           label: header as string, // TODO revisit type assertion here
-          onChange: (event: ChangeEvent<HTMLInputElement>): void => {
-            setColumnVisibility({
-              ...columnVisibility,
-              [id]: event.target.checked,
-            });
-          },
+          onChange: getToggleVisibilityHandler(),
           value: id,
         };
         acc.push(option);
