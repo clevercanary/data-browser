@@ -2,7 +2,6 @@ import {
   ColumnSort,
   InitialTableState,
   memo,
-  OnChangeFn,
   Row,
   RowData,
   SortDirection,
@@ -96,19 +95,15 @@ export function getColumnSortDirection(
 
 /**
  * Returns edit column checkbox menu options.
- * @param columns - Table columns.
- * @param visibilityState - Table visibility state.
- * @param setColumnVisibility - Updater function updating the column visibility state.
- * @param initialVisibilityState - Initial table visibility state.
+ * @param table - Table.
  * @returns a list of edit column options.
  */
-export function getEditColumnOptions<T>(
-  columns: Column<T>[],
-  visibilityState: VisibilityState,
-  setColumnVisibility: OnChangeFn<VisibilityState>,
-  initialVisibilityState?: VisibilityState
-): CheckboxMenuItem[] {
-  return columns.reduce(
+export function getEditColumnOptions<T>(table: Table<T>): CheckboxMenuItem[] {
+  const { getAllColumns, getState, initialState, setColumnVisibility } = table;
+  const { columnVisibility: initialVisibilityState } = initialState;
+  const allColumns = getAllColumns();
+  const { columnVisibility } = getState();
+  return allColumns.reduce(
     (acc, { columnDef: { header }, getCanHide, getIsVisible, id }) => {
       if (getCanHide()) {
         const option: CheckboxMenuItem = {
@@ -117,7 +112,7 @@ export function getEditColumnOptions<T>(
           label: header as string, // TODO revisit type assertion here
           onChange: (event: ChangeEvent<HTMLInputElement>): void => {
             setColumnVisibility({
-              ...visibilityState,
+              ...columnVisibility,
               [id]: event.target.checked,
             });
           },

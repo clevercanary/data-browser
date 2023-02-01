@@ -124,18 +124,12 @@ export const TableComponent = <T extends object>({
     getVisibleFlatColumns,
     nextPage: tableNextPage,
     previousPage: tablePreviousPage,
-    setColumnVisibility,
   } = tableInstance;
   const allColumns = getAllColumns();
-  const { columnFilters, columnVisibility } = getState();
+  const { columnFilters } = getState();
   const scrollTop = useScroll();
   const isLastPage = currentPage === pages;
-  const editColumnOptions = getEditColumnOptions(
-    allColumns,
-    columnVisibility,
-    setColumnVisibility,
-    initialState?.columnVisibility
-  );
+  const editColumnOptions = getEditColumnOptions(tableInstance);
   const gridTemplateColumns = getGridTemplateColumns(getVisibleFlatColumns());
 
   const handleTableNextPage = (): void => {
