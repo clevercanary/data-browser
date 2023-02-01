@@ -1,5 +1,5 @@
 import {
-  Checkbox as MCheckbox,
+  Checkbox,
   CheckboxProps,
   FormControlLabel,
   MenuItem,
@@ -57,7 +57,7 @@ export const CheckboxMenu = ({
             <MenuItem disabled={disabled} key={value}>
               <FormControlLabel
                 control={
-                  <MCheckbox
+                  <Checkbox
                     checked={checked}
                     checkedIcon={<CheckedIcon />}
                     disabled={disabled}

@@ -199,7 +199,7 @@ export function getInitialState(
   columns: ColumnConfig[],
   defaultSort: ColumnSort | undefined
 ): InitialTableState {
-  const columnVisibility = getDefaultColumnVisibility(columns);
+  const columnVisibility = getInitialTableColumnVisibility(columns);
   const sorting = getInitialTableStateSorting(defaultSort);
   return {
     columnVisibility,
@@ -240,7 +240,9 @@ export function isColumnSortActive(
  * @param columns - Column configuration.
  * @returns initial table visibility state.
  */
-function getDefaultColumnVisibility(columns: ColumnConfig[]): VisibilityState {
+function getInitialTableColumnVisibility(
+  columns: ColumnConfig[]
+): VisibilityState {
   return columns.reduce((acc, { columnVisible = true, id }) => {
     Object.assign(acc, { [id]: columnVisible });
     return acc;
