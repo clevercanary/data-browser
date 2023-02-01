@@ -108,7 +108,7 @@ export function getEditColumnOptions<T>(table: Table<T>): CheckboxMenuItem[] {
       if (getCanHide()) {
         const option: CheckboxMenuItem = {
           checked: getIsVisible(),
-          disabled: initialVisibilityState?.[id] || false,
+          disabled: initialVisibilityState[id],
           label: header as string, // TODO revisit type assertion here
           onChange: (event: ChangeEvent<HTMLInputElement>): void => {
             setColumnVisibility({
