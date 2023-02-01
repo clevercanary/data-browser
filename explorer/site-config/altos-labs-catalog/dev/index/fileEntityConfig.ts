@@ -49,12 +49,12 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
         width: { max: "0.5fr", min: "132px" },
       },
       {
+        columnVisible: false,
         componentConfig: {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildInitiative,
         } as ComponentConfig<typeof Components.Cell>,
         header: ALTOS_LABS_CATALOG_CATEGORY_LABEL.INITIATIVE,
-        hiddenColumn: true,
         id: ALTOS_LABS_CATALOG_CATEGORY_KEY.INITIATIVE,
         width: { max: "0.5fr", min: "132px" },
       },
@@ -77,12 +77,12 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
         width: { max: "1.5fr", min: "200px" },
       },
       {
+        columnVisible: false,
         componentConfig: {
           component: Components.Link,
           viewBuilder: ViewBuilder.buildDOI,
         } as ComponentConfig<typeof Components.Link>,
         header: ALTOS_LABS_CATALOG_CATEGORY_LABEL.DOI,
-        hiddenColumn: true,
         id: ALTOS_LABS_CATALOG_CATEGORY_KEY.DOI,
         width: { max: "1fr", min: "160px" },
       },
@@ -105,12 +105,12 @@ export const fileEntity: EntityConfig<AltosLabsCatalogFile> = {
         width: { max: "0.5fr", min: "132px" },
       },
       {
+        columnVisible: false,
         componentConfig: {
           component: Components.Cell,
           viewBuilder: ViewBuilder.buildExperimentType,
         } as ComponentConfig<typeof Components.Cell>,
         header: ALTOS_LABS_CATALOG_CATEGORY_LABEL.EXPERIMENT_TYPE,
-        hiddenColumn: true,
         id: ALTOS_LABS_CATALOG_CATEGORY_KEY.EXPERIMENT_TYPE,
         width: { max: "1fr", min: "160px" },
       },
