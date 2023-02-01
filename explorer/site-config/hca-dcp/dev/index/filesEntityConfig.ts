@@ -37,7 +37,7 @@ export const filesEntityConfig: EntityConfig<FilesResponse> = {
           component: Components.AzulFileDownload,
           viewBuilder: filesBuildFileDownload,
         } as ComponentConfig<typeof Components.AzulFileDownload>,
-        disableHiding: false,
+        disableHiding: true,
         disableSorting: true,
         header: HCA_DCP_CATEGORY_LABEL.AZUL_FILE_DOWNLOAD,
         id: HCA_DCP_CATEGORY_KEY.AZUL_FILE_DOWNLOAD,
