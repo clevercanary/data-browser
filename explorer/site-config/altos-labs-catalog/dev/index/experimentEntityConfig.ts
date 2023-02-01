@@ -68,12 +68,12 @@ export const experimentEntity: EntityConfig<AltosLabsCatalogExperiment> = {
         width: { max: "1.5fr", min: "200px" },
       },
       {
+        columnVisible: false,
         componentConfig: {
           component: Components.Link,
           viewBuilder: ViewBuilder.buildDOI,
         } as ComponentConfig<typeof Components.Link>,
         header: ALTOS_LABS_CATALOG_CATEGORY_LABEL.DOI,
-        hiddenColumn: true,
         id: ALTOS_LABS_CATALOG_CATEGORY_KEY.DOI,
         width: { max: "1fr", min: "160px" },
       },
