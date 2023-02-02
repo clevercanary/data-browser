@@ -37,6 +37,19 @@ export const buildAssay = (
 };
 
 /**
+ * Build props for collection cell component from the given Altos Labs entity.
+ * @param altosLabsCatalogEntity - Altos Labs catalog entity.
+ * @returns Model to be used as props for the collection cell.
+ */
+export const buildCollection = (
+  altosLabsCatalogEntity: AltosLabsCatalogEntity
+): React.ComponentProps<typeof C.Cell> => {
+  return {
+    value: altosLabsCatalogEntity.collection,
+  };
+};
+
+/**
  * Build props for DOI cell component from the given Altos Labs entity.
  * @param altosLabsCatalogEntity - Altos Labs catalog entity.
  * @returns Model to be used as props for the DOI cell.
@@ -151,19 +164,6 @@ export const buildFileType = (
 ): React.ComponentProps<typeof C.Cell> => {
   return {
     value: altosLabsCatalogFile.fileType,
-  };
-};
-
-/**
- * Build props for initiative cell component from the given Altos Labs entity.
- * @param altosLabsCatalogEntity - Altos Labs catalog entity.
- * @returns Model to be used as props for the initiative cell.
- */
-export const buildInitiative = (
-  altosLabsCatalogEntity: AltosLabsCatalogEntity
-): React.ComponentProps<typeof C.Cell> => {
-  return {
-    value: altosLabsCatalogEntity.initiative,
   };
 };
 
