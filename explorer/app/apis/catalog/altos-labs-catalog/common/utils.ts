@@ -46,7 +46,7 @@ export function AltosLabsFileInputMapper(
     DOI: sanitizeString(altosLabsCatalogFile.DOI),
     S3URI: sanitizeString(altosLabsCatalogFile.S3URI),
     assay: sanitizeStringArray(altosLabsCatalogFile.assay),
-    collection: altosLabsCatalogFile.collection, // Expected value "APP".
+    collection: altosLabsCatalogFile.collection,
     description: altosLabsCatalogFile.description,
     experimentType: altosLabsCatalogFile.experimentType,
     fileType: sanitizeString(altosLabsCatalogFile.fileType),
