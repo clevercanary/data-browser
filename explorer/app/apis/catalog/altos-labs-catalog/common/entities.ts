@@ -9,10 +9,10 @@ import {
 
 export interface AltosLabsCatalog {
   assay: string[];
+  collection: string;
   description: Description;
   DOI: string;
   experimentType: EXPERIMENT_TYPE;
-  initiative: string;
   NCBITaxonomyID: string[];
   shorthand: string;
   species: string[];
@@ -30,11 +30,11 @@ export interface AltosLabsCatalogExperiment extends AltosLabsCatalog {
 
 export interface AltosLabsCatalogFile {
   assay: string[];
+  collection: string;
   description: Description;
   DOI: string;
   experimentType: EXPERIMENT_TYPE;
   fileType: string;
-  initiative: string;
   NCBITaxonomyID?: string[];
   S3URI: string;
   shorthand: string;
