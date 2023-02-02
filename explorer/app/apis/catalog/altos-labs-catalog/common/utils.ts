@@ -23,7 +23,7 @@ export function AltosLabsExperimentInputMapper(
     ),
     S3URIs: sanitizeStringArray(altosLabsCatalogExperiment.S3URIs),
     assay: sanitizeStringArray(altosLabsCatalogExperiment.assay),
-    collection: altosLabsCatalogExperiment.collection, // Expected value "APP".
+    collection: altosLabsCatalogExperiment.collection,
     description: altosLabsCatalogExperiment.description,
     experimentType: altosLabsCatalogExperiment.experimentType,
     shorthand: sanitizeString(altosLabsCatalogExperiment.shorthand),
