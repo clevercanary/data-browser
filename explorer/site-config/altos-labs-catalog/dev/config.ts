@@ -1,6 +1,7 @@
 import logoAltosLabs from "images/logoAltosLabs.png";
 import { CATALOG_DEFAULT } from "../../../app/apis/azul/anvil/common/constants";
 import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
+import { SOCIAL } from "../../../app/components/common/Socials/socials";
 import { SiteConfig } from "../../../app/config/common/entities";
 import {
   ALTOS_LABS_CATALOG_CATEGORY_KEY,
@@ -77,7 +78,7 @@ const config: SiteConfig = {
       ],
       socials: [
         {
-          type: "twitter",
+          ...SOCIAL.TWITTER,
           url: "https://www.twitter.com/altos_labs",
         },
       ],
@@ -98,7 +99,7 @@ const config: SiteConfig = {
       ],
       socials: [
         {
-          type: "twitter",
+          ...SOCIAL.TWITTER,
           url: "https://www.twitter.com/altos_labs",
         },
       ],
