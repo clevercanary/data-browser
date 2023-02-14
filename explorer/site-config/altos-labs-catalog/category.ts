@@ -1,7 +1,7 @@
 export const ALTOS_LABS_CATALOG_CATEGORY_KEY = {
   ASSAY: "assay",
   COLLECTION: "collection",
-  DOI: "doi",
+  DOI: "DOI",
   EXPERIMENT: "title",
   EXPERIMENT_TYPE: "experimentType",
   FILE_TYPE: "fileType",
