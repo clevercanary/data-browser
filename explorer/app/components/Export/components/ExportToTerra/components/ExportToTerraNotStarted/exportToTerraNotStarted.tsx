@@ -1,5 +1,5 @@
-import { ButtonPrimary } from "app/components/common/Button/button.styles";
-import { FluidPaper } from "app/components/common/Paper/paper.styles";
+import { ButtonPrimary } from "@clevercanary/data-explorer-ui/lib/components/common/Button/button.styles";
+import { FluidPaper } from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper.styles";
 import {
   Section,
   SectionActions,

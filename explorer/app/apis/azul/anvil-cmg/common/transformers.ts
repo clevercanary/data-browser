@@ -1,9 +1,9 @@
-import { Breadcrumb } from "../../../../components/common/Breadcrumbs/breadcrumbs";
+import { Breadcrumb } from "@clevercanary/data-explorer-ui/lib/components/common/Breadcrumbs/breadcrumbs";
 import {
   Key,
   KeyValues,
   Value,
-} from "../../../../components/common/KeyValuePairs/keyValuePairs";
+} from "@clevercanary/data-explorer-ui/lib/components/common/KeyValuePairs/keyValuePairs";
 import { MetadataValue } from "../../../../components/Index/common/entities";
 import { Description } from "../../../../components/Project/common/entities";
 import { humanFileSize } from "../../../../utils/fileSize";

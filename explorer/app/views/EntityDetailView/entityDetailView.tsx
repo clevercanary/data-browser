@@ -1,3 +1,8 @@
+import {
+  Tab,
+  Tabs,
+  TabValue,
+} from "@clevercanary/data-explorer-ui/lib/components/common/Tabs/tabs";
 import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
 import { Detail as DetailView } from "app/components/Detail/detail";
 import { useCurrentDetailTab } from "app/hooks/useCurrentDetailTab";
@@ -6,7 +11,6 @@ import { PARAMS_INDEX_UUID } from "app/shared/constants";
 import { useRouter } from "next/router";
 import React from "react";
 import { EntityDetailPageProps } from "../../../pages/[entityListType]/[...params]";
-import { Tab, Tabs, TabValue } from "../../components/common/Tabs/tabs";
 import { EntityConfig } from "../../config/common/entities";
 import { getEntityConfig } from "../../config/config";
 

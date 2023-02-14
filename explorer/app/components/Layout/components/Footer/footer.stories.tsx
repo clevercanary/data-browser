@@ -1,5 +1,5 @@
+import { SOCIAL } from "@clevercanary/data-explorer-ui/lib/components/common/Socials/socials";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { SOCIAL } from "app/components/common/Socials/socials";
 import logoHhs from "images/logoHhs.svg";
 import logoHumanCellAtlas from "images/logoHumanCellAtlas.png";
 import logoLungmap from "images/logoLungmap.png";

@@ -1,4 +1,8 @@
 import {
+  GridPaper,
+  RoundedPaper,
+} from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper.styles";
+import {
   TableBody,
   TableCell,
   TableContainer,
@@ -11,10 +15,6 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import {
-  GridPaper,
-  RoundedPaper,
-} from "app/components/common/Paper/paper.styles";
 import {
   Table as GridTable,
   TableToolbar,

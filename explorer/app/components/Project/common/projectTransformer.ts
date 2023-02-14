@@ -1,8 +1,11 @@
+import { Breadcrumb } from "@clevercanary/data-explorer-ui/lib/components/common/Breadcrumbs/breadcrumbs";
 import {
   Key,
   KeyValues,
   Value,
-} from "app/components/common/KeyValuePairs/keyValuePairs";
+} from "@clevercanary/data-explorer-ui/lib/components/common/KeyValuePairs/keyValuePairs";
+import { Status } from "@clevercanary/data-explorer-ui/lib/components/common/StatusBadge/statusBadge";
+import { HeroTitle } from "@clevercanary/data-explorer-ui/lib/components/common/Title/title";
 import {
   ContributorResponse,
   ProjectResponse,
@@ -10,9 +13,6 @@ import {
   PublicationResponse,
 } from "app/models/responses";
 import { ENTRIES } from "../../../project-edits";
-import { Breadcrumb } from "../../common/Breadcrumbs/breadcrumbs";
-import { Status } from "../../common/StatusBadge/statusBadge";
-import { HeroTitle } from "../../common/Title/title";
 import { CONTRIBUTOR_ROLE } from "./constants";
 import {
   CollaboratingOrganization,

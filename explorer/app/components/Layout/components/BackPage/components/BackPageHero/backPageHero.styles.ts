@@ -1,7 +1,7 @@
+import { CallToActionButton as CTAButton } from "@clevercanary/data-explorer-ui/lib/components/common/Button/components/CallToActionButton/callToActionButton";
+import { TABLET } from "@clevercanary/data-explorer-ui/lib/theme/common/breakpoints";
 import styled from "@emotion/styled";
 import { Stack } from "@mui/material";
-import { BREAKPOINT } from "../../../../../../hooks/useBreakpointHelper";
-import { CallToActionButton as CTAButton } from "../../../../../common/Button/components/CallToActionButton/callToActionButton";
 
 interface Props {
   row: number;
@@ -14,7 +14,7 @@ export const BackPageHeroHeadline = styled.div`
     grid-column: 1 / -1; // Title and breadcrumbs consume full width of available grid.
   }
 
-  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+  ${({ theme }) => theme.breakpoints.up(TABLET)} {
     display: flex;
     flex: 1;
     gap: 88px;
@@ -34,7 +34,7 @@ export const CallToActionButton = styled(CTAButton)<Props>`
   grid-row: ${({ row }) => row}; // Positions between status and tabs.
   justify-self: flex-start;
 
-  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+  ${({ theme }) => theme.breakpoints.up(TABLET)} {
     justify-self: flex-end;
   }
 `;

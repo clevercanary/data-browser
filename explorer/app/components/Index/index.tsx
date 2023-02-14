@@ -1,5 +1,5 @@
+import { HeroTitle } from "@clevercanary/data-explorer-ui/lib/components/common/Title/title";
 import React, { ReactNode } from "react";
-import { HeroTitle } from "../common/Title/title";
 import { Hero } from "./components/Hero/hero";
 import { Index as IndexLayout } from "./index.styles";
 

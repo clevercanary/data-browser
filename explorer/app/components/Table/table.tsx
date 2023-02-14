@@ -1,3 +1,8 @@
+import { InfoIcon } from "@clevercanary/data-explorer-ui/lib/components/common/CustomIcon/components/InfoIcon/infoIcon";
+import {
+  GridPaper,
+  RoundedPaper,
+} from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper.styles";
 import {
   AlertTitle,
   TableBody,
@@ -28,8 +33,6 @@ import {
   ExploreStateContext,
 } from "../../common/context/exploreState";
 import { Pagination } from "../../common/entities";
-import { InfoIcon } from "../common/CustomIcon/components/InfoIcon/infoIcon";
-import { GridPaper, RoundedPaper } from "../common/Paper/paper.styles";
 import { NoResults } from "../NoResults/noResults";
 import {
   buildCategoryViews,

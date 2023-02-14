@@ -1,5 +1,5 @@
+import { Input } from "@clevercanary/data-explorer-ui/lib/components/common/Input/input";
 import styled from "@emotion/styled";
-import { Input } from "../../../common/Input/input";
 
 export const FilterMenuSearch = styled(Input)`
   margin-top: 16px;

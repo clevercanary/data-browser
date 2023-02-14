@@ -1,7 +1,7 @@
 import {
   FluidPaper,
   GridPaper,
-} from "app/components/common/Paper/paper.styles";
+} from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper.styles";
 import React, { ReactNode } from "react";
 
 interface Props {

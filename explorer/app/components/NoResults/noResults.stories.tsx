@@ -1,9 +1,9 @@
+import {
+  PrimaryButtonStory,
+  SecondaryButtonStory,
+} from "@clevercanary/data-explorer-ui/lib/components/common/Button/button.stories";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import {
-  PrimaryButton,
-  SecondaryButton,
-} from "../common/Button/button.stories";
 import { NoResults } from "./noResults";
 
 export default {
@@ -24,8 +24,8 @@ export const Default = Template.bind({});
 Default.args = {
   actions: (
     <>
-      <PrimaryButton>Remove last filter</PrimaryButton>
-      <SecondaryButton>Clear all filters</SecondaryButton>
+      <PrimaryButtonStory>Remove last filter</PrimaryButtonStory>
+      <SecondaryButtonStory>Clear all filters</SecondaryButtonStory>
     </>
   ),
   description:

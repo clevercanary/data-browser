@@ -1,4 +1,9 @@
-import { ANCHOR_TARGET } from "app/components/Links/common/entities";
+import { Breadcrumb } from "@clevercanary/data-explorer-ui/lib/components/common/Breadcrumbs/breadcrumbs";
+import {
+  Key,
+  Value,
+} from "@clevercanary/data-explorer-ui/lib/components/common/KeyValuePairs/keyValuePairs";
+import { ANCHOR_TARGET } from "@clevercanary/data-explorer-ui/lib/components/Links/common/entities";
 import React, { ReactElement } from "react";
 import {
   NCPICatalogEntity,
@@ -7,11 +12,6 @@ import {
 } from "../../../../apis/catalog/ncpi-catalog/common/entities";
 import { ExploreState } from "../../../../common/context/exploreState";
 import * as C from "../../../../components";
-import { Breadcrumb } from "../../../../components/common/Breadcrumbs/breadcrumbs";
-import {
-  Key,
-  Value,
-} from "../../../../components/common/KeyValuePairs/keyValuePairs";
 import { stringifyValues } from "../../../../components/Detail/common/utils";
 import { METADATA_KEY } from "../../../../components/Index/common/entities";
 import { getPluralizedMetadataLabel } from "../../../../components/Index/common/indexTransformer";

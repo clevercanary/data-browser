@@ -1,6 +1,6 @@
+import { SearchIcon } from "@clevercanary/data-explorer-ui/lib/components/common/CustomIcon/components/SearchIcon/searchIcon";
+import { SetSearchTermFn } from "@clevercanary/data-explorer-ui/lib/components/Filter/common/entities";
 import React from "react";
-import { SearchIcon } from "../../../common/CustomIcon/components/SearchIcon/searchIcon";
-import { SetSearchTermFn } from "../../common/entities";
 import { FilterMenuSearch as Search } from "./filterMenuSearch.styles";
 
 interface Props {

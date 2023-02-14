@@ -1,9 +1,9 @@
+import { createAppTheme } from "@clevercanary/data-explorer-ui/lib/theme/theme";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { ThemeProvider as Emotion10ThemeProvider } from "emotion-theming";
 import { RouterContext } from "next/dist/shared/lib/router-context";
 import { useConfig } from "../app/hooks/useConfig";
-import { getAppTheme } from "../app/theme/theme";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -22,7 +22,7 @@ export const parameters = {
 
 const withThemeProvider = (Story, context) => {
   const currentConfig = useConfig();
-  const theme = getAppTheme(currentConfig.theme);
+  const theme = createAppTheme(currentConfig.themeOptions);
   return (
     <Emotion10ThemeProvider theme={theme}>
       <ThemeProvider theme={theme}>

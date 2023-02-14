@@ -1,12 +1,12 @@
+import { CloseDrawerIconButton } from "@clevercanary/data-explorer-ui/lib/components/common/IconButton/iconButton.styles";
+import {
+  BREAKPOINT_FN_NAME,
+  useBreakpointHelper,
+} from "@clevercanary/data-explorer-ui/lib/hooks/useBreakpointHelper";
+import { DESKTOP } from "@clevercanary/data-explorer-ui/lib/theme/common/breakpoints";
 import { CloseRounded } from "@mui/icons-material";
 import { Drawer, PaperProps } from "@mui/material";
 import React, { ReactNode, useEffect } from "react";
-import {
-  BREAKPOINT,
-  BREAKPOINT_FN_NAME,
-  useBreakpointHelper,
-} from "../../../../hooks/useBreakpointHelper";
-import { CloseDrawerIconButton } from "../../../common/IconButton/iconButton.styles";
 import {
   Sidebar as PermanentSidebar,
   SidebarPositioner,
@@ -25,10 +25,7 @@ export const Sidebar = ({
   Label,
   onDrawerClose,
 }: Props): JSX.Element => {
-  const tablet = useBreakpointHelper(
-    BREAKPOINT_FN_NAME.DOWN,
-    BREAKPOINT.DESKTOP
-  );
+  const tablet = useBreakpointHelper(BREAKPOINT_FN_NAME.DOWN, DESKTOP);
   const controlledSidebar = typeof drawerOpen === "boolean";
   const drawerSidebar = controlledSidebar && tablet; // Sidebar is "temporary" drawer when drawerOpen is defined and breakpoint is "tablet" or smaller.
   const Bar = drawerSidebar ? Drawer : PermanentSidebar;

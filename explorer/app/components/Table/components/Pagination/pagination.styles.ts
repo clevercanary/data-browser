@@ -1,5 +1,5 @@
+import { TABLET } from "@clevercanary/data-explorer-ui/lib/theme/common/breakpoints";
 import styled from "@emotion/styled";
-import { BREAKPOINT } from "../../../../hooks/useBreakpointHelper";
 
 export const Pagination = styled.div`
   align-items: center;
@@ -10,7 +10,7 @@ export const Pagination = styled.div`
   justify-content: space-between;
   padding: 20px;
 
-  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+  ${({ theme }) => theme.breakpoints.up(TABLET)} {
     justify-content: flex-start;
   }
 `;

@@ -1,7 +1,7 @@
+import { NavLinkDropdownButton } from "@clevercanary/data-explorer-ui/lib/components/common/Button/components/NavLinkDropdownButton/navLinkDropdownButton";
 import { ListItemIcon, ListItemText, MenuItem } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { MouseEvent, ReactNode, useState } from "react";
-import { NavLinkDropdownButton } from "../../../../../common/Button/components/NavLinkDropdownButton/navLinkDropdownButton";
 import { NavLinkMenu as Menu } from "./navLinkMenu.styles";
 
 export interface MenuItem {

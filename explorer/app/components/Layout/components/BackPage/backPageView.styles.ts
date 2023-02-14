@@ -1,6 +1,6 @@
+import { TABLET } from "@clevercanary/data-explorer-ui/lib/theme/common/breakpoints";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { BREAKPOINT } from "../../../../hooks/useBreakpointHelper";
 import { Sections } from "../../../Detail/components/Sections/sections";
 
 export const BackPageView = styled.div`
@@ -11,7 +11,7 @@ export const BackPageView = styled.div`
   margin: 0 16px;
   padding: 24px 0;
 
-  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+  ${({ theme }) => theme.breakpoints.up(TABLET)} {
     grid-template-columns: repeat(12, 1fr);
     margin: 0 auto;
     max-width: min(calc(100% - 32px), 1232px);
@@ -29,7 +29,7 @@ export const BackPageHero = styled.div`
 export const BackPageTabs = styled.div`
   grid-column: 1 / -1;
 
-  ${({ theme }) => theme.breakpoints.down(BREAKPOINT.TABLET)} {
+  ${({ theme }) => theme.breakpoints.down(TABLET)} {
     margin-left: -16px;
     margin-right: -16px;
   }
@@ -45,7 +45,7 @@ export const BackPageContent = styled.div`
   margin-left: -16px;
   margin-right: -16px;
 
-  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+  ${({ theme }) => theme.breakpoints.up(TABLET)} {
     display: grid;
     gap: 0 16px;
     grid-template-columns: inherit;
@@ -65,7 +65,7 @@ export const DetailPageOverviewContent = styled(BackPageContent)`
   gap: 1px;
   padding: 1px 0;
 
-  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+  ${({ theme }) => theme.breakpoints.up(TABLET)} {
     background-color: transparent;
     padding: 0;
   }
@@ -93,14 +93,14 @@ export const BackPageContentSingleColumn = styled(BackPageContentColumn)`
 
 // Main column.
 export const BackPageContentMainColumn = styled(BackPageContentColumn)`
-  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+  ${({ theme }) => theme.breakpoints.up(TABLET)} {
     ${mainColumn};
   }
 `;
 
 // Side column.
 export const BackPageContentSideColumn = styled(BackPageContentColumn)`
-  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+  ${({ theme }) => theme.breakpoints.up(TABLET)} {
     ${sideColumn};
   }
 `;
@@ -114,7 +114,7 @@ export const DetailPageOverviewContentMainColumn = styled(Sections)`
     display: contents; // required to override nested GridPaper.
   }
 
-  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+  ${({ theme }) => theme.breakpoints.up(TABLET)} {
     align-self: flex-start;
     display: grid;
     ${mainColumn};
@@ -134,7 +134,7 @@ export const DetailPageOverviewContentSideColumn = styled(Sections)`
     display: contents; // required to override nested GridPaper.
   }
 
-  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+  ${({ theme }) => theme.breakpoints.up(TABLET)} {
     align-self: flex-start;
     display: grid;
     ${sideColumn};

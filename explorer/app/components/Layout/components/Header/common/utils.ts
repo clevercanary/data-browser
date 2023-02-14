@@ -1,6 +1,6 @@
-import { CustomIcon } from "../../../../common/CustomIcon/customIcon";
-import { Social } from "../../../../common/Socials/socials";
-import { ANCHOR_TARGET } from "../../../../Links/common/entities";
+import { CustomIcon } from "@clevercanary/data-explorer-ui/lib/components/common/CustomIcon/customIcon";
+import { Social } from "@clevercanary/data-explorer-ui/lib/components/common/Socials/socials";
+import { ANCHOR_TARGET } from "@clevercanary/data-explorer-ui/lib/components/Links/common/entities";
 import { NavLinkItem } from "../../../common/entities";
 import { MenuItem } from "../components/NavLinkMenu/navLinkMenu";
 

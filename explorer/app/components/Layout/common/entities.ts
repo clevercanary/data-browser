@@ -1,5 +1,5 @@
-import { Social } from "../../common/Socials/socials";
-import { ImageSrc } from "../../common/StaticImage/staticImage";
+import { Social } from "@clevercanary/data-explorer-ui/lib/components/common/Socials/socials";
+import { ImageSrc } from "@clevercanary/data-explorer-ui/lib/components/common/StaticImage/staticImage";
 import { MenuItem } from "../components/Header/components/NavLinkMenu/navLinkMenu";
 import { NavAlignment } from "../components/Header/components/NavLinks/navLinks";
 

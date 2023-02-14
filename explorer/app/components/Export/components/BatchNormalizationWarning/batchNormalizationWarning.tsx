@@ -1,5 +1,5 @@
+import { TagWarning } from "@clevercanary/data-explorer-ui/lib/components/common/Tag/tag.styles";
 import { Link, Typography } from "@mui/material";
-import { TagWarning } from "app/components/common/Tag/tag.styles";
 import NLink from "next/link";
 import React from "react";
 

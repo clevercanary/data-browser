@@ -100,9 +100,9 @@ export const filesEntityConfig: EntityConfig<FilesResponse> = {
       {
         columnVisible: false,
         componentConfig: {
-          component: Components.Text,
+          component: Components.NTagCell,
           viewBuilder: projectsBuildDevelopmentStage,
-        } as ComponentConfig<typeof Components.Text>,
+        } as ComponentConfig<typeof Components.NTagCell>,
         disableSorting: true,
         header: HCA_DCP_CATEGORY_LABEL.DEVELOPMENT_STAGE,
         id: HCA_DCP_CATEGORY_KEY.DEVELOPMENT_STAGE,

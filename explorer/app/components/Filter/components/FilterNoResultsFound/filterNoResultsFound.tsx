@@ -1,6 +1,6 @@
+import { TextButtonPrimary } from "@clevercanary/data-explorer-ui/lib/components/common/Button/button.styles";
 import { Typography } from "@mui/material";
 import React from "react";
-import { TextButtonPrimary } from "../../../common/Button/button.styles";
 import { FilterNoResultsFound as FilterNoResults } from "./filterNoResultsFound.styles";
 
 type OnClearSearchTermFn = () => void;

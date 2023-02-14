@@ -1,11 +1,11 @@
+import { DownloadIcon } from "@clevercanary/data-explorer-ui/lib/components/common/CustomIcon/components/DownloadIcon/downloadIcon";
+import { LoadingIcon } from "@clevercanary/data-explorer-ui/lib/components/common/CustomIcon/components/LoadingIcon/loadingIcon";
+import { LoadingIconButton } from "@clevercanary/data-explorer-ui/lib/components/common/IconButton/components/LoadingIconButton/loadingIconButton";
+import { IconButtonPrimary } from "@clevercanary/data-explorer-ui/lib/components/common/IconButton/iconButton.styles";
 import { Box } from "@mui/material";
 import { useRequestFileLocation } from "app/hooks/useRequestFileLocation";
 import React, { useEffect, useRef, useState } from "react";
 import { API_FILE_LOCATION_FETCH } from "../../apis/azul/anvil/common/constants";
-import { DownloadIcon } from "../common/CustomIcon/components/DownloadIcon/downloadIcon";
-import { LoadingIcon } from "../common/CustomIcon/components/LoadingIcon/loadingIcon";
-import { LoadingIconButton } from "../common/IconButton/components/LoadingIconButton/loadingIconButton";
-import { IconButtonPrimary } from "../common/IconButton/iconButton.styles";
 
 interface AzulFileDownloadProps {
   url?: string; // Original "file fetch URL" as returned from Azul endpoint.

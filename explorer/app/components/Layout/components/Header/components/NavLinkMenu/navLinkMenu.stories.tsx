@@ -1,5 +1,5 @@
+import { CustomIcon } from "@clevercanary/data-explorer-ui/lib/components/common/CustomIcon/customIcon";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { CustomIcon } from "app/components/common/CustomIcon/customIcon";
 import React from "react";
 import { NavLinkMenu } from "./navLinkMenu";
 

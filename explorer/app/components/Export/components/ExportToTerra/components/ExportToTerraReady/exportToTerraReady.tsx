@@ -1,5 +1,6 @@
-import { ButtonPrimary } from "app/components/common/Button/button.styles";
-import { FluidPaper } from "app/components/common/Paper/paper.styles";
+import { ButtonPrimary } from "@clevercanary/data-explorer-ui/lib/components/common/Button/button.styles";
+import { FluidPaper } from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper.styles";
+import { ANCHOR_TARGET } from "@clevercanary/data-explorer-ui/lib/components/Links/common/entities";
 import { SectionTitle } from "app/components/Detail/components/Section/components/SectionTitle/sectionTitle";
 import {
   Section,
@@ -9,7 +10,6 @@ import {
 } from "app/components/Detail/components/Section/section.styles";
 import Link from "next/link";
 import React from "react";
-import { ANCHOR_TARGET } from "../../../../../Links/common/entities";
 import { BatchNormalizationWarning } from "../../../BatchNormalizationWarning/batchNormalizationWarning";
 
 interface Props {

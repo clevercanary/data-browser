@@ -1,6 +1,6 @@
+import { TABLET } from "@clevercanary/data-explorer-ui/lib/theme/common/breakpoints";
 import styled from "@emotion/styled";
 import { Typography } from "@mui/material";
-import { BREAKPOINT } from "../../../../hooks/useBreakpointHelper";
 
 export const Section = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const Section = styled.div`
   gap: 16px 0;
   padding: 20px 16px;
 
-  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+  ${({ theme }) => theme.breakpoints.up(TABLET)} {
     padding: 20px;
   }
 `;

@@ -1,9 +1,9 @@
+import { IconButtonSocialsFooter } from "@clevercanary/data-explorer-ui/lib/components/common/IconButton/iconButton.styles";
+import { Socials } from "@clevercanary/data-explorer-ui/lib/components/common/Socials/socials";
+import { Stack } from "@clevercanary/data-explorer-ui/lib/components/common/Stack/stack";
 import { AppBar, Link, Toolbar } from "@mui/material";
-import { Socials } from "app/components/common/Socials/socials";
 import NLink from "next/link";
 import React from "react";
-import { IconButtonSocialsFooter } from "../../../common/IconButton/iconButton.styles";
-import { Stack } from "../../../common/Stack/Stack";
 import { Footer as FooterProps } from "../../common/entities";
 import { Logo } from "../Header/components/Logo/logo";
 

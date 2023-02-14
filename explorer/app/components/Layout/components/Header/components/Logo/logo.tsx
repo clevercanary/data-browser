@@ -1,6 +1,6 @@
+import { StaticImage } from "@clevercanary/data-explorer-ui/lib/components/common/StaticImage/staticImage";
 import Link from "next/link";
 import React from "react";
-import { StaticImage } from "../../../../../common/StaticImage/staticImage";
 import { Logo as LogoProps } from "../../../../common/entities";
 
 interface Props {

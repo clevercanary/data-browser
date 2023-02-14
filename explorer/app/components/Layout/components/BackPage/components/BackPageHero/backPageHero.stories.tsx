@@ -1,6 +1,6 @@
+import { STATUS } from "@clevercanary/data-explorer-ui/lib/components/common/StatusBadge/statusBadge";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { STATUS } from "../../../../../common/StatusBadge/statusBadge";
 import { BackPageHero } from "./backPageHero";
 
 export default {

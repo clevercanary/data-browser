@@ -1,3 +1,4 @@
+import { HeroTitle } from "@clevercanary/data-explorer-ui/lib/components/common/Title/title";
 import { ThemeOptions } from "@mui/material";
 import { ColumnSort } from "@tanstack/react-table";
 import { Footer, Header } from "app/components/Layout/common/entities";
@@ -5,7 +6,6 @@ import { JSXElementConstructor } from "react";
 import { SelectedFilterValue } from "../../apis/azul/common/entities";
 import { ExploreState } from "../../common/context/exploreState";
 import { CategoryKey } from "../../common/entities";
-import { HeroTitle } from "../../components/common/Title/title";
 
 type GetIdFunction<T> = (detail: T) => string;
 type EntityImportMapper<I, D> = (input: I) => D;
@@ -232,7 +232,7 @@ export interface SiteConfig {
   };
   redirectRootToPath?: string;
   summaryConfig?: SummaryConfig;
-  theme?: ThemeOptions;
+  themeOptions?: ThemeOptions;
 }
 
 export const SORT_DIRECTION = {

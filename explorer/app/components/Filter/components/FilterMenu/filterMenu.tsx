@@ -1,3 +1,5 @@
+import { CheckedIcon } from "@clevercanary/data-explorer-ui/lib/components/common/CustomIcon/components/CheckedIcon/checkedIcon";
+import { UncheckedIcon } from "@clevercanary/data-explorer-ui/lib/components/common/CustomIcon/components/UncheckedIcon/uncheckedIcon";
 import {
   Checkbox,
   List,
@@ -5,8 +7,6 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { CheckedIcon } from "app/components/common/CustomIcon/components/CheckedIcon/checkedIcon";
-import { UncheckedIcon } from "app/components/common/CustomIcon/components/UncheckedIcon/uncheckedIcon";
 import { matchSorter } from "match-sorter";
 import React, { useState } from "react";
 import {

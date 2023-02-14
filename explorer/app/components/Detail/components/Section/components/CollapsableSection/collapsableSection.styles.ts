@@ -1,6 +1,6 @@
+import { TABLET } from "@clevercanary/data-explorer-ui/lib/theme/common/breakpoints";
 import styled from "@emotion/styled";
 import { ButtonBase, Typography } from "@mui/material";
-import { BREAKPOINT } from "../../../../../../hooks/useBreakpointHelper";
 
 export const CollapsableSection = styled.div`
   background-color: ${({ theme }) => theme.palette.common.white};
@@ -8,7 +8,7 @@ export const CollapsableSection = styled.div`
   flex-direction: column;
   padding: 4px 0;
 
-  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+  ${({ theme }) => theme.breakpoints.up(TABLET)} {
     gap: 8px;
     padding: 20px;
   }
@@ -19,7 +19,7 @@ export const SectionSummary = styled(ButtonBase)`
   justify-content: space-between;
   padding: 16px;
 
-  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+  ${({ theme }) => theme.breakpoints.up(TABLET)} {
     padding: 0;
   }
 `;
@@ -31,7 +31,7 @@ export const SectionText = styled(Typography)`
   gap: 16px;
   padding: 0 16px 16px;
 
-  ${({ theme }) => theme.breakpoints.up(BREAKPOINT.TABLET)} {
+  ${({ theme }) => theme.breakpoints.up(TABLET)} {
     padding: 0;
   }
 ` as typeof Typography;

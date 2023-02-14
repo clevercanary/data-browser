@@ -1,10 +1,10 @@
+import { ToggleButtonGroup } from "@clevercanary/data-explorer-ui/lib/components/common/ToggleButtonGroup/toggleButtonGroup";
 import React, { useContext } from "react";
 import {
   EntityView,
   ExploreActionKind,
   ExploreStateContext,
 } from "../../../../common/context/exploreState";
-import { ToggleButtonGroup } from "../../../common/ToggleButtonGroup/toggleButtonGroup";
 
 export const EntityViewToggle = (): JSX.Element => {
   const { exploreDispatch } = useContext(ExploreStateContext);

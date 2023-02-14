@@ -2,18 +2,21 @@
  * Back page hero component comprising breadcrumbs, title, status and tabs.
  */
 
-import { Stack } from "app/components/common/Stack/Stack";
-import React, { Fragment } from "react";
 import {
   Breadcrumb,
   Breadcrumbs,
-} from "../../../../../common/Breadcrumbs/breadcrumbs";
-import { CallToActionButton as CTAButtonProps } from "../../../../../common/Button/common/entities";
+} from "@clevercanary/data-explorer-ui/lib/components/common/Breadcrumbs/breadcrumbs";
+import { CallToAction } from "@clevercanary/data-explorer-ui/lib/components/common/Button/components/CallToActionButton/callToActionButton";
+import { Stack } from "@clevercanary/data-explorer-ui/lib/components/common/Stack/stack";
 import {
   Status,
   StatusBadge,
-} from "../../../../../common/StatusBadge/statusBadge";
-import { HeroTitle, Title } from "../../../../../common/Title/title";
+} from "@clevercanary/data-explorer-ui/lib/components/common/StatusBadge/statusBadge";
+import {
+  HeroTitle,
+  Title,
+} from "@clevercanary/data-explorer-ui/lib/components/common/Title/title";
+import React, { Fragment } from "react";
 import {
   BackPageHeroHeadline,
   CallToActionButton,
@@ -22,7 +25,7 @@ import {
 
 interface Props {
   breadcrumbs?: Breadcrumb[];
-  callToAction?: CTAButtonProps;
+  callToAction?: CallToAction;
   status?: Status;
   title?: HeroTitle;
 }

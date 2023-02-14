@@ -1,4 +1,4 @@
-import { FluidPaper } from "app/components/common/Paper/paper.styles";
+import { FluidPaper } from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper.styles";
 import React, { ReactNode } from "react";
 import { SectionTitle } from "../../../Detail/components/Section/components/SectionTitle/sectionTitle";
 import {

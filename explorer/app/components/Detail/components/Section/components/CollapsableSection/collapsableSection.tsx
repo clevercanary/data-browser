@@ -1,13 +1,13 @@
+import {
+  BREAKPOINT_FN_NAME,
+  useBreakpointHelper,
+} from "@clevercanary/data-explorer-ui/lib/hooks/useBreakpointHelper";
+import { TABLET } from "@clevercanary/data-explorer-ui/lib/theme/common/breakpoints";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import { Collapse } from "@mui/material";
 import { CollapseProps } from "@mui/material/Collapse/Collapse";
 import React, { ReactNode, useEffect, useState } from "react";
-import {
-  BREAKPOINT,
-  BREAKPOINT_FN_NAME,
-  useBreakpointHelper,
-} from "../../../../../../hooks/useBreakpointHelper";
 import { SectionTitle } from "../SectionTitle/sectionTitle";
 import {
   CollapsableSection as Section,
@@ -26,10 +26,7 @@ export const CollapsableSection = ({
   collapsable = false,
   title,
 }: Props): JSX.Element => {
-  const mobile = useBreakpointHelper(
-    BREAKPOINT_FN_NAME.DOWN,
-    BREAKPOINT.TABLET
-  );
+  const mobile = useBreakpointHelper(BREAKPOINT_FN_NAME.DOWN, TABLET);
   const [expanded, setExpanded] = useState<boolean>(false);
   const [transitionDuration, setTransitionDuration] =
     useState<CollapseProps["timeout"]>(0);

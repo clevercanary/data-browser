@@ -1,14 +1,14 @@
+import { Socials } from "@clevercanary/data-explorer-ui/lib/components/common/Socials/socials";
+import {
+  BREAKPOINT_FN_NAME,
+  useBreakpointHelper,
+} from "@clevercanary/data-explorer-ui/lib/hooks/useBreakpointHelper";
+import { DESKTOP_SM } from "@clevercanary/data-explorer-ui/lib/theme/common/breakpoints";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import { Box, Divider, IconButton, Toolbar, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { ELEMENT_ALIGNMENT } from "../../../../common/entities";
-import {
-  BREAKPOINT,
-  BREAKPOINT_FN_NAME,
-  useBreakpointHelper,
-} from "../../../../hooks/useBreakpointHelper";
-import { Socials } from "../../../common/Socials/socials";
 import { Header as HeaderProps } from "../../common/entities";
 import { getHeaderNavigationLinks } from "./common/utils";
 import { Content } from "./components/Content/content";
@@ -36,13 +36,10 @@ export const Header = ({ header }: Props): JSX.Element => {
     socials,
   } = header;
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const smDesktop = useBreakpointHelper(
-    BREAKPOINT_FN_NAME.UP,
-    BREAKPOINT.DESKTOP_SM
-  );
+  const smDesktop = useBreakpointHelper(BREAKPOINT_FN_NAME.UP, DESKTOP_SM);
   const onlySmDesktop = useBreakpointHelper(
     BREAKPOINT_FN_NAME.ONLY,
-    BREAKPOINT.DESKTOP_SM
+    DESKTOP_SM
   );
 
   // Set drawer open state to false on change of media breakpoint from mobile to "small desktop".

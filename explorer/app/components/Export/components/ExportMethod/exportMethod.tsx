@@ -1,5 +1,5 @@
+import { FluidPaper } from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper.styles";
 import { Typography } from "@mui/material";
-import { FluidPaper } from "app/components/common/Paper/paper.styles";
 import {
   Section,
   SectionActions,

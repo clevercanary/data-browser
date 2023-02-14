@@ -1,8 +1,8 @@
+import { DropdownButton } from "@clevercanary/data-explorer-ui/lib/components/common/Button/components/DropdownButton/dropdownButton";
+import { CheckedIcon } from "@clevercanary/data-explorer-ui/lib/components/common/CustomIcon/components/CheckedIcon/checkedIcon";
+import { UncheckedIcon } from "@clevercanary/data-explorer-ui/lib/components/common/CustomIcon/components/UncheckedIcon/uncheckedIcon";
 import { Checkbox, ListItemButton, ListItemText } from "@mui/material";
 import React, { MouseEvent, useState } from "react";
-import { DropdownButton } from "../../../common/Button/components/DropdownButton/dropdownButton";
-import { CheckedIcon } from "../../../common/CustomIcon/components/CheckedIcon/checkedIcon";
-import { UncheckedIcon } from "../../../common/CustomIcon/components/UncheckedIcon/uncheckedIcon";
 import { CheckboxMenu as Menu, ResetButton } from "./checkboxMenu.styles";
 
 type MenuListItemOnChangeFn = (event: unknown) => void; // see React Table VisibilityColumn "getToggleVisibilityHandler".

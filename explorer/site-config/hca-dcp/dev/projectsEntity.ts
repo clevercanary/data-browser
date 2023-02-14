@@ -125,9 +125,9 @@ export const projectsEntity: EntityConfig = {
         componentConfig: {
           children: [
             {
-              component: Components.Text,
+              component: Components.Cell,
               viewBuilder: projectsBuildCellCountColumn,
-            } as ComponentConfig<typeof Components.Text>,
+            } as ComponentConfig<typeof Components.Cell>,
           ],
           component: Components.Tooltip,
           props: {

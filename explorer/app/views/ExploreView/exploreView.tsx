@@ -1,4 +1,7 @@
-import { Tabs, TabValue } from "app/components/common/Tabs/tabs";
+import {
+  Tabs,
+  TabValue,
+} from "@clevercanary/data-explorer-ui/lib/components/common/Tabs/tabs";
 import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
 import { TableCreator } from "app/components/TableCreator/tableCreator";
 import { useEntityList } from "app/hooks/useEntityList";

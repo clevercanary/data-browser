@@ -2,9 +2,12 @@
  * ExploreView page hero component comprising title, summary counts, and export button.
  */
 
+import {
+  HeroTitle,
+  Title,
+} from "@clevercanary/data-explorer-ui/lib/components/common/Title/title";
 import Link from "next/link";
 import React, { ReactNode } from "react";
-import { HeroTitle, Title } from "../../../common/Title/title";
 import {
   ExportButton,
   HeroLayout,

@@ -1,6 +1,6 @@
+import { KeyValues } from "@clevercanary/data-explorer-ui/lib/components/common/KeyValuePairs/keyValuePairs";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { KeyValues } from "../../../common/KeyValuePairs/keyValuePairs";
 import { Details } from "./details";
 
 // Template constants
