@@ -1,3 +1,4 @@
+import { SelectCategory } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import SouthRoundedIcon from "@mui/icons-material/SouthRounded";
 import { TableSortLabelProps } from "@mui/material/TableSortLabel/TableSortLabel";
 import {
@@ -13,7 +14,6 @@ import {
 } from "@tanstack/react-table";
 import { Column } from "@tanstack/table-core";
 import { VisibilityState } from "@tanstack/table-core/src/features/Visibility";
-import { SelectCategory } from "../../../common/entities";
 import {
   ColumnConfig,
   GridTrackMinMax,

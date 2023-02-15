@@ -1,5 +1,5 @@
+import { CategoryTag } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import React from "react";
-import { CategoryTag } from "../../../../common/entities";
 import { FilterTag as Tag } from "../FilterTag/filterTag";
 import { FilterTags as Tags } from "./filterTags.styles";
 

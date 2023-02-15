@@ -1,3 +1,9 @@
+import {
+  CategoryKey,
+  CategoryValueKey,
+  PaginationDirectionType,
+  SelectCategory,
+} from "@clevercanary/data-explorer-ui/lib/common/entities";
 import { ColumnSort } from "@tanstack/react-table";
 import { createContext, Dispatch, ReactNode, useReducer } from "react";
 import {
@@ -13,12 +19,6 @@ import {
   buildCategoryViews,
   buildNextFilterState,
 } from "../../hooks/useCategoryFilter";
-import {
-  CategoryKey,
-  CategoryValueKey,
-  PaginationDirectionType,
-  SelectCategory,
-} from "../entities";
 
 /**
  * Model of explore state context.

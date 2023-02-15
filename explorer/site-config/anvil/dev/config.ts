@@ -1,11 +1,11 @@
+import { ELEMENT_ALIGNMENT } from "@clevercanary/data-explorer-ui/lib/common/entities";
+import { LogoProps } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/components/Logo/logo";
 import logoAnvil from "images/logoAnvil.png";
 import logoHhs from "images/logoHhs.svg";
 import logoNhgri from "images/logoNhgri.svg";
 import logoNih from "images/logoNih.svg";
 import logoUsagov from "images/logoUsagov.png";
 import { CATALOG_DEFAULT } from "../../../app/apis/azul/anvil/common/constants";
-import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
-import { Logo } from "../../../app/components/Layout/common/entities";
 import { SiteConfig } from "../../../app/config/common/entities";
 import { authenticationConfig } from "./authentication/authentication";
 import { ANVIL_CATEGORY_KEY, ANVIL_CATEGORY_LABEL } from "./category";
@@ -23,7 +23,7 @@ import { summary } from "./index/summary";
 const BROWSER_URL = "https://staging.anvilproject.org";
 const SLOGAN = "NHGRI Analysis Visualization and Informatics Lab-space";
 export const URL_DATASETS = "/datasets";
-const LOGO: Logo = {
+const LOGO: LogoProps = {
   alt: SLOGAN,
   height: 40,
   link: "/",

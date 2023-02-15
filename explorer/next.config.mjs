@@ -37,6 +37,10 @@ export default withPlugins(
         process.cwd(),
         "node_modules/@mui/material"
       );
+      config.resolve.alias["@tanstack/react-table"] = path.resolve(
+        process.cwd(),
+        "node_modules/@tanstack/react-table"
+      );
       config.resolve.alias["isomorphic-dompurify"] = path.resolve(
         process.cwd(),
         "node_modules/isomorphic-dompurify"

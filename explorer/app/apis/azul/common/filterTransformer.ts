@@ -1,8 +1,11 @@
 import {
+  SelectCategory,
+  SelectCategoryValue,
+} from "@clevercanary/data-explorer-ui/lib/common/entities";
+import {
   PaginationIndex,
   PaginationResponse,
 } from "../../../common/context/exploreState";
-import { SelectCategory, SelectCategoryValue } from "../../../common/entities";
 import {
   AzulPaginationResponse,
   AzulSearchIndex,

@@ -1,5 +1,3 @@
-import { Filters, SelectedFilter } from "../apis/azul/common/entities";
-import { COLLATOR_CASE_INSENSITIVE } from "../common/constants";
 import {
   CategoryKey,
   CategoryValueKey,
@@ -7,7 +5,9 @@ import {
   SelectCategoryValue,
   SelectCategoryValueView,
   SelectCategoryView,
-} from "../common/entities";
+} from "@clevercanary/data-explorer-ui/lib/common/entities";
+import { Filters, SelectedFilter } from "../apis/azul/common/entities";
+import { COLLATOR_CASE_INSENSITIVE } from "../common/constants";
 import { CategoryConfig } from "../config/common/entities";
 
 /**

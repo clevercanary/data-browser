@@ -1,14 +1,14 @@
 import "@clevercanary/data-explorer-ui";
+import { AppLayout } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/AppLayout/appLayout.styles";
+import { Footer } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Footer/footer";
+import { Main } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Main/main.styles";
 import { createAppTheme } from "@clevercanary/data-explorer-ui/lib/theme/theme";
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { ConfigProvider } from "app/components/Config/config";
 import { Head } from "app/components/Head/head";
-import { AppLayout } from "app/components/Layout/components/AppLayout/appLayout.styles";
-import { Footer } from "app/components/Layout/components/Footer/footer";
 import { Header } from "app/components/Layout/components/Header/header";
-import { Main } from "app/components/Layout/components/Main/main.styles";
 import { config } from "app/config/config";
 import type { AppProps } from "next/app";
 import { AzulEntitiesStaticResponse } from "../app/apis/azul/common/entities";
@@ -30,13 +30,13 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           <CssBaseline />
           <AuthProvider>
             <AppLayout>
-              <Header header={layout.header} />
+              <Header {...layout.header} />
               <ExploreStateProvider entityListType={entityListType}>
                 <Main>
                   <Component {...pageProps} />
                 </Main>
               </ExploreStateProvider>
-              <Footer footer={layout.footer} />
+              <Footer {...layout.footer} />
             </AppLayout>
           </AuthProvider>
         </ConfigProvider>

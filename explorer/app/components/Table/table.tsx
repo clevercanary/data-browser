@@ -1,9 +1,15 @@
+import { Pagination } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import { InfoIcon } from "@clevercanary/data-explorer-ui/lib/components/common/CustomIcon/components/InfoIcon/infoIcon";
 import {
   GridPaper,
   RoundedPaper,
 } from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper.styles";
 import { NoResults } from "@clevercanary/data-explorer-ui/lib/components/NoResults/noResults";
+import {
+  Alert,
+  Table as GridTable,
+  TableToolbar,
+} from "@clevercanary/data-explorer-ui/lib/components/Table/table.styles";
 import {
   AlertTitle,
   TableBody,
@@ -33,7 +39,6 @@ import {
   ExploreActionKind,
   ExploreStateContext,
 } from "../../common/context/exploreState";
-import { Pagination } from "../../common/entities";
 import {
   buildCategoryViews,
   getEditColumnOptions,
@@ -45,7 +50,6 @@ import { CheckboxMenu } from "./components/CheckboxMenu/checkboxMenu";
 import { EntityViewToggle } from "./components/EntityViewToggle/EntityViewToggle";
 import { Pagination as DXPagination } from "./components/Pagination/pagination";
 import { PaginationSummary } from "./components/PaginationSummary/paginationSummary";
-import { Alert, Table as GridTable, TableToolbar } from "./table.styles";
 
 interface TableProps<T extends object> {
   columns: ColumnDef<T>[];

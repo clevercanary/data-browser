@@ -1,11 +1,12 @@
+import { CategoryKey } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import { HeroTitle } from "@clevercanary/data-explorer-ui/lib/components/common/Title/title";
+import { FooterProps } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Footer/footer";
 import { ThemeOptions } from "@mui/material";
 import { ColumnSort } from "@tanstack/react-table";
-import { Footer, Header } from "app/components/Layout/common/entities";
 import { JSXElementConstructor } from "react";
 import { SelectedFilterValue } from "../../apis/azul/common/entities";
 import { ExploreState } from "../../common/context/exploreState";
-import { CategoryKey } from "../../common/entities";
+import { HeaderProps } from "../../components/Layout/components/Header/header";
 
 type GetIdFunction<T> = (detail: T) => string;
 type EntityImportMapper<I, D> = (input: I) => D;
@@ -227,8 +228,8 @@ export interface SiteConfig {
   export?: BackPageConfig;
   exportToTerraUrl?: string; // TODO(cc) revist location; possibly nest inside "export"?
   layout: {
-    footer: Footer;
-    header: Header;
+    footer: FooterProps;
+    header: HeaderProps;
   };
   redirectRootToPath?: string;
   summaryConfig?: SummaryConfig;

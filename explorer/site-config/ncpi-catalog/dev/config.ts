@@ -1,5 +1,5 @@
+import { ELEMENT_ALIGNMENT } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import logoNcpi from "images/logoNcpi.svg";
-import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
 import { SiteConfig } from "../../../app/config/common/entities";
 import anvilConfig from "../../anvil/dev/config";
 import {

@@ -1,9 +1,9 @@
+import { CategoryKey } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import { SelectedFilterValue } from "../../../../../app/apis/azul/common/entities";
 import {
   DugSearchResponse,
   DugSearchResultResponse,
 } from "../../../../../app/apis/catalog/ncpi-catalog-dug/common/entities";
-import { CategoryKey } from "../../../../../app/common/entities";
 import { RelatedSearchResult } from "../../../../../app/config/common/entities";
 import { DUG_API_PARAMS, DUG_API_PATH, DUG_API_URL } from "../../constants";
 

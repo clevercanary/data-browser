@@ -1,4 +1,24 @@
-import { Socials } from "@clevercanary/data-explorer-ui/lib/components/common/Socials/socials";
+import { ELEMENT_ALIGNMENT } from "@clevercanary/data-explorer-ui/lib/common/entities";
+import {
+  Social,
+  Socials,
+} from "@clevercanary/data-explorer-ui/lib/components/common/Socials/socials";
+import { getHeaderNavigationLinks } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/common/utils";
+import { Content } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/components/Content/content";
+import {
+  Logo,
+  LogoProps,
+} from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/components/Logo/logo";
+import {
+  NavAlignment,
+  NavLinkItem,
+  NavLinks,
+} from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/components/NavLinks/navLinks";
+import { Search } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/components/Search/search";
+import {
+  Header as AppBar,
+  HEADER_HEIGHT,
+} from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/header.styles";
 import {
   BREAKPOINT_FN_NAME,
   useBreakpointHelper,
@@ -8,33 +28,27 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import { Box, Divider, IconButton, Toolbar, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { ELEMENT_ALIGNMENT } from "../../../../common/entities";
-import { Header as HeaderProps } from "../../common/entities";
-import { getHeaderNavigationLinks } from "./common/utils";
-import { Content } from "./components/Content/content";
-import { Logo } from "./components/Logo/logo";
-import { NavLinks } from "./components/NavLinks/navLinks";
 import { ProfileComponent } from "./components/ProfileComponent/profileComponent";
-import { Search } from "./components/Search/search";
-import { Header as AppBar } from "./header.styles";
 
-// Template variables
-export const HEADER_HEIGHT = 56;
-
-interface Props {
-  header: HeaderProps;
+export interface HeaderProps {
+  authenticationEnabled?: boolean;
+  logo: LogoProps;
+  navAlignment: NavAlignment;
+  navLinks: NavLinkItem[];
+  searchEnabled?: boolean;
+  slogan?: string;
+  socials: Social[];
 }
 
-export const Header = ({ header }: Props): JSX.Element => {
-  const {
-    authenticationEnabled,
-    logo,
-    navAlignment,
-    navLinks,
-    searchEnabled,
-    slogan,
-    socials,
-  } = header;
+export const Header = ({
+  authenticationEnabled,
+  logo,
+  navAlignment,
+  navLinks,
+  searchEnabled,
+  slogan,
+  socials,
+}: HeaderProps): JSX.Element => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const smDesktop = useBreakpointHelper(BREAKPOINT_FN_NAME.UP, DESKTOP_SM);
   const onlySmDesktop = useBreakpointHelper(
@@ -53,7 +67,7 @@ export const Header = ({ header }: Props): JSX.Element => {
     <AppBar elevation={1} position="fixed">
       <Toolbar sx={{ gap: 4, height: HEADER_HEIGHT }} variant="dense">
         {/* Logo */}
-        <Logo logo={logo} />
+        <Logo {...logo} />
         <Content
           desktopSm={smDesktop}
           drawerOpen={drawerOpen}

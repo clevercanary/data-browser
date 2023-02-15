@@ -1,3 +1,5 @@
+import { ELEMENT_ALIGNMENT } from "@clevercanary/data-explorer-ui/lib/common/entities";
+import { LogoProps } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/components/Logo/logo";
 import { tabletUp } from "@clevercanary/data-explorer-ui/lib/theme/common/breakpoints";
 import {
   TEXT_BODY_LARGE_500,
@@ -8,8 +10,6 @@ import {
 } from "@clevercanary/data-explorer-ui/lib/theme/common/typography";
 import logoHca from "images/logoHca.png";
 import logoHumanCellAtlas from "images/logoHumanCellAtlas.png";
-import { ELEMENT_ALIGNMENT } from "../../../app/common/entities";
-import { Logo } from "../../../app/components/Layout/common/entities";
 import { SiteConfig } from "../../../app/config/common/entities";
 import { HCA_DCP_CATEGORY_KEY, HCA_DCP_CATEGORY_LABEL } from "../category";
 import { socials } from "./constants";
@@ -25,7 +25,7 @@ const CATALOG_DCP2 = "dcp2";
 const FONT_FAMILY_DIN = "'din-2014', sans-serif";
 const PAGINATION_PAGE_SIZE = "25";
 export const PROJECTS_URL = "/projects";
-const LOGO: Logo = {
+const LOGO: LogoProps = {
   alt: "Human Cell Atlas Data Coordination Platform",
   height: 32,
   link: BROWSER_URL,

@@ -1,3 +1,7 @@
+import {
+  CategoryKey,
+  SelectCategoryValueView,
+} from "@clevercanary/data-explorer-ui/lib/common/entities";
 import { CheckedIcon } from "@clevercanary/data-explorer-ui/lib/components/common/CustomIcon/components/CheckedIcon/checkedIcon";
 import { UncheckedIcon } from "@clevercanary/data-explorer-ui/lib/components/common/CustomIcon/components/UncheckedIcon/uncheckedIcon";
 import {
@@ -9,10 +13,6 @@ import {
 } from "@mui/material";
 import { matchSorter } from "match-sorter";
 import React, { useState } from "react";
-import {
-  CategoryKey,
-  SelectCategoryValueView,
-} from "../../../../common/entities";
 import { OnFilterFn } from "../../../../hooks/useCategoryFilter";
 import { FilterMenuSearch } from "../FilterMenuSearch/filterMenuSearch";
 import { FilterNoResultsFound } from "../FilterNoResultsFound/filterNoResultsFound";

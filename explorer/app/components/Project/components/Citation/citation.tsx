@@ -3,10 +3,10 @@ import { SectionDetailsEmpty } from "@clevercanary/data-explorer-ui/lib/componen
 import { Stack } from "@clevercanary/data-explorer-ui/lib/components/common/Stack/stack";
 import { ANCHOR_TARGET } from "@clevercanary/data-explorer-ui/lib/components/Links/common/entities";
 import { Link } from "@clevercanary/data-explorer-ui/lib/components/Links/components/Link/link";
+import { ProjectPath } from "@clevercanary/data-explorer-ui/lib/components/Project/common/entities";
 import { Typography } from "@mui/material";
 import { useConfig } from "app/hooks/useConfig";
 import React, { ReactNode } from "react";
-import { ProjectPath } from "../../common/entities";
 import { CitationLink } from "./citation.styles";
 
 interface Props {

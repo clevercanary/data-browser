@@ -7,14 +7,6 @@ import {
 import { Status } from "@clevercanary/data-explorer-ui/lib/components/common/StatusBadge/statusBadge";
 import { HeroTitle } from "@clevercanary/data-explorer-ui/lib/components/common/Title/title";
 import {
-  ContributorResponse,
-  ProjectResponse,
-  ProjectsResponse,
-  PublicationResponse,
-} from "app/models/responses";
-import { ENTRIES } from "../../../project-edits";
-import { CONTRIBUTOR_ROLE } from "./constants";
-import {
   CollaboratingOrganization,
   Contact,
   Contributor,
@@ -23,7 +15,15 @@ import {
   ProjectPath,
   Publication,
   SupplementaryLink,
-} from "./entities";
+} from "@clevercanary/data-explorer-ui/lib/components/Project/common/entities";
+import {
+  ContributorResponse,
+  ProjectResponse,
+  ProjectsResponse,
+  PublicationResponse,
+} from "app/models/responses";
+import { ENTRIES } from "../../../project-edits";
+import { CONTRIBUTOR_ROLE } from "./constants";
 
 /**
  * Returns project related breadcrumbs.

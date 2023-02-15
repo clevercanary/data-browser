@@ -1,3 +1,4 @@
+import { stringifyValues } from "@clevercanary/data-explorer-ui/lib/common/utils";
 import { Breadcrumb } from "@clevercanary/data-explorer-ui/lib/components/common/Breadcrumbs/breadcrumbs";
 import {
   Key,
@@ -18,7 +19,6 @@ import {
 } from "../../../../apis/catalog/anvil-catalog/common/entities";
 import { ExploreState } from "../../../../common/context/exploreState";
 import * as C from "../../../../components";
-import { stringifyValues } from "../../../../components/Detail/common/utils";
 import { METADATA_KEY } from "../../../../components/Index/common/entities";
 import { getPluralizedMetadataLabel } from "../../../../components/Index/common/indexTransformer";
 import { getEntityConfig } from "../../../../config/config";
