@@ -1,6 +1,6 @@
+import { CollapsableSection } from "@clevercanary/data-explorer-ui/lib/components/common/Section/components/CollapsableSection/collapsableSection";
+import { SectionDetailsEmpty } from "@clevercanary/data-explorer-ui/lib/components/common/Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
 import React from "react";
-import { CollapsableSection } from "../../../Detail/components/Section/components/CollapsableSection/collapsableSection";
-import { SectionDetailsEmpty } from "../../../Detail/components/Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
 import { CollaboratingOrganization } from "../../common/entities";
 import { Sup } from "../Sup/Sup.styles";
 

@@ -1,9 +1,9 @@
+import { CollapsableSection } from "@clevercanary/data-explorer-ui/lib/components/common/Section/components/CollapsableSection/collapsableSection";
+import { SectionDetailsEmpty } from "@clevercanary/data-explorer-ui/lib/components/common/Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
+import { SectionContentListItem } from "@clevercanary/data-explorer-ui/lib/components/common/Section/section.styles";
 import { Link as EmailLink, Typography } from "@mui/material";
 import Link from "next/link";
 import React from "react";
-import { CollapsableSection } from "../../../Detail/components/Section/components/CollapsableSection/collapsableSection";
-import { SectionDetailsEmpty } from "../../../Detail/components/Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
-import { SectionContentListItem } from "../../../Detail/components/Section/section.styles";
 import { Contact } from "../../common/entities";
 
 interface Props {

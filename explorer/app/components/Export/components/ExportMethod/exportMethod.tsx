@@ -1,13 +1,13 @@
 import { FluidPaper } from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper.styles";
-import { Typography } from "@mui/material";
+import { SectionTitle } from "@clevercanary/data-explorer-ui/lib/components/common/Section/components/SectionTitle/sectionTitle";
 import {
   Section,
   SectionActions,
   SectionContent,
-} from "app/components/Detail/components/Section/section.styles";
+} from "@clevercanary/data-explorer-ui/lib/components/common/Section/section.styles";
+import { Typography } from "@mui/material";
 import Link from "next/link";
 import React from "react";
-import { SectionTitle } from "../../../Detail/components/Section/components/SectionTitle/sectionTitle";
 import { ExportButton } from "./exportMethod.styles";
 
 interface Props {

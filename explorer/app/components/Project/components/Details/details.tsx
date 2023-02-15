@@ -3,11 +3,11 @@ import {
   KeyValuePairs,
   KeyValues,
 } from "@clevercanary/data-explorer-ui/lib/components/common/KeyValuePairs/keyValuePairs";
+import { CollapsableSection } from "@clevercanary/data-explorer-ui/lib/components/common/Section/components/CollapsableSection/collapsableSection";
+import { SectionDetailsEmpty } from "@clevercanary/data-explorer-ui/lib/components/common/Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
 import { Stack } from "@clevercanary/data-explorer-ui/lib/components/common/Stack/stack";
 import { Typography } from "@mui/material";
 import React, { Fragment } from "react";
-import { CollapsableSection } from "../../../Detail/components/Section/components/CollapsableSection/collapsableSection";
-import { SectionDetailsEmpty } from "../../../Detail/components/Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
 
 interface Props {
   keyValuePairs?: KeyValues;

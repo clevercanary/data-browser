@@ -37,6 +37,10 @@ export default withPlugins(
         process.cwd(),
         "node_modules/@mui/material"
       );
+      config.resolve.alias["isomorphic-dompurify"] = path.resolve(
+        process.cwd(),
+        "node_modules/isomorphic-dompurify"
+      );
       config.resolve.alias["match-sorter"] = path.resolve(
         process.cwd(),
         "node_modules/match-sorter"

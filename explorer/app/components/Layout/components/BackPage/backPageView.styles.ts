@@ -1,7 +1,7 @@
+import { Sections } from "@clevercanary/data-explorer-ui/lib/components/common/Sections/sections";
 import { TABLET } from "@clevercanary/data-explorer-ui/lib/theme/common/breakpoints";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Sections } from "../../../Detail/components/Sections/sections";
 
 export const BackPageView = styled.div`
   display: grid;

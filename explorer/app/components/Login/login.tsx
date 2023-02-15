@@ -1,10 +1,10 @@
 import { LoginButton } from "@clevercanary/data-explorer-ui/lib/components/common/Button/components/LoginButton/loginButton";
 import { GoogleIcon } from "@clevercanary/data-explorer-ui/lib/components/common/CustomIcon/components/GoogleIcon/googleIcon";
 import { RoundedPaper } from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper.styles";
+import { SectionContent } from "@clevercanary/data-explorer-ui/lib/components/common/Section/section.styles";
 import { Typography } from "@mui/material";
 import React, { ReactNode, useContext } from "react";
 import { AuthContext } from "../../common/context/authState";
-import { SectionContent } from "../Detail/components/Section/section.styles";
 import {
   LoginSection,
   LoginSectionActions,

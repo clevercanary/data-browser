@@ -1,13 +1,13 @@
 import { ButtonPrimary } from "@clevercanary/data-explorer-ui/lib/components/common/Button/button.styles";
 import { FluidPaper } from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper.styles";
-import { ANCHOR_TARGET } from "@clevercanary/data-explorer-ui/lib/components/Links/common/entities";
-import { SectionTitle } from "app/components/Detail/components/Section/components/SectionTitle/sectionTitle";
+import { SectionTitle } from "@clevercanary/data-explorer-ui/lib/components/common/Section/components/SectionTitle/sectionTitle";
 import {
   Section,
   SectionActions,
   SectionContent,
   SectionText,
-} from "app/components/Detail/components/Section/section.styles";
+} from "@clevercanary/data-explorer-ui/lib/components/common/Section/section.styles";
+import { ANCHOR_TARGET } from "@clevercanary/data-explorer-ui/lib/components/Links/common/entities";
 import Link from "next/link";
 import React from "react";
 import { BatchNormalizationWarning } from "../../../BatchNormalizationWarning/batchNormalizationWarning";

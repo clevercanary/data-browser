@@ -1,11 +1,11 @@
 import { FluidPaper } from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper.styles";
-import React, { ReactNode } from "react";
-import { SectionTitle } from "../../../Detail/components/Section/components/SectionTitle/sectionTitle";
+import { SectionTitle } from "@clevercanary/data-explorer-ui/lib/components/common/Section/components/SectionTitle/sectionTitle";
 import {
   Section,
   SectionContent,
   SectionText,
-} from "../../../Detail/components/Section/section.styles";
+} from "@clevercanary/data-explorer-ui/lib/components/common/Section/section.styles";
+import React, { ReactNode } from "react";
 
 export type Content = ReactNode | ReactNode[] | string[];
 

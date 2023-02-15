@@ -1,6 +1,6 @@
+import { CollapsableSection } from "@clevercanary/data-explorer-ui/lib/components/common/Section/components/CollapsableSection/collapsableSection";
 import { Typography } from "@mui/material";
 import React from "react";
-import { CollapsableSection } from "../../../Detail/components/Section/components/CollapsableSection/collapsableSection";
 import { Description as ProjectDescription } from "../../common/entities";
 
 interface Props {

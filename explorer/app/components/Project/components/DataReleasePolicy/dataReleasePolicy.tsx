@@ -1,7 +1,7 @@
+import { CollapsableSection } from "@clevercanary/data-explorer-ui/lib/components/common/Section/components/CollapsableSection/collapsableSection";
 import { Link as PolicyLink, Typography } from "@mui/material";
 import Link from "next/link";
 import React from "react";
-import { CollapsableSection } from "../../../Detail/components/Section/components/CollapsableSection/collapsableSection";
 
 export const DataReleasePolicy = (): JSX.Element => {
   return (

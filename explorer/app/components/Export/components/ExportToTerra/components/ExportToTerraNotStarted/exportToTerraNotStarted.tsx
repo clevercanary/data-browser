@@ -1,12 +1,12 @@
 import { ButtonPrimary } from "@clevercanary/data-explorer-ui/lib/components/common/Button/button.styles";
 import { FluidPaper } from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper.styles";
+import { SectionTitle } from "@clevercanary/data-explorer-ui/lib/components/common/Section/components/SectionTitle/sectionTitle";
 import {
   Section,
   SectionActions,
   SectionContent,
-} from "app/components/Detail/components/Section/section.styles";
+} from "@clevercanary/data-explorer-ui/lib/components/common/Section/section.styles";
 import React from "react";
-import { SectionTitle } from "../../../../../Detail/components/Section/components/SectionTitle/sectionTitle";
 import { BatchNormalizationWarning } from "../../../BatchNormalizationWarning/batchNormalizationWarning";
 
 export type RunFn = () => void;

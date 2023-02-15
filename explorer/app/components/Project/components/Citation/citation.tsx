@@ -1,11 +1,11 @@
+import { CollapsableSection } from "@clevercanary/data-explorer-ui/lib/components/common/Section/components/CollapsableSection/collapsableSection";
+import { SectionDetailsEmpty } from "@clevercanary/data-explorer-ui/lib/components/common/Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
 import { Stack } from "@clevercanary/data-explorer-ui/lib/components/common/Stack/stack";
 import { ANCHOR_TARGET } from "@clevercanary/data-explorer-ui/lib/components/Links/common/entities";
 import { Link } from "@clevercanary/data-explorer-ui/lib/components/Links/components/Link/link";
 import { Typography } from "@mui/material";
 import { useConfig } from "app/hooks/useConfig";
 import React, { ReactNode } from "react";
-import { CollapsableSection } from "../../../Detail/components/Section/components/CollapsableSection/collapsableSection";
-import { SectionDetailsEmpty } from "../../../Detail/components/Section/components/SectionDetailsEmpty/sectionDetailsEmpty";
 import { ProjectPath } from "../../common/entities";
 import { CitationLink } from "./citation.styles";
 

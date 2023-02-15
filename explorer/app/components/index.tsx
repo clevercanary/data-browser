@@ -1,6 +1,9 @@
 export { KeyElType } from "@clevercanary/data-explorer-ui/lib/components/common/KeyValuePairs/components/KeyElType/keyElType";
 export { ValueElType } from "@clevercanary/data-explorer-ui/lib/components/common/KeyValuePairs/components/ValueElType/valueElType";
 export { KeyValuePairs } from "@clevercanary/data-explorer-ui/lib/components/common/KeyValuePairs/keyValuePairs";
+export { Markdown } from "@clevercanary/data-explorer-ui/lib/components/common/Markdown/markdown";
+export { CollapsableSection } from "@clevercanary/data-explorer-ui/lib/components/common/Section/components/CollapsableSection/collapsableSection";
+export { GridPaperSection } from "@clevercanary/data-explorer-ui/lib/components/common/Section/section.styles";
 export { Stack } from "@clevercanary/data-explorer-ui/lib/components/common/Stack/stack";
 export { StaticImage } from "@clevercanary/data-explorer-ui/lib/components/common/StaticImage/staticImage";
 export { Cell } from "@clevercanary/data-explorer-ui/lib/components/Index/components/Cell/cell";
@@ -9,10 +12,7 @@ export { NTagCell } from "@clevercanary/data-explorer-ui/lib/components/Index/co
 export { Tooltip } from "@clevercanary/data-explorer-ui/lib/components/Index/components/Tooltip/tooltip";
 export { Link } from "@clevercanary/data-explorer-ui/lib/components/Links/components/Link/link";
 export { Links } from "@clevercanary/data-explorer-ui/lib/components/Links/links";
-export { Markdown } from "./common/Markdown/markdown";
 export { MdxMarkdown } from "./common/MDXMarkdown/mdxMarkdown";
-export { CollapsableSection } from "./Detail/components/Section/components/CollapsableSection/collapsableSection";
-export { GridPaperSection } from "./Detail/components/Section/section.styles";
 export { Table as DetailViewTable } from "./Detail/components/Table/table";
 export { ExportMethod } from "./Export/components/ExportMethod/exportMethod";
 export { IconList } from "./IconList/IconList";

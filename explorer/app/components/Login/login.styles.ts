@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
 import {
   Section,
   SectionActions,
-} from "../Detail/components/Section/section.styles";
+} from "@clevercanary/data-explorer-ui/lib/components/common/Section/section.styles";
+import styled from "@emotion/styled";
 
 export const LoginWrapper = styled.div`
   display: flex;
