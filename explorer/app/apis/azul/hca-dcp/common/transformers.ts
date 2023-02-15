@@ -1,4 +1,4 @@
-import { MetadataValue } from "../../../../components/Index/common/entities";
+import { MetadataValue } from "@clevercanary/data-explorer-ui/lib/components/Index/components/NTagCell/nTagCell";
 import { ProjectsResponse } from "../../../../models/responses";
 import { humanFileSize } from "../../../../utils/fileSize";
 import { concatStrings } from "../../../../utils/string";

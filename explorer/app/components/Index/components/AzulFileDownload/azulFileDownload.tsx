@@ -5,7 +5,7 @@ import { IconButtonPrimary } from "@clevercanary/data-explorer-ui/lib/components
 import { Box } from "@mui/material";
 import { useRequestFileLocation } from "app/hooks/useRequestFileLocation";
 import React, { useEffect, useRef, useState } from "react";
-import { API_FILE_LOCATION_FETCH } from "../../apis/azul/anvil/common/constants";
+import { API_FILE_LOCATION_FETCH } from "../../../../apis/azul/anvil/common/constants";
 
 interface AzulFileDownloadProps {
   url?: string; // Original "file fetch URL" as returned from Azul endpoint.

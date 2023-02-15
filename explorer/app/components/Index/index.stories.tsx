@@ -1,10 +1,6 @@
+import { SummariesStory } from "@clevercanary/data-explorer-ui/lib/components/Index/components/Hero/components/Summaries/summaries.stories";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import {
-  AnvilSummaries,
-  HCASummaries,
-  LungmapSummaries,
-} from "./components/Hero/components/Summaries/summaries.stories";
 import { Index } from "./index";
 
 export default {
@@ -25,7 +21,7 @@ const Template: ComponentStory<typeof Index> = (args) => <Index {...args} />;
 
 export const AnvilIndex = Template.bind({});
 AnvilIndex.args = {
-  Summaries: <AnvilSummaries {...AnvilSummaries.args} />,
+  Summaries: <SummariesStory {...SummariesStory.args} />,
   Tabs: undefined,
   entities: undefined,
   title: "Explore Data",
@@ -33,7 +29,7 @@ AnvilIndex.args = {
 
 export const HCAIndex = Template.bind({});
 HCAIndex.args = {
-  Summaries: <HCASummaries {...HCASummaries.args} />,
+  Summaries: <SummariesStory {...SummariesStory.args} />,
   Tabs: undefined,
   entities: undefined,
   title: "Explore Data: DCP 2.0 Data View",
@@ -41,7 +37,7 @@ HCAIndex.args = {
 
 export const LungmapIndex = Template.bind({});
 LungmapIndex.args = {
-  Summaries: <LungmapSummaries {...LungmapSummaries.args} />,
+  Summaries: <SummariesStory {...SummariesStory.args} />,
   Tabs: undefined,
   entities: undefined,
   title: "Explore Data",
