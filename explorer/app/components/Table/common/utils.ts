@@ -1,4 +1,5 @@
 import { SelectCategory } from "@clevercanary/data-explorer-ui/lib/common/entities";
+import { CheckboxMenuListItem } from "@clevercanary/data-explorer-ui/lib/components/Table/components/CheckboxMenu/checkboxMenu";
 import SouthRoundedIcon from "@mui/icons-material/SouthRounded";
 import { TableSortLabelProps } from "@mui/material/TableSortLabel/TableSortLabel";
 import {
@@ -19,7 +20,6 @@ import {
   GridTrackMinMax,
   GridTrackSize,
 } from "../../../config/common/entities";
-import { CheckboxMenuListItem } from "../components/CheckboxMenu/checkboxMenu";
 
 /**
  * Internal model of a category term count keyed by category term.

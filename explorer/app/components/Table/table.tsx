@@ -5,6 +5,9 @@ import {
   RoundedPaper,
 } from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper.styles";
 import { NoResults } from "@clevercanary/data-explorer-ui/lib/components/NoResults/noResults";
+import { CheckboxMenu } from "@clevercanary/data-explorer-ui/lib/components/Table/components/CheckboxMenu/checkboxMenu";
+import { Pagination as DXPagination } from "@clevercanary/data-explorer-ui/lib/components/Table/components/Pagination/pagination";
+import { PaginationSummary } from "@clevercanary/data-explorer-ui/lib/components/Table/components/PaginationSummary/paginationSummary";
 import {
   Alert,
   Table as GridTable,
@@ -46,10 +49,7 @@ import {
   getGridTemplateColumns,
   getTableSortLabelProps,
 } from "./common/utils";
-import { CheckboxMenu } from "./components/CheckboxMenu/checkboxMenu";
 import { EntityViewToggle } from "./components/EntityViewToggle/EntityViewToggle";
-import { Pagination as DXPagination } from "./components/Pagination/pagination";
-import { PaginationSummary } from "./components/PaginationSummary/paginationSummary";
 
 interface TableProps<T extends object> {
   columns: ColumnDef<T>[];
