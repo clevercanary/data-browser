@@ -1,5 +1,7 @@
-import { CategoryKey } from "@clevercanary/data-explorer-ui/lib/common/entities";
-import { SelectedFilterValue } from "../../../../../app/apis/azul/common/entities";
+import {
+  CategoryKey,
+  SelectedFilterValue,
+} from "@clevercanary/data-explorer-ui/lib/common/entities";
 import {
   DugSearchResponse,
   DugSearchResultResponse,

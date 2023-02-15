@@ -18,8 +18,8 @@ import { ExploreStateProvider } from "../app/common/context/exploreState";
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   // Set up the site configuration, layout and theme.
   const siteConfig = config();
-  const layout = siteConfig.layout;
-  const theme = createAppTheme(siteConfig.themeOptions);
+  const { layout, themeOptions } = siteConfig;
+  const theme = createAppTheme(themeOptions);
   const { entityListType } = pageProps as AzulEntitiesStaticResponse;
 
   return (

@@ -1,10 +1,12 @@
-import { CategoryKey } from "@clevercanary/data-explorer-ui/lib/common/entities";
+import {
+  CategoryKey,
+  SelectedFilterValue,
+} from "@clevercanary/data-explorer-ui/lib/common/entities";
 import { HeroTitle } from "@clevercanary/data-explorer-ui/lib/components/common/Title/title";
 import { FooterProps } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Footer/footer";
 import { ThemeOptions } from "@mui/material";
 import { ColumnSort } from "@tanstack/react-table";
 import { JSXElementConstructor } from "react";
-import { SelectedFilterValue } from "../../apis/azul/common/entities";
 import { ExploreState } from "../../common/context/exploreState";
 import { HeaderProps } from "../../components/Layout/components/Header/header";
 

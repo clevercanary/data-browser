@@ -1,5 +1,5 @@
+import { SelectedFilterValue } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import { useContext, useEffect } from "react";
-import { SelectedFilterValue } from "../apis/azul/common/entities";
 import {
   ExploreActionKind,
   ExploreStateContext,

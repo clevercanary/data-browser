@@ -1,6 +1,7 @@
 import {
   SelectCategory,
   SelectCategoryValue,
+  SelectedFilter,
 } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import {
   PaginationIndex,
@@ -13,7 +14,6 @@ import {
   AZUL_FILTER_OPERATOR,
   Filters,
   LABEL,
-  SelectedFilter,
 } from "./entities";
 
 /**

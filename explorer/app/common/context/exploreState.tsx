@@ -3,13 +3,11 @@ import {
   CategoryValueKey,
   PaginationDirectionType,
   SelectCategory,
+  SelectedFilter,
 } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import { ColumnSort } from "@tanstack/react-table";
 import { createContext, Dispatch, ReactNode, useReducer } from "react";
-import {
-  AzulSearchIndex,
-  SelectedFilter,
-} from "../../apis/azul/common/entities";
+import { AzulSearchIndex } from "../../apis/azul/common/entities";
 import {
   config,
   getDefaultSorting,

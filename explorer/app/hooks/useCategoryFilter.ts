@@ -5,8 +5,9 @@ import {
   SelectCategoryValue,
   SelectCategoryValueView,
   SelectCategoryView,
+  SelectedFilter,
 } from "@clevercanary/data-explorer-ui/lib/common/entities";
-import { Filters, SelectedFilter } from "../apis/azul/common/entities";
+import { Filters } from "../apis/azul/common/entities";
 import { COLLATOR_CASE_INSENSITIVE } from "../common/constants";
 import { CategoryConfig } from "../config/common/entities";
 

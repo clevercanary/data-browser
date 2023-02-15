@@ -1,7 +1,4 @@
-import {
-  CategoryKey,
-  CategoryValueKey,
-} from "@clevercanary/data-explorer-ui/lib/common/entities";
+import { SelectedFilter } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import { FileFormatResponse } from "../../../models/responses";
 import { FileEntityResponse } from "../anvil/common/entities";
 import {
@@ -160,19 +157,6 @@ export interface AzulTermFacet {
  */
 export interface AzulTermFacets {
   [k: string]: AzulTermFacet;
-}
-
-/**
- * Possible types of selected category values.
- */
-export type SelectedFilterValue = CategoryValueKey[];
-
-/**
- * Model of selected category values in a category.
- */
-export interface SelectedFilter {
-  categoryKey: CategoryKey;
-  value: SelectedFilterValue;
 }
 
 /**
