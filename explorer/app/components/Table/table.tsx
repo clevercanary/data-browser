@@ -3,6 +3,7 @@ import {
   GridPaper,
   RoundedPaper,
 } from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper.styles";
+import { NoResults } from "@clevercanary/data-explorer-ui/lib/components/NoResults/noResults";
 import {
   AlertTitle,
   TableBody,
@@ -33,7 +34,6 @@ import {
   ExploreStateContext,
 } from "../../common/context/exploreState";
 import { Pagination } from "../../common/entities";
-import { NoResults } from "../NoResults/noResults";
 import {
   buildCategoryViews,
   getEditColumnOptions,

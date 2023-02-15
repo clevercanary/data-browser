@@ -2,6 +2,7 @@ import {
   GridPaper,
   RoundedPaper,
 } from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper.styles";
+import { NoResults } from "@clevercanary/data-explorer-ui/lib/components/NoResults/noResults";
 import {
   TableBody,
   TableCell,
@@ -20,7 +21,6 @@ import {
   TableToolbar,
 } from "app/components/Table/table.styles";
 import React, { ReactNode } from "react";
-import { NoResults } from "../../../NoResults/noResults";
 
 interface TableProps<T extends object> {
   columns: ColumnDef<T>[];
