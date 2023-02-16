@@ -3,6 +3,7 @@
  */
 // TODO move to Azul APIs section
 import { AzulListParams } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
+import { FilterState } from "@clevercanary/data-explorer-ui/lib/hooks/useCategoryFilter";
 import { AZUL_PARAM } from "../../apis/azul/common/constants";
 import {
   AzulEntitiesResponse,
@@ -10,7 +11,6 @@ import {
 } from "../../apis/azul/common/entities";
 import { transformFilters } from "../../apis/azul/common/filterTransformer";
 import { config } from "../../config/config";
-import { FilterState } from "../../hooks/useCategoryFilter";
 import {
   DEFAULT_DETAIL_PARAMS,
   DEFAULT_LIST_PARAMS,

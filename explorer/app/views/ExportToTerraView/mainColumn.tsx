@@ -1,4 +1,5 @@
 import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
+import { ExploreStateContext } from "@clevercanary/data-explorer-ui/lib/providers/exploreState";
 import { ExportToTerra } from "app/components/Export/components/ExportToTerra/exportToTerra";
 import React, { useContext } from "react";
 import {
@@ -7,7 +8,6 @@ import {
   EXPORT_TO_TERRA_PARAM,
 } from "../../apis/azul/common/constants";
 import { transformFilters } from "../../apis/azul/common/filterTransformer";
-import { ExploreStateContext } from "../../common/context/exploreState";
 
 export const MainColumn = (): JSX.Element => {
   // Grab the filter context; use this to keep selected filter state up-to-date.

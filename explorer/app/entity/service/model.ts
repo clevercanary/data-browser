@@ -1,9 +1,9 @@
 import { AzulListParams } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
+import { FilterState } from "@clevercanary/data-explorer-ui/lib/hooks/useCategoryFilter";
 import {
   AzulEntitiesResponse,
   AzulSummaryResponse,
 } from "../../apis/azul/common/entities";
-import { FilterState } from "../../hooks/useCategoryFilter";
 
 /**
  * Object that has all necessary functions to fetch data to fill listing and detail pages

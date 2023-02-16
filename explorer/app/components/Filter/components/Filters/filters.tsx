@@ -2,9 +2,9 @@ import {
   CategoryTag,
   SelectCategoryView,
 } from "@clevercanary/data-explorer-ui/lib/common/entities";
+import { OnFilterFn } from "@clevercanary/data-explorer-ui/lib/hooks/useCategoryFilter";
 import { ButtonProps } from "@mui/material";
 import React from "react";
-import { OnFilterFn } from "../../../../hooks/useCategoryFilter";
 import { Filter } from "../Filter/filter";
 import { FilterLabel } from "../FilterLabel/filterLabel";
 import { FilterMenu } from "../FilterMenu/filterMenu";

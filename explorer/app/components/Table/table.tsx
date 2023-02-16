@@ -14,6 +14,11 @@ import {
   TableToolbar,
 } from "@clevercanary/data-explorer-ui/lib/components/Table/table.styles";
 import {
+  EntityView,
+  ExploreActionKind,
+  ExploreStateContext,
+} from "@clevercanary/data-explorer-ui/lib/providers/exploreState";
+import {
   AlertTitle,
   TableBody,
   TableCell,
@@ -37,11 +42,6 @@ import {
 } from "@tanstack/react-table";
 import { useScroll } from "app/hooks/useScroll";
 import React, { useContext, useEffect } from "react";
-import {
-  EntityView,
-  ExploreActionKind,
-  ExploreStateContext,
-} from "../../common/context/exploreState";
 import {
   buildCategoryViews,
   getEditColumnOptions,

@@ -3,7 +3,6 @@ import {
   EntityConfig,
   SiteConfig,
 } from "@clevercanary/data-explorer-ui/lib/config/entities";
-import { ColumnSort } from "@tanstack/react-table";
 import anvilCatalogDev from "../../site-config/anvil-catalog/dev/config";
 import anvilCatalogProd from "../../site-config/anvil-catalog/prod/config";
 import anvilCmgDev from "../../site-config/anvil-cmg/dev/config";
@@ -89,17 +88,4 @@ export const getTabs = (): Tab[] => {
     label,
     value: route,
   }));
-};
-
-/**
- * Returns the initial table sorting state for the specified entity list configuration.
- * @param entityConfig - Entity configuration.
- * @returns initial sorting state.
- */
-export const getDefaultSorting = (entityConfig: EntityConfig): ColumnSort[] => {
-  const columnSort = entityConfig.list.defaultSort;
-  if (!columnSort) {
-    return [];
-  }
-  return [columnSort];
 };

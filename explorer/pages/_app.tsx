@@ -5,6 +5,7 @@ import { Header } from "@clevercanary/data-explorer-ui/lib/components/Layout/com
 import { Main } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Main/main.styles";
 import { AuthProvider } from "@clevercanary/data-explorer-ui/lib/providers/authentication";
 import { ConfigProvider as DXConfigProvider } from "@clevercanary/data-explorer-ui/lib/providers/config";
+import { ExploreStateProvider } from "@clevercanary/data-explorer-ui/lib/providers/exploreState";
 import { createAppTheme } from "@clevercanary/data-explorer-ui/lib/theme/theme";
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
@@ -13,7 +14,6 @@ import { Head } from "app/components/Head/head";
 import { config } from "app/config/config";
 import type { AppProps } from "next/app";
 import { AzulEntitiesStaticResponse } from "../app/apis/azul/common/entities";
-import { ExploreStateProvider } from "../app/common/context/exploreState";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   // Set up the site configuration, layout and theme.

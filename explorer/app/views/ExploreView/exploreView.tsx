@@ -13,6 +13,11 @@ import {
   EntityConfig,
   SummaryConfig,
 } from "@clevercanary/data-explorer-ui/lib/config/entities";
+import {
+  ExploreActionKind,
+  ExploreState,
+  ExploreStateContext,
+} from "@clevercanary/data-explorer-ui/lib/providers/exploreState";
 import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
 import { TableCreator } from "app/components/TableCreator/tableCreator";
 import { useEntityList } from "app/hooks/useEntityList";
@@ -22,11 +27,6 @@ import {
   AzulEntitiesStaticResponse,
   AzulSummaryResponse,
 } from "../../apis/azul/common/entities";
-import {
-  ExploreActionKind,
-  ExploreState,
-  ExploreStateContext,
-} from "../../common/context/exploreState";
 import { Filters } from "../../components/Filter/components/Filters/filters";
 import { config, getEntityConfig, getTabs } from "../../config/config";
 import { useEntityListRelatedView } from "../../hooks/useEntityListRelatedView";

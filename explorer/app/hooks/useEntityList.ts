@@ -1,5 +1,9 @@
 import { AzulListParams } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
 import { AuthContext } from "@clevercanary/data-explorer-ui/lib/providers/authentication";
+import {
+  ExploreActionKind,
+  ExploreStateContext,
+} from "@clevercanary/data-explorer-ui/lib/providers/exploreState";
 import { useContext, useEffect } from "react";
 import {
   AzulEntitiesResponse,
@@ -10,10 +14,6 @@ import {
   transformFilters,
   transformTermFacets,
 } from "../apis/azul/common/filterTransformer";
-import {
-  ExploreActionKind,
-  ExploreStateContext,
-} from "../common/context/exploreState";
 import { useAsync } from "./useAsync";
 import { getEntityServiceByPath } from "./useEntityService";
 

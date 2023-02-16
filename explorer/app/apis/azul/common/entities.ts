@@ -1,4 +1,3 @@
-import { SelectedFilter } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import { FileFormatResponse } from "../../../models/responses";
 import { FileEntityResponse } from "../anvil/common/entities";
 import {
@@ -141,11 +140,6 @@ export interface AzulTermFacet {
 export interface AzulTermFacets {
   [k: string]: AzulTermFacet;
 }
-
-/**
- * Set of selected category values.
- */
-export type Filters = SelectedFilter[];
 
 /**
  * Set of labels that values returned from Azul can be sanitized to.

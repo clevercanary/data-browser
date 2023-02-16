@@ -1,8 +1,8 @@
+import { ExploreStateContext } from "@clevercanary/data-explorer-ui/lib/providers/exploreState";
 import { PARAMS_INDEX_UUID } from "app/shared/constants";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 import { AzulEntityStaticResponse } from "../apis/azul/common/entities";
-import { ExploreStateContext } from "../common/context/exploreState";
 import { useAsync } from "./useAsync";
 import { useEntityService } from "./useEntityService";
 

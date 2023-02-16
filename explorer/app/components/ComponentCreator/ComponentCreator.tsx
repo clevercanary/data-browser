@@ -1,8 +1,8 @@
 import { ComponentsConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
+import { ExploreStateContext } from "@clevercanary/data-explorer-ui/lib/providers/exploreState";
 import React, { useContext } from "react";
 import { v4 as uuid4 } from "uuid";
-import { ExploreStateContext } from "../../common/context/exploreState";
 
 interface ComponentCreatorProps<T> {
   components: ComponentsConfig;
