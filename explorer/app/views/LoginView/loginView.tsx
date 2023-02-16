@@ -1,6 +1,6 @@
-import { useAuthenticationConfig } from "app/hooks/useAuthenticationConfig";
+import { LoginNotice } from "@clevercanary/data-explorer-ui/lib/components/Login/components/LoginNotice/loginNotice";
+import { useAuthenticationConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useAuthenticationConfig";
 import React from "react";
-import { LoginNotice } from "../../components/Login/components/LoginNotice/loginNotice";
 import { Login } from "../../components/Login/login";
 
 export const LoginView = (): JSX.Element => {

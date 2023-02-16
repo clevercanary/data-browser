@@ -1,6 +1,6 @@
+import { LoginNotice } from "@clevercanary/data-explorer-ui/lib/components/Login/components/LoginNotice/loginNotice";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { LoginNotice } from "./components/LoginNotice/loginNotice";
 import { Login } from "./login";
 
 export default {

@@ -7,6 +7,7 @@ export { GridPaperSection } from "@clevercanary/data-explorer-ui/lib/components/
 export { Stack } from "@clevercanary/data-explorer-ui/lib/components/common/Stack/stack";
 export { StaticImage } from "@clevercanary/data-explorer-ui/lib/components/common/StaticImage/staticImage";
 export { Table as DetailViewTable } from "@clevercanary/data-explorer-ui/lib/components/Detail/components/Table/table";
+export { ExportMethod } from "@clevercanary/data-explorer-ui/lib/components/Export/components/ExportMethod/exportMethod";
 export { Cell } from "@clevercanary/data-explorer-ui/lib/components/Index/components/Cell/cell";
 export { Summaries } from "@clevercanary/data-explorer-ui/lib/components/Index/components/Hero/components/Summaries/summaries";
 export { NTagCell } from "@clevercanary/data-explorer-ui/lib/components/Index/components/NTagCell/nTagCell";
@@ -25,7 +26,6 @@ export { Publications } from "@clevercanary/data-explorer-ui/lib/components/Proj
 export { SupplementaryLinks } from "@clevercanary/data-explorer-ui/lib/components/Project/components/SupplementaryLinks/supplementaryLinks";
 export { TitledText } from "@clevercanary/data-explorer-ui/lib/components/Project/components/TitledText/titledText";
 export { MdxMarkdown } from "./common/MDXMarkdown/mdxMarkdown";
-export { ExportMethod } from "./Export/components/ExportMethod/exportMethod";
 export { IconList } from "./IconList/IconList";
 export { AzulFileDownload } from "./Index/components/AzulFileDownload/azulFileDownload";
 export { Citation } from "./Project/components/Citation/citation";

@@ -1,12 +1,12 @@
 import { PAPER_PANEL_STYLE } from "@clevercanary/data-explorer-ui/lib/components/common/Paper/paper";
+import { ExportToTerraNotStarted } from "@clevercanary/data-explorer-ui/lib/components/Export/components/ExportToTerraNotStarted/exportToTerraNotStarted";
+import { ExportToTerraReady } from "@clevercanary/data-explorer-ui/lib/components/Export/components/ExportToTerraReady/exportToTerraReady";
 import { Loading } from "@clevercanary/data-explorer-ui/lib/components/Loading/loading";
 import {
   EXPORT_TO_TERRA_FORMAT,
   EXPORT_TO_TERRA_URL_PFB_FORMAT,
 } from "../../../../apis/azul/common/constants";
 import { useRequestFileLocation } from "../../../../hooks/useRequestFileLocation";
-import { ExportToTerraNotStarted } from "./components/ExportToTerraNotStarted/exportToTerraNotStarted";
-import { ExportToTerraReady } from "./components/ExportToTerraReady/exportToTerraReady";
 
 interface ExportToTerraProps {
   exportTerraUrl: string; // Environment-specific origin used when redirecting user to Terra.
