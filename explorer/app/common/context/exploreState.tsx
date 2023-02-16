@@ -37,8 +37,6 @@ const defaultPaginationState = {
   rows: 0,
 };
 
-const defaultEntity = config().redirectRootToPath?.slice(1) ?? ""; // TODO remove ??
-
 /**
  * Explore state context for storing and using filter-related and explore state.
  */
@@ -64,7 +62,7 @@ export const ExploreStateContext = createContext<IExploreStateContext>({
     paginationState: defaultPaginationState,
     relatedListItems: undefined,
     sorting: [],
-    tabValue: defaultEntity,
+    tabValue: "",
   },
 });
 
@@ -82,10 +80,7 @@ export function ExploreStateProvider({
   children: ReactNode | ReactNode[];
   entityListType: string;
 }): JSX.Element {
-  if (!entityListType) {
-    entityListType = defaultEntity;
-  }
-  const { entityConfig } = useConfig();
+  const { defaultEntityListType, entityConfig } = useConfig();
   const [exploreState, exploreDispatch] = useReducer(exploreReducer, {
     categoryViews: [],
     filterState: [],
@@ -97,7 +92,7 @@ export function ExploreStateProvider({
     paginationState: defaultPaginationState,
     relatedListItems: undefined,
     sorting: getDefaultSorting(entityConfig),
-    tabValue: entityListType,
+    tabValue: entityListType || defaultEntityListType,
   });
 
   return (
