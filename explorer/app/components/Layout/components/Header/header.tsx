@@ -1,20 +1,11 @@
 import { ELEMENT_ALIGNMENT } from "@clevercanary/data-explorer-ui/lib/common/entities";
-import {
-  Social,
-  Socials,
-} from "@clevercanary/data-explorer-ui/lib/components/common/Socials/socials";
+import { Socials } from "@clevercanary/data-explorer-ui/lib/components/common/Socials/socials";
 import { getHeaderNavigationLinks } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/common/utils";
 import { Content } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/components/Content/content";
-import {
-  Logo,
-  LogoProps,
-} from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/components/Logo/logo";
-import {
-  NavAlignment,
-  NavLinkItem,
-  NavLinks,
-} from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/components/NavLinks/navLinks";
+import { Logo } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/components/Logo/logo";
+import { NavLinks } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/components/NavLinks/navLinks";
 import { Search } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/components/Search/search";
+import { HeaderProps } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/header";
 import {
   Header as AppBar,
   HEADER_HEIGHT,
@@ -30,20 +21,10 @@ import { Box, Divider, IconButton, Toolbar, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { ProfileComponent } from "./components/ProfileComponent/profileComponent";
 
-export interface HeaderProps {
-  authenticationEnabled?: boolean;
-  logo: LogoProps;
-  navAlignment: NavAlignment;
-  navLinks: NavLinkItem[];
-  searchEnabled?: boolean;
-  slogan?: string;
-  socials: Social[];
-}
-
 export const Header = ({
   authenticationEnabled,
   logo,
-  navAlignment,
+  navAlignment = ELEMENT_ALIGNMENT.LEFT,
   navLinks,
   searchEnabled,
   slogan,

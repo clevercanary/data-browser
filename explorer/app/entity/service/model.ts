@@ -1,6 +1,6 @@
+import { AzulListParams } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
 import {
   AzulEntitiesResponse,
-  AzulListParams,
   AzulSummaryResponse,
 } from "../../apis/azul/common/entities";
 import { FilterState } from "../../hooks/useCategoryFilter";

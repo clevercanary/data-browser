@@ -1,4 +1,4 @@
-import { EntityConfig } from "../config/common/entities";
+import { EntityConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import { getEntityConfig } from "../config/config";
 import { createEntityService } from "../entity/service/factory";
 import { EntityService } from "../entity/service/model";

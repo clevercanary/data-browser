@@ -1,4 +1,8 @@
 import { Tab } from "@clevercanary/data-explorer-ui/lib/components/common/Tabs/tabs";
+import {
+  EntityConfig,
+  SiteConfig,
+} from "@clevercanary/data-explorer-ui/lib/config/entities";
 import { ColumnSort } from "@tanstack/react-table";
 import anvilCatalogDev from "../../site-config/anvil-catalog/dev/config";
 import anvilCatalogProd from "../../site-config/anvil-catalog/prod/config";
@@ -14,7 +18,6 @@ import ncpiDugMapDev from "../../site-config/ncpi-catalog-dug/dev/config";
 import ncpiDugMapProd from "../../site-config/ncpi-catalog-dug/prod/config";
 import ncpiMapDev from "../../site-config/ncpi-catalog/dev/config";
 import ncpiMapProd from "../../site-config/ncpi-catalog/prod/config";
-import { EntityConfig, SiteConfig } from "./common/entities";
 
 const CONFIGS: { [k: string]: SiteConfig } = {
   "anvil-catalog-dev": anvilCatalogDev,

@@ -4,8 +4,8 @@ import { Stack } from "@clevercanary/data-explorer-ui/lib/components/common/Stac
 import { ANCHOR_TARGET } from "@clevercanary/data-explorer-ui/lib/components/Links/common/entities";
 import { Link } from "@clevercanary/data-explorer-ui/lib/components/Links/components/Link/link";
 import { ProjectPath } from "@clevercanary/data-explorer-ui/lib/components/Project/common/entities";
+import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
 import { Typography } from "@mui/material";
-import { useConfig } from "app/hooks/useConfig";
 import React, { ReactNode } from "react";
 import { CitationLink } from "./citation.styles";
 
@@ -14,7 +14,8 @@ interface Props {
 }
 
 export const Citation = ({ projectPath }: Props): JSX.Element => {
-  const { browserURL, redirectRootToPath: path } = useConfig();
+  const { config } = useConfig();
+  const { browserURL, redirectRootToPath: path } = config;
   const citationLink = `${browserURL}${path}${projectPath}`;
   const showCitation = browserURL && path && projectPath;
   return (

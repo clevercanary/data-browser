@@ -1,3 +1,4 @@
+import { AzulSearchIndex } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
 import {
   SelectCategory,
   SelectCategoryValue,
@@ -9,7 +10,6 @@ import {
 } from "../../../common/context/exploreState";
 import {
   AzulPaginationResponse,
-  AzulSearchIndex,
   AzulTermFacets,
   AZUL_FILTER_OPERATOR,
   Filters,

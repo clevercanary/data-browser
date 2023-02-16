@@ -1,6 +1,6 @@
+import { BackPageTabConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import { PARAMS_INDEX_TAB } from "app/shared/constants";
 import { useRouter } from "next/router";
-import { BackPageTabConfig } from "../config/common/entities";
 import { getEntityConfig } from "../config/config";
 
 /**

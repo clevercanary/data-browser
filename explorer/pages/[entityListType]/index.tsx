@@ -1,10 +1,10 @@
+import { EntityConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import { config, getEntityConfig } from "app/config/config";
 import { ExploreView } from "app/views/ExploreView/exploreView";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
 import { AzulEntitiesStaticResponse } from "../../app/apis/azul/common/entities";
-import { EntityConfig } from "../../app/config/common/entities";
 import { EMPTY_PAGE } from "../../app/entity/api/constants";
 import { getEntityService } from "../../app/hooks/useEntityService";
 import { database } from "../../app/utils/database";

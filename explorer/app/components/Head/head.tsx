@@ -1,4 +1,4 @@
-import { useConfig } from "app/hooks/useConfig";
+import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
 import NextHead from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
@@ -13,7 +13,7 @@ const FAV_ICONS = {
 };
 
 export const Head = (): JSX.Element => {
-  const config = useConfig();
+  const { config } = useConfig();
   const router = useRouter();
   const layout = config.layout;
 

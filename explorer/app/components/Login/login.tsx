@@ -4,7 +4,7 @@ import { RoundedPaper } from "@clevercanary/data-explorer-ui/lib/components/comm
 import { SectionContent } from "@clevercanary/data-explorer-ui/lib/components/common/Section/section.styles";
 import { Typography } from "@mui/material";
 import React, { ReactNode, useContext } from "react";
-import { AuthContext } from "../../common/context/authState";
+import { AuthContext } from "../../common/context/authentication";
 import {
   LoginSection,
   LoginSectionActions,

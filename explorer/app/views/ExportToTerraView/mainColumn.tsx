@@ -1,5 +1,5 @@
+import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
 import { ExportToTerra } from "app/components/Export/components/ExportToTerra/exportToTerra";
-import { useConfig } from "app/hooks/useConfig";
 import React, { useContext } from "react";
 import {
   AZUL_PARAM,
@@ -15,7 +15,7 @@ export const MainColumn = (): JSX.Element => {
   const { filterState } = exploreState;
 
   // Grab configuration and check expected values are set. TODO(cc) add discriminating unions to config so checks aren't necessary.
-  const config = useConfig();
+  const { config } = useConfig();
   const { dataSource, exportToTerraUrl } = config;
   if (!exportToTerraUrl) {
     console.error(`"exportToTerraUrl" not specified in config`);

@@ -1,5 +1,5 @@
-import { ComponentsConfig } from "app/config/common/entities";
-import { useConfig } from "app/hooks/useConfig";
+import { ComponentsConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
+import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
 import React, { useContext } from "react";
 import { v4 as uuid4 } from "uuid";
 import { ExploreStateContext } from "../../common/context/exploreState";
@@ -22,7 +22,7 @@ export const ComponentCreator = <T,>({
   components,
   response,
 }: ComponentCreatorProps<T>): JSX.Element => {
-  const config = useConfig();
+  const { config } = useConfig();
   const { exploreState } = useContext(ExploreStateContext);
   const componentsValue =
     typeof components === "function" ? components(config) : components;

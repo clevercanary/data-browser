@@ -1,3 +1,4 @@
+import { EntityConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import { config, getEntityConfig } from "app/config/config";
 import { getEntityService } from "app/hooks/useEntityService";
 import { PARAMS_INDEX_UUID } from "app/shared/constants";
@@ -5,7 +6,6 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
 import { AzulEntityStaticResponse } from "../../app/apis/azul/common/entities";
-import { EntityConfig } from "../../app/config/common/entities";
 import { database } from "../../app/utils/database";
 import { readFile } from "../../app/utils/tsvParser";
 import { EntityDetailView } from "../../app/views/EntityDetailView/entityDetailView";

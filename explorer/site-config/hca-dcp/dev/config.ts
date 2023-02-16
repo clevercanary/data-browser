@@ -1,5 +1,6 @@
 import { ELEMENT_ALIGNMENT } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import { LogoProps } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/components/Logo/logo";
+import { SiteConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import { tabletUp } from "@clevercanary/data-explorer-ui/lib/theme/common/breakpoints";
 import {
   TEXT_BODY_LARGE_500,
@@ -10,7 +11,6 @@ import {
 } from "@clevercanary/data-explorer-ui/lib/theme/common/typography";
 import logoHca from "images/logoHca.png";
 import logoHumanCellAtlas from "images/logoHumanCellAtlas.png";
-import { SiteConfig } from "../../../app/config/common/entities";
 import { HCA_DCP_CATEGORY_KEY, HCA_DCP_CATEGORY_LABEL } from "../category";
 import { socials } from "./constants";
 import { exportConfig } from "./export/export";

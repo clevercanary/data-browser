@@ -6,7 +6,7 @@ import { DESKTOP_SM } from "@clevercanary/data-explorer-ui/lib/theme/common/brea
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import { Button, IconButton } from "@mui/material";
 import React, { useContext } from "react";
-import { AuthContext } from "../../../../../../common/context/authState";
+import { AuthContext } from "../../../../../../common/context/authentication";
 import { ProfileImage } from "./profile.styles";
 
 export const ProfileComponent = (): JSX.Element => {

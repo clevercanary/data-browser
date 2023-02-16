@@ -1,15 +1,15 @@
+import { AzulListParams } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
 import { useContext, useEffect } from "react";
 import {
   AzulEntitiesResponse,
   AzulEntitiesStaticResponse,
-  AzulListParams,
 } from "../apis/azul/common/entities";
 import {
   transformAzulPagination,
   transformFilters,
   transformTermFacets,
 } from "../apis/azul/common/filterTransformer";
-import { AuthContext } from "../common/context/authState";
+import { AuthContext } from "../common/context/authentication";
 import {
   ExploreActionKind,
   ExploreStateContext,

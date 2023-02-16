@@ -2,11 +2,11 @@ import {
   CategoryKey,
   SelectedFilterValue,
 } from "@clevercanary/data-explorer-ui/lib/common/entities";
+import { RelatedSearchResult } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import {
   DugSearchResponse,
   DugSearchResultResponse,
 } from "../../../../../app/apis/catalog/ncpi-catalog-dug/common/entities";
-import { RelatedSearchResult } from "../../../../../app/config/common/entities";
 import { DUG_API_PARAMS, DUG_API_PATH, DUG_API_URL } from "../../constants";
 
 // Template variables

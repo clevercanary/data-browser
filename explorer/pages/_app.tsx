@@ -2,17 +2,17 @@ import "@clevercanary/data-explorer-ui";
 import { AppLayout } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/AppLayout/appLayout.styles";
 import { Footer } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Footer/footer";
 import { Main } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Main/main.styles";
+import { ConfigProvider as DXConfigProvider } from "@clevercanary/data-explorer-ui/lib/providers/config";
 import { createAppTheme } from "@clevercanary/data-explorer-ui/lib/theme/theme";
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import { ConfigProvider } from "app/components/Config/config";
 import { Head } from "app/components/Head/head";
 import { Header } from "app/components/Layout/components/Header/header";
 import { config } from "app/config/config";
 import type { AppProps } from "next/app";
 import { AzulEntitiesStaticResponse } from "../app/apis/azul/common/entities";
-import { AuthProvider } from "../app/common/context/authState";
+import { AuthProvider } from "../app/common/context/authentication";
 import { ExploreStateProvider } from "../app/common/context/exploreState";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <EmotionThemeProvider theme={theme}>
       <ThemeProvider theme={theme}>
-        <ConfigProvider value={siteConfig}>
+        <DXConfigProvider config={siteConfig}>
           <Head />
           <CssBaseline />
           <AuthProvider>
@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
               <Footer {...layout.footer} />
             </AppLayout>
           </AuthProvider>
-        </ConfigProvider>
+        </DXConfigProvider>
       </ThemeProvider>
     </EmotionThemeProvider>
   );

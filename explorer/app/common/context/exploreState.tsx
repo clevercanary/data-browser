@@ -1,3 +1,4 @@
+import { AzulSearchIndex } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
 import {
   CategoryKey,
   CategoryValueKey,
@@ -7,7 +8,6 @@ import {
 } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import { ColumnSort } from "@tanstack/react-table";
 import { createContext, Dispatch, ReactNode, useReducer } from "react";
-import { AzulSearchIndex } from "../../apis/azul/common/entities";
 import {
   config,
   getDefaultSorting,

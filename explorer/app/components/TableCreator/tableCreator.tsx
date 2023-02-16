@@ -1,7 +1,7 @@
 import { Pagination } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import { Loading } from "@clevercanary/data-explorer-ui/lib/components/Loading/loading";
+import { ColumnConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import { CellContext, ColumnDef, ColumnSort } from "@tanstack/react-table";
-import { ColumnConfig } from "app/config/common/entities";
 import React, { useMemo } from "react";
 import { ComponentCreator } from "../ComponentCreator/ComponentCreator";
 import {

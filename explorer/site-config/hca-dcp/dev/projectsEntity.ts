@@ -1,12 +1,12 @@
-import { ProjectsResponse } from "app/models/responses";
-import { getProjectId } from "app/transformers/hca";
-import * as Components from "../../../app/components";
 import {
   ComponentConfig,
   EntityConfig,
   ListConfig,
   SORT_DIRECTION,
-} from "../../../app/config/common/entities";
+} from "@clevercanary/data-explorer-ui/lib/config/entities";
+import { ProjectsResponse } from "app/models/responses";
+import { getProjectId } from "app/transformers/hca";
+import * as Components from "../../../app/components";
 import {
   projectsBuildAnatomicalEntityColumn,
   projectsBuildCellCountColumn,

@@ -9,6 +9,10 @@ import {
 import { Index as IndexView } from "@clevercanary/data-explorer-ui/lib/components/Index/index";
 import { SidebarLabel } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Sidebar/components/SidebarLabel/sidebarLabel";
 import { Sidebar } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Sidebar/sidebar";
+import {
+  EntityConfig,
+  SummaryConfig,
+} from "@clevercanary/data-explorer-ui/lib/config/entities";
 import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
 import { TableCreator } from "app/components/TableCreator/tableCreator";
 import { useEntityList } from "app/hooks/useEntityList";
@@ -24,7 +28,6 @@ import {
   ExploreStateContext,
 } from "../../common/context/exploreState";
 import { Filters } from "../../components/Filter/components/Filters/filters";
-import { EntityConfig, SummaryConfig } from "../../config/common/entities";
 import { config, getEntityConfig, getTabs } from "../../config/config";
 import { useEntityListRelatedView } from "../../hooks/useEntityListRelatedView";
 import { useSummary } from "../../hooks/useSummary";

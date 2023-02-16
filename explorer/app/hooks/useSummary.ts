@@ -1,7 +1,7 @@
 import { config } from "app/config/config";
 import { useContext, useEffect } from "react";
 import { AzulSummaryResponse } from "../apis/azul/common/entities";
-import { AuthContext } from "../common/context/authState";
+import { AuthContext } from "../common/context/authentication";
 import { ExploreStateContext } from "../common/context/exploreState";
 import { useAsync } from "./useAsync";
 import { useEntityService } from "./useEntityService";

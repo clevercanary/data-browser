@@ -1,3 +1,4 @@
+import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
 import { useRouter } from "next/router";
 import {
   createContext,
@@ -7,7 +8,6 @@ import {
   useRef,
   useState,
 } from "react";
-import { config } from "../../config/config";
 
 // Template constants
 export const ROUTE_LOGIN = "/login";
@@ -81,7 +81,7 @@ interface Props {
  * @returns Provider element to be used by consumers to both update authentication state and subscribe to changes in authentication state.
  */
 export function AuthProvider({ children }: Props): JSX.Element {
-  const authConfig = config().authentication;
+  const authConfig = useConfig().config.authentication;
   const { googleGISAuthConfig } = authConfig || {};
   const { clientId, scope } = googleGISAuthConfig || {};
   const router = useRouter();

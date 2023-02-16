@@ -1,4 +1,5 @@
 import { SelectedFilterValue } from "@clevercanary/data-explorer-ui/lib/common/entities";
+import { RelatedSearchResult } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import { useContext, useEffect } from "react";
 import {
   ExploreActionKind,
@@ -6,7 +7,6 @@ import {
   ListItems,
   RelatedListItems,
 } from "../common/context/exploreState";
-import { RelatedSearchResult } from "../config/common/entities";
 import { getEntityConfig } from "../config/config";
 import { useAsync } from "./useAsync";
 

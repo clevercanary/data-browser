@@ -7,9 +7,9 @@ import {
   SelectCategoryView,
   SelectedFilter,
 } from "@clevercanary/data-explorer-ui/lib/common/entities";
+import { CategoryConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import { Filters } from "../apis/azul/common/entities";
 import { COLLATOR_CASE_INSENSITIVE } from "../common/constants";
-import { CategoryConfig } from "../config/common/entities";
 
 /**
  * State backing filter functionality and calculations. Converted to view model for display.
