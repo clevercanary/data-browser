@@ -15,6 +15,7 @@ export { Tooltip } from "@clevercanary/data-explorer-ui/lib/components/Index/com
 export { BackPageHero } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/BackPage/components/BackPageHero/backPageHero";
 export { Link } from "@clevercanary/data-explorer-ui/lib/components/Links/components/Link/link";
 export { Links } from "@clevercanary/data-explorer-ui/lib/components/Links/links";
+export { Citation } from "@clevercanary/data-explorer-ui/lib/components/Project/components/Citation/citation";
 export { CollaboratingOrganizations } from "@clevercanary/data-explorer-ui/lib/components/Project/components/CollaboratingOrganizations/collaboratingOrganizations";
 export { Contacts } from "@clevercanary/data-explorer-ui/lib/components/Project/components/Contacts/contacts";
 export { Contributors } from "@clevercanary/data-explorer-ui/lib/components/Project/components/Contributors/contributors";
@@ -28,4 +29,3 @@ export { TitledText } from "@clevercanary/data-explorer-ui/lib/components/Projec
 export { MdxMarkdown } from "./common/MDXMarkdown/mdxMarkdown";
 export { IconList } from "./IconList/IconList";
 export { AzulFileDownload } from "./Index/components/AzulFileDownload/azulFileDownload";
-export { Citation } from "./Project/components/Citation/citation";

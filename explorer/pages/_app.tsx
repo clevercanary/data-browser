@@ -1,4 +1,5 @@
 import "@clevercanary/data-explorer-ui";
+import { Head } from "@clevercanary/data-explorer-ui/lib/components/Head/head";
 import { AppLayout } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/AppLayout/appLayout.styles";
 import { Footer } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Footer/footer";
 import { Header } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Header/header";
@@ -10,7 +11,6 @@ import { createAppTheme } from "@clevercanary/data-explorer-ui/lib/theme/theme";
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import { Head } from "app/components/Head/head";
 import { config } from "app/config/config";
 import type { AppProps } from "next/app";
 import { AzulEntitiesStaticResponse } from "../app/apis/azul/common/entities";
