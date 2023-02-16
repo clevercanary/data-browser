@@ -7,6 +7,7 @@ import {
   TabValue,
 } from "@clevercanary/data-explorer-ui/lib/components/common/Tabs/tabs";
 import { ComponentCreator } from "@clevercanary/data-explorer-ui/lib/components/ComponentCreator/ComponentCreator";
+import { Filters } from "@clevercanary/data-explorer-ui/lib/components/Filter/components/Filters/filters";
 import { Index as IndexView } from "@clevercanary/data-explorer-ui/lib/components/Index/index";
 import { SidebarLabel } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Sidebar/components/SidebarLabel/sidebarLabel";
 import { Sidebar } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Sidebar/sidebar";
@@ -27,7 +28,6 @@ import {
   AzulEntitiesStaticResponse,
   AzulSummaryResponse,
 } from "../../apis/azul/common/entities";
-import { Filters } from "../../components/Filter/components/Filters/filters";
 import { config, getEntityConfig, getTabs } from "../../config/config";
 import { useEntityListRelatedView } from "../../hooks/useEntityListRelatedView";
 import { useSummary } from "../../hooks/useSummary";
