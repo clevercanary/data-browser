@@ -1,3 +1,4 @@
+import { PARAMS_INDEX_UUID } from "@clevercanary/data-explorer-ui/lib/common/constants";
 import {
   Tab,
   Tabs,
@@ -6,13 +7,12 @@ import {
 import { ComponentCreator } from "@clevercanary/data-explorer-ui/lib/components/ComponentCreator/ComponentCreator";
 import { Detail as DetailView } from "@clevercanary/data-explorer-ui/lib/components/Detail/detail";
 import { EntityConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
-import { useCurrentDetailTab } from "app/hooks/useCurrentDetailTab";
+import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
+import { useCurrentDetailTab } from "@clevercanary/data-explorer-ui/lib/hooks/useCurrentDetailTab";
 import { useFetchEntity } from "app/hooks/useFetchEntity";
-import { PARAMS_INDEX_UUID } from "app/shared/constants";
 import { useRouter } from "next/router";
 import React from "react";
 import { EntityDetailPageProps } from "../../../pages/[entityListType]/[...params]";
-import { getEntityConfig } from "../../config/config";
 
 /**
  * Returns tabs to be used as a prop for the Tabs component.
@@ -27,18 +27,16 @@ function getTabs(entity: EntityConfig): Tab[] {
 }
 
 export const EntityDetailView = (props: EntityDetailPageProps): JSX.Element => {
-  const { currentTab, route: tabRoute } = useCurrentDetailTab(
-    props.entityListType
-  );
-  const { mainColumn, sideColumn } = currentTab;
+  const { currentTab, route: tabRoute } = useCurrentDetailTab();
   const { isLoading, response } = useFetchEntity(props);
   const { push, query } = useRouter();
-  const currentEntityConfig = getEntityConfig(props.entityListType);
-  const { detail, route: entityRoute } = currentEntityConfig;
+  const { entityConfig } = useConfig();
+  const { mainColumn, sideColumn } = currentTab;
+  const { detail, route: entityRoute } = entityConfig;
   const { detailOverviews, top } = detail;
   const uuid = query.params?.[PARAMS_INDEX_UUID];
   const isDetailOverview = detailOverviews?.includes(currentTab.label);
-  const tabs = getTabs(currentEntityConfig);
+  const tabs = getTabs(entityConfig);
 
   if (isLoading) {
     return <span></span>; //TODO: return the loading UI component

@@ -1,7 +1,7 @@
 import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
-import { ExploreStateContext } from "@clevercanary/data-explorer-ui/lib/providers/exploreState";
+import { useExploreState } from "@clevercanary/data-explorer-ui/lib/hooks/useExploreState";
 import { ExportToTerra } from "app/components/Export/components/ExportToTerra/exportToTerra";
-import React, { useContext } from "react";
+import React from "react";
 import {
   AZUL_PARAM,
   EXPORT_TO_TERRA_FORMAT,
@@ -11,7 +11,7 @@ import { transformFilters } from "../../apis/azul/common/filterTransformer";
 
 export const MainColumn = (): JSX.Element => {
   // Grab the filter context; use this to keep selected filter state up-to-date.
-  const { exploreState } = useContext(ExploreStateContext);
+  const { exploreState } = useExploreState();
   const { filterState } = exploreState;
 
   // Grab configuration and check expected values are set. TODO(cc) add discriminating unions to config so checks aren't necessary.

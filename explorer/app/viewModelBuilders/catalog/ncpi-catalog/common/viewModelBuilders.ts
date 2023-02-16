@@ -5,8 +5,8 @@ import {
   Value,
 } from "@clevercanary/data-explorer-ui/lib/components/common/KeyValuePairs/keyValuePairs";
 import { ANCHOR_TARGET } from "@clevercanary/data-explorer-ui/lib/components/Links/common/entities";
+import { ViewContext } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import React, { ReactElement } from "react";
-import { ViewContext } from "../../../../../../../data-explorer/packages/data-explorer-ui/lib/config/entities";
 import {
   NCPICatalogEntity,
   NCPICatalogPlatform,

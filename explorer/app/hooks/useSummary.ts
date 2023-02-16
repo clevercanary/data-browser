@@ -1,9 +1,9 @@
-import { AuthContext } from "@clevercanary/data-explorer-ui/lib/providers/authentication";
-import { ExploreStateContext } from "@clevercanary/data-explorer-ui/lib/providers/exploreState";
+import { useAsync } from "@clevercanary/data-explorer-ui/lib/hooks/useAsync";
+import { useAuthentication } from "@clevercanary/data-explorer-ui/lib/hooks/useAuthentication";
+import { useExploreState } from "@clevercanary/data-explorer-ui/lib/hooks/useExploreState";
 import { config } from "app/config/config";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { AzulSummaryResponse } from "../apis/azul/common/entities";
-import { useAsync } from "./useAsync";
 import { useEntityService } from "./useEntityService";
 
 const { summaryConfig: summaryConfig } = config();
@@ -18,8 +18,8 @@ interface UseSummaryResponse {
  * @returns an object with the loaded data and a flag indicating is the data is loading
  */
 export const useSummary = (): UseSummaryResponse => {
-  const { token } = useContext(AuthContext);
-  const { exploreState } = useContext(ExploreStateContext);
+  const { token } = useAuthentication();
+  const { exploreState } = useExploreState();
   const {
     data: response,
     isLoading: apiIsLoading,

@@ -16,14 +16,14 @@ import {
   EntityConfig,
   SummaryConfig,
 } from "@clevercanary/data-explorer-ui/lib/config/entities";
+import { useExploreState } from "@clevercanary/data-explorer-ui/lib/hooks/useExploreState";
 import {
   ExploreActionKind,
   ExploreState,
-  ExploreStateContext,
 } from "@clevercanary/data-explorer-ui/lib/providers/exploreState";
 import { useEntityList } from "app/hooks/useEntityList";
 import { useRouter } from "next/router";
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   AzulEntitiesStaticResponse,
   AzulSummaryResponse,
@@ -35,7 +35,7 @@ import { useSummary } from "../../hooks/useSummary";
 // TODO(Dave) create an interface for props and maybe not drill the static load through here
 export const ExploreView = (props: AzulEntitiesStaticResponse): JSX.Element => {
   const { explorerTitle, summaryConfig } = config(); // Get app level config.
-  const { exploreDispatch, exploreState } = useContext(ExploreStateContext); // Get the useReducer state and dispatch for "Explore".
+  const { exploreDispatch, exploreState } = useExploreState(); // Get the useReducer state and dispatch for "Explore".
   const { categoryViews, isRelatedView, tabValue } = exploreState;
   const entityConfig = getEntityConfig(tabValue); // Entity config.
   const { push } = useRouter();

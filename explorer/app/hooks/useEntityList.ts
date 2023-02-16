@@ -1,10 +1,9 @@
 import { AzulListParams } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
-import { AuthContext } from "@clevercanary/data-explorer-ui/lib/providers/authentication";
-import {
-  ExploreActionKind,
-  ExploreStateContext,
-} from "@clevercanary/data-explorer-ui/lib/providers/exploreState";
-import { useContext, useEffect } from "react";
+import { useAsync } from "@clevercanary/data-explorer-ui/lib/hooks/useAsync";
+import { useAuthentication } from "@clevercanary/data-explorer-ui/lib/hooks/useAuthentication";
+import { useExploreState } from "@clevercanary/data-explorer-ui/lib/hooks/useExploreState";
+import { ExploreActionKind } from "@clevercanary/data-explorer-ui/lib/providers/exploreState";
+import { useEffect } from "react";
 import {
   AzulEntitiesResponse,
   AzulEntitiesStaticResponse,
@@ -14,7 +13,6 @@ import {
   transformFilters,
   transformTermFacets,
 } from "../apis/azul/common/filterTransformer";
-import { useAsync } from "./useAsync";
 import { getEntityServiceByPath } from "./useEntityService";
 
 /**
@@ -27,10 +25,9 @@ export const useEntityList = (
   staticResponse: AzulEntitiesStaticResponse
 ): void => {
   // Load up the relevant contexts
-  const { exploreDispatch, exploreState } = useContext(ExploreStateContext);
+  const { exploreDispatch, exploreState } = useExploreState();
   const { filterState, sorting } = exploreState;
-
-  const { token } = useContext(AuthContext);
+  const { token } = useAuthentication();
   const { fetchEntitiesFromQuery, listStaticLoad, path } =
     getEntityServiceByPath(exploreState.tabValue); // Determine type of fetch to be executed, either API endpoint or TSV.
   const { data, isIdle, isLoading, run } = useAsync<AzulEntitiesResponse>(); // Init fetch of entities.

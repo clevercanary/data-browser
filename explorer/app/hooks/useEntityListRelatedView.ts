@@ -1,14 +1,14 @@
 import { SelectedFilterValue } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import { RelatedSearchResult } from "@clevercanary/data-explorer-ui/lib/config/entities";
+import { useAsync } from "@clevercanary/data-explorer-ui/lib/hooks/useAsync";
+import { useExploreState } from "@clevercanary/data-explorer-ui/lib/hooks/useExploreState";
 import {
   ExploreActionKind,
-  ExploreStateContext,
   ListItems,
   RelatedListItems,
 } from "@clevercanary/data-explorer-ui/lib/providers/exploreState";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { getEntityConfig } from "../config/config";
-import { useAsync } from "./useAsync";
 
 /**
  * Returns related entity lists filtered by related search results.
@@ -36,7 +36,7 @@ export function buildRelatedEntityList(
  * Updates related entity list.
  */
 export const useEntityListRelatedView = (): void => {
-  const { exploreDispatch, exploreState } = useContext(ExploreStateContext);
+  const { exploreDispatch, exploreState } = useExploreState();
   const { filterState, listItems, tabValue } = exploreState;
   const { listView } = getEntityConfig(tabValue);
   const relatedView = listView?.relatedView;

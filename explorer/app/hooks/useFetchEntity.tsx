@@ -1,9 +1,9 @@
-import { ExploreStateContext } from "@clevercanary/data-explorer-ui/lib/providers/exploreState";
-import { PARAMS_INDEX_UUID } from "app/shared/constants";
+import { useAsync } from "@clevercanary/data-explorer-ui/lib/hooks/useAsync";
+import { useExploreState } from "@clevercanary/data-explorer-ui/lib/hooks/useExploreState";
+import { PARAMS_INDEX_UUID } from "@clevercanary/data-explorer-ui/src/common/constants";
 import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { AzulEntityStaticResponse } from "../apis/azul/common/entities";
-import { useAsync } from "./useAsync";
 import { useEntityService } from "./useEntityService";
 
 interface UseEntityDetailResponse<T> {
@@ -20,7 +20,7 @@ interface UseEntityDetailResponse<T> {
 export const useFetchEntity = <T,>(
   value?: AzulEntityStaticResponse
 ): UseEntityDetailResponse<T> => {
-  const { exploreState } = useContext(ExploreStateContext);
+  const { exploreState } = useExploreState();
   const { tabValue } = exploreState;
   const { detailStaticLoad, fetchEntityDetail, path } =
     useEntityService(tabValue);

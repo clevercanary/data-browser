@@ -1,7 +1,7 @@
+import { PARAMS_INDEX_UUID } from "@clevercanary/data-explorer-ui/lib/common/constants";
 import { EntityConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import { config, getEntityConfig } from "app/config/config";
 import { getEntityService } from "app/hooks/useEntityService";
-import { PARAMS_INDEX_UUID } from "app/shared/constants";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";

@@ -1,10 +1,10 @@
+import { useAsync } from "@clevercanary/data-explorer-ui/lib/hooks/useAsync";
 import {
   FileLocationResponse,
   FILE_LOCATION_PENDING,
   FILE_LOCATION_SUCCESSFULLY,
 } from "app/apis/azul/common/entities";
 import { MutableRefObject, useCallback, useEffect, useRef } from "react";
-import { useAsync } from "./useAsync";
 
 export interface FileLocation {
   location: string;
