@@ -2,9 +2,11 @@
  * Handles Project's API requests
  */
 // TODO move to Azul APIs section
-import { AzulListParams } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
+import {
+  AzulListParams,
+  AZUL_PARAM,
+} from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
 import { FilterState } from "@clevercanary/data-explorer-ui/lib/hooks/useCategoryFilter";
-import { AZUL_PARAM } from "../../apis/azul/common/constants";
 import {
   AzulEntitiesResponse,
   AzulSummaryResponse,

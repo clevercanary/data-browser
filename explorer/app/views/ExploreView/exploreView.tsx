@@ -3,6 +3,7 @@ import {
   CategoryValueKey,
 } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import {
+  Tab,
   Tabs,
   TabValue,
 } from "@clevercanary/data-explorer-ui/lib/components/common/Tabs/tabs";
@@ -16,6 +17,8 @@ import {
   EntityConfig,
   SummaryConfig,
 } from "@clevercanary/data-explorer-ui/lib/config/entities";
+import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
+import { useEntityListRelatedView } from "@clevercanary/data-explorer-ui/lib/hooks/useEntityListRelatedView";
 import { useExploreState } from "@clevercanary/data-explorer-ui/lib/hooks/useExploreState";
 import {
   ExploreActionKind,
@@ -28,18 +31,28 @@ import {
   AzulEntitiesStaticResponse,
   AzulSummaryResponse,
 } from "../../apis/azul/common/entities";
-import { config, getEntityConfig, getTabs } from "../../config/config";
-import { useEntityListRelatedView } from "../../hooks/useEntityListRelatedView";
 import { useSummary } from "../../hooks/useSummary";
+
+/**
+ * Returns tabs to be used as a prop for the Tabs component.
+ * @param entities - Entities config.
+ * @returns tabs list.
+ */
+function getTabs(entities: EntityConfig[]): Tab[] {
+  return entities.map(({ label, route }) => ({
+    label,
+    value: route,
+  }));
+}
 
 // TODO(Dave) create an interface for props and maybe not drill the static load through here
 export const ExploreView = (props: AzulEntitiesStaticResponse): JSX.Element => {
-  const { explorerTitle, summaryConfig } = config(); // Get app level config.
+  const { config, entityConfig } = useConfig(); // Get app level config.
   const { exploreDispatch, exploreState } = useExploreState(); // Get the useReducer state and dispatch for "Explore".
+  const { entities, explorerTitle, summaryConfig } = config;
   const { categoryViews, isRelatedView, tabValue } = exploreState;
-  const entityConfig = getEntityConfig(tabValue); // Entity config.
   const { push } = useRouter();
-  const tabs = getTabs();
+  const tabs = getTabs(entities);
   const { response: summaryResponse } = useSummary(); // Fetch summary.
   useEntityList(props); // Fetch entities.
   useEntityListRelatedView(); // Fetch related entities.

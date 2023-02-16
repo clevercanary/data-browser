@@ -1,12 +1,12 @@
-import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
-import { useExploreState } from "@clevercanary/data-explorer-ui/lib/hooks/useExploreState";
-import { ExportToTerra } from "app/components/Export/components/ExportToTerra/exportToTerra";
-import React from "react";
 import {
   AZUL_PARAM,
   EXPORT_TO_TERRA_FORMAT,
   EXPORT_TO_TERRA_PARAM,
-} from "../../apis/azul/common/constants";
+} from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
+import { ExportToTerra } from "@clevercanary/data-explorer-ui/lib/components/Export/components/ExportToTerra/exportToTerra";
+import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
+import { useExploreState } from "@clevercanary/data-explorer-ui/lib/hooks/useExploreState";
+import React from "react";
 import { transformFilters } from "../../apis/azul/common/filterTransformer";
 
 export const MainColumn = (): JSX.Element => {

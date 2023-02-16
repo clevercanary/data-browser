@@ -13,7 +13,7 @@ import {
   transformFilters,
   transformTermFacets,
 } from "../apis/azul/common/filterTransformer";
-import { getEntityServiceByPath } from "./useEntityService";
+import { useEntityService } from "./useEntityService";
 
 /**
  * Hook handling the load and transformation of the values used by index pages. If the current entity loaded statically,
@@ -25,12 +25,11 @@ export const useEntityList = (
   staticResponse: AzulEntitiesStaticResponse
 ): void => {
   // Load up the relevant contexts
-  const { exploreDispatch, exploreState } = useExploreState();
-  const { filterState, sorting } = exploreState;
   const { token } = useAuthentication();
-  const { fetchEntitiesFromQuery, listStaticLoad, path } =
-    getEntityServiceByPath(exploreState.tabValue); // Determine type of fetch to be executed, either API endpoint or TSV.
+  const { fetchEntitiesFromQuery, listStaticLoad, path } = useEntityService(); // Determine type of fetch to be executed, either API endpoint or TSV.
+  const { exploreDispatch, exploreState } = useExploreState();
   const { data, isIdle, isLoading, run } = useAsync<AzulEntitiesResponse>(); // Init fetch of entities.
+  const { filterState, sorting } = exploreState;
   const { termFacets } = data || {};
 
   /**

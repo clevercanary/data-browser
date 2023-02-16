@@ -8,6 +8,7 @@ export { Stack } from "@clevercanary/data-explorer-ui/lib/components/common/Stac
 export { StaticImage } from "@clevercanary/data-explorer-ui/lib/components/common/StaticImage/staticImage";
 export { Table as DetailViewTable } from "@clevercanary/data-explorer-ui/lib/components/Detail/components/Table/table";
 export { ExportMethod } from "@clevercanary/data-explorer-ui/lib/components/Export/components/ExportMethod/exportMethod";
+export { AzulFileDownload } from "@clevercanary/data-explorer-ui/lib/components/Index/components/AzulFileDownload/azulFileDownload";
 export { Cell } from "@clevercanary/data-explorer-ui/lib/components/Index/components/Cell/cell";
 export { Summaries } from "@clevercanary/data-explorer-ui/lib/components/Index/components/Hero/components/Summaries/summaries";
 export { NTagCell } from "@clevercanary/data-explorer-ui/lib/components/Index/components/NTagCell/nTagCell";
@@ -28,4 +29,3 @@ export { SupplementaryLinks } from "@clevercanary/data-explorer-ui/lib/component
 export { TitledText } from "@clevercanary/data-explorer-ui/lib/components/Project/components/TitledText/titledText";
 export { MdxMarkdown } from "./common/MDXMarkdown/mdxMarkdown";
 export { IconList } from "./IconList/IconList";
-export { AzulFileDownload } from "./Index/components/AzulFileDownload/azulFileDownload";

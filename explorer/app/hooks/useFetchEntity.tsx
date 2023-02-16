@@ -1,6 +1,5 @@
+import { PARAMS_INDEX_UUID } from "@clevercanary/data-explorer-ui/lib/common/constants";
 import { useAsync } from "@clevercanary/data-explorer-ui/lib/hooks/useAsync";
-import { useExploreState } from "@clevercanary/data-explorer-ui/lib/hooks/useExploreState";
-import { PARAMS_INDEX_UUID } from "@clevercanary/data-explorer-ui/src/common/constants";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { AzulEntityStaticResponse } from "../apis/azul/common/entities";
@@ -20,10 +19,7 @@ interface UseEntityDetailResponse<T> {
 export const useFetchEntity = <T,>(
   value?: AzulEntityStaticResponse
 ): UseEntityDetailResponse<T> => {
-  const { exploreState } = useExploreState();
-  const { tabValue } = exploreState;
-  const { detailStaticLoad, fetchEntityDetail, path } =
-    useEntityService(tabValue);
+  const { detailStaticLoad, fetchEntityDetail, path } = useEntityService();
   const router = useRouter();
   const uuid = router.query.params?.[PARAMS_INDEX_UUID] as string;
   const {

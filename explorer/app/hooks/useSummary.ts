@@ -1,12 +1,10 @@
 import { useAsync } from "@clevercanary/data-explorer-ui/lib/hooks/useAsync";
 import { useAuthentication } from "@clevercanary/data-explorer-ui/lib/hooks/useAuthentication";
+import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
 import { useExploreState } from "@clevercanary/data-explorer-ui/lib/hooks/useExploreState";
-import { config } from "app/config/config";
 import { useEffect } from "react";
 import { AzulSummaryResponse } from "../apis/azul/common/entities";
 import { useEntityService } from "./useEntityService";
-
-const { summaryConfig: summaryConfig } = config();
 
 interface UseSummaryResponse {
   isLoading: boolean;
@@ -19,21 +17,21 @@ interface UseSummaryResponse {
  */
 export const useSummary = (): UseSummaryResponse => {
   const { token } = useAuthentication();
+  const { config } = useConfig();
   const { exploreState } = useExploreState();
+  const { summaryConfig } = config;
   const {
     data: response,
     isLoading: apiIsLoading,
     run,
   } = useAsync<AzulSummaryResponse>();
-
-  const tabValue = exploreState.tabValue;
-  const { fetchSummary } = useEntityService(tabValue); // Determine type of fetch to be executed, either API endpoint or TSV.
+  const { fetchSummary } = useEntityService(); // Determine type of fetch to be executed, either API endpoint or TSV.
 
   useEffect(() => {
     if (summaryConfig) {
       run(fetchSummary(exploreState.filterState, token));
     }
-  }, [fetchSummary, exploreState.filterState, run, token]);
+  }, [fetchSummary, exploreState.filterState, run, summaryConfig, token]);
 
   // Return if there's no summary config for this site.
   if (!summaryConfig) {

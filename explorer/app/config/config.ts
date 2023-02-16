@@ -1,4 +1,3 @@
-import { Tab } from "@clevercanary/data-explorer-ui/lib/components/common/Tabs/tabs";
 import {
   EntityConfig,
   SiteConfig,
@@ -77,15 +76,4 @@ export const getEntityConfig = (
   }
 
   return entityConfig;
-};
-
-/**
- * Retrieve the tabs for the entity configs
- * @returns tabs list for the current config
- */
-export const getTabs = (): Tab[] => {
-  return config().entities.map(({ label, route }) => ({
-    label,
-    value: route,
-  }));
 };

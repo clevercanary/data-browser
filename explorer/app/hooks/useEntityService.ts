@@ -1,5 +1,5 @@
 import { EntityConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
-import { getEntityConfig } from "../config/config";
+import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
 import { createEntityService } from "../entity/service/factory";
 import { EntityService } from "../entity/service/model";
 
@@ -38,14 +38,9 @@ export const getEntityService = (
 /**
  * Hook to determine how the data should be loaded.
  * From API or from a tsv file.
- * @param tabValue - the selected entity type
  * @returns @see FetcherResponse
  */
-export const useEntityService = (tabValue: string): FetcherResponse => {
-  return getEntityServiceByPath(tabValue);
-};
-
-export const getEntityServiceByPath = (path: string): FetcherResponse => {
-  const entityConfig = getEntityConfig(path);
+export const useEntityService = (): FetcherResponse => {
+  const { entityConfig } = useConfig();
   return getEntityService(entityConfig);
 };
