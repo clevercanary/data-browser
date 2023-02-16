@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <EmotionThemeProvider theme={theme}>
       <ThemeProvider theme={theme}>
-        <DXConfigProvider config={siteConfig}>
+        <DXConfigProvider config={siteConfig} entityListType={entityListType}>
           <Head />
           <CssBaseline />
           <AuthProvider>

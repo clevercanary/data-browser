@@ -8,6 +8,7 @@ import {
 } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import { ColumnSort } from "@tanstack/react-table";
 import { createContext, Dispatch, ReactNode, useReducer } from "react";
+import { useConfig } from "../../../../../data-explorer/packages/data-explorer-ui/lib/hooks/useConfig";
 import {
   config,
   getDefaultSorting,
@@ -62,7 +63,7 @@ export const ExploreStateContext = createContext<IExploreStateContext>({
     loading: false,
     paginationState: defaultPaginationState,
     relatedListItems: undefined,
-    sorting: getDefaultSorting(getEntityConfig(defaultEntity)),
+    sorting: [],
     tabValue: defaultEntity,
   },
 });
@@ -84,17 +85,18 @@ export function ExploreStateProvider({
   if (!entityListType) {
     entityListType = defaultEntity;
   }
+  const { entityConfig } = useConfig();
   const [exploreState, exploreDispatch] = useReducer(exploreReducer, {
     categoryViews: [],
     filterState: [],
     isRelatedView: false,
     listItems: [],
-    listStaticLoad: getEntityConfig(entityListType).staticLoad ?? false,
+    listStaticLoad: entityConfig.staticLoad ?? false,
     listView: EntityView.EXACT,
     loading: true,
     paginationState: defaultPaginationState,
     relatedListItems: undefined,
-    sorting: getDefaultSorting(getEntityConfig(entityListType)),
+    sorting: getDefaultSorting(entityConfig),
     tabValue: entityListType,
   });
 

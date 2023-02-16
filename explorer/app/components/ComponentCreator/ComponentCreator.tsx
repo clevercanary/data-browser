@@ -22,7 +22,7 @@ export const ComponentCreator = <T,>({
   components,
   response,
 }: ComponentCreatorProps<T>): JSX.Element => {
-  const { config } = useConfig();
+  const { config, entityConfig } = useConfig();
   const { exploreState } = useContext(ExploreStateContext);
   const componentsValue =
     typeof components === "function" ? components(config) : components;
@@ -38,7 +38,7 @@ export const ComponentCreator = <T,>({
           />
         ) : null;
         const props = c.viewBuilder
-          ? c.viewBuilder(response, exploreState)
+          ? c.viewBuilder(response, { entityConfig, exploreState })
           : {};
         return React.createElement(
           c.component,

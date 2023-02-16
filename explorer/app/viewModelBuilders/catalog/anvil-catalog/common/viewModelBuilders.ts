@@ -5,6 +5,7 @@ import {
   Value,
 } from "@clevercanary/data-explorer-ui/lib/components/common/KeyValuePairs/keyValuePairs";
 import { ANCHOR_TARGET } from "@clevercanary/data-explorer-ui/lib/components/Links/common/entities";
+import { ViewContext } from "@clevercanary/data-explorer-ui/src/config/entities";
 import { ColumnDef } from "@tanstack/react-table";
 import React, { ReactElement } from "react";
 import {
@@ -17,11 +18,9 @@ import {
   AnVILCatalogStudy,
   AnVILCatalogWorkspace,
 } from "../../../../apis/catalog/anvil-catalog/common/entities";
-import { ExploreState } from "../../../../common/context/exploreState";
 import * as C from "../../../../components";
 import { METADATA_KEY } from "../../../../components/Index/common/entities";
 import { getPluralizedMetadataLabel } from "../../../../components/Index/common/indexTransformer";
-import { getEntityConfig } from "../../../../config/config";
 
 /**
  * Build props for consent code cell component from the given AnVIL workspace.
@@ -140,16 +139,16 @@ export const buildDiseases = (
 /**
  * Build props for Hero component from the given AnVIL entity.
  * @param anvilCatalogConsortium - AnVIL catalog consortium.
- * @param exploreState - Global search state.
+ * @param viewContext - View context.
  * @returns model to be used as props for the BackPageHero component.
  */
 export const buildConsortiumHero = (
   anvilCatalogConsortium: AnVILCatalogConsortium,
-  exploreState: ExploreState
+  viewContext: ViewContext
 ): React.ComponentProps<typeof C.BackPageHero> => {
   const { consortium } = anvilCatalogConsortium;
   return {
-    breadcrumbs: getCatalogBreadcrumbs(exploreState, consortium),
+    breadcrumbs: getCatalogBreadcrumbs(viewContext, consortium),
     title: consortium,
   };
 };
@@ -258,16 +257,16 @@ export const buildStudyDetails = (
  * Build props for Hero component from the given AnVIL entity.
  * TODO revisit - separate from entity builder, generalize modeling?, revisit transformer
  * @param anVILCatalogStudy - AnVIL catalog study.
- * @param exploreState - Global search state.
+ * @param viewContext - View context.
  * @returns model to be used as props for the BackPageHero component.
  */
 export const buildStudyHero = (
   anVILCatalogStudy: AnVILCatalogStudy,
-  exploreState: ExploreState
+  viewContext: ViewContext
 ): React.ComponentProps<typeof C.BackPageHero> => {
   const { dbGapId, studyName } = anVILCatalogStudy;
   return {
-    breadcrumbs: getCatalogBreadcrumbs(exploreState, studyName),
+    breadcrumbs: getCatalogBreadcrumbs(viewContext, studyName),
     callToAction: {
       label: "Request Access",
       target: ANCHOR_TARGET.BLANK,
@@ -389,15 +388,15 @@ function buildTableColumns<T>(): ColumnDef<T>[] {
 
 /**
  * Returns catalog related breadcrumbs.
- * @param exploreState - Global search state.
+ * @param viewContext - View context.
  * @param lastCrumbText - Study title to be displayed as last crumb text.
  * @returns catalog breadcrumbs.
  */
 function getCatalogBreadcrumbs(
-  exploreState: ExploreState,
+  viewContext: ViewContext,
   lastCrumbText?: string
 ): Breadcrumb[] {
-  const { label, route } = getEntityConfig(exploreState.tabValue);
+  const { label, route } = viewContext.entityConfig;
   const firstCrumb = {
     path: `/${route}`,
     text: label,
