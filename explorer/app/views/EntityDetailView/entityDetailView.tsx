@@ -3,9 +3,9 @@ import {
   Tabs,
   TabValue,
 } from "@clevercanary/data-explorer-ui/lib/components/common/Tabs/tabs";
+import { ComponentCreator } from "@clevercanary/data-explorer-ui/lib/components/ComponentCreator/ComponentCreator";
 import { Detail as DetailView } from "@clevercanary/data-explorer-ui/lib/components/Detail/detail";
 import { EntityConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
-import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
 import { useCurrentDetailTab } from "app/hooks/useCurrentDetailTab";
 import { useFetchEntity } from "app/hooks/useFetchEntity";
 import { PARAMS_INDEX_UUID } from "app/shared/constants";

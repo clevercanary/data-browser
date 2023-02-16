@@ -6,6 +6,7 @@ import {
   Tabs,
   TabValue,
 } from "@clevercanary/data-explorer-ui/lib/components/common/Tabs/tabs";
+import { ComponentCreator } from "@clevercanary/data-explorer-ui/lib/components/ComponentCreator/ComponentCreator";
 import { Index as IndexView } from "@clevercanary/data-explorer-ui/lib/components/Index/index";
 import { SidebarLabel } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Sidebar/components/SidebarLabel/sidebarLabel";
 import { Sidebar } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Sidebar/sidebar";
@@ -18,7 +19,6 @@ import {
   ExploreState,
   ExploreStateContext,
 } from "@clevercanary/data-explorer-ui/lib/providers/exploreState";
-import { ComponentCreator } from "app/components/ComponentCreator/ComponentCreator";
 import { TableCreator } from "app/components/TableCreator/tableCreator";
 import { useEntityList } from "app/hooks/useEntityList";
 import { useRouter } from "next/router";

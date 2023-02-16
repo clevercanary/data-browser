@@ -61,6 +61,10 @@ export default withPlugins(
         process.cwd(),
         "node_modules/react-dom"
       );
+      config.resolve.alias["uuid"] = path.resolve(
+        process.cwd(),
+        "node_modules/uuid"
+      );
       return config;
     },
   }
