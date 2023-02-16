@@ -6,6 +6,6 @@ import * as T from "../../../../../app/viewModelBuilders/catalog/anvil-catalog/c
 export const workspacesMainColumn = [
   {
     component: C.DetailViewTable,
-    viewBuilder: T.buildDetailViewWorkspacesTable,
+    viewBuilder: T.buildStudyDetailViewWorkspacesTable,
   } as ComponentConfig<typeof C.DetailViewTable, AnVILCatalogStudy>,
 ];
