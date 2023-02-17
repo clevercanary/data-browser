@@ -1,5 +1,5 @@
+import { AzulSummaryResponse } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
 import { Summary } from "@clevercanary/data-explorer-ui/lib/components/Index/components/Hero/components/Summaries/summaries";
-import { AzulSummaryResponse } from "../../../apis/azul/common/entities";
 import {
   BIND_SUMMARY_RESPONSE,
   PLURALIZED_METADATA_LABEL,

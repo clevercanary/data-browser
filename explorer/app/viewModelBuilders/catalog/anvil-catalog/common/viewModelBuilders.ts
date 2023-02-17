@@ -5,7 +5,7 @@ import {
   Value,
 } from "@clevercanary/data-explorer-ui/lib/components/common/KeyValuePairs/keyValuePairs";
 import { ANCHOR_TARGET } from "@clevercanary/data-explorer-ui/lib/components/Links/common/entities";
-import { ViewContext } from "@clevercanary/data-explorer-ui/src/config/entities";
+import { ViewContext } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import { ColumnDef } from "@tanstack/react-table";
 import React, { ReactElement } from "react";
 import {

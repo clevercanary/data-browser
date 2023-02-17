@@ -1,3 +1,4 @@
+import { LABEL } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
 import { Breadcrumb } from "@clevercanary/data-explorer-ui/lib/components/common/Breadcrumbs/breadcrumbs";
 import {
   Key,
@@ -6,7 +7,6 @@ import {
 } from "@clevercanary/data-explorer-ui/lib/components/common/KeyValuePairs/keyValuePairs";
 import { MetadataValue } from "@clevercanary/data-explorer-ui/lib/components/Index/components/NTagCell/nTagCell";
 import { Description } from "@clevercanary/data-explorer-ui/lib/components/Project/common/entities";
-import { LABEL } from "../../common/entities";
 import {
   processAggregatedOrArrayValue,
   processEntityValue,

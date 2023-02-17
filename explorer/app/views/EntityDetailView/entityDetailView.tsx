@@ -9,7 +9,7 @@ import { Detail as DetailView } from "@clevercanary/data-explorer-ui/lib/compone
 import { EntityConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
 import { useCurrentDetailTab } from "@clevercanary/data-explorer-ui/lib/hooks/useCurrentDetailTab";
-import { useFetchEntity } from "app/hooks/useFetchEntity";
+import { useFetchEntity } from "@clevercanary/data-explorer-ui/lib/hooks/useFetchEntity";
 import { useRouter } from "next/router";
 import React from "react";
 import { EntityDetailPageProps } from "../../../pages/[entityListType]/[...params]";

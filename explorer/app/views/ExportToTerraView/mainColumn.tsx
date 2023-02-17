@@ -3,11 +3,11 @@ import {
   EXPORT_TO_TERRA_FORMAT,
   EXPORT_TO_TERRA_PARAM,
 } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
+import { transformFilters } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/filterTransformer";
 import { ExportToTerra } from "@clevercanary/data-explorer-ui/lib/components/Export/components/ExportToTerra/exportToTerra";
 import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
 import { useExploreState } from "@clevercanary/data-explorer-ui/lib/hooks/useExploreState";
 import React from "react";
-import { transformFilters } from "../../apis/azul/common/filterTransformer";
 
 export const MainColumn = (): JSX.Element => {
   // Grab the filter context; use this to keep selected filter state up-to-date.

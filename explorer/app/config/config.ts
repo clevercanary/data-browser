@@ -1,11 +1,5 @@
-import {
-  getConfig,
-  setConfig,
-} from "@clevercanary/data-explorer-ui/lib/config/config";
-import {
-  EntityConfig,
-  SiteConfig,
-} from "@clevercanary/data-explorer-ui/lib/config/entities";
+import { setConfig } from "@clevercanary/data-explorer-ui/lib/config/config";
+import { SiteConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import anvilCatalogDev from "../../site-config/anvil-catalog/dev/config";
 import anvilCatalogProd from "../../site-config/anvil-catalog/prod/config";
 import anvilCmgDev from "../../site-config/anvil-cmg/dev/config";
@@ -61,24 +55,4 @@ export const config = (): SiteConfig => {
 
   setConfig(appConfig); // Sets app config.
   return appConfig;
-};
-
-/**
- * Returns the config for the given entity
- * @param path - the path used to identify the entity
- * @returns - the entity config associated with the given route path.
- */
-export const getEntityConfig = (
-  path: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This config model is part of a generic array
-): EntityConfig<any> => {
-  const entityConfig = getConfig().entities.find(
-    (entity) => entity.route === path
-  );
-
-  if (!entityConfig) {
-    throw Error("No entity found with name: " + path);
-  }
-
-  return entityConfig;
 };

@@ -1,13 +1,14 @@
+import { AzulEntitiesStaticResponse } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
 import { EntityConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
-import { config, getEntityConfig } from "app/config/config";
+import { getEntityConfig } from "@clevercanary/data-explorer-ui/lib/config/utils";
+import { EMPTY_PAGE } from "@clevercanary/data-explorer-ui/lib/entity/api/constants";
+import { getEntityService } from "@clevercanary/data-explorer-ui/lib/hooks/useEntityService";
+import { database } from "@clevercanary/data-explorer-ui/lib/utils/database";
+import { config } from "app/config/config";
 import { ExploreView } from "app/views/ExploreView/exploreView";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
-import { AzulEntitiesStaticResponse } from "../../app/apis/azul/common/entities";
-import { EMPTY_PAGE } from "../../app/entity/api/constants";
-import { getEntityService } from "../../app/hooks/useEntityService";
-import { database } from "../../app/utils/database";
 import { readFile } from "../../app/utils/tsvParser";
 
 interface PageUrl extends ParsedUrlQuery {
@@ -87,8 +88,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<
   AzulEntitiesStaticResponse
 > = async (context: GetStaticPropsContext) => {
+  const appConfig = config();
   const { entityListType } = context.params as PageUrl;
-  const entityConfig = getEntityConfig(entityListType);
+  const { entities } = appConfig;
+  const entityConfig = getEntityConfig(entities, entityListType);
   const { staticLoad } = entityConfig;
   const { fetchAllEntities } = getEntityService(entityConfig); // Determine the type of fetch, either from an API endpoint or a TSV.
 

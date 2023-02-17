@@ -1,4 +1,5 @@
 import "@clevercanary/data-explorer-ui";
+import { AzulEntitiesStaticResponse } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
 import { Head } from "@clevercanary/data-explorer-ui/lib/components/Head/head";
 import { AppLayout } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/AppLayout/appLayout.styles";
 import { Footer } from "@clevercanary/data-explorer-ui/lib/components/Layout/components/Footer/footer";
@@ -13,7 +14,6 @@ import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { config } from "app/config/config";
 import type { AppProps } from "next/app";
-import { AzulEntitiesStaticResponse } from "../app/apis/azul/common/entities";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   // Set up the site configuration, layout and theme.

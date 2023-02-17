@@ -1,4 +1,8 @@
 import {
+  AzulEntitiesStaticResponse,
+  AzulSummaryResponse,
+} from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
+import {
   CategoryKey,
   CategoryValueKey,
 } from "@clevercanary/data-explorer-ui/lib/common/entities";
@@ -18,20 +22,16 @@ import {
   SummaryConfig,
 } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import { useConfig } from "@clevercanary/data-explorer-ui/lib/hooks/useConfig";
+import { useEntityList } from "@clevercanary/data-explorer-ui/lib/hooks/useEntityList";
 import { useEntityListRelatedView } from "@clevercanary/data-explorer-ui/lib/hooks/useEntityListRelatedView";
 import { useExploreState } from "@clevercanary/data-explorer-ui/lib/hooks/useExploreState";
+import { useSummary } from "@clevercanary/data-explorer-ui/lib/hooks/useSummary";
 import {
   ExploreActionKind,
   ExploreState,
 } from "@clevercanary/data-explorer-ui/lib/providers/exploreState";
-import { useEntityList } from "app/hooks/useEntityList";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import {
-  AzulEntitiesStaticResponse,
-  AzulSummaryResponse,
-} from "../../apis/azul/common/entities";
-import { useSummary } from "../../hooks/useSummary";
 
 /**
  * Returns tabs to be used as a prop for the Tabs component.

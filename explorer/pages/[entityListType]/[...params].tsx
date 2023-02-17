@@ -1,12 +1,13 @@
+import { AzulEntityStaticResponse } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
 import { PARAMS_INDEX_UUID } from "@clevercanary/data-explorer-ui/lib/common/constants";
 import { EntityConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
-import { config, getEntityConfig } from "app/config/config";
-import { getEntityService } from "app/hooks/useEntityService";
+import { getEntityConfig } from "@clevercanary/data-explorer-ui/lib/config/utils";
+import { getEntityService } from "@clevercanary/data-explorer-ui/lib/hooks/useEntityService";
+import { database } from "@clevercanary/data-explorer-ui/lib/utils/database";
+import { config } from "app/config/config";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
-import { AzulEntityStaticResponse } from "../../app/apis/azul/common/entities";
-import { database } from "../../app/utils/database";
 import { readFile } from "../../app/utils/tsvParser";
 import { EntityDetailView } from "../../app/views/EntityDetailView/entityDetailView";
 
@@ -66,7 +67,7 @@ const seedDatabase = async function seedDatabase(
  */
 export const getStaticPaths: GetStaticPaths<PageUrl> = async () => {
   const appConfig = config();
-  const entities = appConfig.entities;
+  const { entities } = appConfig;
   const paths = await Promise.all(
     entities.map(async (entityConfig) => {
       // Seed database.
@@ -115,8 +116,10 @@ export const getStaticPaths: GetStaticPaths<PageUrl> = async () => {
 export const getStaticProps: GetStaticProps<AzulEntityStaticResponse> = async ({
   params,
 }: GetStaticPropsContext) => {
+  const appConfig = config();
   const { entityListType } = params as PageUrl;
-  const entityConfig = getEntityConfig(entityListType);
+  const { entities } = appConfig;
+  const entityConfig = getEntityConfig(entities, entityListType);
 
   if (!entityConfig) {
     return {
