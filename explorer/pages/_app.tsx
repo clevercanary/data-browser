@@ -17,15 +17,14 @@ import { AzulEntitiesStaticResponse } from "../app/apis/azul/common/entities";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   // Set up the site configuration, layout and theme.
-  const siteConfig = config();
-  const { layout, themeOptions } = siteConfig;
+  const appConfig = config();
+  const { layout, themeOptions } = appConfig;
   const theme = createAppTheme(themeOptions);
   const { entityListType } = pageProps as AzulEntitiesStaticResponse;
-
   return (
     <EmotionThemeProvider theme={theme}>
       <ThemeProvider theme={theme}>
-        <DXConfigProvider config={siteConfig} entityListType={entityListType}>
+        <DXConfigProvider config={appConfig} entityListType={entityListType}>
           <Head />
           <CssBaseline />
           <AuthProvider>

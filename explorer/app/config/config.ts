@@ -1,4 +1,8 @@
 import {
+  getConfig,
+  setConfig,
+} from "@clevercanary/data-explorer-ui/lib/config/config";
+import {
   EntityConfig,
   SiteConfig,
 } from "@clevercanary/data-explorer-ui/lib/config/entities";
@@ -55,6 +59,7 @@ export const config = (): SiteConfig => {
     console.log(`Using app config ${config}`);
   }
 
+  setConfig(appConfig); // Sets app config.
   return appConfig;
 };
 
@@ -67,7 +72,7 @@ export const getEntityConfig = (
   path: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- This config model is part of a generic array
 ): EntityConfig<any> => {
-  const entityConfig = config().entities.find(
+  const entityConfig = getConfig().entities.find(
     (entity) => entity.route === path
   );
 

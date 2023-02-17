@@ -6,13 +6,13 @@ import {
   AzulListParams,
   AZUL_PARAM,
 } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
+import { getConfig } from "@clevercanary/data-explorer-ui/lib/config/config";
 import { FilterState } from "@clevercanary/data-explorer-ui/lib/hooks/useCategoryFilter";
 import {
   AzulEntitiesResponse,
   AzulSummaryResponse,
 } from "../../apis/azul/common/entities";
 import { transformFilters } from "../../apis/azul/common/filterTransformer";
-import { config } from "../../config/config";
 import {
   DEFAULT_DETAIL_PARAMS,
   DEFAULT_LIST_PARAMS,
@@ -20,7 +20,7 @@ import {
 } from "../../shared/constants";
 import { convertUrlParams } from "../../utils/url";
 
-const { summaryConfig: summaryConfig } = config();
+const { summaryConfig: summaryConfig } = getConfig();
 
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any -- see todo
 function createFetchOptions(accessToken: string | undefined): any {

@@ -65,7 +65,8 @@ const seedDatabase = async function seedDatabase(
  * getStaticPaths - return the list of paths to prerender for each entity type and its tabs.
  */
 export const getStaticPaths: GetStaticPaths<PageUrl> = async () => {
-  const entities = config().entities;
+  const appConfig = config();
+  const entities = appConfig.entities;
   const paths = await Promise.all(
     entities.map(async (entityConfig) => {
       // Seed database.

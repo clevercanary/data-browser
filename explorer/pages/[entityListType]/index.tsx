@@ -67,7 +67,8 @@ const IndexPage = ({
  * Build the list of paths to be built statically.
  */
 export const getStaticPaths: GetStaticPaths = async () => {
-  const entities = config().entities;
+  const appConfig = config();
+  const entities = appConfig.entities;
   const paths = entities.map((entity) => ({
     params: {
       entityListType: entity.route,
