@@ -4,8 +4,8 @@ import { getEntityConfig } from "@clevercanary/data-explorer-ui/lib/config/utils
 import { EMPTY_PAGE } from "@clevercanary/data-explorer-ui/lib/entity/api/constants";
 import { getEntityService } from "@clevercanary/data-explorer-ui/lib/hooks/useEntityService";
 import { database } from "@clevercanary/data-explorer-ui/lib/utils/database";
+import { ExploreView } from "@clevercanary/data-explorer-ui/lib/views/ExploreView/exploreView";
 import { config } from "app/config/config";
-import { ExploreView } from "app/views/ExploreView/exploreView";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";

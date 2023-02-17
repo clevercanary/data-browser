@@ -4,12 +4,12 @@ import { EntityConfig } from "@clevercanary/data-explorer-ui/lib/config/entities
 import { getEntityConfig } from "@clevercanary/data-explorer-ui/lib/config/utils";
 import { getEntityService } from "@clevercanary/data-explorer-ui/lib/hooks/useEntityService";
 import { database } from "@clevercanary/data-explorer-ui/lib/utils/database";
+import { EntityDetailView } from "@clevercanary/data-explorer-ui/lib/views/EntityDetailView/entityDetailView";
 import { config } from "app/config/config";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
 import { readFile } from "../../app/utils/tsvParser";
-import { EntityDetailView } from "../../app/views/EntityDetailView/entityDetailView";
 
 interface PageUrl extends ParsedUrlQuery {
   entityListType: string;
