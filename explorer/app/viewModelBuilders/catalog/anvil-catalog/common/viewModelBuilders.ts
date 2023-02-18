@@ -14,6 +14,7 @@ import {
 } from "../../../../../site-config/anvil-catalog/category";
 import {
   AnVILCatalogConsortium,
+  AnVILCatalogConsortiumStudy,
   AnVILCatalogEntity,
   AnVILCatalogStudy,
   AnVILCatalogWorkspace,
@@ -74,7 +75,7 @@ export const buildConsortiumDetailViewStudiesTable = (
 ): React.ComponentProps<typeof C.DetailViewTable> => {
   const { studies } = anVILCatalogConsortium;
   return {
-    columns: buildStudiesTableColumns(),
+    columns: buildConsortiumStudiesTableColumns(),
     gridTemplateColumns: "auto 1fr 1fr 1fr 1fr 1fr 1fr auto",
     items: studies,
     noResultsTitle: "No Studies",
@@ -109,23 +110,6 @@ export const buildDataTypes = (
   return {
     label: getPluralizedMetadataLabel(METADATA_KEY.DATA_TYPE),
     values: anvilCatalogEntity.dataType,
-  };
-};
-
-/**
- * Build props for DetailViewTable component from the given AnVIL entity.
- * @param anVILCatalogStudy - AnVil catalog study.
- * @returns Model to be used as props for the detail view table component.
- */
-export const buildStudyDetailViewWorkspacesTable = (
-  anVILCatalogStudy: AnVILCatalogStudy
-): React.ComponentProps<typeof C.DetailViewTable> => {
-  const { workspaces } = anVILCatalogStudy;
-  return {
-    columns: buildStudyWorkspacesTableColumns(),
-    gridTemplateColumns: "auto 1fr 1fr 1fr 1fr 1fr auto",
-    items: workspaces,
-    noResultsTitle: "No Workspaces",
   };
 };
 
@@ -248,6 +232,23 @@ export const buildStudyDesigns = (
   return {
     label: getPluralizedMetadataLabel(METADATA_KEY.STUDY_DESIGN),
     values: anvilCatalogEntity.studyDesign,
+  };
+};
+
+/**
+ * Build props for DetailViewTable component from the given AnVIL entity.
+ * @param anVILCatalogStudy - AnVil catalog study.
+ * @returns Model to be used as props for the detail view table component.
+ */
+export const buildStudyDetailViewWorkspacesTable = (
+  anVILCatalogStudy: AnVILCatalogStudy
+): React.ComponentProps<typeof C.DetailViewTable> => {
+  const { workspaces } = anVILCatalogStudy;
+  return {
+    columns: buildStudyWorkspacesTableColumns(),
+    gridTemplateColumns: "auto 1fr 1fr 1fr 1fr 1fr auto",
+    items: workspaces,
+    noResultsTitle: "No Workspaces",
   };
 };
 
@@ -411,6 +412,62 @@ function buildSharedTableColumns<T>(): ColumnDef<T>[] {
 }
 
 /**
+ * Builds the table column definition model for the detailed view studies table.
+ * @returns studies table column definition.
+ */
+function buildConsortiumStudiesTableColumns<T>(): ColumnDef<T>[] {
+  return [
+    {
+      accessorKey: ANVIL_CATALOG_CATEGORY_KEY.STUDY_NAME,
+      cell: ({ row: { original } }): JSX.Element => {
+        const { dbGapId, studyAccession, studyName } =
+          original as unknown as AnVILCatalogConsortiumStudy; // TODO revisit type assertion here
+        return C.Link({
+          label: studyName,
+          url: studyAccession ? `/studies/${dbGapId}` : "",
+        });
+      },
+      header: ANVIL_CATALOG_CATEGORY_LABEL.STUDY_NAME,
+    },
+    {
+      accessorKey: ANVIL_CATALOG_CATEGORY_KEY.DB_GAP_ID,
+      header: ANVIL_CATALOG_CATEGORY_LABEL.DB_GAP_ID,
+    },
+    {
+      accessorKey: ANVIL_CATALOG_CATEGORY_KEY.CONSENT_CODE,
+      cell: ({ row }): JSX.Element => {
+        const { consentCode } =
+          row.original as unknown as AnVILCatalogConsortiumStudy; // TODO revisit type assertion here
+        return C.NTagCell({
+          label: getPluralizedMetadataLabel(METADATA_KEY.CONSENT_CODE),
+          values: consentCode,
+        });
+      },
+      header: ANVIL_CATALOG_CATEGORY_LABEL.CONSENT_CODE,
+    },
+    ...buildSharedTableColumns<T>(),
+    {
+      accessorKey: ANVIL_CATALOG_CATEGORY_KEY.WORKSPACE_NAME,
+      cell: ({ row }): JSX.Element => {
+        const { workspaceName } =
+          row.original as unknown as AnVILCatalogConsortiumStudy; // TODO revisit type assertion here
+        return C.NTagCell({
+          label: getPluralizedMetadataLabel(METADATA_KEY.WORKSPACE_NAME),
+          values: workspaceName,
+        });
+      },
+      header: "Workspaces",
+    },
+    {
+      accessorKey: ANVIL_CATALOG_CATEGORY_KEY.PARTICIPANT_COUNT,
+      cell: ({ getValue }) =>
+        (getValue() as unknown as number)?.toLocaleString(),
+      header: ANVIL_CATALOG_CATEGORY_LABEL.PARTICIPANT_COUNT,
+    },
+  ];
+}
+
+/**
  * Builds the table column definition model for the detailed view workspaces table.
  * @returns workspaces table column definition.
  */
@@ -428,48 +485,6 @@ function buildConsortiumWorkspacesTableColumns<T>(): ColumnDef<T>[] {
       header: ANVIL_CATALOG_CATEGORY_LABEL.CONSENT_CODE,
     },
     ...buildSharedTableColumns<T>(),
-    {
-      accessorKey: ANVIL_CATALOG_CATEGORY_KEY.PARTICIPANT_COUNT,
-      cell: ({ getValue }) =>
-        (getValue() as unknown as number)?.toLocaleString(),
-      header: ANVIL_CATALOG_CATEGORY_LABEL.PARTICIPANT_COUNT,
-    },
-  ];
-}
-
-/**
- * Builds the table column definition model for the detailed view studies table.
- * @returns studies table column definition.
- */
-function buildStudiesTableColumns<T>(): ColumnDef<T>[] {
-  return [
-    {
-      accessorKey: ANVIL_CATALOG_CATEGORY_KEY.STUDY_NAME,
-      cell: ({ row: { original } }) =>
-        C.Link(buildStudyName(original as unknown as AnVILCatalogStudy)), // TODO revisit type assertion here
-      header: ANVIL_CATALOG_CATEGORY_LABEL.STUDY_NAME,
-    },
-    {
-      accessorKey: ANVIL_CATALOG_CATEGORY_KEY.DB_GAP_ID,
-      header: ANVIL_CATALOG_CATEGORY_LABEL.DB_GAP_ID,
-    },
-    {
-      accessorKey: ANVIL_CATALOG_CATEGORY_KEY.CONSENT_CODE,
-      cell: ({ row }) =>
-        C.NTagCell(
-          buildConsentCodes(row.original as unknown as AnVILCatalogStudy) // TODO revisit type assertion here
-        ),
-      header: ANVIL_CATALOG_CATEGORY_LABEL.CONSENT_CODE,
-    },
-    ...buildSharedTableColumns<T>(),
-    {
-      accessorKey: ANVIL_CATALOG_CATEGORY_KEY.WORKSPACE_NAME,
-      cell: ({ row }) =>
-        C.NTagCell(
-          buildTerraWorkspaceNames(row.original as unknown as AnVILCatalogStudy) // TODO revisit type assertion here
-        ),
-      header: "Workspaces",
-    },
     {
       accessorKey: ANVIL_CATALOG_CATEGORY_KEY.PARTICIPANT_COUNT,
       cell: ({ getValue }) =>

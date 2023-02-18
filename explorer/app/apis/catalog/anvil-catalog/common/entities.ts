@@ -10,7 +10,7 @@ export interface AnVILCatalogConsortium {
   dbGapId: string[];
   disease: string[];
   participantCount: number;
-  studies: AnVILCatalogStudyMinimal[];
+  studies: AnVILCatalogConsortiumStudy[];
   studyDesign: string[];
   studyName: string[];
   workspaceCount: number;
@@ -34,7 +34,11 @@ export interface AnVILCatalogStudy {
   workspaces: AnVILCatalogWorkspace[];
 }
 
-export type AnVILCatalogStudyMinimal = Omit<AnVILCatalogStudy, "workspaces">;
+export type AnVILCatalogConsortiumStudy = Omit<AnVILCatalogStudy, "workspaces">;
+
+export type AnVILCatalogStudyAny =
+  | AnVILCatalogStudy
+  | AnVILCatalogConsortiumStudy;
 
 export interface AnVILCatalogWorkspace {
   consentCode: string;

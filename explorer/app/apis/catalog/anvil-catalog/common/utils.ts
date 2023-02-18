@@ -6,7 +6,7 @@ import {
   AnVILCatalogConsortium,
   AnVILCatalogEntity,
   AnVILCatalogStudy,
-  AnVILCatalogStudyMinimal,
+  AnVILCatalogStudyAny,
   AnVILCatalogWorkspace,
 } from "./entities";
 
@@ -37,7 +37,7 @@ export const getConsortiumId = (
 ): string => anvilCatalogEntity.consortium ?? "";
 
 export const anvilCatalogStudyInputMapper = <
-  StudyType extends AnVILCatalogStudyMinimal
+  StudyType extends AnVILCatalogStudyAny
 >(
   input: StudyType
 ): StudyType => {
@@ -62,8 +62,8 @@ export const anvilCatalogConsortiumInputMapper = (
 ): AnVILCatalogConsortium => {
   return {
     ...input,
-    studies: input.studies?.map(anvilCatalogStudyInputMapper),
+    studies: input.studies.map(anvilCatalogStudyInputMapper),
     studyName: sanitizeStringArray(input.studyName),
-    workspaces: input.workspaces?.map(anvilCatalogWorkspaceInputMapper),
+    workspaces: input.workspaces.map(anvilCatalogWorkspaceInputMapper),
   };
 };

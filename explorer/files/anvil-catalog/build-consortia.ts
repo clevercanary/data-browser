@@ -1,7 +1,7 @@
 import {
   AnVILCatalogConsortium,
+  AnVILCatalogConsortiumStudy,
   AnVILCatalogStudy,
-  AnVILCatalogStudyMinimal,
   AnVILCatalogWorkspace,
 } from "../../app/apis/catalog/anvil-catalog/common/entities";
 import {
@@ -76,12 +76,12 @@ function buildAnVILCatalogConsortium(
   ]);
   const study = studiesByStudyId.get(workspace.dbGapId);
   const studies = study
-    ? accumulateObject<AnVILCatalogStudyMinimal>(
+    ? accumulateObject<AnVILCatalogConsortiumStudy>(
         anvilCatalogConsortium.studies,
         Object.assign({}, study, { workspaces: undefined }),
         "studyName"
       )
-    : anvilCatalogConsortium.studies;
+    : anvilCatalogConsortium.studies || [];
   const studyDesigns = accumulateValues(
     anvilCatalogConsortium.studyDesign,
     workspace.studyDesign
