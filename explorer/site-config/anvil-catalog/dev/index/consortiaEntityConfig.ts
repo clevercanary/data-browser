@@ -16,7 +16,9 @@ import {
   ANVIL_CATALOG_CATEGORY_LABEL,
 } from "../../category";
 import { mainColumn } from "../detail/consortium/overviewMainColumn";
+import { studiesMainColumn } from "../detail/consortium/studiesMainColumn";
 import { top } from "../detail/consortium/top";
+import { workspacesMainColumn } from "../detail/consortium/workspacesMainColumn";
 
 /**
  * Entity config object responsible to config anything related to the /explore/consortia route.
@@ -30,6 +32,16 @@ export const consortiaEntityConfig: EntityConfig<AnVILCatalogConsortium> = {
         label: "Overview",
         mainColumn: mainColumn,
         route: "",
+      },
+      {
+        label: "Studies",
+        mainColumn: studiesMainColumn,
+        route: "studies",
+      },
+      {
+        label: "Workspaces",
+        mainColumn: workspacesMainColumn,
+        route: "workspaces",
       },
     ],
     top: top,
