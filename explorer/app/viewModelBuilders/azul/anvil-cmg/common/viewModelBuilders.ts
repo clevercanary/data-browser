@@ -1,3 +1,4 @@
+import { ANCHOR_TARGET } from "@clevercanary/data-explorer-ui/lib/components/Links/common/entities";
 import React from "react";
 import { URL_DATASETS } from "../../../../../site-config/anvil/dev/config";
 import {
@@ -180,6 +181,11 @@ export const buildDatasetHero = (
   const firstCrumb = { path: URL_DATASETS, text: "Datasets" };
   return {
     breadcrumbs: getDatasetBreadcrumbs(firstCrumb, response),
+    callToAction: {
+      label: "Request Access",
+      target: ANCHOR_TARGET.BLANK,
+      url: `https://dbgap.ncbi.nlm.nih.gov/aa/wga.cgi?adddataset=${identifier}`,
+    },
     title: getDatasetTitle(response),
   };
 };
