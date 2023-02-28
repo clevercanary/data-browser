@@ -1,3 +1,4 @@
+import { ButtonGroup } from "@clevercanary/data-explorer-ui/src/components/common/ButtonGroup/buttonGroup";
 import { ColumnDef } from "@tanstack/react-table";
 import React from "react";
 import {
@@ -60,7 +61,7 @@ export const buildDCPGeneratedMatricesTable = (
   return {
     columns: buildDCPGeneratedMatricesTableColumns(),
     gridTemplateColumns:
-      "auto minmax(240px, 1fr) repeat(5, minmax(124px, 1fr))",
+      "150px minmax(240px, 1fr) repeat(5, minmax(124px, 1fr))",
     projectMatrixViewsBySpecies,
   };
 };
@@ -356,6 +357,30 @@ function buildDCPGeneratedMatricesTableColumns<T>(): ColumnDef<T>[] {
 }
 
 /**
+ * Build buttons prop for ButtonGroup component from the given matrix row.
+ * @returns model to be used as buttons prop for the ButtonGroup component.
+ */
+function buildMatricesActionsButtonsProp(): ButtonGroup[] {
+  return [
+    {
+      action: "Download project matrix",
+      label: C.DownloadIconSmall,
+      onClick: () => console.log("Download"),
+    },
+    {
+      action: "Copy project matrix",
+      label: C.ContentCopyIconSmall,
+      onClick: () => console.log("Copy"),
+    },
+    {
+      action: "View archive preview",
+      label: C.InventoryIconSmall,
+      onClick: () => console.log("Archive"),
+    },
+  ];
+}
+
+/**
  * Build props for NTagCell component from the given entity and entity key.
  * @param projectMatrixTableView - Project matrix view (by species).
  * @param key - Project matrix view key.
@@ -382,6 +407,10 @@ function buildNTagCellProps(
 function getGeneratedMatricesActionsColumnDef<T>(): ColumnDef<T> {
   return {
     accessorKey: "",
+    cell: () =>
+      C.ButtonGroup({
+        buttons: buildMatricesActionsButtonsProp(),
+      }),
     header: "Actions",
   };
 }
