@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string -- duplicate strings are in example data */
 /*
  * Human Cell Atlas
  * https://www.humancellatlas.org/
@@ -20,6 +19,9 @@ import {
 } from "../app/viewModelBuilders/azul/hca-dcp/common/projectMatrixMapper";
 import { HCA_DCP_CATEGORY_KEY } from "../site-config/hca-dcp/category";
 
+const COUNT_MATRIX = "Count Matrix";
+const LARGE_INTESTINE = "large intestine";
+const LYMPH_NODE = "lymph node";
 const MOCK_PROJECT_MATRIX_FILE_0 = {
   name: "123.loom",
   size: 254147853,
@@ -92,7 +94,7 @@ describe("MatrixMapper", () => {
       LibraryConstructionApproach.TENX_V2
     );
     expect(matrixView0.organ.length).toEqual(1);
-    expect(matrixView0.organ[0]).toEqual("large intestine");
+    expect(matrixView0.organ[0]).toEqual(LARGE_INTESTINE);
     expect(matrixView0.stage.length).toEqual(1);
     expect(matrixView0.stage[0]).toEqual("adult");
     expect(matrixView0.fileName).toEqual(MOCK_PROJECT_MATRIX_FILE_0.name);
@@ -105,7 +107,7 @@ describe("MatrixMapper", () => {
       LibraryConstructionApproach.SMART_SEQ2
     );
     expect(matrixView0.organ.length).toEqual(1);
-    expect(matrixView1.organ[0]).toEqual("large intestine");
+    expect(matrixView1.organ[0]).toEqual(LARGE_INTESTINE);
     expect(matrixView0.stage.length).toEqual(1);
     expect(matrixView1.stage[0]).toEqual("adult");
     expect(matrixView1.fileName).toEqual(MOCK_PROJECT_MATRIX_FILE_1.name);
@@ -118,7 +120,7 @@ describe("MatrixMapper", () => {
       LibraryConstructionApproach.TENX_V2
     );
     expect(matrixView0.organ.length).toEqual(1);
-    expect(matrixView2.organ[0]).toEqual("lymph node");
+    expect(matrixView2.organ[0]).toEqual(LYMPH_NODE);
     expect(matrixView0.stage.length).toEqual(1);
     expect(matrixView2.stage[0]).toEqual("adult");
     expect(matrixView2.fileName).toEqual(MOCK_PROJECT_MATRIX_FILE_0.name);
@@ -131,7 +133,7 @@ describe("MatrixMapper", () => {
       LibraryConstructionApproach.TENX_V2
     );
     expect(matrixView0.organ.length).toEqual(1);
-    expect(matrixView3.organ[0]).toEqual("lymph node");
+    expect(matrixView3.organ[0]).toEqual(LYMPH_NODE);
     expect(matrixView0.stage.length).toEqual(1);
     expect(matrixView3.stage[0]).toEqual("adult");
     expect(matrixView3.fileName).toEqual(MOCK_PROJECT_MATRIX_FILE_1.name);
@@ -153,8 +155,8 @@ describe("MatrixMapper", () => {
     expect(matrixView0.size).toEqual(MOCK_PROJECT_MATRIX_FILE_0.size);
     expect(matrixView0.url).toEqual(MOCK_PROJECT_MATRIX_FILE_0.url);
     expect(matrixView0.organ.length).toEqual(2);
-    expect(matrixView0.organ.indexOf("large intestine")).not.toEqual(-1);
-    expect(matrixView0.organ.indexOf("lymph node")).not.toEqual(-1);
+    expect(matrixView0.organ.indexOf(LARGE_INTESTINE)).not.toEqual(-1);
+    expect(matrixView0.organ.indexOf(LYMPH_NODE)).not.toEqual(-1);
     expect(matrixView0.libraryConstructionApproach.length).toEqual(1);
     expect(matrixView0.libraryConstructionApproach[0]).toEqual(
       LibraryConstructionApproach.TENX_V2
@@ -166,8 +168,8 @@ describe("MatrixMapper", () => {
     expect(matrixView1.size).toEqual(MOCK_PROJECT_MATRIX_FILE_1.size);
     expect(matrixView1.url).toEqual(MOCK_PROJECT_MATRIX_FILE_1.url);
     expect(matrixView1.organ.length).toEqual(2);
-    expect(matrixView1.organ.indexOf("large intestine")).not.toEqual(-1);
-    expect(matrixView1.organ.indexOf("lymph node")).not.toEqual(-1);
+    expect(matrixView1.organ.indexOf(LARGE_INTESTINE)).not.toEqual(-1);
+    expect(matrixView1.organ.indexOf(LYMPH_NODE)).not.toEqual(-1);
     expect(matrixView1.libraryConstructionApproach.length).toEqual(2);
     expect(
       matrixView1.libraryConstructionApproach.indexOf(
@@ -196,7 +198,7 @@ describe("MatrixMapper", () => {
           LibraryConstructionApproach.SMART_SEQ2,
           LibraryConstructionApproach.TENX_V2,
         ],
-        organ: ["lymph node", "large intestine"],
+        organ: [LYMPH_NODE, LARGE_INTESTINE],
         size: MOCK_PROJECT_MATRIX_FILE_0.size,
         url: MOCK_PROJECT_MATRIX_FILE_0.url,
         version: "1",
@@ -209,8 +211,8 @@ describe("MatrixMapper", () => {
     expect(viewModels[0].libraryConstructionApproach[1]).toEqual(
       LibraryConstructionApproach.SMART_SEQ2
     );
-    expect(viewModels[0].organ[0]).toEqual("large intestine");
-    expect(viewModels[0].organ[1]).toEqual("lymph node");
+    expect(viewModels[0].organ[0]).toEqual(LARGE_INTESTINE);
+    expect(viewModels[0].organ[1]).toEqual(LYMPH_NODE);
   });
 
   /**
@@ -269,18 +271,18 @@ describe("MatrixMapper", () => {
         genusSpecies: [GenusSpecies.MUS_MUSCULUS],
         id: "1234",
         libraryConstructionApproach: [LibraryConstructionApproach.TENX_V2],
-        organ: ["lymph node", "large intestine"],
+        organ: [LYMPH_NODE, LARGE_INTESTINE],
         size: MOCK_PROJECT_MATRIX_FILE_0.size,
         url: MOCK_PROJECT_MATRIX_FILE_0.url,
         version: "1",
       },
       {
-        contentDescription: ["Count Matrix"],
+        contentDescription: [COUNT_MATRIX],
         fileName: MOCK_PROJECT_MATRIX_FILE_1.name,
         genusSpecies: [GenusSpecies.HOMO_SAPIENS],
         id: "1234",
         libraryConstructionApproach: [LibraryConstructionApproach.TENX_V2],
-        organ: ["lymph node", "large intestine"],
+        organ: [LYMPH_NODE, LARGE_INTESTINE],
         size: MOCK_PROJECT_MATRIX_FILE_1.size,
         url: MOCK_PROJECT_MATRIX_FILE_1.url,
         version: "1",
@@ -299,12 +301,12 @@ describe("MatrixMapper", () => {
   it("sorts views by species then organ", () => {
     const viewModels = [
       {
-        contentDescription: ["Count Matrix"],
+        contentDescription: [COUNT_MATRIX],
         fileName: MOCK_PROJECT_MATRIX_FILE_0.name,
         genusSpecies: [GenusSpecies.HOMO_SAPIENS],
         id: "1234",
         libraryConstructionApproach: [LibraryConstructionApproach.TENX_V2],
-        organ: ["lymph node"],
+        organ: [LYMPH_NODE],
         size: MOCK_PROJECT_MATRIX_FILE_0.size,
         url: MOCK_PROJECT_MATRIX_FILE_0.url,
         version: "1",
@@ -315,7 +317,7 @@ describe("MatrixMapper", () => {
         genusSpecies: [GenusSpecies.HOMO_SAPIENS],
         id: "1235",
         libraryConstructionApproach: [LibraryConstructionApproach.TENX_V2],
-        organ: ["large intestine"],
+        organ: [LARGE_INTESTINE],
         size: MOCK_PROJECT_MATRIX_FILE_1.size,
         url: MOCK_PROJECT_MATRIX_FILE_1.url,
         version: "1",
@@ -339,18 +341,18 @@ describe("MatrixMapper", () => {
         genusSpecies: [GenusSpecies.HOMO_SAPIENS],
         id: "1234",
         libraryConstructionApproach: [LibraryConstructionApproach.SMART_SEQ2],
-        organ: ["lymph node"],
+        organ: [LYMPH_NODE],
         size: MOCK_PROJECT_MATRIX_FILE_0.size,
         url: MOCK_PROJECT_MATRIX_FILE_0.url,
         version: "1",
       },
       {
-        contentDescription: ["Count Matrix"],
+        contentDescription: [COUNT_MATRIX],
         fileName: MOCK_PROJECT_MATRIX_FILE_1.name,
         genusSpecies: [GenusSpecies.HOMO_SAPIENS],
         id: "1235",
         libraryConstructionApproach: [LibraryConstructionApproach.TENX_V2], // "10x .."
-        organ: ["lymph node"],
+        organ: [LYMPH_NODE],
         size: MOCK_PROJECT_MATRIX_FILE_1.size,
         url: MOCK_PROJECT_MATRIX_FILE_1.url,
         version: "1",
@@ -406,5 +408,3 @@ describe("MatrixMapper", () => {
     expect(matrixViews.length).toEqual(2);
   });
 });
-
-/* eslint-enable sonarjs/no-duplicate-string -- pair with disable */
