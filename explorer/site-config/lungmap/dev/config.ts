@@ -3,7 +3,10 @@ import { LogoProps } from "@clevercanary/data-explorer-ui/lib/components/Layout/
 import { SiteConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import logoLungmap from "images/logoLungmap.png";
 import hcaConfig from "site-config/hca-dcp/dev/config";
+import { filesEntityConfig as hcaFilesEntityConfig } from "../../hca-dcp/dev/index/filesEntityConfig";
+import { samplesEntityConfig as hcaSamplesEntityConfig } from "../../hca-dcp/dev/index/samplesEntityConfig";
 import { socials } from "./constants";
+import { projectsEntityConfig } from "./index/projectsEntityConfig";
 import { summary } from "./index/summary";
 
 // Template constants
@@ -30,7 +33,11 @@ const config: SiteConfig = {
     // url: "https://service.dev.singlecell.gi.ucsc.edu/",
     url: "https://service.azul.data.humancellatlas.org/",
   },
-  entities: hcaConfig.entities,
+  entities: [
+    projectsEntityConfig,
+    hcaSamplesEntityConfig,
+    hcaFilesEntityConfig,
+  ],
   explorerTitle: "Explore Data",
   export: hcaConfig.export,
   exportToTerraUrl: hcaConfig.exportToTerraUrl,

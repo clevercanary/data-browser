@@ -4,3 +4,4 @@ export { default as BatchCorrectionWarning } from "./hca-dcp/batchCorrectionWarn
 export { default as ContributorGeneratedMatrices } from "./hca-dcp/contributorGeneratedMatrices.mdx";
 export { default as DataReleasePolicy } from "./hca-dcp/dataReleasePolicy.mdx";
 export { default as DCPGeneratedMatrices } from "./hca-dcp/dcpGeneratedMatrices.mdx";
+export { default as LungMAPDataReleasePolicy } from "./lungmap/dataReleasePolicy.mdx";
