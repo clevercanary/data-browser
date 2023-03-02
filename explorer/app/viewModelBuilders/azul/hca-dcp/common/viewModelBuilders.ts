@@ -72,6 +72,7 @@ export const buildContributorGeneratedMatricesTable = (
 
 /**
  * Build props for TitledText component for the display of the data release policy section.
+ * TODO replace with MDX data use policy.
  * @returns model to be used as props for the TitledText component.
  */
 export const buildDataReleasePolicy = (): React.ComponentProps<
