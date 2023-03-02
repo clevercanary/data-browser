@@ -6,6 +6,7 @@ import hcaConfig from "site-config/hca-dcp/dev/config";
 import { filesEntityConfig as hcaFilesEntityConfig } from "../../hca-dcp/dev/index/filesEntityConfig";
 import { samplesEntityConfig as hcaSamplesEntityConfig } from "../../hca-dcp/dev/index/samplesEntityConfig";
 import { socials } from "./constants";
+import { exportConfig } from "./export/exportConfig";
 import { projectsEntityConfig } from "./index/projectsEntityConfig";
 import { summary } from "./index/summary";
 
@@ -39,7 +40,7 @@ const config: SiteConfig = {
     hcaFilesEntityConfig,
   ],
   explorerTitle: "Explore Data",
-  export: hcaConfig.export,
+  export: exportConfig,
   exportToTerraUrl: hcaConfig.exportToTerraUrl,
   layout: {
     footer: {

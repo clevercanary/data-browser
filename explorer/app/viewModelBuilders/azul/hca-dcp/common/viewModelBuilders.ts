@@ -71,21 +71,6 @@ export const buildContributorGeneratedMatricesTable = (
 };
 
 /**
- * Build props for TitledText component for the display of the data release policy section.
- * TODO replace with MDX data use policy.
- * @returns model to be used as props for the TitledText component.
- */
-export const buildDataReleasePolicy = (): React.ComponentProps<
-  typeof C.TitledText
-> => {
-  return {
-    text: [
-      "Downloaded data is governed by the HCA Data Release Policy and licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). For more information please see our Data Use Agreement.",
-    ],
-  };
-};
-
-/**
  * Build props for GeneratedMatricesTable component from the given project response.
  * @param projectsResponse - Response model return from projects API.
  * @returns model to be used as props for the generated matrices table component.
