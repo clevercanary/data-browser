@@ -1,18 +1,10 @@
 import fetch from "node-fetch";
-import { parseContentRows, readFile } from "../../app/utils/tsvParser";
+import { Platform } from "./constants";
 import {
-  SOURCE_CATEGORY_KEY,
-  SOURCE_FIELD_KEY,
-  SOURCE_FIELD_TYPE,
-} from "./constants";
-import { NCPIPlatformStudy } from "./entities";
-import {
-  addNCPIHeader,
-  mergeSourceStudies,
-  replaceTsv,
-  reportStudyResults,
+  getPlatformStudiesStudyIds,
   sourcePath,
-} from "./ncpi-update-utils";
+  updatePlatformStudiesAndReportNewStudies,
+} from "./utils";
 
 const urlBDC =
   "https://gen3.biodatacatalyst.nhlbi.nih.gov/mds/metadata?_guid_type=discovery_metadata&data=false&limit=500";
@@ -20,21 +12,12 @@ const urlBDC =
 type BDCElement = string;
 type BDCResponse = BDCElement[];
 
-export async function updateBdcSource(sourcePath: string): Promise<void> {
-  // Extract the current studies from the source tsv
-  const file = await readFile(sourcePath);
-  if (!file) {
-    throw new Error(`File ${sourcePath} not found`);
-  }
-  const sourceStudies = (await parseContentRows(
-    file,
-    "\t",
-    SOURCE_FIELD_KEY,
-    SOURCE_FIELD_TYPE
-  )) as NCPIPlatformStudy[];
-  const BDCSourceIds = sourceStudies
-    .filter((study) => study.platform === SOURCE_CATEGORY_KEY.BDC)
-    .map((study) => study.dbGapId);
+export async function updateBDCSource(sourcePath: string): Promise<void> {
+  // Get existing platform studies and study ids from the NCPI source tsv.
+  const [platformStudies, studyIds] = await getPlatformStudiesStudyIds(
+    sourcePath,
+    Platform.BDC
+  );
 
   // Get studies from BDC api
   const data = await fetch(urlBDC);
@@ -46,15 +29,15 @@ export async function updateBdcSource(sourcePath: string): Promise<void> {
       )
     ),
   ];
-  const newBDCIds = BDCIds.filter((id) => !BDCSourceIds.includes(id));
 
-  const outputRows = mergeSourceStudies(
-    sourceStudies,
-    SOURCE_CATEGORY_KEY.BDC,
-    BDCIds
+  // Update platform studies and report new studies for the specified platform.
+  updatePlatformStudiesAndReportNewStudies(
+    Platform.BDC,
+    platformStudies,
+    BDCIds,
+    studyIds,
+    sourcePath
   );
-  replaceTsv(sourcePath, addNCPIHeader(outputRows));
-  reportStudyResults(newBDCIds);
 }
 
-updateBdcSource(sourcePath);
+updateBDCSource(sourcePath);

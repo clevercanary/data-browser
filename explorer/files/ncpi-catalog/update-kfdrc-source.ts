@@ -1,18 +1,10 @@
 import * as fs from "fs";
-import { parseContentRows, readFile } from "../../app/utils/tsvParser";
+import { Platform } from "./constants";
 import {
-  SOURCE_CATEGORY_KEY,
-  SOURCE_FIELD_KEY,
-  SOURCE_FIELD_TYPE,
-} from "./constants";
-import { NCPIPlatformStudy } from "./entities";
-import {
-  addNCPIHeader,
-  mergeSourceStudies,
-  replaceTsv,
-  reportStudyResults,
+  getPlatformStudiesStudyIds,
   sourcePath,
-} from "./ncpi-update-utils";
+  updatePlatformStudiesAndReportNewStudies,
+} from "./utils";
 
 const KFDRCDataPath = "ncpi-catalog/out/kfdrc-studies.json";
 
@@ -32,23 +24,14 @@ type KFDRCFile = {
   id: string;
 };
 
-async function updateKfdrcSource(sourcePath: string): Promise<void> {
-  // Get existing studies
-  const file = await readFile(sourcePath);
-  if (!file) {
-    throw new Error(`File ${sourcePath} not found`);
-  }
-  const sourceStudies = (await parseContentRows(
-    file,
-    "\t",
-    SOURCE_FIELD_KEY,
-    SOURCE_FIELD_TYPE
-  )) as NCPIPlatformStudy[];
-  const KFDRCSourceIds = sourceStudies
-    .filter((study) => study.platform === SOURCE_CATEGORY_KEY.KFDRC)
-    .map((study) => study.dbGapId);
+async function updateKFDRCSource(sourcePath: string): Promise<void> {
+  // Get existing platform studies and study ids from the NCPI source tsv.
+  const [platformStudies, studyIds] = await getPlatformStudiesStudyIds(
+    sourcePath,
+    Platform.KFDRC
+  );
 
-  // Get ids from downloaded KF dataset
+  // Get ids from downloaded KFDRC dataset.
   let KFDRCJson: KFDRCFile;
   try {
     KFDRCJson = JSON.parse(fs.readFileSync(KFDRCDataPath, "utf-8"));
@@ -66,16 +49,15 @@ async function updateKfdrcSource(sourcePath: string): Promise<void> {
       .map((longDbGap) => longDbGap.split(".")[0]);
     return dbGapIdArray[0] ?? "";
   }).filter((dbGapId) => dbGapId !== "");
-  const newKFDRCIds = KFDRCIds.filter((id) => !KFDRCSourceIds.includes(id));
 
-  // Add to source TSV
-  const rowsOut = mergeSourceStudies(
-    sourceStudies,
-    SOURCE_CATEGORY_KEY.KFDRC,
-    KFDRCIds
+  // Update platform studies and report new studies for the specified platform.
+  updatePlatformStudiesAndReportNewStudies(
+    Platform.KFDRC,
+    platformStudies,
+    KFDRCIds,
+    studyIds,
+    sourcePath
   );
-  replaceTsv(sourcePath, addNCPIHeader(rowsOut));
-  reportStudyResults(newKFDRCIds);
 }
 
-updateKfdrcSource(sourcePath);
+updateKFDRCSource(sourcePath);

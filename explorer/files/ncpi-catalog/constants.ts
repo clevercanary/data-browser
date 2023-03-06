@@ -1,15 +1,15 @@
 export const tsvPath = "ncpi-catalog/files/dashboard-source-ncpi.tsv";
 
+export enum Platform {
+  ANVIL = "AnVIL",
+  BDC = "BDC",
+  CRDC = "CRDC",
+  KFDRC = "KFDRC",
+}
+
 const SOURCE_HEADER_KEY = {
   DB_GAP_ID: "identifier",
   PLATFORM: "platform",
-};
-
-export const SOURCE_CATEGORY_KEY = {
-  ANVIL: "AnVIL",
-  BDC: "BDC",
-  CRDC: "CRDC",
-  KFDRC: "KFDRC",
 };
 
 export const SOURCE_FIELD_KEY = {

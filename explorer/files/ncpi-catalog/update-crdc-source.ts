@@ -1,18 +1,11 @@
 import fetch from "node-fetch";
-import { parseContentRows, readFile } from "../../app/utils/tsvParser";
+import { Platform } from "./constants";
+import { DbGapId } from "./entities";
 import {
-  SOURCE_CATEGORY_KEY,
-  SOURCE_FIELD_KEY,
-  SOURCE_FIELD_TYPE,
-} from "./constants";
-import { dbGapId, NCPIPlatformStudy } from "./entities";
-import {
-  addNCPIHeader,
-  mergeSourceStudies,
-  replaceTsv,
-  reportStudyResults,
+  getPlatformStudiesStudyIds,
   sourcePath,
-} from "./ncpi-update-utils";
+  updatePlatformStudiesAndReportNewStudies,
+} from "./utils";
 
 const urlCRDC =
   "https://api.gdc.cancer.gov/projects?from=0&size=100&sort=project_id:asc&pretty=true";
@@ -29,44 +22,34 @@ type CRDCResponse = {
   };
 };
 
-export async function updateCrdcSource(sourcePath: string): Promise<void> {
-  // Extract the current studies from the source tsv
-  const file = await readFile(sourcePath);
-  if (!file) {
-    throw new Error(`File ${sourcePath} not found`);
-  }
+export async function updateCRDCSource(sourcePath: string): Promise<void> {
+  // Get existing platform studies and study ids from the NCPI source tsv.
+  const [platformStudies, studyIds] = await getPlatformStudiesStudyIds(
+    sourcePath,
+    Platform.CRDC
+  );
 
-  const sourceStudies = (await parseContentRows(
-    file,
-    "\t",
-    SOURCE_FIELD_KEY,
-    SOURCE_FIELD_TYPE
-  )) as NCPIPlatformStudy[];
-  const CRDCSourceIds = sourceStudies
-    .filter((study) => study.platform === SOURCE_CATEGORY_KEY.CRDC)
-    .map((study) => study.dbGapId);
-
-  // Get the studies from CRDC api
+  // Get the studies from CRDC API.
   const data = await fetch(urlCRDC);
   const CRDCJson = (await data.json()) as CRDCResponse;
-
   // Get IDs not contained in the source
-  const ids = studyParser(CRDCJson);
-  const newIds = ids.filter((id) => !CRDCSourceIds.includes(id));
-  const outputRows = mergeSourceStudies(
-    sourceStudies,
-    SOURCE_CATEGORY_KEY.CRDC,
-    ids
+  const CRDCIds = studyParser(CRDCJson);
+
+  // Update platform studies and report new studies for the specified platform.
+  updatePlatformStudiesAndReportNewStudies(
+    Platform.CRDC,
+    platformStudies,
+    CRDCIds,
+    studyIds,
+    sourcePath
   );
-  replaceTsv(sourcePath, addNCPIHeader(outputRows));
-  reportStudyResults(newIds);
 }
 
-function studyParser(studyJson: CRDCResponse): dbGapId[] {
+function studyParser(studyJson: CRDCResponse): DbGapId[] {
   const studies = studyJson.data.hits;
   return studies
     .map((study) => study.dbgap_accession_number)
     .filter((id) => id !== "" && id !== null && id !== undefined);
 }
 
-updateCrdcSource(sourcePath);
+updateCRDCSource(sourcePath);
