@@ -3,7 +3,7 @@ import {
   ComponentConfig,
 } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import * as C from "app/components";
-import * as MDX from "../../../../app/content";
+import * as MDX from "../../../../app/content/hca-dcp";
 import * as T from "../../../../app/viewModelBuilders/azul/hca-dcp/common/viewModelBuilders";
 
 export const exportConfig: BackPageConfig = {

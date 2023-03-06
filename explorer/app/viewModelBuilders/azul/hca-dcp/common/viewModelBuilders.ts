@@ -1,6 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
 import React from "react";
-import * as MDX from "../../../../../app/content/index";
 import {
   HCA_DCP_CATEGORY_KEY,
   HCA_DCP_CATEGORY_LABEL,
@@ -25,6 +24,7 @@ import { METADATA_KEY } from "../../../../components/Index/common/entities";
 import { getPluralizedMetadataLabel } from "../../../../components/Index/common/indexTransformer";
 import { formatCountSize } from "../../../../components/Index/common/utils";
 import { getProjectResponse } from "../../../../components/Project/common/projectTransformer";
+import * as MDX from "../../../../content/hca-dcp";
 import { ProjectsResponse } from "../../../../models/responses";
 import { humanFileSize } from "../../../../utils/fileSize";
 import {

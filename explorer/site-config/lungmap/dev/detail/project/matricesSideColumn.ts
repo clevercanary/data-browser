@@ -1,6 +1,6 @@
 import { ComponentConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import * as C from "../../../../../app/components";
-import * as MDX from "../../../../../app/content";
+import * as MDX from "../../../../../app/content/lungmap";
 
 export const sideColumn: ComponentConfig[] = [
   {
@@ -8,8 +8,8 @@ export const sideColumn: ComponentConfig[] = [
       {
         children: [
           {
-            component: MDX.LungMAPDataReleasePolicy,
-          } as ComponentConfig<typeof MDX.LungMAPDataReleasePolicy>,
+            component: MDX.DataReleasePolicy,
+          } as ComponentConfig<typeof MDX.DataReleasePolicy>,
         ],
         component: MDX.Section,
       } as ComponentConfig<typeof MDX.Section>,
