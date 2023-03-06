@@ -1,5 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import React from "react";
+import * as MDX from "../../../../../app/content/index";
 import {
   HCA_DCP_CATEGORY_KEY,
   HCA_DCP_CATEGORY_LABEL,
@@ -22,14 +23,52 @@ import {
 import * as C from "../../../../components";
 import { METADATA_KEY } from "../../../../components/Index/common/entities";
 import { getPluralizedMetadataLabel } from "../../../../components/Index/common/indexTransformer";
+import { formatCountSize } from "../../../../components/Index/common/utils";
 import { getProjectResponse } from "../../../../components/Project/common/projectTransformer";
 import { ProjectsResponse } from "../../../../models/responses";
 import { humanFileSize } from "../../../../utils/fileSize";
-import { ProjectMatrixTableView } from "../../common/entities";
+import {
+  ProjectMatrixTableView,
+  ProjectMatrixView,
+} from "../../common/entities";
 import {
   groupProjectMatrixViewsBySpecies,
   projectMatrixMapper,
 } from "./projectMatrixMapper";
+
+/**
+ * Build props for the data normalization and batch correction alert component.
+ * @returns model to be used as props for the alert component.
+ */
+export const buildBatchCorrectionWarning = (): React.ComponentProps<
+  typeof C.Alert
+> => {
+  return {
+    children: MDX.RenderComponent({ Component: MDX.BatchCorrectionWarning }),
+    severity: "warning",
+    title: "Please note",
+  };
+};
+
+/**
+ * Build props for GeneratedMatricesTable component from the given project response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the contributor generated matrices table component.
+ */
+export const buildContributorGeneratedMatricesTable = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.GeneratedMatricesTables> => {
+  const project = getProjectResponse(projectsResponse);
+  const projectMatrixViews = projectMatrixMapper(project?.contributedAnalyses);
+  const projectMatrixViewsBySpecies =
+    groupProjectMatrixViewsBySpecies(projectMatrixViews);
+  return {
+    columns: buildContributorGeneratedMatricesTableColumns(),
+    gridTemplateColumns:
+      "auto minmax(240px, 1fr) repeat(6, minmax(124px, 1fr))",
+    projectMatrixViewsBySpecies,
+  };
+};
 
 /**
  * Build props for TitledText component for the display of the data release policy section.
@@ -60,7 +99,7 @@ export const buildDCPGeneratedMatricesTable = (
   return {
     columns: buildDCPGeneratedMatricesTableColumns(),
     gridTemplateColumns:
-      "auto minmax(240px, 1fr) repeat(5, minmax(124px, 1fr))",
+      "150px minmax(240px, 1fr) repeat(5, minmax(124px, 1fr))",
     projectMatrixViewsBySpecies,
   };
 };
@@ -340,7 +379,24 @@ export const projectsBuildSpecies = (
 };
 
 /**
- * Builds the table column definition model for the generated matrices table.
+ * Builds the table column definition model for the contributor generated matrices table.
+ * @returns generated matrices table column definition.
+ */
+function buildContributorGeneratedMatricesTableColumns<T>(): ColumnDef<T>[] {
+  return [
+    getGeneratedMatricesActionsColumnDef(),
+    getGeneratedMatricesFileNameColumnDef(),
+    getGeneratedMatricesContentDescriptionColumnDef(),
+    getGeneratedMatricesGenusSpeciesColumnDef(),
+    getGeneratedMatricesAnatomicalEntityColumnDef(),
+    getGeneratedMatricesLibraryConstructionMethodColumnDef(),
+    getGeneratedMatricesFileSizeColumnDef(),
+    getGeneratedMatricesMatrixCellCountColumnDef(),
+  ];
+}
+
+/**
+ * Builds the table column definition model for the DCP generated matrices table.
  * @returns generated matrices table column definition.
  */
 function buildDCPGeneratedMatricesTableColumns<T>(): ColumnDef<T>[] {
@@ -376,12 +432,27 @@ function buildNTagCellProps(
 }
 
 /**
+ * Returns matrix cell count formatted by count size.
+ * @param matrixCellCount - Matrix cell count.
+ * @returns matrix cell count formatted by count size.
+ */
+function formatMatrixCellCount(matrixCellCount?: number): string {
+  return matrixCellCount || matrixCellCount === 0
+    ? formatCountSize(matrixCellCount)
+    : "-";
+}
+
+/**
  * Returns generated matrices actions column def.
  * @returns actions column def.
  */
 function getGeneratedMatricesActionsColumnDef<T>(): ColumnDef<T> {
   return {
     accessorKey: "",
+    cell: ({ row }) =>
+      C.ActionCell({
+        projectMatrixView: row.original as unknown as ProjectMatrixView,
+      }),
     header: "Actions",
   };
 }
@@ -486,5 +557,18 @@ function getGeneratedMatricesLibraryConstructionMethodColumnDef<
         )
       ),
     header: HCA_DCP_CATEGORY_LABEL.LIBRARY_CONSTRUCTION_METHOD,
+  };
+}
+
+/**
+ * Returns generated matrices matrix cell count column def.
+ * @returns matrix cell count column def.
+ */
+function getGeneratedMatricesMatrixCellCountColumnDef<T>(): ColumnDef<T> {
+  return {
+    accessorKey: HCA_DCP_CATEGORY_KEY.MATRIX_CELL_COUNT,
+    cell: ({ getValue }) =>
+      formatMatrixCellCount(getValue() as unknown as number),
+    header: HCA_DCP_CATEGORY_LABEL.MATRIX_CELL_COUNT,
   };
 }
