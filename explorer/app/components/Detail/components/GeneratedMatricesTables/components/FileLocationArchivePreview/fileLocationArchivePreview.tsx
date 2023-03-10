@@ -24,6 +24,7 @@ export const FileLocationArchivePreview = ({
   projectMatrixView,
 }: FileLocationArchivePreviewProps): JSX.Element | null => {
   const [open, setOpen] = useState<boolean>(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- TODO future loading state for archive preview dialog.
   const [loading, setLoading] = useState<boolean>(false);
   return isArchivePreviewAvailable(projectMatrixView) ? (
     <>
