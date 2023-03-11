@@ -8,6 +8,7 @@
     "build-anvil-db": "esrun anvil-catalog/build-anvil-catalog.ts",
     "build-ncpi-db": "esrun ncpi-catalog/build-ncpi-catalog.ts",
     "build-dug-db": "esrun ncpi-catalog-dug/build-ncpi-catalog-dug.ts",
+    "build-hca-db": "esrun hca-catalog/build-hca-catalog.ts",
     "update-crdc-source": "esrun ncpi-catalog/update-crdc-source.ts",
     "update-bdc-source": "esrun ncpi-catalog/update-bdc-source.ts",
     "update-anvil-source": "esrun ncpi-catalog/update-anvil-source.ts",

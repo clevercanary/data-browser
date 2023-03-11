@@ -17,6 +17,8 @@
     "build:anvil-cmg": "./scripts/build.sh anvil-cmg && next build && next export -o out/explore",
     "dev:hca-dcp": "./scripts/dev.sh hca-dcp && next dev",
     "build:hca-dcp": "./scripts/build.sh hca-dcp && next build && next export -o out/explore",
+    "dev:hca-catalog": "./scripts/dev.sh hca-catalog && next dev",
+    "build:hca-catalog": "./scripts/build.sh hca-catalog && next build && next export -o out/explore",
     "start": "npx serve out",
     "lint": "next lint --dir .",
     "check-format": "prettier --check .",
