@@ -14,6 +14,7 @@ interface HCAProjectSource {
   cellCount: null | number;
   content: {
     contributors?: Array<{
+      corresponding_contributor?: boolean;
       institution?: string;
       laboratory?: string;
       last?: string;
@@ -124,7 +125,10 @@ function accumulateContributorFields(
   const laboratory: string[] = [];
 
   for (const contributorInfo of projectSource.content.contributors || []) {
-    if (contributorInfo.project_role?.ontology_label !== "data curator") {
+    if (
+      contributorInfo.corresponding_contributor &&
+      contributorInfo.project_role?.ontology_label !== "data curator"
+    ) {
       accumulateString(
         contributor,
         contributorInfo.name || contributorInfo.last
