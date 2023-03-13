@@ -11,7 +11,7 @@ import { ProjectsResponse } from "../../../../models/responses";
 import {
   groupProjectMatrixViewsBySpecies,
   projectMatrixMapper,
-} from "../../hca-dcp/common/projectMatrixMapper";
+} from "../../hca-dcp/common/projectMatrixMapper/projectMatrixMapper";
 import {
   getGeneratedMatricesActionsColumnDef,
   getGeneratedMatricesAnatomicalEntityColumnDef,

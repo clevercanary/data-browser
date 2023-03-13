@@ -32,16 +32,16 @@ import { getProjectResponse } from "../../../../components/Project/common/projec
 import * as MDX from "../../../../content/hca-dcp";
 import { ProjectsResponse } from "../../../../models/responses";
 import { humanFileSize } from "../../../../utils/fileSize";
-import {
-  ProjectMatrixTableView,
-  ProjectMatrixView,
-} from "../../common/entities";
 import { mapAccessions } from "./accessionMapper/accessionMapper";
 import { Accession } from "./accessionMapper/entities";
 import {
+  ProjectMatrixTableView,
+  ProjectMatrixView,
+} from "./projectMatrixMapper/entities";
+import {
   groupProjectMatrixViewsBySpecies,
   projectMatrixMapper,
-} from "./projectMatrixMapper";
+} from "./projectMatrixMapper/projectMatrixMapper";
 
 /**
  * Build props for the KeyValuePairs component for displaying the project accessions.

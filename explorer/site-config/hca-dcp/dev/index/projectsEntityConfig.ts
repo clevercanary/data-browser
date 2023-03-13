@@ -6,7 +6,7 @@ import {
 } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import { ProjectsResponse } from "app/models/responses";
 import { getProjectId } from "app/transformers/hca";
-import * as Components from "../../../app/components";
+import * as Components from "../../../../app/components";
 import {
   projectsBuildAnatomicalEntityColumn,
   projectsBuildCellCountColumn,
@@ -15,24 +15,24 @@ import {
   projectsBuildLibraryConstructionApproachColumn,
   projectsBuildProjectTitleColumn,
   projectsBuildSpecies,
-} from "../../../app/viewModelBuilders/azul/hca-dcp/common/viewModelBuilders";
-import { HCA_DCP_CATEGORY_KEY, HCA_DCP_CATEGORY_LABEL } from "../category";
-import { PROJECTS_LABEL } from "./constants";
-import { mainColumn as exportMainColumn } from "./detail/project/exportMainColumn";
-import { sideColumn as exportSideColumn } from "./detail/project/exportSideColumn";
-import { mainColumn as matricesMainColumn } from "./detail/project/matricesMainColumn";
-import { mainColumn as metadataMainColumn } from "./detail/project/metadataMainColumn";
-import { sideColumn as metadataSideColumn } from "./detail/project/metadataSideColumn";
-import { mainColumn as overviewMainColumn } from "./detail/project/overviewMainColumn";
-import { sideColumn as overviewSideColumn } from "./detail/project/overviewSideColumn";
-import { mainColumn as projectFilesMainColumn } from "./detail/project/projectFilesMainColumn";
-import { sideColumn as projectFilesSideColumn } from "./detail/project/projectFilesSideColumn";
-import { top } from "./detail/project/top";
+} from "../../../../app/viewModelBuilders/azul/hca-dcp/common/viewModelBuilders";
+import { HCA_DCP_CATEGORY_KEY, HCA_DCP_CATEGORY_LABEL } from "../../category";
+import { PROJECTS_LABEL } from "../constants";
+import { mainColumn as exportMainColumn } from "../detail/project/exportMainColumn";
+import { sideColumn as exportSideColumn } from "../detail/project/exportSideColumn";
+import { mainColumn as matricesMainColumn } from "../detail/project/matricesMainColumn";
+import { mainColumn as metadataMainColumn } from "../detail/project/metadataMainColumn";
+import { sideColumn as metadataSideColumn } from "../detail/project/metadataSideColumn";
+import { mainColumn as overviewMainColumn } from "../detail/project/overviewMainColumn";
+import { sideColumn as overviewSideColumn } from "../detail/project/overviewSideColumn";
+import { mainColumn as projectFilesMainColumn } from "../detail/project/projectFilesMainColumn";
+import { sideColumn as projectFilesSideColumn } from "../detail/project/projectFilesSideColumn";
+import { top } from "../detail/project/top";
 
 /**
  * Entity config object responsible to config anything related to the /explore/projects route.
  */
-export const projectsEntity: EntityConfig = {
+export const projectsEntityConfig: EntityConfig = {
   apiPath: "index/projects",
   detail: {
     detailOverviews: ["Overview"],

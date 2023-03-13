@@ -76,7 +76,6 @@ function transformAccessionURL(
   accessionId: string,
   identifierOrgPrefix: string
 ): string {
-  console.log(accessionId, identifierOrgPrefix);
   if (!accessionId || !identifierOrgPrefix) {
     return "";
   }

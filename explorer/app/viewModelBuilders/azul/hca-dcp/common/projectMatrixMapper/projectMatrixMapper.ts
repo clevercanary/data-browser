@@ -1,14 +1,11 @@
-import { HCA_DCP_CATEGORY_KEY } from "../../../../../site-config/hca-dcp/category";
-import { ProjectMatrixFileResponse } from "../../../../apis/azul/common/entities";
-import { isNullOrUndefined } from "../../../../apis/azul/common/utils";
+import { HCA_DCP_CATEGORY_KEY } from "../../../../../../site-config/hca-dcp/category";
+import { ProjectMatrixFileResponse } from "../../../../../apis/azul/common/entities";
+import { isNullOrUndefined } from "../../../../../apis/azul/common/utils";
 import {
   ProjectResponseContributedAnalyses,
   ProjectResponseMatrices,
-} from "../../../../models/responses";
-import {
-  ProjectMatrixTableView,
-  ProjectMatrixView,
-} from "../../common/entities";
+} from "../../../../../models/responses";
+import { ProjectMatrixTableView, ProjectMatrixView } from "./entities";
 
 // Template constants
 const { GENUS_SPECIES, LIBRARY_CONSTRUCTION_METHOD, ORGAN } =
