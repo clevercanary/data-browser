@@ -4,10 +4,10 @@ import {
   HCA_DCP_CATEGORY_KEY,
   HCA_DCP_CATEGORY_LABEL,
 } from "../../../../../site-config/hca-dcp/category";
+import { ProjectsResponse } from "../../../../apis/azul/hca-dcp/common/entities";
 import * as C from "../../../../components";
 import { getProjectResponse } from "../../../../components/Project/common/projectTransformer";
 import * as MDX from "../../../../content/lungmap";
-import { ProjectsResponse } from "../../../../models/responses";
 import {
   groupProjectMatrixViewsBySpecies,
   projectMatrixMapper,

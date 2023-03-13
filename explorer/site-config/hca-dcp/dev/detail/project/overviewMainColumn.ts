@@ -1,8 +1,8 @@
 import { ComponentConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import * as C from "app/components";
-import { ProjectsResponse } from "app/models/responses";
+import { ProjectsResponse } from "../../../../../app/apis/azul/hca-dcp/common/entities";
+import * as T from "../../../../../app/viewModelBuilders/azul/hca-dcp/common/projectViewModelBuilder"; // TODO refactor to "app/viewModelBuilders/azul/hca-dcp/common/viewModelBuilders"
 import * as V from "../../../../../app/viewModelBuilders/azul/hca-dcp/common/viewModelBuilders";
-import * as T from "../../projectViewModelBuilder"; // TODO refactor to "app/viewModelBuilders/azul/hca-dcp/common/viewModelBuilders"
 
 export const mainColumn = [
   {

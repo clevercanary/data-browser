@@ -13,10 +13,10 @@ import {
   getProjectSupplementaryLinks,
   getProjectTitle,
 } from "app/components/Project/common/projectTransformer";
-import { ProjectsResponse } from "app/models/responses";
 import { ENTRIES } from "app/project-edits";
 import React from "react";
-import { PROJECTS_URL } from "./config";
+import { PROJECTS_URL } from "../../../../../site-config/hca-dcp/dev/config";
+import { ProjectsResponse } from "../../../../apis/azul/hca-dcp/common/entities";
 
 /**
  * Build props for Citation component from the given projects response.

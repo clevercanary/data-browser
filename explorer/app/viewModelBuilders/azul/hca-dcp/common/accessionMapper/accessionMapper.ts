@@ -1,4 +1,4 @@
-import { AccessionResponse } from "../../../../../models/responses";
+import { AccessionResponse } from "../../../../../apis/azul/hca-dcp/common/entities";
 import {
   ACCESSION_CONFIGS_BY_RESPONSE_KEY,
   IDENTIFIERS_ORG_URL,

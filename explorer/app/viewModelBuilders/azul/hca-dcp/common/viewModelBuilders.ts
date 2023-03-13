@@ -9,6 +9,7 @@ import {
   HCA_DCP_CATEGORY_KEY,
   HCA_DCP_CATEGORY_LABEL,
 } from "../../../../../site-config/hca-dcp/category";
+import { ProjectsResponse } from "../../../../apis/azul/hca-dcp/common/entities";
 import {
   FilesResponse,
   SamplesResponse,
@@ -30,7 +31,6 @@ import { getPluralizedMetadataLabel } from "../../../../components/Index/common/
 import { formatCountSize } from "../../../../components/Index/common/utils";
 import { getProjectResponse } from "../../../../components/Project/common/projectTransformer";
 import * as MDX from "../../../../content/hca-dcp";
-import { ProjectsResponse } from "../../../../models/responses";
 import { humanFileSize } from "../../../../utils/fileSize";
 import { mapAccessions } from "./accessionMapper/accessionMapper";
 import { Accession } from "./accessionMapper/entities";

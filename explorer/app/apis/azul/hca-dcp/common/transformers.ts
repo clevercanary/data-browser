@@ -1,6 +1,5 @@
 import { LABEL } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
 import { MetadataValue } from "@clevercanary/data-explorer-ui/lib/components/Index/components/NTagCell/nTagCell";
-import { ProjectsResponse } from "../../../../models/responses";
 import { humanFileSize } from "../../../../utils/fileSize";
 import { concatStrings } from "../../../../utils/string";
 import {
@@ -8,6 +7,7 @@ import {
   processEntityValue,
   processNumberEntityValue,
 } from "../../common/utils";
+import { ProjectsResponse } from "./entities";
 import { FilesResponse, SamplesResponse } from "./responses";
 
 const formatter = Intl.NumberFormat("en", { notation: "compact" });

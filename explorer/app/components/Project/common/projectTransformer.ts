@@ -21,7 +21,7 @@ import {
   ProjectResponse,
   ProjectsResponse,
   PublicationResponse,
-} from "app/models/responses";
+} from "../../../apis/azul/hca-dcp/common/entities";
 import { ENTRIES } from "../../../project-edits";
 import { CONTRIBUTOR_ROLE } from "./constants";
 
