@@ -1,4 +1,5 @@
 import { LABEL } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
+import { Breadcrumb } from "@clevercanary/data-explorer-ui/lib/components/common/Breadcrumbs/breadcrumbs";
 import {
   Key,
   Value,
@@ -10,6 +11,7 @@ import {
   HCA_DCP_CATEGORY_KEY,
   HCA_DCP_CATEGORY_LABEL,
 } from "../../../../../site-config/hca-dcp/category";
+import { PROJECTS_URL } from "../../../../../site-config/hca-dcp/dev/config";
 import {
   processAggregatedOrArrayValue,
   processEntityArrayValue,
@@ -28,9 +30,19 @@ import { METADATA_KEY } from "../../../../components/Index/common/entities";
 import { getPluralizedMetadataLabel } from "../../../../components/Index/common/indexTransformer";
 import { formatCountSize } from "../../../../components/Index/common/utils";
 import * as MDX from "../../../../content/hca-dcp";
+import { ENTRIES } from "../../../../project-edits";
 import { humanFileSize } from "../../../../utils/fileSize";
 import { mapAccessions } from "./accessionMapper/accessionMapper";
 import { Accession } from "./accessionMapper/entities";
+import {
+  mapProjectCollaboratingOrganizations,
+  mapProjectContacts,
+  mapProjectContributors,
+  mapProjectDataCurators,
+  mapProjectDetails,
+  mapProjectPublications,
+  mapProjectSupplementaryLinks,
+} from "./projectMapper/projectMapper";
 import {
   ProjectMatrixTableView,
   ProjectMatrixView,
@@ -90,6 +102,34 @@ export const buildAggregatedProjectTitle = (
 };
 
 /**
+ * Build props for AnalysisPortals from the given projects response.
+ * TODO this is incomplete and a copy from the now deprecated projectViewModelBuilder.
+ * TODO this method needs to be reviewed and should use the KeyValuePairs component.
+ * @param project - Response model return from projects API.
+ * @returns model to be used as props for the AnalysisPortals component.
+ */
+export const buildAnalysisPortals = (
+  project: ProjectsResponse
+): React.ComponentProps<typeof C.IconList> => {
+  if (!project.entryId) {
+    return { icons: [] };
+  }
+  const entry = ENTRIES.find((entry) => entry.entryId === project.entryId);
+  if (!entry?.analysisPortals) {
+    return { icons: [] };
+  }
+  return {
+    icons: entry.analysisPortals.map((entry) => ({
+      icon: {
+        alt: entry.label ?? "",
+        path: entry.icon,
+      },
+      label: entry.label,
+    })),
+  };
+};
+
+/**
  * Build props for the data normalization and batch correction alert component.
  * @returns model to be used as props for the alert component.
  */
@@ -100,6 +140,52 @@ export const buildBatchCorrectionWarning = (): React.ComponentProps<
     children: MDX.RenderComponent({ Component: MDX.BatchCorrectionWarning }),
     severity: "warning",
     title: "Please note",
+  };
+};
+
+/**
+ * Build props for project citation component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the project citation component.
+ */
+export const buildCitation = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.Citation> => {
+  const projectPath = processEntityValue(
+    projectsResponse.projects,
+    "projectId",
+    LABEL.EMPTY
+  );
+  return {
+    projectPath: projectPath ? `/${projectPath}` : undefined,
+  };
+};
+
+/**
+ * Build props for project collaborating organizations component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the project collaborating organizations component.
+ */
+export const buildCollaboratingOrganizations = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.CollaboratingOrganizations> => {
+  const project = getProjectResponse(projectsResponse);
+  return {
+    collaboratingOrganizations: mapProjectCollaboratingOrganizations(project),
+  };
+};
+
+/**
+ * Build props for project contacts component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the project contacts component.
+ */
+export const buildContacts = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.Contacts> => {
+  const project = getProjectResponse(projectsResponse);
+  return {
+    contacts: mapProjectContacts(project),
   };
 };
 
@@ -143,6 +229,34 @@ export const buildContributorGeneratedMatricesTable = (
 };
 
 /**
+ * Build props for project contributors component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the project contributors component.
+ */
+export const buildContributors = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.Contributors> => {
+  const project = getProjectResponse(projectsResponse);
+  return {
+    contributors: mapProjectContributors(project),
+  };
+};
+
+/**
+ * Build props for project data curators component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the project data curators component.
+ */
+export const buildDataCurators = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.DataCurators> => {
+  const project = getProjectResponse(projectsResponse);
+  return {
+    dataCurators: mapProjectDataCurators(project),
+  };
+};
+
+/**
  * Build props for GeneratedMatricesTable component from the given project response.
  * @param projectsResponse - Response model return from projects API.
  * @returns model to be used as props for the generated matrices table component.
@@ -159,6 +273,38 @@ export const buildDCPGeneratedMatricesTable = (
     gridTemplateColumns:
       "auto minmax(240px, 1fr) repeat(5, minmax(124px, 1fr))",
     projectMatrixViewsBySpecies,
+  };
+};
+
+/**
+ * Build props for project description component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the project description component.
+ */
+export const buildDescription = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.Description> => {
+  return {
+    projectDescription: processEntityValue(
+      projectsResponse.projects,
+      "projectDescription",
+      LABEL.NONE
+    ),
+  };
+};
+
+/**
+ * Build props for project details component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the project details component.
+ */
+export const buildDetails = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.Details> => {
+  const project = getProjectResponse(projectsResponse);
+  return {
+    keyValuePairs: mapProjectDetails(project),
+    title: "Project Details",
   };
 };
 
@@ -330,6 +476,21 @@ export const buildGenusSpecies = (
 };
 
 /**
+ * Build props for project Hero component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the project Hero component.
+ */
+export const buildHero = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.BackPageHero> => {
+  return {
+    breadcrumbs: getProjectBreadcrumbs(projectsResponse),
+    status: undefined, // TODO status https://github.com/clevercanary/data-browser/issues/135
+    title: processEntityValue(projectsResponse.projects, "projectTitle"),
+  };
+};
+
+/**
  * Build props for the library construction approach NTagCell component from the given entity response.
  * @param entityResponse - Response model return from entity API.
  * @returns model to be used as props for the library construction cell approach NTagCell component.
@@ -362,6 +523,20 @@ export const buildProjectTitle = (
       HCA_DCP_CATEGORY_KEY.PROJECT_TITLE
     ),
     url: getProjectTitleUrl(projectsResponse),
+  };
+};
+
+/**
+ * Build props for project publications component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the project publications component.
+ */
+export const buildPublications = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.Publications> => {
+  const project = getProjectResponse(projectsResponse);
+  return {
+    publications: mapProjectPublications(project),
   };
 };
 
@@ -405,6 +580,20 @@ export const buildSpecimenOrgan = (
       entityResponse.specimens,
       HCA_DCP_CATEGORY_KEY.ORGAN
     ),
+  };
+};
+
+/**
+ * Build props for project supplementary links component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the project supplementary links component.
+ */
+export const buildSupplementaryLinks = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.SupplementaryLinks> => {
+  const project = getProjectResponse(projectsResponse);
+  return {
+    supplementaryLinks: mapProjectSupplementaryLinks(project),
   };
 };
 
@@ -719,11 +908,31 @@ function getNTagCellProps(
 }
 
 /**
+ * Returns project related breadcrumbs.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns project breadcrumbs.
+ */
+export function getProjectBreadcrumbs(
+  projectsResponse: ProjectsResponse
+): Breadcrumb[] {
+  const firstCrumb = { path: PROJECTS_URL, text: "Explore" };
+  const projectTitle = processEntityValue(
+    projectsResponse.projects,
+    "projectTitle"
+  );
+  const breadcrumbs = [firstCrumb];
+  if (projectTitle) {
+    breadcrumbs.push({ path: "", text: projectTitle });
+  }
+  return breadcrumbs;
+}
+
+/**
  * Returns the project value from the projects API response.
  * @param projectsResponse - Response returned from projects API response.
  * @returns The core project value from the API response.
  */
-function getProjectResponse(
+export function getProjectResponse(
   projectsResponse: ProjectsResponse
 ): ProjectResponse {
   return projectsResponse.projects[0];

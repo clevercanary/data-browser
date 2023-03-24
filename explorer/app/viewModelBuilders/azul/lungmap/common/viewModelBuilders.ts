@@ -6,7 +6,6 @@ import {
 } from "../../../../../site-config/hca-dcp/category";
 import { ProjectsResponse } from "../../../../apis/azul/hca-dcp/common/responses";
 import * as C from "../../../../components";
-import { getProjectResponse } from "../../../../components/Project/common/projectTransformer";
 import * as MDX from "../../../../content/lungmap";
 import {
   groupProjectMatrixViewsBySpecies,
@@ -20,6 +19,7 @@ import {
   getGeneratedMatricesGenusSpeciesColumnDef,
   getGeneratedMatricesLibraryConstructionMethodColumnDef,
   getGeneratedMatricesMatrixCellCountColumnDef,
+  getProjectResponse,
 } from "../../hca-dcp/common/viewModelBuilders";
 
 /**
