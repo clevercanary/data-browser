@@ -16,7 +16,7 @@ import {
 import { ENTRIES } from "app/project-edits";
 import React from "react";
 import { PROJECTS_URL } from "../../../../../site-config/hca-dcp/dev/config";
-import { ProjectsResponse } from "../../../../apis/azul/hca-dcp/common/entities";
+import { ProjectsResponse } from "../../../../apis/azul/hca-dcp/common/responses";
 
 /**
  * Build props for Citation component from the given projects response.

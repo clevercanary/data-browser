@@ -19,9 +19,9 @@ import {
 import {
   ContributorResponse,
   ProjectResponse,
-  ProjectsResponse,
   PublicationResponse,
 } from "../../../apis/azul/hca-dcp/common/entities";
+import { ProjectsResponse } from "../../../apis/azul/hca-dcp/common/responses";
 import { ENTRIES } from "../../../project-edits";
 import { CONTRIBUTOR_ROLE } from "./constants";
 
@@ -90,12 +90,16 @@ export function getProjectContacts(
     return;
   }
 
-  const contacts = projectResponse.contributors
+  const contacts: Contact[] = projectResponse.contributors
     .filter(
       (contributorResponse) => contributorResponse.correspondingContributor
     )
     .map(({ contactName, email, institution }) => {
-      return { email, institution, name: formatName(contactName) };
+      return {
+        email: email ? email : undefined,
+        institution,
+        name: formatName(contactName),
+      };
     });
 
   if (contacts.length === 0) {
@@ -271,9 +275,9 @@ export function getProjectSupplementaryLinks(
   }
 
   // Filter valid links - API response can return [null]
-  const supplementaryLinks = project.supplementaryLinks.filter((link) =>
-    isValidUrl(link)
-  );
+  const supplementaryLinks: SupplementaryLink[] = project.supplementaryLinks
+    .filter(notNull)
+    .filter((link) => isValidUrl(link));
 
   if (supplementaryLinks.length === 0) {
     return; // Caller is expecting undefined, not an empty array.
@@ -325,7 +329,7 @@ function formatName(commaDelimitedName: string): string {
  * @param str - Value to format to title case.
  * @returns formatted string as title case.
  */
-function formatTitleCase(str?: string): string | undefined {
+function formatTitleCase(str?: string | null): string | undefined {
   return str?.replace(/\b[a-z]/g, function (match) {
     return match.toUpperCase();
   });
@@ -369,7 +373,9 @@ export function getProjectResponse(
  * @param projectRole - Project contributor role.
  * @returns true if the contributor role is "data curator".
  */
-function isContributorDataCurator(projectRole: string | undefined): boolean {
+function isContributorDataCurator(
+  projectRole: string | null | undefined
+): boolean {
   return (
     Boolean(projectRole) &&
     projectRole?.toLowerCase() === CONTRIBUTOR_ROLE.DATA_CURATOR
@@ -418,4 +424,13 @@ function mapPublications(
       publicationUrl: publicationResponse.publicationUrl ?? "",
     };
   });
+}
+
+/**
+ * Determine if the given value is not null.
+ * @param value - Value.
+ * @returns true if the given value is not null.
+ */
+function notNull<T>(value: T | null): value is T {
+  return value !== null;
 }

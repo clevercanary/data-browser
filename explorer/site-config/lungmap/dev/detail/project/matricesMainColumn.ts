@@ -1,5 +1,5 @@
 import { ComponentConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
-import { ProjectsResponse } from "../../../../../app/apis/azul/hca-dcp/common/entities";
+import { ProjectsResponse } from "../../../../../app/apis/azul/hca-dcp/common/responses";
 import * as C from "../../../../../app/components";
 import * as MDX from "../../../../../app/content/lungmap";
 import * as T from "../../../../../app/viewModelBuilders/azul/lungmap/common/viewModelBuilders";

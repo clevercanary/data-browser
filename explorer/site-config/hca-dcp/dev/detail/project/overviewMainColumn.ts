@@ -1,6 +1,6 @@
 import { ComponentConfig } from "@clevercanary/data-explorer-ui/lib/config/entities";
 import * as C from "app/components";
-import { ProjectsResponse } from "../../../../../app/apis/azul/hca-dcp/common/entities";
+import { ProjectsResponse } from "../../../../../app/apis/azul/hca-dcp/common/responses";
 import * as T from "../../../../../app/viewModelBuilders/azul/hca-dcp/common/projectViewModelBuilder"; // TODO refactor to "app/viewModelBuilders/azul/hca-dcp/common/viewModelBuilders"
 import * as V from "../../../../../app/viewModelBuilders/azul/hca-dcp/common/viewModelBuilders";
 

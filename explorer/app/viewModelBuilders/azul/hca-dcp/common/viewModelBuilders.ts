@@ -1,3 +1,4 @@
+import { LABEL } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
 import {
   Key,
   Value,
@@ -9,27 +10,23 @@ import {
   HCA_DCP_CATEGORY_KEY,
   HCA_DCP_CATEGORY_LABEL,
 } from "../../../../../site-config/hca-dcp/category";
-import { ProjectsResponse } from "../../../../apis/azul/hca-dcp/common/entities";
 import {
+  processAggregatedOrArrayValue,
+  processEntityArrayValue,
+  processEntityValue,
+  processNumberEntityValue,
+} from "../../../../apis/azul/common/utils";
+import { ProjectResponse } from "../../../../apis/azul/hca-dcp/common/entities";
+import {
+  EntityResponse,
   FilesResponse,
+  ProjectsResponse,
   SamplesResponse,
 } from "../../../../apis/azul/hca-dcp/common/responses";
-import * as Transformers from "../../../../apis/azul/hca-dcp/common/transformers";
-import {
-  getProjectMetadataSpecies,
-  getProjectsAnatomicalEntityColumn,
-  getProjectsCellCountColumn,
-  getProjectsDevelopmentStage,
-  getProjectsDiseaseDonor,
-  getProjectsLibraryConstructionApproachColumn,
-  getProjectsTitleName,
-  getProjectsTitleUrl,
-} from "../../../../apis/azul/hca-dcp/common/transformers";
 import * as C from "../../../../components";
 import { METADATA_KEY } from "../../../../components/Index/common/entities";
 import { getPluralizedMetadataLabel } from "../../../../components/Index/common/indexTransformer";
 import { formatCountSize } from "../../../../components/Index/common/utils";
-import { getProjectResponse } from "../../../../components/Project/common/projectTransformer";
 import * as MDX from "../../../../content/hca-dcp";
 import { humanFileSize } from "../../../../utils/fileSize";
 import { mapAccessions } from "./accessionMapper/accessionMapper";
@@ -73,6 +70,26 @@ export const buildAccessions = (
 };
 
 /**
+ * Build props for the project title Link component from the given entity response.
+ * @param entityResponse - Response model return from the entity response API.
+ * @returns model to be used as props for the project title Link component.
+ */
+export const buildAggregatedProjectTitle = (
+  entityResponse: FilesResponse | SamplesResponse
+): React.ComponentProps<typeof C.Link> => {
+  // Always take the first value in the returned aggregated project title array.
+  return {
+    label: takeArrayValueAt(
+      processEntityArrayValue(
+        entityResponse.projects,
+        HCA_DCP_CATEGORY_KEY.PROJECT_TITLE
+      )
+    ),
+    url: getAggregatedProjectTitleUrl(entityResponse),
+  };
+};
+
+/**
  * Build props for the data normalization and batch correction alert component.
  * @returns model to be used as props for the alert component.
  */
@@ -83,6 +100,25 @@ export const buildBatchCorrectionWarning = (): React.ComponentProps<
     children: MDX.RenderComponent({ Component: MDX.BatchCorrectionWarning }),
     severity: "warning",
     title: "Please note",
+  };
+};
+
+/**
+ * Build props for content description NTagCell component from the given files response.
+ * @param filesResponse - Response model return from files API.
+ * @returns model to be used as props for the content description NTagCell component.
+ */
+export const buildContentDescriptions = (
+  filesResponse: FilesResponse
+): React.ComponentProps<typeof C.NTagCell> => {
+  // Always take the first value in the files array.
+  // This is a summary value and there should only ever be single value here.
+  return {
+    label: getPluralizedMetadataLabel(METADATA_KEY.CONTENT_DESCRIPTION),
+    values: processEntityArrayValue(
+      filesResponse.files,
+      HCA_DCP_CATEGORY_KEY.CONTENT_DESCRIPTION
+    ),
   };
 };
 
@@ -99,7 +135,7 @@ export const buildContributorGeneratedMatricesTable = (
   const projectMatrixViewsBySpecies =
     groupProjectMatrixViewsBySpecies(projectMatrixViews);
   return {
-    columns: buildContributorGeneratedMatricesTableColumns(),
+    columns: getContributorGeneratedMatricesTableColumns(),
     gridTemplateColumns:
       "auto minmax(240px, 1fr) repeat(6, minmax(124px, 1fr))",
     projectMatrixViewsBySpecies,
@@ -119,12 +155,73 @@ export const buildDCPGeneratedMatricesTable = (
   const projectMatrixViewsBySpecies =
     groupProjectMatrixViewsBySpecies(projectMatrixViews);
   return {
-    columns: buildDCPGeneratedMatricesTableColumns(),
+    columns: getDCPGeneratedMatricesTableColumns(),
     gridTemplateColumns:
       "auto minmax(240px, 1fr) repeat(5, minmax(124px, 1fr))",
     projectMatrixViewsBySpecies,
   };
 };
+
+/**
+ * Build props for development stage NTagCell component from the given entity response.
+ * @param entityResponse - Response model return from the given entity API.
+ * @returns model to be used as props for the development stage NTagCell component.
+ */
+export const buildDevelopmentStages = (
+  entityResponse: EntityResponse
+): React.ComponentProps<typeof C.NTagCell> => {
+  return {
+    label: getPluralizedMetadataLabel(METADATA_KEY.DEVELOPMENT_STAGE),
+    values: processAggregatedOrArrayValue(
+      entityResponse.donorOrganisms,
+      HCA_DCP_CATEGORY_KEY.DEVELOPMENT_STAGE
+    ),
+  };
+};
+
+/**
+ * Build props for the donor disease "Disease (Donor)" NTagCell component from the given entity response.
+ * @param entityResponse - Response model return from entity API.
+ * @returns model to be used as props for the donor disease "Disease (Donor)" NTagCell component.
+ */
+export const buildDonorDisease = (
+  entityResponse: EntityResponse
+): React.ComponentProps<typeof C.NTagCell> => {
+  return {
+    label: getPluralizedMetadataLabel(METADATA_KEY.DISEASE_DONOR),
+    values: processAggregatedOrArrayValue(
+      entityResponse.donorOrganisms,
+      "disease"
+    ),
+  };
+};
+
+/**
+ * Build props for "Cell Count Estimate" Cell component from the given projects response.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns model to be used as props for the "Cell Count Estimate" Cell component.
+ */
+export const buildEstimateCellCount = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.Cell> => {
+  return {
+    value: calculateEstimatedCellCount(projectsResponse),
+  };
+};
+
+/**
+ * Build props for ExportMethod component for display of the export to cavatica metadata section.
+ * @returns model to be used as props for the ExportMethod component.
+ */
+export const buildExportToCavaticaMetadata = (): React.ComponentProps<
+  typeof C.ExportMethod
+> => ({
+  buttonLabel: "Analyze in CAVATICA",
+  description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+  disabled: false,
+  route: "/export",
+  title: "Export to CAVATICA",
+});
 
 /**
  * Build props for ExportMethod component for display of the export to curl command metadata section.
@@ -156,18 +253,173 @@ export const buildExportToTerraMetadata = (): React.ComponentProps<
 });
 
 /**
- * Build props for ExportMethod component for display of the export to cavatica metadata section.
- * @returns model to be used as props for the ExportMethod component.
+ * Build props for AzulFileDownload component from the given files response.
+ * @param filesResponse - Response model return from files API.
+ * @returns model to be used as props for the AzulFileDownload component.
  */
-export const buildExportToCavaticaMetadata = (): React.ComponentProps<
-  typeof C.ExportMethod
-> => ({
-  buttonLabel: "Analyze in CAVATICA",
-  description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-  disabled: false,
-  route: "/export",
-  title: "Export to CAVATICA",
-});
+export const buildFileDownload = (
+  filesResponse: FilesResponse
+): React.ComponentProps<typeof C.AzulFileDownload> => {
+  // Always take the first value in the files array.
+  // This is a summary value and there should only ever be single value here.
+  return {
+    url: processEntityValue(filesResponse.files, "url", LABEL.EMPTY),
+  };
+};
+
+/**
+ * Build props for file format Cell component from the given files response.
+ * @param filesResponse - Response model return from files API.
+ * @returns model to be used as props for the file format Cell component.
+ */
+export const buildFileFormat = (
+  filesResponse: FilesResponse
+): React.ComponentProps<typeof C.Cell> => {
+  // Always take the first value in the files array.
+  // This is a summary value and there should only ever be single value here.
+  return {
+    value: processEntityValue(filesResponse.files, "format", LABEL.EMPTY),
+  };
+};
+
+/**
+ * Build props for file name Cell component from the given files response.
+ * @param filesResponse - Response model return from files API.
+ * @returns model to be used as props for the file name Cell component.
+ */
+export const buildFileName = (
+  filesResponse: FilesResponse
+): React.ComponentProps<typeof C.Cell> => {
+  // Always take the first value in the files array.
+  // This is a summary value and there should only ever be single value here.
+  return {
+    value: processEntityValue(filesResponse.files, "name", LABEL.EMPTY),
+  };
+};
+
+/**
+ * Build props for file size Cell component from the given files response.
+ * @param filesResponse - Response model return from files API.
+ * @returns model to be used as props for the file size Cell component.
+ */
+export const buildFileSize = (
+  filesResponse: FilesResponse
+): React.ComponentProps<typeof C.Cell> => {
+  // Always take the first value in the files array.
+  // This is a summary value and there should only ever be single value here.
+  return {
+    value: humanFileSize(processNumberEntityValue(filesResponse.files, "size")),
+  };
+};
+
+/**
+ * Build props for genus species NTagCell component from the given entity response.
+ * @param entityResponse - Response model return from entity API.
+ * @returns model to be used as props for the genus species NTagCell component.
+ */
+export const buildGenusSpecies = (
+  entityResponse: EntityResponse
+): React.ComponentProps<typeof C.NTagCell> => {
+  return {
+    label: getPluralizedMetadataLabel(METADATA_KEY.SPECIES),
+    values: processAggregatedOrArrayValue(
+      entityResponse.donorOrganisms,
+      HCA_DCP_CATEGORY_KEY.GENUS_SPECIES
+    ),
+  };
+};
+
+/**
+ * Build props for the library construction approach NTagCell component from the given entity response.
+ * @param entityResponse - Response model return from entity API.
+ * @returns model to be used as props for the library construction cell approach NTagCell component.
+ */
+export const buildLibraryConstructionApproach = (
+  entityResponse: EntityResponse
+): React.ComponentProps<typeof C.NTagCell> => {
+  return {
+    label: getPluralizedMetadataLabel(
+      METADATA_KEY.LIBRARY_CONSTRUCTION_APPROACH
+    ),
+    values: processAggregatedOrArrayValue(
+      entityResponse.protocols,
+      HCA_DCP_CATEGORY_KEY.LIBRARY_CONSTRUCTION_METHOD
+    ),
+  };
+};
+
+/**
+ * Build props for the project title Link component from the given entity response.
+ * @param projectsResponse - Response model return from the entity response API.
+ * @returns model to be used as props for the project title Link component.
+ */
+export const buildProjectTitle = (
+  projectsResponse: ProjectsResponse
+): React.ComponentProps<typeof C.Link> => {
+  return {
+    label: processEntityValue(
+      projectsResponse.projects,
+      HCA_DCP_CATEGORY_KEY.PROJECT_TITLE
+    ),
+    url: getProjectTitleUrl(projectsResponse),
+  };
+};
+
+/**
+ * Build props for sample entity type Cell component from the given sample response.
+ * @param samplesResponse - Response model return from samples API.
+ * @returns model to be used as props for the sample entity type Cell component.
+ */
+export const buildSampleEntityType = (
+  samplesResponse: SamplesResponse
+): React.ComponentProps<typeof C.Cell> => {
+  return {
+    value: processEntityValue(samplesResponse.samples, "sampleEntityType"),
+  };
+};
+
+/**
+ * Build props for sample identifier Cell component from the given sample response.
+ * @param samplesResponse - Response model return from samples API.
+ * @returns model to be used as props for the sample identifier Cell component.
+ */
+export const buildSampleId = (
+  samplesResponse: SamplesResponse
+): React.ComponentProps<typeof C.Cell> => {
+  return {
+    value: processEntityValue(samplesResponse.samples, "id"),
+  };
+};
+
+/**
+ * Build props for the specimen organ "Anatomical Entity" NTagCell component from the given entity response.
+ * @param entityResponse - Response model return from entity API.
+ * @returns model to be used as props for the specimen organ "Anatomical Entity" NTagCell component.
+ */
+export const buildSpecimenOrgan = (
+  entityResponse: EntityResponse
+): React.ComponentProps<typeof C.NTagCell> => {
+  return {
+    label: getPluralizedMetadataLabel(METADATA_KEY.ANATOMICAL_ENTITY),
+    values: processAggregatedOrArrayValue(
+      entityResponse.specimens,
+      HCA_DCP_CATEGORY_KEY.ORGAN
+    ),
+  };
+};
+
+/**
+ * Build props for total cells "Cell Count Estimate" Cell component from the given entity response.
+ * @param entityResponse - Response model return from entity API.
+ * @returns model to be used as props for the total cells "Cell Count Estimate" Cell component.
+ */
+export const buildTotalCells = (
+  entityResponse: EntityResponse
+): React.ComponentProps<typeof C.Cell> => {
+  return {
+    value: getCellSuspensionTotalCells(entityResponse),
+  };
+};
 
 /**
  * Returns grid props for the Grid component.
@@ -189,73 +441,35 @@ export const buildTripleColumnGrid = (): React.ComponentProps<
   };
 };
 
-// Files view builders
+/**
+ * Calculate the estimated cell count from the given projects response.
+ * Returns the estimated cell count, if any, otherwise the totalCell value from cellSuspensions.
+ * @param projectsResponse - Response model return from projects API.
+ * @returns estimated cell count.
+ */
+function calculateEstimatedCellCount(
+  projectsResponse: ProjectsResponse
+): string {
+  const estimatedCellCount =
+    getProjectResponse(projectsResponse).estimatedCellCount;
+  // If there's an estimated cell count for the project, return it as the cell count.
+  if (estimatedCellCount) {
+    return estimatedCellCount.toLocaleString();
+  }
+  // Otherwise, return the cell suspension total count.
+  return getCellSuspensionTotalCells(projectsResponse);
+}
 
 /**
- * Build props for FileName component from the given files response.
- * @param file - Response model return from projects API.
- * @returns model to be used as props for the Citation component.
+ * Returns matrix cell count formatted by count size.
+ * @param matrixCellCount - Matrix cell count.
+ * @returns matrix cell count formatted by count size.
  */
-export const filesBuildFileName = (
-  file: FilesResponse
-): React.ComponentProps<typeof C.Cell> => {
-  return {
-    value: Transformers.filesGetFileName(file),
-  };
-};
-
-/**
- * Build props for FileDownload component from the given files response.
- * @param file - Response model return from files API.
- * @returns model to be used as props for the FileDownload component.
- */
-export const filesBuildFileDownload = (
-  file: FilesResponse
-): React.ComponentProps<typeof C.AzulFileDownload> => {
-  return {
-    url: Transformers.filesGetFileUrl(file),
-  };
-};
-
-export const filesBuildFileFormat = (
-  file: FilesResponse
-): React.ComponentProps<typeof C.Cell> => {
-  return {
-    value: Transformers.filesGetFileFormat(file),
-  };
-};
-
-export const filesBuildProjTitle = (
-  file: FilesResponse
-): React.ComponentProps<typeof C.Cell> => {
-  return {
-    value: Transformers.filesGetProjTitle(file),
-  };
-};
-
-export const filesBuildFileSize = (
-  file: FilesResponse
-): React.ComponentProps<typeof C.Cell> => {
-  return {
-    value: Transformers.filesGetFileSize(file),
-  };
-};
-
-export const filesBuildContentDesc = (
-  file: FilesResponse
-): React.ComponentProps<typeof C.Cell> => {
-  return {
-    value: Transformers.filesGetContentDesc(file),
-  };
-};
-
-export const filesBuildCellCount = (
-  file: FilesResponse
-): React.ComponentProps<typeof C.Cell> => {
-  return {
-    value: Transformers.filesGetCellCount(file),
-  };
-};
+function formatMatrixCellCount(matrixCellCount?: number): string {
+  return matrixCellCount || matrixCellCount === 0
+    ? formatCountSize(matrixCellCount)
+    : "-";
+}
 
 /**
  * Returns the KeyValuePair value for the accessions.
@@ -275,174 +489,38 @@ function getAccessionsKeyValue(accessions: Accession[]): ReactElement {
   });
 }
 
-// Samples view builders
-
-export const samplesBuildSampleId = (
-  sample: SamplesResponse
-): React.ComponentProps<typeof C.Cell> => {
-  return {
-    value: Transformers.samplesGetSampleId(sample),
-  };
-};
-export const samplesBuildProjTitle = (
-  sample: SamplesResponse
-): React.ComponentProps<typeof C.Cell> => {
-  return {
-    value: Transformers.samplesGetProjTitle(sample),
-  };
-};
-export const samplesBuildSpecies = (
-  sample: SamplesResponse
-): React.ComponentProps<typeof C.Cell> => {
-  return {
-    value: Transformers.samplesGetSpecies(sample),
-  };
-};
-export const samplesBuildSampleType = (
-  sample: SamplesResponse
-): React.ComponentProps<typeof C.Cell> => {
-  return {
-    value: Transformers.samplesGetSampleType(sample),
-  };
-};
-export const samplesBuildLibraryConstructionApproach = (
-  sample: SamplesResponse
-): React.ComponentProps<typeof C.NTagCell> => {
-  return {
-    label: getPluralizedMetadataLabel(
-      METADATA_KEY.LIBRARY_CONSTRUCTION_APPROACH
-    ),
-    values: Transformers.samplesGetLibraryConstructionApproach(sample),
-  };
-};
-export const samplesBuildAnatomicalEntity = (
-  sample: SamplesResponse
-): React.ComponentProps<typeof C.NTagCell> => {
-  return {
-    label: getPluralizedMetadataLabel(METADATA_KEY.ANATOMICAL_ENTITY),
-    values: Transformers.samplesGetAnatomicalEntity(sample),
-  };
-};
-export const samplesBuildDiseaseDonor = (
-  sample: SamplesResponse
-): React.ComponentProps<typeof C.NTagCell> => {
-  return {
-    label: getPluralizedMetadataLabel(METADATA_KEY.DISEASE_DONOR),
-    values: Transformers.samplesGetDiseaseDonor(sample),
-  };
-};
-export const samplesBuildCellCount = (
-  sample: SamplesResponse
-): React.ComponentProps<typeof C.Cell> => {
-  return {
-    value: Transformers.samplesGetCellCount(sample),
-  };
-};
+/**
+ * Returns the project detailed page url from the given entity response.
+ * @param response - Response model return from entity API.
+ * @returns project detail page url.
+ */
+function getAggregatedProjectTitleUrl(
+  response: FilesResponse | SamplesResponse
+): string {
+  // Always take the first value in the returned aggregated project identifier array.
+  return `/projects/${takeArrayValueAt(
+    processEntityArrayValue(response.projects, "projectId")
+  )}`;
+}
 
 /**
- * Build props for the project title cell component from the given projects response.
- * @param project - Response model return from projects API.
- * @returns model to be used as props for the project title cell components.
+ * Returns the total cells from cellSuspensions for the given entity response.
+ * @param entityResponse - Response model return from entity API.
+ * @returns total cells from cellSuspensions.
  */
-export const projectsBuildProjectTitleColumn = (
-  project: ProjectsResponse
-): React.ComponentProps<typeof C.Link> => {
-  return {
-    label: getProjectsTitleName(project),
-    url: getProjectsTitleUrl(project),
-  };
-};
-
-/**
- * Build props for the CellCount component from the given projects response.
- * @param project - Response model return from projects API.
- * @returns model to be used as props for the CellCount component.
- */
-export const projectsBuildCellCountColumn = (
-  project: ProjectsResponse
-): React.ComponentProps<typeof C.Cell> => {
-  if (!project.cellSuspensions?.[0]) {
-    return {
-      value: "",
-    };
+function getCellSuspensionTotalCells(entityResponse: EntityResponse): string {
+  const totalCells = rollUpTotalCells(entityResponse);
+  if (!totalCells) {
+    return LABEL.UNSPECIFIED;
   }
-  return {
-    value: getProjectsCellCountColumn(project),
-  };
-};
-/**
- * Build props for the Development stage NTagCell component from the given projects response.
- * @param projectsResponse - Response model return from projects API.
- * @returns model to be used as props for the development stage table column.
- */
-export const projectsBuildDevelopmentStage = (
-  projectsResponse: ProjectsResponse
-): React.ComponentProps<typeof C.NTagCell> => {
-  return {
-    label: getPluralizedMetadataLabel(METADATA_KEY.DEVELOPMENT_STAGE),
-    values: getProjectsDevelopmentStage(projectsResponse),
-  };
-};
-/**
- * Build props for the library construction cell component from the given projects response.
- * @param project - Response model return from projects API.
- * @returns model to be used as props for the library construction cell approach cell.
- */
-export const projectsBuildLibraryConstructionApproachColumn = (
-  project: ProjectsResponse
-): React.ComponentProps<typeof C.NTagCell> => {
-  return {
-    label: getPluralizedMetadataLabel(
-      METADATA_KEY.LIBRARY_CONSTRUCTION_APPROACH
-    ),
-    values: getProjectsLibraryConstructionApproachColumn(project),
-  };
-};
-/**
- * Build props for the AnatomicalEntity components from the given projects response.
- * @param project - Response model return from projects API.
- * @returns model to be used as props for the AnatomicalEntity component.
- */
-export const projectsBuildAnatomicalEntityColumn = (
-  project: ProjectsResponse
-): React.ComponentProps<typeof C.NTagCell> => {
-  return {
-    label: getPluralizedMetadataLabel(METADATA_KEY.ANATOMICAL_ENTITY),
-    values: getProjectsAnatomicalEntityColumn(project),
-  };
-};
-/**
- * Build props for the DiseaseDonor components from the given projects response.
- * @param project - Response model return from projects API.
- * @returns model to be used as props for the Disease (Donor) table column.
- */
-export const projectsBuildDiseaseDonorColumn = (
-  project: ProjectsResponse
-): React.ComponentProps<typeof C.NTagCell> => {
-  return {
-    label: getPluralizedMetadataLabel(METADATA_KEY.DISEASE_DONOR),
-    values: getProjectsDiseaseDonor(project),
-  };
-};
-/**
- * Build props for project index species NTagCell component from the given projects response.
- * @param projectsResponse - Response model return from projects API.
- * @returns model to be used as props for the project index species NTagCell.
- */
-export const projectsBuildSpecies = (
-  projectsResponse: ProjectsResponse
-): React.ComponentProps<typeof C.NTagCell> => {
-  return {
-    label: getPluralizedMetadataLabel(METADATA_KEY.SPECIES),
-    values: getProjectMetadataSpecies(projectsResponse),
-  };
-};
+  return totalCells.toLocaleString();
+}
 
 /**
- * Builds the table column definition model for the contributor generated matrices table.
+ * Returns the table column definition model for the contributor generated matrices table.
  * @returns generated matrices table column definition.
  */
-function buildContributorGeneratedMatricesTableColumns<T>(): ColumnDef<T>[] {
+function getContributorGeneratedMatricesTableColumns<T>(): ColumnDef<T>[] {
   return [
     getGeneratedMatricesActionsColumnDef(),
     getGeneratedMatricesFileNameColumnDef(),
@@ -456,10 +534,10 @@ function buildContributorGeneratedMatricesTableColumns<T>(): ColumnDef<T>[] {
 }
 
 /**
- * Builds the table column definition model for the DCP generated matrices table.
+ * Returns the table column definition model for the DCP generated matrices table.
  * @returns generated matrices table column definition.
  */
-function buildDCPGeneratedMatricesTableColumns<T>(): ColumnDef<T>[] {
+function getDCPGeneratedMatricesTableColumns<T>(): ColumnDef<T>[] {
   return [
     getGeneratedMatricesActionsColumnDef(),
     getGeneratedMatricesFileNameColumnDef(),
@@ -469,37 +547,6 @@ function buildDCPGeneratedMatricesTableColumns<T>(): ColumnDef<T>[] {
     getGeneratedMatricesLibraryConstructionMethodColumnDef(),
     getGeneratedMatricesFileSizeColumnDef(),
   ];
-}
-
-/**
- * Build props for NTagCell component from the given entity and entity key.
- * @param projectMatrixTableView - Project matrix view (by species).
- * @param key - Project matrix view key.
- * @param metadataKey - Metadata key.
- * @returns model to be used as props for the NTagCell component.
- */
-function buildNTagCellProps(
-  projectMatrixTableView: ProjectMatrixTableView,
-  key: string,
-  metadataKey: keyof typeof METADATA_KEY
-): React.ComponentProps<typeof C.NTagCell> {
-  return {
-    label: getPluralizedMetadataLabel(metadataKey),
-    values: projectMatrixTableView[
-      key as keyof ProjectMatrixTableView
-    ] as string[],
-  };
-}
-
-/**
- * Returns matrix cell count formatted by count size.
- * @param matrixCellCount - Matrix cell count.
- * @returns matrix cell count formatted by count size.
- */
-function formatMatrixCellCount(matrixCellCount?: number): string {
-  return matrixCellCount || matrixCellCount === 0
-    ? formatCountSize(matrixCellCount)
-    : "-";
 }
 
 /**
@@ -535,7 +582,7 @@ export function getGeneratedMatricesAnatomicalEntityColumnDef<
     accessorKey: HCA_DCP_CATEGORY_KEY.ORGAN,
     cell: ({ column, row }) =>
       C.NTagCell(
-        buildNTagCellProps(
+        getNTagCellProps(
           row.original as unknown as ProjectMatrixTableView, // TODO revisit type assertion here
           column.id,
           METADATA_KEY.ANATOMICAL_ENTITY
@@ -556,7 +603,7 @@ export function getGeneratedMatricesContentDescriptionColumnDef<
     accessorKey: HCA_DCP_CATEGORY_KEY.CONTENT_DESCRIPTION,
     cell: ({ column, row }) =>
       C.NTagCell(
-        buildNTagCellProps(
+        getNTagCellProps(
           row.original as unknown as ProjectMatrixTableView, // TODO revisit type assertion here
           column.id,
           METADATA_KEY.CONTENT_DESCRIPTION
@@ -605,7 +652,7 @@ export function getGeneratedMatricesGenusSpeciesColumnDef<T>(): ColumnDef<T> {
     accessorKey: HCA_DCP_CATEGORY_KEY.GENUS_SPECIES,
     cell: ({ column, row }) =>
       C.NTagCell(
-        buildNTagCellProps(
+        getNTagCellProps(
           row.original as unknown as ProjectMatrixTableView, // TODO revisit type assertion here
           column.id,
           METADATA_KEY.SPECIES
@@ -626,7 +673,7 @@ export function getGeneratedMatricesLibraryConstructionMethodColumnDef<
     accessorKey: HCA_DCP_CATEGORY_KEY.LIBRARY_CONSTRUCTION_METHOD,
     cell: ({ column, row }) =>
       C.NTagCell(
-        buildNTagCellProps(
+        getNTagCellProps(
           row.original as unknown as ProjectMatrixTableView, // TODO revisit type assertion here
           column.id,
           METADATA_KEY.LIBRARY_CONSTRUCTION_APPROACH
@@ -649,4 +696,71 @@ export function getGeneratedMatricesMatrixCellCountColumnDef<
       formatMatrixCellCount(getValue() as unknown as number),
     header: HCA_DCP_CATEGORY_LABEL.MATRIX_CELL_COUNT,
   };
+}
+
+/**
+ * Returns props for NTagCell component from the given entity and entity key.
+ * @param projectMatrixTableView - Project matrix view (by species).
+ * @param key - Project matrix view key.
+ * @param metadataKey - Metadata key.
+ * @returns model to be used as props for the NTagCell component.
+ */
+function getNTagCellProps(
+  projectMatrixTableView: ProjectMatrixTableView,
+  key: string,
+  metadataKey: keyof typeof METADATA_KEY
+): React.ComponentProps<typeof C.NTagCell> {
+  return {
+    label: getPluralizedMetadataLabel(metadataKey),
+    values: projectMatrixTableView[
+      key as keyof ProjectMatrixTableView
+    ] as string[],
+  };
+}
+
+/**
+ * Returns the project value from the projects API response.
+ * @param projectsResponse - Response returned from projects API response.
+ * @returns The core project value from the API response.
+ */
+function getProjectResponse(
+  projectsResponse: ProjectsResponse
+): ProjectResponse {
+  return projectsResponse.projects[0];
+}
+
+/**
+ * Returns the project detailed page url.
+ * @param projectsResponse - Response model return from entity API.
+ * @returns project detail page url.
+ */
+function getProjectTitleUrl(projectsResponse: ProjectsResponse): string {
+  return `/projects/${processEntityValue(
+    projectsResponse.projects,
+    "projectId"
+  )}`;
+}
+
+/**
+ * Returns the aggregated total cells from cellSuspensions for the given entity response.
+ * @param entityResponse - Response model return from entity API.
+ * @returns total cells from cellSuspensions.
+ */
+function rollUpTotalCells(entityResponse: EntityResponse): number | null {
+  return entityResponse.cellSuspensions.reduce((acc, { totalCells }) => {
+    if (totalCells) {
+      acc = (acc ?? 0) + totalCells;
+    }
+    return acc;
+  }, null as null | number);
+}
+
+/**
+ * Returns value from a string array matching the given index.
+ * @param arr - String array.
+ * @param index - Zero-based index of the array element to be returned.
+ * @returns value in the array matching the given index.
+ */
+export function takeArrayValueAt(arr: string[], index = 0): string {
+  return arr.at(index) ?? "";
 }
