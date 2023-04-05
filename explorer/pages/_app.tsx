@@ -14,6 +14,9 @@ import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { config } from "app/config/config";
 import type { AppProps } from "next/app";
+import { useEffect } from "react";
+import TagManager from "react-gtm-module";
+
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   // Set up the site configuration, layout and theme.
@@ -21,6 +24,11 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const { layout, themeOptions } = appConfig;
   const theme = createAppTheme(themeOptions);
   const { entityListType } = pageProps as AzulEntitiesStaticResponse;
+    // Initialize Tag Manger scripts
+    useEffect(() => {
+      TagManager.initialize({ gtmId: "GTM-MRCDRMJ" });
+    }, []);
+  
   return (
     <EmotionThemeProvider theme={theme}>
       <ThemeProvider theme={theme}>
