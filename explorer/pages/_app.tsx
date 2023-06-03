@@ -14,6 +14,7 @@ import { createAppTheme } from "@clevercanary/data-explorer-ui/lib/theme/theme";
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
+import { TimeoutObserver } from "app/components/common/TimeoutObserver/timeoutObserver";
 import { config } from "app/config/config";
 import type { AppProps } from "next/app";
 import { useEffect } from "react";
@@ -41,6 +42,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           <Head />
           <CssBaseline />
           <AuthProvider>
+            <TimeoutObserver />
             <AppLayout>
               <Header {...layout.header} />
               <ExploreStateProvider entityListType={entityListType}>
