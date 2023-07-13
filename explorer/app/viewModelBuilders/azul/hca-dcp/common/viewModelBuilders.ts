@@ -5,12 +5,16 @@ import {
   KeyValueFn,
   Value,
 } from "@clevercanary/data-explorer-ui/lib/components/common/KeyValuePairs/keyValuePairs";
+import { Summary } from "@clevercanary/data-explorer-ui/lib/components/Export/components/ExportSummary/exportSummary";
 import { ANCHOR_TARGET } from "@clevercanary/data-explorer-ui/lib/components/Links/common/entities";
 import { getConfig } from "@clevercanary/data-explorer-ui/lib/config/config";
+import { useEntityExportSummary } from "@clevercanary/data-explorer-ui/lib/hooks/useExportSummary/useEntityExportSummary";
+import { FileManifest } from "@clevercanary/data-explorer-ui/lib/hooks/useFileManifest/common/entities";
 import {
   TEXT_BODY_400,
   TEXT_BODY_400_2_LINES,
 } from "@clevercanary/data-explorer-ui/lib/theme/common/typography";
+import { formatCountSize } from "@clevercanary/data-explorer-ui/lib/utils/formatCountSize";
 import { ColumnDef } from "@tanstack/react-table";
 import React, { ElementType, Fragment, ReactElement } from "react";
 import {
@@ -39,7 +43,6 @@ import {
 import { initExportEntityFilters } from "../../../../components/Detail/components/Export/common/utils";
 import { METADATA_KEY } from "../../../../components/Index/common/entities";
 import { getPluralizedMetadataLabel } from "../../../../components/Index/common/indexTransformer";
-import { formatCountSize } from "../../../../components/Index/common/utils";
 import * as MDX from "../../../../content/hca-dcp";
 import { useDownloadEntityCurlCommand } from "../../../../hooks/azul/useDownloadEntityCurlCommand";
 import { useExportEntityToTerraResponseURL } from "../../../../hooks/azul/useExportEntityToTerraResponseURL";
@@ -49,8 +52,14 @@ import { humanFileSize } from "../../../../utils/fileSize";
 import { mapCategoryKeyLabel } from "../../../common/utils";
 import { mapAccessions } from "./accessionMapper/accessionMapper";
 import { Accession } from "./accessionMapper/entities";
-import { DATA_SUMMARY_DISPLAY_TEXT } from "./dataSummaryMapper/constants";
-import { mapProjectDataSummary } from "./dataSummaryMapper/dataSummaryMapper";
+import {
+  DATA_SUMMARY,
+  DATA_SUMMARY_DISPLAY_TEXT,
+} from "./dataSummaryMapper/constants";
+import {
+  mapExportSummary,
+  mapProjectDataSummary,
+} from "./dataSummaryMapper/dataSummaryMapper";
 import { AnalysisPortal } from "./projectMapper/projectEdits/entities";
 import {
   mapProjectAnalysisPortals,
@@ -421,6 +430,20 @@ export const buildExportEntityCurrentQuery = (
 };
 
 /**
+ * Build props for ExportSummary component.
+ * @returns model to be used as props for the ExportSummary component.
+ */
+export const buildExportEntitySummary = (): React.ComponentProps<
+  typeof C.ExportSummary
+> => {
+  return {
+    getExportSummary: (fileManifest: FileManifest) =>
+      getExportSummary(fileManifest),
+    useExportSummary: useEntityExportSummary,
+  };
+};
+
+/**
  * Build props for ExportEntityToTerra component from the given projects response.
  * @param projectsResponse - Response model return from projects API.
  * @returns model to be used as props for the ExportEntityToTerra component.
@@ -567,6 +590,18 @@ export const buildFileSize = (
     value: humanFileSize(processNumberEntityValue(filesResponse.files, "size")),
   };
 };
+
+/**
+ * Returns the export summary for the given file manifest.
+ * @param fileManifest - File manifest.
+ * @returns export summary.
+ */
+export function getExportSummary(fileManifest: FileManifest): Summary[] {
+  return [...mapExportSummary(fileManifest)].map(([key, value]) => [
+    DATA_SUMMARY_DISPLAY_TEXT[key as DATA_SUMMARY] || key,
+    value,
+  ]);
+}
 
 /**
  * Build props for genus species NTagCell component from the given entity response.

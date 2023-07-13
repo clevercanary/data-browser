@@ -11,6 +11,10 @@ export const sideColumn: ComponentConfig[] = [
         component: C.ExportEntityCurrentQuery,
         viewBuilder: V.buildExportEntityCurrentQuery,
       } as ComponentConfig<typeof C.ExportEntityCurrentQuery, ProjectsResponse>,
+      {
+        component: C.ExportSummary,
+        viewBuilder: V.buildExportEntitySummary,
+      } as ComponentConfig<typeof C.ExportSummary, ProjectsResponse>,
     ],
     component: C.Sections,
   } as ComponentConfig<typeof C.Sections>,
