@@ -57,10 +57,10 @@ export default withPlugins(
         process.cwd(),
         "node_modules/@tanstack/react-table"
       );
-      config.resolve.alias["axios"] = path.resolve(
-        process.cwd(),
-        "node_modules/axios"
-      );
+      // config.resolve.alias["axios"] = path.resolve(
+      //   process.cwd(),
+      //   "node_modules/axios"
+      // );
       config.resolve.alias["isomorphic-dompurify"] = path.resolve(
         process.cwd(),
         "node_modules/isomorphic-dompurify"

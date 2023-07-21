@@ -1,16 +1,26 @@
 import { LABEL } from "@clevercanary/data-explorer-ui/lib/apis/azul/common/entities";
+import { Filters } from "@clevercanary/data-explorer-ui/lib/common/entities";
 import { Breadcrumb } from "@clevercanary/data-explorer-ui/lib/components/common/Breadcrumbs/breadcrumbs";
 import {
   Key,
   KeyValueFn,
   Value,
 } from "@clevercanary/data-explorer-ui/lib/components/common/KeyValuePairs/keyValuePairs";
+import { CurrentQuery } from "@clevercanary/data-explorer-ui/lib/components/Export/components/ExportCurrentQuery/exportCurrentQuery";
+import { Summary } from "@clevercanary/data-explorer-ui/lib/components/Export/components/ExportSummary/components/ExportSelectedDataSummary/exportSelectedDataSummary";
 import { ANCHOR_TARGET } from "@clevercanary/data-explorer-ui/lib/components/Links/common/entities";
 import { getConfig } from "@clevercanary/data-explorer-ui/lib/config/config";
+import { ViewContext } from "@clevercanary/data-explorer-ui/lib/config/entities";
+import {
+  FileFacet,
+  FileManifest,
+  FILE_MANIFEST_ACTION,
+} from "@clevercanary/data-explorer-ui/lib/hooks/useFileManifest/common/entities";
 import {
   TEXT_BODY_400,
   TEXT_BODY_400_2_LINES,
 } from "@clevercanary/data-explorer-ui/lib/theme/common/typography";
+import { formatCountSize } from "@clevercanary/data-explorer-ui/lib/utils/formatCountSize";
 import { ColumnDef } from "@tanstack/react-table";
 import React, { ElementType, Fragment, ReactElement } from "react";
 import {
@@ -18,6 +28,7 @@ import {
   HCA_DCP_CATEGORY_LABEL,
 } from "../../../../../site-config/hca-dcp/category";
 import { PROJECTS_URL } from "../../../../../site-config/hca-dcp/dev/config";
+import { FORM_FACETS } from "../../../../../site-config/hca-dcp/dev/export/constants";
 import {
   processAggregatedOrArrayValue,
   processEntityArrayValue,
@@ -39,9 +50,7 @@ import {
 import { initExportEntityFilters } from "../../../../components/Detail/components/Export/common/utils";
 import { METADATA_KEY } from "../../../../components/Index/common/entities";
 import { getPluralizedMetadataLabel } from "../../../../components/Index/common/indexTransformer";
-import { formatCountSize } from "../../../../components/Index/common/utils";
 import * as MDX from "../../../../content/hca-dcp";
-import { useDownloadEntityCurlCommand } from "../../../../hooks/azul/useDownloadEntityCurlCommand";
 import { useExportEntityToTerraResponseURL } from "../../../../hooks/azul/useExportEntityToTerraResponseURL";
 import { useFileManifestRequestParams } from "../../../../hooks/azul/useFileManifestRequestParams";
 import { useFileManifestRequestURL } from "../../../../hooks/azul/useFileManifestRequestURL";
@@ -49,8 +58,14 @@ import { humanFileSize } from "../../../../utils/fileSize";
 import { mapCategoryKeyLabel } from "../../../common/utils";
 import { mapAccessions } from "./accessionMapper/accessionMapper";
 import { Accession } from "./accessionMapper/entities";
-import { DATA_SUMMARY_DISPLAY_TEXT } from "./dataSummaryMapper/constants";
-import { mapProjectDataSummary } from "./dataSummaryMapper/dataSummaryMapper";
+import {
+  DATA_SUMMARY,
+  DATA_SUMMARY_DISPLAY_TEXT,
+} from "./dataSummaryMapper/constants";
+import {
+  mapExportSummary,
+  mapProjectDataSummary,
+} from "./dataSummaryMapper/dataSummaryMapper";
 import { AnalysisPortal } from "./projectMapper/projectEdits/entities";
 import {
   mapProjectAnalysisPortals,
@@ -363,24 +378,23 @@ export const buildDonorDisease = (
 };
 
 /**
- * Build props for DownloadEntityCurlCommand component from the given projects response.
+ * Build props for DownloadCurlCommand component from the given projects response.
  * @param projectsResponse - Response model return from projects API.
- * @returns model to be used as props for the DownloadEntityCurlCommand component.
+ * @returns model to be used as props for the DownloadCurlCommand component.
  */
 export const buildDownloadEntityCurlCommand = (
   projectsResponse: ProjectsResponse
-): React.ComponentProps<typeof C.DownloadEntityCurlCommand> => {
+): React.ComponentProps<typeof C.DownloadCurlCommand> => {
   return {
-    DownloadCurlForm: (props) =>
-      C.DownloadEntityCurlCommandForm({
-        ...getExportFormProps(projectsResponse),
-        ...props,
-      }),
+    DownloadCurlForm: C.DownloadCurlCommandForm,
     DownloadCurlStart: MDX.DownloadEntityCurlCommandStart,
     DownloadCurlSuccess: MDX.DownloadEntityCurlCommandSuccess,
-    useDownloadCurlCommand: useDownloadEntityCurlCommand,
-    useExportParams: useFileManifestRequestParams,
-    useExportRequestURL: useFileManifestRequestURL,
+    entity: [
+      "projectId",
+      processEntityValue(projectsResponse.projects, "projectId"),
+    ],
+    fileManifestAction: FILE_MANIFEST_ACTION.ENTITY_BULK_DOWNLOAD,
+    formFacets: FORM_FACETS,
   };
 };
 
@@ -398,25 +412,15 @@ export const buildEstimateCellCount = (
 };
 
 /**
- * Build props for ExportEntityCurrentQuery component from the given projects response.
- * @param projectsResponse - Response model return from projects API.
- * @returns model to be used as props for the ExportEntityCurrentQuery component.
+ * Build props for ExportCurrentQuery component.
+ * @returns model to be used as props for the ExportCurrentQuery component.
  */
-export const buildExportEntityCurrentQuery = (
-  projectsResponse: ProjectsResponse
-): React.ComponentProps<typeof C.ExportEntityCurrentQuery> => {
+export const buildExportCurrentQuery = (): React.ComponentProps<
+  typeof C.ExportCurrentQuery
+> => {
   return {
-    categoryKeyLabel: mapCategoryKeyLabel(
-      HCA_DCP_CATEGORY_KEY,
-      HCA_DCP_CATEGORY_LABEL
-    ),
-    currentQuery: {
-      label: "Project",
-      values: [
-        processEntityValue(projectsResponse.projects, "projectShortname"),
-      ],
-    },
-    entityIdKey: "projectId",
+    getExportCurrentQueries: (filters: Filters, filesFacets: FileFacet[]) =>
+      getExportCurrentQueries(filters, filesFacets),
   };
 };
 
@@ -443,21 +447,41 @@ export const buildExportEntityToTerra = (
 };
 
 /**
- * Build props for ExportMethod component for display of the export to cavatica metadata section.
- * @returns model to be used as props for the ExportMethod component.
+ * Build props for export Hero component.
+ * @param _ - Unused.
+ * @param viewContext - View context.
+ * @returns model to be used as props for the export Hero component.
  */
-export const buildExportToCavaticaMetadata = (): React.ComponentProps<
-  typeof C.ExportMethod
-> => ({
-  buttonLabel: "Analyze in CAVATICA",
-  description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-  disabled: false,
-  route: "/export",
-  title: "Export to CAVATICA",
-});
+export function buildExportHero(
+  _: Record<string, never>,
+  viewContext: ViewContext
+): React.ComponentProps<typeof C.BackPageHero> {
+  const { exploreState } = viewContext;
+  const { tabValue } = exploreState || {};
+  return {
+    breadcrumbs: [
+      { path: `/${tabValue}`, text: "Explore" },
+      { path: "", text: "Export Selected Data" },
+    ],
+    title: "Choose Export Method",
+  };
+}
 
 /**
- * Build props for ExportMethod component for display of the export to curl command metadata section.
+ * Build props for ExportSelectedDataSummary component.
+ * @returns model to be used as props for the ExportSelectedDataSummary component.
+ */
+export const buildExportSelectedDataSummary = (): React.ComponentProps<
+  typeof C.ExportSelectedDataSummary
+> => {
+  return {
+    getExportSelectedDataSummary: (fileManifest: FileManifest) =>
+      getExportSelectedDataSummary(fileManifest),
+  };
+};
+
+/**
+ * Build props for ExportMethod component for display of the download to curl command metadata section.
  * @returns model to be used as props for the ExportMethod component.
  */
 export const buildExportToCurlCommand = (): React.ComponentProps<
@@ -466,7 +490,7 @@ export const buildExportToCurlCommand = (): React.ComponentProps<
   buttonLabel: "Request curl Command",
   description: "Obtain a curl command for downloading the selected data.",
   disabled: false,
-  route: "/export",
+  route: "/export/get-curl-command",
   title: "Download Study Data and Metadata (Curl Command)",
 });
 
@@ -567,6 +591,20 @@ export const buildFileSize = (
     value: humanFileSize(processNumberEntityValue(filesResponse.files, "size")),
   };
 };
+
+/**
+ * Returns the export selected data summary for the given file manifest.
+ * @param fileManifest - File manifest.
+ * @returns export selected data summary.
+ */
+export function getExportSelectedDataSummary(
+  fileManifest: FileManifest
+): Summary[] {
+  return [...mapExportSummary(fileManifest)].map(([key, value]) => [
+    DATA_SUMMARY_DISPLAY_TEXT[key as DATA_SUMMARY] || key,
+    value,
+  ]);
+}
 
 /**
  * Build props for genus species NTagCell component from the given entity response.
@@ -944,6 +982,60 @@ export function getEstimatedCellCount(
 }
 
 /**
+ * Returns current queries from the given selected filters and file facets.
+ * @param filters - Selected filters.
+ * @param filesFacets - Files facets.
+ * @returns current queries.
+ */
+export function getExportCurrentQueries(
+  filters: Filters,
+  filesFacets: FileFacet[]
+): CurrentQuery[] {
+  const categoryKeyLabel = mapCategoryKeyLabel(
+    HCA_DCP_CATEGORY_KEY,
+    HCA_DCP_CATEGORY_LABEL
+  );
+  // Grab all selected filters, omitting project id and title.
+  const queries: CurrentQuery[] = filters
+    .filter(
+      ({ categoryKey }) =>
+        categoryKey !== HCA_DCP_CATEGORY_KEY.PROJECT_ID &&
+        categoryKey !== HCA_DCP_CATEGORY_KEY.PROJECT_TITLE
+    )
+    .map(({ categoryKey, value: selectedTerms }) => [
+      categoryKeyLabel.get(categoryKey) || categoryKey,
+      selectedTerms,
+    ]);
+  // Add project facet to the query, if the project facet has terms.
+  const projectQuery = getExportCurrentProjectQuery(filesFacets);
+  if (projectQuery) {
+    queries.unshift(projectQuery);
+  }
+  return queries;
+}
+
+/**
+ * Returns current project query from the given file facets.
+ * @param filesFacets - Files facets.
+ * @returns current project query.
+ */
+export function getExportCurrentProjectQuery(
+  filesFacets: FileFacet[]
+): CurrentQuery | undefined {
+  // Grab the project facet.
+  const projectFacet = filesFacets.find(
+    (fileFacet) => fileFacet.name === HCA_DCP_CATEGORY_KEY.PROJECT
+  );
+  if (!projectFacet || projectFacet.terms.length === 0) {
+    return;
+  }
+  return [
+    HCA_DCP_CATEGORY_LABEL.PROJECT,
+    projectFacet.terms.map((term) => term.name),
+  ];
+}
+
+/**
  * Returns the export filter key value pairs.
  * The key-value pairs facilitate the functionality of an export filter form by enabling various
  * options, such as selecting and choosing from a range of available categories such as genus species and file formats.
@@ -977,15 +1069,13 @@ export function getExportFilterKeySelectCategory(
 }
 
 /**
- * Returns props for ExportEntityToTerraForm or DownloadEntityCurlCommandForm component from the given projects response.
+ * Returns props for ExportEntityToTerraForm component from the given projects response.
  * @param projectsResponse - Response model return from projects API.
- * @returns model to be used as props for the ExportEntityToTerraForm or DownloadEntityCurlCommandForm component.
+ * @returns model to be used as props for the ExportEntityToTerraForm component.
  */
 export function getExportFormProps(
   projectsResponse: ProjectsResponse
-): React.ComponentProps<
-  typeof C.ExportEntityToTerraForm | typeof C.DownloadEntityCurlCommandForm
-> {
+): React.ComponentProps<typeof C.ExportEntityToTerraForm> {
   const filterKeyValue = getExportFilterKeySelectCategory(projectsResponse);
   return {
     entityFilters: initExportEntityFilters(filterKeyValue),

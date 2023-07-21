@@ -2,8 +2,8 @@ import { ExportToTerraView } from "@clevercanary/data-explorer-ui/lib/views/Expo
 import React from "react";
 
 /**
- * Export page.
- * @returns Element rendered as export page.
+ * Export to Terra page.
+ * @returns export to terra view component.
  */
 const ExportToTerraPage = (): JSX.Element => {
   return <ExportToTerraView />;
