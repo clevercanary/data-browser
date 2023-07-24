@@ -14,7 +14,7 @@ import { ViewContext } from "@clevercanary/data-explorer-ui/lib/config/entities"
 import {
   FileFacet,
   FileManifest,
-  FILE_MANIFEST_ACTION,
+  FILE_MANIFEST_TYPE,
 } from "@clevercanary/data-explorer-ui/lib/hooks/useFileManifest/common/entities";
 import {
   TEXT_BODY_400,
@@ -44,17 +44,9 @@ import {
   SamplesResponse,
 } from "../../../../apis/azul/hca-dcp/common/responses";
 import * as C from "../../../../components";
-import {
-  ExportFilterKey,
-  ExportFilterKeyExportCategory,
-} from "../../../../components/Detail/components/Export/common/entities";
-import { initExportEntityFilters } from "../../../../components/Detail/components/Export/common/utils";
 import { METADATA_KEY } from "../../../../components/Index/common/entities";
 import { getPluralizedMetadataLabel } from "../../../../components/Index/common/indexTransformer";
 import * as MDX from "../../../../content/hca-dcp";
-import { useExportEntityToTerraResponseURL } from "../../../../hooks/azul/useExportEntityToTerraResponseURL";
-import { useFileManifestRequestParams } from "../../../../hooks/azul/useFileManifestRequestParams";
-import { useFileManifestRequestURL } from "../../../../hooks/azul/useFileManifestRequestURL";
 import { humanFileSize } from "../../../../utils/fileSize";
 import { mapAccessions } from "./accessionMapper/accessionMapper";
 import { Accession } from "./accessionMapper/entities";
@@ -164,7 +156,7 @@ export const buildAnalysisPortals = (
  * @returns model to be used as props for the alert component.
  */
 export const buildBatchCorrectionWarning = (): React.ComponentProps<
-  typeof C.Alert
+  typeof C.FluidAlert
 > => {
   return {
     children: MDX.RenderComponent({ Component: MDX.BatchCorrectionWarning }),
@@ -393,7 +385,7 @@ export const buildDownloadEntityCurlCommand = (
       "projectId",
       processEntityValue(projectsResponse.projects, "projectId"),
     ],
-    fileManifestAction: FILE_MANIFEST_ACTION.ENTITY_BULK_DOWNLOAD,
+    fileManifestType: FILE_MANIFEST_TYPE.ENTITY_BULK_DOWNLOAD,
     formFacets: FORM_FACETS,
   };
 };
@@ -438,24 +430,23 @@ export const buildExportCurrentQuery = (): React.ComponentProps<
 };
 
 /**
- * Build props for ExportEntityToTerra component from the given projects response.
+ * Build props for ExportToTerra component from the given projects response.
  * @param projectsResponse - Response model return from projects API.
- * @returns model to be used as props for the ExportEntityToTerra component.
+ * @returns model to be used as props for the ExportToTerra component.
  */
 export const buildExportEntityToTerra = (
   projectsResponse: ProjectsResponse
-): React.ComponentProps<typeof C.ExportEntityToTerra> => {
+): React.ComponentProps<typeof C.ExportToTerra> => {
   return {
-    ExportForm: (props) =>
-      C.ExportEntityToTerraForm({
-        ...getExportFormProps(projectsResponse),
-        ...props,
-      }),
-    ExportToTerra: MDX.ExportToTerra,
+    ExportForm: C.ExportToTerraForm,
+    ExportToTerraStart: MDX.ExportToTerra,
     ExportToTerraSuccess: MDX.ExportToTerraSuccess,
-    useExportParams: useFileManifestRequestParams,
-    useExportRequestURL: useFileManifestRequestURL,
-    useExportResponseURL: useExportEntityToTerraResponseURL,
+    entity: [
+      "projectId",
+      processEntityValue(projectsResponse.projects, "projectId"),
+    ],
+    fileManifestType: FILE_MANIFEST_TYPE.ENITY_EXPORT_TO_TERRA,
+    formFacets: FORM_FACETS,
   };
 };
 
@@ -1048,54 +1039,6 @@ export function getExportCurrentProjectQuery(
     HCA_DCP_CATEGORY_LABEL.PROJECT,
     projectFacet.terms.map((term) => term.name),
   ];
-}
-
-/**
- * Returns the export filter key value pairs.
- * The key-value pairs facilitate the functionality of an export filter form by enabling various
- * options, such as selecting and choosing from a range of available categories such as genus species and file formats.
- * @param projectsResponse - Response model return from projects API.
- * @returns export filter key value pairs.
- */
-export function getExportFilterKeySelectCategory(
-  projectsResponse: ProjectsResponse
-): ExportFilterKeyExportCategory {
-  // Build the available export filter key value pairs.
-  const filterKeyValue: ExportFilterKeyExportCategory = new Map();
-  filterKeyValue.set(ExportFilterKey.ENTITY_ID, {
-    key: "projectId",
-    label: "Project",
-    values: [processEntityValue(projectsResponse.projects, "projectId")],
-  });
-  filterKeyValue.set(ExportFilterKey.GENUS_SPECIES, {
-    key: HCA_DCP_CATEGORY_KEY.GENUS_SPECIES,
-    label: "Species",
-    values: processAggregatedOrArrayValue(
-      projectsResponse.donorOrganisms,
-      HCA_DCP_CATEGORY_KEY.GENUS_SPECIES
-    ),
-  });
-  filterKeyValue.set(ExportFilterKey.FILE_FORMAT, {
-    key: HCA_DCP_CATEGORY_KEY.FILE_FORMAT,
-    label: "File Type",
-    values: getProjectFileFormats(projectsResponse),
-  });
-  return filterKeyValue;
-}
-
-/**
- * Returns props for ExportEntityToTerraForm component from the given projects response.
- * @param projectsResponse - Response model return from projects API.
- * @returns model to be used as props for the ExportEntityToTerraForm component.
- */
-export function getExportFormProps(
-  projectsResponse: ProjectsResponse
-): React.ComponentProps<typeof C.ExportEntityToTerraForm> {
-  const filterKeyValue = getExportFilterKeySelectCategory(projectsResponse);
-  return {
-    entityFilters: initExportEntityFilters(filterKeyValue),
-    filterKeyValue,
-  };
 }
 
 /**

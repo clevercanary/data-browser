@@ -1,6 +1,6 @@
 import { DownloadCurlCommandForm } from "@clevercanary/data-explorer-ui/lib/components/Export/components/DownloadCurlCommand/components/DownloadCurlCommandForm/downloadCurlCommandForm";
 import { DownloadCurlCommand } from "@clevercanary/data-explorer-ui/lib/components/Export/components/DownloadCurlCommand/downloadCurlCommand";
-import { FILE_MANIFEST_ACTION } from "@clevercanary/data-explorer-ui/lib/hooks/useFileManifest/common/entities";
+import { FILE_MANIFEST_TYPE } from "@clevercanary/data-explorer-ui/lib/hooks/useFileManifest/common/entities";
 import { ExportMethodView } from "@clevercanary/data-explorer-ui/lib/views/ExportMethodView/exportMethodView";
 import React from "react";
 import * as MDX from "../../app/content/hca-dcp";
@@ -20,7 +20,7 @@ const GetCurlCommandPage = (): JSX.Element => {
           DownloadCurlForm={DownloadCurlCommandForm}
           DownloadCurlStart={MDX.DownloadEntityCurlCommandStart}
           DownloadCurlSuccess={MDX.DownloadEntityCurlCommandSuccess}
-          fileManifestAction={FILE_MANIFEST_ACTION.BULK_DOWNLOAD}
+          fileManifestType={FILE_MANIFEST_TYPE.BULK_DOWNLOAD}
           formFacets={FORM_FACETS}
         />
       }

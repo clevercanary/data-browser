@@ -11,4 +11,6 @@ export { default as DataReleasePolicy } from "./dataReleasePolicy.mdx";
 export { default as DCPGeneratedMatrices } from "./dcpGeneratedMatrices.mdx";
 export { default as DownloadEntityCurlCommandStart } from "./downloadEntityCurlCommandStart.mdx";
 export { default as DownloadEntityCurlCommandSuccess } from "./downloadEntityCurlCommandSuccess.mdx";
+export { default as ExportToTerraStart } from "./exportToTerraStart.mdx";
+export { default as ExportToTerraSuccessWithWarning } from "./exportToTerraSuccessWithWarning.mdx";
 export { default as MatrixQuestionnaire } from "./matrixQuestionnaire.mdx";
